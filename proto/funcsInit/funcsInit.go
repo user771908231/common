@@ -18,3 +18,12 @@ func NewHeartbeat() *casinoCommonProto.Heartbeat {
 	return ret
 }
 
+func NewGameSession() *casinoCommonProto.GameSession {
+	ret := new(casinoCommonProto.GameSession)
+	ret.UserId = new(uint32)
+	ret.GameId = new(int32)
+	ret.DeskId = new(int32)
+	ret.RoomId = new(int32)
+	ret.GameStatus = new(int32)
+	return ret
+}
