@@ -37,13 +37,12 @@ func GetSession(userId uint32) *casinoCommonProto.GameSession {
 }
 
 //更新用户的session信息，具体更新什么信息待定
-func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32) (*casinoCommonProto.GameSession, error) {
+func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool) (*casinoCommonProto.GameSession, error) {
 	session := GetSession(userId)
 	if session == nil {
 		log.T("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
 		session = commonNewPorot.NewGameSession()
 	}
-
 	*session.UserId = userId
 	*session.DeskId = deskId
 	*session.RoomId = roomId
@@ -51,6 +50,8 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 	*session.GameId = gameId
 	*session.GameNumber = gameNumber
 	*session.GameCustomStatus = gameCustomStatus
+	*session.IsBreak = isBreak
+	*session.IsLeave = isLeave
 
 	//保存session
 	log.T("保存到redis的session【%v】", session)

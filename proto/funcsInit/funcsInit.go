@@ -27,5 +27,7 @@ func NewGameSession() *casinoCommonProto.GameSession {
 	ret.GameStatus = new(int32)
 	ret.GameNumber = new(int32)
 	ret.GameCustomStatus = new(int32)
+	ret.IsBreak = new(bool)
+	ret.IsLeave = new(bool)
 	return ret
 }
