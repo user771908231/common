@@ -25,5 +25,7 @@ func NewGameSession() *casinoCommonProto.GameSession {
 	ret.DeskId = new(int32)
 	ret.RoomId = new(int32)
 	ret.GameStatus = new(int32)
+	ret.GameNumber = new(int32)
+	ret.GameCustomStatus = new(int32)
 	return ret
 }
