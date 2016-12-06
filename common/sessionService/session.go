@@ -13,10 +13,10 @@ const (
 	GAMESESSION_STATUS_NOGAME int32 = 1; //没有在游戏中
 	GAMESESSION_STATUS_GAMING int32 = 2; //没有在游戏中
 
-	GAMEID_DEZHOU = 1; //德州
-	GAMEID_MAJAING = 2; //麻将
-	GAMEID_DOUZIZHU = 3; //斗地主
-	GAMEID_ZHAJINHUA = 4; //这金花
+	GAMEID_DEZHOU int32 = 1; //德州
+	GAMEID_MAJAING int32 = 2; //麻将
+	GAMEID_DOUZIZHU int32 = 3; //斗地主
+	GAMEID_ZHAJINHUA int32 = 4; //这金花
 )
 
 var MJSESSION_KEY_PRE = "redis_game_session"
