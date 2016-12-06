@@ -40,7 +40,7 @@ func GetSession(userId uint32) *casinoCommonProto.GameSession {
 func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool) (*casinoCommonProto.GameSession, error) {
 	session := GetSession(userId)
 	if session == nil {
-		log.T("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
+		log.E("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
 		session = commonNewPorot.NewGameSession()
 	}
 	*session.UserId = userId
