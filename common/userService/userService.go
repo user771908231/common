@@ -14,6 +14,9 @@ import (
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto"
+	"casino_server/service/userService"
+	"casino_majiang/msg/protogo"
+	"github.com/name5566/leaf/gate"
 )
 
 var NEW_USER_DIAMOND_REWARD int64 = 20                //新用户登陆的时候,默认的砖石数量
@@ -327,4 +330,7 @@ func GetUserByOpenId(openId  string) *casinoCommonProto.User {
 	return result
 }
 
+//处理用户登录
+func handlerGame_Login(weixin *casinoCommonProto.WeixinInfo, a gate.Agent) {
+}
 
