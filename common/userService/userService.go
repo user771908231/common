@@ -14,6 +14,8 @@ import (
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto"
+	"casino_server/service/userService"
+	"casino_majiang/msg/protogo"
 	"github.com/name5566/leaf/gate"
 )
 
@@ -31,9 +33,7 @@ func NewUserAndSave(openId, wxNickName, headUrl string, sex int32, city string) 
 	//1,创建user获得自增主键
 	id, err := db.GetNextSeq(tableName.DBT_T_USER)
 	if err != nil {
-		return nil, len(
-
-		)err
+		return nil, err
 	}
 	//构造user
 	nuser := &model.T_user{}
