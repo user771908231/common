@@ -14,8 +14,6 @@ import (
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto"
-	"casino_server/service/userService"
-	"casino_majiang/msg/protogo"
 	"github.com/name5566/leaf/gate"
 )
 
