@@ -109,6 +109,7 @@ func GetUserById(id uint32) *ddproto.User {
 
 	//4,如果找不到用户并且是开发这模式
 	if buser == nil &&  sys.GAMEENV.DEVMODE {
+		log.T("现在是开发者模式sys.GAMEENV.DEVMODE[%v],生成一个对应id[%v]的user，并且缓存到redis中...", sys.GAMEENV.DEVMODE, id)
 		buser = &ddproto.User{}
 		buser.Id = proto.Uint32(id)
 		nickName, _ := numUtils.Uint2String(id)
