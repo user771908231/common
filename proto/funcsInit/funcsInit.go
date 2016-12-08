@@ -1,6 +1,9 @@
 package commonNewPorot
 
-import "casino_common/proto/ddproto"
+import (
+	"casino_common/proto/ddproto"
+	"casino_common/common/game"
+)
 
 func NewHeader() *ddproto.ProtoHeader {
 	ret := new(ddproto.ProtoHeader)
@@ -27,5 +30,30 @@ func NewGameSession() *ddproto.GameSession {
 	ret.GameCustomStatus = new(int32)
 	ret.IsBreak = new(bool)
 	ret.IsLeave = new(bool)
+	return ret
+}
+
+func NewGameDesk() *game.GameDesk {
+	ret := new(game.GameDesk)
+	return ret
+}
+
+func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
+	ret := new(ddproto.CommonSrvGameUser)
+	ret.UserId = new(uint32)
+	ret.NickName = new(string)
+	ret.Coin = new(int64)
+	ret.Status = new(int32)
+	ret.IsBreak = new(bool)
+	ret.IsLeave = new(bool)
+	ret.DeskId = new(int32)
+	ret.RoomId = new(int32)
+	ret.WaitTime = new(int64)
+	return ret
+}
+
+func NewGameUser() *game.GameUser {
+	ret := new(game.GameUser)
+	ret.CommonSrvGameUser = NewCommonSrvGameUser()
 	return ret
 }
