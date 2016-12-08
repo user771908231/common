@@ -8,6 +8,7 @@ Package ddproto is a generated protocol buffer package.
 It is generated from these files:
 	common_client.proto
 	common_server.proto
+	majiang_server.proto
 
 It has these top-level messages:
 	ProtoHeader

@@ -41,10 +41,21 @@ message GameSession {
 }
 
 //服务器游戏玩家通过的协议
+
+//服务器游戏玩家通过的协议
 message common_srv_game_user {
     optional uint32 userId = 1; //玩家id
     optional string nickName = 2; //玩家昵称
-    optional bool isBreak = 3; //断线
-    optional bool isLeave = 4; //离开
+    optional int64 Coin = 3; //游戏中的带入金额
+
+    optional int32 RoomId = 4;
+    optional int32 DeskId = 5; //
+    optional int32 gameNumber = 6; //游戏编号
+
+    optional bool isBreak = 7; //断线
+    optional bool isLeave = 8; //离开
+    optional int32 Status = 9; //玩家当前的状态
+    optional int64 WaitTime = 10; //用户等待的时间
+
 }
 

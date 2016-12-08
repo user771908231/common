@@ -7,6 +7,11 @@ import (
 	"casino_common/proto/ddproto"
 )
 
+type GameUserApi interface {
+	WriteMsg(p proto.Message)
+	GetUserId() uint32
+}
+
 //通用的游戏玩家
 type GameUser struct {
 	agent gate.Agent
