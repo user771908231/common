@@ -19,6 +19,7 @@ It has these top-level messages:
 	User
 	TNotice
 	GameSession
+	CommonSrvGameUser
 */
 package ddproto
 

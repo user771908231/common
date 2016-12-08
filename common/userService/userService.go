@@ -14,6 +14,8 @@ import (
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
+	"casino_common/common/sys"
+	"github.com/golang/protobuf/proto"
 )
 
 var NEW_USER_DIAMOND_REWARD int64 = 20                //新用户登陆的时候,默认的砖石数量
@@ -77,10 +79,17 @@ func GetRedisUserSeesionKey(userid uint32) string {
 
  */
 func GetUserById(id uint32) *ddproto.User {
-	log.T("userservice.GetUserById...")
+
 	//1,首先在 redis中去的数据
 	var buser *ddproto.User = nil
 	result := redisUtils.GetObj(GetRedisUserKey(id), &ddproto.User{})
+
+	//2，从redis 中取到的数据不为空，那么直接返回
+	if result != nil {
+		buser = result.(*ddproto.User)
+	}
+
+	//3，从reids中取到的数据为空，那么从数据库中读取
 	if result == nil {
 		log.E("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
 		// 获取连接 connection
@@ -92,13 +101,23 @@ func GetUserById(id uint32) *ddproto.User {
 		log.T("在mongo中查询到了user[%v],现在开始缓存", tuser)
 		//把从数据获得的结果填充到redis的model中
 		buser, _ = Tuser2Ruser(tuser)
-		if buser != nil && buser.GetId() > 0 {
+		if buser != nil {
 			SaveUser2Redis(buser)
 			SetUserDiamond(id, buser.GetDiamond())
 		}
+	}
 
-	} else {
-		buser = result.(*ddproto.User)
+	//4,如果找不到用户并且是开发这模式
+	if buser == nil &&  sys.GAMEENV.DEVMODE {
+		buser = &ddproto.User{}
+		buser.Id = proto.Uint32(id)
+		nickName, _ := numUtils.Uint2String(id)
+		buser.NickName = proto.String(nickName)
+		buser.Diamond = proto.Int64(20)
+
+		//保存到redis
+		SaveUser2Redis(buser)
+		SetUserDiamond(id, buser.GetDiamond())
 	}
 
 	//判断用户是否存在,如果不存在,则返回空
@@ -148,6 +167,13 @@ func UpsertTUser2Mongo(tuser *model.T_user) {
 	mongo中User模型转化为 redis中的user模型
  */
 func Tuser2Ruser(tu *model.T_user) (*ddproto.User, error) {
+
+	//检测suer是否存在
+	if tu.Id <= 0 {
+		return nil, Error.NewFailError("user不存在")
+	}
+
+	//返回转换之后的结果
 	result := &ddproto.User{}
 	if tu.Mid.Hex() != "" {
 		hesStr := tu.Mid.Hex()

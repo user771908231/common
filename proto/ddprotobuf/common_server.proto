@@ -40,3 +40,11 @@ message GameSession {
     optional bool isLeave = 9; //离开
 }
 
+//服务器游戏玩家通过的协议
+message common_srv_game_user {
+    optional uint32 userId = 1; //玩家id
+    optional string nickName = 2; //玩家昵称
+    optional bool isBreak = 3; //断线
+    optional bool isLeave = 4; //离开
+}
+
