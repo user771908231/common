@@ -1,5 +1,5 @@
 #!/bin/bash
-protoc --proto_path=.  --go_out=./ *.proto
-
-
-#--proto_path=PATH
+cd ./ddproto
+rm -rf *
+cd ../ddprotobuf
+protoc --proto_path=.  --go_out=../ddproto *.proto

@@ -5,8 +5,8 @@ import (
 	"casino_common/utils/numUtils"
 	"casino_common/utils/redisUtils"
 	"casino_common/common/log"
-	"casino_common/proto"
 	"casino_common/proto/funcsInit"
+	"casino_common/proto/ddproto"
 )
 // session相关的...
 const (
@@ -27,17 +27,17 @@ func getSessionKey(userId uint32) string {
 	return ret
 }
 
-func GetSession(userId uint32) *casinoCommonProto.GameSession {
-	s := redisUtils.GetObj(getSessionKey(userId), &casinoCommonProto.GameSession{})
+func GetSession(userId uint32) *ddproto.GameSession {
+	s := redisUtils.GetObj(getSessionKey(userId), &ddproto.GameSession{})
 	if s != nil {
-		return s.(*casinoCommonProto.GameSession)
+		return s.(*ddproto.GameSession)
 	} else {
 		return nil
 	}
 }
 
 //更新用户的session信息，具体更新什么信息待定
-func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool) (*casinoCommonProto.GameSession, error) {
+func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool) (*ddproto.GameSession, error) {
 	session := GetSession(userId)
 	if session == nil {
 		log.E("没有找到user[%v]的session,需要重新申请一个并保存...", userId)

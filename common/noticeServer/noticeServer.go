@@ -4,13 +4,13 @@ import (
 	"strings"
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
-	"casino_common/proto"
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/utils/numUtils"
 	"casino_common/utils/redisUtils"
 	"casino_common/utils/db"
+	"casino_common/proto/ddproto"
 )
 
 var NOTICE_TYPE_GUNDONG int32 = 1        //滚动
@@ -25,9 +25,9 @@ func getRedisKey(id int32) string {
 
 
 //通过notice的type 来查找notice
-func GetNoticeByType(noticeType int32) *casinoCommonProto.TNotice {
+func GetNoticeByType(noticeType int32) *ddproto.TNotice {
 	//1,先从redis中获取notice
-	result := redisUtils.GetObj(getRedisKey(noticeType), &casinoCommonProto.TNotice{})
+	result := redisUtils.GetObj(getRedisKey(noticeType), &ddproto.TNotice{})
 	if result == nil {
 		//2,如果notice 不存在则从数据库中获取,并且保存在redis中
 		notice := &model.T_th_notice{}
@@ -42,7 +42,7 @@ func GetNoticeByType(noticeType int32) *casinoCommonProto.TNotice {
 			//把从数据获得的结果填充到redis的model中
 			result = tnotice2Rnotice(notice)
 			if result != nil {
-				SaveNotice2Redis(result.(*casinoCommonProto.TNotice))
+				SaveNotice2Redis(result.(*ddproto.TNotice))
 			}
 		}
 	}
@@ -51,12 +51,12 @@ func GetNoticeByType(noticeType int32) *casinoCommonProto.TNotice {
 	if result == nil {
 		return nil
 	} else {
-		return result.(*casinoCommonProto.TNotice)
+		return result.(*ddproto.TNotice)
 	}
 }
 
-func tnotice2Rnotice(notice *model.T_th_notice) *casinoCommonProto.TNotice {
-	result := &casinoCommonProto.TNotice{}
+func tnotice2Rnotice(notice *model.T_th_notice) *ddproto.TNotice {
+	result := &ddproto.TNotice{}
 	result.Id = new(int32)
 	result.NoticeType = new(int32)
 	result.NoticeTitle = new(string)
@@ -75,7 +75,7 @@ func tnotice2Rnotice(notice *model.T_th_notice) *casinoCommonProto.TNotice {
 
 
 //把公告的数据保存到redis中
-func SaveNotice2Redis(notice *casinoCommonProto.TNotice) error {
+func SaveNotice2Redis(notice *ddproto.TNotice) error {
 	redisUtils.SetObj(getRedisKey(notice.GetId()), notice)
 	return nil
 }

@@ -1,17 +1,4 @@
-package casinoCommonProto;
-
-// ProtoHeader 需要在每个 Message 中作为第一个字段
-message ProtoHeader {
-    optional string version = 1; // 版本号
-    optional uint32 userId = 2; // 用户 id
-    optional int32 code = 3; // result code
-    optional string error = 4; // result error description
-}
-
-//这里都是通用过的一些协议
-message Heartbeat {
-    optional ProtoHeader header = 1;
-}
+package ddproto;
 
 message User {
     optional string mid = 1; //mongdo Mid
@@ -53,20 +40,3 @@ message GameSession {
     optional bool isLeave = 9; //离开
 }
 
-// 微信信息
-message WeixinInfo {
-    optional string openId = 1; // 微信授权用户唯一id
-    optional string nickName = 2; // 微信昵称
-    optional string headUrl = 3; // 微信头像
-    optional int32 sex = 4; // 性别: 1=男  2=女
-    optional string city = 5; // 城市
-    optional string unionId = 6; // unionId
-}
-
-//登录的结构
-message game_Login {
-    optional ProtoHeader header = 1;
-    optional uint32 userId = 2; // 用户id
-    optional int32 protoVersion = 3; // 客户端 proto version
-    optional WeixinInfo wxInfo = 4; //微信登录信息
-}

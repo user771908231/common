@@ -13,8 +13,7 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
-	"casino_common/proto"
-	"github.com/name5566/leaf/gate"
+	"casino_common/proto/ddproto"
 )
 
 var NEW_USER_DIAMOND_REWARD int64 = 20                //新用户登陆的时候,默认的砖石数量
@@ -26,7 +25,7 @@ var USER_DIAMOND_REDIS_KEY = "user_diamond_redis_key"
 	2,保存mongo
 	3,缓存到redis
  */
-func NewUserAndSave(openId, wxNickName, headUrl string, sex int32, city string) (*casinoCommonProto.User, error) {
+func NewUserAndSave(openId, wxNickName, headUrl string, sex int32, city string) (*ddproto.User, error) {
 
 	//1,创建user获得自增主键
 	id, err := db.GetNextSeq(tableName.DBT_T_USER)
@@ -77,11 +76,11 @@ func GetRedisUserSeesionKey(userid uint32) string {
 	3,如果mongo不存在,返回错误信息,客户端跳转到登陆界面
 
  */
-func GetUserById(id uint32) *casinoCommonProto.User {
+func GetUserById(id uint32) *ddproto.User {
 	log.T("userservice.GetUserById...")
 	//1,首先在 redis中去的数据
-	var buser *casinoCommonProto.User = nil
-	result := redisUtils.GetObj(GetRedisUserKey(id), &casinoCommonProto.User{})
+	var buser *ddproto.User = nil
+	result := redisUtils.GetObj(GetRedisUserKey(id), &ddproto.User{})
 	if result == nil {
 		log.E("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
 		// 获取连接 connection
@@ -93,13 +92,13 @@ func GetUserById(id uint32) *casinoCommonProto.User {
 		log.T("在mongo中查询到了user[%v],现在开始缓存", tuser)
 		//把从数据获得的结果填充到redis的model中
 		buser, _ = Tuser2Ruser(tuser)
-		if buser != nil {
+		if buser != nil && buser.GetId() > 0 {
 			SaveUser2Redis(buser)
 			SetUserDiamond(id, buser.GetDiamond())
 		}
 
 	} else {
-		buser = result.(*casinoCommonProto.User)
+		buser = result.(*ddproto.User)
 	}
 
 	//判断用户是否存在,如果不存在,则返回空
@@ -109,14 +108,14 @@ func GetUserById(id uint32) *casinoCommonProto.User {
 /**
 	将用户model保存在redis中
  */
-func SaveUser2Redis(u *casinoCommonProto.User) {
+func SaveUser2Redis(u *ddproto.User) {
 	redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
 }
 
 /**
 	保存数据到redis和mongo中
  */
-func SaveUser2RedisAndMongo(u *casinoCommonProto.User) {
+func SaveUser2RedisAndMongo(u *ddproto.User) {
 	SaveUser2Redis(u)
 	UpsertRUser2Mongo(u)
 }
@@ -129,8 +128,8 @@ func FlashUser2Mongo(userId uint32) error {
 	return nil
 }
 
-func UpsertRUser2Mongo(u *casinoCommonProto.User) {
-	//casinoCommonProto.User转化为  model.User
+func UpsertRUser2Mongo(u *ddproto.User) {
+	//ddproto.User转化为  model.User
 	tuser, _ := Ruser2Tuser(u)        //
 	UpsertTUser2Mongo(tuser)
 }
@@ -148,8 +147,8 @@ func UpsertTUser2Mongo(tuser *model.T_user) {
 /**
 	mongo中User模型转化为 redis中的user模型
  */
-func Tuser2Ruser(tu *model.T_user) (*casinoCommonProto.User, error) {
-	result := &casinoCommonProto.User{}
+func Tuser2Ruser(tu *model.T_user) (*ddproto.User, error) {
+	result := &ddproto.User{}
 	if tu.Mid.Hex() != "" {
 		hesStr := tu.Mid.Hex()
 		result.Mid = &hesStr
@@ -172,7 +171,7 @@ func Tuser2Ruser(tu *model.T_user) (*casinoCommonProto.User, error) {
 	把Redis_user 转化为mongo_t_user的时候喂自动为其分配objectId,方存储
  */
 
-func Ruser2Tuser(ru *casinoCommonProto.User) (*model.T_user, error) {
+func Ruser2Tuser(ru *ddproto.User) (*model.T_user, error) {
 	result := &model.T_user{}
 
 	if ru.Mid != nil {
@@ -302,10 +301,10 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 
 }
 
-func GetUserByOpenId(openId  string) *casinoCommonProto.User {
+func GetUserByOpenId(openId  string) *ddproto.User {
 	log.T("通过openId[%v]查询用户是否存在...", openId)
 	//2,从数据库中查询
-	result := &casinoCommonProto.User{}
+	result := &ddproto.User{}
 	tuser := &model.T_user{}
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER).Find(bson.M{"openid": openId}).One(tuser)
@@ -326,9 +325,5 @@ func GetUserByOpenId(openId  string) *casinoCommonProto.User {
 
 	//判断用户是否存在,如果不存在,则返回空
 	return result
-}
-
-//处理用户登录
-func handlerGame_Login(weixin *casinoCommonProto.WeixinInfo, a gate.Agent) {
 }
 

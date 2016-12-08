@@ -1,0 +1,1 @@
+协议的格式1， [game]_[type]_[content]game: coomon,ddz,mj,zjh,thtype: broad,ack,reqcontent: enterDesk,login.logout...2,所有游戏的协议都放在一个地方,不要分包，只需要分文件存储就行了

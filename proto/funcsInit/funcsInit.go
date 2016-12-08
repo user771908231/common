@@ -1,25 +1,23 @@
 package commonNewPorot
 
-import (
-	"casino_common/proto"
-)
+import "casino_common/proto/ddproto"
 
-func NewHeader() *casinoCommonProto.ProtoHeader {
-	ret := new(casinoCommonProto.ProtoHeader)
+func NewHeader() *ddproto.ProtoHeader {
+	ret := new(ddproto.ProtoHeader)
 	ret.UserId = new(uint32)
 	ret.Code = new(int32)
 	ret.Error = new(string)
 	return ret
 }
 
-func NewHeartbeat() *casinoCommonProto.Heartbeat {
-	ret := new(casinoCommonProto.Heartbeat)
+func NewHeartbeat() *ddproto.Heartbeat {
+	ret := new(ddproto.Heartbeat)
 	ret.Header = NewHeader()
 	return ret
 }
 
-func NewGameSession() *casinoCommonProto.GameSession {
-	ret := new(casinoCommonProto.GameSession)
+func NewGameSession() *ddproto.GameSession {
+	ret := new(ddproto.GameSession)
 	ret.UserId = new(uint32)
 	ret.GameId = new(int32)
 	ret.DeskId = new(int32)
