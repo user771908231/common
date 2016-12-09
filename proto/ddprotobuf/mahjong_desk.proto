@@ -1,0 +1,282 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+package ddproto;
+option optimize_for = LITE_RUNTIME;
+
+enum mj_enum_protoId {
+    PID_QUICK_CONN = 1; //连接服务器
+    PID_QUICK_CONN_ACK = 2; //
+    PID_GAME_LOGIN = 3; //登录游戏
+    PID_GAME_LOGIN_ACK = 4; //
+    PID_CREATEROOM = 5; //创建房间
+    PID_CREATEROOM_ACK = 6; //创建房间-回复
+    PID_ENTER_ROOM = 7; //进入房间
+    PID_ENTER_ROOM_ACK = 8; //进入房间-回复
+    PID_SEND_GAMEINFO = 9; //游戏信息
+    PID_READY = 10; //准备
+    PID_READY_ACK = 11; //准备-ack
+    PID_EXCHANGECARDS = 12; //换3张
+    PID_EXCHANGECARDS_ACK = 13; //换3张-回复
+    PID_DINGQUE = 14; //定缺
+    PID_OPENING = 15; //开局
+    PID_DEAL_CARDS = 16; //发牌
+    PID_GET_IN_CARD = 17; //摸牌
+    PID_SEND_OUT_CARD = 18; //出牌
+    PID_SEND_OUT_CARD_ACK = 19; //出牌-ack
+    PID_PENG_CARD = 20; //碰
+    PID_PENG_CARD_ACK = 21;
+    PID_GANG_CARD = 22; //杠
+    PID_GANG_CARD_ACK = 23;
+    PID_GUO_CARD = 24; //过
+    PID_GUO_CARD_ACK = 25;
+    PID_HU_CARD = 26; //胡
+    PID_HU_CARD_ACK = 27;
+    PID_BROADCAST_BEGIN_DINGQUE = 28; //开始定缺(广播)
+    PID_BROADCAST_BEGIN_EXCHANGE = 29; //开始换牌(广播)
+
+    PID_OVERTURN = 30; //轮到下一人操作(广播)
+    PID_CURRENTRESULT = 31; //本局结果
+    PID_SENDENDLOTTERY = 32; //牌局结束
+
+    PID_DISSOLVE_DESK = 33; //离开房间
+    PID_DISSOLVE_DESK_ACK = 34; //
+    PID_LEAVE_DESK = 35; //解散房间
+    PID_LEAVE_DESK_ACK = 36; //
+
+    PID_MESSAGE = 37; //聊天信息
+    PID_SEND_MESSAGE = 38; //广播聊天
+
+    PID_GAME_DINGQUEEND = 39; //定缺结束的广播
+    PID_GAME_GAMERECORD = 40; //查询战绩
+    PID_GAME_ACKGAMERECORD = 41; //战绩回复
+    PID_GAME_ACKGAMERECORDEDN = 42; //换三张结束
+    PID_GAME_NOTICE = 43; //请求通知
+    PID_GAME_ACKNOTICE = 44; //通知回复
+}
+
+enum mj_enum_errorCode {
+    EC_SUCCESS = 0; //表示成功
+
+    //-1   -100 登陆异常
+
+    //-101   -200	游戏异常
+    EC_CREATE_DESK_DIAMOND_NOTENOUGH = -101; // 创建房间的时候余额不足
+    EC_CREATE_DESK_USER_NOTFOUND = -102; // 创建房间的时候未知用户
+
+    EC_INTO_DESK_NOTFOUND = -103; // 进入房间的时候没有找到房间
+
+    EC_GAME_READY_REPEAT = -110; // 重复准备
+
+    EC_GAME_READY_CHIP_NOT_ENOUGH = -111; // 筹码不足
+}
+
+// 玩法：包括自摸、点炮、以及可多选的玩法
+message mj_base_playOptions {
+    optional int32 ziMoRadio = 1; // 单选，自摸类型，如：自摸加底、自摸加番等
+    optional int32 dianGangHuaRadio = 2; // 单选，点炮类型，如：点杠花（点炮）、点杠花（自摸）等
+    repeated int32 othersCheckBox = 3; // 其他可复选的玩法，如：换三张、幺九将对、门清中张、天地胡、卡二条、可胡七对等
+    optional int32 huRadio = 4; // 胡法，如：自摸胡、点炮胡（可抢杠）
+}
+
+enum mj_enum_playOption {
+    EXCHANGE_CARDS = 1; //换3张
+
+    ZIMO_JIA_DI = 2; //自摸加底
+    ZIMO_JIA_FAN = 3; //自摸加番
+
+    DIANGANG_HUA_DIANPAO = 4; //点杠花（点炮）
+    DIANGANG_HUA_ZIMO = 5; //点杠花（自摸）
+
+    YAOJIU_JIANGDUI = 6; //幺九+将对
+    MENQING_MID_CARD = 7; //门清+中张
+    TIAN_DI_HU = 8; //天/地胡
+    KA_ER_TIAO = 9; //卡2条
+
+    //三人两房牌
+    DIANPAO_CAN_HU = 10; //点炮可平胡
+    DUIDUIHU_2_FAN = 11; //对对胡2番
+    JIA_XIN_WU = 12; //夹心五
+
+    //倒倒胡
+    DDH_QIDUI_HU = 13; //可胡7对(倒倒胡)
+    DDH_ZIMO_HU = 14; //自摸胡(倒倒胡)
+    DDH_DIANPAO_HU = 15; //点炮胡(倒倒胡)
+
+}
+
+// 房间类型信息：包含房间类型和对应的局数、封顶、玩法等信息
+// 房间类型枚举
+enum mj_enum_roomType {
+    roomType_xueZhanDaoDi = 0; // 血战到底
+    roomType_sanRenLiangFang = 1; // 三人两房
+    roomType_siRenLiangFang = 2; // 四人两房
+    roomType_deYangMaJiang = 3; // 德阳麻将
+    roomType_daoDaoHu = 4; // 倒倒胡
+    roomType_xueLiuChengHe = 5; // 血流成河
+    roomType_liangRenLiangFang = 6; //两人两房
+    roomType_liangRenSanFang = 7; //两人三房
+    roomType_sanRenSanFang = 8; // 三人三房
+}
+
+// 麻将牌
+message mj_base_cardInfo {
+    optional int32 type = 1;
+    optional int32 value = 2; //0:牌背； 1~9：万；  10~18：条；  19~27：筒。
+    optional int32 id = 3; //牌的id
+}
+
+//麻将花色
+enum mj_enum_color {
+    WAN = 1; //万
+    TIAO = 2; //条
+    TONG = 3; //筒
+}
+
+//杠的类型
+enum mj_enum_gangType {
+    G_MINGGANG = 1; //明杠
+    G_BAGANG = 2; //巴杠
+    G_ANGANG = 3; //暗杠
+}
+
+//碰杠类型(客户端显示用)
+enum mj_enum_composeCardType {
+    C_MINGGANG = 1; //明杠
+    C_BAGANG = 2; //巴杠
+    C_ANGANG = 3; //暗杠
+    C_PENG = 4; //碰
+}
+
+//胡牌的类型
+enum mj_enum_huType {
+    //附加番数(特定操作)
+    H_TianHu = 1; //5番:天胡 庄家起牌后胡牌
+    H_DiHu = 2; //5番:地胡 第一回合中,没有任何玩家操作,非庄家自摸
+    H_GangShangHua = 3; //+1番 杠上花
+    H_GangShangPao = 4; //+1番 杠上炮
+    H_QiangGang = 5; //+1番 抢杠
+    H_HaiDiLao = 6; //+1番 海底捞
+    H_HaiDiPao = 7; //+1番 海底炮
+    H_HaidiGangShangHua = 8; //+2番 海底杠上花
+    H_HaidiGangShangPao = 9; //+2番 海底杠上炮
+
+    //
+    H_JinGouDiao = 10; //+1番 金钩钓
+
+    //可选附加玩法
+    H_ZiMoJiaFan = 11; //+1番 自摸加番
+    H_ZiMoJiaDi = 12; //+底 自摸加底
+}
+
+enum mj_enum_paiType {
+    H_DuiDuiHu = 1; //1番:对对胡
+    H_QingYiSe = 2; //2番:清一色
+    H_QiDui = 3; //2番:七对
+    H_DaiYaoJiu = 4; //2番:带幺九
+    H_LongQiDui = 5; //3番:龙七对
+    H_JiangDui = 6; //3番:将对(2、5、8组成的对对胡)
+    H_MenQing = 7; //+1番 门清
+    H_ZhongZhang = 8; //+1番 中张(胡牌时不含1,9)
+
+    //(内江麻将)
+    H_KaErTiao = 9; //+1番 卡二条
+    //(德阳麻将)
+    H_JiaXin5 = 10; //+1番 夹心五
+
+    H_QingLongQiDui = 11; //青龙七对
+    H_QingQiDui = 12; //清七对
+    H_PingHu = 13; //平胡
+}
+
+
+message mj_base_roomTypeInfo {
+    optional mj_enum_roomType mjRoomType = 1; // 房间类型，如：血战到底、三人两房、四人两房、德阳麻将、倒倒胡、血流成河
+    optional int32 boardsCout = 2; // 局数，如：4局（房卡 × 2）、8局（房卡 × 3）
+    optional int64 capMax = 3; // 封顶，如：2番、3番、4番
+    optional mj_base_playOptions playOptions = 4; // 玩法：包括自摸、点炮、以及可多选的玩法
+    optional int32 cardsNum = 5; // 牌张，如：7张、10张、13张
+    optional int32 settlement = 6; // 结算，如：1拖1、1拖2、3拖5
+    optional int64 baseValue = 7; // 底
+}
+
+
+message mj_base_composeCard {
+    optional int32 value = 1; // 麻将牌值: 0~27
+    optional int32 type = 2; // 类型（碰，明杠，暗杠）
+}
+
+message mj_base_playerCard {
+    repeated mj_base_cardInfo handCard = 1; // 手牌数组（自己是明的，其他玩家服务器返回暗值，避免外挂获取别的玩家手牌）
+    repeated mj_base_composeCard composeCard = 2; // 摆牌数组（碰、明杠、暗杠）
+    repeated mj_base_cardInfo outCard = 3; // 已出牌数组
+    repeated mj_base_cardInfo huCard = 4; // 胡的牌
+    optional uint32 UserId = 5; //
+}
+
+enum mj_enum_userGameStatus {
+    U_INIT = 0; //初始化
+    U_DINGQUE = 1; //定缺
+    U_EXCHANGE = 2; //换牌
+    U_PLAYING = 3; //游戏中
+    U_FINISH = 4; //已经结束
+}
+
+message mj_base_playerInfo {
+    optional bool isBanker = 1; // 是否庄家
+    optional mj_base_playerCard playerCard = 2; // 玩家的手牌、摆牌（碰杠）、已打出的牌、胡牌信息。客户端需根据服务端的返回进行排序动画。
+    optional int64 coin = 3; // 玩家当前显示的自己的筹码数
+    optional string nickName = 4; // 昵称
+    optional int32 sex = 5; // 性别: 1=男  2=女
+    optional uint32 userId = 6; // 用户id
+    optional bool isOwner = 7; // 当前用户是否房主
+    optional int32 bReady = 8; // 是否已准备
+    optional int32 bDingQue = 9; // 是否已定缺
+    optional int32 bExchanged = 10; // 是否已换牌(换3张)
+    optional int32 nHuPai = 11; // 0:未胡牌; >=1: 已胡牌(血流成河时,表示已胡次数)
+    optional int32 quePai = 12; // 缺哪门牌: 1=万 2=条 3=筒
+    optional WeixinInfo wxInfo = 13; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
+    optional int32 GameStatus = 14; //玩家的游戏状态  .
+}
+
+enum mj_enum_deskGameStatus {
+    INIT = 0; //初始化
+    FAPAI = 1; //发牌的阶段
+    EXCHANGE = 2; //换牌
+    DINGQUE = 3; //定缺
+    PLAYING = 4; //游戏中
+    FINISH = 5; //已经结束
+}
+
+
+message mj_base_deskGameInfo {
+    optional int32 GameStatus = 1; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
+    optional mj_base_roomTypeInfo roomTypeInfo = 2; //房间类型信息，包括：房间类型、局数、封顶、玩法、牌张、结算、底
+    optional int32 playerNum = 3; //玩家数量
+    optional uint32 activeUserId = 4; //当前谁操作，决定：中间的指针应该指向谁，哪个玩家当前是可操作状态
+    optional int32 actionTime = 5; // 玩家当前操作时间
+    optional int32 delayTime = 6; //当前延时时间
+    optional int32 nInitActionTime = 7; // 初始操作时间
+    optional int32 nInitDelayTime = 8; // 初始延时时间
+    optional int64 initRoomCoin = 9; // 房间的初始带入金额
+    optional int32 currPlayCount = 10; // 朋友桌: 当前第几局
+    optional int32 totalPlayCount = 11; // 朋友桌: 总共几局
+    optional string roomNumber = 12; // 房间号
+    optional int32 remainCards = 13; // 还剩几张麻将牌
+    optional uint32 Banker = 14; //庄家
+
+}
+
+//房主解散房间(未开局)
+message mj_req_dissolveDesk {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; // 解散房间的用户 id
+}
+//解散房间回复
+message mj_ack_dissolveDesk {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; // 解散房间的用户 id
+    optional int32 deskId = 3; //房间Id
+    optional string passWord = 4; //房间密钥
+}
+

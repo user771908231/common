@@ -3,6 +3,7 @@ package commonNewPorot
 import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/game"
+	"casino_majiang/msg/funcsInit"
 )
 
 func NewHeader() *ddproto.ProtoHeader {
@@ -57,3 +58,66 @@ func NewGameUser() *game.GameUser {
 	ret.CommonSrvGameUser = NewCommonSrvGameUser()
 	return ret
 }
+
+func NewWeixinInfo() *ddproto.WeixinInfo {
+	ret := new(ddproto.WeixinInfo)
+	ret.City = new(string)
+	ret.HeadUrl = new(string)
+	ret.NickName = new(string)
+	ret.OpenId = new(string)
+	ret.Sex = new(int32)
+	ret.UnionId = new(string)
+	return ret
+}
+
+func NewCommonReqGameLogin() *ddproto.CommonReqGameLogin {
+	ret := new(ddproto.CommonReqGameLogin)
+	ret.Header = NewHeader()
+	ret.ProtoVersion = new(int32)
+	ret.UserId = new(uint32)
+	ret.WxInfo = NewWeixinInfo()
+	return ret
+}
+
+func NewCommonAckGameLogin() *ddproto.CommonAckGameLogin {
+	ret := new(ddproto.CommonAckGameLogin)
+	ret.Header = NewHeader()
+	ret.UserId = new(uint32)
+	ret.NickName = new(string)
+	ret.RoomPassword = new(string)
+	ret.CostCreateRoom = new(int64)
+	ret.CostRebuy = new(int64)
+	ret.Championship = new(bool)
+	ret.Chip = new(int64)
+	ret.MailCount = new(int32)
+	ret.Notice = new(string)
+	ret.GameStatus = new(int32)
+	return ret
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
