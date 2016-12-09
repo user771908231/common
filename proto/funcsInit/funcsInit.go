@@ -3,7 +3,6 @@ package commonNewPorot
 import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/game"
-	"casino_majiang/msg/funcsInit"
 )
 
 func NewHeader() *ddproto.ProtoHeader {
