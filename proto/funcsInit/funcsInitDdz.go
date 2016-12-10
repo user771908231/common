@@ -208,6 +208,7 @@ func NewDdzJiaoDiZhuAck() *ddproto.DdzAckJiaoDiZhu {
 	ret.Jiao = new(bool)
 	ret.UserId = new(uint32)
 	ret.Header = NewHeader()
+	ret.Score = new(ddproto.DdzEnumJdScore)
 	return ret
 }
 
