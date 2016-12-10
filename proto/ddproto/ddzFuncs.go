@@ -350,11 +350,6 @@ func (out *DdzSrvOutPokerPais)  GT(outb *DdzSrvOutPokerPais) (bool, error) {
 	}
 }
 
-func (out *DdzSrvOutPokerPais) GetClientPokers() []*ClientBasePoker {
-	//return ServerPoker2ClienPoker(out.PokerPais)
-	return nil
-}
-
 //牌相关的方法
 
 func ( p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {
