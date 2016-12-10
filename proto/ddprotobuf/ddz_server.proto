@@ -21,11 +21,6 @@ message ddz_srv_deskTongJi {
     optional int32 countQiangDiZhu = 2; //统计抢地主的次数
 }
 
-enum EDDZTYPE {
-    DDZ_TYPE_HUANLEDIZHU = 1; //欢乐斗地主
-    DDZ_TYPE_SICHUAN = 2; //四川地主
-}
-
 //desk
 message ddz_srv_desk {
     optional int32 deskId = 1;
