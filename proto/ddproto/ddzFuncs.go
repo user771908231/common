@@ -329,6 +329,15 @@ func (out *DdzSrvOutPokerPais) initTypeAndKeyValue() error {
 //比较两幅牌的大小
 func (out *DdzSrvOutPokerPais)  GT(outb *DdzSrvOutPokerPais) (bool, error) {
 	if out.GetType() == outb.GetType() {
+		//类型相同 顺子和连对还需判断长度
+		if out.GetType() == int32(DdzEnumPaiType_COMPANYCARD) && len(out.PokerPais) != len(outb.PokerPais) {
+			log.E("连对的长度不同 无法比较...")
+			return false, errors.New("无法比较，连对长度不同..")
+		}
+		if out.GetType() == int32(DdzEnumPaiType_CONNECTCARD) && len(out.PokerPais) != len(outb.PokerPais) {
+			log.E("顺子的长度不同 无法比较...")
+			return false, errors.New("无法比较，顺子长度不同..")
+		}
 		return out.GetKeyValue() > outb.GetKeyValue(), nil
 	} else {
 		//比较类型不同的情况
@@ -339,14 +348,12 @@ func (out *DdzSrvOutPokerPais)  GT(outb *DdzSrvOutPokerPais) (bool, error) {
 			return false, errors.New("无法比较，类型有错误..")
 		}
 	}
-
 }
 
 func (out *DdzSrvOutPokerPais) GetClientPokers() []*ClientBasePoker {
 	//return ServerPoker2ClienPoker(out.PokerPais)
 	return nil
 }
-
 
 //牌相关的方法
 
