@@ -56,3 +56,29 @@ message common_ack_logout {
     optional uint32 userId = 2; // 用户id
 }
 
+// 反馈信息的协议
+message common_req_feedback {
+    optional ProtoHeader header = 1;
+    optional string message = 2; //用户提交的反馈内容
+}
+
+//-------------------------------------------扑克牌相关的------------------------------------
+// 房间类型枚举
+//扑克花色
+enum common_enum_pokerColor {
+    HONGTAO = 1; //  红桃
+    FANGKUAI = 2; // 方块
+    HEITAO = 3; //  黑桃
+    MEIHUA = 4; //梅花
+    REDJOKER = 5; //小王
+    BLACKBIGJOKER = 6; //大王
+}
+
+message client_base_poker {
+    optional common_enum_pokerColor suit = 1; //花色: 1=黑桃 2=红桃 3=梅花 4=方块
+    optional int32 num = 2; //牌值: 2-10，J、Q、K、A、小王、大王
+    optional int32 id = 3; //54张牌：1-54; 0=牌背
+}
+
+//-------------------------------------------返回信息相关的------------------------------------
+

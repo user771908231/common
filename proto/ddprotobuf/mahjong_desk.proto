@@ -56,19 +56,19 @@ enum mj_enum_protoId {
 }
 
 enum mj_enum_errorCode {
-    EC_SUCCESS = 0; //表示成功
+    EC_MJ_SUCCESS = 0; //表示成功
 
     //-1   -100 登陆异常
 
     //-101   -200	游戏异常
-    EC_CREATE_DESK_DIAMOND_NOTENOUGH = -101; // 创建房间的时候余额不足
-    EC_CREATE_DESK_USER_NOTFOUND = -102; // 创建房间的时候未知用户
+    EC_MJ_CREATE_DESK_DIAMOND_NOTENOUGH = -101; // 创建房间的时候余额不足
+    EC_MJ_CREATE_DESK_USER_NOTFOUND = -102; // 创建房间的时候未知用户
 
-    EC_INTO_DESK_NOTFOUND = -103; // 进入房间的时候没有找到房间
+    EC_MJ_INTO_DESK_NOTFOUND = -103; // 进入房间的时候没有找到房间
 
-    EC_GAME_READY_REPEAT = -110; // 重复准备
+    EC_MJ_GAME_READY_REPEAT = -110; // 重复准备
 
-    EC_GAME_READY_CHIP_NOT_ENOUGH = -111; // 筹码不足
+    EC_MJ_GAME_READY_CHIP_NOT_ENOUGH = -111; // 筹码不足
 }
 
 // 玩法：包括自摸、点炮、以及可多选的玩法
@@ -215,11 +215,11 @@ message mj_base_playerCard {
 }
 
 enum mj_enum_userGameStatus {
-    U_INIT = 0; //初始化
-    U_DINGQUE = 1; //定缺
-    U_EXCHANGE = 2; //换牌
-    U_PLAYING = 3; //游戏中
-    U_FINISH = 4; //已经结束
+    MJ_U_INIT = 0; //初始化
+    MJ_U_DINGQUE = 1; //定缺
+    MJ_U_EXCHANGE = 2; //换牌
+    MJ_U_PLAYING = 3; //游戏中
+    MJ_U_FINISH = 4; //已经结束
 }
 
 message mj_base_playerInfo {
@@ -240,14 +240,13 @@ message mj_base_playerInfo {
 }
 
 enum mj_enum_deskGameStatus {
-    INIT = 0; //初始化
-    FAPAI = 1; //发牌的阶段
-    EXCHANGE = 2; //换牌
-    DINGQUE = 3; //定缺
-    PLAYING = 4; //游戏中
-    FINISH = 5; //已经结束
+    MJ_INIT = 0; //初始化
+    MJ_FAPAI = 1; //发牌的阶段
+    MJ_EXCHANGE = 2; //换牌
+    MJ_DINGQUE = 3; //定缺
+    MJ_PLAYING = 4; //游戏中
+    MJ_FINISH = 5; //已经结束
 }
-
 
 message mj_base_deskGameInfo {
     optional int32 GameStatus = 1; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
