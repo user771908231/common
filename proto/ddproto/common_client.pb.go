@@ -15,7 +15,7 @@ It is generated from these files:
 	ddz_play.proto
 	ddz_server.proto
 	mahjong_desk.proto
-	majiang_server.proto
+	mahjong_server.proto
 
 It has these top-level messages:
 	ProtoHeader

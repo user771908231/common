@@ -1,4 +1,5 @@
 package ddproto;
+
 //牌 ,单张扑克牌
 message common_srv_pokerPai {
     optional int32 id = 1;
