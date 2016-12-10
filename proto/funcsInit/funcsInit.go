@@ -19,6 +19,14 @@ func NewHeartbeat() *ddproto.Heartbeat {
 	return ret
 }
 
+func NewServerInfo() *ddproto.ServerInfo {
+	ret := new(ddproto.ServerInfo)
+	ret.Ip = new(string)
+	ret.Port = new(int32)
+	ret.Status = new(int32)
+	return ret
+}
+
 func NewGameSession() *ddproto.GameSession {
 	ret := new(ddproto.GameSession)
 	ret.UserId = new(uint32)
@@ -93,14 +101,6 @@ func NewCommonAckGameLogin() *ddproto.CommonAckGameLogin {
 	ret.GameStatus = new(int32)
 	return ret
 }
-
-
-
-
-
-
-
-
 
 
 

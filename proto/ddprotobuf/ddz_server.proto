@@ -1,0 +1,120 @@
+syntax = "proto2";
+package ddproto;
+import public "common_server_poker.proto";
+
+//打出去的牌
+message ddz_srv_outPokerPais {
+    optional int32 keyValue = 1; //比较大小的关键值
+    repeated common_srv_pokerPai pokerPais = 2; //出的牌
+    optional int32 type = 3; //牌类型,单张，对子，三代一，三代2，炸弹
+    optional bool isBomb = 4; //是否是炸弹
+    optional int32 countDuizi = 5; //对子的个数
+    optional int32 countSanzhang = 6; //三张的个数
+    optional int32 countSizhang = 7; //四张的个数
+    optional int32 countYizhang = 8; //单张的个数
+    optional uint32 userId = 9; //出牌的人
+}
+
+//对 desk的统计
+message ddz_srv_deskTongJi {
+    repeated ddz_srv_outPokerPais bombs = 1; //出的炸弹
+    optional int32 countQiangDiZhu = 2; //统计抢地主的次数
+}
+
+enum EDDZTYPE {
+    DDZ_TYPE_HUANLEDIZHU = 1; //欢乐斗地主
+    DDZ_TYPE_SICHUAN = 2; //四川地主
+}
+
+//desk
+message ddz_srv_desk {
+    optional int32 deskId = 1;
+    optional string key = 2;
+    optional int32 userCountLimit = 3; //人数限制
+    repeated common_srv_pokerPai allPokerPai = 4; //所有的牌
+    repeated common_srv_pokerPai diPokerPai = 5; //底牌
+    optional ddz_srv_outPokerPais outPai = 6; //当前出的牌
+    optional uint32 owner = 7; //人数限制
+    optional uint32 dizhuPaiUser = 8; //发的地主牌
+    optional uint32 diZhuUserId = 9; //地主id
+    optional uint32 activeUserId = 10; //当前轮到谁
+    optional ddz_srv_deskTongJi tongji = 11; //关于统计的数据都在这
+    optional int64 baseValue = 12; //底分
+    optional int64 qingDizhuValue = 13; //不明白意义 暂时没用
+    optional int64 winValue = 14; //不明白意义 暂时没用
+    optional int32 ddzType = 15; //游戏类型
+    optional int32 RoomType = 16; //房间类型
+    optional int32 BoardsCount = 17;
+    optional int64 CapMax = 18;
+    optional bool IsJiaoFen = 19;
+    optional int32 roomId = 20; //房间id
+    optional int32 footRate = 21; // 底牌倍率
+    optional int32 playRate = 22; // 当前倍数（抢地主、炸弹、春天等产生的倍数）
+    optional int32 GameStatus = 23; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
+    optional int64 initRoomCoin = 24; // 房间的初始带入金额
+    optional int32 currPlayCount = 25; // 朋友桌: 当前第几局
+    optional int32 totalPlayCount = 26; // 朋友桌: 总共几局
+    optional int32 playerNum = 27; //玩家数量
+}
+
+//游戏数据
+message ddz_srv_gameData {
+    repeated common_srv_pokerPai handPokers = 1; //所有的牌
+    repeated ddz_srv_outPokerPais outPaiList = 2; //当前出的牌
+    optional ddz_srv_outPokerPais outPai = 3; //当前出的牌
+}
+
+
+message ddz_srv_billBean {
+    //斗地主的账单
+    optional int64 coin = 1; //关于统计的数据都在这
+    optional uint32 loseUser = 2; //
+    optional uint32 winUser = 3; //
+    optional string desc = 4;
+}
+
+message ddz_srv_bill {
+    //斗地主的账单
+    optional int64 winCoin = 1; //关于统计的数据都在这
+    repeated ddz_srv_billBean billBean = 2; //所有的牌
+
+}
+
+
+message ddz_srv_userStatistics {
+    repeated ddz_srv_outPokerPais bomBean = 1; //统计来做
+    optional int32 CountWin = 2;
+    optional int32 CountLose = 3;
+}
+
+//user
+message ddz_srv_user {
+    optional uint32 userId = 1;
+    optional ddz_srv_gameData gameData = 2; //游戏数据
+    optional int32 status = 3; //用户的游戏状态，本剧斗地主的状态
+    optional bool isBreak = 4; //是否掉线
+    optional bool isLeave = 5; //是否掉线
+    optional int32 qiangDiZhuStatus = 7; //抢地主的状态
+    optional int32 jiabeiStatus = 8; //加倍的状态
+    optional ddz_srv_bill bill = 9; // 斗地主的账单
+    optional int32 deskId = 10; //deskId
+    optional int32 roomId = 11; //roomId
+    optional int64 coin = 12; //
+    optional ddz_srv_userStatistics statistics = 13;
+    optional int32 laDaoStatus = 14; //拉倒的状态
+    optional int32 playRate = 15; //倍数由玩家维护
+    optional int32 bomb = 16; //当局炸的次数
+    optional int32 jiaoScore = 17; //经典斗地主叫多少分 DdzJDScore:1/2/3
+}
+
+//room
+message ddz_srv_room {
+    optional int32 roomId = 1;
+}
+
+//备份专用...
+message ddz_srv_bak {
+    optional ddz_srv_desk desk = 1;
+    repeated ddz_srv_user users = 2;
+
+}

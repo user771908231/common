@@ -12,6 +12,13 @@ message Heartbeat {
     optional ProtoHeader header = 1;
 }
 
+//服务器信息
+message ServerInfo {
+    optional string ip = 1;
+    optional int32 port = 2;
+    optional int32 status = 3; //0开启 1关闭
+}
+
 // 微信信息
 message WeixinInfo {
     optional string openId = 1; // 微信授权用户唯一id

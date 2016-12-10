@@ -17,6 +17,8 @@ var _ = math.Inf
 
 // Ignoring public import of Heartbeat from common_client.proto
 
+// Ignoring public import of ServerInfo from common_client.proto
+
 // Ignoring public import of WeixinInfo from common_client.proto
 
 // Ignoring public import of common_req_gameLogin from common_client.proto
@@ -65,7 +67,7 @@ type DdzReqCreateDesk struct {
 func (m *DdzReqCreateDesk) Reset()                    { *m = DdzReqCreateDesk{} }
 func (m *DdzReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqCreateDesk) ProtoMessage()               {}
-func (*DdzReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*DdzReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *DdzReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -95,7 +97,7 @@ type DdzAckCreateDesk struct {
 func (m *DdzAckCreateDesk) Reset()                    { *m = DdzAckCreateDesk{} }
 func (m *DdzAckCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckCreateDesk) ProtoMessage()               {}
-func (*DdzAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*DdzAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 func (m *DdzAckCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -150,7 +152,7 @@ type DdzReqGameRecord struct {
 func (m *DdzReqGameRecord) Reset()                    { *m = DdzReqGameRecord{} }
 func (m *DdzReqGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqGameRecord) ProtoMessage()               {}
-func (*DdzReqGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*DdzReqGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
 
 func (m *DdzReqGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -185,7 +187,7 @@ type DdzBaseUserRecord struct {
 func (m *DdzBaseUserRecord) Reset()                    { *m = DdzBaseUserRecord{} }
 func (m *DdzBaseUserRecord) String() string            { return proto.CompactTextString(m) }
 func (*DdzBaseUserRecord) ProtoMessage()               {}
-func (*DdzBaseUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (*DdzBaseUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
 
 func (m *DdzBaseUserRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -228,7 +230,7 @@ type DdzBaseGameRecord struct {
 func (m *DdzBaseGameRecord) Reset()                    { *m = DdzBaseGameRecord{} }
 func (m *DdzBaseGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*DdzBaseGameRecord) ProtoMessage()               {}
-func (*DdzBaseGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+func (*DdzBaseGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
 
 func (m *DdzBaseGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -276,7 +278,7 @@ type DdzAckGameRecord struct {
 func (m *DdzAckGameRecord) Reset()                    { *m = DdzAckGameRecord{} }
 func (m *DdzAckGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckGameRecord) ProtoMessage()               {}
-func (*DdzAckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
+func (*DdzAckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
 
 func (m *DdzAckGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -312,7 +314,7 @@ type DdzReqEnterDesk struct {
 func (m *DdzReqEnterDesk) Reset()                    { *m = DdzReqEnterDesk{} }
 func (m *DdzReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqEnterDesk) ProtoMessage()               {}
-func (*DdzReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
+func (*DdzReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{6} }
 
 func (m *DdzReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -357,7 +359,7 @@ type DdzAckEnterDesk struct {
 func (m *DdzAckEnterDesk) Reset()                    { *m = DdzAckEnterDesk{} }
 func (m *DdzAckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckEnterDesk) ProtoMessage()               {}
-func (*DdzAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{7} }
+func (*DdzAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{7} }
 
 func (m *DdzAckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -377,7 +379,7 @@ func init() {
 	proto.RegisterType((*DdzAckEnterDesk)(nil), "ddproto.ddz_ack_enterDesk")
 }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor5 = []byte{
 	// 420 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x93, 0x41, 0x8b, 0xda, 0x40,
 	0x14, 0xc7, 0x1b, 0xd3, 0x68, 0x1d, 0xab, 0xad, 0x63, 0x0f, 0x41, 0x4a, 0x29, 0xa1, 0x87, 0x42,
