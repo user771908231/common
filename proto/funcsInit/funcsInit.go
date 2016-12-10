@@ -57,6 +57,7 @@ func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	ret.DeskId = new(int32)
 	ret.RoomId = new(int32)
 	ret.WaitTime = new(int64)
+	ret.GameNumber = new(int32)
 	return ret
 }
 
