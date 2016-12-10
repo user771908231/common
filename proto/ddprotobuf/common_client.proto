@@ -19,6 +19,31 @@ message ServerInfo {
     optional int32 status = 3; //0开启 1关闭
 }
 
+
+// 接入服务器
+message QuickConn {
+    optional ProtoHeader header = 1;
+    optional string channelId = 2; //渠道号
+    optional int32 gameId = 3; //游戏ID: 1德州、2麻将、3斗地主
+    optional int32 currVersion = 4; //当前版本号
+    optional int32 languageId = 5;
+    optional uint32 userId = 6; //用户Id
+}
+
+message AckQuickConn {
+    optional ProtoHeader header = 1;
+    optional ServerInfo gameServer = 2; //游戏服务器
+    optional int32 releaseTag = 3; //发布版本标志
+    optional int32 currVersion = 4; //服务器的当前最新版本号
+    optional int32 isUpdate = 5; //0=无需升级 1=可选升级 2=强制升级
+    optional string downloadUrl = 6; //下载地址
+    optional string versionInfo = 7; //版本升级描述信息
+    optional int32 isMaintain = 8; //是否停服维护 1=停服维护中
+    optional string maintainMsg = 9; //维护提示消息
+}
+
+
+
 // 微信信息
 message WeixinInfo {
     optional string openId = 1; // 微信授权用户唯一id

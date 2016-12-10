@@ -52,7 +52,7 @@ func NewPDdzUser() *ddproto.DdzSrvUser {
 	return user
 }
 
-func NewPDdzUserStatistics() *ddproto.DdzSrvUserStatistics {
+func NewDdzSrvUserStatistics() *ddproto.DdzSrvUserStatistics {
 	ret := new(ddproto.DdzSrvUserStatistics)
 	ret.CountLose = new(int32)
 	ret.CountWin = new(int32)
@@ -105,7 +105,7 @@ func NewPDdzBillBean() *ddproto.DdzSrvBillBean {
 	return b
 }
 
-func NewPGameData() *ddproto.DdzSrvGameData {
+func NewDdzSrvGameData() *ddproto.DdzSrvGameData {
 	ret := new(ddproto.DdzSrvGameData)
 	return ret
 }
@@ -123,7 +123,7 @@ func NewRoomTypeInfo() *ddproto.DdzBaseRoomTypeInfo {
 
 
 //创建房间
-func NewGame_AckCreateRoom() *ddproto.DdzAckCreateDesk {
+func NewDdzAckCreateDesk() *ddproto.DdzAckCreateDesk {
 	ret := new(ddproto.DdzAckCreateDesk)
 	ret.CreateFee = new(int64)
 	ret.DeskId = new(int32)
@@ -134,7 +134,7 @@ func NewGame_AckCreateRoom() *ddproto.DdzAckCreateDesk {
 }
 
 //进入房间成功
-func NewGame_AckEnterRoom() *ddproto.DdzAckEnterDesk {
+func NewDdzAckEnterDesk() *ddproto.DdzAckEnterDesk {
 	ret := new(ddproto.DdzAckEnterDesk)
 	ret.Header = NewHeader()
 	return ret
@@ -183,8 +183,6 @@ func NewGameMessage() *ddproto.DdzBcMessage {
 	return ret
 }
 
-
-
 func NewDdzSendGameInfo() *ddproto.DdzBcGameInfo {
 	ret := new(ddproto.DdzBcGameInfo)
 	ret.Header = NewHeader()
@@ -192,7 +190,6 @@ func NewDdzSendGameInfo() *ddproto.DdzBcGameInfo {
 	ret.SenderUserId = new(uint32)
 	return ret
 }
-
 
 func NewDdzOpening() *ddproto.DdzBcOpening {
 	ret := new(ddproto.DdzBcOpening)
@@ -206,8 +203,6 @@ func NewDdzDealCards() *ddproto.DdzBcDealCards {
 	return ret
 }
 
-
-
 func NewDdzJiaoDiZhuAck() *ddproto.DdzAckJiaoDiZhu {
 	ret := new(ddproto.DdzAckJiaoDiZhu)
 	ret.Jiao = new(bool)
@@ -215,8 +210,6 @@ func NewDdzJiaoDiZhuAck() *ddproto.DdzAckJiaoDiZhu {
 	ret.Header = NewHeader()
 	return ret
 }
-
-
 
 func NewDdzRobDiZhuAck() *ddproto.DdzAckRobDiZhu {
 	ret := new(ddproto.DdzAckRobDiZhu)
@@ -402,7 +395,6 @@ func NewDdzSendMessage() *ddproto.DdzBcMessage {
 	return ret
 }
 
-
 func NewDdzAckGameRecord() *ddproto.DdzAckGameRecord {
 	ret := new(ddproto.DdzAckGameRecord)
 	ret.UserId = new(uint32)
@@ -439,7 +431,6 @@ func NewPlayerInfo() *ddproto.DdzBasePlayerInfo {
 	ret.OnlineStatus = new(int32)
 	ret.PlayRate = new(int32)
 	ret.RemainPaiCount = new(int32)
-
 	return ret
 }
 
@@ -465,3 +456,25 @@ func NewWinCoinInfo() *ddproto.DdzBaseWinCoinInfo {
 	return ret
 }
 
+func NewDdzSrvDesk() *ddproto.DdzSrvDesk {
+	ret := new(ddproto.DdzSrvDesk)
+	ret.DeskId = new(int32)
+	ret.Key = new(string)
+	ret.UserCountLimit = new(int32)
+	ret.Owner = new(uint32)
+	ret.DizhuPaiUser = new(uint32)
+	ret.DiZhuUserId = new(uint32)
+	ret.ActiveUserId = new(uint32)
+	ret.BaseValue = new(int64)
+	ret.QingDizhuValue = new(int64)
+	ret.WinValue = new(int64)
+	ret.DdzType = new(int32)
+	ret.RoomType = new(int32)
+	ret.BoardsCount = new(int32)
+	ret.CurrPlayCount = new(int32)
+	ret.TotalPlayCount = new(int32)
+	ret.CapMax = new(int64)
+	ret.IsJiaoFen = new(bool)
+	ret.FootRate = new(int32)
+	return ret
+}

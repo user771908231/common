@@ -64,7 +64,6 @@ message ddz_srv_gameData {
     optional ddz_srv_outPokerPais outPai = 3; //当前出的牌
 }
 
-
 message ddz_srv_billBean {
     //斗地主的账单
     optional int64 coin = 1; //关于统计的数据都在这

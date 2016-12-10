@@ -19,6 +19,10 @@ var _ = math.Inf
 
 // Ignoring public import of ServerInfo from common_client.proto
 
+// Ignoring public import of QuickConn from common_client.proto
+
+// Ignoring public import of AckQuickConn from common_client.proto
+
 // Ignoring public import of WeixinInfo from common_client.proto
 
 // Ignoring public import of common_req_gameLogin from common_client.proto

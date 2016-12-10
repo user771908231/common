@@ -1,5 +1,5 @@
 #!/bin/bash
 cd ./ddproto
-rm -rf *
+rm -rf *.pb.go
 cd ../ddprotobuf
 protoc --proto_path=.  --go_out=../ddproto *.proto
