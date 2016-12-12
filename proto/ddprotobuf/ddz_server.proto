@@ -78,9 +78,9 @@ message ddz_srv_userStatisticsRound {
     //玩家每一局的统计信息
     optional int32 round = 1; //局数
     optional int64 winCoin = 2; //该局得分
-    optional int32 countBom = 3; //炸弹数
+    optional int32 countBomb = 3; //炸弹数
     repeated ddz_srv_outPokerPais bomBean = 4; //炸弹详情
-    optional int32 countPlayRate = 5; //当局倍数
+    optional int32 playRate = 5; //当局倍数
     optional bool isSpring = 6; //是否是春天
     optional bool isDizhu = 7; //是否是地主
     optional bool isWin = 8; //该局是否赢
@@ -93,7 +93,8 @@ message ddz_srv_userStatistics {
     optional int32 countLose = 3; //输的局数
     optional int32 countSpring = 4; //春天数
     optional int32 countDizhu = 5; //当地主的局数
-    optional int64 maxWinCoin = 6; //最高得分
+    optional int32 countBomb = 6; //炸弹数
+    optional int64 maxWinCoin = 7; //最高得分
 }
 
 //user
