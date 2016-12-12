@@ -74,11 +74,26 @@ message ddz_srv_bill {
 
 }
 
+message ddz_srv_userStatisticsRound {
+    //玩家每一局的统计信息
+    optional int32 round = 1; //局数
+    optional int64 winCoin = 2; //该局得分
+    optional int32 countBom = 3; //炸弹数
+    repeated ddz_srv_outPokerPais bomBean = 4; //炸弹详情
+    optional int32 countPlayRate = 5; //当局倍数
+    optional bool isSpring = 6; //是否是春天
+    optional bool isDizhu = 7; //是否是地主
+    optional bool isWin = 8; //该局是否赢
+}
 
 message ddz_srv_userStatistics {
-    repeated ddz_srv_outPokerPais bomBean = 1; //统计来做
-    optional int32 CountWin = 2;
-    optional int32 CountLose = 3;
+    //玩家统计信息
+    repeated ddz_srv_userStatisticsRound roundBean = 1; //统计汇总
+    optional int32 countWin = 2; //赢的局数
+    optional int32 countLose = 3; //输的局数
+    optional int32 countSpring = 4; //春天数
+    optional int32 countDizhu = 5; //当地主的局数
+    optional int64 maxWinCoin = 6; //最高得分
 }
 
 //user
@@ -94,11 +109,10 @@ message ddz_srv_user {
     optional int32 deskId = 10; //deskId
     optional int32 roomId = 11; //roomId
     optional int64 coin = 12; //
-    optional ddz_srv_userStatistics statistics = 13;
+    optional ddz_srv_userStatistics statistics = 13; //统计信息
     optional int32 laDaoStatus = 14; //拉倒的状态
-    optional int32 playRate = 15; //倍数由玩家维护
-    optional int32 bomb = 16; //当局炸的次数
-    optional int32 jiaoScore = 17; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 playRate = 15; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
+    optional int32 jiaoScore = 16; //经典斗地主叫多少分 DdzJDScore:1/2/3
 }
 
 //room
