@@ -92,6 +92,7 @@ It has these top-level messages:
 	DdzSrvGameData
 	DdzSrvBillBean
 	DdzSrvBill
+	DdzSrvUserStatisticsRound
 	DdzSrvUserStatistics
 	DdzSrvUser
 	DdzSrvRoom
