@@ -103,8 +103,15 @@ func NewCommonAckGameLogin() *ddproto.CommonAckGameLogin {
 	return ret
 }
 
-
-
+func NewCommonBcMessage() *ddproto.CommonBcMessage {
+	result := new(ddproto.CommonBcMessage)
+	result.Header = NewHeader()
+	result.Id = new(int32)
+	result.Msg = new(string)
+	result.MsgType = new(int32)
+	result.UserId = new(uint32)
+	return result
+}
 
 
 

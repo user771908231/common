@@ -41,8 +41,6 @@ message GameSession {
 }
 
 //服务器游戏玩家通过的协议
-
-//服务器游戏玩家通过的协议
 message common_srv_game_user {
     optional uint32 userId = 1; //玩家id
     optional string nickName = 2; //玩家昵称
