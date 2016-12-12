@@ -307,7 +307,7 @@ func (m *ZjhBasePlayerInfo) GetStatus() ZjhEnumPlayerGameStatus {
 	if m != nil && m.Status != nil {
 		return *m.Status
 	}
-	return ZjhEnumPlayerGameStatus_ZJH_S_INIT
+	return ZjhEnumPlayerGameStatus_ZJH_TEMP
 }
 
 func (m *ZjhBasePlayerInfo) GetWxInfo() *WeixinInfo {

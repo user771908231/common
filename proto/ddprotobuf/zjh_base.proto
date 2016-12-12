@@ -66,16 +66,7 @@ enum EProtoId {
 
 // 玩家当前状态
 enum zjh_enum_playerGameStatus {
-    ZJH_S_INIT           = 0; // 初始状态
-    ZJH_S_DEALCARDS      = 1; // 发牌中
-    ZJH_S_NOT_CHECK     = 2; // 未看牌
-    ZJH_S_CHECKED      = 3; // 已看牌
-    ZJH_S_UNCOMPARABLE         = 4; // 不可比牌
-    ZJH_S_COMPARABLE      = 5; // 可以比牌
-    ZJH_S_ACTING         = 6; // 操作中..
-    ZJH_S_WAIT           = 7; // 等待别人操作
-    ZJH_S_FAIL          = 8;    // 输牌状态, 只能等待下一局
-    ZJH_S_GAME_END       = 9; // 游戏结束
+    ZJH_TEMP           = 0; // 初始状态
 }
 
 //桌面状态

@@ -20,6 +20,7 @@ It is generated from these files:
 	zjh_desk.proto
 	zjh_hall.proto
 	zjh_play.proto
+	zjh_serever.proto
 
 It has these top-level messages:
 	ProtoHeader
@@ -113,6 +114,12 @@ It has these top-level messages:
 	ZjhBcGameInfo
 	ZjhBaseDeskInfo
 	ZjhBasePlayerInfo
+	ZjhSrvPoker
+	ZjhSrvBill
+	ZjhSrv_GameData
+	ZjhSrvUser
+	ZjhSrvDesk
+	ZjhSrvRoom
 */
 package ddproto
 

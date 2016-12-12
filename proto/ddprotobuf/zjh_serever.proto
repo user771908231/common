@@ -1,0 +1,82 @@
+syntax = "proto2";
+
+import public "common_server_poker.proto";
+package ddproto;
+
+//三张牌的类型
+enum zjh_enum_ZJHTYPE {
+    ZJHTYPE_GAOPAI = 1; //高牌
+    ZJHTYPE_DUIZI = 2; //对子
+    ZJHTYPE_LIANZI = 3; //连子
+    ZJHTYPE_QING = 4; //卿
+    ZJHTYPE_QINGLIAN = 5; //卿连
+    ZJHTYPE_BAOZI = 6; //豹子
+}
+
+//打出去的牌
+message zjh_srv_poker {
+    repeated int32 keyValue = 1; //比较大小的关键值
+    repeated common_srv_pokerPai pais = 2; //出的牌
+    optional zjh_enum_ZJHTYPE type = 3; //牌类型高牌，对子，链子，清，清链子，豹子
+    optional uint32 userId = 9; //出牌的人
+}
+
+//账单
+message zjh_srv_bill {
+
+}
+
+//用户的游戏数据
+message zjh_srv_GameData {
+    optional zjh_srv_poker pai = 1; //用户的手牌
+    optional int32 bill = 2; //账单的信息
+}
+
+//用户游戏状态
+enum zjh_enum_userStatus {
+    zjh_S_GAMING = 1; //正在游戏中
+    zjh_S_STANDING = 2; //已站起
+    zjh_S_SITED = 3; //已入座
+    zjh_S_OFFLINE = 4; //已离线
+}
+
+//用户属性
+message zjh_srv_user {
+    optional uint32 userId = 1;
+    optional int32 coin = 2;
+    optional int32 roomId = 3;
+    optional int32 deskId = 4;
+    optional int32 gameNumber = 5; //游戏编号，每一句游戏都有一个游戏编号
+    optional zjh_srv_GameData data = 6; //玩家这一句的游戏数据
+    optional zjh_enum_userStatus status = 7;
+    optional bool isDiscard = 8; //是否已弃牌，投降
+    optional bool isWatch = 9; //是否已看牌
+    optional bool isOnline = 10; //是否在线
+    optional bool isLost = 11; //是否比牌输了
+}
+
+//desk 的信息
+message zjh_srv_desk {
+    optional int32 deskId = 1;
+    optional int32 gameNumber = 2; //游戏编号，每一句游戏都有一个游戏编号
+    optional int32 roomId = 3; //
+    repeated common_srv_pokerPai allPokers = 4;
+    optional uint32 lastUser = 5; //上一位说话玩家id
+    optional uint32 lastWiner = 6; //上一位赢牌的玩家
+    optional bool isGamming = 7; //游戏状态 true:正在游戏 false:等待开始游戏
+    optional int32 cuurBaseValue = 8; //当前底注
+    optional int32 minUser = 9; //最小准备人数
+    optional int32 baseValue = 10; //最小底注
+    optional int32 maxValue = 11; //最大底注
+    optional int32 gameStatus = 12; //当前游戏状态
+}
+
+//room 的信息
+message zjh_srv_room {
+    optional int32 roomId = 1;
+    optional int32 roomType = 2; //房间的类型
+    optional int32 roomLevel = 3; //金币限制
+    optional string roomTitle = 4; //房间名
+    optional int32 baseValue = 5; //底注
+    optional int32 maxValue = 6; //押注上限
+}
