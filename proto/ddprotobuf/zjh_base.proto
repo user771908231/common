@@ -1,0 +1,99 @@
+syntax = "proto2";
+
+package ddproto;
+
+enum EProtoId {
+
+    ////////////////////////////////////
+    ZJH_PID_HEARTBEAT = 0; //心跳协议
+    ZJH_PID_QUICKCOnn = 1; //
+    ZJH_PID_QUICKCONNA_ACK = 2; //
+    ZJH_PID_GAME_LOGIN = 3; //登录游戏
+    ZJH_PID_GAME_LOGIN_ACK = 4; //
+    ZJH_PID_GET_ROOM_LIST = 5; //房间列表
+    ZJH_PID_ENTER_ROOM_LIST_ACK = 6; //房间列表-回复
+    ZJH_PID_AUTO_ENTER_DESK = 7; //自动加入系统分配的一张牌桌
+    ZJH_PID_AUTO_ENTER_DESK_ACK = 8;  //加入牌桌ACK
+    ZJH_PID_SEND_GAMEINFO = 9; //游戏信息
+
+//    PID_READY = 10; //准备
+//    PID_READY_ACK = 11; //准备-ack
+//    PID_OPENING = 12; //开局
+//    PID_DEAL_CARDS = 13; //发牌
+//
+//    PID_CHECK_CARDS = 14; // 玩家点击看牌
+//    PID_CHECK_CARDZJH_S_ACK = 15; // 玩家点击看牌-ack
+//
+//    ////////////////////////////////////////////
+//    // PID_BASE_ANTE           = 16; // 锅底、霸底、底注
+//    // PID_BASE_ANTE_ACK       = 17; // 锅底、霸底、底注-ack
+//    PID_CALL = 16; // 跟注
+//    PID_CALL_ACK = 17; // 跟注-ack
+//
+//    PID_AUTO_CALL = 18; // 自动跟注
+//    PID_AUTO_CALL_ACK = 19; // 自动跟注-ack
+//
+//    PID_FOLD = 20; // 弃牌
+//    PID_FOLD_ACK = 21; // 弃牌-ack
+//
+//    PID_COMPARE = 22; // 比牌
+//    PID_COMPARE_ACK = 23; // 比牌-ack
+//
+//    PID_BLOOD_FIGHT = 24; // 血拼
+//    PID_BLOOD_FIGHT_ACK = 25; // 血拼-ack
+//
+//    ////////////////////////////////////////////
+//    PID_RAISE = 26; // 加注
+//    PID_RAISE_ACK = 27; // 加注-ack
+//
+//    PID_OVERTURN = 28; // 轮到下一人操作(广播)
+//
+//    PID_CURRENTRESULT = 29; // 本局结果
+//    PID_SENDENDLOTTERY = 30; // 牌局结束
+//
+//    ////////////////////////////////////////////
+//    PID_DISSOLVE_DESK = 31; // 离开房间
+//    PID_DISSOLVE_DESK_ACK = 32; // 离开房间-ack
+//    PID_LEAVE_DESK = 33; // 解散房间
+//    PID_LEAVE_DESK_ACK = 34; // 解散房间-ack
+//
+//    PID_MESSAGE = 35; // 聊天信息
+//    PID_SEND_MESSAGE = 36; // 广播聊天
+}
+
+///////////////////////////////////////////////////
+
+
+// 玩家当前状态
+enum zjh_enum_playerGameStatus {
+    ZJH_S_INIT           = 0; // 初始状态
+    ZJH_S_DEALCARDS      = 1; // 发牌中
+    ZJH_S_NOT_CHECK     = 2; // 未看牌
+    ZJH_S_CHECKED      = 3; // 已看牌
+    ZJH_S_UNCOMPARABLE         = 4; // 不可比牌
+    ZJH_S_COMPARABLE      = 5; // 可以比牌
+    ZJH_S_ACTING         = 6; // 操作中..
+    ZJH_S_WAIT           = 7; // 等待别人操作
+    ZJH_S_FAIL          = 8;    // 输牌状态, 只能等待下一局
+    ZJH_S_GAME_END       = 9; // 游戏结束
+}
+
+//桌面状态
+enum zjh_enum_deskState {
+    DESK_IS_GAMING = 1; //游戏中
+    DESK_IS_WAIT = 2; //等待开始
+}
+
+//房间玩家状态
+enum zjh_enum_userState {
+    USER_IS_GAMING = 1; //游戏中
+    USER_IS_STAND = 2; //站起
+    USER_IS_SITED = 3; //已入坐
+}
+
+//房间类型
+enum zjh_enum_roomType {
+    ROOM_TYPE_FRIEND = 1; // 朋友桌炸金花
+    ROOM_TYPE_NORMAL = 2; // 经典炸金花(金币场)
+    ROOM_TYPE_REDBLACK = 3; // 红黑大战
+}

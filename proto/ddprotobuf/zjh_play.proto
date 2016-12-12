@@ -1,0 +1,57 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+import public "zjh_base.proto";
+import public "zjh_desk.proto";
+package ddproto;
+
+////////////////////////////////////////////////////////
+
+// 游戏信息(广播)（接收服务端消息）(别的玩家已看牌是独立协议更好吧? 否则通过此协议下发是否过于冗余?)
+message zjh_bc_gameInfo {
+    optional ProtoHeader header = 1;
+
+    repeated zjh_base_playerInfo playerInfo = 2; // 玩家数据（玩家数据包括其id昵称筹码头像等基本信息，其手牌数据，以及自己打出的牌的数据）
+
+    optional zjh_base_deskInfo zjhDeskInfo = 3; // 桌面信息（包括：游戏是否结束，当前轮到哪个玩家，倒计时剩余时间）
+
+    optional uint32 senderUserId = 4; // 发起请求的人
+
+    optional int32 isReconnect = 5; // 1=正常连接（默认） 2=断线重连
+}
+
+//新加入玩家后 桌子广播需要的协议
+message zjh_base_deskInfo {
+    optional int32 GameStatus = 1; // 游戏所处状态: 0:INIT 1:发牌 2:游戏中 3:已经结束
+    optional zjh_base_roomInfo roomInfo = 2; // 房间类型信息，包括：房间类型、局数、单注上限、底注、一局总轮数
+    optional int32 playerNum = 3; // 玩家数量, 最多 5
+    optional uint32 activeUserId = 4; // 当前谁操作，决定：倒计时，哪个玩家当前是可操作状态
+    optional int32 actionTime = 5; // 玩家当前操作时间, 如已经操作了 10 秒, 就是 10
+    optional int32 nInitActionTime = 6; // 初始操作时间, 如总共 20 秒, 就是 20 , 已操作 10 秒, 就是 10 / 20 倒计时显示走了一半
+    optional int64 initRoomCoin = 7; // 房间的初始带入金额 ?
+    optional int32 currPlayCount = 8; // 朋友桌: 当前第几局 ?
+    optional int32 totalPlayCount = 9; // 朋友桌: 总共几局 ?
+    optional string roomNumber = 10; // 房间号
+
+    optional uint32 roomOwnerUserId = 11; // 房主的 userId
+
+    optional int32  playRate = 12;   // 当前倍数（看牌、加注、血拼等产生的倍数）, 当前跟注比牌血拼等根据倍数和底注和看牌状态可计算, 筹码的样式也是可根据倍数算
+
+    optional int32 currRoundCount = 13; // 金币场: 当前局的第几轮 ?
+    optional int32 totalRoundCount = 14; // 金币场: 当前局总共几轮 ?
+}
+
+message zjh_base_playerInfo {
+    optional bool isFirst = 1; // 是否先手
+    repeated client_base_poker playerPokers = 2; // 玩家的手牌
+    optional int64 coin = 3; // 玩家当前显示的自己的筹码数
+    optional string nickName = 4; // 昵称
+    optional int32 sex = 5; // 性别: 1=男  2=女
+    optional uint32 userId = 6; // 用户id
+    optional int32 bReady = 8; // 是否已准备
+    optional zjh_enum_playerGameStatus status = 9; // 玩家当前状态
+    optional WeixinInfo wxInfo = 10; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
+    optional int32 onlineStatus = 11; // 玩家在线状态: 1=在线  2=离线 3=在线托管 4=离线托管
+    optional bool isCheckedPokers = 12; // 当前用户是否已经看牌了
+    optional int32 seatIndex = 13; // 当前用户座位索引
+}

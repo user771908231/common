@@ -16,6 +16,10 @@ It is generated from these files:
 	ddz_server.proto
 	mahjong_desk.proto
 	mahjong_server.proto
+	zjh_base.proto
+	zjh_desk.proto
+	zjh_hall.proto
+	zjh_play.proto
 
 It has these top-level messages:
 	ProtoHeader
@@ -100,6 +104,15 @@ It has these top-level messages:
 	MjBaseDeskGameInfo
 	MjReqDissolveDesk
 	MjAckDissolveDesk
+	ZjhReqGetRoomList
+	ZjhBaseRoomInfo
+	ZjhAckRoomList
+	ZjhReqEnterDesk
+	ZjhBaseUserInfo
+	ZjhDeskStateAck
+	ZjhBcGameInfo
+	ZjhBaseDeskInfo
+	ZjhBasePlayerInfo
 */
 package ddproto
 
