@@ -54,6 +54,24 @@ message common_srv_game_user {
     optional bool isLeave = 8; //离开
     optional int32 Status = 9; //玩家当前的状态
     optional int64 WaitTime = 10; //用户等待的时间
+}
 
+//通用的desk 的协议
+message common_srv_game_desk {
+    optional int32 DeskId = 1; //
+    optional int32 gameNumber = 2; //游戏编号
+    optional int32 RoomId = 3;
+    optional int32 round = 4; //玩到第几圈
+    optional string Password = 5;
+    optional uint32 Owner = 6; //房主
+    optional uint32 Banker = 7; //庄
+    optional int64 CreateFee = 8;
+    optional int32 Status = 9;
+    optional int32 boardsCout = 10; // 局数，如：4局（房卡 × 2）、8局（房卡 × 3）
+    optional int64 baseValue = 11; // 低分
+    optional string BeginTime = 12; //游戏开始时间
+    optional string EndTime = 13; //游戏结束时间
+    optional int32 NInitActionTime = 14; //
+    optional int32 userCountLimit = 15; //房间人数的限制
 }
 

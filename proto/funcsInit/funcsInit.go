@@ -2,7 +2,6 @@ package commonNewPorot
 
 import (
 	"casino_common/proto/ddproto"
-	"casino_common/common/game"
 )
 
 func NewHeader() *ddproto.ProtoHeader {
@@ -41,11 +40,6 @@ func NewGameSession() *ddproto.GameSession {
 	return ret
 }
 
-func NewGameDesk() *game.GameDesk {
-	ret := new(game.GameDesk)
-	return ret
-}
-
 func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	ret := new(ddproto.CommonSrvGameUser)
 	ret.UserId = new(uint32)
@@ -61,11 +55,28 @@ func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	return ret
 }
 
-func NewGameUser() *game.GameUser {
-	ret := new(game.GameUser)
-	ret.CommonSrvGameUser = NewCommonSrvGameUser()
+//服务端通过的桌子的信息,桌子公用的一些属性
+func NewCommonSrvGameDesk() *ddproto.CommonSrvGameDesk {
+	ret := new(ddproto.CommonSrvGameDesk)
+	ret.DeskId = new(int32)
+	ret.GameNumber = new(int32)
+	ret.RoomId = new(int32)
+	ret.Round = new(int32)
+	ret.Password = new(string)
+	ret.Owner = new(uint32)
+	ret.Banker = new(uint32)
+	ret.CreateFee = new(int64)
+	ret.Status = new(int32)
+	ret.BoardsCout = new(int32)
+	ret.BaseValue = new(int64)
+	ret.BeginTime = new(string)
+	ret.EndTime = new(string)
+	ret.NInitActionTime = new(int32)
+	ret.UserCountLimit = new(int32)
 	return ret
 }
+
+
 
 func NewWeixinInfo() *ddproto.WeixinInfo {
 	ret := new(ddproto.WeixinInfo)
@@ -113,10 +124,16 @@ func NewCommonBcMessage() *ddproto.CommonBcMessage {
 	return result
 }
 
-
-
-
-
+//回复公告的通用new方法
+func NewCommonAckNotice() *ddproto.CommonAckNotice {
+	ret := new(ddproto.CommonAckNotice)
+	ret.Id = new(int32)
+	ret.NoticeContent = new(string)
+	ret.NoticeMemo = new(string)
+	ret.NoticeTitle = new(string)
+	ret.NoticeType = new(int32)
+	return ret
+}
 
 
 

@@ -3,12 +3,35 @@ package game
 import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/log"
+	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
 )
 
 //通用的游戏desk
 type GameDesk struct {
+	*ddproto.CommonSrvGameDesk
 	AllUsers func() []GameUserApi
 }
+
+func NewGameDesk() *GameDesk {
+	ret := new(GameDesk)
+	ret.CommonSrvGameDesk = commonNewPorot.NewCommonSrvGameDesk()
+	return ret
+}
+
+
+//发送信息
+func (d *GameDesk) SendMessage(msg *ddproto.CommonReqMessage) {
+	//获取到请求的信息
+	result := commonNewPorot.NewCommonBcMessage()
+	*result.UserId = msg.GetHeader().GetUserId()
+	*result.Id = msg.GetId()
+	*result.Msg = msg.GetMsg()
+	*result.MsgType = msg.GetMsgType()
+	//发送消息
+	d.BroadCastProtoExclusive(msg, msg.GetUserId())
+}
+
 
 //广播
 func (d *GameDesk) BroadCastProto(msg proto.Message) {
@@ -18,6 +41,7 @@ func (d *GameDesk) BroadCastProto(msg proto.Message) {
 		return nil
 	})
 }
+
 
 //广播，排除某人
 func (d *GameDesk) BroadCastProtoExclusive(msg proto.Message, userId uint32) {
@@ -30,6 +54,7 @@ func (d *GameDesk) BroadCastProtoExclusive(msg proto.Message, userId uint32) {
 		return nil
 	})
 }
+
 //桌子的每个玩家做什么事情
 func (d *GameDesk) EverUserDo(do func(u GameUserApi) error) {
 	if d == nil {

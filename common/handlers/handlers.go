@@ -7,6 +7,7 @@ import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/log"
 	"casino_common/common/userService"
+	"casino_common/common/noticeServer"
 )
 
 //处理心跳协议
@@ -81,4 +82,11 @@ func HandlerGame_Login(args []interface{}) {
 	a.WriteMsg(ack)
 	return
 
+}
+
+func HandlerGetCommonAckNotice(args []interface{}) {
+	m := args[0].(*ddproto.CommonReqNotice)
+	a := args[1].(gate.Agent)
+	ack := noticeServer.GetCommonAckNotice(m.GetNoticeType())
+	a.WriteMsg(ack)
 }

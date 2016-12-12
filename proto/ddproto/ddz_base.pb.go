@@ -41,6 +41,10 @@ var _ = math.Inf
 
 // Ignoring public import of common_bc_message from common_client.proto
 
+// Ignoring public import of common_req_notice from common_client.proto
+
+// Ignoring public import of common_ack_notice from common_client.proto
+
 // Ignoring public import of common_enum_pokerColor from common_client.proto
 
 type DdzEnumProtoId int32

@@ -11,6 +11,7 @@ import (
 	"casino_common/utils/redisUtils"
 	"casino_common/utils/db"
 	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
 )
 
 var NOTICE_TYPE_GUNDONG int32 = 1        //滚动
@@ -53,6 +54,20 @@ func GetNoticeByType(noticeType int32) *ddproto.TNotice {
 	} else {
 		return result.(*ddproto.TNotice)
 	}
+}
+
+func GetCommonAckNotice(noticeType int32) *ddproto.CommonAckNotice {
+	ack := commonNewPorot.NewCommonAckNotice()
+	bback := GetNoticeByType(noticeType)
+	if bback != nil {
+		*ack.NoticeType = bback.GetNoticeType()
+		*ack.NoticeTitle = bback.GetNoticeTitle()
+		*ack.NoticeMemo = bback.GetNoticeMemo()
+		*ack.NoticeContent = bback.GetNoticeContent()
+		ack.Fileds = bback.Fileds
+	}
+	//返回得到的ack notice
+	return ack
 }
 
 func tnotice2Rnotice(notice *model.T_th_notice) *ddproto.TNotice {

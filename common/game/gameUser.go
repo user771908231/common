@@ -5,6 +5,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
 )
 
 type GameUserApi interface {
@@ -16,6 +17,12 @@ type GameUserApi interface {
 type GameUser struct {
 	Agent gate.Agent
 	*ddproto.CommonSrvGameUser
+}
+
+func NewGameUser() *GameUser {
+	ret := new(GameUser)
+	ret.CommonSrvGameUser = commonNewPorot.NewCommonSrvGameUser()
+	return ret
 }
 
 func (u *GameUser) WriteMsg(p proto.Message) {
