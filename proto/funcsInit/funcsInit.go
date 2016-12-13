@@ -121,6 +121,7 @@ func NewCommonBcMessage() *ddproto.CommonBcMessage {
 	result.Msg = new(string)
 	result.MsgType = new(int32)
 	result.UserId = new(uint32)
+	result.ToUserId = new(uint32)
 	return result
 }
 
