@@ -119,6 +119,7 @@ message common_req_message {
     optional string msg = 4; //自定义的时候使用
     optional uint32 userId = 5; //发消息的人是谁
     optional int32 deskId = 6; //desk的id
+    optional uint32 toUserId = 7; //收消息的人 道具时使用
 }
 
 //消息广播
@@ -128,6 +129,7 @@ message common_bc_message {
     optional int32 id = 3; //只有快捷和表情的时候有用
     optional string msg = 4; //自定义的时候使用
     optional uint32 userId = 5; //发消息的人是谁
+    optional uint32 toUserId = 6; //收消息的人 道具时使用
 }
 
 //--------------------------------------------公告的协议---------------------------------------
