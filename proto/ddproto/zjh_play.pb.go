@@ -82,7 +82,7 @@ type ZjhBcGameInfo struct {
 func (m *ZjhBcGameInfo) Reset()                    { *m = ZjhBcGameInfo{} }
 func (m *ZjhBcGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcGameInfo) ProtoMessage()               {}
-func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
 
 func (m *ZjhBcGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -141,7 +141,7 @@ type ZjhBaseDeskInfo struct {
 func (m *ZjhBaseDeskInfo) Reset()                    { *m = ZjhBaseDeskInfo{} }
 func (m *ZjhBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseDeskInfo) ProtoMessage()               {}
-func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
 
 func (m *ZjhBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -260,7 +260,7 @@ type ZjhBasePlayerInfo struct {
 func (m *ZjhBasePlayerInfo) Reset()                    { *m = ZjhBasePlayerInfo{} }
 func (m *ZjhBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBasePlayerInfo) ProtoMessage()               {}
-func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
 
 func (m *ZjhBasePlayerInfo) GetIsFirst() bool {
 	if m != nil && m.IsFirst != nil {
@@ -352,7 +352,7 @@ func init() {
 	proto.RegisterType((*ZjhBasePlayerInfo)(nil), "ddproto.zjh_base_playerInfo")
 }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor14 = []byte{
 	// 529 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x74, 0x52, 0xcd, 0x6e, 0xd3, 0x40,
 	0x10, 0x26, 0x49, 0xe3, 0x24, 0xe3, 0xfc, 0xd0, 0x4d, 0x01, 0x2b, 0xe2, 0x50, 0x05, 0x0e, 0x1c,

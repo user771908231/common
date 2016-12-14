@@ -1,22 +1,20 @@
 package userService
 
 import (
-	"gopkg.in/mgo.v2/bson"
 	"strings"
-	"gopkg.in/mgo.v2"
 	"casino_common/utils/db"
 	"casino_common/common/log"
 	"casino_common/utils/numUtils"
 	"casino_common/utils/redisUtils"
-	"casino_common/common/Error"
-	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/common/sys"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/model/userDao"
 )
 
-var USER_REDIS_KEY_AGENT_SESSION = "agent_session"        //用户session的可以
+var USER_REDIS_KEY_AGENT_SESSION = "agent_session"        //用户session的key
+var USER_REDIS_KEY = tableName.DBT_T_USER        //用户的key
 
 //得到
 func GetKey(pre string, userId uint32) string {
@@ -30,37 +28,39 @@ func GetKey(pre string, userId uint32) string {
 	2,保存mongo
 	3,缓存到redis
  */
-func NewUserAndSave(openId, wxNickName, headUrl string, sex int32, city string) (*ddproto.User, error) {
-
+func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string) (*ddproto.User, error) {
+	log.T("创建新用户，并且保存到mgo")
 	//1,创建user获得自增主键
 	id, err := db.GetNextSeq(tableName.DBT_T_USER)
 	if err != nil {
 		return nil, err
 	}
+
 	//构造user
-	nuser := &model.T_user{}
-	nuser.Mid = bson.NewObjectId()
-	nuser.Id = uint32(id)
-	nuser.Sex = sex
-	nuser.City = city
-	nuser.Diamond = NEW_USER_DIAMOND_REWARD                //新用户注册的时候,默认的钻石数量
-	nuser.NickName = wxNickName
-	nuser.OpenId = openId
-	nuser.HeadUrl = headUrl
+	user := new(ddproto.User)
+	user.Id = proto.Uint32(id)
+	user.Sex = proto.Int32(sex)
+	user.City = proto.String(city)
+	user.Diamond = proto.Int64(NEW_USER_DIAMOND_REWARD)                //新用户注册的时候,默认的钻石数量
+	user.NickName = proto.String(wxNickName)
+	user.UnionId = proto.String(unionId)
+	user.OpenId = proto.String(openId)
+	user.HeadUrl = proto.String(headUrl)
 
 	//2保存数据到数据库
-	err = db.InsertMgoData(tableName.DBT_T_USER, nuser)
+	err = userDao.SaveUser2Mgo(user)
 	if err != nil {
-		log.E("保存用户的时候失败 error【%v】", err.Error())
+		log.E("保存用户到mongo的时候失败 error【%v】", err.Error())
 		return nil, err
 	}
 
-	result, _ := Tuser2Ruser(nuser)
-	return result, nil
+	//3,保存到redis
+	SaveUser2Redis(user)
+	return user, nil
 }
 
 func GetRedisUserKey(id uint32) string {
-	return GetKey(tableName.DBT_T_USER, id)
+	return GetKey(USER_REDIS_KEY, id)
 }
 
 func ClearUserSeesion(userId uint32) {
@@ -93,15 +93,8 @@ func GetUserById(id uint32) *ddproto.User {
 	//3，从reids中取到的数据为空，那么从数据库中读取
 	if result == nil {
 		log.E("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
-		// 获取连接 connection
-		tuser := &model.T_user{}
-		db.Query(func(d *mgo.Database) {
-			d.C(tableName.DBT_T_USER).Find(bson.M{"id": id}).One(tuser)
-		})
-
+		tuser := userDao.FindUserById(id)
 		log.T("在mongo中查询到了user[%v],现在开始缓存", tuser)
-		//把从数据获得的结果填充到redis的model中
-		buser, _ = Tuser2Ruser(tuser)
 		if buser != nil {
 			SaveUser2Redis(buser)
 			InitUserMoney2Redis(buser)
@@ -139,90 +132,7 @@ func InitUserMoney2Redis(user *ddproto.User) {
 	SetUserMoney(user.GetId(), USER_DIAMOND2_REDIS_KEY, user.GetDiamond2())
 }
 
-
-//把redis中的数据刷新到数据库
-func FlashUser2Mongo(userId uint32) error {
-	u := GetUserById(userId)
-	UpsertRUser2Mongo(u)
-	return nil
-}
-
-func UpsertRUser2Mongo(u *ddproto.User) {
-	//ddproto.User转化为  model.User
-	tuser, _ := Ruser2Tuser(u)        //
-	UpsertTUser2Mongo(tuser)
-}
-
-//保存用户到mongo
-func UpsertTUser2Mongo(tuser *model.T_user) {
-	//得到数据库连接池
-	if tuser.Mid == "" {
-		db.InsertMgoData(tableName.DBT_T_USER, tuser)
-	} else {
-		db.UpdateMgoData(tableName.DBT_T_USER, tuser)
-	}
-}
-
-/**
-	mongo中User模型转化为 redis中的user模型
- */
-func Tuser2Ruser(tu *model.T_user) (*ddproto.User, error) {
-
-	//检测suer是否存在
-	if tu.Id <= 0 {
-		return nil, Error.NewFailError("user不存在")
-	}
-
-	//返回转换之后的结果
-	result := &ddproto.User{}
-	if tu.Mid.Hex() != "" {
-		hesStr := tu.Mid.Hex()
-		result.Mid = &hesStr
-		//log.T("获得t_user.mid %v",hesStr)
-	}
-
-	result.Id = &tu.Id
-	result.NickName = &tu.NickName
-	result.Coin = &tu.Coin
-	result.Diamond = &tu.Diamond
-	result.Diamond2 = &tu.Diamond2
-	result.UnionId = &tu.UnionId
-	result.OpenId = &tu.OpenId
-	result.HeadUrl = &tu.HeadUrl
-	result.Sex = &tu.Sex
-	result.City = &tu.City
-	return result, nil
-}
-
-/**
-	redis中的user模型转化为mongdo的User模型
-	把Redis_user 转化为mongo_t_user的时候喂自动为其分配objectId,方存储
- */
-
-func Ruser2Tuser(ru *ddproto.User) (*model.T_user, error) {
-	result := &model.T_user{}
-
-	if ru.Mid != nil {
-		result.Mid = bson.ObjectIdHex(ru.GetMid())
-	} else {
-		result.Mid = bson.NewObjectId()
-	}
-
-	result.Id = ru.GetId()
-	result.NickName = ru.GetNickName()
-	result.Coin = ru.GetCoin()
-	result.HeadUrl = ru.GetHeadUrl()
-	result.OpenId = ru.GetOpenId()
-	result.Diamond = ru.GetDiamond()
-	result.Sex = ru.GetSex()
-	result.City = ru.GetCity()
-
-	return result, nil
-}
-
-/**
-
- */
+//判断user的id 是否是正确的
 func CheckUserIdRightful(userId uint32) bool {
 	u := GetUserById(userId)
 	if u == nil {
@@ -235,26 +145,14 @@ func CheckUserIdRightful(userId uint32) bool {
 func GetUserByOpenId(openId  string) *ddproto.User {
 	log.T("通过openId[%v]查询用户是否存在...", openId)
 	//2,从数据库中查询
-	ruser := &ddproto.User{}
-	tuser := &model.T_user{}
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_T_USER).Find(bson.M{"openid": openId}).One(tuser)
-	})
-
-	if tuser == nil {
-		log.T("在mongo中没有查询到user[%v].", openId)
-		ruser = nil
-	} else {
-		log.T("在mongo中查询到了user.openId[%v],现在开始缓存", tuser.OpenId)
+	user := userDao.FindUserByUnionId(openId)
+	if user != nil {
+		log.T("在mongo中查询到了user.openId[%v],现在开始缓存", user.OpenId)
 		//把从数据获得的结果填充到redis的model中
-		ruser, _ = Tuser2Ruser(tuser)
-		if ruser != nil {
-			SaveUser2Redis(ruser)
-			InitUserMoney2Redis(ruser)
-		}
+		SaveUser2Redis(user)
+		InitUserMoney2Redis(user)
 	}
-
 	//判断用户是否存在,如果不存在,则返回空
-	return ruser
+	return user
 }
 
