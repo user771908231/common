@@ -83,6 +83,7 @@ func GetUserById(id uint32) *ddproto.User {
 
 	//1,首先在 redis中去的数据
 	var buser *ddproto.User = nil
+
 	result := redisUtils.GetObj(GetRedisUserKey(id), &ddproto.User{})
 
 	//2，从redis 中取到的数据不为空，那么直接返回
@@ -108,7 +109,10 @@ func GetUserById(id uint32) *ddproto.User {
 		buser.Id = proto.Uint32(id)
 		nickName, _ := numUtils.Uint2String(id)
 		buser.NickName = proto.String(nickName)
+		buser.Coin = proto.Int64(0)
 		buser.Diamond = proto.Int64(20)
+		buser.Diamond2 = proto.Int64(0)
+		buser.RoomCard = proto.Int64(0)
 		//保存到redis
 		SaveUser2Redis(buser)
 		InitUserMoney2Redis(buser)
