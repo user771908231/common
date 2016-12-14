@@ -12,10 +12,12 @@ message User {
     optional string lastSignTime = 9; //最后一次签到的时间
     optional int32 signCount = 10; //连续签到的次数
     optional int64 Diamond = 11; //通过钻石开房间
-    optional string openId = 12; //微信openId
-    optional string headUrl = 13; //头像
-    optional string city = 14; //
-    optional int32 sex = 15;
+    optional int64 Diamond2 = 12; //通过钻石开房间
+    optional string openId = 13; //微信openId
+    optional string UnionId = 14; //微信openId
+    optional string headUrl = 15; //头像
+    optional string city = 16; //
+    optional int32 sex = 17;
 }
 
 message TNotice {
