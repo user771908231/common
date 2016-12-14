@@ -50,6 +50,7 @@ message ddz_srv_desk {
     optional int32 currPlayCount = 25; // 朋友桌: 当前第几局
     optional int32 totalPlayCount = 26; // 朋友桌: 总共几局
     optional int32 playerNum = 27; //玩家数量
+    optional int32 timeOutSecond = 28; //超时时间限制 秒
 }
 
 //游戏数据
@@ -114,6 +115,8 @@ message ddz_srv_user {
     optional int32 laDaoStatus = 14; //拉倒的状态
     optional int32 playRate = 15; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
     optional int32 jiaoScore = 16; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 timeOutCount = 17; //超时次数
+    optional bool isAgent = 18; //是否托管
 }
 
 //room
