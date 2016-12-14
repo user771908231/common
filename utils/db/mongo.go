@@ -61,7 +61,7 @@ func UpdateMgoData(dbt string, data model.BaseMode) error {
 	s := c.Ref()
 	defer c.UnRef(s)
 
-	error := s.DB(mongoConfig.dbname).C(dbt).Update(bson.M{"_id": data.GetMid()}, data)
+	error := s.DB(mongoConfig.dbname).C(dbt).Update(bson.M{"id": data.GetId()}, data)
 	return error
 }
 

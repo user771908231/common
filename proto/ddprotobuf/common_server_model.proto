@@ -1,0 +1,30 @@
+package ddproto;
+message User {
+    optional int64 RoomCard = 1;
+    optional string pwd = 2; //最后一次签到的时间
+    optional int64 coin = 3; //用户的金币
+    optional uint32 id = 4;
+    optional string nickName = 5; //用户的昵称
+    optional bool loginTurntable = 6; //今日转盘奖励是否领取
+    optional string loginTurntableTime = 7; //今日领取时间
+    optional int32 scores = 8; //积分
+    optional string lastSignTime = 9; //最后一次签到的时间
+    optional int32 signCount = 10; //连续签到的次数
+    optional int64 Diamond = 11; //通过钻石开房间
+    optional int64 Diamond2 = 12; //通过钻石开房间
+    optional string openId = 13; //微信openId
+    optional string UnionId = 14; //微信openId
+    optional string headUrl = 15; //头像
+    optional string city = 16; //
+    optional int32 sex = 17;
+}
+
+message TNotice {
+    optional int32 id = 1; //公告的id
+    optional int32 noticeType = 2; //公告的类型
+    optional string noticeTitle = 3; //公告的标题
+    optional string noticeContent = 4; //公告的内容
+    optional string noticeMemo = 5; //公告的备注
+    repeated string fileds = 6; //   公告内容
+}
+

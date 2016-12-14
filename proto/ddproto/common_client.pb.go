@@ -8,6 +8,7 @@ Package ddproto is a generated protocol buffer package.
 It is generated from these files:
 	common_client.proto
 	common_server.proto
+	common_server_model.proto
 	common_server_poker.proto
 	ddz_base.proto
 	ddz_desk.proto
@@ -39,11 +40,11 @@ It has these top-level messages:
 	CommonBcMessage
 	CommonReqNotice
 	CommonAckNotice
-	User
-	TNotice
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
+	User
+	TNotice
 	CommonSrvPokerPai
 	DdzBaseRoomTypeInfo
 	DdzBasePlayerInfo

@@ -62,7 +62,7 @@ func HandlerGame_Login(args []interface{}) {
 			return
 		}
 		//如果数据库中不存在用户，那么重新生成一个user
-		user, _ = userService.NewUserAndSave(weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity())
+		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity())
 		if user == nil {
 			ack := commonNewPorot.NewCommonAckGameLogin()
 
