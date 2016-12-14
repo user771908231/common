@@ -2,89 +2,489 @@
 // source: zjh_play.proto
 // DO NOT EDIT!
 
+/*
+Package ddproto is a generated protocol buffer package.
+
+It is generated from these files:
+	zjh_play.proto
+
+It has these top-level messages:
+	ZjhBcGameInfo
+	ZjhBaseDeskInfo
+	ZjhBcNewPlayerEnter
+	ZjhBasePlayerInfo
+*/
 package ddproto
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
+import ddproto1 "."
+import ddproto2 "."
+import ddproto3 "."
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// Ignoring public import of ProtoHeader from common_client.proto
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-// Ignoring public import of Heartbeat from common_client.proto
+// ProtoHeader from public import common_client.proto
+type ProtoHeader ddproto1.ProtoHeader
 
-// Ignoring public import of ServerInfo from common_client.proto
+func (m *ProtoHeader) Reset()             { (*ddproto1.ProtoHeader)(m).Reset() }
+func (m *ProtoHeader) String() string     { return (*ddproto1.ProtoHeader)(m).String() }
+func (*ProtoHeader) ProtoMessage()        {}
+func (m *ProtoHeader) GetVersion() string { return (*ddproto1.ProtoHeader)(m).GetVersion() }
+func (m *ProtoHeader) GetUserId() uint32  { return (*ddproto1.ProtoHeader)(m).GetUserId() }
+func (m *ProtoHeader) GetCode() int32     { return (*ddproto1.ProtoHeader)(m).GetCode() }
+func (m *ProtoHeader) GetError() string   { return (*ddproto1.ProtoHeader)(m).GetError() }
 
-// Ignoring public import of QuickConn from common_client.proto
+// Heartbeat from public import common_client.proto
+type Heartbeat ddproto1.Heartbeat
 
-// Ignoring public import of AckQuickConn from common_client.proto
+func (m *Heartbeat) Reset()         { (*ddproto1.Heartbeat)(m).Reset() }
+func (m *Heartbeat) String() string { return (*ddproto1.Heartbeat)(m).String() }
+func (*Heartbeat) ProtoMessage()    {}
+func (m *Heartbeat) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.Heartbeat)(m).GetHeader())
+}
 
-// Ignoring public import of WeixinInfo from common_client.proto
+// ServerInfo from public import common_client.proto
+type ServerInfo ddproto1.ServerInfo
 
-// Ignoring public import of common_req_gameLogin from common_client.proto
+func (m *ServerInfo) Reset()           { (*ddproto1.ServerInfo)(m).Reset() }
+func (m *ServerInfo) String() string   { return (*ddproto1.ServerInfo)(m).String() }
+func (*ServerInfo) ProtoMessage()      {}
+func (m *ServerInfo) GetIp() string    { return (*ddproto1.ServerInfo)(m).GetIp() }
+func (m *ServerInfo) GetPort() int32   { return (*ddproto1.ServerInfo)(m).GetPort() }
+func (m *ServerInfo) GetStatus() int32 { return (*ddproto1.ServerInfo)(m).GetStatus() }
 
-// Ignoring public import of common_ack_gameLogin from common_client.proto
+// QuickConn from public import common_client.proto
+type QuickConn ddproto1.QuickConn
 
-// Ignoring public import of common_req_logout from common_client.proto
+func (m *QuickConn) Reset()         { (*ddproto1.QuickConn)(m).Reset() }
+func (m *QuickConn) String() string { return (*ddproto1.QuickConn)(m).String() }
+func (*QuickConn) ProtoMessage()    {}
+func (m *QuickConn) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.QuickConn)(m).GetHeader())
+}
+func (m *QuickConn) GetChannelId() string  { return (*ddproto1.QuickConn)(m).GetChannelId() }
+func (m *QuickConn) GetGameId() int32      { return (*ddproto1.QuickConn)(m).GetGameId() }
+func (m *QuickConn) GetCurrVersion() int32 { return (*ddproto1.QuickConn)(m).GetCurrVersion() }
+func (m *QuickConn) GetLanguageId() int32  { return (*ddproto1.QuickConn)(m).GetLanguageId() }
+func (m *QuickConn) GetUserId() uint32     { return (*ddproto1.QuickConn)(m).GetUserId() }
 
-// Ignoring public import of common_ack_logout from common_client.proto
+// AckQuickConn from public import common_client.proto
+type AckQuickConn ddproto1.AckQuickConn
 
-// Ignoring public import of common_req_feedback from common_client.proto
+func (m *AckQuickConn) Reset()         { (*ddproto1.AckQuickConn)(m).Reset() }
+func (m *AckQuickConn) String() string { return (*ddproto1.AckQuickConn)(m).String() }
+func (*AckQuickConn) ProtoMessage()    {}
+func (m *AckQuickConn) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.AckQuickConn)(m).GetHeader())
+}
+func (m *AckQuickConn) GetGameServer() *ServerInfo {
+	return (*ServerInfo)((*ddproto1.AckQuickConn)(m).GetGameServer())
+}
+func (m *AckQuickConn) GetReleaseTag() int32   { return (*ddproto1.AckQuickConn)(m).GetReleaseTag() }
+func (m *AckQuickConn) GetCurrVersion() int32  { return (*ddproto1.AckQuickConn)(m).GetCurrVersion() }
+func (m *AckQuickConn) GetIsUpdate() int32     { return (*ddproto1.AckQuickConn)(m).GetIsUpdate() }
+func (m *AckQuickConn) GetDownloadUrl() string { return (*ddproto1.AckQuickConn)(m).GetDownloadUrl() }
+func (m *AckQuickConn) GetVersionInfo() string { return (*ddproto1.AckQuickConn)(m).GetVersionInfo() }
+func (m *AckQuickConn) GetIsMaintain() int32   { return (*ddproto1.AckQuickConn)(m).GetIsMaintain() }
+func (m *AckQuickConn) GetMaintainMsg() string { return (*ddproto1.AckQuickConn)(m).GetMaintainMsg() }
 
-// Ignoring public import of client_base_poker from common_client.proto
+// WeixinInfo from public import common_client.proto
+type WeixinInfo ddproto1.WeixinInfo
 
-// Ignoring public import of common_req_message from common_client.proto
+func (m *WeixinInfo) Reset()              { (*ddproto1.WeixinInfo)(m).Reset() }
+func (m *WeixinInfo) String() string      { return (*ddproto1.WeixinInfo)(m).String() }
+func (*WeixinInfo) ProtoMessage()         {}
+func (m *WeixinInfo) GetOpenId() string   { return (*ddproto1.WeixinInfo)(m).GetOpenId() }
+func (m *WeixinInfo) GetNickName() string { return (*ddproto1.WeixinInfo)(m).GetNickName() }
+func (m *WeixinInfo) GetHeadUrl() string  { return (*ddproto1.WeixinInfo)(m).GetHeadUrl() }
+func (m *WeixinInfo) GetSex() int32       { return (*ddproto1.WeixinInfo)(m).GetSex() }
+func (m *WeixinInfo) GetCity() string     { return (*ddproto1.WeixinInfo)(m).GetCity() }
+func (m *WeixinInfo) GetUnionId() string  { return (*ddproto1.WeixinInfo)(m).GetUnionId() }
 
-// Ignoring public import of common_bc_message from common_client.proto
+// common_req_gameLogin from public import common_client.proto
+type CommonReqGameLogin ddproto1.CommonReqGameLogin
 
-// Ignoring public import of common_req_notice from common_client.proto
+func (m *CommonReqGameLogin) Reset()         { (*ddproto1.CommonReqGameLogin)(m).Reset() }
+func (m *CommonReqGameLogin) String() string { return (*ddproto1.CommonReqGameLogin)(m).String() }
+func (*CommonReqGameLogin) ProtoMessage()    {}
+func (m *CommonReqGameLogin) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonReqGameLogin)(m).GetHeader())
+}
+func (m *CommonReqGameLogin) GetUserId() uint32 { return (*ddproto1.CommonReqGameLogin)(m).GetUserId() }
+func (m *CommonReqGameLogin) GetProtoVersion() int32 {
+	return (*ddproto1.CommonReqGameLogin)(m).GetProtoVersion()
+}
+func (m *CommonReqGameLogin) GetWxInfo() *WeixinInfo {
+	return (*WeixinInfo)((*ddproto1.CommonReqGameLogin)(m).GetWxInfo())
+}
 
-// Ignoring public import of common_ack_notice from common_client.proto
+// common_ack_gameLogin from public import common_client.proto
+type CommonAckGameLogin ddproto1.CommonAckGameLogin
 
-// Ignoring public import of common_enum_pokerColor from common_client.proto
+func (m *CommonAckGameLogin) Reset()         { (*ddproto1.CommonAckGameLogin)(m).Reset() }
+func (m *CommonAckGameLogin) String() string { return (*ddproto1.CommonAckGameLogin)(m).String() }
+func (*CommonAckGameLogin) ProtoMessage()    {}
+func (m *CommonAckGameLogin) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonAckGameLogin)(m).GetHeader())
+}
+func (m *CommonAckGameLogin) GetUserId() uint32 { return (*ddproto1.CommonAckGameLogin)(m).GetUserId() }
+func (m *CommonAckGameLogin) GetNickName() string {
+	return (*ddproto1.CommonAckGameLogin)(m).GetNickName()
+}
+func (m *CommonAckGameLogin) GetRoomPassword() string {
+	return (*ddproto1.CommonAckGameLogin)(m).GetRoomPassword()
+}
+func (m *CommonAckGameLogin) GetCostCreateRoom() int64 {
+	return (*ddproto1.CommonAckGameLogin)(m).GetCostCreateRoom()
+}
+func (m *CommonAckGameLogin) GetCostRebuy() int64 {
+	return (*ddproto1.CommonAckGameLogin)(m).GetCostRebuy()
+}
+func (m *CommonAckGameLogin) GetChampionship() bool {
+	return (*ddproto1.CommonAckGameLogin)(m).GetChampionship()
+}
+func (m *CommonAckGameLogin) GetChip() int64 { return (*ddproto1.CommonAckGameLogin)(m).GetChip() }
+func (m *CommonAckGameLogin) GetMailCount() int32 {
+	return (*ddproto1.CommonAckGameLogin)(m).GetMailCount()
+}
+func (m *CommonAckGameLogin) GetNotice() string { return (*ddproto1.CommonAckGameLogin)(m).GetNotice() }
+func (m *CommonAckGameLogin) GetGameStatus() int32 {
+	return (*ddproto1.CommonAckGameLogin)(m).GetGameStatus()
+}
 
-// Ignoring public import of EProtoId from zjh_base.proto
+// common_req_logout from public import common_client.proto
+type CommonReqLogout ddproto1.CommonReqLogout
 
-// Ignoring public import of zjh_enum_playerGameStatus from zjh_base.proto
+func (m *CommonReqLogout) Reset()         { (*ddproto1.CommonReqLogout)(m).Reset() }
+func (m *CommonReqLogout) String() string { return (*ddproto1.CommonReqLogout)(m).String() }
+func (*CommonReqLogout) ProtoMessage()    {}
+func (m *CommonReqLogout) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonReqLogout)(m).GetHeader())
+}
+func (m *CommonReqLogout) GetUserId() uint32 { return (*ddproto1.CommonReqLogout)(m).GetUserId() }
 
-// Ignoring public import of zjh_enum_deskState from zjh_base.proto
+// common_ack_logout from public import common_client.proto
+type CommonAckLogout ddproto1.CommonAckLogout
 
-// Ignoring public import of zjh_enum_userState from zjh_base.proto
+func (m *CommonAckLogout) Reset()         { (*ddproto1.CommonAckLogout)(m).Reset() }
+func (m *CommonAckLogout) String() string { return (*ddproto1.CommonAckLogout)(m).String() }
+func (*CommonAckLogout) ProtoMessage()    {}
+func (m *CommonAckLogout) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonAckLogout)(m).GetHeader())
+}
+func (m *CommonAckLogout) GetUserId() uint32 { return (*ddproto1.CommonAckLogout)(m).GetUserId() }
 
-// Ignoring public import of zjh_enum_roomType from zjh_base.proto
+// common_req_feedback from public import common_client.proto
+type CommonReqFeedback ddproto1.CommonReqFeedback
 
-// Ignoring public import of zjh_req_getRoomList from zjh_desk.proto
+func (m *CommonReqFeedback) Reset()         { (*ddproto1.CommonReqFeedback)(m).Reset() }
+func (m *CommonReqFeedback) String() string { return (*ddproto1.CommonReqFeedback)(m).String() }
+func (*CommonReqFeedback) ProtoMessage()    {}
+func (m *CommonReqFeedback) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonReqFeedback)(m).GetHeader())
+}
+func (m *CommonReqFeedback) GetMessage() string { return (*ddproto1.CommonReqFeedback)(m).GetMessage() }
 
-// Ignoring public import of zjh_base_roomInfo from zjh_desk.proto
+// client_base_poker from public import common_client.proto
+type ClientBasePoker ddproto1.ClientBasePoker
 
-// Ignoring public import of zjh_ack_roomList from zjh_desk.proto
+func (m *ClientBasePoker) Reset()         { (*ddproto1.ClientBasePoker)(m).Reset() }
+func (m *ClientBasePoker) String() string { return (*ddproto1.ClientBasePoker)(m).String() }
+func (*ClientBasePoker) ProtoMessage()    {}
+func (m *ClientBasePoker) GetSuit() CommonEnumPokerColor {
+	return (CommonEnumPokerColor)((*ddproto1.ClientBasePoker)(m).GetSuit())
+}
+func (m *ClientBasePoker) GetNum() int32 { return (*ddproto1.ClientBasePoker)(m).GetNum() }
+func (m *ClientBasePoker) GetId() int32  { return (*ddproto1.ClientBasePoker)(m).GetId() }
 
-// Ignoring public import of zjh_req_enterDesk from zjh_desk.proto
+// common_req_message from public import common_client.proto
+type CommonReqMessage ddproto1.CommonReqMessage
 
-// Ignoring public import of zjh_base_userInfo from zjh_desk.proto
+func (m *CommonReqMessage) Reset()         { (*ddproto1.CommonReqMessage)(m).Reset() }
+func (m *CommonReqMessage) String() string { return (*ddproto1.CommonReqMessage)(m).String() }
+func (*CommonReqMessage) ProtoMessage()    {}
+func (m *CommonReqMessage) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonReqMessage)(m).GetHeader())
+}
+func (m *CommonReqMessage) GetMsgType() int32   { return (*ddproto1.CommonReqMessage)(m).GetMsgType() }
+func (m *CommonReqMessage) GetId() int32        { return (*ddproto1.CommonReqMessage)(m).GetId() }
+func (m *CommonReqMessage) GetMsg() string      { return (*ddproto1.CommonReqMessage)(m).GetMsg() }
+func (m *CommonReqMessage) GetUserId() uint32   { return (*ddproto1.CommonReqMessage)(m).GetUserId() }
+func (m *CommonReqMessage) GetDeskId() int32    { return (*ddproto1.CommonReqMessage)(m).GetDeskId() }
+func (m *CommonReqMessage) GetToUserId() uint32 { return (*ddproto1.CommonReqMessage)(m).GetToUserId() }
 
-// Ignoring public import of ZjhDeskStateAck from zjh_desk.proto
+// common_bc_message from public import common_client.proto
+type CommonBcMessage ddproto1.CommonBcMessage
+
+func (m *CommonBcMessage) Reset()         { (*ddproto1.CommonBcMessage)(m).Reset() }
+func (m *CommonBcMessage) String() string { return (*ddproto1.CommonBcMessage)(m).String() }
+func (*CommonBcMessage) ProtoMessage()    {}
+func (m *CommonBcMessage) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonBcMessage)(m).GetHeader())
+}
+func (m *CommonBcMessage) GetMsgType() int32   { return (*ddproto1.CommonBcMessage)(m).GetMsgType() }
+func (m *CommonBcMessage) GetId() int32        { return (*ddproto1.CommonBcMessage)(m).GetId() }
+func (m *CommonBcMessage) GetMsg() string      { return (*ddproto1.CommonBcMessage)(m).GetMsg() }
+func (m *CommonBcMessage) GetUserId() uint32   { return (*ddproto1.CommonBcMessage)(m).GetUserId() }
+func (m *CommonBcMessage) GetToUserId() uint32 { return (*ddproto1.CommonBcMessage)(m).GetToUserId() }
+
+// common_req_notice from public import common_client.proto
+type CommonReqNotice ddproto1.CommonReqNotice
+
+func (m *CommonReqNotice) Reset()         { (*ddproto1.CommonReqNotice)(m).Reset() }
+func (m *CommonReqNotice) String() string { return (*ddproto1.CommonReqNotice)(m).String() }
+func (*CommonReqNotice) ProtoMessage()    {}
+func (m *CommonReqNotice) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonReqNotice)(m).GetHeader())
+}
+func (m *CommonReqNotice) GetNoticeType() int32 { return (*ddproto1.CommonReqNotice)(m).GetNoticeType() }
+
+// common_ack_notice from public import common_client.proto
+type CommonAckNotice ddproto1.CommonAckNotice
+
+func (m *CommonAckNotice) Reset()         { (*ddproto1.CommonAckNotice)(m).Reset() }
+func (m *CommonAckNotice) String() string { return (*ddproto1.CommonAckNotice)(m).String() }
+func (*CommonAckNotice) ProtoMessage()    {}
+func (m *CommonAckNotice) GetHeader() *ProtoHeader {
+	return (*ProtoHeader)((*ddproto1.CommonAckNotice)(m).GetHeader())
+}
+func (m *CommonAckNotice) GetNoticeType() int32 { return (*ddproto1.CommonAckNotice)(m).GetNoticeType() }
+func (m *CommonAckNotice) GetNoticeTitle() string {
+	return (*ddproto1.CommonAckNotice)(m).GetNoticeTitle()
+}
+func (m *CommonAckNotice) GetNoticeContent() string {
+	return (*ddproto1.CommonAckNotice)(m).GetNoticeContent()
+}
+func (m *CommonAckNotice) GetNoticeMemo() string {
+	return (*ddproto1.CommonAckNotice)(m).GetNoticeMemo()
+}
+func (m *CommonAckNotice) GetId() int32        { return (*ddproto1.CommonAckNotice)(m).GetId() }
+func (m *CommonAckNotice) GetFileds() []string { return (*ddproto1.CommonAckNotice)(m).GetFileds() }
+
+// common_enum_pokerColor from public import common_client.proto
+type CommonEnumPokerColor ddproto1.CommonEnumPokerColor
+
+var CommonEnumPokerColor_name = ddproto1.CommonEnumPokerColor_name
+var CommonEnumPokerColor_value = ddproto1.CommonEnumPokerColor_value
+
+func (x CommonEnumPokerColor) String() string { return (ddproto1.CommonEnumPokerColor)(x).String() }
+func (x CommonEnumPokerColor) Enum() *CommonEnumPokerColor {
+	return (*CommonEnumPokerColor)((ddproto1.CommonEnumPokerColor)(x).Enum())
+}
+func (x *CommonEnumPokerColor) UnmarshalJSON(data []byte) error {
+	return (*ddproto1.CommonEnumPokerColor)(x).UnmarshalJSON(data)
+}
+
+const CommonEnumPokerColor_HONGTAO = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_HONGTAO)
+const CommonEnumPokerColor_FANGKUAI = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_FANGKUAI)
+const CommonEnumPokerColor_HEITAO = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_HEITAO)
+const CommonEnumPokerColor_MEIHUA = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_MEIHUA)
+const CommonEnumPokerColor_REDJOKER = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_REDJOKER)
+const CommonEnumPokerColor_BLACKBIGJOKER = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_BLACKBIGJOKER)
+
+// EProtoId from public import zjh_base.proto
+type EProtoId ddproto2.EProtoId
+
+var EProtoId_name = ddproto2.EProtoId_name
+var EProtoId_value = ddproto2.EProtoId_value
+
+func (x EProtoId) String() string  { return (ddproto2.EProtoId)(x).String() }
+func (x EProtoId) Enum() *EProtoId { return (*EProtoId)((ddproto2.EProtoId)(x).Enum()) }
+func (x *EProtoId) UnmarshalJSON(data []byte) error {
+	return (*ddproto2.EProtoId)(x).UnmarshalJSON(data)
+}
+
+const EProtoId_ZJH_PID_HEARTBEAT = EProtoId(ddproto2.EProtoId_ZJH_PID_HEARTBEAT)
+const EProtoId_ZJH_PID_QUICKCOnn = EProtoId(ddproto2.EProtoId_ZJH_PID_QUICKCOnn)
+const EProtoId_ZJH_PID_QUICKCONNA_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_QUICKCONNA_ACK)
+const EProtoId_ZJH_PID_GAME_LOGIN = EProtoId(ddproto2.EProtoId_ZJH_PID_GAME_LOGIN)
+const EProtoId_ZJH_PID_GAME_LOGIN_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_GAME_LOGIN_ACK)
+const EProtoId_ZJH_PID_GET_ROOM_LIST = EProtoId(ddproto2.EProtoId_ZJH_PID_GET_ROOM_LIST)
+const EProtoId_ZJH_PID_ENTER_ROOM_LIST_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_ENTER_ROOM_LIST_ACK)
+const EProtoId_ZJH_PID_AUTO_ENTER_DESK = EProtoId(ddproto2.EProtoId_ZJH_PID_AUTO_ENTER_DESK)
+const EProtoId_ZJH_PID_AUTO_ENTER_DESK_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_AUTO_ENTER_DESK_ACK)
+const EProtoId_ZJH_PID_SEND_GAMEINFO = EProtoId(ddproto2.EProtoId_ZJH_PID_SEND_GAMEINFO)
+const EProtoId_ZJH_PID_BC_NEWENTER = EProtoId(ddproto2.EProtoId_ZJH_PID_BC_NEWENTER)
+
+// zjh_enum_playerGameStatus from public import zjh_base.proto
+type ZjhEnumPlayerGameStatus ddproto2.ZjhEnumPlayerGameStatus
+
+var ZjhEnumPlayerGameStatus_name = ddproto2.ZjhEnumPlayerGameStatus_name
+var ZjhEnumPlayerGameStatus_value = ddproto2.ZjhEnumPlayerGameStatus_value
+
+func (x ZjhEnumPlayerGameStatus) String() string {
+	return (ddproto2.ZjhEnumPlayerGameStatus)(x).String()
+}
+func (x ZjhEnumPlayerGameStatus) Enum() *ZjhEnumPlayerGameStatus {
+	return (*ZjhEnumPlayerGameStatus)((ddproto2.ZjhEnumPlayerGameStatus)(x).Enum())
+}
+func (x *ZjhEnumPlayerGameStatus) UnmarshalJSON(data []byte) error {
+	return (*ddproto2.ZjhEnumPlayerGameStatus)(x).UnmarshalJSON(data)
+}
+
+const ZjhEnumPlayerGameStatus_ZJH_TEMP = ZjhEnumPlayerGameStatus(ddproto2.ZjhEnumPlayerGameStatus_ZJH_TEMP)
+
+// zjh_enum_deskState from public import zjh_base.proto
+type ZjhEnumDeskState ddproto2.ZjhEnumDeskState
+
+var ZjhEnumDeskState_name = ddproto2.ZjhEnumDeskState_name
+var ZjhEnumDeskState_value = ddproto2.ZjhEnumDeskState_value
+
+func (x ZjhEnumDeskState) String() string { return (ddproto2.ZjhEnumDeskState)(x).String() }
+func (x ZjhEnumDeskState) Enum() *ZjhEnumDeskState {
+	return (*ZjhEnumDeskState)((ddproto2.ZjhEnumDeskState)(x).Enum())
+}
+func (x *ZjhEnumDeskState) UnmarshalJSON(data []byte) error {
+	return (*ddproto2.ZjhEnumDeskState)(x).UnmarshalJSON(data)
+}
+
+const ZjhEnumDeskState_DESK_IS_GAMING = ZjhEnumDeskState(ddproto2.ZjhEnumDeskState_DESK_IS_GAMING)
+const ZjhEnumDeskState_DESK_IS_WAIT = ZjhEnumDeskState(ddproto2.ZjhEnumDeskState_DESK_IS_WAIT)
+
+// zjh_enum_userState from public import zjh_base.proto
+type ZjhEnumUserState ddproto2.ZjhEnumUserState
+
+var ZjhEnumUserState_name = ddproto2.ZjhEnumUserState_name
+var ZjhEnumUserState_value = ddproto2.ZjhEnumUserState_value
+
+func (x ZjhEnumUserState) String() string { return (ddproto2.ZjhEnumUserState)(x).String() }
+func (x ZjhEnumUserState) Enum() *ZjhEnumUserState {
+	return (*ZjhEnumUserState)((ddproto2.ZjhEnumUserState)(x).Enum())
+}
+func (x *ZjhEnumUserState) UnmarshalJSON(data []byte) error {
+	return (*ddproto2.ZjhEnumUserState)(x).UnmarshalJSON(data)
+}
+
+const ZjhEnumUserState_USER_IS_GAMING = ZjhEnumUserState(ddproto2.ZjhEnumUserState_USER_IS_GAMING)
+const ZjhEnumUserState_USER_IS_STAND = ZjhEnumUserState(ddproto2.ZjhEnumUserState_USER_IS_STAND)
+const ZjhEnumUserState_USER_IS_SITED = ZjhEnumUserState(ddproto2.ZjhEnumUserState_USER_IS_SITED)
+
+// zjh_enum_roomType from public import zjh_base.proto
+type ZjhEnumRoomType ddproto2.ZjhEnumRoomType
+
+var ZjhEnumRoomType_name = ddproto2.ZjhEnumRoomType_name
+var ZjhEnumRoomType_value = ddproto2.ZjhEnumRoomType_value
+
+func (x ZjhEnumRoomType) String() string { return (ddproto2.ZjhEnumRoomType)(x).String() }
+func (x ZjhEnumRoomType) Enum() *ZjhEnumRoomType {
+	return (*ZjhEnumRoomType)((ddproto2.ZjhEnumRoomType)(x).Enum())
+}
+func (x *ZjhEnumRoomType) UnmarshalJSON(data []byte) error {
+	return (*ddproto2.ZjhEnumRoomType)(x).UnmarshalJSON(data)
+}
+
+const ZjhEnumRoomType_ROOM_TYPE_FRIEND = ZjhEnumRoomType(ddproto2.ZjhEnumRoomType_ROOM_TYPE_FRIEND)
+const ZjhEnumRoomType_ROOM_TYPE_NORMAL = ZjhEnumRoomType(ddproto2.ZjhEnumRoomType_ROOM_TYPE_NORMAL)
+const ZjhEnumRoomType_ROOM_TYPE_REDBLACK = ZjhEnumRoomType(ddproto2.ZjhEnumRoomType_ROOM_TYPE_REDBLACK)
+
+// zjh_req_getRoomList from public import zjh_desk.proto
+type ZjhReqGetRoomList ddproto3.ZjhReqGetRoomList
+
+func (m *ZjhReqGetRoomList) Reset()           { (*ddproto3.ZjhReqGetRoomList)(m).Reset() }
+func (m *ZjhReqGetRoomList) String() string   { return (*ddproto3.ZjhReqGetRoomList)(m).String() }
+func (*ZjhReqGetRoomList) ProtoMessage()      {}
+func (m *ZjhReqGetRoomList) GetUserId() int32 { return (*ddproto3.ZjhReqGetRoomList)(m).GetUserId() }
+
+// zjh_base_roomInfo from public import zjh_desk.proto
+type ZjhBaseRoomInfo ddproto3.ZjhBaseRoomInfo
+
+func (m *ZjhBaseRoomInfo) Reset()               { (*ddproto3.ZjhBaseRoomInfo)(m).Reset() }
+func (m *ZjhBaseRoomInfo) String() string       { return (*ddproto3.ZjhBaseRoomInfo)(m).String() }
+func (*ZjhBaseRoomInfo) ProtoMessage()          {}
+func (m *ZjhBaseRoomInfo) GetRoomId() int32     { return (*ddproto3.ZjhBaseRoomInfo)(m).GetRoomId() }
+func (m *ZjhBaseRoomInfo) GetRoomLevel() int32  { return (*ddproto3.ZjhBaseRoomInfo)(m).GetRoomLevel() }
+func (m *ZjhBaseRoomInfo) GetRoomTitle() string { return (*ddproto3.ZjhBaseRoomInfo)(m).GetRoomTitle() }
+func (m *ZjhBaseRoomInfo) GetBaseValue() int32  { return (*ddproto3.ZjhBaseRoomInfo)(m).GetBaseValue() }
+func (m *ZjhBaseRoomInfo) GetMaxValue() int32   { return (*ddproto3.ZjhBaseRoomInfo)(m).GetMaxValue() }
+
+// zjh_ack_roomList from public import zjh_desk.proto
+type ZjhAckRoomList ddproto3.ZjhAckRoomList
+
+func (m *ZjhAckRoomList) Reset()         { (*ddproto3.ZjhAckRoomList)(m).Reset() }
+func (m *ZjhAckRoomList) String() string { return (*ddproto3.ZjhAckRoomList)(m).String() }
+func (*ZjhAckRoomList) ProtoMessage()    {}
+func (m *ZjhAckRoomList) GetRooms() []*ZjhBaseRoomInfo {
+	o := (*ddproto3.ZjhAckRoomList)(m).GetRooms()
+	if o == nil {
+		return nil
+	}
+	s := make([]*ZjhBaseRoomInfo, len(o))
+	for i, x := range o {
+		s[i] = (*ZjhBaseRoomInfo)(x)
+	}
+	return s
+}
+
+// zjh_req_enterDesk from public import zjh_desk.proto
+type ZjhReqEnterDesk ddproto3.ZjhReqEnterDesk
+
+func (m *ZjhReqEnterDesk) Reset()            { (*ddproto3.ZjhReqEnterDesk)(m).Reset() }
+func (m *ZjhReqEnterDesk) String() string    { return (*ddproto3.ZjhReqEnterDesk)(m).String() }
+func (*ZjhReqEnterDesk) ProtoMessage()       {}
+func (m *ZjhReqEnterDesk) GetRoomId() int32  { return (*ddproto3.ZjhReqEnterDesk)(m).GetRoomId() }
+func (m *ZjhReqEnterDesk) GetUserId() uint32 { return (*ddproto3.ZjhReqEnterDesk)(m).GetUserId() }
+
+// zjh_base_userInfo from public import zjh_desk.proto
+type ZjhBaseUserInfo ddproto3.ZjhBaseUserInfo
+
+func (m *ZjhBaseUserInfo) Reset()              { (*ddproto3.ZjhBaseUserInfo)(m).Reset() }
+func (m *ZjhBaseUserInfo) String() string      { return (*ddproto3.ZjhBaseUserInfo)(m).String() }
+func (*ZjhBaseUserInfo) ProtoMessage()         {}
+func (m *ZjhBaseUserInfo) GetUid() int32       { return (*ddproto3.ZjhBaseUserInfo)(m).GetUid() }
+func (m *ZjhBaseUserInfo) GetNickName() string { return (*ddproto3.ZjhBaseUserInfo)(m).GetNickName() }
+func (m *ZjhBaseUserInfo) GetCoin() int32      { return (*ddproto3.ZjhBaseUserInfo)(m).GetCoin() }
+func (m *ZjhBaseUserInfo) GetChip() int32      { return (*ddproto3.ZjhBaseUserInfo)(m).GetChip() }
+
+// ZjhDeskStateAck from public import zjh_desk.proto
+type ZjhDeskStateAck ddproto3.ZjhDeskStateAck
+
+func (m *ZjhDeskStateAck) Reset()         { (*ddproto3.ZjhDeskStateAck)(m).Reset() }
+func (m *ZjhDeskStateAck) String() string { return (*ddproto3.ZjhDeskStateAck)(m).String() }
+func (*ZjhDeskStateAck) ProtoMessage()    {}
+func (m *ZjhDeskStateAck) GetUserList() []*ZjhBaseUserInfo {
+	o := (*ddproto3.ZjhDeskStateAck)(m).GetUserList()
+	if o == nil {
+		return nil
+	}
+	s := make([]*ZjhBaseUserInfo, len(o))
+	for i, x := range o {
+		s[i] = (*ZjhBaseUserInfo)(x)
+	}
+	return s
+}
+func (m *ZjhDeskStateAck) GetDeskId() int32 { return (*ddproto3.ZjhDeskStateAck)(m).GetDeskId() }
+func (m *ZjhDeskStateAck) GetRoomInfo() *ZjhBaseRoomInfo {
+	return (*ZjhBaseRoomInfo)((*ddproto3.ZjhDeskStateAck)(m).GetRoomInfo())
+}
 
 // 游戏信息(广播)（接收服务端消息）(别的玩家已看牌是独立协议更好吧? 否则通过此协议下发是否过于冗余?)
 type ZjhBcGameInfo struct {
-	Header           *ProtoHeader         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PlayerInfo       []*ZjhBasePlayerInfo `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
-	ZjhDeskInfo      *ZjhBaseDeskInfo     `protobuf:"bytes,3,opt,name=zjhDeskInfo" json:"zjhDeskInfo,omitempty"`
-	SenderUserId     *uint32              `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
-	IsReconnect      *int32               `protobuf:"varint,5,opt,name=isReconnect" json:"isReconnect,omitempty"`
-	XXX_unrecognized []byte               `json:"-"`
+	Header           *ddproto1.ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerInfo       []*ZjhBasePlayerInfo  `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
+	ZjhDeskInfo      *ZjhBaseDeskInfo      `protobuf:"bytes,3,opt,name=zjhDeskInfo" json:"zjhDeskInfo,omitempty"`
+	SenderUserId     *uint32               `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
+	IsReconnect      *int32                `protobuf:"varint,5,opt,name=isReconnect" json:"isReconnect,omitempty"`
+	XXX_unrecognized []byte                `json:"-"`
 }
 
 func (m *ZjhBcGameInfo) Reset()                    { *m = ZjhBcGameInfo{} }
 func (m *ZjhBcGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcGameInfo) ProtoMessage()               {}
-func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
-func (m *ZjhBcGameInfo) GetHeader() *ProtoHeader {
+func (m *ZjhBcGameInfo) GetHeader() *ddproto1.ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
@@ -121,27 +521,27 @@ func (m *ZjhBcGameInfo) GetIsReconnect() int32 {
 
 // 新加入玩家后 桌子广播需要的协议
 type ZjhBaseDeskInfo struct {
-	GameStatus       *int32           `protobuf:"varint,1,opt,name=GameStatus" json:"GameStatus,omitempty"`
-	RoomInfo         *ZjhBaseRoomInfo `protobuf:"bytes,2,opt,name=roomInfo" json:"roomInfo,omitempty"`
-	PlayerNum        *int32           `protobuf:"varint,3,opt,name=playerNum" json:"playerNum,omitempty"`
-	ActiveUserId     *uint32          `protobuf:"varint,4,opt,name=activeUserId" json:"activeUserId,omitempty"`
-	ActionTime       *int32           `protobuf:"varint,5,opt,name=actionTime" json:"actionTime,omitempty"`
-	NInitActionTime  *int32           `protobuf:"varint,6,opt,name=nInitActionTime" json:"nInitActionTime,omitempty"`
-	InitRoomCoin     *int64           `protobuf:"varint,7,opt,name=initRoomCoin" json:"initRoomCoin,omitempty"`
-	CurrPlayCount    *int32           `protobuf:"varint,8,opt,name=currPlayCount" json:"currPlayCount,omitempty"`
-	TotalPlayCount   *int32           `protobuf:"varint,9,opt,name=totalPlayCount" json:"totalPlayCount,omitempty"`
-	RoomNumber       *string          `protobuf:"bytes,10,opt,name=roomNumber" json:"roomNumber,omitempty"`
-	RoomOwnerUserId  *uint32          `protobuf:"varint,11,opt,name=roomOwnerUserId" json:"roomOwnerUserId,omitempty"`
-	PlayRate         *int32           `protobuf:"varint,12,opt,name=playRate" json:"playRate,omitempty"`
-	CurrRoundCount   *int32           `protobuf:"varint,13,opt,name=currRoundCount" json:"currRoundCount,omitempty"`
-	TotalRoundCount  *int32           `protobuf:"varint,14,opt,name=totalRoundCount" json:"totalRoundCount,omitempty"`
-	XXX_unrecognized []byte           `json:"-"`
+	GameStatus       *int32                    `protobuf:"varint,1,opt,name=GameStatus" json:"GameStatus,omitempty"`
+	RoomInfo         *ddproto3.ZjhBaseRoomInfo `protobuf:"bytes,2,opt,name=roomInfo" json:"roomInfo,omitempty"`
+	PlayerNum        *int32                    `protobuf:"varint,3,opt,name=playerNum" json:"playerNum,omitempty"`
+	ActiveUserId     *uint32                   `protobuf:"varint,4,opt,name=activeUserId" json:"activeUserId,omitempty"`
+	ActionTime       *int32                    `protobuf:"varint,5,opt,name=actionTime" json:"actionTime,omitempty"`
+	NInitActionTime  *int32                    `protobuf:"varint,6,opt,name=nInitActionTime" json:"nInitActionTime,omitempty"`
+	InitRoomCoin     *int64                    `protobuf:"varint,7,opt,name=initRoomCoin" json:"initRoomCoin,omitempty"`
+	CurrPlayCount    *int32                    `protobuf:"varint,8,opt,name=currPlayCount" json:"currPlayCount,omitempty"`
+	TotalPlayCount   *int32                    `protobuf:"varint,9,opt,name=totalPlayCount" json:"totalPlayCount,omitempty"`
+	RoomNumber       *string                   `protobuf:"bytes,10,opt,name=roomNumber" json:"roomNumber,omitempty"`
+	RoomOwnerUserId  *uint32                   `protobuf:"varint,11,opt,name=roomOwnerUserId" json:"roomOwnerUserId,omitempty"`
+	PlayRate         *int32                    `protobuf:"varint,12,opt,name=playRate" json:"playRate,omitempty"`
+	CurrRoundCount   *int32                    `protobuf:"varint,13,opt,name=currRoundCount" json:"currRoundCount,omitempty"`
+	TotalRoundCount  *int32                    `protobuf:"varint,14,opt,name=totalRoundCount" json:"totalRoundCount,omitempty"`
+	XXX_unrecognized []byte                    `json:"-"`
 }
 
 func (m *ZjhBaseDeskInfo) Reset()                    { *m = ZjhBaseDeskInfo{} }
 func (m *ZjhBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseDeskInfo) ProtoMessage()               {}
-func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
+func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
 func (m *ZjhBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -150,7 +550,7 @@ func (m *ZjhBaseDeskInfo) GetGameStatus() int32 {
 	return 0
 }
 
-func (m *ZjhBaseDeskInfo) GetRoomInfo() *ZjhBaseRoomInfo {
+func (m *ZjhBaseDeskInfo) GetRoomInfo() *ddproto3.ZjhBaseRoomInfo {
 	if m != nil {
 		return m.RoomInfo
 	}
@@ -241,26 +641,52 @@ func (m *ZjhBaseDeskInfo) GetTotalRoundCount() int32 {
 	return 0
 }
 
+// 有玩家进入房间(服务器广播)
+type ZjhBcNewPlayerEnter struct {
+	Header           *ddproto1.ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerInfo       *ZjhBasePlayerInfo    `protobuf:"bytes,2,opt,name=playerInfo" json:"playerInfo,omitempty"`
+	XXX_unrecognized []byte                `json:"-"`
+}
+
+func (m *ZjhBcNewPlayerEnter) Reset()                    { *m = ZjhBcNewPlayerEnter{} }
+func (m *ZjhBcNewPlayerEnter) String() string            { return proto.CompactTextString(m) }
+func (*ZjhBcNewPlayerEnter) ProtoMessage()               {}
+func (*ZjhBcNewPlayerEnter) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *ZjhBcNewPlayerEnter) GetHeader() *ddproto1.ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *ZjhBcNewPlayerEnter) GetPlayerInfo() *ZjhBasePlayerInfo {
+	if m != nil {
+		return m.PlayerInfo
+	}
+	return nil
+}
+
 type ZjhBasePlayerInfo struct {
-	IsFirst          *bool                    `protobuf:"varint,1,opt,name=isFirst" json:"isFirst,omitempty"`
-	PlayerPokers     []*ClientBasePoker       `protobuf:"bytes,2,rep,name=playerPokers" json:"playerPokers,omitempty"`
-	Coin             *int64                   `protobuf:"varint,3,opt,name=coin" json:"coin,omitempty"`
-	NickName         *string                  `protobuf:"bytes,4,opt,name=nickName" json:"nickName,omitempty"`
-	Sex              *int32                   `protobuf:"varint,5,opt,name=sex" json:"sex,omitempty"`
-	UserId           *uint32                  `protobuf:"varint,6,opt,name=userId" json:"userId,omitempty"`
-	BReady           *int32                   `protobuf:"varint,8,opt,name=bReady" json:"bReady,omitempty"`
-	Status           *ZjhEnumPlayerGameStatus `protobuf:"varint,9,opt,name=status,enum=ddproto.ZjhEnumPlayerGameStatus" json:"status,omitempty"`
-	WxInfo           *WeixinInfo              `protobuf:"bytes,10,opt,name=wxInfo" json:"wxInfo,omitempty"`
-	OnlineStatus     *int32                   `protobuf:"varint,11,opt,name=onlineStatus" json:"onlineStatus,omitempty"`
-	IsCheckedPokers  *bool                    `protobuf:"varint,12,opt,name=isCheckedPokers" json:"isCheckedPokers,omitempty"`
-	SeatIndex        *int32                   `protobuf:"varint,13,opt,name=seatIndex" json:"seatIndex,omitempty"`
-	XXX_unrecognized []byte                   `json:"-"`
+	IsFirst          *bool                             `protobuf:"varint,1,opt,name=isFirst" json:"isFirst,omitempty"`
+	PlayerPokers     []*ddproto1.ClientBasePoker       `protobuf:"bytes,2,rep,name=playerPokers" json:"playerPokers,omitempty"`
+	Coin             *int64                            `protobuf:"varint,3,opt,name=coin" json:"coin,omitempty"`
+	NickName         *string                           `protobuf:"bytes,4,opt,name=nickName" json:"nickName,omitempty"`
+	Sex              *int32                            `protobuf:"varint,5,opt,name=sex" json:"sex,omitempty"`
+	UserId           *uint32                           `protobuf:"varint,6,opt,name=userId" json:"userId,omitempty"`
+	BReady           *int32                            `protobuf:"varint,8,opt,name=bReady" json:"bReady,omitempty"`
+	Status           *ddproto2.ZjhEnumPlayerGameStatus `protobuf:"varint,9,opt,name=status,enum=ddproto.ZjhEnumPlayerGameStatus" json:"status,omitempty"`
+	WxInfo           *ddproto1.WeixinInfo              `protobuf:"bytes,10,opt,name=wxInfo" json:"wxInfo,omitempty"`
+	OnlineStatus     *int32                            `protobuf:"varint,11,opt,name=onlineStatus" json:"onlineStatus,omitempty"`
+	IsCheckedPokers  *bool                             `protobuf:"varint,12,opt,name=isCheckedPokers" json:"isCheckedPokers,omitempty"`
+	SeatIndex        *int32                            `protobuf:"varint,13,opt,name=seatIndex" json:"seatIndex,omitempty"`
+	XXX_unrecognized []byte                            `json:"-"`
 }
 
 func (m *ZjhBasePlayerInfo) Reset()                    { *m = ZjhBasePlayerInfo{} }
 func (m *ZjhBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBasePlayerInfo) ProtoMessage()               {}
-func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
+func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
 func (m *ZjhBasePlayerInfo) GetIsFirst() bool {
 	if m != nil && m.IsFirst != nil {
@@ -269,7 +695,7 @@ func (m *ZjhBasePlayerInfo) GetIsFirst() bool {
 	return false
 }
 
-func (m *ZjhBasePlayerInfo) GetPlayerPokers() []*ClientBasePoker {
+func (m *ZjhBasePlayerInfo) GetPlayerPokers() []*ddproto1.ClientBasePoker {
 	if m != nil {
 		return m.PlayerPokers
 	}
@@ -311,14 +737,14 @@ func (m *ZjhBasePlayerInfo) GetBReady() int32 {
 	return 0
 }
 
-func (m *ZjhBasePlayerInfo) GetStatus() ZjhEnumPlayerGameStatus {
+func (m *ZjhBasePlayerInfo) GetStatus() ddproto2.ZjhEnumPlayerGameStatus {
 	if m != nil && m.Status != nil {
 		return *m.Status
 	}
-	return ZjhEnumPlayerGameStatus_ZJH_TEMP
+	return ddproto2.ZjhEnumPlayerGameStatus_ZJH_TEMP
 }
 
-func (m *ZjhBasePlayerInfo) GetWxInfo() *WeixinInfo {
+func (m *ZjhBasePlayerInfo) GetWxInfo() *ddproto1.WeixinInfo {
 	if m != nil {
 		return m.WxInfo
 	}
@@ -349,43 +775,51 @@ func (m *ZjhBasePlayerInfo) GetSeatIndex() int32 {
 func init() {
 	proto.RegisterType((*ZjhBcGameInfo)(nil), "ddproto.zjh_bc_gameInfo")
 	proto.RegisterType((*ZjhBaseDeskInfo)(nil), "ddproto.zjh_base_deskInfo")
+	proto.RegisterType((*ZjhBcNewPlayerEnter)(nil), "ddproto.zjh_bc_newPlayerEnter")
 	proto.RegisterType((*ZjhBasePlayerInfo)(nil), "ddproto.zjh_base_playerInfo")
 }
 
-var fileDescriptor14 = []byte{
-	// 529 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x74, 0x52, 0xcd, 0x6e, 0xd3, 0x40,
-	0x10, 0x26, 0x49, 0xe3, 0x24, 0xe3, 0xfc, 0xd0, 0x4d, 0x01, 0x2b, 0xe2, 0x50, 0x05, 0x0e, 0x1c,
-	0x50, 0x40, 0x79, 0x03, 0x14, 0x04, 0xe4, 0x52, 0xac, 0x00, 0xe2, 0x18, 0x39, 0xf6, 0x40, 0x96,
-	0xc4, 0xbb, 0x95, 0x77, 0x4d, 0x53, 0x9e, 0x8e, 0x0b, 0xef, 0xc1, 0xa3, 0x30, 0x3b, 0xb6, 0xe3,
-	0x56, 0xa5, 0x17, 0xcb, 0x3b, 0x7f, 0xdf, 0x37, 0xdf, 0x7c, 0x30, 0xfc, 0xf5, 0x63, 0xbb, 0xbe,
-	0xdc, 0x47, 0xd7, 0xb3, 0xcb, 0x4c, 0x5b, 0x2d, 0x3a, 0x49, 0xc2, 0x3f, 0x93, 0x71, 0xac, 0xd3,
-	0x54, 0xab, 0x75, 0xbc, 0x97, 0xa8, 0x6c, 0x91, 0x9d, 0x70, 0xf5, 0x26, 0x32, 0x78, 0xf3, 0x9d,
-	0xa0, 0xd9, 0x15, 0xef, 0xe9, 0x9f, 0x06, 0x8c, 0xb8, 0x24, 0x5e, 0x7f, 0x8f, 0x52, 0x5c, 0xaa,
-	0x6f, 0x5a, 0x3c, 0x07, 0x6f, 0x8b, 0x51, 0x82, 0x59, 0xd0, 0x38, 0x6f, 0xbc, 0xf0, 0xe7, 0x67,
-	0xb3, 0x12, 0x62, 0x16, 0xba, 0xef, 0x07, 0xce, 0x89, 0xd7, 0x00, 0x8e, 0x05, 0x66, 0xae, 0x27,
-	0x68, 0x9e, 0xb7, 0xa8, 0xf2, 0xe9, 0xb1, 0xb2, 0x82, 0x5d, 0xd7, 0x35, 0xe2, 0x15, 0xf8, 0x14,
-	0x7e, 0x4b, 0xe0, 0xdc, 0xd2, 0xe2, 0xe1, 0x93, 0xbb, 0x2d, 0x49, 0x59, 0x21, 0xce, 0xa0, 0x6f,
-	0x50, 0x11, 0xd8, 0x17, 0x43, 0x23, 0x92, 0xe0, 0x84, 0x3a, 0x06, 0x62, 0x0c, 0xbe, 0x34, 0x2b,
-	0x8c, 0xb5, 0x52, 0x18, 0xdb, 0xa0, 0x4d, 0xc1, 0xf6, 0xf4, 0x6f, 0x13, 0x4e, 0xef, 0x0e, 0x10,
-	0x00, 0xef, 0x69, 0xab, 0x4f, 0x36, 0xb2, 0xb9, 0xe1, 0x6d, 0xda, 0xe2, 0x25, 0x74, 0x33, 0xad,
-	0xd3, 0x92, 0xf5, 0x3d, 0x14, 0xaa, 0x0a, 0x71, 0x0a, 0xbd, 0x62, 0x83, 0x8b, 0x3c, 0x65, 0xc6,
-	0x6d, 0xc7, 0x2a, 0x8a, 0xad, 0xfc, 0x89, 0xb7, 0x58, 0x11, 0x94, 0x8b, 0x6a, 0xf5, 0x59, 0xa6,
-	0x58, 0x90, 0x12, 0x4f, 0x60, 0xa4, 0x96, 0x4a, 0xda, 0x37, 0x75, 0xc2, 0xab, 0x46, 0x48, 0x8a,
-	0xaf, 0x08, 0x65, 0xa1, 0xa5, 0x0a, 0x3a, 0x14, 0x6d, 0x89, 0x47, 0x30, 0x88, 0xf3, 0x2c, 0x0b,
-	0x09, 0x6f, 0xa1, 0x73, 0x65, 0x83, 0x2e, 0x17, 0x3f, 0x86, 0xa1, 0xd5, 0x36, 0xda, 0xd7, 0xf1,
-	0x1e, 0xc7, 0x09, 0xd1, 0xd1, 0x24, 0x62, 0x1b, 0x3a, 0x15, 0x50, 0xac, 0xe7, 0x10, 0x5d, 0xec,
-	0xe3, 0x95, 0x3a, 0x8a, 0xe6, 0x33, 0xbd, 0x87, 0xd0, 0x75, 0x7b, 0xac, 0x22, 0x8b, 0x41, 0xbf,
-	0x1a, 0xeb, 0xd0, 0x56, 0x34, 0x31, 0x29, 0xc6, 0x0e, 0x2a, 0xd2, 0x0c, 0x77, 0x23, 0x31, 0x64,
-	0x89, 0x7f, 0x37, 0x61, 0xfc, 0xbf, 0xb3, 0x8e, 0xa0, 0x23, 0xcd, 0x3b, 0x99, 0x19, 0xcb, 0x0a,
-	0x77, 0xc9, 0x19, 0xfd, 0x22, 0x1d, 0xea, 0x1d, 0x66, 0xa6, 0xf4, 0x46, 0xad, 0x72, 0x61, 0xd0,
-	0x72, 0x8e, 0x2b, 0x11, 0x7d, 0x38, 0x89, 0x9d, 0x0e, 0x2d, 0xd6, 0x81, 0xb8, 0x2a, 0x19, 0xef,
-	0x2e, 0xe8, 0x72, 0x2c, 0x6e, 0x4f, 0xf8, 0xd0, 0x32, 0x78, 0x28, 0x55, 0x1d, 0x82, 0x97, 0x17,
-	0xab, 0x79, 0xbc, 0x1a, 0xbd, 0x37, 0x2b, 0xf2, 0xe4, 0x75, 0xa9, 0xd7, 0x1c, 0x3c, 0x53, 0x1c,
-	0xdc, 0xe9, 0x34, 0x9c, 0x4f, 0x6f, 0x9d, 0x17, 0x55, 0x9e, 0x96, 0xec, 0x6b, 0x6b, 0x88, 0x67,
-	0xe0, 0x5d, 0x1d, 0xd8, 0x12, 0xc0, 0x96, 0x18, 0x1f, 0x7b, 0xbe, 0xa2, 0x3c, 0x48, 0x55, 0xd9,
-	0x51, 0xab, 0xbd, 0x54, 0x95, 0x9f, 0xfc, 0x4a, 0x2f, 0x69, 0x16, 0x5b, 0x8c, 0x77, 0x98, 0x94,
-	0x0b, 0xf7, 0x59, 0x06, 0xb2, 0x8e, 0xc1, 0xc8, 0x2e, 0xc9, 0xc0, 0x87, 0x42, 0xdb, 0xf0, 0x41,
-	0xd8, 0x08, 0x9b, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0x8c, 0x10, 0x22, 0xd5, 0xc2, 0x03, 0x00,
-	0x00,
+var fileDescriptor0 = []byte{
+	// 649 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x54, 0x4f, 0x6f, 0xd3, 0x4e,
+	0x10, 0xfd, 0xb9, 0x69, 0xd2, 0x64, 0x92, 0xa6, 0x3f, 0xb6, 0x80, 0xac, 0xa8, 0x42, 0x56, 0x84,
+	0x90, 0x25, 0x50, 0x0f, 0x3d, 0x70, 0x40, 0x15, 0x12, 0x2a, 0xff, 0x72, 0x29, 0xd6, 0x02, 0xe2,
+	0x18, 0xb9, 0xf6, 0x40, 0xb6, 0x89, 0x77, 0x2b, 0xef, 0x9a, 0x26, 0xbd, 0x21, 0x3e, 0x09, 0x5f,
+	0x82, 0xcf, 0x87, 0x76, 0xbc, 0x89, 0xed, 0x14, 0x0e, 0x88, 0x4b, 0xb4, 0xf3, 0xfc, 0x66, 0xe7,
+	0xcd, 0xdb, 0x99, 0xc0, 0xf0, 0xe6, 0x72, 0x36, 0xbd, 0x5a, 0xc4, 0xab, 0xe3, 0xab, 0x5c, 0x19,
+	0xc5, 0xf6, 0xd2, 0x94, 0x0e, 0xa3, 0xc3, 0x44, 0x65, 0x99, 0x92, 0xd3, 0x64, 0x21, 0x50, 0x9a,
+	0xf2, 0xeb, 0x88, 0xd8, 0x17, 0xb1, 0xc6, 0x7a, 0x9c, 0xa2, 0x9e, 0x97, 0xf1, 0xf8, 0xdb, 0x0e,
+	0x1c, 0x10, 0x25, 0x99, 0x7e, 0x89, 0x33, 0x9c, 0xc8, 0xcf, 0x8a, 0x3d, 0x81, 0xce, 0x0c, 0xe3,
+	0x14, 0x73, 0xdf, 0x0b, 0xbc, 0xb0, 0x7f, 0x72, 0xf7, 0xd8, 0x95, 0x38, 0x8e, 0xec, 0xef, 0x5b,
+	0xfa, 0xc6, 0x1d, 0x87, 0x9d, 0x02, 0x58, 0x35, 0x98, 0xdb, 0x5c, 0x7f, 0x27, 0x68, 0x85, 0xfd,
+	0x93, 0xa3, 0x4d, 0xc6, 0xba, 0xfc, 0xb4, 0xe2, 0xf0, 0x1a, 0x9f, 0x9d, 0x42, 0xff, 0xe6, 0x72,
+	0xf6, 0x12, 0xf5, 0x9c, 0xd2, 0x5b, 0x54, 0x70, 0x74, 0x3b, 0x3d, 0x75, 0x0c, 0x5e, 0xa7, 0xb3,
+	0x31, 0x0c, 0x34, 0xca, 0x14, 0xf3, 0x8f, 0x1a, 0xf3, 0x49, 0xea, 0xef, 0x06, 0x5e, 0xb8, 0xcf,
+	0x1b, 0x18, 0x0b, 0xa0, 0x2f, 0x34, 0xc7, 0x44, 0x49, 0x89, 0x89, 0xf1, 0xdb, 0x81, 0x17, 0xb6,
+	0x79, 0x1d, 0x1a, 0xff, 0xd8, 0x85, 0x3b, 0xb7, 0x0a, 0xb1, 0x07, 0x00, 0x6f, 0xe2, 0x0c, 0xdf,
+	0x9b, 0xd8, 0x14, 0x9a, 0x9c, 0x68, 0xf3, 0x1a, 0xc2, 0x9e, 0x42, 0x37, 0x57, 0x2a, 0x73, 0x5d,
+	0xff, 0x41, 0xf6, 0x9a, 0xc1, 0x37, 0x5c, 0x76, 0x04, 0xbd, 0xb2, 0xff, 0xf3, 0x22, 0xa3, 0x7e,
+	0xdb, 0xbc, 0x02, 0x6c, 0x47, 0x71, 0x62, 0xc4, 0x57, 0x6c, 0x76, 0x54, 0xc7, 0xac, 0x32, 0x1b,
+	0x2b, 0xf9, 0x41, 0x64, 0xe8, 0x1a, 0xaa, 0x21, 0x2c, 0x84, 0x03, 0x39, 0x91, 0xc2, 0xbc, 0xa8,
+	0x48, 0x1d, 0x22, 0x6d, 0xc3, 0xb6, 0x9a, 0x90, 0xc2, 0x70, 0xa5, 0xb2, 0x33, 0x25, 0xa4, 0xbf,
+	0x17, 0x78, 0x61, 0x8b, 0x37, 0x30, 0xf6, 0x10, 0xf6, 0x93, 0x22, 0xcf, 0xa3, 0x45, 0xbc, 0x3a,
+	0x53, 0x85, 0x34, 0x7e, 0x97, 0xee, 0x6a, 0x82, 0xec, 0x11, 0x0c, 0x8d, 0x32, 0xf1, 0xa2, 0xa2,
+	0xf5, 0x88, 0xb6, 0x85, 0x5a, 0xed, 0xd6, 0x89, 0xf3, 0x22, 0xbb, 0xc0, 0xdc, 0x87, 0xc0, 0x0b,
+	0x7b, 0xbc, 0x86, 0x58, 0xed, 0x36, 0x7a, 0x77, 0x2d, 0x37, 0x8f, 0xda, 0x27, 0x0b, 0xb6, 0x61,
+	0x36, 0x82, 0xae, 0xb5, 0x8d, 0xc7, 0x06, 0xfd, 0x01, 0xd5, 0xda, 0xc4, 0x56, 0x8d, 0x95, 0xc7,
+	0x55, 0x21, 0xd3, 0x52, 0xcd, 0x7e, 0xa9, 0xa6, 0x89, 0xda, 0x6a, 0xa4, 0xaf, 0x46, 0x1c, 0x96,
+	0x4e, 0x6d, 0xc1, 0xe3, 0xef, 0x1e, 0xdc, 0x73, 0x7b, 0x22, 0xf1, 0x3a, 0xa2, 0xf7, 0x7a, 0x25,
+	0x0d, 0xe6, 0xff, 0xb8, 0x2d, 0xde, 0xdf, 0x6c, 0xcb, 0xf8, 0x67, 0x0b, 0x0e, 0x7f, 0xc3, 0x61,
+	0x3e, 0xec, 0x09, 0xfd, 0x5a, 0xe4, 0xda, 0x90, 0x88, 0x2e, 0x5f, 0x87, 0xec, 0x39, 0x0c, 0x4a,
+	0x5e, 0xa4, 0xe6, 0x98, 0x6b, 0xb7, 0x9f, 0xd5, 0xa4, 0x96, 0x7f, 0x16, 0xee, 0x42, 0x4b, 0xe1,
+	0x0d, 0x3e, 0x63, 0xb0, 0x9b, 0xd8, 0xc9, 0x68, 0xd1, 0x64, 0xd0, 0xd9, 0x3a, 0x2f, 0x45, 0x32,
+	0x3f, 0x8f, 0x33, 0xa4, 0xf9, 0xec, 0xf1, 0x4d, 0xcc, 0xfe, 0x87, 0x96, 0xc6, 0xa5, 0x1b, 0x4a,
+	0x7b, 0x64, 0xf7, 0xa1, 0x53, 0x94, 0x0f, 0xd9, 0xa1, 0x87, 0x74, 0x91, 0xc5, 0x2f, 0x38, 0xc6,
+	0xe9, 0xca, 0x0d, 0x94, 0x8b, 0xd8, 0x33, 0xe8, 0xe8, 0x72, 0xe7, 0xec, 0x04, 0x0d, 0x4f, 0xc6,
+	0x0d, 0x77, 0x50, 0x16, 0x99, 0xeb, 0xbc, 0xda, 0x45, 0xee, 0x32, 0xd8, 0x63, 0xe8, 0x5c, 0x2f,
+	0xc9, 0x59, 0x20, 0x67, 0x0f, 0x37, 0xb9, 0x9f, 0x50, 0x2c, 0x85, 0x24, 0x43, 0x1d, 0xc5, 0x0e,
+	0xbf, 0x92, 0x0b, 0x21, 0xd7, 0x2b, 0xde, 0x27, 0x19, 0x0d, 0xcc, 0x0e, 0x88, 0xd0, 0x67, 0x33,
+	0x4c, 0xe6, 0x98, 0x3a, 0x07, 0x07, 0x64, 0xf0, 0x36, 0x6c, 0xd7, 0x5a, 0x63, 0x6c, 0x26, 0x32,
+	0xc5, 0xa5, 0x9b, 0xb6, 0x0a, 0x88, 0xfe, 0x8b, 0xbc, 0x68, 0xe7, 0x57, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0x38, 0x4e, 0x1d, 0xa7, 0xbb, 0x05, 0x00, 0x00,
 }
