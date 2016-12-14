@@ -177,6 +177,7 @@ message ddz_base_playerInfo {
     optional int32 onlineStatus = 11; //玩家在线状态: 1=在线  2=离线 3=在线托管 4=离线托管
     optional int32 playRate = 12; //玩家倍数
     optional int32 remainPaiCount = 13; //玩家当前牌数
+    repeated client_base_poker outPais = 14; //玩家出的牌
 }
 
 enum ddz_enum_deskGameStatus {
