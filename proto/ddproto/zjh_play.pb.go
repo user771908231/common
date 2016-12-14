@@ -2,489 +2,89 @@
 // source: zjh_play.proto
 // DO NOT EDIT!
 
-/*
-Package ddproto is a generated protocol buffer package.
-
-It is generated from these files:
-	zjh_play.proto
-
-It has these top-level messages:
-	ZjhBcGameInfo
-	ZjhBaseDeskInfo
-	ZjhBcNewPlayerEnter
-	ZjhBasePlayerInfo
-*/
 package ddproto
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import ddproto1 "."
-import ddproto2 "."
-import ddproto3 "."
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
-
-// ProtoHeader from public import common_client.proto
-type ProtoHeader ddproto1.ProtoHeader
-
-func (m *ProtoHeader) Reset()             { (*ddproto1.ProtoHeader)(m).Reset() }
-func (m *ProtoHeader) String() string     { return (*ddproto1.ProtoHeader)(m).String() }
-func (*ProtoHeader) ProtoMessage()        {}
-func (m *ProtoHeader) GetVersion() string { return (*ddproto1.ProtoHeader)(m).GetVersion() }
-func (m *ProtoHeader) GetUserId() uint32  { return (*ddproto1.ProtoHeader)(m).GetUserId() }
-func (m *ProtoHeader) GetCode() int32     { return (*ddproto1.ProtoHeader)(m).GetCode() }
-func (m *ProtoHeader) GetError() string   { return (*ddproto1.ProtoHeader)(m).GetError() }
-
-// Heartbeat from public import common_client.proto
-type Heartbeat ddproto1.Heartbeat
-
-func (m *Heartbeat) Reset()         { (*ddproto1.Heartbeat)(m).Reset() }
-func (m *Heartbeat) String() string { return (*ddproto1.Heartbeat)(m).String() }
-func (*Heartbeat) ProtoMessage()    {}
-func (m *Heartbeat) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.Heartbeat)(m).GetHeader())
-}
-
-// ServerInfo from public import common_client.proto
-type ServerInfo ddproto1.ServerInfo
-
-func (m *ServerInfo) Reset()           { (*ddproto1.ServerInfo)(m).Reset() }
-func (m *ServerInfo) String() string   { return (*ddproto1.ServerInfo)(m).String() }
-func (*ServerInfo) ProtoMessage()      {}
-func (m *ServerInfo) GetIp() string    { return (*ddproto1.ServerInfo)(m).GetIp() }
-func (m *ServerInfo) GetPort() int32   { return (*ddproto1.ServerInfo)(m).GetPort() }
-func (m *ServerInfo) GetStatus() int32 { return (*ddproto1.ServerInfo)(m).GetStatus() }
-
-// QuickConn from public import common_client.proto
-type QuickConn ddproto1.QuickConn
-
-func (m *QuickConn) Reset()         { (*ddproto1.QuickConn)(m).Reset() }
-func (m *QuickConn) String() string { return (*ddproto1.QuickConn)(m).String() }
-func (*QuickConn) ProtoMessage()    {}
-func (m *QuickConn) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.QuickConn)(m).GetHeader())
-}
-func (m *QuickConn) GetChannelId() string  { return (*ddproto1.QuickConn)(m).GetChannelId() }
-func (m *QuickConn) GetGameId() int32      { return (*ddproto1.QuickConn)(m).GetGameId() }
-func (m *QuickConn) GetCurrVersion() int32 { return (*ddproto1.QuickConn)(m).GetCurrVersion() }
-func (m *QuickConn) GetLanguageId() int32  { return (*ddproto1.QuickConn)(m).GetLanguageId() }
-func (m *QuickConn) GetUserId() uint32     { return (*ddproto1.QuickConn)(m).GetUserId() }
-
-// AckQuickConn from public import common_client.proto
-type AckQuickConn ddproto1.AckQuickConn
-
-func (m *AckQuickConn) Reset()         { (*ddproto1.AckQuickConn)(m).Reset() }
-func (m *AckQuickConn) String() string { return (*ddproto1.AckQuickConn)(m).String() }
-func (*AckQuickConn) ProtoMessage()    {}
-func (m *AckQuickConn) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.AckQuickConn)(m).GetHeader())
-}
-func (m *AckQuickConn) GetGameServer() *ServerInfo {
-	return (*ServerInfo)((*ddproto1.AckQuickConn)(m).GetGameServer())
-}
-func (m *AckQuickConn) GetReleaseTag() int32   { return (*ddproto1.AckQuickConn)(m).GetReleaseTag() }
-func (m *AckQuickConn) GetCurrVersion() int32  { return (*ddproto1.AckQuickConn)(m).GetCurrVersion() }
-func (m *AckQuickConn) GetIsUpdate() int32     { return (*ddproto1.AckQuickConn)(m).GetIsUpdate() }
-func (m *AckQuickConn) GetDownloadUrl() string { return (*ddproto1.AckQuickConn)(m).GetDownloadUrl() }
-func (m *AckQuickConn) GetVersionInfo() string { return (*ddproto1.AckQuickConn)(m).GetVersionInfo() }
-func (m *AckQuickConn) GetIsMaintain() int32   { return (*ddproto1.AckQuickConn)(m).GetIsMaintain() }
-func (m *AckQuickConn) GetMaintainMsg() string { return (*ddproto1.AckQuickConn)(m).GetMaintainMsg() }
-
-// WeixinInfo from public import common_client.proto
-type WeixinInfo ddproto1.WeixinInfo
-
-func (m *WeixinInfo) Reset()              { (*ddproto1.WeixinInfo)(m).Reset() }
-func (m *WeixinInfo) String() string      { return (*ddproto1.WeixinInfo)(m).String() }
-func (*WeixinInfo) ProtoMessage()         {}
-func (m *WeixinInfo) GetOpenId() string   { return (*ddproto1.WeixinInfo)(m).GetOpenId() }
-func (m *WeixinInfo) GetNickName() string { return (*ddproto1.WeixinInfo)(m).GetNickName() }
-func (m *WeixinInfo) GetHeadUrl() string  { return (*ddproto1.WeixinInfo)(m).GetHeadUrl() }
-func (m *WeixinInfo) GetSex() int32       { return (*ddproto1.WeixinInfo)(m).GetSex() }
-func (m *WeixinInfo) GetCity() string     { return (*ddproto1.WeixinInfo)(m).GetCity() }
-func (m *WeixinInfo) GetUnionId() string  { return (*ddproto1.WeixinInfo)(m).GetUnionId() }
-
-// common_req_gameLogin from public import common_client.proto
-type CommonReqGameLogin ddproto1.CommonReqGameLogin
-
-func (m *CommonReqGameLogin) Reset()         { (*ddproto1.CommonReqGameLogin)(m).Reset() }
-func (m *CommonReqGameLogin) String() string { return (*ddproto1.CommonReqGameLogin)(m).String() }
-func (*CommonReqGameLogin) ProtoMessage()    {}
-func (m *CommonReqGameLogin) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonReqGameLogin)(m).GetHeader())
-}
-func (m *CommonReqGameLogin) GetUserId() uint32 { return (*ddproto1.CommonReqGameLogin)(m).GetUserId() }
-func (m *CommonReqGameLogin) GetProtoVersion() int32 {
-	return (*ddproto1.CommonReqGameLogin)(m).GetProtoVersion()
-}
-func (m *CommonReqGameLogin) GetWxInfo() *WeixinInfo {
-	return (*WeixinInfo)((*ddproto1.CommonReqGameLogin)(m).GetWxInfo())
-}
-
-// common_ack_gameLogin from public import common_client.proto
-type CommonAckGameLogin ddproto1.CommonAckGameLogin
-
-func (m *CommonAckGameLogin) Reset()         { (*ddproto1.CommonAckGameLogin)(m).Reset() }
-func (m *CommonAckGameLogin) String() string { return (*ddproto1.CommonAckGameLogin)(m).String() }
-func (*CommonAckGameLogin) ProtoMessage()    {}
-func (m *CommonAckGameLogin) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonAckGameLogin)(m).GetHeader())
-}
-func (m *CommonAckGameLogin) GetUserId() uint32 { return (*ddproto1.CommonAckGameLogin)(m).GetUserId() }
-func (m *CommonAckGameLogin) GetNickName() string {
-	return (*ddproto1.CommonAckGameLogin)(m).GetNickName()
-}
-func (m *CommonAckGameLogin) GetRoomPassword() string {
-	return (*ddproto1.CommonAckGameLogin)(m).GetRoomPassword()
-}
-func (m *CommonAckGameLogin) GetCostCreateRoom() int64 {
-	return (*ddproto1.CommonAckGameLogin)(m).GetCostCreateRoom()
-}
-func (m *CommonAckGameLogin) GetCostRebuy() int64 {
-	return (*ddproto1.CommonAckGameLogin)(m).GetCostRebuy()
-}
-func (m *CommonAckGameLogin) GetChampionship() bool {
-	return (*ddproto1.CommonAckGameLogin)(m).GetChampionship()
-}
-func (m *CommonAckGameLogin) GetChip() int64 { return (*ddproto1.CommonAckGameLogin)(m).GetChip() }
-func (m *CommonAckGameLogin) GetMailCount() int32 {
-	return (*ddproto1.CommonAckGameLogin)(m).GetMailCount()
-}
-func (m *CommonAckGameLogin) GetNotice() string { return (*ddproto1.CommonAckGameLogin)(m).GetNotice() }
-func (m *CommonAckGameLogin) GetGameStatus() int32 {
-	return (*ddproto1.CommonAckGameLogin)(m).GetGameStatus()
-}
-
-// common_req_logout from public import common_client.proto
-type CommonReqLogout ddproto1.CommonReqLogout
-
-func (m *CommonReqLogout) Reset()         { (*ddproto1.CommonReqLogout)(m).Reset() }
-func (m *CommonReqLogout) String() string { return (*ddproto1.CommonReqLogout)(m).String() }
-func (*CommonReqLogout) ProtoMessage()    {}
-func (m *CommonReqLogout) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonReqLogout)(m).GetHeader())
-}
-func (m *CommonReqLogout) GetUserId() uint32 { return (*ddproto1.CommonReqLogout)(m).GetUserId() }
-
-// common_ack_logout from public import common_client.proto
-type CommonAckLogout ddproto1.CommonAckLogout
-
-func (m *CommonAckLogout) Reset()         { (*ddproto1.CommonAckLogout)(m).Reset() }
-func (m *CommonAckLogout) String() string { return (*ddproto1.CommonAckLogout)(m).String() }
-func (*CommonAckLogout) ProtoMessage()    {}
-func (m *CommonAckLogout) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonAckLogout)(m).GetHeader())
-}
-func (m *CommonAckLogout) GetUserId() uint32 { return (*ddproto1.CommonAckLogout)(m).GetUserId() }
-
-// common_req_feedback from public import common_client.proto
-type CommonReqFeedback ddproto1.CommonReqFeedback
-
-func (m *CommonReqFeedback) Reset()         { (*ddproto1.CommonReqFeedback)(m).Reset() }
-func (m *CommonReqFeedback) String() string { return (*ddproto1.CommonReqFeedback)(m).String() }
-func (*CommonReqFeedback) ProtoMessage()    {}
-func (m *CommonReqFeedback) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonReqFeedback)(m).GetHeader())
-}
-func (m *CommonReqFeedback) GetMessage() string { return (*ddproto1.CommonReqFeedback)(m).GetMessage() }
-
-// client_base_poker from public import common_client.proto
-type ClientBasePoker ddproto1.ClientBasePoker
-
-func (m *ClientBasePoker) Reset()         { (*ddproto1.ClientBasePoker)(m).Reset() }
-func (m *ClientBasePoker) String() string { return (*ddproto1.ClientBasePoker)(m).String() }
-func (*ClientBasePoker) ProtoMessage()    {}
-func (m *ClientBasePoker) GetSuit() CommonEnumPokerColor {
-	return (CommonEnumPokerColor)((*ddproto1.ClientBasePoker)(m).GetSuit())
-}
-func (m *ClientBasePoker) GetNum() int32 { return (*ddproto1.ClientBasePoker)(m).GetNum() }
-func (m *ClientBasePoker) GetId() int32  { return (*ddproto1.ClientBasePoker)(m).GetId() }
-
-// common_req_message from public import common_client.proto
-type CommonReqMessage ddproto1.CommonReqMessage
-
-func (m *CommonReqMessage) Reset()         { (*ddproto1.CommonReqMessage)(m).Reset() }
-func (m *CommonReqMessage) String() string { return (*ddproto1.CommonReqMessage)(m).String() }
-func (*CommonReqMessage) ProtoMessage()    {}
-func (m *CommonReqMessage) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonReqMessage)(m).GetHeader())
-}
-func (m *CommonReqMessage) GetMsgType() int32   { return (*ddproto1.CommonReqMessage)(m).GetMsgType() }
-func (m *CommonReqMessage) GetId() int32        { return (*ddproto1.CommonReqMessage)(m).GetId() }
-func (m *CommonReqMessage) GetMsg() string      { return (*ddproto1.CommonReqMessage)(m).GetMsg() }
-func (m *CommonReqMessage) GetUserId() uint32   { return (*ddproto1.CommonReqMessage)(m).GetUserId() }
-func (m *CommonReqMessage) GetDeskId() int32    { return (*ddproto1.CommonReqMessage)(m).GetDeskId() }
-func (m *CommonReqMessage) GetToUserId() uint32 { return (*ddproto1.CommonReqMessage)(m).GetToUserId() }
-
-// common_bc_message from public import common_client.proto
-type CommonBcMessage ddproto1.CommonBcMessage
-
-func (m *CommonBcMessage) Reset()         { (*ddproto1.CommonBcMessage)(m).Reset() }
-func (m *CommonBcMessage) String() string { return (*ddproto1.CommonBcMessage)(m).String() }
-func (*CommonBcMessage) ProtoMessage()    {}
-func (m *CommonBcMessage) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonBcMessage)(m).GetHeader())
-}
-func (m *CommonBcMessage) GetMsgType() int32   { return (*ddproto1.CommonBcMessage)(m).GetMsgType() }
-func (m *CommonBcMessage) GetId() int32        { return (*ddproto1.CommonBcMessage)(m).GetId() }
-func (m *CommonBcMessage) GetMsg() string      { return (*ddproto1.CommonBcMessage)(m).GetMsg() }
-func (m *CommonBcMessage) GetUserId() uint32   { return (*ddproto1.CommonBcMessage)(m).GetUserId() }
-func (m *CommonBcMessage) GetToUserId() uint32 { return (*ddproto1.CommonBcMessage)(m).GetToUserId() }
-
-// common_req_notice from public import common_client.proto
-type CommonReqNotice ddproto1.CommonReqNotice
-
-func (m *CommonReqNotice) Reset()         { (*ddproto1.CommonReqNotice)(m).Reset() }
-func (m *CommonReqNotice) String() string { return (*ddproto1.CommonReqNotice)(m).String() }
-func (*CommonReqNotice) ProtoMessage()    {}
-func (m *CommonReqNotice) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonReqNotice)(m).GetHeader())
-}
-func (m *CommonReqNotice) GetNoticeType() int32 { return (*ddproto1.CommonReqNotice)(m).GetNoticeType() }
-
-// common_ack_notice from public import common_client.proto
-type CommonAckNotice ddproto1.CommonAckNotice
-
-func (m *CommonAckNotice) Reset()         { (*ddproto1.CommonAckNotice)(m).Reset() }
-func (m *CommonAckNotice) String() string { return (*ddproto1.CommonAckNotice)(m).String() }
-func (*CommonAckNotice) ProtoMessage()    {}
-func (m *CommonAckNotice) GetHeader() *ProtoHeader {
-	return (*ProtoHeader)((*ddproto1.CommonAckNotice)(m).GetHeader())
-}
-func (m *CommonAckNotice) GetNoticeType() int32 { return (*ddproto1.CommonAckNotice)(m).GetNoticeType() }
-func (m *CommonAckNotice) GetNoticeTitle() string {
-	return (*ddproto1.CommonAckNotice)(m).GetNoticeTitle()
-}
-func (m *CommonAckNotice) GetNoticeContent() string {
-	return (*ddproto1.CommonAckNotice)(m).GetNoticeContent()
-}
-func (m *CommonAckNotice) GetNoticeMemo() string {
-	return (*ddproto1.CommonAckNotice)(m).GetNoticeMemo()
-}
-func (m *CommonAckNotice) GetId() int32        { return (*ddproto1.CommonAckNotice)(m).GetId() }
-func (m *CommonAckNotice) GetFileds() []string { return (*ddproto1.CommonAckNotice)(m).GetFileds() }
-
-// common_enum_pokerColor from public import common_client.proto
-type CommonEnumPokerColor ddproto1.CommonEnumPokerColor
-
-var CommonEnumPokerColor_name = ddproto1.CommonEnumPokerColor_name
-var CommonEnumPokerColor_value = ddproto1.CommonEnumPokerColor_value
-
-func (x CommonEnumPokerColor) String() string { return (ddproto1.CommonEnumPokerColor)(x).String() }
-func (x CommonEnumPokerColor) Enum() *CommonEnumPokerColor {
-	return (*CommonEnumPokerColor)((ddproto1.CommonEnumPokerColor)(x).Enum())
-}
-func (x *CommonEnumPokerColor) UnmarshalJSON(data []byte) error {
-	return (*ddproto1.CommonEnumPokerColor)(x).UnmarshalJSON(data)
-}
-
-const CommonEnumPokerColor_HONGTAO = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_HONGTAO)
-const CommonEnumPokerColor_FANGKUAI = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_FANGKUAI)
-const CommonEnumPokerColor_HEITAO = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_HEITAO)
-const CommonEnumPokerColor_MEIHUA = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_MEIHUA)
-const CommonEnumPokerColor_REDJOKER = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_REDJOKER)
-const CommonEnumPokerColor_BLACKBIGJOKER = CommonEnumPokerColor(ddproto1.CommonEnumPokerColor_BLACKBIGJOKER)
-
-// EProtoId from public import zjh_base.proto
-type EProtoId ddproto2.EProtoId
-
-var EProtoId_name = ddproto2.EProtoId_name
-var EProtoId_value = ddproto2.EProtoId_value
-
-func (x EProtoId) String() string  { return (ddproto2.EProtoId)(x).String() }
-func (x EProtoId) Enum() *EProtoId { return (*EProtoId)((ddproto2.EProtoId)(x).Enum()) }
-func (x *EProtoId) UnmarshalJSON(data []byte) error {
-	return (*ddproto2.EProtoId)(x).UnmarshalJSON(data)
-}
-
-const EProtoId_ZJH_PID_HEARTBEAT = EProtoId(ddproto2.EProtoId_ZJH_PID_HEARTBEAT)
-const EProtoId_ZJH_PID_QUICKCOnn = EProtoId(ddproto2.EProtoId_ZJH_PID_QUICKCOnn)
-const EProtoId_ZJH_PID_QUICKCONNA_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_QUICKCONNA_ACK)
-const EProtoId_ZJH_PID_GAME_LOGIN = EProtoId(ddproto2.EProtoId_ZJH_PID_GAME_LOGIN)
-const EProtoId_ZJH_PID_GAME_LOGIN_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_GAME_LOGIN_ACK)
-const EProtoId_ZJH_PID_GET_ROOM_LIST = EProtoId(ddproto2.EProtoId_ZJH_PID_GET_ROOM_LIST)
-const EProtoId_ZJH_PID_ENTER_ROOM_LIST_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_ENTER_ROOM_LIST_ACK)
-const EProtoId_ZJH_PID_AUTO_ENTER_DESK = EProtoId(ddproto2.EProtoId_ZJH_PID_AUTO_ENTER_DESK)
-const EProtoId_ZJH_PID_AUTO_ENTER_DESK_ACK = EProtoId(ddproto2.EProtoId_ZJH_PID_AUTO_ENTER_DESK_ACK)
-const EProtoId_ZJH_PID_SEND_GAMEINFO = EProtoId(ddproto2.EProtoId_ZJH_PID_SEND_GAMEINFO)
-const EProtoId_ZJH_PID_BC_NEWENTER = EProtoId(ddproto2.EProtoId_ZJH_PID_BC_NEWENTER)
-
-// zjh_enum_playerGameStatus from public import zjh_base.proto
-type ZjhEnumPlayerGameStatus ddproto2.ZjhEnumPlayerGameStatus
-
-var ZjhEnumPlayerGameStatus_name = ddproto2.ZjhEnumPlayerGameStatus_name
-var ZjhEnumPlayerGameStatus_value = ddproto2.ZjhEnumPlayerGameStatus_value
-
-func (x ZjhEnumPlayerGameStatus) String() string {
-	return (ddproto2.ZjhEnumPlayerGameStatus)(x).String()
-}
-func (x ZjhEnumPlayerGameStatus) Enum() *ZjhEnumPlayerGameStatus {
-	return (*ZjhEnumPlayerGameStatus)((ddproto2.ZjhEnumPlayerGameStatus)(x).Enum())
-}
-func (x *ZjhEnumPlayerGameStatus) UnmarshalJSON(data []byte) error {
-	return (*ddproto2.ZjhEnumPlayerGameStatus)(x).UnmarshalJSON(data)
-}
-
-const ZjhEnumPlayerGameStatus_ZJH_TEMP = ZjhEnumPlayerGameStatus(ddproto2.ZjhEnumPlayerGameStatus_ZJH_TEMP)
-
-// zjh_enum_deskState from public import zjh_base.proto
-type ZjhEnumDeskState ddproto2.ZjhEnumDeskState
-
-var ZjhEnumDeskState_name = ddproto2.ZjhEnumDeskState_name
-var ZjhEnumDeskState_value = ddproto2.ZjhEnumDeskState_value
-
-func (x ZjhEnumDeskState) String() string { return (ddproto2.ZjhEnumDeskState)(x).String() }
-func (x ZjhEnumDeskState) Enum() *ZjhEnumDeskState {
-	return (*ZjhEnumDeskState)((ddproto2.ZjhEnumDeskState)(x).Enum())
-}
-func (x *ZjhEnumDeskState) UnmarshalJSON(data []byte) error {
-	return (*ddproto2.ZjhEnumDeskState)(x).UnmarshalJSON(data)
-}
-
-const ZjhEnumDeskState_DESK_IS_GAMING = ZjhEnumDeskState(ddproto2.ZjhEnumDeskState_DESK_IS_GAMING)
-const ZjhEnumDeskState_DESK_IS_WAIT = ZjhEnumDeskState(ddproto2.ZjhEnumDeskState_DESK_IS_WAIT)
-
-// zjh_enum_userState from public import zjh_base.proto
-type ZjhEnumUserState ddproto2.ZjhEnumUserState
-
-var ZjhEnumUserState_name = ddproto2.ZjhEnumUserState_name
-var ZjhEnumUserState_value = ddproto2.ZjhEnumUserState_value
-
-func (x ZjhEnumUserState) String() string { return (ddproto2.ZjhEnumUserState)(x).String() }
-func (x ZjhEnumUserState) Enum() *ZjhEnumUserState {
-	return (*ZjhEnumUserState)((ddproto2.ZjhEnumUserState)(x).Enum())
-}
-func (x *ZjhEnumUserState) UnmarshalJSON(data []byte) error {
-	return (*ddproto2.ZjhEnumUserState)(x).UnmarshalJSON(data)
-}
-
-const ZjhEnumUserState_USER_IS_GAMING = ZjhEnumUserState(ddproto2.ZjhEnumUserState_USER_IS_GAMING)
-const ZjhEnumUserState_USER_IS_STAND = ZjhEnumUserState(ddproto2.ZjhEnumUserState_USER_IS_STAND)
-const ZjhEnumUserState_USER_IS_SITED = ZjhEnumUserState(ddproto2.ZjhEnumUserState_USER_IS_SITED)
-
-// zjh_enum_roomType from public import zjh_base.proto
-type ZjhEnumRoomType ddproto2.ZjhEnumRoomType
-
-var ZjhEnumRoomType_name = ddproto2.ZjhEnumRoomType_name
-var ZjhEnumRoomType_value = ddproto2.ZjhEnumRoomType_value
-
-func (x ZjhEnumRoomType) String() string { return (ddproto2.ZjhEnumRoomType)(x).String() }
-func (x ZjhEnumRoomType) Enum() *ZjhEnumRoomType {
-	return (*ZjhEnumRoomType)((ddproto2.ZjhEnumRoomType)(x).Enum())
-}
-func (x *ZjhEnumRoomType) UnmarshalJSON(data []byte) error {
-	return (*ddproto2.ZjhEnumRoomType)(x).UnmarshalJSON(data)
-}
-
-const ZjhEnumRoomType_ROOM_TYPE_FRIEND = ZjhEnumRoomType(ddproto2.ZjhEnumRoomType_ROOM_TYPE_FRIEND)
-const ZjhEnumRoomType_ROOM_TYPE_NORMAL = ZjhEnumRoomType(ddproto2.ZjhEnumRoomType_ROOM_TYPE_NORMAL)
-const ZjhEnumRoomType_ROOM_TYPE_REDBLACK = ZjhEnumRoomType(ddproto2.ZjhEnumRoomType_ROOM_TYPE_REDBLACK)
-
-// zjh_req_getRoomList from public import zjh_desk.proto
-type ZjhReqGetRoomList ddproto3.ZjhReqGetRoomList
-
-func (m *ZjhReqGetRoomList) Reset()           { (*ddproto3.ZjhReqGetRoomList)(m).Reset() }
-func (m *ZjhReqGetRoomList) String() string   { return (*ddproto3.ZjhReqGetRoomList)(m).String() }
-func (*ZjhReqGetRoomList) ProtoMessage()      {}
-func (m *ZjhReqGetRoomList) GetUserId() int32 { return (*ddproto3.ZjhReqGetRoomList)(m).GetUserId() }
-
-// zjh_base_roomInfo from public import zjh_desk.proto
-type ZjhBaseRoomInfo ddproto3.ZjhBaseRoomInfo
-
-func (m *ZjhBaseRoomInfo) Reset()               { (*ddproto3.ZjhBaseRoomInfo)(m).Reset() }
-func (m *ZjhBaseRoomInfo) String() string       { return (*ddproto3.ZjhBaseRoomInfo)(m).String() }
-func (*ZjhBaseRoomInfo) ProtoMessage()          {}
-func (m *ZjhBaseRoomInfo) GetRoomId() int32     { return (*ddproto3.ZjhBaseRoomInfo)(m).GetRoomId() }
-func (m *ZjhBaseRoomInfo) GetRoomLevel() int32  { return (*ddproto3.ZjhBaseRoomInfo)(m).GetRoomLevel() }
-func (m *ZjhBaseRoomInfo) GetRoomTitle() string { return (*ddproto3.ZjhBaseRoomInfo)(m).GetRoomTitle() }
-func (m *ZjhBaseRoomInfo) GetBaseValue() int32  { return (*ddproto3.ZjhBaseRoomInfo)(m).GetBaseValue() }
-func (m *ZjhBaseRoomInfo) GetMaxValue() int32   { return (*ddproto3.ZjhBaseRoomInfo)(m).GetMaxValue() }
-
-// zjh_ack_roomList from public import zjh_desk.proto
-type ZjhAckRoomList ddproto3.ZjhAckRoomList
-
-func (m *ZjhAckRoomList) Reset()         { (*ddproto3.ZjhAckRoomList)(m).Reset() }
-func (m *ZjhAckRoomList) String() string { return (*ddproto3.ZjhAckRoomList)(m).String() }
-func (*ZjhAckRoomList) ProtoMessage()    {}
-func (m *ZjhAckRoomList) GetRooms() []*ZjhBaseRoomInfo {
-	o := (*ddproto3.ZjhAckRoomList)(m).GetRooms()
-	if o == nil {
-		return nil
-	}
-	s := make([]*ZjhBaseRoomInfo, len(o))
-	for i, x := range o {
-		s[i] = (*ZjhBaseRoomInfo)(x)
-	}
-	return s
-}
-
-// zjh_req_enterDesk from public import zjh_desk.proto
-type ZjhReqEnterDesk ddproto3.ZjhReqEnterDesk
-
-func (m *ZjhReqEnterDesk) Reset()            { (*ddproto3.ZjhReqEnterDesk)(m).Reset() }
-func (m *ZjhReqEnterDesk) String() string    { return (*ddproto3.ZjhReqEnterDesk)(m).String() }
-func (*ZjhReqEnterDesk) ProtoMessage()       {}
-func (m *ZjhReqEnterDesk) GetRoomId() int32  { return (*ddproto3.ZjhReqEnterDesk)(m).GetRoomId() }
-func (m *ZjhReqEnterDesk) GetUserId() uint32 { return (*ddproto3.ZjhReqEnterDesk)(m).GetUserId() }
-
-// zjh_base_userInfo from public import zjh_desk.proto
-type ZjhBaseUserInfo ddproto3.ZjhBaseUserInfo
-
-func (m *ZjhBaseUserInfo) Reset()              { (*ddproto3.ZjhBaseUserInfo)(m).Reset() }
-func (m *ZjhBaseUserInfo) String() string      { return (*ddproto3.ZjhBaseUserInfo)(m).String() }
-func (*ZjhBaseUserInfo) ProtoMessage()         {}
-func (m *ZjhBaseUserInfo) GetUid() int32       { return (*ddproto3.ZjhBaseUserInfo)(m).GetUid() }
-func (m *ZjhBaseUserInfo) GetNickName() string { return (*ddproto3.ZjhBaseUserInfo)(m).GetNickName() }
-func (m *ZjhBaseUserInfo) GetCoin() int32      { return (*ddproto3.ZjhBaseUserInfo)(m).GetCoin() }
-func (m *ZjhBaseUserInfo) GetChip() int32      { return (*ddproto3.ZjhBaseUserInfo)(m).GetChip() }
-
-// ZjhDeskStateAck from public import zjh_desk.proto
-type ZjhDeskStateAck ddproto3.ZjhDeskStateAck
-
-func (m *ZjhDeskStateAck) Reset()         { (*ddproto3.ZjhDeskStateAck)(m).Reset() }
-func (m *ZjhDeskStateAck) String() string { return (*ddproto3.ZjhDeskStateAck)(m).String() }
-func (*ZjhDeskStateAck) ProtoMessage()    {}
-func (m *ZjhDeskStateAck) GetUserList() []*ZjhBaseUserInfo {
-	o := (*ddproto3.ZjhDeskStateAck)(m).GetUserList()
-	if o == nil {
-		return nil
-	}
-	s := make([]*ZjhBaseUserInfo, len(o))
-	for i, x := range o {
-		s[i] = (*ZjhBaseUserInfo)(x)
-	}
-	return s
-}
-func (m *ZjhDeskStateAck) GetDeskId() int32 { return (*ddproto3.ZjhDeskStateAck)(m).GetDeskId() }
-func (m *ZjhDeskStateAck) GetRoomInfo() *ZjhBaseRoomInfo {
-	return (*ZjhBaseRoomInfo)((*ddproto3.ZjhDeskStateAck)(m).GetRoomInfo())
-}
+// Ignoring public import of ProtoHeader from common_client.proto
+
+// Ignoring public import of Heartbeat from common_client.proto
+
+// Ignoring public import of ServerInfo from common_client.proto
+
+// Ignoring public import of QuickConn from common_client.proto
+
+// Ignoring public import of AckQuickConn from common_client.proto
+
+// Ignoring public import of WeixinInfo from common_client.proto
+
+// Ignoring public import of common_req_gameLogin from common_client.proto
+
+// Ignoring public import of common_ack_gameLogin from common_client.proto
+
+// Ignoring public import of common_req_logout from common_client.proto
+
+// Ignoring public import of common_ack_logout from common_client.proto
+
+// Ignoring public import of common_req_feedback from common_client.proto
+
+// Ignoring public import of client_base_poker from common_client.proto
+
+// Ignoring public import of common_req_message from common_client.proto
+
+// Ignoring public import of common_bc_message from common_client.proto
+
+// Ignoring public import of common_req_notice from common_client.proto
+
+// Ignoring public import of common_ack_notice from common_client.proto
+
+// Ignoring public import of common_enum_pokerColor from common_client.proto
+
+// Ignoring public import of EProtoId from zjh_base.proto
+
+// Ignoring public import of zjh_enum_playerGameStatus from zjh_base.proto
+
+// Ignoring public import of zjh_enum_deskState from zjh_base.proto
+
+// Ignoring public import of zjh_enum_userState from zjh_base.proto
+
+// Ignoring public import of zjh_enum_roomType from zjh_base.proto
+
+// Ignoring public import of zjh_req_getRoomList from zjh_desk.proto
+
+// Ignoring public import of zjh_base_roomInfo from zjh_desk.proto
+
+// Ignoring public import of zjh_ack_roomList from zjh_desk.proto
+
+// Ignoring public import of zjh_req_enterDesk from zjh_desk.proto
+
+// Ignoring public import of zjh_base_userInfo from zjh_desk.proto
+
+// Ignoring public import of ZjhDeskStateAck from zjh_desk.proto
 
 // 游戏信息(广播)（接收服务端消息）(别的玩家已看牌是独立协议更好吧? 否则通过此协议下发是否过于冗余?)
 type ZjhBcGameInfo struct {
-	Header           *ddproto1.ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PlayerInfo       []*ZjhBasePlayerInfo  `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
-	ZjhDeskInfo      *ZjhBaseDeskInfo      `protobuf:"bytes,3,opt,name=zjhDeskInfo" json:"zjhDeskInfo,omitempty"`
-	SenderUserId     *uint32               `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
-	IsReconnect      *int32                `protobuf:"varint,5,opt,name=isReconnect" json:"isReconnect,omitempty"`
-	XXX_unrecognized []byte                `json:"-"`
+	Header           *ProtoHeader         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerInfo       []*ZjhBasePlayerInfo `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
+	ZjhDeskInfo      *ZjhBaseDeskInfo     `protobuf:"bytes,3,opt,name=zjhDeskInfo" json:"zjhDeskInfo,omitempty"`
+	SenderUserId     *uint32              `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
+	IsReconnect      *int32               `protobuf:"varint,5,opt,name=isReconnect" json:"isReconnect,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
 }
 
 func (m *ZjhBcGameInfo) Reset()                    { *m = ZjhBcGameInfo{} }
 func (m *ZjhBcGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcGameInfo) ProtoMessage()               {}
-func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
 
-func (m *ZjhBcGameInfo) GetHeader() *ddproto1.ProtoHeader {
+func (m *ZjhBcGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
@@ -521,27 +121,27 @@ func (m *ZjhBcGameInfo) GetIsReconnect() int32 {
 
 // 新加入玩家后 桌子广播需要的协议
 type ZjhBaseDeskInfo struct {
-	GameStatus       *int32                    `protobuf:"varint,1,opt,name=GameStatus" json:"GameStatus,omitempty"`
-	RoomInfo         *ddproto3.ZjhBaseRoomInfo `protobuf:"bytes,2,opt,name=roomInfo" json:"roomInfo,omitempty"`
-	PlayerNum        *int32                    `protobuf:"varint,3,opt,name=playerNum" json:"playerNum,omitempty"`
-	ActiveUserId     *uint32                   `protobuf:"varint,4,opt,name=activeUserId" json:"activeUserId,omitempty"`
-	ActionTime       *int32                    `protobuf:"varint,5,opt,name=actionTime" json:"actionTime,omitempty"`
-	NInitActionTime  *int32                    `protobuf:"varint,6,opt,name=nInitActionTime" json:"nInitActionTime,omitempty"`
-	InitRoomCoin     *int64                    `protobuf:"varint,7,opt,name=initRoomCoin" json:"initRoomCoin,omitempty"`
-	CurrPlayCount    *int32                    `protobuf:"varint,8,opt,name=currPlayCount" json:"currPlayCount,omitempty"`
-	TotalPlayCount   *int32                    `protobuf:"varint,9,opt,name=totalPlayCount" json:"totalPlayCount,omitempty"`
-	RoomNumber       *string                   `protobuf:"bytes,10,opt,name=roomNumber" json:"roomNumber,omitempty"`
-	RoomOwnerUserId  *uint32                   `protobuf:"varint,11,opt,name=roomOwnerUserId" json:"roomOwnerUserId,omitempty"`
-	PlayRate         *int32                    `protobuf:"varint,12,opt,name=playRate" json:"playRate,omitempty"`
-	CurrRoundCount   *int32                    `protobuf:"varint,13,opt,name=currRoundCount" json:"currRoundCount,omitempty"`
-	TotalRoundCount  *int32                    `protobuf:"varint,14,opt,name=totalRoundCount" json:"totalRoundCount,omitempty"`
-	XXX_unrecognized []byte                    `json:"-"`
+	GameStatus       *int32           `protobuf:"varint,1,opt,name=GameStatus" json:"GameStatus,omitempty"`
+	RoomInfo         *ZjhBaseRoomInfo `protobuf:"bytes,2,opt,name=roomInfo" json:"roomInfo,omitempty"`
+	PlayerNum        *int32           `protobuf:"varint,3,opt,name=playerNum" json:"playerNum,omitempty"`
+	ActiveUserId     *uint32          `protobuf:"varint,4,opt,name=activeUserId" json:"activeUserId,omitempty"`
+	ActionTime       *int32           `protobuf:"varint,5,opt,name=actionTime" json:"actionTime,omitempty"`
+	NInitActionTime  *int32           `protobuf:"varint,6,opt,name=nInitActionTime" json:"nInitActionTime,omitempty"`
+	InitRoomCoin     *int64           `protobuf:"varint,7,opt,name=initRoomCoin" json:"initRoomCoin,omitempty"`
+	CurrPlayCount    *int32           `protobuf:"varint,8,opt,name=currPlayCount" json:"currPlayCount,omitempty"`
+	TotalPlayCount   *int32           `protobuf:"varint,9,opt,name=totalPlayCount" json:"totalPlayCount,omitempty"`
+	RoomNumber       *string          `protobuf:"bytes,10,opt,name=roomNumber" json:"roomNumber,omitempty"`
+	RoomOwnerUserId  *uint32          `protobuf:"varint,11,opt,name=roomOwnerUserId" json:"roomOwnerUserId,omitempty"`
+	PlayRate         *int32           `protobuf:"varint,12,opt,name=playRate" json:"playRate,omitempty"`
+	CurrRoundCount   *int32           `protobuf:"varint,13,opt,name=currRoundCount" json:"currRoundCount,omitempty"`
+	TotalRoundCount  *int32           `protobuf:"varint,14,opt,name=totalRoundCount" json:"totalRoundCount,omitempty"`
+	XXX_unrecognized []byte           `json:"-"`
 }
 
 func (m *ZjhBaseDeskInfo) Reset()                    { *m = ZjhBaseDeskInfo{} }
 func (m *ZjhBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseDeskInfo) ProtoMessage()               {}
-func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
 
 func (m *ZjhBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -550,7 +150,7 @@ func (m *ZjhBaseDeskInfo) GetGameStatus() int32 {
 	return 0
 }
 
-func (m *ZjhBaseDeskInfo) GetRoomInfo() *ddproto3.ZjhBaseRoomInfo {
+func (m *ZjhBaseDeskInfo) GetRoomInfo() *ZjhBaseRoomInfo {
 	if m != nil {
 		return m.RoomInfo
 	}
@@ -643,17 +243,17 @@ func (m *ZjhBaseDeskInfo) GetTotalRoundCount() int32 {
 
 // 有玩家进入房间(服务器广播)
 type ZjhBcNewPlayerEnter struct {
-	Header           *ddproto1.ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PlayerInfo       *ZjhBasePlayerInfo    `protobuf:"bytes,2,opt,name=playerInfo" json:"playerInfo,omitempty"`
-	XXX_unrecognized []byte                `json:"-"`
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerInfo       *ZjhBasePlayerInfo `protobuf:"bytes,2,opt,name=playerInfo" json:"playerInfo,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
 }
 
 func (m *ZjhBcNewPlayerEnter) Reset()                    { *m = ZjhBcNewPlayerEnter{} }
 func (m *ZjhBcNewPlayerEnter) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcNewPlayerEnter) ProtoMessage()               {}
-func (*ZjhBcNewPlayerEnter) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*ZjhBcNewPlayerEnter) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
 
-func (m *ZjhBcNewPlayerEnter) GetHeader() *ddproto1.ProtoHeader {
+func (m *ZjhBcNewPlayerEnter) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
@@ -668,25 +268,25 @@ func (m *ZjhBcNewPlayerEnter) GetPlayerInfo() *ZjhBasePlayerInfo {
 }
 
 type ZjhBasePlayerInfo struct {
-	IsFirst          *bool                             `protobuf:"varint,1,opt,name=isFirst" json:"isFirst,omitempty"`
-	PlayerPokers     []*ddproto1.ClientBasePoker       `protobuf:"bytes,2,rep,name=playerPokers" json:"playerPokers,omitempty"`
-	Coin             *int64                            `protobuf:"varint,3,opt,name=coin" json:"coin,omitempty"`
-	NickName         *string                           `protobuf:"bytes,4,opt,name=nickName" json:"nickName,omitempty"`
-	Sex              *int32                            `protobuf:"varint,5,opt,name=sex" json:"sex,omitempty"`
-	UserId           *uint32                           `protobuf:"varint,6,opt,name=userId" json:"userId,omitempty"`
-	BReady           *int32                            `protobuf:"varint,8,opt,name=bReady" json:"bReady,omitempty"`
-	Status           *ddproto2.ZjhEnumPlayerGameStatus `protobuf:"varint,9,opt,name=status,enum=ddproto.ZjhEnumPlayerGameStatus" json:"status,omitempty"`
-	WxInfo           *ddproto1.WeixinInfo              `protobuf:"bytes,10,opt,name=wxInfo" json:"wxInfo,omitempty"`
-	OnlineStatus     *int32                            `protobuf:"varint,11,opt,name=onlineStatus" json:"onlineStatus,omitempty"`
-	IsCheckedPokers  *bool                             `protobuf:"varint,12,opt,name=isCheckedPokers" json:"isCheckedPokers,omitempty"`
-	SeatIndex        *int32                            `protobuf:"varint,13,opt,name=seatIndex" json:"seatIndex,omitempty"`
-	XXX_unrecognized []byte                            `json:"-"`
+	IsFirst          *bool                    `protobuf:"varint,1,opt,name=isFirst" json:"isFirst,omitempty"`
+	PlayerPokers     []*ClientBasePoker       `protobuf:"bytes,2,rep,name=playerPokers" json:"playerPokers,omitempty"`
+	Coin             *int64                   `protobuf:"varint,3,opt,name=coin" json:"coin,omitempty"`
+	NickName         *string                  `protobuf:"bytes,4,opt,name=nickName" json:"nickName,omitempty"`
+	Sex              *int32                   `protobuf:"varint,5,opt,name=sex" json:"sex,omitempty"`
+	UserId           *uint32                  `protobuf:"varint,6,opt,name=userId" json:"userId,omitempty"`
+	BReady           *int32                   `protobuf:"varint,8,opt,name=bReady" json:"bReady,omitempty"`
+	Status           *ZjhEnumPlayerGameStatus `protobuf:"varint,9,opt,name=status,enum=ddproto.ZjhEnumPlayerGameStatus" json:"status,omitempty"`
+	WxInfo           *WeixinInfo              `protobuf:"bytes,10,opt,name=wxInfo" json:"wxInfo,omitempty"`
+	OnlineStatus     *int32                   `protobuf:"varint,11,opt,name=onlineStatus" json:"onlineStatus,omitempty"`
+	IsCheckedPokers  *bool                    `protobuf:"varint,12,opt,name=isCheckedPokers" json:"isCheckedPokers,omitempty"`
+	SeatIndex        *int32                   `protobuf:"varint,13,opt,name=seatIndex" json:"seatIndex,omitempty"`
+	XXX_unrecognized []byte                   `json:"-"`
 }
 
 func (m *ZjhBasePlayerInfo) Reset()                    { *m = ZjhBasePlayerInfo{} }
 func (m *ZjhBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBasePlayerInfo) ProtoMessage()               {}
-func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{3} }
 
 func (m *ZjhBasePlayerInfo) GetIsFirst() bool {
 	if m != nil && m.IsFirst != nil {
@@ -695,7 +295,7 @@ func (m *ZjhBasePlayerInfo) GetIsFirst() bool {
 	return false
 }
 
-func (m *ZjhBasePlayerInfo) GetPlayerPokers() []*ddproto1.ClientBasePoker {
+func (m *ZjhBasePlayerInfo) GetPlayerPokers() []*ClientBasePoker {
 	if m != nil {
 		return m.PlayerPokers
 	}
@@ -737,14 +337,14 @@ func (m *ZjhBasePlayerInfo) GetBReady() int32 {
 	return 0
 }
 
-func (m *ZjhBasePlayerInfo) GetStatus() ddproto2.ZjhEnumPlayerGameStatus {
+func (m *ZjhBasePlayerInfo) GetStatus() ZjhEnumPlayerGameStatus {
 	if m != nil && m.Status != nil {
 		return *m.Status
 	}
-	return ddproto2.ZjhEnumPlayerGameStatus_ZJH_TEMP
+	return ZjhEnumPlayerGameStatus_ZJH_TEMP
 }
 
-func (m *ZjhBasePlayerInfo) GetWxInfo() *ddproto1.WeixinInfo {
+func (m *ZjhBasePlayerInfo) GetWxInfo() *WeixinInfo {
 	if m != nil {
 		return m.WxInfo
 	}
@@ -779,7 +379,7 @@ func init() {
 	proto.RegisterType((*ZjhBasePlayerInfo)(nil), "ddproto.zjh_base_playerInfo")
 }
 
-var fileDescriptor0 = []byte{
+var fileDescriptor14 = []byte{
 	// 649 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x54, 0x4f, 0x6f, 0xd3, 0x4e,
 	0x10, 0xfd, 0xb9, 0x69, 0xd2, 0x64, 0x92, 0xa6, 0x3f, 0xb6, 0x80, 0xac, 0xa8, 0x42, 0x56, 0x84,

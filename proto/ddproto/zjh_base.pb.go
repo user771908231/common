@@ -2,14 +2,6 @@
 // source: zjh_base.proto
 // DO NOT EDIT!
 
-/*
-Package ddproto is a generated protocol buffer package.
-
-It is generated from these files:
-	zjh_base.proto
-
-It has these top-level messages:
-*/
 package ddproto
 
 import proto "github.com/golang/protobuf/proto"
@@ -20,12 +12,6 @@ import math "math"
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type EProtoId int32
 
@@ -87,7 +73,7 @@ func (x *EProtoId) UnmarshalJSON(data []byte) error {
 	*x = EProtoId(value)
 	return nil
 }
-func (EProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (EProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{0} }
 
 // 玩家当前状态
 type ZjhEnumPlayerGameStatus int32
@@ -119,7 +105,7 @@ func (x *ZjhEnumPlayerGameStatus) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumPlayerGameStatus(value)
 	return nil
 }
-func (ZjhEnumPlayerGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (ZjhEnumPlayerGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{1} }
 
 // 桌面状态
 type ZjhEnumDeskState int32
@@ -154,7 +140,7 @@ func (x *ZjhEnumDeskState) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumDeskState(value)
 	return nil
 }
-func (ZjhEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (ZjhEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{2} }
 
 // 房间玩家状态
 type ZjhEnumUserState int32
@@ -192,7 +178,7 @@ func (x *ZjhEnumUserState) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumUserState(value)
 	return nil
 }
-func (ZjhEnumUserState) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (ZjhEnumUserState) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{3} }
 
 // 房间类型
 type ZjhEnumRoomType int32
@@ -230,7 +216,7 @@ func (x *ZjhEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumRoomType(value)
 	return nil
 }
-func (ZjhEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (ZjhEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor11, []int{4} }
 
 func init() {
 	proto.RegisterEnum("ddproto.EProtoId", EProtoId_name, EProtoId_value)
@@ -240,7 +226,7 @@ func init() {
 	proto.RegisterEnum("ddproto.ZjhEnumRoomType", ZjhEnumRoomType_name, ZjhEnumRoomType_value)
 }
 
-var fileDescriptor0 = []byte{
+var fileDescriptor11 = []byte{
 	// 360 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x5c, 0x91, 0xc1, 0xae, 0xd2, 0x40,
 	0x14, 0x86, 0x2f, 0x45, 0xbd, 0x78, 0x72, 0x25, 0x87, 0x51, 0x20, 0xc8, 0xc2, 0xb5, 0x5d, 0xf8,
