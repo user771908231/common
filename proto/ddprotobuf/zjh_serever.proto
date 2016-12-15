@@ -70,7 +70,8 @@ message zjh_srv_desk {
     optional int32 maxValue = 11; //最大底注
     optional int32 gameStatus = 12; //当前游戏状态
     optional int32 gamerNum = 13;  //当前牌桌上的玩家数
-    optional int32 CircleNo = 14; //当前是第几圈
+    optional int32 circleNo = 14; //当前是第几圈
+    optional int32 xuepinBaseValue = 15;  //血拼底注
 }
 
 //room 的信息
@@ -81,4 +82,5 @@ message zjh_srv_room {
     optional string roomTitle = 4; //房间名
     optional int32 baseValue = 5; //底注
     optional int32 maxValue = 6; //押注上限
+    optional int32 xuepinBaseValue = 7; //血拼底注
 }
