@@ -47,6 +47,18 @@ message zjh_bc_newPlayerEnter {
     optional zjh_base_playerInfo playerInfo = 2; // 新进入的玩家
 }
 
+// 离开房间
+message zjh_req_leave {
+    optional ProtoHeader header = 1;    // header 中传 userId
+}
+
+// 离开房间的广播(广播给所有人, 让所有人知道)
+message zjh_bc_leave {
+    optional ProtoHeader header = 1;
+    optional zjh_base_playerInfo playerInfo = 2; // 离开的玩家
+}
+
+//单个玩家信息
 message zjh_base_playerInfo {
     optional bool isFirst = 1; // 是否先手
     repeated client_base_poker playerPokers = 2; // 玩家的手牌

@@ -119,6 +119,8 @@ It has these top-level messages:
 	ZjhBcGameInfo
 	ZjhBaseDeskInfo
 	ZjhBcNewPlayerEnter
+	ZjhReqLeave
+	ZjhBcLeave
 	ZjhBasePlayerInfo
 	ZjhBcOpening
 	ZjhSrvPoker
