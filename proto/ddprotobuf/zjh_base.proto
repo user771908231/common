@@ -16,7 +16,7 @@ enum EProtoId {
     ZJH_PID_AUTO_ENTER_DESK_ACK = 8;  //加入牌桌ACK
     ZJH_PID_SEND_GAMEINFO = 9; //游戏信息
     ZJH_PID_BC_NEWENTER = 10; //新用户加入房间广播
-    ZJH_PID_OT_OPENING = 11;  //开局广播
+    ZJH_PID_BC_OPENING = 11;  //开局广播
     ZJH_PID_REQ_LEAVEDESK = 12; //离开牌桌请求
     ZJH_PID_BC_LEAVEDESK = 13;  //离开牌桌广播
 
