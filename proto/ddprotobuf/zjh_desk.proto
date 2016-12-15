@@ -20,8 +20,8 @@ message zjh_base_roomInfo {
     optional zjh_enum_roomType roomType = 3; //房间的类型
     optional int32 roomLevel = 4; //金币限制
     optional string roomTitle = 5; //房间名
-    optional int32 baseValue = 6; //底注
-    optional int32 maxValue = 7; //押注上限
+    optional int64 baseValue = 6; //底注
+    optional int64 maxValue = 7; //押注上限
 }
 
 //2返回：大厅列表
@@ -42,7 +42,7 @@ message zjh_req_enterDesk {
 message zjh_base_userInfo {
     optional int32 uid = 1; //用户id
     optional string nickName = 2; //昵称
-    optional int32 coin = 3; //金币数
+    optional int64 coin = 3; //金币数
     optional int32 chip = 4; //钻石数
     optional zjh_enum_userState state = 5; //玩家状态
 }

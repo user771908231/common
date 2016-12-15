@@ -66,5 +66,5 @@ message zjh_base_playerInfo {
 message zjh_bc_opening {
     optional ProtoHeader header = 1;
     repeated zjh_base_playerInfo playerInfoList = 2; // 本局游戏参与的玩家列表
-    optional uint64 baseAnte = 3; // 锅底、霸底、底注
+    optional int64 baseAnte = 3; // 锅底、霸底、底注
 }
