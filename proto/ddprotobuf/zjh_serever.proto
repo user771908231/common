@@ -29,7 +29,7 @@ message zjh_srv_bill {
 //用户的游戏数据
 message zjh_srv_GameData {
     optional zjh_srv_poker pai = 1; //用户的手牌
-    optional int32 bill = 2; //账单的信息
+    optional int64 bill = 2; //账单的信息
 }
 
 //用户游戏状态
@@ -43,7 +43,7 @@ enum zjh_enum_userStatus {
 //用户属性
 message zjh_srv_user {
     optional uint32 userId = 1;
-    optional int32 coin = 2;
+    optional int64 coin = 2;
     optional int32 roomId = 3;
     optional int32 deskId = 4;
     optional int32 gameNumber = 5; //游戏编号，每一句游戏都有一个游戏编号
@@ -66,12 +66,12 @@ message zjh_srv_desk {
     optional bool isGamming = 7; //游戏状态 true:正在游戏 false:等待开始游戏
     optional int32 cuurBaseValue = 8; //当前底注
     optional int32 minUser = 9; //最小准备人数
-    optional int32 baseValue = 10; //最小底注
-    optional int32 maxValue = 11; //最大底注
+    optional int64 baseValue = 10; //最小底注
+    optional int64 maxValue = 11; //最大底注
     optional int32 gameStatus = 12; //当前游戏状态
     optional int32 gamerNum = 13;  //当前牌桌上的玩家数
     optional int32 circleNo = 14; //当前是第几圈
-    optional int32 xuepinBaseValue = 15;  //血拼底注
+    optional int64 xuepinBaseValue = 15;  //血拼底注
 }
 
 //room 的信息
@@ -80,7 +80,7 @@ message zjh_srv_room {
     optional int32 roomType = 2; //房间的类型
     optional int32 roomLevel = 3; //金币限制
     optional string roomTitle = 4; //房间名
-    optional int32 baseValue = 5; //底注
-    optional int32 maxValue = 6; //押注上限
-    optional int32 xuepinBaseValue = 7; //血拼底注
+    optional int64 baseValue = 5; //底注
+    optional int64 maxValue = 6; //押注上限
+    optional int64 xuepinBaseValue = 7; //血拼底注
 }
