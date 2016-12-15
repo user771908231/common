@@ -120,6 +120,7 @@ It has these top-level messages:
 	ZjhBaseDeskInfo
 	ZjhBcNewPlayerEnter
 	ZjhBasePlayerInfo
+	ZjhBcOpening
 	ZjhSrvPoker
 	ZjhSrvBill
 	ZjhSrv_GameData

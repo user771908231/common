@@ -61,3 +61,10 @@ message zjh_base_playerInfo {
     optional bool isCheckedPokers = 12; // 当前用户是否已经看牌了
     optional int32 seatIndex = 13; // 当前用户座位索引
 }
+
+// 开局（接收服务端消息）: 客户端收到消息后就开始【霸底】、【发牌】的动画, 然后处理第一个 OverTurn
+message zjh_bc_opening {
+    optional ProtoHeader header = 1;
+    repeated zjh_base_playerInfo playerInfoList = 2; // 本局游戏参与的玩家列表
+    optional uint64 baseAnte = 3; // 锅底、霸底、底注
+}
