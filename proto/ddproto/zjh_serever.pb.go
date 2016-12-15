@@ -2,49 +2,18 @@
 // source: zjh_serever.proto
 // DO NOT EDIT!
 
-/*
-Package ddproto is a generated protocol buffer package.
-
-It is generated from these files:
-	zjh_serever.proto
-
-It has these top-level messages:
-	ZjhSrvPoker
-	ZjhSrvBill
-	ZjhSrv_GameData
-	ZjhSrvUser
-	ZjhSrvDesk
-	ZjhSrvRoom
-*/
 package ddproto
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import ddproto1 "."
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
-
-// common_srv_pokerPai from public import common_server_poker.proto
-type CommonSrvPokerPai ddproto1.CommonSrvPokerPai
-
-func (m *CommonSrvPokerPai) Reset()           { (*ddproto1.CommonSrvPokerPai)(m).Reset() }
-func (m *CommonSrvPokerPai) String() string   { return (*ddproto1.CommonSrvPokerPai)(m).String() }
-func (*CommonSrvPokerPai) ProtoMessage()      {}
-func (m *CommonSrvPokerPai) GetId() int32     { return (*ddproto1.CommonSrvPokerPai)(m).GetId() }
-func (m *CommonSrvPokerPai) GetDes() string   { return (*ddproto1.CommonSrvPokerPai)(m).GetDes() }
-func (m *CommonSrvPokerPai) GetValue() int32  { return (*ddproto1.CommonSrvPokerPai)(m).GetValue() }
-func (m *CommonSrvPokerPai) GetFlower() int32 { return (*ddproto1.CommonSrvPokerPai)(m).GetFlower() }
-func (m *CommonSrvPokerPai) GetName() string  { return (*ddproto1.CommonSrvPokerPai)(m).GetName() }
+// Ignoring public import of common_srv_pokerPai from common_server_poker.proto
 
 // 三张牌的类型
 type ZjhEnum_ZJHTYPE int32
@@ -91,7 +60,7 @@ func (x *ZjhEnum_ZJHTYPE) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnum_ZJHTYPE(value)
 	return nil
 }
-func (ZjhEnum_ZJHTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (ZjhEnum_ZJHTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 // 用户游戏状态
 type ZjhEnumUserStatus int32
@@ -132,21 +101,21 @@ func (x *ZjhEnumUserStatus) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumUserStatus(value)
 	return nil
 }
-func (ZjhEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (ZjhEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 // 打出去的牌
 type ZjhSrvPoker struct {
-	KeyValue         []int32                       `protobuf:"varint,1,rep,name=keyValue" json:"keyValue,omitempty"`
-	Pais             []*ddproto1.CommonSrvPokerPai `protobuf:"bytes,2,rep,name=pais" json:"pais,omitempty"`
-	Type             *ZjhEnum_ZJHTYPE              `protobuf:"varint,3,opt,name=type,enum=ddproto.ZjhEnum_ZJHTYPE" json:"type,omitempty"`
-	UserId           *uint32                       `protobuf:"varint,9,opt,name=userId" json:"userId,omitempty"`
-	XXX_unrecognized []byte                        `json:"-"`
+	KeyValue         []int32              `protobuf:"varint,1,rep,name=keyValue" json:"keyValue,omitempty"`
+	Pais             []*CommonSrvPokerPai `protobuf:"bytes,2,rep,name=pais" json:"pais,omitempty"`
+	Type             *ZjhEnum_ZJHTYPE     `protobuf:"varint,3,opt,name=type,enum=ddproto.ZjhEnum_ZJHTYPE" json:"type,omitempty"`
+	UserId           *uint32              `protobuf:"varint,9,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
 }
 
 func (m *ZjhSrvPoker) Reset()                    { *m = ZjhSrvPoker{} }
 func (m *ZjhSrvPoker) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvPoker) ProtoMessage()               {}
-func (*ZjhSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*ZjhSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *ZjhSrvPoker) GetKeyValue() []int32 {
 	if m != nil {
@@ -155,7 +124,7 @@ func (m *ZjhSrvPoker) GetKeyValue() []int32 {
 	return nil
 }
 
-func (m *ZjhSrvPoker) GetPais() []*ddproto1.CommonSrvPokerPai {
+func (m *ZjhSrvPoker) GetPais() []*CommonSrvPokerPai {
 	if m != nil {
 		return m.Pais
 	}
@@ -184,7 +153,7 @@ type ZjhSrvBill struct {
 func (m *ZjhSrvBill) Reset()                    { *m = ZjhSrvBill{} }
 func (m *ZjhSrvBill) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvBill) ProtoMessage()               {}
-func (*ZjhSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*ZjhSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 // 用户的游戏数据
 type ZjhSrv_GameData struct {
@@ -196,7 +165,7 @@ type ZjhSrv_GameData struct {
 func (m *ZjhSrv_GameData) Reset()                    { *m = ZjhSrv_GameData{} }
 func (m *ZjhSrv_GameData) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrv_GameData) ProtoMessage()               {}
-func (*ZjhSrv_GameData) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*ZjhSrv_GameData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
 
 func (m *ZjhSrv_GameData) GetPai() *ZjhSrvPoker {
 	if m != nil {
@@ -231,7 +200,7 @@ type ZjhSrvUser struct {
 func (m *ZjhSrvUser) Reset()                    { *m = ZjhSrvUser{} }
 func (m *ZjhSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvUser) ProtoMessage()               {}
-func (*ZjhSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*ZjhSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
 
 func (m *ZjhSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -312,28 +281,28 @@ func (m *ZjhSrvUser) GetIsLost() bool {
 
 // desk 的信息
 type ZjhSrvDesk struct {
-	DeskId           *int32                        `protobuf:"varint,1,opt,name=deskId" json:"deskId,omitempty"`
-	GameNumber       *int32                        `protobuf:"varint,2,opt,name=gameNumber" json:"gameNumber,omitempty"`
-	RoomId           *int32                        `protobuf:"varint,3,opt,name=roomId" json:"roomId,omitempty"`
-	AllPokers        []*ddproto1.CommonSrvPokerPai `protobuf:"bytes,4,rep,name=allPokers" json:"allPokers,omitempty"`
-	LastUser         *uint32                       `protobuf:"varint,5,opt,name=lastUser" json:"lastUser,omitempty"`
-	LastWiner        *uint32                       `protobuf:"varint,6,opt,name=lastWiner" json:"lastWiner,omitempty"`
-	IsGamming        *bool                         `protobuf:"varint,7,opt,name=isGamming" json:"isGamming,omitempty"`
-	CuurBaseValue    *int32                        `protobuf:"varint,8,opt,name=cuurBaseValue" json:"cuurBaseValue,omitempty"`
-	MinUser          *int32                        `protobuf:"varint,9,opt,name=minUser" json:"minUser,omitempty"`
-	BaseValue        *int32                        `protobuf:"varint,10,opt,name=baseValue" json:"baseValue,omitempty"`
-	MaxValue         *int32                        `protobuf:"varint,11,opt,name=maxValue" json:"maxValue,omitempty"`
-	GameStatus       *int32                        `protobuf:"varint,12,opt,name=gameStatus" json:"gameStatus,omitempty"`
-	GamerNum         *int32                        `protobuf:"varint,13,opt,name=gamerNum" json:"gamerNum,omitempty"`
-	CircleNo         *int32                        `protobuf:"varint,14,opt,name=circleNo" json:"circleNo,omitempty"`
-	XuepinBaseValue  *int32                        `protobuf:"varint,15,opt,name=xuepinBaseValue" json:"xuepinBaseValue,omitempty"`
-	XXX_unrecognized []byte                        `json:"-"`
+	DeskId           *int32               `protobuf:"varint,1,opt,name=deskId" json:"deskId,omitempty"`
+	GameNumber       *int32               `protobuf:"varint,2,opt,name=gameNumber" json:"gameNumber,omitempty"`
+	RoomId           *int32               `protobuf:"varint,3,opt,name=roomId" json:"roomId,omitempty"`
+	AllPokers        []*CommonSrvPokerPai `protobuf:"bytes,4,rep,name=allPokers" json:"allPokers,omitempty"`
+	LastUser         *uint32              `protobuf:"varint,5,opt,name=lastUser" json:"lastUser,omitempty"`
+	LastWiner        *uint32              `protobuf:"varint,6,opt,name=lastWiner" json:"lastWiner,omitempty"`
+	IsGamming        *bool                `protobuf:"varint,7,opt,name=isGamming" json:"isGamming,omitempty"`
+	CuurBaseValue    *int32               `protobuf:"varint,8,opt,name=cuurBaseValue" json:"cuurBaseValue,omitempty"`
+	MinUser          *int32               `protobuf:"varint,9,opt,name=minUser" json:"minUser,omitempty"`
+	BaseValue        *int32               `protobuf:"varint,10,opt,name=baseValue" json:"baseValue,omitempty"`
+	MaxValue         *int32               `protobuf:"varint,11,opt,name=maxValue" json:"maxValue,omitempty"`
+	GameStatus       *int32               `protobuf:"varint,12,opt,name=gameStatus" json:"gameStatus,omitempty"`
+	GamerNum         *int32               `protobuf:"varint,13,opt,name=gamerNum" json:"gamerNum,omitempty"`
+	CircleNo         *int32               `protobuf:"varint,14,opt,name=circleNo" json:"circleNo,omitempty"`
+	XuepinBaseValue  *int32               `protobuf:"varint,15,opt,name=xuepinBaseValue" json:"xuepinBaseValue,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
 }
 
 func (m *ZjhSrvDesk) Reset()                    { *m = ZjhSrvDesk{} }
 func (m *ZjhSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvDesk) ProtoMessage()               {}
-func (*ZjhSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*ZjhSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
 
 func (m *ZjhSrvDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -356,7 +325,7 @@ func (m *ZjhSrvDesk) GetRoomId() int32 {
 	return 0
 }
 
-func (m *ZjhSrvDesk) GetAllPokers() []*ddproto1.CommonSrvPokerPai {
+func (m *ZjhSrvDesk) GetAllPokers() []*CommonSrvPokerPai {
 	if m != nil {
 		return m.AllPokers
 	}
@@ -455,7 +424,7 @@ type ZjhSrvRoom struct {
 func (m *ZjhSrvRoom) Reset()                    { *m = ZjhSrvRoom{} }
 func (m *ZjhSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvRoom) ProtoMessage()               {}
-func (*ZjhSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (*ZjhSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{5} }
 
 func (m *ZjhSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -517,7 +486,7 @@ func init() {
 	proto.RegisterEnum("ddproto.ZjhEnumUserStatus", ZjhEnumUserStatus_name, ZjhEnumUserStatus_value)
 }
 
-var fileDescriptor0 = []byte{
+var fileDescriptor15 = []byte{
 	// 743 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x8c, 0x54, 0xcb, 0x4e, 0xdb, 0x4c,
 	0x14, 0xfe, 0x27, 0xf7, 0x4c, 0x48, 0x30, 0xf3, 0x57, 0x68, 0x40, 0xa8, 0x8a, 0xa2, 0x2e, 0x2c,
