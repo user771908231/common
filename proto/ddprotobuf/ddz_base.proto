@@ -132,20 +132,41 @@ enum ddz_enum_gameStatus {
 }
 
 // 玩家当前状态
-enum ddz_enum_playerGameStatus {
-    S_INIT = 0; // 初始状态
-    S_DEALCARDS = 1; // 发牌中
-    S_JIAO_DIZHU = 2; // 叫地主
-    S_ROB_DIZHU = 3; // 抢地主
-    S_DOUBLE = 4; // 加倍
-    S_NO_DOUBLE = 5; // 不加倍
-    S_PULL = 6; // 拉
-    S_PUSH = 7; // 倒
+enum ddz_enum_playerStatus {
+    NORMAL_DEFAULT = 0; //默认
+    NORMAL_ENTERDESK = 1; //已进入桌子
+    NORMAL_READY = 2; //已准备
+    NORMAL_DAPAI = 3; //已开始打牌
+    NORMAL_LOTTERY = 4; //已开奖
+    NORMAL_END = 5; //已全局结束
 
-    S_ACTING = 8; // 出牌中..
-    S_WAIT = 9; // 等待别人出牌
+    HLJIAO_NOACT = 6; //欢乐叫地主阶段没操作
+    HLJIAO_JIAO = 7; //欢乐叫地主阶段已叫地主
+    HLJIAO_BUJIAO = 8; //欢乐叫地主阶段已不叫地主
 
-    S_GAME_END = 10; // 游戏结束
+    HLQIANG_NOACT = 9; //欢乐抢地主阶段没操作
+    HLQIANG_QIANG = 10; //欢乐抢地主阶段已抢地主
+    HLQIANG_BUQIANG = 11; //欢乐抢地主阶段已不抢地主
+
+    HLJB_NOACT = 12; //欢乐加倍阶段没操作
+    HLJB_JIA = 13; //欢乐加倍阶段已加倍
+    HLJB_BUJIA = 14; //欢乐加倍阶段已不加倍
+
+    SCMZ_NOACT = 15; //四川闷抓阶段没操作
+    SCMZ_MENZHUA = 16; //四川闷抓阶段已闷抓
+    SCMZ_SEECARDS = 17; //四川闷抓阶段已看牌
+
+    SCZP_NOACT = 18; //四川抓牌阶段没操作
+    SCZP_ZHUA = 19; //四川抓牌阶段已抓牌
+    SCZP_BUZHUA = 20; //四川抓牌阶段已不抓
+
+    SCLD_NOACT = 21; //四川拉倒阶段没操作
+    SCLD_LA = 22; //四川拉倒阶段已拉
+    SCLD_DAO = 23; //四川拉倒阶段已倒
+
+    JDJIAO_NOACT = 24; //经典叫分阶段没操作
+    JDJIAO_JIAO = 25; //经典叫分阶段已叫
+    JDJIAO_BUJIAO = 26; //经典叫分阶段不叫
 }
 
 enum ddz_enum_roomType {
