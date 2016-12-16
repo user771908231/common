@@ -1,4 +1,4 @@
-package reward
+package award
 
 import "github.com/name5566/leaf/gate"
 
