@@ -201,6 +201,7 @@ message ddz_base_playerInfo {
     optional int32 remainPaiCount = 13; //玩家当前牌数
     repeated client_base_poker outPais = 14; //玩家出的牌
     optional ddz_enum_paiType outPaiType = 15; //玩家出的牌类型
+    optional int32 jiaoScore = 16; //叫分
 }
 
 enum ddz_enum_deskGameStatus {
