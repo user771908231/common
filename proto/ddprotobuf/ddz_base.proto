@@ -193,7 +193,7 @@ message ddz_base_playerInfo {
     optional uint32 userId = 6; // 用户id
     optional bool isOwner = 7; // 当前用户是否房主
     optional int32 bReady = 8; // 是否已准备
-    optional ddz_enum_playerGameStatus status = 9; // 玩家当前状态
+    optional ddz_enum_playerStatus status = 9; // 玩家当前状态
     optional WeixinInfo wxInfo = 10; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
     optional int32 onlineStatus = 11; //玩家在线状态: 1=在线  2=离线 3=在线托管 4=离线托管
     optional int32 playRate = 12; //玩家倍数
