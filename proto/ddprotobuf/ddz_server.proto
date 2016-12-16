@@ -118,11 +118,10 @@ message ddz_srv_user {
     optional int32 roomId = 16; //roomId
     optional int64 coin = 17; //
     optional ddz_srv_userStatistics statistics = 18; //统计信息
-    optional int32 laDaoStatus = 19; //拉倒的状态
-    optional int32 playRate = 20; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
-    optional int32 jiaoScore = 21; //经典斗地主叫多少分 DdzJDScore:1/2/3
-    optional int32 timeOutCount = 22; //操作超时次数
-    optional bool isAgent = 23; //是否托管
+    optional int32 playRate = 19; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
+    optional int32 jiaoScore = 20; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 timeOutCount = 21; //操作超时次数
+    optional bool isAgent = 22; //是否托管
 }
 
 //room
