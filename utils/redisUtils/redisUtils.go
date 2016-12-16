@@ -6,7 +6,6 @@ import (
 	"casino_common/common/log"
 )
 
-
 //在需要的地方,需要自己关闭连接
 func GetConn() data.Data {
 	conn := data.Data{}
@@ -49,6 +48,7 @@ func SetInt64(key string, value int64) {
 	defer conn.Close()
 	conn.SetInt(key, value)
 }
+
 /**
 	保存一个对象到redis
  */

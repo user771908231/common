@@ -106,7 +106,6 @@ func (e *Error) SetError(code int32, err error) {
 	e.errStr = ""
 }
 
-
 //返回errorCode
 func GetErrorCode(e error) (ret int32) {
 	defer func() {

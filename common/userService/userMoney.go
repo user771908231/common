@@ -9,13 +9,14 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
+	"github.com/golang/protobuf/proto"
 )
 
-var NEW_USER_DIAMOND_REWARD int64 = 20                //新用户登陆的时候,默认的砖石数量
+var NEW_USER_DIAMOND_REWARD int64 = 20 //新用户登陆的时候,默认的砖石数量
 
-var USER_COIN_REDIS_KEY = "user_coin_redis_key"        //金币
-var USER_DIAMOND_REDIS_KEY = "user_diamond_redis_key"        //钻石，金币场
-var USER_DIAMOND2_REDIS_KEY = "user_diamond2_redis_key"        //钻石朋友桌
+var USER_COIN_REDIS_KEY = "user_coin_redis_key"         //金币
+var USER_DIAMOND_REDIS_KEY = "user_diamond_redis_key"   //钻石，金币场
+var USER_DIAMOND2_REDIS_KEY = "user_diamond2_redis_key" //钻石朋友桌
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
 
@@ -28,9 +29,9 @@ func UpdateUserMoney(userId uint32) {
 	}
 
 	//修改并且更新用户数据
-	*user.Coin = GetUserMoney(userId, USER_COIN_REDIS_KEY)
-	*user.Diamond = GetUserMoney(userId, USER_DIAMOND_REDIS_KEY)
-	*user.Diamond2 = GetUserMoney(userId, USER_DIAMOND2_REDIS_KEY)
+	user.Coin = proto.Int64(GetUserMoney(userId, USER_COIN_REDIS_KEY))
+	user.Diamond = proto.Int64(GetUserMoney(userId, USER_DIAMOND_REDIS_KEY))
+	user.Diamond2 = proto.Int64(GetUserMoney(userId, USER_DIAMOND2_REDIS_KEY))
 	SaveUser2Redis(user)
 }
 
@@ -47,8 +48,6 @@ func SetUserMoney(userId uint32, money string, diamond int64) {
 func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, USER_DIAMOND_REDIS_KEY)
 }
-
-
 
 //craete钻石交易记录
 
@@ -133,8 +132,3 @@ func INCRUserCOIN(userid uint32, d int64) (int64, error) {
 func DECRUserCOIN(userid uint32, d int64) (int64, error) {
 	return decrUser(userid, USER_COIN_REDIS_KEY, d)
 }
-
-
-
-
-

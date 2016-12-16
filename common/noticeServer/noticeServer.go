@@ -9,16 +9,15 @@ import (
 	"casino_common/common/model/noticeDao"
 )
 
-var NOTICE_TYPE_GUNDONG int32 = 1        //滚动
-var NOTICE_TYPE_CHONGZHI int32 = 2        //充值信息
-var NOTICE_TYPE_GONGGAO int32 = 3        //公告信息
+var NOTICE_TYPE_GUNDONG int32 = 1  //滚动
+var NOTICE_TYPE_CHONGZHI int32 = 2 //充值信息
+var NOTICE_TYPE_GONGGAO int32 = 3  //公告信息
 
 func getRedisKey(id int32) string {
 	keyPre := "public_notice_key"
 	idStr, _ := numUtils.Int2String(id)
 	return strings.Join([]string{keyPre, idStr}, "_")
 }
-
 
 //通过notice的type 来查找notice
 func GetNoticeByType(noticeType int32) *ddproto.TNotice {
@@ -49,8 +48,6 @@ func GetCommonAckNotice(noticeType int32) *ddproto.CommonAckNotice {
 	return ack
 }
 
-
-
 //把公告的数据保存到redis中
 func SaveNotice2Redis(notice *ddproto.TNotice) error {
 	redisUtils.SetObj(getRedisKey(notice.GetId()), notice)
@@ -63,8 +60,3 @@ func SaveNotice(notice *ddproto.TNotice) error {
 	SaveNotice2Redis(notice)
 	return nil
 }
-
-
-
-
-
