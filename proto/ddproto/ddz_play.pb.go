@@ -63,7 +63,7 @@ var _ = math.Inf
 
 // Ignoring public import of ddz_enum_gameStatus from ddz_base.proto
 
-// Ignoring public import of ddz_enum_playerGameStatus from ddz_base.proto
+// Ignoring public import of ddz_enum_playerStatus from ddz_base.proto
 
 // Ignoring public import of ddz_enum_roomType from ddz_base.proto
 
