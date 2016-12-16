@@ -22,8 +22,8 @@ func ( p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {
 }
 
 //牌型名
-func (poker *ZjhSrvPoker)String() string {
-	switch poker.Type {
+func (poker *ZjhSrvPoker)GetName() string {
+	switch poker.GetType() {
 	case ZjhEnum_ZJHTYPE_ZJHTYPE_GAOPAI:
 		return "高牌"
 	case ZjhEnum_ZJHTYPE_ZJHTYPE_DUIZI:
