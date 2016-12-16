@@ -20,50 +20,29 @@ enum EProtoId {
     ZJH_PID_REQ_LEAVEDESK = 12; //离开牌桌请求
     ZJH_PID_BC_LEAVEDESK = 13;  //离开牌桌广播
 
+    ZJH_PID_BC_NEXT = 14;  //轮到谁操作OverTurn
 
-//    PID_READY = 10; //准备
-//    PID_READY_ACK = 11; //准备-ack
-//    PID_OPENING = 12; //开局
-//    PID_DEAL_CARDS = 13; //发牌
-//
-//    PID_CHECK_CARDS = 14; // 玩家点击看牌
-//    PID_CHECK_CARDZJH_S_ACK = 15; // 玩家点击看牌-ack
-//
-//    ////////////////////////////////////////////
-//    // PID_BASE_ANTE           = 16; // 锅底、霸底、底注
-//    // PID_BASE_ANTE_ACK       = 17; // 锅底、霸底、底注-ack
-//    PID_CALL = 16; // 跟注
-//    PID_CALL_ACK = 17; // 跟注-ack
-//
-//    PID_AUTO_CALL = 18; // 自动跟注
-//    PID_AUTO_CALL_ACK = 19; // 自动跟注-ack
-//
-//    PID_FOLD = 20; // 弃牌
-//    PID_FOLD_ACK = 21; // 弃牌-ack
-//
-//    PID_COMPARE = 22; // 比牌
-//    PID_COMPARE_ACK = 23; // 比牌-ack
-//
-//    PID_BLOOD_FIGHT = 24; // 血拼
-//    PID_BLOOD_FIGHT_ACK = 25; // 血拼-ack
-//
-//    ////////////////////////////////////////////
-//    PID_RAISE = 26; // 加注
-//    PID_RAISE_ACK = 27; // 加注-ack
-//
-//    PID_OVERTURN = 28; // 轮到下一人操作(广播)
-//
-//    PID_CURRENTRESULT = 29; // 本局结果
-//    PID_SENDENDLOTTERY = 30; // 牌局结束
-//
-//    ////////////////////////////////////////////
-//    PID_DISSOLVE_DESK = 31; // 离开房间
-//    PID_DISSOLVE_DESK_ACK = 32; // 离开房间-ack
-//    PID_LEAVE_DESK = 33; // 解散房间
-//    PID_LEAVE_DESK_ACK = 34; // 解散房间-ack
-//
-//    PID_MESSAGE = 35; // 聊天信息
-//    PID_SEND_MESSAGE = 36; // 广播聊天
+    ZJH_PID_REQ_KANPAI = 15; //看牌请求
+    ZJH_PID_BC_KANPAI =16;  //看牌广播
+
+    ZJH_PID_REQ_QIPAI = 17; //弃牌请求
+    ZJH_PID_BC_QIPAI = 18; //弃牌广播
+
+    ZJH_PID_REQ_GENZHU = 19;  //跟注请求
+    ZJH_PID_BC_GENZHU = 20;  //跟注广播
+
+    ZJH_PID_REQ_FAQI_XUEPIN = 21; //发起血拼请求
+    ZJH_PID_BC_FAQI_XUEPIN = 22;  //发起血拼广播
+    ZJH_PID_BC_XUEPIN_END = 23; //血拼结束广播
+
+    ZJH_PID_REQ_JIAZHU = 24;  //加注请求
+    ZJH_PID_BC_JIAZHU = 25;  //加注广播
+
+    ZJH_PID_REQ_BIPAI = 26;  //比牌请求
+    ZJH_PID_BC_BIPAI = 27;  //比牌广播
+
+    ZJH_PID_BC_GAME_END = 28;  //比赛结束广播
+
 }
 
 ///////////////////////////////////////////////////

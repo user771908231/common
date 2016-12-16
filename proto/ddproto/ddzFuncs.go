@@ -21,6 +21,25 @@ func ( p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {
 	return ret
 }
 
+//牌型名
+func (poker *ZjhSrvPoker)GetName() string {
+	switch poker.GetType() {
+	case ZjhEnum_ZJHTYPE_ZJHTYPE_GAOPAI:
+		return "高牌"
+	case ZjhEnum_ZJHTYPE_ZJHTYPE_DUIZI:
+		return "对子"
+	case ZjhEnum_ZJHTYPE_ZJHTYPE_LIANZI:
+		return "顺子"
+	case ZjhEnum_ZJHTYPE_ZJHTYPE_QING:
+		return "同花"
+	case ZjhEnum_ZJHTYPE_ZJHTYPE_QINGLIAN:
+		return "同花顺"
+	case ZjhEnum_ZJHTYPE_ZJHTYPE_BAOZI:
+		return "三条"
+	}
+	return ""
+}
+
 func (p *CommonSrvPokerPai) GetSuit() CommonEnumPokerColor {
 	if p.GetFlower() == pokerUtil.FLOWER_DIAMOND {
 		return CommonEnumPokerColor_FANGKUAI

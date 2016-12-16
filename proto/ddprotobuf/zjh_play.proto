@@ -80,3 +80,98 @@ message zjh_bc_opening {
     repeated zjh_base_playerInfo playerInfoList = 2; // 本局游戏参与的玩家列表
     optional int64 baseAnte = 3; // 锅底、霸底、底注
 }
+
+//===================轮到谁操作====================
+
+// 轮到谁操作（接收服务端消息）
+message zjh_bc_overTurn {
+    optional ProtoHeader header = 1;
+    optional zjh_base_playerInfo curOprtPlayerInfo = 2; // 当前谁正在操作
+    optional bool isXuepin = 3;  //是否是血拼
+    optional int32 time = 4; // 剩余操作时间
+    optional int32 totalTime = 5; // 总共的操作时间
+}
+
+//======================看牌===============================
+
+// 玩家点击看牌
+message zjh_req_checkCards {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人
+}
+// 玩家点击看牌 广播 bc
+message zjh_bc_checkCards {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(广播给其它用户)
+    repeated client_base_poker handPokers = 2; // 发给我的手牌, 发给其他人牌背
+    optional string handPokerType = 3;  // 手牌类型(不发给其他人), 如: 高牌、对子、顺子、同花等。
+}
+
+//=========================弃牌=========================
+// 玩家弃牌
+message zjh_req_fold {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人
+}
+// 玩家弃牌 广播 bc
+message zjh_bc_fold {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(广播给其它用户)
+}
+
+//======================跟注=======================
+// 玩家跟注
+message zjh_req_call {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人
+}
+// 玩家跟注 广播 bc
+message zjh_bc_call {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(广播给其它用户)
+    optional int64 chips = 2; // 跟注的筹码数
+    optional bool isXuepin = 3;  //是否是血拼的跟注
+}
+
+//=====================血拼===========================
+// 发起血拼
+message zjh_req_bloodFight {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起血拼的用户)
+}
+// 玩家发起血拼 广播 bc  ，如果一人发起血拼则说明血拼开始，直到血拼结束
+message zjh_bc_bloodFight {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起血拼的用户)
+    optional int64 chips = 2; // 血拼的筹码数
+}
+//血拼结束广播
+message zjh_bc_bloodEnd {
+    optional ProtoHeader header = 1;
+}
+
+//====================加注========================
+// 玩家加注
+message zjh_req_raiseFight {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起的用户)
+    optional int64 chips = 2; // 加注的筹码数
+}
+// 玩家加注 广播 bc
+message zjh_bc_raiseAck {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起的用户)
+    optional int64 chips = 2; // 加注的筹码数
+}
+
+//===================比牌、孤注一掷===================
+// 玩家比牌
+message zjh_req_compare {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起比牌的用户)
+    optional uint32 comparedUserId = 2; // 被比牌的用户
+    optional bool isAllIn = 3;  // 是否孤注一掷?
+}
+// 玩家比牌 广播 bc
+message zjh_bc_compare {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起比牌的用户)
+    optional uint32 comparedUserId = 2; // 被比牌的用户
+    optional bool isCompareWin = 3; // userId 是否比赢了 ?
+    optional bool isAllIn = 4;  // 是否孤注一掷?
+}
+//==================牌局结束==============================
+// 牌局结束信息
+message zjh_bc_gameEnd {
+    optional ProtoHeader header = 1;
+    optional uint32 winer = 2;  //赢家的userId
+    optional int64 chip = 3;  //赢得的筹码数
+}
