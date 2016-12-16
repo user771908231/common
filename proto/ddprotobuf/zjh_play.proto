@@ -87,8 +87,9 @@ message zjh_bc_opening {
 message zjh_bc_overTurn {
     optional ProtoHeader header = 1;
     optional zjh_base_playerInfo curOprtPlayerInfo = 2; // 当前谁正在操作
-    optional int32 time = 3; // 剩余操作时间
-    optional int32 totalTime = 4; // 总共的操作时间
+    optional bool isXuepin = 3;  //是否是血拼
+    optional int32 time = 4; // 剩余操作时间
+    optional int32 totalTime = 5; // 总共的操作时间
 }
 
 //======================看牌===============================
