@@ -163,10 +163,11 @@ enum ddz_enum_playerStatus {
     SCLD_NOACT = 21; //四川拉倒阶段没操作
     SCLD_LA = 22; //四川拉倒阶段已拉
     SCLD_DAO = 23; //四川拉倒阶段已倒
+    SCLD_BULD = 24; //四川拉倒阶段已不拉/倒
 
-    JDJIAO_NOACT = 24; //经典叫分阶段没操作
-    JDJIAO_JIAO = 25; //经典叫分阶段已叫
-    JDJIAO_BUJIAO = 26; //经典叫分阶段不叫
+    JDJIAO_NOACT = 25; //经典叫分阶段没操作
+    JDJIAO_JIAO = 26; //经典叫分阶段已叫
+    JDJIAO_BUJIAO = 27; //经典叫分阶段不叫
 }
 
 enum ddz_enum_roomType {
