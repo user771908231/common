@@ -37,7 +37,8 @@ enum zjh_enum_userStatus {
     zjh_S_GAMING = 1; //正在游戏中
     zjh_S_STANDING = 2; //已站起
     zjh_S_SITED = 3; //已入座
-    zjh_S_OFFLINE = 4; //已离线
+    zjh_S_READY = 4;  //已准备
+    zjh_S_OFFLINE = 5; //已离线
 }
 
 //用户属性

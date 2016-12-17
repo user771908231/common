@@ -81,6 +81,18 @@ message zjh_bc_opening {
     optional int64 baseAnte = 3; // 锅底、霸底、底注
 }
 
+//===================准备游戏=====================
+//更新准备状态请求
+message zjh_req_ready {
+    optional ProtoHeader header = 1;   //userId放Header里
+    optional bool isReady = 2;  //true为已准备  false为取消准备
+}
+//更新准备状态广播
+message zjh_bc_ready {
+    optional ProtoHeader header = 1;   //userId放Header里
+    optional bool isReady = 2;  //true为已准备  false为取消准备
+}
+
 //===================轮到谁操作====================
 
 // 轮到谁操作（接收服务端消息）

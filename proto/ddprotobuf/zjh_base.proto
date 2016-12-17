@@ -17,31 +17,35 @@ enum EProtoId {
     ZJH_PID_SEND_GAMEINFO = 9; //游戏信息
     ZJH_PID_BC_NEWENTER = 10; //新用户加入房间广播
     ZJH_PID_BC_OPENING = 11;  //开局广播
-    ZJH_PID_REQ_LEAVEDESK = 12; //离开牌桌请求
-    ZJH_PID_BC_LEAVEDESK = 13;  //离开牌桌广播
 
-    ZJH_PID_BC_NEXT = 14;  //轮到谁操作OverTurn
+    ZJH_PID_REQ_READY = 12;  //切换准备状态请求
+    ZJH_PID_BC_READY = 13;  //切换准备状态广播
 
-    ZJH_PID_REQ_KANPAI = 15; //看牌请求
-    ZJH_PID_BC_KANPAI =16;  //看牌广播
+    ZJH_PID_REQ_LEAVEDESK = 14; //离开牌桌请求
+    ZJH_PID_BC_LEAVEDESK = 15;  //离开牌桌广播
 
-    ZJH_PID_REQ_QIPAI = 17; //弃牌请求
-    ZJH_PID_BC_QIPAI = 18; //弃牌广播
+    ZJH_PID_BC_NEXT = 16;  //轮到谁操作OverTurn
 
-    ZJH_PID_REQ_GENZHU = 19;  //跟注请求
-    ZJH_PID_BC_GENZHU = 20;  //跟注广播
+    ZJH_PID_REQ_KANPAI = 17; //看牌请求
+    ZJH_PID_BC_KANPAI =18;  //看牌广播
 
-    ZJH_PID_REQ_FAQI_XUEPIN = 21; //发起血拼请求
-    ZJH_PID_BC_FAQI_XUEPIN = 22;  //发起血拼广播
-    ZJH_PID_BC_XUEPIN_END = 23; //血拼结束广播
+    ZJH_PID_REQ_QIPAI = 19; //弃牌请求
+    ZJH_PID_BC_QIPAI = 20; //弃牌广播
 
-    ZJH_PID_REQ_JIAZHU = 24;  //加注请求
-    ZJH_PID_BC_JIAZHU = 25;  //加注广播
+    ZJH_PID_REQ_GENZHU = 21;  //跟注请求
+    ZJH_PID_BC_GENZHU = 22;  //跟注广播
 
-    ZJH_PID_REQ_BIPAI = 26;  //比牌请求
-    ZJH_PID_BC_BIPAI = 27;  //比牌广播
+    ZJH_PID_REQ_FAQI_XUEPIN = 23; //发起血拼请求
+    ZJH_PID_BC_FAQI_XUEPIN = 24;  //发起血拼广播
+    ZJH_PID_BC_XUEPIN_END = 25; //血拼结束广播
 
-    ZJH_PID_BC_GAME_END = 28;  //比赛结束广播
+    ZJH_PID_REQ_JIAZHU = 26;  //加注请求
+    ZJH_PID_BC_JIAZHU = 27;  //加注广播
+
+    ZJH_PID_REQ_BIPAI = 28;  //比牌请求
+    ZJH_PID_BC_BIPAI = 29;  //比牌广播
+
+    ZJH_PID_BC_GAME_END = 30;  //比赛结束广播
 
 }
 
