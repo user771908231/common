@@ -3,7 +3,7 @@ package handlers
 import (
 	"casino_common/proto/ddproto"
 	"github.com/name5566/leaf/gate"
-	"casino_common/common/noticeServer"
+	"casino_common/common/service/noticeServer"
 )
 
 func HandlerGetCommonAckNotice(args []interface{}) {
