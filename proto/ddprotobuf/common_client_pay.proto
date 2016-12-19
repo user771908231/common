@@ -1,4 +1,6 @@
+import public "common_client.proto";
 package ddproto;
+
 // ProtoHeader 需要在每个 Message 中作为第一个字段
 
 //统一下单 proto
