@@ -71,6 +71,11 @@ enum ddz_enum_protoId {
 
    DDZ_PID_GAME_GAMERECORD = 42; //查询战绩
    DDZ_PID_GAME_GAMERECORD_ACK = 43; //战绩回复
+
+   DDZ_PID_GAME_ENTERAGENTMODE = 44; //进入代理托管
+   DDZ_PID_GAME_ENTERAGENTMODE_ACK = 45; //进入代理托管 回复
+   DDZ_PID_GAME_QUITAGENTMODE = 46; //退出代理托管
+   DDZ_PID_GAME_QUITAGENTMODE_ACK = 47; //退出代理托管 回复
 }
 
 enum ddz_enum_errorCode {
@@ -174,6 +179,18 @@ enum ddz_enum_roomType {
     T_NORMAL_DDZ = 1; // 经典斗地主
     T_HAPPY_DDZ = 2; // 欢乐斗地主
     T_SICHUAN_DDZ = 3; // 四川斗地主
+}
+
+enum ddz_enum_enterType {
+    FRIEND = 1; //朋友桌
+    COIN = 2; //金币场
+}
+
+enum ddz_enum_coinRoomLevel {
+    LV1 = 1; //100
+    LV2 = 2; //200
+    LV3 = 3; //500
+    //...
 }
 
 
