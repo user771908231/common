@@ -1,0 +1,21 @@
+package ddproto;
+// ProtoHeader 需要在每个 Message 中作为第一个字段
+
+//统一下单 proto
+//    总金额	total_fee	是	Int	888	订单总金额，单位为分，详见支付金额
+message wxpay_req_unifiedorder {
+    optional ProtoHeader header = 1;
+    optional int32 meal = 2; //要充值的套餐id
+}
+
+//app请求统一下单之后，返回的加密字符串
+message wxpay_ack_unifiedorder {
+    optional ProtoHeader header = 1;
+    optional string appid = 2;
+    optional string mch_id = 3; //商户号
+    optional string device_info = 4; //013467007045764	调用接口提交的终端设备号，
+    optional string nonce_str = 5; //维系返回的随机字符串
+    optional string sign = 6; //签名
+    optional string trade_type = 7; //交易类型 APP
+    optional string prepay_id = 8; // 预付回话标志
+}

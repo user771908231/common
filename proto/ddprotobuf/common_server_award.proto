@@ -1,1 +1,16 @@
 package ddproto;
+
+//todo 等待增加
+enum award {
+    taskType_time = 1; //倒计时奖励
+    taskType_2 = 2; //
+}
+
+//用户奖励，保存到数据库的结构
+message Taward {
+    optional int32 id = 1; //奖励的id
+    optional int32 taskType = 2; //奖励的类型(牌型奖励，局数奖励，赢的局数奖励，倒计时奖励)
+    optional int32 awardType = 3; //钻石，金币，奖券，红包，房卡
+    optional uint32 userId = 4; //获奖用户
+    optional string memo = 5; //备注
+}
