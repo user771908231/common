@@ -171,7 +171,6 @@ message zjh_bc_raiseAck {
 message zjh_req_compare {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起比牌的用户)
     optional uint32 comparedUserId = 2; // 被比牌的用户
-    optional bool isAllIn = 3;  // 是否孤注一掷?
 }
 // 玩家比牌 广播 bc
 message zjh_bc_compare {

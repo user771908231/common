@@ -57,6 +57,9 @@ message ddz_req_enterDesk {
     optional int32 tableId = 3;
     optional string PassWord = 4; // 房间密码
     optional uint32 userId = 5; // 请求的userId
+
+    optional ddz_enum_enterType enterType = 6; // 进入的类型
+    optional ddz_enum_coinRoomLevel coinRoomLevel = 7; //金币场的级别 朋友桌不使用
 }
 
 message ddz_ack_enterDesk {
