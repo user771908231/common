@@ -11,11 +11,10 @@ message wxpay_req_unifiedorder {
 //app请求统一下单之后，返回的加密字符串
 message wxpay_ack_unifiedorder {
     optional ProtoHeader header = 1;
-    optional string appid = 2;
-    optional string mch_id = 3; //商户号
-    optional string device_info = 4; //013467007045764	调用接口提交的终端设备号，
-    optional string nonce_str = 5; //维系返回的随机字符串
-    optional string sign = 6; //签名
-    optional string trade_type = 7; //交易类型 APP
-    optional string prepay_id = 8; // 预付回话标志
+    optional string partnerId = 2; //商户号
+    optional string prepay_id = 3; // 预付回话标志
+    optional string nonce_str = 4; //维系返回的随机字符串
+    optional string timeStamp = 5;
+    optional string package = 6;
+    optional string sign = 7; //签名
 }
