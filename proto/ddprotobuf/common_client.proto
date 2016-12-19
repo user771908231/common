@@ -95,12 +95,12 @@ message common_req_feedback {
 // 房间类型枚举
 //扑克花色
 enum common_enum_pokerColor {
-    HONGTAO = 1; //  红桃
-    FANGKUAI = 2; // 方块
-    HEITAO = 3; //  黑桃
-    MEIHUA = 4; //梅花
-    REDJOKER = 5; //小王
-    BLACKBIGJOKER = 6; //大王
+    HONGTAO = 1; //  方块
+    FANGKUAI = 2; // 梅花
+    HEITAO = 3; //  红桃
+    MEIHUA = 4; //黑桃
+    REDJOKER = 5; //大王
+    BLACKBIGJOKER = 6; //小王
 }
 
 message client_base_poker {
