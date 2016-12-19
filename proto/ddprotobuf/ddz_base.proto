@@ -248,5 +248,7 @@ message ddz_base_deskInfo {
     optional int32 footRate = 16; // 底牌倍率
 
     optional int32 playRate = 17; // 当前倍数（抢地主、炸弹、春天等产生的倍数） ?不明
+
+    optional ddz_enum_enterType enterType = 18; // 进入的类型  金币场/朋友桌
 }
 
