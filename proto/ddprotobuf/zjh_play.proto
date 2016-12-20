@@ -137,6 +137,7 @@ message zjh_bc_call {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人(广播给其它用户)
     optional int64 chips = 2; // 跟注的筹码数
     optional bool isXuepin = 3;  //是否是血拼的跟注
+    optional zjh_base_playerInfo playerInfo = 4;  //玩家信息
 }
 
 //=====================血拼===========================
@@ -148,6 +149,7 @@ message zjh_req_bloodFight {
 message zjh_bc_bloodFight {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起血拼的用户)
     optional int64 chips = 2; // 血拼的筹码数
+    optional zjh_base_playerInfo playerInfo = 3;  //玩家信息
 }
 //血拼结束广播
 message zjh_bc_bloodEnd {
@@ -164,10 +166,11 @@ message zjh_req_raiseFight {
 message zjh_bc_raiseAck {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起的用户)
     optional int64 chips = 2; // 加注的筹码数
+    optional zjh_base_playerInfo playerInfo = 3;  //玩家信息
 }
 
 //===================比牌、孤注一掷===================
-// 玩家比牌
+// 玩家比牌请求
 message zjh_req_compare {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起比牌的用户)
     optional uint32 comparedUserId = 2; // 被比牌的用户
@@ -178,6 +181,7 @@ message zjh_bc_compare {
     optional uint32 comparedUserId = 2; // 被比牌的用户
     optional bool isCompareWin = 3; // userId 是否比赢了 ?
     optional bool isAllIn = 4;  // 是否孤注一掷?
+    optional zjh_base_playerInfo playerInfo = 5;  //玩家信息
 }
 //==================牌局结束==============================
 // 牌局结束信息
