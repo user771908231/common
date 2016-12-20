@@ -125,6 +125,7 @@ message zjh_req_fold {
 // 玩家弃牌 广播 bc
 message zjh_bc_fold {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人(广播给其它用户)
+    optional zjh_base_playerInfo playerInfo = 2;  //玩家信息
 }
 
 //======================跟注=======================
