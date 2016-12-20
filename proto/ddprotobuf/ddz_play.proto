@@ -38,7 +38,6 @@ enum ddz_enum_jdScore {
     DDZ_THREE = 3;
 }
 
-
 // 叫地主
 message ddz_req_jiaoDiZhu {
     optional ProtoHeader header = 1;
@@ -46,7 +45,6 @@ message ddz_req_jiaoDiZhu {
     optional bool jiao = 3; //true 叫地主 false 不叫地主
     optional ddz_enum_jdScore score = 4; // 分数（可选）：1，2，3分
 }
-
 
 // 叫地主回复
 message ddz_ack_jiaoDiZhu {

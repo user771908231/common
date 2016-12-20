@@ -133,7 +133,7 @@ func (x *EProtoId) UnmarshalJSON(data []byte) error {
 	*x = EProtoId(value)
 	return nil
 }
-func (EProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (EProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 // 玩家当前状态
 type ZjhEnumPlayerGameStatus int32
@@ -165,7 +165,7 @@ func (x *ZjhEnumPlayerGameStatus) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumPlayerGameStatus(value)
 	return nil
 }
-func (ZjhEnumPlayerGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (ZjhEnumPlayerGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 // 桌面状态
 type ZjhEnumDeskState int32
@@ -200,7 +200,7 @@ func (x *ZjhEnumDeskState) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumDeskState(value)
 	return nil
 }
-func (ZjhEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (ZjhEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
 
 // 房间玩家状态
 type ZjhEnumUserState int32
@@ -238,7 +238,7 @@ func (x *ZjhEnumUserState) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumUserState(value)
 	return nil
 }
-func (ZjhEnumUserState) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
+func (ZjhEnumUserState) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
 
 // 房间类型
 type ZjhEnumRoomType int32
@@ -276,7 +276,7 @@ func (x *ZjhEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumRoomType(value)
 	return nil
 }
-func (ZjhEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
+func (ZjhEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
 
 func init() {
 	proto.RegisterEnum("ddproto.EProtoId", EProtoId_name, EProtoId_value)
@@ -286,7 +286,7 @@ func init() {
 	proto.RegisterEnum("ddproto.ZjhEnumRoomType", ZjhEnumRoomType_name, ZjhEnumRoomType_value)
 }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor15 = []byte{
 	// 515 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x5c, 0x53, 0x4b, 0x73, 0xda, 0x30,
 	0x10, 0x0e, 0xd0, 0x26, 0x54, 0x25, 0x64, 0x11, 0xaf, 0x10, 0xfa, 0x38, 0x97, 0x43, 0x7f, 0x40,

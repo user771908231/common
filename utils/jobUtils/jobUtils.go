@@ -5,7 +5,7 @@ import (
 	"casino_common/common/Error"
 )
 
-//定义一个异步任务
+//定义一个异步任务 间隔 d time.Duration 执行一次函数f
 func DoAsynJob(d time.Duration, f func() bool) {
 	ticker := time.NewTicker(d)
 	go func() {

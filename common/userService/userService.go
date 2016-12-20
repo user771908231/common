@@ -13,8 +13,8 @@ import (
 	"casino_common/common/model/userDao"
 )
 
-var USER_REDIS_KEY_AGENT_SESSION = "agent_session"        //用户session的key
-var USER_REDIS_KEY = tableName.DBT_T_USER        //用户的key
+var USER_REDIS_KEY_AGENT_SESSION = "agent_session" //用户session的key
+var USER_REDIS_KEY = tableName.DBT_T_USER          //用户的key
 
 //得到
 func GetKey(pre string, userId uint32) string {
@@ -41,7 +41,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.Id = proto.Uint32(uint32(id))
 	user.Sex = proto.Int32(sex)
 	user.City = proto.String(city)
-	user.Diamond = proto.Int64(NEW_USER_DIAMOND_REWARD)                //新用户注册的时候,默认的钻石数量
+	user.Diamond = proto.Int64(NEW_USER_DIAMOND_REWARD) //新用户注册的时候,默认的钻石数量
 	user.NickName = proto.String(wxNickName)
 	user.UnionId = proto.String(unionId)
 	user.OpenId = proto.String(openId)
@@ -67,11 +67,11 @@ func ClearUserSeesion(userId uint32) {
 	redisUtils.Del(GetRedisUserSeesionKey(userId))
 }
 
-
 //取session的rediskey
 func GetRedisUserSeesionKey(userid uint32) string {
 	return GetKey(USER_REDIS_KEY_AGENT_SESSION, userid)
 }
+
 /**
 	根据用户id得到User的id
 	1,首先从redis中查询user信息
@@ -146,7 +146,7 @@ func CheckUserIdRightful(userId uint32) bool {
 	}
 }
 
-func GetUserByOpenId(openId  string) *ddproto.User {
+func GetUserByOpenId(openId string) *ddproto.User {
 	log.T("通过openId[%v]查询用户是否存在...", openId)
 	//2,从数据库中查询
 	user := userDao.FindUserByUnionId(openId)
@@ -159,4 +159,3 @@ func GetUserByOpenId(openId  string) *ddproto.User {
 	//判断用户是否存在,如果不存在,则返回空
 	return user
 }
-

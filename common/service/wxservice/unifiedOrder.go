@@ -16,7 +16,7 @@ const (
 	PACKEGE_INFO string = "Sign=WXPay"
 )
 
-func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apikey, deviceInfo string) (*pay.UnifiedOrderResponse, error) {
+func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apikey, deviceInfo string, tnow time.Time) (*pay.UnifiedOrderResponse, error) {
 	client := core.NewClient(appid, mchid, apikey, nil)
 	//app支付 需要这么多就行了
 	unifiedOrderRequest := new(pay.UnifiedOrderRequest)
@@ -26,7 +26,6 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 	unifiedOrderRequest.FeeType = "CNY"
 	unifiedOrderRequest.TotalFee = totalFee
 	unifiedOrderRequest.SpbillCreateIP = ip
-	tnow := time.Now()
 	unifiedOrderRequest.TimeStart = core.FormatTime(tnow)                         //订单的创建时间
 	unifiedOrderRequest.TimeExpire = core.FormatTime(tnow.Add(time.Minute * 600)) //订单失效的时间
 	unifiedOrderRequest.NotifyURL = "https://www.dongzhile.cn/"                   //回调的地址
@@ -43,6 +42,7 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 
 //回复信息
 func GetAppReqParamsByack(payack *pay.UnifiedOrderResponse, apikey string) (*ddproto.WxpayAckUnifiedorder, error) {
+
 	if payack == nil {
 		return nil, errors.New("没有得到统一下单的回复...")
 	}
@@ -72,12 +72,49 @@ func GetAppReqParamsByack(payack *pay.UnifiedOrderResponse, apikey string) (*ddp
 }
 
 //得到app需要的支付信息
-func GetAppWxpayReqParams(totalFee int64, ip string, tradeNo string, appid, mchid, apikey, deviceInfo string) (*ddproto.WxpayAckUnifiedorder, error) {
-	ack, err := UnifiedOrder(totalFee, ip, tradeNo, appid, mchid, apikey, deviceInfo)
+func GetAppWxpayReqParams(payModelId int32, mealId int32, userId uint32, ip string, deviceInfo string) (*ddproto.WxpayAckUnifiedorder, error) {
+
+	//订单，支付，等统一的时间
+	tnow := time.Now()
+
+	//支付类型
+	payModel := GetPayModel(payModelId)
+	if payModel == nil {
+		errMsg := fmt.Sprintf("玩家[%v]充值的时候失败,没有找到对应[%v]的支付方式.", userId, payModelId)
+		log.E(errMsg)
+		return nil, errors.New(errMsg)
+	}
+
+	//购买的套餐
+	meal := GetMealById(mealId)
+	if meal == nil {
+		errMsg := fmt.Sprintf("玩家[%v]充值的时候失败,没有找到对应[%v]的套餐.", userId, mealId)
+		log.E(errMsg)
+		return nil, errors.New(errMsg)
+	}
+
+	//订单号码
+	tradeNo := GetWxpayTradeNo(payModel.GetId(), userId, meal.GetId(), tnow)
+
+	//生成充值的明细，此数据是要保存到数据库的
+	_, err := NewAndSavePayDetails(userId, mealId, payModelId, tradeNo)
+	if err != nil {
+		errMsg := fmt.Sprintf("玩家充值的时候失败，生成明细的时候错误[%v]", userId, err.Error())
+		log.E(errMsg)
+		return nil, errors.New(errMsg)
+	}
+
+	//开始请求
+	ack, err := UnifiedOrder(meal.GetMoney(), ip, tradeNo, payModel.GetAppId(), payModel.GetMchId(), payModel.GetAppKey(), deviceInfo, tnow)
 	if err != nil {
 		log.E("统一下单的时候出现错误:%v", err.Error())
 		return nil, err
 	}
+
+	//返回结果之前，先要保存本地的信息
+	UpdateDetailsStatus(tradeNo, ddproto.PayEnumTradeStatus_PAY_S_WATINGPAY)
+	//增加微信回调时候的同步机制
+	InitTradeSyncStatus(tradeNo)
 	//返回结果
-	return GetAppReqParamsByack(ack, apikey)
+	return GetAppReqParamsByack(ack, payModel.GetAppKey())
 }

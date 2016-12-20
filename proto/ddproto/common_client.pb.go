@@ -17,6 +17,8 @@ It is generated from these files:
 	ddz_hall.proto
 	ddz_play.proto
 	ddz_server.proto
+	hall.proto
+	hall_data.proto
 	mahjong_desk.proto
 	mahjong_server.proto
 	zjh_base.proto
@@ -42,8 +44,13 @@ It has these top-level messages:
 	CommonBcMessage
 	CommonReqNotice
 	CommonAckNotice
+	PayBaseMeal
+	PayBasePaymodel
+	PayBaseDetails
 	WxpayReqUnifiedorder
 	WxpayAckUnifiedorder
+	WxpayReqSyncChecker
+	WxpayAckSyncChecker
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
@@ -110,6 +117,33 @@ It has these top-level messages:
 	DdzSrvUser
 	DdzSrvRoom
 	DdzSrvBak
+	HallReqEvent
+	HallAckEvent
+	HallReqMail
+	HallAckMail
+	HallReqTask
+	HallAckTask
+	HallReqGetTask
+	HallAckGetTask
+	HallReqBag
+	HallAckBag
+	HallReqUserData
+	HallReqShop
+	HallAck_Shop
+	HallReqRank
+	HallAckRank
+	HallItemEvent
+	HallItemEmail
+	HallItemBag
+	HallItemTask
+	HallUserData
+	HallItemRank
+	HallShop
+	CoinZone
+	DiamondZone
+	ExchangeZone
+	BuyZone
+	GoodsItem
 	MjBasePlayOptions
 	MjBaseCardInfo
 	MjBaseRoomTypeInfo
