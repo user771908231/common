@@ -128,6 +128,7 @@ It has these top-level messages:
 	HallReqBag
 	HallAckBag
 	HallReqUserData
+	HallAckUserData
 	HallReqShop
 	HallAck_Shop
 	HallReqRank
