@@ -133,6 +133,8 @@ It has these top-level messages:
 	HallAck_Shop
 	HallReqRank
 	HallAckRank
+	HallReqDrawLottery
+	HallAckDrawLottery
 	HallItemEvent
 	HallItemEmail
 	HallItemBag
