@@ -39,6 +39,9 @@ message zjh_base_deskInfo {
 
     optional int32 currRoundCount = 13; // 金币场: 当前局的第几轮 ?
     optional int32 totalRoundCount = 14; // 金币场: 当前局总共几轮 ?
+
+    optional int64 cuurCoinCount = 15; //当前牌桌上的总金币押注和
+    optional int64 cuurBaseValue = 16;  //牌桌当前底注
 }
 
 // 有玩家进入房间(服务器广播)
