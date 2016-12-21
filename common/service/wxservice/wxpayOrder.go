@@ -5,7 +5,7 @@ import (
 	wx "github.com/chanxuehong/wechat.v2/mch/core"
 	"casino_common/utils/numUtils"
 	"strings"
-	"casino_server/common/log"
+	"casino_common/common/log"
 	"casino_common/utils/rand"
 )
 

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"casino_server/common/log"
+	"casino_common/common/log"
 	"casino_common/proto/ddproto"
 )
 

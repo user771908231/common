@@ -6,7 +6,7 @@ import (
 	"casino_common/utils/redisUtils"
 	"errors"
 	"fmt"
-	"casino_server/common/log"
+	"casino_common/common/log"
 	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
 	"strings"
