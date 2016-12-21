@@ -83,3 +83,13 @@ message hall_ack_rank {
     optional ProtoHeader header = 1;
     repeated hall_item_rank rankList = 2;
 }
+
+//抽奖
+message hall_req_draw_lottery {
+    optional ProtoHeader header = 1;
+}
+
+message hall_ack_draw_lottery {
+    optional ProtoHeader header = 1;
+    optional int32 lotteryId = 2;
+}
