@@ -12,6 +12,9 @@ enum hall_enum_protoId {
 
     HALL_PID_USER_DATA = 9; //请求个人信息
     HALL_PID_USER_DATA_ACK = 10; //回复个人信息
+
+    HALL_PID_DRAW_LOTTERY = 11; //请求转盘抽奖
+    HALL_PID_DRAW_LOTTERY_ACK = 12; //回复转盘抽奖
 }
 //单个活动
 message hall_item_event {
