@@ -56,8 +56,13 @@ message hall_ack_bag {
 //个人信息
 message hall_req_userData {
     optional ProtoHeader header = 1;
+}
+
+message hall_ack_userData {
+    optional ProtoHeader header = 1;
     optional hall_userData user = 2;
 }
+
 
 //商城
 message hall_req_shop {
