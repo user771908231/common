@@ -44,5 +44,7 @@ func setOnlienData(d *ddproto.AwardMOnline) {
 
 //处理奖励
 func DoAwardOnline(userId uint32, a gate.Agent) error {
+	return nil
+
 
 }
