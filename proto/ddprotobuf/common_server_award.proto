@@ -14,3 +14,15 @@ message Taward {
     optional uint32 userId = 4; //获奖用户
     optional string memo = 5; //备注
 }
+
+//在线奖励
+message award_m_online {
+    optional uint32 userId = 1;
+    optional int64 capital = 2; //本金
+    optional int64 rate = 3; //抽成,可能不会使用
+    optional string beginTime = 4; //开始时间
+    optional int64 durationSec = 5; //倒计时间隔
+}
+
+//转盘奖励
+//message award_m_

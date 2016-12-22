@@ -27,7 +27,6 @@ type UserLockPool struct {
 	pool map[uint32]*UserLock
 }
 
-
 /**
 	通过UserId活的用户锁
  */
@@ -36,7 +35,6 @@ func (u *UserLockPool) GetUserLockByUserId(userId uint32) *UserLock {
 	result := u.pool[userId]
 	return result
 }
-
 
 /**
 	为用户锁池中增加锁

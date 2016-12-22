@@ -30,7 +30,7 @@ type GameSession struct {
 func (m *GameSession) Reset()                    { *m = GameSession{} }
 func (m *GameSession) String() string            { return proto.CompactTextString(m) }
 func (*GameSession) ProtoMessage()               {}
-func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
+func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
 
 func (m *GameSession) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -113,7 +113,7 @@ type CommonSrvGameUser struct {
 func (m *CommonSrvGameUser) Reset()                    { *m = CommonSrvGameUser{} }
 func (m *CommonSrvGameUser) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvGameUser) ProtoMessage()               {}
-func (*CommonSrvGameUser) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{1} }
+func (*CommonSrvGameUser) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{1} }
 
 func (m *CommonSrvGameUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -208,7 +208,7 @@ type CommonSrvGameDesk struct {
 func (m *CommonSrvGameDesk) Reset()                    { *m = CommonSrvGameDesk{} }
 func (m *CommonSrvGameDesk) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvGameDesk) ProtoMessage()               {}
-func (*CommonSrvGameDesk) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{2} }
+func (*CommonSrvGameDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{2} }
 
 func (m *CommonSrvGameDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -321,7 +321,7 @@ func init() {
 	proto.RegisterType((*CommonSrvGameDesk)(nil), "ddproto.common_srv_game_desk")
 }
 
-var fileDescriptor2 = []byte{
+var fileDescriptor3 = []byte{
 	// 388 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x6c, 0x92, 0xcb, 0x4e, 0xc2, 0x40,
 	0x14, 0x86, 0x53, 0xa0, 0x94, 0x0e, 0x57, 0xab, 0xd1, 0x59, 0x1a, 0x56, 0xae, 0x7c, 0x07, 0xa9,

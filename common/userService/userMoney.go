@@ -36,12 +36,12 @@ func UpdateUserMoney(userId uint32) {
 }
 
 func GetUserMoney(userId uint32, money string) int64 {
-	balance := redisUtils.GetInt64(GetKey(money, userId))
+	balance := redisUtils.GetInt64(redisUtils.K(money, userId))
 	return balance
 }
 
 func SetUserMoney(userId uint32, money string, diamond int64) {
-	redisUtils.SetInt64(GetKey(money, userId), diamond)
+	redisUtils.SetInt64(redisUtils.K(money, userId), diamond)
 }
 
 //获取用户的钻石
@@ -82,7 +82,7 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 func incrUser(userid uint32, key string, d int64) (int64, error) {
 	log.T("为用户[%v]增加钻石[%v]", userid, d)
 	//1,增加余额
-	remain := redisUtils.INCRBY(GetKey(key, userid), d)
+	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
 	UpdateUserMoney(userid)
 	//3,返回值
@@ -91,7 +91,7 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 
 //减少用户的货币
 func decrUser(userid uint32, key string, d int64) (int64, error) {
-	remain := redisUtils.DECRBY(GetKey(key, userid), d)
+	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if remain < 0 {
 		log.E("用户[%v]的余额diamond不足,减少的时候失败")
 		incrUser(userid, key, d)

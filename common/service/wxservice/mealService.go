@@ -18,7 +18,8 @@ func GetMealById(id int32) *ddproto.PayBaseMeal {
 }
 
 func GetPayModel(id int32) *ddproto.PayBasePaymodel {
-	return getDefaultPayModel()
+	//return getDefaultPayModel()
+	return getDDZPayModel()
 }
 
 //返回一个默认的支付方式
@@ -28,6 +29,15 @@ func getDefaultPayModel() *ddproto.PayBasePaymodel {
 		AppId: proto.String(WXConfig.AppId),
 		MchId: proto.String(WXConfig.MchId),
 		AppKey:proto.String(WXConfig.ApiKey)}
+	return ret
+}
+
+func getDDZPayModel() *ddproto.PayBasePaymodel {
+	ret := &ddproto.PayBasePaymodel{
+		Id:    proto.Int32(1),
+		AppId: proto.String("wx968f1e52358d6a29"),
+		MchId: proto.String("1426502002"),
+		AppKey:proto.String("SjDDze834Or9Lndw3FeNoj4IqPoda330")}
 	return ret
 }
 

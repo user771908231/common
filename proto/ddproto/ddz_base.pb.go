@@ -226,7 +226,7 @@ func (x *DdzEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumProtoId(value)
 	return nil
 }
-func (DdzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
+func (DdzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 type DdzEnumErrorCode int32
 
@@ -276,7 +276,7 @@ func (x *DdzEnumErrorCode) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumErrorCode(value)
 	return nil
 }
-func (DdzEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
+func (DdzEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
 
 // 牌型
 type DdzEnumPaiType int32
@@ -353,7 +353,7 @@ func (x *DdzEnumPaiType) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumPaiType(value)
 	return nil
 }
-func (DdzEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
+func (DdzEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
 
 // 轮到玩家操作时：可执行何种操作
 type DdzEnumActType int32
@@ -403,7 +403,7 @@ func (x *DdzEnumActType) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumActType(value)
 	return nil
 }
-func (DdzEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
+func (DdzEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{3} }
 
 type DdzEnumGameStatus int32
 
@@ -446,7 +446,7 @@ func (x *DdzEnumGameStatus) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumGameStatus(value)
 	return nil
 }
-func (DdzEnumGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{4} }
+func (DdzEnumGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{4} }
 
 // 玩家当前状态
 type DdzEnumPlayerStatus int32
@@ -559,7 +559,7 @@ func (x *DdzEnumPlayerStatus) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumPlayerStatus(value)
 	return nil
 }
-func (DdzEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{5} }
+func (DdzEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{5} }
 
 type DdzEnumRoomType int32
 
@@ -596,7 +596,7 @@ func (x *DdzEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumRoomType(value)
 	return nil
 }
-func (DdzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{6} }
+func (DdzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{6} }
 
 type DdzEnumEnterType int32
 
@@ -630,7 +630,7 @@ func (x *DdzEnumEnterType) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumEnterType(value)
 	return nil
 }
-func (DdzEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{7} }
+func (DdzEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{7} }
 
 type DdzEnumCoinRoomLevel int32
 
@@ -667,7 +667,7 @@ func (x *DdzEnumCoinRoomLevel) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumCoinRoomLevel(value)
 	return nil
 }
-func (DdzEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{8} }
+func (DdzEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{8} }
 
 type DdzEnumDeskGameStatus int32
 
@@ -710,7 +710,7 @@ func (x *DdzEnumDeskGameStatus) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumDeskGameStatus(value)
 	return nil
 }
-func (DdzEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{9} }
+func (DdzEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{9} }
 
 type DdzBaseRoomTypeInfo struct {
 	RoomType         *DdzEnumRoomType `protobuf:"varint,1,opt,name=roomType,enum=ddproto.DdzEnumRoomType" json:"roomType,omitempty"`
@@ -724,7 +724,7 @@ type DdzBaseRoomTypeInfo struct {
 func (m *DdzBaseRoomTypeInfo) Reset()                    { *m = DdzBaseRoomTypeInfo{} }
 func (m *DdzBaseRoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*DdzBaseRoomTypeInfo) ProtoMessage()               {}
-func (*DdzBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
+func (*DdzBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 func (m *DdzBaseRoomTypeInfo) GetRoomType() DdzEnumRoomType {
 	if m != nil && m.RoomType != nil {
@@ -784,7 +784,7 @@ type DdzBasePlayerInfo struct {
 func (m *DdzBasePlayerInfo) Reset()                    { *m = DdzBasePlayerInfo{} }
 func (m *DdzBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*DdzBasePlayerInfo) ProtoMessage()               {}
-func (*DdzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
+func (*DdzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
 
 func (m *DdzBasePlayerInfo) GetIsDiZhu() bool {
 	if m != nil && m.IsDiZhu != nil {
@@ -920,7 +920,7 @@ type DdzBaseDeskInfo struct {
 func (m *DdzBaseDeskInfo) Reset()                    { *m = DdzBaseDeskInfo{} }
 func (m *DdzBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*DdzBaseDeskInfo) ProtoMessage()               {}
-func (*DdzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
+func (*DdzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
 
 func (m *DdzBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -1043,7 +1043,7 @@ func init() {
 	proto.RegisterEnum("ddproto.DdzEnumDeskGameStatus", DdzEnumDeskGameStatus_name, DdzEnumDeskGameStatus_value)
 }
 
-var fileDescriptor6 = []byte{
+var fileDescriptor7 = []byte{
 	// 1765 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x57, 0xeb, 0x72, 0xdb, 0xc6,
 	0x15, 0x36, 0x49, 0x49, 0x24, 0x97, 0x94, 0xb4, 0x02, 0x25, 0x0b, 0x92, 0xe2, 0x4b, 0x94, 0x5e,

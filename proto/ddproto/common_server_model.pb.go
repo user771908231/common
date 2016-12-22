@@ -37,7 +37,7 @@ type User struct {
 func (m *User) Reset()                    { *m = User{} }
 func (m *User) String() string            { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()               {}
-func (*User) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*User) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *User) GetRoomCard() int64 {
 	if m != nil && m.RoomCard != nil {
@@ -171,7 +171,7 @@ type TNotice struct {
 func (m *TNotice) Reset()                    { *m = TNotice{} }
 func (m *TNotice) String() string            { return proto.CompactTextString(m) }
 func (*TNotice) ProtoMessage()               {}
-func (*TNotice) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*TNotice) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 func (m *TNotice) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -220,7 +220,7 @@ func init() {
 	proto.RegisterType((*TNotice)(nil), "ddproto.TNotice")
 }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor5 = []byte{
 	// 322 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x54, 0x90, 0xcd, 0x52, 0xc2, 0x40,
 	0x10, 0x84, 0x0b, 0x12, 0x08, 0x19, 0xfe, 0xd7, 0x9f, 0x5a, 0x3d, 0x59, 0x9c, 0x38, 0x79, 0xf0,

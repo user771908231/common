@@ -7,6 +7,7 @@ Package ddproto is a generated protocol buffer package.
 
 It is generated from these files:
 	common_client.proto
+	common_client_award.proto
 	common_client_pay.proto
 	common_server.proto
 	common_server_award.proto
@@ -44,6 +45,8 @@ It has these top-level messages:
 	CommonBcMessage
 	CommonReqNotice
 	CommonAckNotice
+	AwardReqOnline
+	WardAckOnline
 	PayBaseMeal
 	PayBasePaymodel
 	PayBaseDetails
@@ -55,6 +58,7 @@ It has these top-level messages:
 	CommonSrvGameUser
 	CommonSrvGameDesk
 	Taward
+	AwardMOnline
 	User
 	TNotice
 	CommonSrvPokerPai

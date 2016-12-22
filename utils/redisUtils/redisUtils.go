@@ -4,6 +4,8 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/utils/redis"
 	"casino_common/common/log"
+	"strings"
+	"casino_common/utils/numUtils"
 )
 
 //在需要的地方,需要自己关闭连接
@@ -115,4 +117,11 @@ func DECRBY(key string, i int64) int64 {
 	} else {
 		return value.(int64)
 	}
+}
+
+//浅醉加上userID 的redis-key
+func K(pre string, userId uint32) string {
+	userIdStr, _ := numUtils.Uint2String(userId)
+	result := strings.Join([]string{pre, userIdStr}, "_")
+	return result
 }

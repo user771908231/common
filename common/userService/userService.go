@@ -1,7 +1,6 @@
 package userService
 
 import (
-	"strings"
 	"casino_common/utils/db"
 	"casino_common/common/log"
 	"casino_common/utils/numUtils"
@@ -15,13 +14,6 @@ import (
 
 var USER_REDIS_KEY_AGENT_SESSION = "agent_session" //用户session的key
 var USER_REDIS_KEY = tableName.DBT_T_USER          //用户的key
-
-//得到
-func GetKey(pre string, userId uint32) string {
-	userIdStr, _ := numUtils.Uint2String(userId)
-	result := strings.Join([]string{pre, userIdStr}, "_")
-	return result
-}
 
 /**
 	1,create 一个user
@@ -60,7 +52,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 }
 
 func GetRedisUserKey(id uint32) string {
-	return GetKey(USER_REDIS_KEY, id)
+	return redisUtils.K(USER_REDIS_KEY, id)
 }
 
 func ClearUserSeesion(userId uint32) {
@@ -69,7 +61,7 @@ func ClearUserSeesion(userId uint32) {
 
 //取session的rediskey
 func GetRedisUserSeesionKey(userid uint32) string {
-	return GetKey(USER_REDIS_KEY_AGENT_SESSION, userid)
+	return redisUtils.K(USER_REDIS_KEY_AGENT_SESSION, userid)
 }
 
 /**
