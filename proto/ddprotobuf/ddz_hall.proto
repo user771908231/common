@@ -66,5 +66,6 @@ message ddz_req_enterDesk {
 
 message ddz_ack_enterDesk {
     optional ProtoHeader header = 1;
+    optional bool isContinuous = 2; //是否是连续游戏 金币场使用
 }
 
