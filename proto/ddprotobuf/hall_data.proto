@@ -15,7 +15,29 @@ enum hall_enum_protoId {
 
     HALL_PID_DRAW_LOTTERY = 11; //请求转盘抽奖
     HALL_PID_DRAW_LOTTERY_ACK = 12; //回复转盘抽奖
+
+    HALL_PID_DS_LOTTERY_ITEMS_ACK = 13; //回复转盘签到奖励物品信息
 }
+
+
+
+// 奖励物品信息
+message hall_lottery_item {
+    optional int32 id = 1;
+    optional string name = 2;
+}
+
+//// 转盘奖励物品信息
+//message hall_dial_lottery_item {
+//    optional int32 id = 1;
+//}
+//
+//// 签到奖励物品信息
+//message hall_sign_lottery_item {
+//    optional int32 id = 1;
+//}
+
+
 //单个活动
 message hall_item_event {
     optional int32 id = 1; // 活动的Id
