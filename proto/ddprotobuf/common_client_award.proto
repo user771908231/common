@@ -9,4 +9,6 @@ message award_req_online {
 message ward_ack_online {
     optional int64 coin = 1; //奖励金币的数量
     optional int64 duration = 2; //下次可以领取的时间
+    optional int64 changeCoin = 3; //增加的金币
+
 }

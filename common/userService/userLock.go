@@ -30,8 +30,18 @@ type UserLockPool struct {
 /**
 	通过UserId活的用户锁
  */
+
+var lock *sync.Mutex = &sync.Mutex{} //全居锁，对性能有损害
+
 func (u *UserLockPool) GetUserLockByUserId(userId uint32) *UserLock {
-	log.T("用过userId[%v]活的锁,all【%v】", userId, u.pool)
+	if u.pool[userId] == nil {
+		lock.Lock()
+		defer lock.Unlock()
+		if u.pool[userId] == nil {
+			u.AddUserLockByUserId(userId)
+		}
+	}
+	log.T("用过userId[%v]获得锁,all【%v】", userId, u.pool)
 	result := u.pool[userId]
 	return result
 }
