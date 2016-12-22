@@ -105,6 +105,7 @@ message zjh_bc_overTurn {
     optional bool isXuepin = 3;  //是否是血拼
     optional int32 time = 4; // 剩余操作时间
     optional int32 totalTime = 5; // 总共的操作时间
+    optional zjh_bc_deskState deskState = 6;  //牌桌状态
 }
 
 //======================看牌===============================
@@ -142,6 +143,7 @@ message zjh_bc_call {
     optional int64 chips = 2; // 跟注的筹码数
     optional bool isXuepin = 3;  //是否是血拼的跟注
     optional zjh_base_playerInfo playerInfo = 4;  //玩家信息
+    optional zjh_bc_deskState deskState = 6;  //牌桌状态
 }
 
 //=====================血拼===========================
@@ -154,6 +156,7 @@ message zjh_bc_bloodFight {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起血拼的用户)
     optional int64 chips = 2; // 血拼的筹码数
     optional zjh_base_playerInfo playerInfo = 3;  //玩家信息
+    optional zjh_bc_deskState deskState = 4;  //牌桌状态
 }
 //血拼结束广播
 message zjh_bc_bloodEnd {
@@ -171,6 +174,7 @@ message zjh_bc_raiseAck {
     optional ProtoHeader header = 1;    // header 中传 userId , 操作人 (广播给其它用户)(发起的用户)
     optional int64 chips = 2; // 加注的筹码数
     optional zjh_base_playerInfo playerInfo = 3;  //玩家信息
+    optional zjh_bc_deskState deskState = 4;  //牌桌状态
 }
 
 //===================比牌、孤注一掷===================
@@ -186,6 +190,7 @@ message zjh_bc_compare {
     optional bool isCompareWin = 3; // userId 是否比赢了 ?
     optional bool isAllIn = 4;  // 是否孤注一掷?
     optional zjh_base_playerInfo playerInfo = 5;  //玩家信息
+    optional zjh_bc_deskState deskState = 6;  //牌桌状态
 }
 //==================牌局结束==============================
 // 牌局结束信息
@@ -193,4 +198,11 @@ message zjh_bc_gameEnd {
     optional ProtoHeader header = 1;
     optional uint32 winer = 2;  //赢家的userId
     optional int64 chip = 3;  //赢得的筹码数
+}
+
+//=================牌桌当前状态===================
+message zjh_bc_deskState {
+    optional int64 cuurBaseValue = 1;  //当前底注
+    optional int64 coinCount = 2;  //牌桌上的金币总额
+    optional int32 cuurCircle = 3;  //当前牌桌圈数
 }
