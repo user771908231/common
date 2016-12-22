@@ -13,6 +13,7 @@ It is generated from these files:
 	common_server_award.proto
 	common_server_model.proto
 	common_server_poker.proto
+	common_server_task.proto
 	ddz_base.proto
 	ddz_desk.proto
 	ddz_hall.proto
@@ -62,7 +63,9 @@ It has these top-level messages:
 	User
 	TNotice
 	TGameCounts
+	TUserTask
 	CommonSrvPokerPai
+	TTask
 	DdzBaseRoomTypeInfo
 	DdzBasePlayerInfo
 	DdzBaseDeskInfo

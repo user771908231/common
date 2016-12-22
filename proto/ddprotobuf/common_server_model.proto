@@ -46,3 +46,11 @@ message TGameCounts {
     optional int32 zjhWinCount = 10;
 }
 
+//玩家的任务
+message TUserTask {
+    optional int32 id = 1; //
+    optional uint32 userId = 2; //
+    optional int32 taskId = 3; //
+    optional int32 awardId = 4; //奖励的记录id，如果奖励的记录id <1000 表示没有领取奖励
+}
+
