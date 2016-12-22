@@ -1,4 +1,8 @@
 package ddproto;
+
+//对应mgo 中的表单
+
+//用户的资
 message User {
     optional int64 RoomCard = 1;
     optional string pwd = 2; //密码
@@ -18,6 +22,7 @@ message User {
     optional int32 sex = 16;
 }
 
+//通知公告
 message TNotice {
     optional int32 id = 1; //公告的id
     optional int32 noticeType = 2; //公告的类型
@@ -25,5 +30,19 @@ message TNotice {
     optional string noticeContent = 4; //公告的内容
     optional string noticeMemo = 5; //公告的备注
     repeated string fileds = 6; //   公告内容
+}
+
+//玩家游戏场次统计
+message TGameCounts {
+    optional int32 id = 1; //
+    optional uint32 userId = 2; //
+    optional int32 ddzCount = 3;
+    optional int32 ddzWinCount = 4;
+    optional int32 mjCount = 5;
+    optional int32 mjWinCount = 6;
+    optional int32 thCount = 7;
+    optional int32 thWinWinCount = 8;
+    optional int32 zjhCount = 9;
+    optional int32 zjhWinCount = 10;
 }
 
