@@ -20,6 +20,9 @@ enum hall_enum_protoId {
 
     HALL_PID_SIGN_LOTTERY = 14; //请求签到奖励
     HALL_PID_SIGN_LOTTERY_ACK = 15; //回复签到奖励
+
+    HALL_PID_ONLINEWARD_REQ = 16; //在线奖励
+    HALL_PID_ONLINEWARD_ACK = 17; //在线奖励 回复
 }
 
 

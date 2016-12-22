@@ -54,6 +54,7 @@ message zjh_srv_user {
     optional bool isWatch = 9; //是否已看牌
     optional bool isOnline = 10; //是否在线
     optional bool isLost = 11; //是否比牌输了
+    optional int32 index = 12;  //所在牌桌的索引
 }
 
 //desk 的信息
@@ -73,6 +74,8 @@ message zjh_srv_desk {
     optional int32 gamerNum = 13;  //当前牌桌上的玩家数
     optional int32 circleNo = 14; //当前是第几圈
     optional int64 xuepinBaseValue = 15;  //血拼底注
+    optional int64 coinCount = 16;  //当前牌桌底注总和
+    optional int32 xuepinStartIndex = 17; //血拼开始的位置索引
 }
 
 //room 的信息
