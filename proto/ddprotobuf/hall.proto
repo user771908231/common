@@ -14,6 +14,7 @@ message hall_ack_event {
     repeated hall_item_event eventList = 2;
 }
 
+
 // 邮件
 message hall_req_mail {
     optional ProtoHeader header = 1;
@@ -24,6 +25,7 @@ message hall_ack_mail {
     repeated hall_item_email emailList = 2;
 }
 
+
 // 任务
 message hall_req_task {
     optional ProtoHeader header = 1;
@@ -33,6 +35,8 @@ message hall_ack_task {
     optional ProtoHeader header = 1;
     repeated hall_item_task taskList = 2;
 }
+
+
 //领取任务
 message hall_req_getTask {
     optional ProtoHeader header = 1;
@@ -43,6 +47,7 @@ message hall_ack_getTask {
     optional int32 finishedNum = 2; //已完成数量
 }
 
+
 // 背包
 message hall_req_bag {
     optional ProtoHeader header = 1;
@@ -52,6 +57,7 @@ message hall_ack_bag {
     optional ProtoHeader header = 1;
     repeated hall_item_bag bagItemList = 2;
 }
+
 
 //个人信息
 message hall_req_userData {
@@ -74,6 +80,7 @@ message hall_ack_Shop {
     optional hall_shop shopInfo = 2;
 }
 
+
 //排行
 message hall_req_rank {
     optional ProtoHeader header = 1;
@@ -84,7 +91,16 @@ message hall_ack_rank {
     repeated hall_item_rank rankList = 2;
 }
 
-//抽奖
+
+// 转盘签到奖励物品信息
+message hall_ack_ds_lottery_items {
+    optional ProtoHeader header = 1;
+    repeated hall_lottery_item dialItems = 2; //转盘奖励物品
+    repeated hall_lottery_item SignItems = 3; //签到奖励物品
+}
+
+
+//抽奖动作
 message hall_req_draw_lottery {
     optional ProtoHeader header = 1;
 }
