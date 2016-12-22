@@ -17,6 +17,9 @@ enum hall_enum_protoId {
     HALL_PID_DRAW_LOTTERY_ACK = 12; //回复转盘抽奖
 
     HALL_PID_DS_LOTTERY_ITEMS_ACK = 13; //回复转盘签到奖励物品信息
+
+    HALL_PID_SIGN_LOTTERY = 14; //请求签到奖励
+    HALL_PID_SIGN_LOTTERY_ACK = 15; //回复签到奖励
 }
 
 
