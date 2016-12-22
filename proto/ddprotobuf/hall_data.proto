@@ -17,8 +17,12 @@ enum hall_enum_protoId {
     HALL_PID_DRAW_LOTTERY_ACK = 12; //回复转盘抽奖
 
     HALL_PID_DS_LOTTERY_ITEMS_ACK = 13; //回复转盘签到奖励物品信息
-    HALL_PID_ONLINEWARD_REQ = 14; //在线奖励
-    HALL_PID_ONLINEWARD_ACK = 15; //在线奖励 回复
+
+    HALL_PID_SIGN_LOTTERY = 14; //请求签到奖励
+    HALL_PID_SIGN_LOTTERY_ACK = 15; //回复签到奖励
+
+    HALL_PID_ONLINEWARD_REQ = 16; //在线奖励
+    HALL_PID_ONLINEWARD_ACK = 17; //在线奖励 回复
 }
 
 
@@ -29,15 +33,12 @@ message hall_lottery_item {
     optional string name = 2;
 }
 
-//// 转盘奖励物品信息
-//message hall_dial_lottery_item {
-//    optional int32 id = 1;
-//}
-//
-//// 签到奖励物品信息
-//message hall_sign_lottery_item {
-//    optional int32 id = 1;
-//}
+//签到信息与奖励物品
+message hall_sign_lottery_info {
+    repeated hall_lottery_item signItems = 1; //签到奖励物品
+    optional int32 totalDays = 2; //共签到多少天
+    optional int32 continuousDays = 3; //连续签到天数
+}
 
 
 //单个活动

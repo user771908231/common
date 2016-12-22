@@ -55,11 +55,13 @@ message ddz_req_enterDesk {
     optional ProtoHeader header = 1;
     optional int32 matchId = 2;
     optional int32 tableId = 3;
-    optional string PassWord = 4; // 房间密码
+    optional string PassWord = 4; // 房间密码 金币场不使用
     optional uint32 userId = 5; // 请求的userId
 
     optional ddz_enum_enterType enterType = 6; // 进入的类型
     optional ddz_enum_coinRoomLevel coinRoomLevel = 7; //金币场的级别 朋友桌不使用
+
+    optional bool isContinuous = 8; //是否是连续游戏 金币场使用
 }
 
 message ddz_ack_enterDesk {
