@@ -8,7 +8,7 @@ package ddproto;
 message hall_req_event {
     optional ProtoHeader header = 1;
 }
-
+//活动列表ACK
 message hall_ack_event {
     optional ProtoHeader header = 1;
     repeated hall_item_event eventList = 2;
