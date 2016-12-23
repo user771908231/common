@@ -173,6 +173,10 @@ enum ddz_enum_playerStatus {
     JDJIAO_NOACT = 25; //经典叫分阶段没操作
     JDJIAO_JIAO = 26; //经典叫分阶段已叫
     JDJIAO_BUJIAO = 27; //经典叫分阶段不叫
+
+    SHOWPOKER_REAY = 28; //明牌准备
+    SHOWPOKER_ENTERDESK = 29; //明牌进入房间
+    NORMAL_SHOWPAI = 30; //发牌阶段明牌
 }
 
 enum ddz_enum_roomType {
