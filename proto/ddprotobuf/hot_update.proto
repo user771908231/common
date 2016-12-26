@@ -1,0 +1,61 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+
+package ddproto;
+option optimize_for = LITE_RUNTIME;
+
+message VersionInfo {
+    optional int32 fileId = 1; //资源文件id(可顺序编号)
+    optional int32 fileVer = 2; //资源文件版本号
+}
+
+message AssetInfo {
+    optional int32 fileId = 1; //资源文件id(可顺序编号)
+    optional int32 fileVer = 2; //资源文件版本号
+    optional string filePath = 3; //下载文件的相对路径
+    optional int32 fileSize = 4; //文件大小(字节)
+    optional string md5 = 5; //文件的md5
+    optional bool isCompress = 6; //是否需解压缩
+}
+
+// 获取资源文件的最新版本信息
+message hotupdate_req_versionInfo {
+    optional ProtoHeader header = 1;
+    optional int32 clientAppId = 2; //客户端App标识
+    repeated int32 downloadGameId = 3; //已下载的独立游戏(麻将、斗地主...)
+}
+
+message hotupdate_ack_versionInfo {
+    optional ProtoHeader header = 1;
+    repeated VersionInfo version = 2;
+}
+
+// 获取资源文件的详细信息
+message hotupdate_req_assetsInfo {
+    optional ProtoHeader header = 1;
+    optional int32 clientAppId = 2; //客户端App标识
+    repeated int32 fileIds = 3; //需要拉取的文件id列表
+}
+
+message hotupdate_ack_assetsInfo {
+    optional ProtoHeader header = 1;
+    optional string assetHost = 2; //资源下载的服务器(如:http://www.myhost.com/update/)
+    repeated AssetInfo assets = 3; //
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+// 获取某个独立游戏的下载信息
+message hotupdate_req_gameAssetsInfo {
+    optional ProtoHeader header = 1;
+    optional int32 clientAppId = 2; //客户端App标识
+    optional int32 gameId = 3;
+}
+
+message hotupdate_ack_gameAssetsInfo {
+    optional ProtoHeader header = 1;
+    optional string assetHost = 2; //资源下载的服务器(如:http://www.myhost.com/update/)
+    repeated AssetInfo assets = 3;
+}
+
