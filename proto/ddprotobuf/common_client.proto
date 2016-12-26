@@ -16,7 +16,14 @@ message Heartbeat {
 message ServerInfo {
     optional string ip = 1;
     optional int32 port = 2;
-    optional int32 status = 3; //0开启 1关闭
+    optional int32 releaseTag = 3; //发布版本标志
+    optional int32 currVersion = 4; //服务器的当前最新版本号
+    optional int32 isUpdate = 5; //0=无需升级 1=可选升级 2=强制升级
+    optional string downloadUrl = 6; //下载地址
+    optional string versionInfo = 7; //版本升级描述信息
+    optional int32 isMaintain = 8; //是否停服维护 1=停服维护中
+    optional string maintainMsg = 9; //维护提示消息
+    optional int32 status = 10; //0开启 1关闭
 }
 
 // 接入服务器
@@ -31,14 +38,8 @@ message QuickConn {
 
 message AckQuickConn {
     optional ProtoHeader header = 1;
-    optional ServerInfo gameServer = 2; //游戏服务器
-    optional int32 releaseTag = 3; //发布版本标志
-    optional int32 currVersion = 4; //服务器的当前最新版本号
-    optional int32 isUpdate = 5; //0=无需升级 1=可选升级 2=强制升级
-    optional string downloadUrl = 6; //下载地址
-    optional string versionInfo = 7; //版本升级描述信息
-    optional int32 isMaintain = 8; //是否停服维护 1=停服维护中
-    optional string maintainMsg = 9; //维护提示消息
+    repeated ServerInfo gameServer = 2; //游戏服务器
+    optional int32 serverListVersion = 3; //游戏服务器的列表是否需要更新
 }
 
 // 微信信息
