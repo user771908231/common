@@ -137,8 +137,9 @@ It has these top-level messages:
 	HallAckBag
 	HallReqUserData
 	HallAckUserData
-	HallReqShop
-	HallAck_Shop
+	HallReqGoodsList
+	HallAckGoodsList
+	HallGoodsItemMsg
 	HallReqRank
 	HallAckRank
 	HallAckDsLotteryItems
@@ -154,7 +155,6 @@ It has these top-level messages:
 	HallItemTask
 	HallUserData
 	HallItemRank
-	HallShop
 	CoinZone
 	DiamondZone
 	ExchangeZone

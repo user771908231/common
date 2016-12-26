@@ -70,16 +70,35 @@ message hall_ack_userData {
 }
 
 
-//商城
-message hall_req_shop {
+//======================商城商品列表======================
+//商品类型
+enum hall_enum_goods_type {
+    TYPE_COIN = 1; //充值金币
+    TYPE_DIAMOND = 2; //充值钻石
+    TYPE_EXCHANGE = 3; //兑换专区
+    TYPE_BUY = 4; //购买道具
+    TYPE_VIP = 5; //充值会员
+}
+//商品列表Req
+message hall_req_goods_list {
     optional ProtoHeader header = 1;
+    optional hall_enum_goods_type goods_type = 2;
+}
+//商品列表Ack
+message hall_ack_goods_list {
+     optional ProtoHeader header = 1;
+     optional hall_enum_goods_type goods_type = 2;
+     repeated hall_goods_item_msg items = 3; //  物品信息
 }
 
-message hall_ack_Shop {
-    optional ProtoHeader header = 1;
-    optional hall_shop shopInfo = 2;
+//单个商品信息
+message hall_goods_item_msg {
+    optional int32 goods_id = 1; //商品id
+    optional string name = 2; //  物品名称
+    optional int32 price = 3;  //价格--例：1个钻石
+    optional int32 value = 4;  //价值--例：兑换1000金币
+    optional string discount = 5; //折扣
 }
-
 
 //排行
 message hall_req_rank {
