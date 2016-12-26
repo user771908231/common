@@ -29,7 +29,6 @@ enum hall_enum_protoId {
 
     HALL_PID_GOODS_LIST_REQ = 20;  //商品列表请求
     HALL_PID_GOODS_LIST_ACK = 21;  //商品列表ACK
-
 }
 
 // 奖励物品信息
@@ -144,8 +143,6 @@ message hall_item_rank {
     optional int32 userId = 2; //用户
     optional string rankInfo = 3; //排行项目
 }
-
-
 
 //金币专区
 message CoinZone {
