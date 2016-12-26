@@ -141,19 +141,7 @@ message hall_item_rank {
     optional string rankInfo = 3; //排行项目
 }
 
-//商城
-message hall_shop {
-    optional hall_enum_shopType type = 1; //交易类型
-}
 
-//交易类型
-enum hall_enum_shopType {
-    TYPE_COIN = 1; //充值金币
-    TYPE_DIAMOND = 2; //充值钻石
-    TYPE_EXCHANGE = 3; //兑换专区
-    TYPE_BUY = 4; //购买道具
-    TYPE_VIP = 5; //充值会员
-}
 
 //金币专区
 message CoinZone {
