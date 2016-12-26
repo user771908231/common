@@ -209,6 +209,10 @@ message ddz_base_roomTypeInfo {
     optional int64 capMax = 3; // 封顶，如：2炸、3炸、4炸、5炸
     optional int64 baseValue = 4; // 底分
     optional bool isJiaoFen = 5; // 是否叫分（1分、2分、3分）
+
+    optional int64 userMinCoin = 6; //玩家进入房间的下限金额 金币场用
+    optional int64 userMaxCoin = 7; //玩家进入房间的上限金额 金币场用
+    optional int64 coinTicket = 8; //房费 金币场用
 }
 
 message ddz_base_playerInfo {
