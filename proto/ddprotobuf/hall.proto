@@ -95,10 +95,9 @@ message hall_ack_goods_list {
 message hall_goods_item_msg {
     optional int32 goods_id = 1; //商品id
     optional string name = 2; //  物品名称
-    optional int32 coin = 3;  //  金币
-    optional int32 diamond = 4; //  钻石
-    optional int32 money = 5;  //  金钱
-    optional string discount = 6; //  折扣
+    optional int32 price = 3;  //价格--例：1个钻石
+    optional int32 value = 4;  //价值--例：兑换1000金币
+    optional string discount = 5; //折扣
 }
 
 //排行
