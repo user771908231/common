@@ -51,6 +51,10 @@ message ddz_srv_desk {
     optional int32 totalPlayCount = 26; // 朋友桌: 总共几局
     optional int32 playerNum = 27; //玩家数量
     optional int32 timeOutSecond = 28; //超时时间限制 秒
+
+    optional int64 userMinCoin = 29; //玩家进入房间的下限金额 金币场用
+    optional int64 userMaxCoin = 30; //玩家进入房间的上限金额 金币场用
+    optional int64 coinTicket = 31; //房费 金币场用
 }
 
 //游戏数据

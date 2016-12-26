@@ -76,6 +76,12 @@ enum ddz_enum_protoId {
    DDZ_PID_GAME_ENTERAGENTMODE_ACK = 45; //进入代理托管 回复
    DDZ_PID_GAME_QUITAGENTMODE = 46; //退出代理托管
    DDZ_PID_GAME_QUITAGENTMODE_ACK = 47; //退出代理托管 回复
+
+    HALL_PID_ONLINEWARD_REQ = 48; //在线奖励
+    HALL_PID_ONLINEWARD_ACK = 49; //在线奖励 回复
+
+//    HALL_PID_REDBAG_REQ = 50; //红包
+//    HALL_PID_REDBAG_ACK = 51; //红包 回复
 }
 
 enum ddz_enum_errorCode {
@@ -174,9 +180,8 @@ enum ddz_enum_playerStatus {
     JDJIAO_JIAO = 26; //经典叫分阶段已叫
     JDJIAO_BUJIAO = 27; //经典叫分阶段不叫
 
-    SHOWPOKER_REAY = 28; //明牌准备
+    SHOWPOKER_READY = 28; //明牌准备
     SHOWPOKER_ENTERDESK = 29; //明牌进入房间
-    NORMAL_SHOWPAI = 30; //发牌阶段明牌
 }
 
 enum ddz_enum_roomType {
@@ -223,6 +228,8 @@ message ddz_base_playerInfo {
     repeated client_base_poker outPais = 14; //玩家出的牌
     optional ddz_enum_paiType outPaiType = 15; //玩家出的牌类型
     optional int32 jiaoScore = 16; //叫分
+
+    optional int32 num2Win4OpenRB = 17; //再赢多少局可以开红包
 }
 
 enum ddz_enum_deskGameStatus {
@@ -254,5 +261,7 @@ message ddz_base_deskInfo {
     optional int32 playRate = 17; // 当前倍数（抢地主、炸弹、春天等产生的倍数） ?不明
 
     optional ddz_enum_enterType enterType = 18; // 进入的类型  金币场/朋友桌
+
+    optional int64 coinTicket = 19; //房费 金币场使用
 }
 

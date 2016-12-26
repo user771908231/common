@@ -24,8 +24,11 @@ enum hall_enum_protoId {
     HALL_PID_ONLINEWARD_REQ = 16; //在线奖励
     HALL_PID_ONLINEWARD_ACK = 17; //在线奖励 回复
 
-    HALL_PID_EVENT_REQ = 18; //活动列表请求
-    HALL_PID_EVENT_ACK = 19; //活动列表ACK
+    HALL_PID_EVENT_REQ = 18;  //活动列表请求
+    HALL_PID_EVENT_ACK = 19;  //活动列表ACK
+
+    HALL_PID_GOODS_LIST_REQ = 20;  //商品列表请求
+    HALL_PID_GOODS_LIST_ACK = 21;  //商品列表ACK
 }
 
 // 奖励物品信息
