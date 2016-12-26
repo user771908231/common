@@ -24,6 +24,7 @@ message ServerInfo {
     optional int32 isMaintain = 8; //是否停服维护 1=停服维护中
     optional string maintainMsg = 9; //维护提示消息
     optional int32 status = 10; //0开启 1关闭
+    optional int32 gameId = 11; //0开启 1关闭
 }
 
 // 接入服务器
