@@ -19,7 +19,6 @@ func NewGameDesk() *GameDesk {
 	return ret
 }
 
-
 //发送信息
 func (d *GameDesk) SendMessage(msg *ddproto.CommonReqMessage) {
 	//获取到请求的信息
@@ -29,9 +28,8 @@ func (d *GameDesk) SendMessage(msg *ddproto.CommonReqMessage) {
 	*result.Msg = msg.GetMsg()
 	*result.MsgType = msg.GetMsgType()
 	//发送消息
-	d.BroadCastProtoExclusive(msg, msg.GetUserId())
+	d.BroadCastProtoExclusive(result, msg.GetUserId())
 }
-
 
 //广播
 func (d *GameDesk) BroadCastProto(msg proto.Message) {
@@ -41,7 +39,6 @@ func (d *GameDesk) BroadCastProto(msg proto.Message) {
 		return nil
 	})
 }
-
 
 //广播，排除某人
 func (d *GameDesk) BroadCastProtoExclusive(msg proto.Message, userId uint32) {
