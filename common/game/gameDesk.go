@@ -27,6 +27,7 @@ func (d *GameDesk) SendMessage(msg *ddproto.CommonReqMessage) {
 	*result.Id = msg.GetId()
 	*result.Msg = msg.GetMsg()
 	*result.MsgType = msg.GetMsgType()
+	*result.ToUserId = msg.GetToUserId()
 	//发送消息
 	d.BroadCastProtoExclusive(result, msg.GetUserId())
 }
