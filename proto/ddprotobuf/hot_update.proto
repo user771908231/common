@@ -33,6 +33,7 @@ message hotupdate_ack_versionInfo {
     optional int32 lastestAssetsVersion = 3; //客户端App标识
     optional bool forceUpdate = 4;
 
+
 }
 
 // 获取资源文件的详细信息
@@ -46,6 +47,8 @@ message hotupdate_ack_assetsInfo {
     optional ProtoHeader header = 1;
     optional string assetHost = 2; //资源下载的服务器(如:http://www.myhost.com/update/)
     repeated AssetInfo assets = 3; //
+    optional int32 lastestAssetsVersion = 4; //全局的版本号
+
 }
 
 ///////////////////////////////////////////////////////////////////////////
