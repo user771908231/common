@@ -53,6 +53,8 @@ var _ = math.Inf
 
 // Ignoring public import of hall_enum_taskType from hall_data.proto
 
+// Ignoring public import of hall_user_VIP from hall_data.proto
+
 // Ignoring public import of ProtoHeader from common_client.proto
 
 // Ignoring public import of Heartbeat from common_client.proto

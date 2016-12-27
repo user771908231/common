@@ -152,7 +152,7 @@ message hall_userData {
     optional int64 evilValue = 4; //恶人值
     optional int32 userLevel = 5; //用户等级
     optional bool userVIP = 6; //是否是会员
-    optional hall_user_VIP_lv userVIPLv = 7; //会员等级
+    optional hall_user_VIP userVIPLv = 7; //会员等级
     optional int64 userMoney = 8; //用户金币
     optional int64 userDiamond = 9; //用户钻石
     optional string userRedBag = 10; //用户红包金额
