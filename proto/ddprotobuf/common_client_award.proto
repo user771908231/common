@@ -19,7 +19,7 @@ message redbag_req {
 }
 
 message redbag_ack {
-    optional int64 cash = 1; //奖励红包的金额
+    optional string cash = 1; //奖励红包的金额
     optional int32 num2Win4OpenRB = 2; //再赢多少局可以开红包
-    optional int64 totalCash = 3; //总共获得奖励红包的金额
+    optional string totalCash = 3; //总共获得奖励红包的金额
 }
