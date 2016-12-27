@@ -36,3 +36,11 @@ func String2Int(s string) (int){
 	i,_ := strconv.Atoi(s)
 	return i
 }
+
+/**
+ 字符转转float64类型
+ */
+func String2Float64(s string) (float64){
+	i,_ := strconv.ParseFloat(s, len(s))
+	return i
+}
