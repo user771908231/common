@@ -7,11 +7,16 @@ import (
 	"time"
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/userService"
+	"casino_common/proto/funcsInit"
+	"github.com/name5566/leaf/gate"
 )
 
 
 //用户签到
 func DoSign(user *ddproto.User) error {
+
+	log.T("[%v]开始签到", user.GetId())
 
 	//验证用户能否签到
 	if user.GetLastSignTime() != "" {
@@ -34,6 +39,8 @@ func DoSign(user *ddproto.User) error {
 	addSignCount(user)
 	user.LastSignTime = proto.String(time.Now().Format("2006-01-02 15:04:05"))
 
+	log.T("[%v]签到成功", user.GetId())
+
 	return nil;
 }
 
@@ -46,11 +53,40 @@ func addSignCount(user *ddproto.User){
 }
 
 
-func DoSignLottery(user *ddproto.User) int32 {
-	//todo
-	return 2
+func DoSignLottery(userId uint32, userAgent gate.Agent) error {
+	log.T("[%v]开始签到领取奖励", userId)
+
+	user := userService.GetUserById(userId)
+	if user == nil {
+		log.T("存储中找不到u.id为[%v]的用户", userId)
+		return Error.NewError(-1, "找不到用户个人信息")
+	}
+
+	err1 := DoSign(user)
+	if err1 != nil {
+		log.T("[%v]签到领取奖励失败, 错误[%v]", user.GetId(), err1)
+		return err1
+	}
+
+	lotteryId, err2 := deliveryUserSignLottery(user)
+	if err2 != nil {
+		log.T("[%v]签到领取奖励失败, 错误[%v]", user.GetId(), err2)
+		return err2
+	}
+
+	SendSignLotteryAck(userAgent, lotteryId)
+	log.T("[%v]签到领取奖励成功", user.GetId())
+	return nil
 }
 
+
+//根据签到情况获得可领的奖品id
+func deliveryUserSignLottery(user *ddproto.User) (int32, error) {
+	//todo
+	//get lottery id
+	//send lottery id to user
+	return 2, nil
+}
 
 
 func IsUserSignedToday(u *ddproto.User) bool {
@@ -67,4 +103,12 @@ func IsSameDate(time1 time.Time, time2 time.Time) bool {
 		return true
 	}
 	return false
+}
+
+//发送签到领奖成功的回复
+func SendSignLotteryAck(a gate.Agent, lotteryId int32) {
+	ack := commonNewPorot.NewAckSignLottery()
+	*ack.LotteryId = lotteryId
+	a.WriteMsg(ack)
+
 }
