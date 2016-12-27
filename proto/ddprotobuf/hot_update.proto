@@ -24,7 +24,7 @@ message hotupdate_req_versionInfo {
     optional ProtoHeader header = 1;
     optional int32 clientAppId = 2; //客户端App标识
     repeated int32 downloadGameId = 3; //已下载的独立游戏(麻将、斗地主...)
-    optional int32 clientAssetsVersion = 4; //客户端App标识
+    optional int32 clientAssetsVersion = 4; //最后的版本号
 }
 
 message hotupdate_ack_versionInfo {

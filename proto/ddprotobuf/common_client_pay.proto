@@ -74,3 +74,15 @@ message wxpay_ack_syncChecker {
     optional int64 coin = 5; //充值之后金币的数量
     optional int64 changeCoin = 6; //充值之后增加金币的数量
 }
+
+//苹果支付充值回调
+message applepay_req_rechargecb {
+    optional ProtoHeader header = 1;
+    optional int64 coin = 2; //要增加的金币数量
+}
+
+message applepay_acks_rechargecb {
+    optional ProtoHeader header = 1;
+    optional int64 rechargeCoin = 2; //要增加的金币数量
+    optional int64 coin = 3; //增加之后的金币
+}

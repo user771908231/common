@@ -58,6 +58,8 @@ It has these top-level messages:
 	WxpayAckUnifiedorder
 	WxpayReqSyncChecker
 	WxpayAckSyncChecker
+	ApplepayReqRechargecb
+	ApplepayAcksRechargecb
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
