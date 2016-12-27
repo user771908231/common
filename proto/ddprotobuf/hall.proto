@@ -47,17 +47,28 @@ message hall_ack_getTask {
     optional int32 finishedNum = 2; //已完成数量
 }
 
-
-// 背包
-message hall_req_bag {
+//==========================背包道具列表============================
+// 背包道具列表
+message hall_req_bag_items {
     optional ProtoHeader header = 1;
 }
-
-message hall_ack_bag {
+//道具列表ACK
+message hall_ack_bag_items {
     optional ProtoHeader header = 1;
-    repeated hall_item_bag bagItemList = 2;
+    repeated hall_bag_item items = 2;
+}
+//单个道具
+message hall_bag_item {
+    optional hall_enum_props_type type = 1; //道具类型
+    optional int32 amount = 2; //数量
 }
 
+//道具类型
+enum hall_enum_props_type {
+    TYPE_LABA = 1; //大喇叭
+    TYPE_JIPAIQI = 2; //记牌器
+    TYPE_FANGKA = 3; //房卡
+}
 
 //个人信息
 message hall_req_userData {
