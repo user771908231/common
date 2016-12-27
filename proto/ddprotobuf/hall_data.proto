@@ -137,13 +137,14 @@ enum hall_enum_taskType {
 message hall_userData {
     optional string userName = 1; //用户昵称
     optional int32 userId = 2; //用户ID
-    optional int32 niceValue = 3; //魅力值
-    optional int32 evilValue = 4; //恶人值
+    optional int64 niceValue = 3; //魅力值
+    optional int64 evilValue = 4; //恶人值
     optional int32 userLevel = 5; //用户等级
     optional bool userVIP = 6; //是否是会员
-    optional int32 userMoney = 7; //用户金币
-    optional int32 userDiamond = 8; //用户钻石
-    optional int32 userRedBag = 9; //用户红包
+    optional int64 userMoney = 7; //用户金币
+    optional int64 userDiamond = 8; //用户钻石
+    optional string userRedBag = 9; //用户红包金额
+    optional int64 userLotteryTicket = 10; //用户奖券
 }
 
 //排行信息

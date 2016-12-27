@@ -146,6 +146,15 @@ func NewAckSignLottery() *ddproto.HallAckSignLottery {
 }
 
 
+//红包回复
+func NewAckRedbag() *ddproto.RedbagAck {
+	ret := new(ddproto.RedbagAck)
+	ret.Cash = new(int64)
+	ret.Duration = new(int64)
+	ret.TotalCash = new(int64)
+	return ret
+}
+
 
 
 
