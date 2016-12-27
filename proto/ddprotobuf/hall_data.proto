@@ -37,7 +37,7 @@ enum hall_enum_protoId {
     HALL_PID_BAG_ITEMS_ACK = 25; //背包道具列表ACK
     HALL_PID_HOTUPDATEREQGAMEASSETSINFO = 26; //请求下载独立游戏
     HALL_PID_HOTUPDATEACKGAMEASSETSINFO = 27; //请求下载独立游戏ack
-
+    HALL_PID_APPLE_PAY_CB = 28; //苹果支付回调
 }
 
 // 奖励物品信息
@@ -142,7 +142,6 @@ enum hall_user_VIP {
     LV_5 = 5; //vip lv5
     LV_6 = 6; //vip lv6
 }
-
 
 //个人信息
 message hall_userData {

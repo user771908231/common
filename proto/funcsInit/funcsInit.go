@@ -149,9 +149,9 @@ func NewAckSignLottery() *ddproto.HallAckSignLottery {
 //红包回复
 func NewAckRedbag() *ddproto.RedbagAck {
 	ret := new(ddproto.RedbagAck)
-	ret.Cash = new(int64)
-	ret.Duration = new(int64)
-	ret.TotalCash = new(int64)
+	ret.Cash = new(string)
+	ret.Num2Win4OpenRB = new(int32)
+	ret.TotalCash = new(string)
 	return ret
 }
 
