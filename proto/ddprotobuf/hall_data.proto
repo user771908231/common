@@ -31,6 +31,9 @@ enum hall_enum_protoId {
     HALL_PID_HOTUPDATEREQVERSIONINFO = 22; //商品列表ACK
     HALL_PID_HOTUPDATEACKVERSIONINFO = 23; //商品列表ACK
 
+    HALL_PID_BAG_ITEMS_REQ = 24;  //背包道具列表REQ
+    HALL_PID_BAG_ITEMS_ACK = 25;  //背包道具列表ACK
+
 }
 
 // 奖励物品信息
