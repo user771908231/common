@@ -55,7 +55,7 @@ message hall_req_bag_items {
 //道具列表ACK
 message hall_ack_bag_items {
     optional ProtoHeader header = 1;
-    repeated hall_item_bag bagItemList = 2;
+    repeated hall_bag_item items = 2;
 }
 //单个道具
 message hall_bag_item {
