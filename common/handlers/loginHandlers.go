@@ -36,7 +36,6 @@ func HandlerGame_Login(args []interface{}) {
 			*ack.UserId = user.GetId()
 			*ack.NickName = user.GetNickName()
 			*ack.Chip = user.GetDiamond()
-			*ack.IsSignToday = signService.IsUserSignedToday(user)
 			a.WriteMsg(ack)
 		}
 		return
@@ -70,7 +69,6 @@ func HandlerGame_Login(args []interface{}) {
 	*ack.UserId = user.GetId()
 	*ack.NickName = user.GetNickName()
 	*ack.Chip = user.GetDiamond()
-	*ack.IsSignToday = signService.IsUserSignedToday(user)
 
 	a.WriteMsg(ack)
 	return

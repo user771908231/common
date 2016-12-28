@@ -159,14 +159,6 @@ func NewCommonAckNotice() *ddproto.CommonAckNotice {
 	return ret
 }
 
-//回复签到奖励
-func NewAckSignLottery() *ddproto.HallAckSignLottery {
-	ret := new(ddproto.HallAckSignLottery)
-	ret.Header = NewHeader()
-	ret.LotteryId = new(int32)
-	return ret
-}
-
 
 //红包回复
 func NewAckRedbag() *ddproto.RedbagAck {
