@@ -147,28 +147,3 @@ func NewAckRedbag() *ddproto.RedbagAck {
 	return ret
 }
 
-
-
-func NewCommonDrawLotteryInfo() *ddproto.HallDrawLotteryInfo {
-	ret := new(ddproto.HallDrawLotteryInfo)
-	ret.IsDrawToday = new(bool)
-	return ret
-}
-
-func NewCommonSignLotteryInfo() *ddproto.HallSignLotteryInfo {
-	ret := new(ddproto.HallSignLotteryInfo)
-	ret.ContinuousDays = new(int32)
-	ret.TotalDays = new(int32)
-	ret.IsSignToday = new(bool)
-	return ret
-}
-
-func NewCommonLotteryItem() *ddproto.HallLotteryItem {
-	ret := new(ddproto.HallLotteryItem)
-	ret.Id = new(int32)
-	ret.Name = new(string)
-	return ret
-}
-
-
-
