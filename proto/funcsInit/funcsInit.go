@@ -114,6 +114,29 @@ func NewCommonAckGameLogin() *ddproto.CommonAckGameLogin {
 	return ret
 }
 
+
+func NewCommonDrawLotteryInfo() *ddproto.CommonDrawLotteryInfo {
+	ret := new(ddproto.CommonDrawLotteryInfo)
+	ret.IsDrawToday = new(bool)
+	return ret
+}
+
+func NewCommonSignLotteryInfo() *ddproto.CommonSignLotteryInfo {
+	ret := new(ddproto.CommonSignLotteryInfo)
+	ret.ContinuousDays = new(int32)
+	ret.TotalDays = new(int32)
+	ret.IsSignToday = new(bool)
+	return ret
+}
+
+func NewCommonLotteryItem() *ddproto.CommonLotteryItem {
+	ret := new(ddproto.CommonLotteryItem)
+	ret.Id = new(int32)
+	ret.Name = new(string)
+	return ret
+}
+
+
 func NewCommonBcMessage() *ddproto.CommonBcMessage {
 	result := new(ddproto.CommonBcMessage)
 	result.Header = NewHeader()
