@@ -8,7 +8,6 @@ import (
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/userService"
-	"casino_common/proto/funcsInit"
 	"github.com/name5566/leaf/gate"
 )
 
