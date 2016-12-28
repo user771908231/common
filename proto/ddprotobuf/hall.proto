@@ -19,6 +19,7 @@ message hall_ack_event {
 message hall_lottery_item {
     optional int32 id = 1;
     optional string name = 2;
+    optional hall_lottery_item_type type = 3; //奖励物品类型
 }
 
 //签到信息与奖励物品列表
@@ -142,7 +143,7 @@ message hall_req_rank {
 
 message hall_ack_rank {
     optional ProtoHeader header = 1;
-    repeated hall_item_rank rankList = 2;
+    repeated hall_rank_item rankList = 2;
 }
 
 
@@ -164,8 +165,6 @@ message hall_req_ds_lottery_info {
 //回复转盘与签到信息
 message hall_ack_ds_lottery_info {
     optional ProtoHeader header = 1;
-    optional int32 lotteryId = 2; //奖励物品id
-
     optional hall_draw_lottery_info drawLotteryInfo = 12; //转盘信息与奖励物品列表
     optional hall_sign_lottery_info signLotteryInfo = 13; //签到信息与奖励物品列表
 }

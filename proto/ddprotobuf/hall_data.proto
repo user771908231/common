@@ -117,6 +117,13 @@ enum hall_enum_props_type {
     TYPE_EXP_3000 = 4; //3000经验
 }
 
+//奖励物品类型
+enum hall_lottery_item_type {
+    TYPE_ROOM_TICKET = 1; //房卡
+    TYPE_FILL_SIGN = 2; //补签卡
+    TYEP_DIAMOND = 3; //钻石
+}
+
 //单个任务
 message hall_item_task {
     optional int32 id = 1;
@@ -160,10 +167,11 @@ message hall_userData {
 }
 
 //排行信息
-message hall_item_rank {
+message hall_rank_item {
     optional int32 placing = 1; //名次
-    optional int32 userId = 2; //用户
-    optional string rankInfo = 3; //排行项目
+    optional uint32 userId = 2; //用户id
+    optional string nickName = 3; //用户昵称
+    optional string rankInfo = 4; //排行项目
 }
 
 //金币专区
