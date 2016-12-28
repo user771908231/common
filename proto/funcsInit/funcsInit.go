@@ -111,7 +111,6 @@ func NewCommonAckGameLogin() *ddproto.CommonAckGameLogin {
 	ret.MailCount = new(int32)
 	ret.Notice = new(string)
 	ret.GameStatus = new(int32)
-	ret.IsSignToday = new(bool)
 	return ret
 }
 
