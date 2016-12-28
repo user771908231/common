@@ -50,6 +50,12 @@ enum hall_enum_protoId {
 
     HALL_PID_RANK_REQ = 34; //排行榜REQ
     HALL_PID_RANK_ACK = 35; //排行榜ACK
+
+    HALL_PID_STRONGBOX_INFO_REQ = 36; //请求保险箱
+    HALL_PID_STRONGBOX_INFO_ACK = 37; //回复保险箱
+
+    HALL_PID_STRONGBOX_ACCESS_REQ = 38; //请求存取保险箱
+    HALL_PID_STRONGBOX_ACCESS_ACK = 39; //回复存取保险箱
 }
 
 //单个活动
@@ -181,4 +187,11 @@ message GoodsItem {
     optional int32 id = 1;
     optional int32 money = 2; //金额
     optional string img = 3; //商品图片
+}
+
+
+//保险箱数据
+message hall_strongbox_info {
+    optional int64 boxCoin = 2; //用户保险箱里的金币
+    optional int64 userCoin = 3; //用户身上的金币
 }
