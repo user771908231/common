@@ -78,46 +78,38 @@ enum hall_enum_Reward {
     RE_GIFT = 2; //礼品
 }
 
+//================================================邮件=====================================================
+
 //单个邮件
-message hall_item_email {
+message hall_mail_item {
     optional int32 id = 1;
-    optional hall_enum_emailType type = 2; //邮件类型
-    optional string emailTitle = 3; //邮件标题
-    optional string emailContent = 4; //邮件内容
-    optional bool btnCheck = 5; //是否可以查看"邮件信息"
-    optional int32 date = 6; //收到邮件至今的间隔时间(天)
-    optional string reward = 7; //奖励
+    optional hall_enum_mail_type type = 2; //邮件类型
+    optional string title = 3; //邮件标题
+    optional string content = 4; //邮件内容
+    optional bool isWatch = 5; //是否已查看
+    optional bool isCheck = 6; //是否已领取奖励
+    repeated hall_bag_item attach = 7; //附件:奖励
+    optional int32 date = 8; //邮件的时间
 }
 
 //邮件类型
-enum hall_enum_emailType {
-    EMAIL_SYSTEM = 1; //系统邮件
-    TYPE_FRIEND = 2; //好友邮件
+enum hall_enum_mail_type {
+    SYSTEM = 1; //系统邮件
+    FRIEND_ADD = 2; //好友申请邮件
 }
 
-//道具
-message hall_item_bag {
-    optional int32 id = 1;
-    optional hall_enum_bagItemType type = 2; //道具类型
-    optional hall_enum_bagItemRank rank = 3; //道具阶层
-    optional int32 exp = 4; //经验
-    optional int32 amount = 5; //数量
+//背包单个道具
+message hall_bag_item {
+    optional hall_enum_props_type type = 1; //道具类型
+    optional int32 amount = 2; //数量
 }
 
 //道具类型
-enum hall_enum_bagItemType {
-    TYPE_MEAT = 1; //肉夹馍
-    TYPE_EGG = 2; //茶叶蛋
-    TYPE_ICE = 3; //雪糕
-    TYPE_BUN = 4; //包子
-    TYPE_SHRIMP = 5; //虾饺
-}
-
-//道具阶层
-enum hall_enum_bagItemRank {
-    RANK_ONE = 1; //一阶
-    RANK_TWO = 2; //二阶
-    RANK_THREE = 3; //三阶
+enum hall_enum_props_type {
+    TYPE_LABA = 1; //大喇叭
+    TYPE_JIPAIQI = 2; //记牌器
+    TYPE_FANGKA = 3; //房卡
+    TYPE_EXP_3000 = 4; //3000经验
 }
 
 //单个任务
