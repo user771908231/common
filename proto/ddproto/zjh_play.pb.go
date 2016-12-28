@@ -29,12 +29,6 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_gameLogin from common_client.proto
 
-// Ignoring public import of common_lottery_item from common_client.proto
-
-// Ignoring public import of common_sign_lottery_info from common_client.proto
-
-// Ignoring public import of common_draw_lottery_info from common_client.proto
-
 // Ignoring public import of common_req_logout from common_client.proto
 
 // Ignoring public import of common_ack_logout from common_client.proto

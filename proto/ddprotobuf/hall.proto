@@ -15,6 +15,29 @@ message hall_ack_event {
 }
 
 
+// 奖励物品信息
+message hall_lottery_item {
+    optional int32 id = 1;
+    optional string name = 2;
+}
+
+//签到信息与奖励物品列表
+message hall_sign_lottery_info {
+    optional bool isSignToday = 1; //今日是否已签到
+    optional int32 totalDays = 2; //共签到多少天
+    optional int32 continuousDays = 3; //连续签到天数
+    repeated hall_lottery_item signItems = 4; //签到奖励物品列表
+}
+
+// 转盘信息与奖励物品列表
+message hall_draw_lottery_info {
+    optional bool isDrawToday = 1; //今日是否已抽奖
+    repeated hall_lottery_item dialItems = 2; //转盘奖励物品列表
+}
+
+
+
+
 // 邮件REQ
 message hall_req_mail_list {
     optional ProtoHeader header = 1;
@@ -123,17 +146,6 @@ message hall_ack_rank {
 }
 
 
-//签到动作
-message hall_req_sign_lottery {
-    optional ProtoHeader header = 1;
-}
-
-message hall_ack_sign_lottery {
-    optional ProtoHeader header = 1;
-    optional int32 lotteryId = 2; //奖励物品id
-}
-
-
 //抽奖动作
 message hall_req_draw_lottery {
     optional ProtoHeader header = 1;
@@ -142,6 +154,20 @@ message hall_req_draw_lottery {
 message hall_ack_draw_lottery {
     optional ProtoHeader header = 1;
     optional int32 lotteryId = 2; //奖励物品id
+}
+
+//请求转盘与签到信息
+message hall_req_ds_lottery_info {
+    optional ProtoHeader header = 1;
+}
+
+//回复转盘与签到信息
+message hall_ack_ds_lottery_info {
+    optional ProtoHeader header = 1;
+    optional int32 lotteryId = 2; //奖励物品id
+
+    optional hall_draw_lottery_info drawLotteryInfo = 12; //转盘信息与奖励物品列表
+    optional hall_sign_lottery_info signLotteryInfo = 13; //签到信息与奖励物品列表
 }
 
 //好友列表

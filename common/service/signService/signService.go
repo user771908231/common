@@ -8,7 +8,6 @@ import (
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/userService"
-	"casino_common/proto/funcsInit"
 	"github.com/name5566/leaf/gate"
 )
 
@@ -68,24 +67,23 @@ func DoSignLottery(userId uint32, userAgent gate.Agent) error {
 		return err1
 	}
 
-	lotteryId, err2 := deliveryUserSignLottery(user)
+	err2 := deliveryUserSignLottery(user)
 	if err2 != nil {
 		log.T("[%v]签到领取奖励失败, 错误[%v]", user.GetId(), err2)
 		return err2
 	}
 
-	SendSignLotteryAck(userAgent, lotteryId)
 	log.T("[%v]签到领取奖励成功", user.GetId())
 	return nil
 }
 
 
 //根据签到情况获得可领的奖品id
-func deliveryUserSignLottery(user *ddproto.User) (int32, error) {
+func deliveryUserSignLottery(user *ddproto.User) error {
 	//todo
 	//get lottery id
 	//send lottery id to user
-	return 2, nil
+	return nil
 }
 
 
@@ -103,12 +101,4 @@ func IsSameDate(time1 time.Time, time2 time.Time) bool {
 		return true
 	}
 	return false
-}
-
-//发送签到领奖成功的回复
-func SendSignLotteryAck(a gate.Agent, lotteryId int32) {
-	ack := commonNewPorot.NewAckSignLottery()
-	*ack.LotteryId = lotteryId
-	a.WriteMsg(ack)
-
 }
