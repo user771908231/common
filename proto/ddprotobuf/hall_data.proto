@@ -50,6 +50,12 @@ enum hall_enum_protoId {
     HALL_PID_FRIENDS_LIST_REQ = 32; //好友列表REQ
     HALL_PID_FRIENDS_LIST_ACK = 33; //好友列表ACK
 
+    HALL_PID_FRIEND_ADD_REQ = 34;  //添加好友REQ
+    HALL_PID_FRIEND_ADD_ACK = 35;  //添加好友ACK
+
+    HALL_PID_FRIEND_DEL_REQ = 36;  //删除好友REQ
+    HALL_PID_FRIEND_DEL_ACK = 37;  //删除好友ACK
+
 }
 
 //单个活动

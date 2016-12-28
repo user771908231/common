@@ -180,6 +180,26 @@ message hall_ack_friends_list {
     repeated hall_friend_state users = 2;
 }
 
+//添加好友
+message hall_req_add_friend {
+    optional ProtoHeader header = 1;  //自己的userid
+    optional uint32 add_userid = 2;  //被添加的好友id
+}
+
+message hall_ack_add_friend {
+    optional ProtoHeader header = 1;  //code 1:成功，0:失败
+}
+
+//删除好友
+message hall_req_del_friend {
+    optional ProtoHeader header = 1;  //自己的userid
+    optional uint32 del_userid = 2;  //被删除的好友id
+}
+
+message hall_ack_del_friend {
+    optional ProtoHeader header = 1;  //code 1:成功，0:失败
+}
+
 //用户状态
 message hall_friend_state {
     optional bool is_online = 1;  //是否在线

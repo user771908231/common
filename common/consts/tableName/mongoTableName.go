@@ -7,4 +7,5 @@ const (
 	DBT_T_RECHARGE_DETAILS string = "t_recharge_details"
 	DBT_T_USER_TASK = "t_user_task"
 	DBT_T_USER_BAG = "t_user_bag"
+	DBT_T_USER_MAIL_list = "t_user_mail_list"
 )
