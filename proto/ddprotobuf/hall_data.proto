@@ -43,6 +43,9 @@ enum hall_enum_protoId {
 
     HALL_PID_MAIL_LIST_REQ = 31;  //邮件列表REQ
     HALL_PID_MAIL_LIST_ACK = 32;  //邮件列表ACK
+
+    HALL_PID_FRIENDS_LIST_REQ = 33;  //好友列表REQ
+    HALL_PID_FRIENDS_LIST_ACK = 34;  //好友列表ACK
 }
 
 //单个活动
