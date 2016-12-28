@@ -40,6 +40,8 @@ enum hall_enum_protoId {
 
     HALL_PID_MAIL_LIST_REQ = 29;  //邮件列表REQ
     HALL_PID_MAIL_LIST_ACK = 30;  //邮件列表ACK
+
+    HALL_PID_DS_LOTTERY_INFO_REQ = 31; //请求转盘签到奖励物品信息
 }
 
 //单个活动
