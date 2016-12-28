@@ -16,11 +16,11 @@ message hall_ack_event {
 
 
 // 邮件REQ
-message hall_mail_list_req {
+message hall_req_mail_list {
     optional ProtoHeader header = 1;
 }
 //邮件ACK
-message hall_mail_list_ack {
+message hall_ack_mail_list {
     optional ProtoHeader header = 1;
     repeated hall_mail_item list = 2;  //邮件列表
 }

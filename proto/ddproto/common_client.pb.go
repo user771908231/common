@@ -132,8 +132,8 @@ It has these top-level messages:
 	DdzSrvBak
 	HallReqEvent
 	HallAckEvent
-	HallMailListReq
-	HallMailListAck
+	HallReqMailList
+	HallAckMailList
 	HallReqTask
 	HallAckTask
 	HallReqGetTask
