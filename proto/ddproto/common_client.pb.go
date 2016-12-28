@@ -160,17 +160,22 @@ It has these top-level messages:
 	HallAckFriendsList
 	HallFriendState
 	HallUserInfo
+	HallAckStrongboxInfo
+	HallReqStrongboxInfo
+	HallAckStrongboxAccess
+	HallReqStrongboxAccess
 	HallItemEvent
 	HallMailItem
 	HallBagItem
 	HallItemTask
 	HallUserData
-	HallItemRank
+	HallRankItem
 	CoinZone
 	DiamondZone
 	ExchangeZone
 	BuyZone
 	GoodsItem
+	HallStrongboxInfo
 	VersionInfo
 	AssetInfo
 	HotupdateReqVersionInfo
