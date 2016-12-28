@@ -151,3 +151,28 @@ message hall_ack_draw_lottery {
     optional ProtoHeader header = 1;
     optional int32 lotteryId = 2; //奖励物品id
 }
+
+//好友列表
+message hall_req_friends_list {
+    optional ProtoHeader header = 1;
+}
+
+message hall_ack_friends_list {
+    optional ProtoHeader header = 1;
+    repeated hall_friend_state users = 2;
+}
+
+//用户状态
+message hall_friend_state {
+    optional bool is_online = 1;  //是否在线
+    optional hall_user_info info = 2;  //用户信息
+}
+
+//用户信息
+message hall_user_info {
+    optional string nick_name = 1;  //昵称
+    optional string head_img = 2;  //头像
+    optional int32 sex = 3; //性别：1:男 2:女
+    optional int32 city = 4;  //城市
+    optional string sign = 5;  //签名
+}
