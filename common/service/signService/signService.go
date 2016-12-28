@@ -8,7 +8,6 @@ import (
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/userService"
-	"github.com/name5566/leaf/gate"
 	"casino_common/utils/timeUtils"
 )
 
@@ -53,7 +52,7 @@ func addSignCount(user *ddproto.User){
 }
 
 
-func DoSignLottery(userId uint32, userAgent gate.Agent) error {
+func DoSignLottery(userId uint32) error {
 	log.T("[%v]开始签到领取奖励", userId)
 
 	user := userService.GetUserById(userId)
