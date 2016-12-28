@@ -194,3 +194,26 @@ message hall_user_info {
     optional int32 city = 4;  //城市
     optional string sign = 5;  //签名
 }
+
+
+
+//保险箱信息
+message hall_ack_strongbox_info {
+    optional ProtoHeader header = 1;
+    optional hall_strongbox_info strongboxInfo = 2; //保险箱数据
+}
+
+message hall_req_strongbox_info {
+    optional ProtoHeader header = 1;
+}
+
+//保险箱存取
+message hall_ack_strongbox_access {
+    optional ProtoHeader header = 1;
+    optional int64 savedCoin = 2; //存入的金币
+}
+
+message hall_req_strongbox_access {
+    optional ProtoHeader header = 1;
+    optional hall_strongbox_info strongboxInfo = 2; //保险箱数据
+}
