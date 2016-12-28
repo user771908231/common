@@ -91,7 +91,7 @@ message hall_mail_item {
     optional bool isWatch = 5; //是否已查看
     optional bool isCheck = 6; //是否已领取奖励
     repeated hall_bag_item attach = 7; //附件:奖励
-    optional int32 date = 8; //邮件的时间
+    optional int64 date = 8; //邮件的时间
 }
 
 //邮件类型
