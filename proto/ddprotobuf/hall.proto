@@ -123,14 +123,6 @@ message hall_ack_rank {
 }
 
 
-// 转盘签到奖励物品信息
-message hall_ack_ds_lottery_items {
-    optional ProtoHeader header = 1;
-    repeated hall_lottery_item dialItems = 2; //转盘奖励物品
-    optional hall_sign_lottery_info signInfo = 3; //签到信息与奖励物品
-}
-
-
 //签到动作
 message hall_req_sign_lottery {
     optional ProtoHeader header = 1;
