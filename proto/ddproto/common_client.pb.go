@@ -158,6 +158,8 @@ It has these top-level messages:
 	HallAckDsLotteryInfo
 	HallReqFriendsList
 	HallAckFriendsList
+	HallReqFriendsSearch
+	HallAckFriendsSearch
 	HallReqAddFriend
 	HallAckAddFriend
 	HallReqDelFriend
