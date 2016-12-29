@@ -30,7 +30,6 @@ func GetMongoConn() (*mongodb.DialContext, error) {
 	return mongodb.Dial(mongoConfig.ip, mongoConfig.port)
 }
 
-
 //保存数据
 func InsertMgoData(dbt string, data interface{}) error {
 	//得到连接
@@ -65,6 +64,20 @@ func UpdateMgoData(dbt string, data model.BaseMode) error {
 	return error
 }
 
+func UpdateMgoDataU32(dbt string, data model.BaseModeu32) error {
+	c, err := GetMongoConn()
+	if err != nil {
+		return err
+	}
+	defer c.Close()
+
+	// 获取回话 session
+	s := c.Ref()
+	defer c.UnRef(s)
+
+	error := s.DB(mongoConfig.dbname).C(dbt).Update(bson.M{"id": data.GetId()}, data)
+	return error
+}
 
 //得到序列号
 func GetNextSeq(dbt string) (int32, error) {
@@ -81,7 +94,6 @@ func GetNextSeq(dbt string) (int32, error) {
 	id, _ := c.NextSeq(mongoConfig.dbname, dbt, mongoConfig.DB_ENSURECOUNTER_KEY)
 	return int32(id), nil
 }
-
 
 //查询一个list
 func Query(f func(*mgo.Database)) {
