@@ -57,6 +57,8 @@ message wxpay_ack_unifiedorder {
     optional string timeStamp = 5;
     optional string package = 6;
     optional string sign = 7; //签名
+    optional string tradeNo = 8; //系统订单号
+
 }
 
 //app收到同步回调之后，请求服务器检测接收异步回调，得到充值之后的信息
