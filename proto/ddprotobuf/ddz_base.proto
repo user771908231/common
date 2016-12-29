@@ -3,8 +3,6 @@ syntax = "proto2";
 import public "common_client.proto";
 
 package ddproto;
-option optimize_for = LITE_RUNTIME;
-
 enum ddz_enum_protoId {
 
     ////////////////////////////////////
