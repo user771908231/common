@@ -49,6 +49,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_notice from common_client.proto
 
+// Ignoring public import of common_enum_reg from common_client.proto
+
 // Ignoring public import of common_enum_pokerColor from common_client.proto
 
 // 订单的状态
