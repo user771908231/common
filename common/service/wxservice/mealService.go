@@ -4,6 +4,10 @@ import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/userService"
+	"errors"
+	"fmt"
+	"casino_common/common/model/wxpayDao"
 )
 
 //充值套餐
@@ -42,7 +46,32 @@ func getDDZPayModel() *ddproto.PayBasePaymodel {
 }
 
 //通过meal的信息更细user的信息
-func UpdateUserByMeal(userId uint32, m *ddproto.PayBaseMeal) error {
-	log.T("通过套餐[%v]更新玩家[%v]的账户信息", m, userId)
+func UpdateUserByMeal(tradeNo string) error {
+	//不是重复回调，开始做余额更新的处理
+	detail := GetDetailsByTradeNo(tradeNo)
+	if detail == nil {
+		msg := fmt.Sprintf("没有在数据中找到订单号[%v]对应的套餐..", tradeNo)
+		log.E(msg)
+		return errors.New(msg)
+	}
+
+	//判断是否是重复回调
+	if detail.GetStatus() == ddproto.PayEnumTradeStatus_PAY_S_SUCC {
+		log.E("tradeNo[%v]重复回调", tradeNo)
+		return nil
+	}
+
+	log.T("更新订单[%v]的回调信息，detail[%v]", tradeNo, detail)
+	//找到套餐
+	meal := GetMealById(detail.GetMealId())
+	//根据套餐增加用户的余额
+	userService.INCRUserDiamond(detail.GetUserId(), meal.GetDiamond())
+	//更新订单状态
+	UpdateDetailsStatus(tradeNo, ddproto.PayEnumTradeStatus_PAY_S_SUCC)
+	//保存订单到数据库...
+	go func() {
+		wxpayDao.UpsertDetail(detail) //保存到数据库
+		DelDetails(tradeNo)           //保存到数据库之后删除
+	}()
 	return nil
 }

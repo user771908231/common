@@ -62,6 +62,10 @@ message wxpay_ack_unifiedorder {
 }
 
 //app收到同步回调之后，请求服务器检测接收异步回调，得到充值之后的信息
+enum pay_return {
+    ERR_ONLY_APPLE = -250; //只能用苹果支付
+}
+
 message wxpay_req_syncChecker {
     optional ProtoHeader header = 1;
     optional string tradeNo = 2; //制定的商户号，appid等，通过wxpayID区分开
