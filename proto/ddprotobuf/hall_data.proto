@@ -94,7 +94,7 @@ enum hall_enum_Reward {
 
 //单个邮件
 message hall_mail_item {
-    optional int32 id = 1;
+    optional string id = 1;
     optional hall_enum_mail_type type = 2; //邮件类型
     optional string title = 3; //邮件标题
     optional string content = 4; //邮件内容
