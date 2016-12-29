@@ -11,20 +11,22 @@ import (
 )
 
 var GAMEENV struct {
-	PRODMODE bool
-	DEVMODE  bool
+	PRODMODE      bool
+	DEVMODE       bool
+	APPLEPAY_ONLY bool
 }
 
 func SysInit(prodMode bool, redisAddr string, redisName string, logPath string, logName string, mongoIp string, mongoPort int, mongoName string, mongoSeqKey string, mongoSeqTables []string) error {
 	InitRedis(redisAddr, redisName)
 	initRandSeed()
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	log.InitLogger(logPath, logName)        //初始化日志处理
+	log.InitLogger(logPath, logName) //初始化日志处理
 	db.InitMongoDb(mongoIp, mongoPort, mongoName, mongoSeqKey, mongoSeqTables)
 
 	//初始化游戏环境变量
 	GAMEENV.PRODMODE = prodMode
 	GAMEENV.DEVMODE = !prodMode
+	GAMEENV.APPLEPAY_ONLY = false //上线的时候设置成true
 	return nil
 }
 
@@ -40,4 +42,3 @@ func initRandSeed() {
 	s := time.Now().UTC().UnixNano()
 	rand.Seed(s)
 }
-

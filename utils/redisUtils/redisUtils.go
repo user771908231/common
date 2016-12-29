@@ -119,6 +119,18 @@ func DECRBY(key string, i int64) int64 {
 	}
 }
 
+func SETNX(key string, v int64) int64 {
+	conn := GetConn()
+	defer conn.Close()
+	value, err := conn.SETNX(key, v)
+	if err != nil {
+		log.E("redis DECRBY的时候出错 err[%v]", err)
+		return 0
+	} else {
+		return value.(int64)
+	}
+}
+
 //浅醉加上userID 的redis-key
 func K(pre string, userId uint32) string {
 	userIdStr, _ := numUtils.Uint2String(userId)
