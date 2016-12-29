@@ -179,6 +179,17 @@ message hall_ack_friends_list {
     repeated hall_friend_state users = 2;
 }
 
+//好友搜索
+message hall_req_friends_search {
+    optional ProtoHeader header = 1;
+    optional string keyword = 2;  //关键词
+}
+
+message hall_ack_friends_search {
+    optional ProtoHeader header = 1;
+    repeated hall_friend_state users = 2;
+}
+
 //添加好友
 message hall_req_add_friend {
     optional ProtoHeader header = 1;  //自己的userid
