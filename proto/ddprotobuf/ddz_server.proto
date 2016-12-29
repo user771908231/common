@@ -43,7 +43,7 @@ message ddz_srv_desk {
     optional int64 CapMax = 18;
     optional bool IsJiaoFen = 19;
     optional int32 roomId = 20; //房间id
-    optional int32 footRate = 21; // 底牌倍数
+    optional ddz_base_commonRateInfo commonRateInfo = 21; //公共倍数
     optional int32 playRate = 22; // 桌子倍率
     optional int32 GameStatus = 23; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
     optional int64 initRoomCoin = 24; // 房间的初始带入金额
