@@ -1,6 +1,7 @@
 syntax = "proto2";
 package ddproto;
 import public "common_server_poker.proto";
+import public "ddz_base.proto";
 
 //打出去的牌
 message ddz_srv_outPokerPais {
