@@ -41,14 +41,14 @@ func UnLockPay(tradeNo string) {
 }
 
 //得到一个支付明细
-func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo string) (*ddproto.PayBaseDetails, error) {
+func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo string, diamond int64) (*ddproto.PayBaseDetails, error) {
 	ret := &ddproto.PayBaseDetails{
 		UserId:    proto.Uint32(userId),
 		MealId:    proto.Int32(mealId),
 		PayModelId:proto.Int32(payModelId),
 		TradeNo:   proto.String(tradeNo),
+		Diamond:   proto.Int64(diamond),
 		Status:    ddproto.PayEnumTradeStatus_PAY_S_UNIFIEDORDER.Enum()}
-
 	//保存明细
 	SaveDetails(ret)
 	//设置一个订单准备，用于同步，避免重复微信回调时候的重复回调
