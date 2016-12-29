@@ -9,4 +9,5 @@ const (
 	DBT_T_USER_BAG = "t_user_bag"
 	DBT_T_MAIL_CONTENT = "t_mail_content"
 	DBT_T_USER_MAIL_list = "t_user_mail_list"
+	DBT_T_USER_FRIENDS_LIST = "t_user_friends_list"
 )
