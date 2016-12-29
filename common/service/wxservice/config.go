@@ -16,5 +16,5 @@ var WXConfig struct {
 const (
 	DEFAULT_DEVICEINFO string = "WEB" //默认web
 	//WXPAY_NOTIFYURL    string = "http://wxpaytest.tondeen.com/wxpaycb"
-	WXPAY_NOTIFYURL string = "http://www.dongzhile.cn/wxpaycb"
+	WXPAY_NOTIFYURL string = "https://www.dongzhile.cn/wxpaycb"
 )

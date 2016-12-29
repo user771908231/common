@@ -10,6 +10,7 @@ import (
 	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
 	"strings"
+	"casino_common/common/model/wxpayDao"
 )
 
 //得到同步机制的key
@@ -77,5 +78,9 @@ func UpdateDetailsStatus(tradeNo string, s ddproto.PayEnumTradeStatus) error {
 	//更新状态
 	detail.Status = s.Enum()
 	redisUtils.SetObj(tradeNo, detail)
+
+	//保存订单到数据库...
+	wxpayDao.UpsertDetail(detail)
+
 	return nil
 }
