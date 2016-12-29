@@ -53,7 +53,7 @@ It has these top-level messages:
 	WardAckOnline
 	RedbagReq
 	RedbagAck
-	PayBaseMeal
+	PayBaseProduct
 	PayBasePaymodel
 	PayBaseDetails
 	WxpayReqUnifiedorder

@@ -12,9 +12,9 @@ import (
 
 //充值套餐
 
-func GetMealById(id int32) *ddproto.PayBaseMeal {
+func GetMealById(id int32) *ddproto.PayBaseProduct {
 	//返回测试数据
-	test := &ddproto.PayBaseMeal{
+	test := &ddproto.PayBaseProduct{
 		Id:     proto.Int32(1),
 		Money:  proto.Int64(1),
 		Diamond:proto.Int64(5)}
@@ -63,7 +63,7 @@ func UpdateUserByMeal(tradeNo string) error {
 
 	log.T("更新订单[%v]的回调信息，detail[%v]", tradeNo, detail)
 	//找到套餐
-	meal := GetMealById(detail.GetMealId())
+	meal := GetMealById(detail.GetProductId())
 	//根据套餐增加用户的余额
 	userService.INCRUserDiamond(detail.GetUserId(), meal.GetDiamond())
 	//更新订单状态

@@ -44,7 +44,7 @@ func UnLockPay(tradeNo string) {
 func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo string, diamond int64) (*ddproto.PayBaseDetails, error) {
 	ret := &ddproto.PayBaseDetails{
 		UserId:    proto.Uint32(userId),
-		MealId:    proto.Int32(mealId),
+		ProductId:    proto.Int32(mealId),
 		PayModelId:proto.Int32(payModelId),
 		TradeNo:   proto.String(tradeNo),
 		Diamond:   proto.Int64(diamond),
