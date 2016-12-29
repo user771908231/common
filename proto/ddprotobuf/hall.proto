@@ -226,13 +226,21 @@ message hall_req_strongbox_info {
     optional ProtoHeader header = 1;
 }
 
-//保险箱存取
-message hall_ack_strongbox_access {
-    optional ProtoHeader header = 1;
-    optional int64 savedCoin = 2; //存入的金币
+
+//保险箱操作类型
+enum hall_strongbox_access_type {
+    SAVE = 1; //存
+    DRAW = 2; //取
 }
 
+//保险箱存取
 message hall_req_strongbox_access {
+    optional ProtoHeader header = 1;
+    optional int64 accessCoin = 2; //存取的金币
+    optional hall_strongbox_access_type type = 3; //操作类型
+}
+
+message hall_ack_strongbox_access {
     optional ProtoHeader header = 1;
     optional hall_strongbox_info strongboxInfo = 2; //保险箱数据
 }
