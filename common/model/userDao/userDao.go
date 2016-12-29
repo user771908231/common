@@ -20,7 +20,6 @@ func FindUserByKV(key string, v interface{}) *ddproto.User {
 	}
 }
 
-
 //通过id 查找一个user
 func FindUserById(userId uint32) *ddproto.User {
 	return FindUserByKV("id", userId)
@@ -42,5 +41,5 @@ func SaveUser2Mgo(user *ddproto.User) error {
 }
 
 func UpdateUser2Mgo(user *ddproto.User) error {
-	return db.UpdateMgoData(tableName.DBT_T_USER, user)
+	return db.UpdateMgoDataU32(tableName.DBT_T_USER, user)
 }

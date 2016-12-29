@@ -6,8 +6,8 @@ import (
 	"errors"
 	"casino_common/common/service/signService"
 	"casino_common/common/log"
+	"github.com/golang/protobuf/proto"
 )
-
 
 //做登录的操作...
 func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
@@ -42,4 +42,45 @@ func DoLoginSuccess(userId uint32) error {
 		return error
 	}
 	return nil
+}
+
+//游客注册
+func TouristReg() *ddproto.CommonAckReg {
+	//func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string) (*ddproto.User, error) {
+	user, err := userService.NewUserAndSave("", "", "", "", 1, "")
+	if err != nil || user == nil {
+		log.E("注册用户的时候失败...")
+		return nil
+	}
+
+	//返回结果
+	ack := new(ddproto.CommonAckReg)
+	ack.UserId = proto.Uint32(user.GetId())
+	return ack
+}
+
+//微信注册
+func WxReg(weixin *ddproto.WeixinInfo) *ddproto.CommonAckReg {
+	//检测参数
+	if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
+		log.E("玩家注册的时候失败，因为微信的信息[%v]不够...", weixin)
+		return nil
+	}
+
+	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
+	user := userService.GetUserByOpenId(weixin.GetUnionId())
+	if user == nil {
+		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity())
+	}
+
+	if user == nil {
+		log.E("玩家注册的时候失败，注册的时候失败", weixin)
+		return nil
+	}
+
+	//返回结果
+	ack := new(ddproto.CommonAckReg)
+	ack.UserId = proto.Uint32(user.GetId())
+	return ack
+
 }
