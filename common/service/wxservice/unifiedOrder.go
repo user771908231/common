@@ -16,7 +16,7 @@ const (
 	PACKEGE_INFO string = "Sign=WXPay"
 )
 
-func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apikey, deviceInfo string, tnow time.Time) (*pay.UnifiedOrderResponse, error) {
+func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apikey, deviceInfo string, tnow time.Time, notifyURL string) (*pay.UnifiedOrderResponse, error) {
 	client := core.NewClient(appid, mchid, apikey, nil)
 	//app支付 需要这么多就行了
 	unifiedOrderRequest := new(pay.UnifiedOrderRequest)
@@ -28,7 +28,7 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 	unifiedOrderRequest.SpbillCreateIP = ip
 	unifiedOrderRequest.TimeStart = core.FormatTime(tnow)                         //订单的创建时间
 	unifiedOrderRequest.TimeExpire = core.FormatTime(tnow.Add(time.Minute * 600)) //订单失效的时间
-	unifiedOrderRequest.NotifyURL = "https://www.dongzhile.cn/"                   //回调的地址
+	unifiedOrderRequest.NotifyURL = notifyURL                                     //回调的地址
 	unifiedOrderRequest.TradeType = "APP"
 
 	result, err := pay.UnifiedOrder2(client, unifiedOrderRequest)
@@ -41,7 +41,7 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 }
 
 //回复信息
-func GetAppReqParamsByack(payack *pay.UnifiedOrderResponse, apikey string) (*ddproto.WxpayAckUnifiedorder, error) {
+func GetAppReqParamsByack(payack *pay.UnifiedOrderResponse, apikey, TradeNo string) (*ddproto.WxpayAckUnifiedorder, error) {
 
 	if payack == nil {
 		return nil, errors.New("没有得到统一下单的回复...")
@@ -67,6 +67,7 @@ func GetAppReqParamsByack(payack *pay.UnifiedOrderResponse, apikey string) (*ddp
 	ret.NonceStr = proto.String(reqmap["noncestr"])
 	ret.TimeStamp = proto.String(reqmap["timestamp"])
 	ret.Sign = proto.String(retSign)
+	ret.TradeNo = proto.String(TradeNo) //返回商户订单号
 	//return
 	return ret, nil
 }
@@ -105,7 +106,7 @@ func GetAppWxpayReqParams(payModelId int32, mealId int32, userId uint32, ip stri
 	}
 
 	//开始请求
-	ack, err := UnifiedOrder(meal.GetMoney(), ip, tradeNo, payModel.GetAppId(), payModel.GetMchId(), payModel.GetAppKey(), deviceInfo, tnow)
+	ack, err := UnifiedOrder(meal.GetMoney(), ip, tradeNo, payModel.GetAppId(), payModel.GetMchId(), payModel.GetAppKey(), deviceInfo, tnow, WXPAY_NOTIFYURL)
 	if err != nil {
 		log.E("统一下单的时候出现错误:%v", err.Error())
 		return nil, err
@@ -116,5 +117,5 @@ func GetAppWxpayReqParams(payModelId int32, mealId int32, userId uint32, ip stri
 	//增加微信回调时候的同步机制
 	InitTradeSyncStatus(tradeNo)
 	//返回结果
-	return GetAppReqParamsByack(ack, payModel.GetAppKey())
+	return GetAppReqParamsByack(ack, payModel.GetAppKey(), tradeNo)
 }
