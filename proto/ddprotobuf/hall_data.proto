@@ -71,6 +71,8 @@ enum hall_enum_protoId {
     HALL_PID_REG_REQ = 46;
     HALL_PID_REG_ACK = 47;
 
+    HALL_PID_TASK_LIST_REQ = 48;        //任务列表REQ
+    HALL_PID_TASK_LIST_ACK = 49;        //任务列表ACK
 }
 
 //单个活动
@@ -138,11 +140,14 @@ enum hall_lottery_item_type {
 
 //单个任务
 message hall_item_task {
-    optional int32 id = 1;
-    optional hall_enum_taskType type = 2; //任务类型
-    optional string title = 3; //任务内容
-    optional string reward = 4; //任务奖励
-    optional int32 Num = 5; //需要完成的总数
+    optional int32 task_id = 1;
+    optional string title = 2; //任务内容
+    optional string description = 3; //详情
+    repeated hall_bag_item addion = 4;  //附件
+    optional int32 task_sum = 5; //需要完成的次数
+    optional int32 sum_no = 6;  //当前完成的次数
+    optional bool is_done = 7;  //是否已完成
+    optional bool is_check = 8;  //是否已领取奖励
 }
 
 //任务类型
