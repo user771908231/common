@@ -68,6 +68,9 @@ enum hall_enum_protoId {
 
     HALL_PID_FRIENDS_SEARCH_REQ = 44;  //搜索好友REQ
     HALL_PID_FRIENDS_SEARCH_ACK = 45;  //搜索好友ACK
+    HALL_PID_REG_REQ = 46;
+    HALL_PID_REG_ACK = 47;
+
 }
 
 //单个活动
