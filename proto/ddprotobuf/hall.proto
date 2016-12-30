@@ -110,8 +110,18 @@ enum hall_enum_trade_type {
     TRADE_BONUS = 3;  //红包
     TRADE_CODE = 4;  //兑换码
     TRADE_RMB = 5; //人民币
-    TRADE_PROPS = 6;  //道具
-    TRADE_VIP = 7;  //会员
+    TRADE_VIP = 6;  //会员
+
+    //虚拟道具
+    PROPS_FANGKA = 7;  //房卡
+    PROPS_DALABA = 8;  //大喇叭
+
+    //实物礼品
+    PHONE_CARD_10 = 9;  //10元充值卡
+    PHONE_CARD_50 = 10;  //50元充值卡
+    SHOP_CARD_100 = 11;  //100元购物卡
+    PHONE_IPHONE7 = 12;  //苹果7
+    PC_MACBOOK = 13;   //苹果电脑
 }
 
 //商品列表Req
@@ -126,15 +136,17 @@ message hall_ack_goods_list {
      repeated hall_goods_item_msg items = 3; //  物品信息
 }
 
+
 //单个商品信息
 message hall_goods_item_msg {
     optional int32 goods_id = 1; //商品id
     optional string name = 2; //  物品名称
     optional hall_enum_trade_type price_type = 3;  //价格类型
-    optional int32 price = 4;  //价格--例：1个钻石
-    optional hall_enum_trade_type value_type = 5;  //被兑换类型
-    optional int32 value = 6;  //被兑换值--例：兑换1000金币
+    optional int32 price = 4;  //价格数量--例：10个钻石
+    optional hall_enum_trade_type goods_type = 5;  //商品类型
+    optional int32 amount = 6;  //商品数量--例：10000金币
     optional string discount = 7;  //折扣
+    optional string image = 8;  //商品图片： coin_1 coin_2 coin_3 coin_4 coin_5 coin_6 / diamond_1 diamond_2 diamond_3 diamond_4
 }
 
 //排行
@@ -194,7 +206,7 @@ message hall_ack_friends_search {
 //添加好友
 message hall_req_add_friend {
     optional ProtoHeader header = 1;  //自己的userid
-    optional uint32 add_userid = 2;  //被添加的好友id
+    repeated uint32 add_userid = 2;  //被添加的好友id
 }
 
 message hall_ack_add_friend {
@@ -222,7 +234,7 @@ message hall_user_info {
     optional string nick_name = 1;  //昵称
     optional string head_img = 2;  //头像
     optional int32 sex = 3; //性别：1:男 2:女
-    optional int32 city = 4;  //城市
+    optional string city = 4;  //城市
     optional string sign = 5;  //签名
 }
 

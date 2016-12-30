@@ -71,7 +71,7 @@ func UpdateUserByMeal(tradeNo string) error {
 	//保存订单到数据库...
 	go func() {
 		wxpayDao.UpsertDetail(detail) //保存到数据库
-		DelDetails(tradeNo)           //保存到数据库之后删除
+		//DelDetails(tradeNo)           //保存到数据库之后删除//	app收到回复之后再删除
 	}()
 	return nil
 }
