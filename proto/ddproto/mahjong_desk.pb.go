@@ -211,7 +211,7 @@ func (x *MjEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = MjEnumProtoId(value)
 	return nil
 }
-func (MjEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{0} }
+func (MjEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{0} }
 
 type MjEnumErrorCode int32
 
@@ -258,7 +258,7 @@ func (x *MjEnumErrorCode) UnmarshalJSON(data []byte) error {
 	*x = MjEnumErrorCode(value)
 	return nil
 }
-func (MjEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{1} }
+func (MjEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{1} }
 
 type MjEnumPlayOption int32
 
@@ -333,7 +333,7 @@ func (x *MjEnumPlayOption) UnmarshalJSON(data []byte) error {
 	*x = MjEnumPlayOption(value)
 	return nil
 }
-func (MjEnumPlayOption) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{2} }
+func (MjEnumPlayOption) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{2} }
 
 // 房间类型信息：包含房间类型和对应的局数、封顶、玩法等信息
 // 房间类型枚举
@@ -390,7 +390,7 @@ func (x *MjEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = MjEnumRoomType(value)
 	return nil
 }
-func (MjEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{3} }
+func (MjEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{3} }
 
 // 麻将花色
 type MjEnumColor int32
@@ -428,7 +428,7 @@ func (x *MjEnumColor) UnmarshalJSON(data []byte) error {
 	*x = MjEnumColor(value)
 	return nil
 }
-func (MjEnumColor) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{4} }
+func (MjEnumColor) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{4} }
 
 // 杠的类型
 type MjEnumGangType int32
@@ -466,7 +466,7 @@ func (x *MjEnumGangType) UnmarshalJSON(data []byte) error {
 	*x = MjEnumGangType(value)
 	return nil
 }
-func (MjEnumGangType) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{5} }
+func (MjEnumGangType) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{5} }
 
 // 碰杠类型(客户端显示用)
 type MjEnumComposeCardType int32
@@ -507,7 +507,7 @@ func (x *MjEnumComposeCardType) UnmarshalJSON(data []byte) error {
 	*x = MjEnumComposeCardType(value)
 	return nil
 }
-func (MjEnumComposeCardType) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{6} }
+func (MjEnumComposeCardType) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{6} }
 
 // 胡牌的类型
 type MjEnumHuType int32
@@ -575,7 +575,7 @@ func (x *MjEnumHuType) UnmarshalJSON(data []byte) error {
 	*x = MjEnumHuType(value)
 	return nil
 }
-func (MjEnumHuType) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{7} }
+func (MjEnumHuType) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{7} }
 
 type MjEnumPaiType int32
 
@@ -644,7 +644,7 @@ func (x *MjEnumPaiType) UnmarshalJSON(data []byte) error {
 	*x = MjEnumPaiType(value)
 	return nil
 }
-func (MjEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{8} }
+func (MjEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{8} }
 
 type MjEnumUserGameStatus int32
 
@@ -687,7 +687,7 @@ func (x *MjEnumUserGameStatus) UnmarshalJSON(data []byte) error {
 	*x = MjEnumUserGameStatus(value)
 	return nil
 }
-func (MjEnumUserGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{9} }
+func (MjEnumUserGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{9} }
 
 type MjEnumDeskGameStatus int32
 
@@ -733,7 +733,7 @@ func (x *MjEnumDeskGameStatus) UnmarshalJSON(data []byte) error {
 	*x = MjEnumDeskGameStatus(value)
 	return nil
 }
-func (MjEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor16, []int{10} }
+func (MjEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor17, []int{10} }
 
 // 玩法：包括自摸、点炮、以及可多选的玩法
 type MjBasePlayOptions struct {
@@ -747,7 +747,7 @@ type MjBasePlayOptions struct {
 func (m *MjBasePlayOptions) Reset()                    { *m = MjBasePlayOptions{} }
 func (m *MjBasePlayOptions) String() string            { return proto.CompactTextString(m) }
 func (*MjBasePlayOptions) ProtoMessage()               {}
-func (*MjBasePlayOptions) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{0} }
+func (*MjBasePlayOptions) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{0} }
 
 func (m *MjBasePlayOptions) GetZiMoRadio() int32 {
 	if m != nil && m.ZiMoRadio != nil {
@@ -788,7 +788,7 @@ type MjBaseCardInfo struct {
 func (m *MjBaseCardInfo) Reset()                    { *m = MjBaseCardInfo{} }
 func (m *MjBaseCardInfo) String() string            { return proto.CompactTextString(m) }
 func (*MjBaseCardInfo) ProtoMessage()               {}
-func (*MjBaseCardInfo) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{1} }
+func (*MjBaseCardInfo) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{1} }
 
 func (m *MjBaseCardInfo) GetType() int32 {
 	if m != nil && m.Type != nil {
@@ -825,7 +825,7 @@ type MjBaseRoomTypeInfo struct {
 func (m *MjBaseRoomTypeInfo) Reset()                    { *m = MjBaseRoomTypeInfo{} }
 func (m *MjBaseRoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*MjBaseRoomTypeInfo) ProtoMessage()               {}
-func (*MjBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{2} }
+func (*MjBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{2} }
 
 func (m *MjBaseRoomTypeInfo) GetMjRoomType() MjEnumRoomType {
 	if m != nil && m.MjRoomType != nil {
@@ -885,7 +885,7 @@ type MjBaseComposeCard struct {
 func (m *MjBaseComposeCard) Reset()                    { *m = MjBaseComposeCard{} }
 func (m *MjBaseComposeCard) String() string            { return proto.CompactTextString(m) }
 func (*MjBaseComposeCard) ProtoMessage()               {}
-func (*MjBaseComposeCard) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{3} }
+func (*MjBaseComposeCard) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{3} }
 
 func (m *MjBaseComposeCard) GetValue() int32 {
 	if m != nil && m.Value != nil {
@@ -913,7 +913,7 @@ type MjBasePlayerCard struct {
 func (m *MjBasePlayerCard) Reset()                    { *m = MjBasePlayerCard{} }
 func (m *MjBasePlayerCard) String() string            { return proto.CompactTextString(m) }
 func (*MjBasePlayerCard) ProtoMessage()               {}
-func (*MjBasePlayerCard) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{4} }
+func (*MjBasePlayerCard) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{4} }
 
 func (m *MjBasePlayerCard) GetHandCard() []*MjBaseCardInfo {
 	if m != nil {
@@ -971,7 +971,7 @@ type MjBasePlayerInfo struct {
 func (m *MjBasePlayerInfo) Reset()                    { *m = MjBasePlayerInfo{} }
 func (m *MjBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*MjBasePlayerInfo) ProtoMessage()               {}
-func (*MjBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{5} }
+func (*MjBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{5} }
 
 func (m *MjBasePlayerInfo) GetIsBanker() bool {
 	if m != nil && m.IsBanker != nil {
@@ -1092,7 +1092,7 @@ type MjBaseDeskGameInfo struct {
 func (m *MjBaseDeskGameInfo) Reset()                    { *m = MjBaseDeskGameInfo{} }
 func (m *MjBaseDeskGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*MjBaseDeskGameInfo) ProtoMessage()               {}
-func (*MjBaseDeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{6} }
+func (*MjBaseDeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{6} }
 
 func (m *MjBaseDeskGameInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -1202,7 +1202,7 @@ type MjReqDissolveDesk struct {
 func (m *MjReqDissolveDesk) Reset()                    { *m = MjReqDissolveDesk{} }
 func (m *MjReqDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*MjReqDissolveDesk) ProtoMessage()               {}
-func (*MjReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{7} }
+func (*MjReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{7} }
 
 func (m *MjReqDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1230,7 +1230,7 @@ type MjAckDissolveDesk struct {
 func (m *MjAckDissolveDesk) Reset()                    { *m = MjAckDissolveDesk{} }
 func (m *MjAckDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*MjAckDissolveDesk) ProtoMessage()               {}
-func (*MjAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{8} }
+func (*MjAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{8} }
 
 func (m *MjAckDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1283,7 +1283,7 @@ func init() {
 	proto.RegisterEnum("ddproto.MjEnumDeskGameStatus", MjEnumDeskGameStatus_name, MjEnumDeskGameStatus_value)
 }
 
-var fileDescriptor16 = []byte{
+var fileDescriptor17 = []byte{
 	// 2018 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x57, 0xcd, 0x6e, 0xdb, 0xd8,
 	0x15, 0x1e, 0x49, 0xb6, 0x25, 0x5f, 0xc9, 0x36, 0x43, 0x3b, 0xb1, 0x9c, 0x9f, 0x89, 0xeb, 0x64,

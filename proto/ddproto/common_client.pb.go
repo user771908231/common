@@ -9,6 +9,7 @@ It is generated from these files:
 	common_client.proto
 	common_client_award.proto
 	common_client_pay.proto
+	common_enum.proto
 	common_server.proto
 	common_server_award.proto
 	common_server_model.proto

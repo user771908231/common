@@ -136,7 +136,7 @@ func (x *HallEnumGoodsType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumGoodsType(value)
 	return nil
 }
-func (HallEnumGoodsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (HallEnumGoodsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
 
 // 货币与商品类型
 type HallEnumTradeType int32
@@ -186,7 +186,7 @@ func (x *HallEnumTradeType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumTradeType(value)
 	return nil
 }
-func (HallEnumTradeType) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (HallEnumTradeType) EnumDescriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
 
 // 保险箱操作类型
 type HallStrongboxAccessType int32
@@ -221,7 +221,7 @@ func (x *HallStrongboxAccessType) UnmarshalJSON(data []byte) error {
 	*x = HallStrongboxAccessType(value)
 	return nil
 }
-func (HallStrongboxAccessType) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (HallStrongboxAccessType) EnumDescriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
 
 // 活动列表
 type HallReqEvent struct {
@@ -232,7 +232,7 @@ type HallReqEvent struct {
 func (m *HallReqEvent) Reset()                    { *m = HallReqEvent{} }
 func (m *HallReqEvent) String() string            { return proto.CompactTextString(m) }
 func (*HallReqEvent) ProtoMessage()               {}
-func (*HallReqEvent) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*HallReqEvent) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
 
 func (m *HallReqEvent) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -251,7 +251,7 @@ type HallAckEvent struct {
 func (m *HallAckEvent) Reset()                    { *m = HallAckEvent{} }
 func (m *HallAckEvent) String() string            { return proto.CompactTextString(m) }
 func (*HallAckEvent) ProtoMessage()               {}
-func (*HallAckEvent) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (*HallAckEvent) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
 
 func (m *HallAckEvent) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -278,7 +278,7 @@ type HallLotteryItem struct {
 func (m *HallLotteryItem) Reset()                    { *m = HallLotteryItem{} }
 func (m *HallLotteryItem) String() string            { return proto.CompactTextString(m) }
 func (*HallLotteryItem) ProtoMessage()               {}
-func (*HallLotteryItem) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (*HallLotteryItem) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
 
 func (m *HallLotteryItem) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -313,7 +313,7 @@ type HallSignLotteryInfo struct {
 func (m *HallSignLotteryInfo) Reset()                    { *m = HallSignLotteryInfo{} }
 func (m *HallSignLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallSignLotteryInfo) ProtoMessage()               {}
-func (*HallSignLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
+func (*HallSignLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{3} }
 
 func (m *HallSignLotteryInfo) GetIsSignToday() bool {
 	if m != nil && m.IsSignToday != nil {
@@ -353,7 +353,7 @@ type HallDrawLotteryInfo struct {
 func (m *HallDrawLotteryInfo) Reset()                    { *m = HallDrawLotteryInfo{} }
 func (m *HallDrawLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallDrawLotteryInfo) ProtoMessage()               {}
-func (*HallDrawLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
+func (*HallDrawLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{4} }
 
 func (m *HallDrawLotteryInfo) GetIsDrawToday() bool {
 	if m != nil && m.IsDrawToday != nil {
@@ -378,7 +378,7 @@ type HallReqMailList struct {
 func (m *HallReqMailList) Reset()                    { *m = HallReqMailList{} }
 func (m *HallReqMailList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqMailList) ProtoMessage()               {}
-func (*HallReqMailList) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
+func (*HallReqMailList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{5} }
 
 func (m *HallReqMailList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -397,7 +397,7 @@ type HallAckMailList struct {
 func (m *HallAckMailList) Reset()                    { *m = HallAckMailList{} }
 func (m *HallAckMailList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckMailList) ProtoMessage()               {}
-func (*HallAckMailList) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
+func (*HallAckMailList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{6} }
 
 func (m *HallAckMailList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -423,7 +423,7 @@ type HallReqTask struct {
 func (m *HallReqTask) Reset()                    { *m = HallReqTask{} }
 func (m *HallReqTask) String() string            { return proto.CompactTextString(m) }
 func (*HallReqTask) ProtoMessage()               {}
-func (*HallReqTask) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{7} }
+func (*HallReqTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{7} }
 
 func (m *HallReqTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -448,7 +448,7 @@ type HallAckTask struct {
 func (m *HallAckTask) Reset()                    { *m = HallAckTask{} }
 func (m *HallAckTask) String() string            { return proto.CompactTextString(m) }
 func (*HallAckTask) ProtoMessage()               {}
-func (*HallAckTask) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{8} }
+func (*HallAckTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{8} }
 
 func (m *HallAckTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -473,7 +473,7 @@ type HallReqGetTask struct {
 func (m *HallReqGetTask) Reset()                    { *m = HallReqGetTask{} }
 func (m *HallReqGetTask) String() string            { return proto.CompactTextString(m) }
 func (*HallReqGetTask) ProtoMessage()               {}
-func (*HallReqGetTask) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{9} }
+func (*HallReqGetTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{9} }
 
 func (m *HallReqGetTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -491,7 +491,7 @@ type HallAckGetTask struct {
 func (m *HallAckGetTask) Reset()                    { *m = HallAckGetTask{} }
 func (m *HallAckGetTask) String() string            { return proto.CompactTextString(m) }
 func (*HallAckGetTask) ProtoMessage()               {}
-func (*HallAckGetTask) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{10} }
+func (*HallAckGetTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{10} }
 
 func (m *HallAckGetTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -516,7 +516,7 @@ type HallReqBagItems struct {
 func (m *HallReqBagItems) Reset()                    { *m = HallReqBagItems{} }
 func (m *HallReqBagItems) String() string            { return proto.CompactTextString(m) }
 func (*HallReqBagItems) ProtoMessage()               {}
-func (*HallReqBagItems) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{11} }
+func (*HallReqBagItems) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{11} }
 
 func (m *HallReqBagItems) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -535,7 +535,7 @@ type HallAckBagItems struct {
 func (m *HallAckBagItems) Reset()                    { *m = HallAckBagItems{} }
 func (m *HallAckBagItems) String() string            { return proto.CompactTextString(m) }
 func (*HallAckBagItems) ProtoMessage()               {}
-func (*HallAckBagItems) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{12} }
+func (*HallAckBagItems) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{12} }
 
 func (m *HallAckBagItems) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -560,7 +560,7 @@ type HallReqUserData struct {
 func (m *HallReqUserData) Reset()                    { *m = HallReqUserData{} }
 func (m *HallReqUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallReqUserData) ProtoMessage()               {}
-func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{13} }
+func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{13} }
 
 func (m *HallReqUserData) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -578,7 +578,7 @@ type HallAckUserData struct {
 func (m *HallAckUserData) Reset()                    { *m = HallAckUserData{} }
 func (m *HallAckUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallAckUserData) ProtoMessage()               {}
-func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{14} }
+func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{14} }
 
 func (m *HallAckUserData) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -604,7 +604,7 @@ type HallReqGoodsList struct {
 func (m *HallReqGoodsList) Reset()                    { *m = HallReqGoodsList{} }
 func (m *HallReqGoodsList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqGoodsList) ProtoMessage()               {}
-func (*HallReqGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{15} }
+func (*HallReqGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{15} }
 
 func (m *HallReqGoodsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -631,7 +631,7 @@ type HallAckGoodsList struct {
 func (m *HallAckGoodsList) Reset()                    { *m = HallAckGoodsList{} }
 func (m *HallAckGoodsList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckGoodsList) ProtoMessage()               {}
-func (*HallAckGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{16} }
+func (*HallAckGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{16} }
 
 func (m *HallAckGoodsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -669,7 +669,7 @@ type HallGoodsItemMsg struct {
 func (m *HallGoodsItemMsg) Reset()                    { *m = HallGoodsItemMsg{} }
 func (m *HallGoodsItemMsg) String() string            { return proto.CompactTextString(m) }
 func (*HallGoodsItemMsg) ProtoMessage()               {}
-func (*HallGoodsItemMsg) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{17} }
+func (*HallGoodsItemMsg) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{17} }
 
 func (m *HallGoodsItemMsg) GetGoodsId() int32 {
 	if m != nil && m.GoodsId != nil {
@@ -729,7 +729,7 @@ type HallReqRank struct {
 func (m *HallReqRank) Reset()                    { *m = HallReqRank{} }
 func (m *HallReqRank) String() string            { return proto.CompactTextString(m) }
 func (*HallReqRank) ProtoMessage()               {}
-func (*HallReqRank) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{18} }
+func (*HallReqRank) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{18} }
 
 func (m *HallReqRank) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -747,7 +747,7 @@ type HallAckRank struct {
 func (m *HallAckRank) Reset()                    { *m = HallAckRank{} }
 func (m *HallAckRank) String() string            { return proto.CompactTextString(m) }
 func (*HallAckRank) ProtoMessage()               {}
-func (*HallAckRank) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{19} }
+func (*HallAckRank) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{19} }
 
 func (m *HallAckRank) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -772,7 +772,7 @@ type HallReqDrawLottery struct {
 func (m *HallReqDrawLottery) Reset()                    { *m = HallReqDrawLottery{} }
 func (m *HallReqDrawLottery) String() string            { return proto.CompactTextString(m) }
 func (*HallReqDrawLottery) ProtoMessage()               {}
-func (*HallReqDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{20} }
+func (*HallReqDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{20} }
 
 func (m *HallReqDrawLottery) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -790,7 +790,7 @@ type HallAckDrawLottery struct {
 func (m *HallAckDrawLottery) Reset()                    { *m = HallAckDrawLottery{} }
 func (m *HallAckDrawLottery) String() string            { return proto.CompactTextString(m) }
 func (*HallAckDrawLottery) ProtoMessage()               {}
-func (*HallAckDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{21} }
+func (*HallAckDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{21} }
 
 func (m *HallAckDrawLottery) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -815,7 +815,7 @@ type HallReqDsLotteryInfo struct {
 func (m *HallReqDsLotteryInfo) Reset()                    { *m = HallReqDsLotteryInfo{} }
 func (m *HallReqDsLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallReqDsLotteryInfo) ProtoMessage()               {}
-func (*HallReqDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{22} }
+func (*HallReqDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{22} }
 
 func (m *HallReqDsLotteryInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -835,7 +835,7 @@ type HallAckDsLotteryInfo struct {
 func (m *HallAckDsLotteryInfo) Reset()                    { *m = HallAckDsLotteryInfo{} }
 func (m *HallAckDsLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallAckDsLotteryInfo) ProtoMessage()               {}
-func (*HallAckDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{23} }
+func (*HallAckDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{23} }
 
 func (m *HallAckDsLotteryInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -867,7 +867,7 @@ type HallReqFriendsList struct {
 func (m *HallReqFriendsList) Reset()                    { *m = HallReqFriendsList{} }
 func (m *HallReqFriendsList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqFriendsList) ProtoMessage()               {}
-func (*HallReqFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{24} }
+func (*HallReqFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{24} }
 
 func (m *HallReqFriendsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -885,7 +885,7 @@ type HallAckFriendsList struct {
 func (m *HallAckFriendsList) Reset()                    { *m = HallAckFriendsList{} }
 func (m *HallAckFriendsList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckFriendsList) ProtoMessage()               {}
-func (*HallAckFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{25} }
+func (*HallAckFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{25} }
 
 func (m *HallAckFriendsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -911,7 +911,7 @@ type HallReqFriendsSearch struct {
 func (m *HallReqFriendsSearch) Reset()                    { *m = HallReqFriendsSearch{} }
 func (m *HallReqFriendsSearch) String() string            { return proto.CompactTextString(m) }
 func (*HallReqFriendsSearch) ProtoMessage()               {}
-func (*HallReqFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{26} }
+func (*HallReqFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{26} }
 
 func (m *HallReqFriendsSearch) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -936,7 +936,7 @@ type HallAckFriendsSearch struct {
 func (m *HallAckFriendsSearch) Reset()                    { *m = HallAckFriendsSearch{} }
 func (m *HallAckFriendsSearch) String() string            { return proto.CompactTextString(m) }
 func (*HallAckFriendsSearch) ProtoMessage()               {}
-func (*HallAckFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{27} }
+func (*HallAckFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{27} }
 
 func (m *HallAckFriendsSearch) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -962,7 +962,7 @@ type HallReqAddFriend struct {
 func (m *HallReqAddFriend) Reset()                    { *m = HallReqAddFriend{} }
 func (m *HallReqAddFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallReqAddFriend) ProtoMessage()               {}
-func (*HallReqAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{28} }
+func (*HallReqAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{28} }
 
 func (m *HallReqAddFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -986,7 +986,7 @@ type HallAckAddFriend struct {
 func (m *HallAckAddFriend) Reset()                    { *m = HallAckAddFriend{} }
 func (m *HallAckAddFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallAckAddFriend) ProtoMessage()               {}
-func (*HallAckAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{29} }
+func (*HallAckAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{29} }
 
 func (m *HallAckAddFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1005,7 +1005,7 @@ type HallReqDelFriend struct {
 func (m *HallReqDelFriend) Reset()                    { *m = HallReqDelFriend{} }
 func (m *HallReqDelFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallReqDelFriend) ProtoMessage()               {}
-func (*HallReqDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{30} }
+func (*HallReqDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{30} }
 
 func (m *HallReqDelFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1029,7 +1029,7 @@ type HallAckDelFriend struct {
 func (m *HallAckDelFriend) Reset()                    { *m = HallAckDelFriend{} }
 func (m *HallAckDelFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallAckDelFriend) ProtoMessage()               {}
-func (*HallAckDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{31} }
+func (*HallAckDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{31} }
 
 func (m *HallAckDelFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1048,7 +1048,7 @@ type HallFriendState struct {
 func (m *HallFriendState) Reset()                    { *m = HallFriendState{} }
 func (m *HallFriendState) String() string            { return proto.CompactTextString(m) }
 func (*HallFriendState) ProtoMessage()               {}
-func (*HallFriendState) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{32} }
+func (*HallFriendState) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{32} }
 
 func (m *HallFriendState) GetIsOnline() bool {
 	if m != nil && m.IsOnline != nil {
@@ -1077,7 +1077,7 @@ type HallUserInfo struct {
 func (m *HallUserInfo) Reset()                    { *m = HallUserInfo{} }
 func (m *HallUserInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallUserInfo) ProtoMessage()               {}
-func (*HallUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{33} }
+func (*HallUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{33} }
 
 func (m *HallUserInfo) GetNickName() string {
 	if m != nil && m.NickName != nil {
@@ -1124,7 +1124,7 @@ type HallAckStrongboxInfo struct {
 func (m *HallAckStrongboxInfo) Reset()                    { *m = HallAckStrongboxInfo{} }
 func (m *HallAckStrongboxInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallAckStrongboxInfo) ProtoMessage()               {}
-func (*HallAckStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{34} }
+func (*HallAckStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{34} }
 
 func (m *HallAckStrongboxInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1148,7 +1148,7 @@ type HallReqStrongboxInfo struct {
 func (m *HallReqStrongboxInfo) Reset()                    { *m = HallReqStrongboxInfo{} }
 func (m *HallReqStrongboxInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallReqStrongboxInfo) ProtoMessage()               {}
-func (*HallReqStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{35} }
+func (*HallReqStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{35} }
 
 func (m *HallReqStrongboxInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1168,7 +1168,7 @@ type HallReqStrongboxAccess struct {
 func (m *HallReqStrongboxAccess) Reset()                    { *m = HallReqStrongboxAccess{} }
 func (m *HallReqStrongboxAccess) String() string            { return proto.CompactTextString(m) }
 func (*HallReqStrongboxAccess) ProtoMessage()               {}
-func (*HallReqStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{36} }
+func (*HallReqStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{36} }
 
 func (m *HallReqStrongboxAccess) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1200,7 +1200,7 @@ type HallAckStrongboxAccess struct {
 func (m *HallAckStrongboxAccess) Reset()                    { *m = HallAckStrongboxAccess{} }
 func (m *HallAckStrongboxAccess) String() string            { return proto.CompactTextString(m) }
 func (*HallAckStrongboxAccess) ProtoMessage()               {}
-func (*HallAckStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{37} }
+func (*HallAckStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{37} }
 
 func (m *HallAckStrongboxAccess) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1260,7 +1260,7 @@ func init() {
 	proto.RegisterEnum("ddproto.HallStrongboxAccessType", HallStrongboxAccessType_name, HallStrongboxAccessType_value)
 }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor14 = []byte{
 	// 1107 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xb4, 0x57, 0xff, 0x6e, 0xe3, 0x44,
 	0x10, 0xc6, 0xf9, 0xd1, 0x26, 0xdb, 0x26, 0x75, 0xdd, 0xa3, 0x0d, 0x05, 0xc4, 0xc9, 0x80, 0x74,
