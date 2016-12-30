@@ -1,6 +1,8 @@
 syntax = "proto2";
 
 import public "common_client.proto";
+import public "common_enum.proto";
+
 
 package ddproto;
 option optimize_for = LITE_RUNTIME;
@@ -18,6 +20,7 @@ message AssetInfo {
     optional string md5 = 5; //文件的md5
     optional bool isCompress = 6; //是否需解压缩
     optional bool isCode = 7; //源码在根目录;非源码文件在res/raw-assets/resources目录
+    optional common_enum_game gameId = 8; //源码在根目录;非源码文件在res/raw-assets/resources目录
 }
 
 // 获取资源文件的最新版本信息

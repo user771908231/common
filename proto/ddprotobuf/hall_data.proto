@@ -73,6 +73,8 @@ enum hall_enum_protoId {
 
     HALL_PID_TASK_LIST_REQ = 48;        //任务列表REQ
     HALL_PID_TASK_LIST_ACK = 49;        //任务列表ACK
+    HALL_PID_APPLE_PAY_CB_ACK = 50;        //苹果充值回复
+
 }
 
 //单个活动

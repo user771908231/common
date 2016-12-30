@@ -1,0 +1,10 @@
+package ddproto;
+
+enum common_enum_game {
+    GID_SRC = 0;
+    GID_TEXAS = 1;
+    GID_MAHJONG = 2;
+    GID_DDZ = 3;
+    GID_ZJH = 4;
+    GID_HALL = 5;
+}
