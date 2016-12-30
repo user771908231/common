@@ -61,6 +61,9 @@ func (c *WxPayChecker) Check() {
 				ChangeCoin:   proto.Int64(detal.GetChangeCoin())}
 			//恢复app需要的数据
 			c.Res(ack)
+
+			//
+			DelDetails(c.tradeNo) //保存到数据库之后删除//
 			return true
 		}
 
