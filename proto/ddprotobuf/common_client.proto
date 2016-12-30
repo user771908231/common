@@ -53,6 +53,11 @@ message WeixinInfo {
     optional string unionId = 6; // unionId
 }
 
+//注册类型
+enum common_enum_reg {
+    RET_TYPE_TOURIST = 1;
+    RET_TYPE_WEIXIN = 2;
+}
 //请求
 message common_req_reg {
     optional ProtoHeader header = 1;

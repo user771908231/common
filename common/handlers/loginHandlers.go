@@ -16,10 +16,10 @@ func HandlerReg(args []interface{}) {
 
 	regType := m.GetRegType()
 	var ack *ddproto.CommonAckReg
-	if regType == 1 {
+	if regType == int32(ddproto.CommonEnumReg_RET_TYPE_TOURIST) {
 		//游客注册
 		ack = loginService.TouristReg()
-	} else if regType == 2 {
+	} else if regType == int32(ddproto.CommonEnumReg_RET_TYPE_WEIXIN) {
 		//微信注册
 		ack = loginService.WxReg(m.GetWxInfo())
 	} else {

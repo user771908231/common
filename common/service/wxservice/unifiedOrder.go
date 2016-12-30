@@ -98,7 +98,7 @@ func GetAppWxpayReqParams(payModelId int32, mealId int32, userId uint32, ip stri
 	tradeNo := GetWxpayTradeNo(payModel.GetId(), userId, meal.GetId(), tnow)
 
 	//生成充值的明细，此数据是要保存到数据库的
-	_, err := NewAndSavePayDetails(userId, mealId, payModelId, tradeNo)
+	_, err := NewAndSavePayDetails(userId, mealId, payModelId, tradeNo, meal.GetDiamond())
 	if err != nil {
 		errMsg := fmt.Sprintf("玩家充值的时候失败，生成明细的时候错误[%v]", userId, err.Error())
 		log.E(errMsg)

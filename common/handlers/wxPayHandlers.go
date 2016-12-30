@@ -15,7 +15,7 @@ func HandlerWxpayUnifiedOrder(args []interface{}) {
 	m := args[0].(*ddproto.WxpayReqUnifiedorder)
 	a := args[1].(gate.Agent)
 	//通过meal知道 充值的数目等
-	ack, _ := service.GetAppWxpayReqParams(m.GetPayModelId(), m.GetMeal(), m.GetHeader().GetUserId(), agentUtils.GetIP(a), wxpay.DEFAULT_DEVICEINFO)
+	ack, _ := service.GetAppWxpayReqParams(m.GetPayModelId(), m.GetProductId(), m.GetHeader().GetUserId(), agentUtils.GetIP(a), wxpay.DEFAULT_DEVICEINFO)
 	if sys.GAMEENV.APPLEPAY_ONLY {
 		//方便上架..设置使用苹果支付
 		ack = new(ddproto.WxpayAckUnifiedorder)
