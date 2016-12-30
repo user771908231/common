@@ -48,7 +48,7 @@ func HandlerGame_Login(args []interface{}) {
 		*ack.UserId = user.GetId()
 		*ack.NickName = user.GetNickName()
 		*ack.Chip = user.GetDiamond()
-		//*ack.IsSignToday = signService.IsUserSignedToday(user)
+		*ack.Coin = user.GetCoin()
 		a.WriteMsg(ack)
 
 		loginService.DoLoginSuccess(user.GetId())

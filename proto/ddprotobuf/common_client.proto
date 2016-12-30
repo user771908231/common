@@ -92,6 +92,7 @@ message common_ack_gameLogin {
     optional int32 mailCount = 9; // 用户邮件数量:>=0 (DdzAckNotice中type=3对应的信息)
     optional string notice = 10; // 滚动公告的内容
     optional int32 gameStatus = 11; // 0：未游戏  1：正在朋友桌  2：正在锦标赛
+    optional int64 coin = 12 ; // 用户金币剩余
 }
 
 //客户端请求
