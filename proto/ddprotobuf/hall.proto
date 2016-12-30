@@ -136,6 +136,7 @@ message hall_ack_goods_list {
      repeated hall_goods_item_msg items = 3; //  物品信息
 }
 
+
 //单个商品信息
 message hall_goods_item_msg {
     optional int32 goods_id = 1; //商品id
@@ -145,6 +146,7 @@ message hall_goods_item_msg {
     optional hall_enum_trade_type goods_type = 5;  //商品类型
     optional int32 amount = 6;  //商品数量--例：10000金币
     optional string discount = 7;  //折扣
+    optional string image = 8;  //商品图片： coin_1 coin_2 coin_3 coin_4 coin_5 coin_6 / diamond_1 diamond_2 diamond_3 diamond_4
 }
 
 //排行
