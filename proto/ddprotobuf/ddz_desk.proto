@@ -26,7 +26,8 @@ message ddz_req_leaveDesk {
 //离开房间的回复
 message ddz_ack_leaveDesk {
     optional ProtoHeader header = 1;
-    optional bool isExchange = 2; //是否换桌离开
+    optional uint32 userId = 2; //离开的玩家
+    optional bool isExchange = 3; //是否换桌离开
 }
 
 //准备游戏

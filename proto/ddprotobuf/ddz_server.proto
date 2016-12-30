@@ -58,6 +58,8 @@ message ddz_srv_desk {
     optional int64 userMinCoin = 29; //玩家进入房间的下限金额 金币场用
     optional int64 userMaxCoin = 30; //玩家进入房间的上限金额 金币场用
     optional int64 coinTicket = 31; //房费 金币场用
+
+    optional ddz_enum_coinRoomLevel coinRoomLv = 32; //金币场桌子的级别
 }
 
 //游戏数据

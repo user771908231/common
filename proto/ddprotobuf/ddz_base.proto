@@ -211,6 +211,8 @@ message ddz_base_roomTypeInfo {
     optional int64 userMinCoin = 6; //玩家进入房间的下限金额 金币场用
     optional int64 userMaxCoin = 7; //玩家进入房间的上限金额 金币场用
     optional int64 coinTicket = 8; //房费 金币场用
+
+    optional ddz_enum_coinRoomLevel roomLv = 9; //房间级别
 }
 
 message ddz_base_playerInfo {
