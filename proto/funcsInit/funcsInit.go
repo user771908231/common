@@ -155,7 +155,7 @@ func NewAckEnterAgentMode() *ddproto.CommonAckEnterAgentMode {
 }
 
 func NewAckQuitAgentMode() *ddproto.CommonAckQuitAgentMode {
-	ret := new(ddproto.CommonQuitAgentMode)
+	ret := new(ddproto.CommonAckQuitAgentMode)
 	ret.UserId = new(uint32)
 	return ret
 }
