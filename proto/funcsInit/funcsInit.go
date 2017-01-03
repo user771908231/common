@@ -148,3 +148,14 @@ func NewAckRedbag() *ddproto.RedbagAck {
 	return ret
 }
 
+func NewAckEnterAgentMode() *ddproto.CommonAckEnterAgentMode {
+	ret := new(ddproto.CommonAckEnterAgentMode)
+	ret.UserId = new(uint32)
+	return ret
+}
+
+func NewAckQuitAgentMode() *ddproto.CommonAckQuitAgentMode {
+	ret := new(ddproto.CommonAckQuitAgentMode)
+	ret.UserId = new(uint32)
+	return ret
+}

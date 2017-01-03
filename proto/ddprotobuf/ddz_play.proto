@@ -204,27 +204,4 @@ message ddz_bc_gameInfo {
 
 }
 
-// 进入托管模式
-message ddz_req_enterAgentMode {
-    optional ProtoHeader header = 1; //
-    optional uint32 userId = 2; //操作人
-}
-
-// 进入托管模式 回复
-message ddz_ack_enterAgentMode {
-    optional ProtoHeader header = 1; //
-    optional uint32 userId = 2; //操作人
-}
-
-// 退出托管模式
-message ddz_req_quitAgentMode {
-    optional ProtoHeader header = 1; //
-    optional uint32 userId = 2; //操作人
-}
-
-// 退出托管模式 回复
-message ddz_ack_quitAgentMode {
-    optional ProtoHeader header = 1; //
-    optional uint32 userId = 2; //操作人
-}
 
