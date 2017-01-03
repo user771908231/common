@@ -144,8 +144,6 @@ func NewAckRedbag() *ddproto.RedbagAck {
 	ret.TotalCash = new(string)
 	return ret
 }
-<<<<<<< HEAD
-=======
 
 func NewAckEnterAgentMode() *ddproto.CommonAckEnterAgentMode {
 	ret := new(ddproto.CommonAckEnterAgentMode)
@@ -158,4 +156,3 @@ func NewAckQuitAgentMode() *ddproto.CommonAckQuitAgentMode {
 	ret.UserId = new(uint32)
 	return ret
 }
->>>>>>> f08baae240eb7a879182a1ba1bf30d9f9b19d597
