@@ -1,6 +1,9 @@
 syntax = "proto2";
-package ddproto;
+
 import public "common_server_poker.proto";
+import public "ddz_base.proto";
+
+package ddproto;
 
 //打出去的牌
 message ddz_srv_outPokerPais {
@@ -43,7 +46,7 @@ message ddz_srv_desk {
     optional int64 CapMax = 18;
     optional bool IsJiaoFen = 19;
     optional int32 roomId = 20; //房间id
-    optional int32 footRate = 21; // 底牌倍数
+    optional ddz_base_commonRateInfo commonRateInfo = 21; //公共倍数
     optional int32 playRate = 22; // 桌子倍率
     optional int32 GameStatus = 23; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
     optional int64 initRoomCoin = 24; // 房间的初始带入金额
@@ -55,6 +58,8 @@ message ddz_srv_desk {
     optional int64 userMinCoin = 29; //玩家进入房间的下限金额 金币场用
     optional int64 userMaxCoin = 30; //玩家进入房间的上限金额 金币场用
     optional int64 coinTicket = 31; //房费 金币场用
+
+    optional ddz_enum_coinRoomLevel coinRoomLv = 32; //金币场桌子的级别
 }
 
 //游戏数据
@@ -111,11 +116,11 @@ message ddz_srv_user {
     optional bool isLeave = 5; //是否掉线
     optional int32 statusHLQiang = 7; //欢乐抢地主的状态
     optional int32 statusHLJiao = 8; //欢乐叫地主的状态
-    optional int32 statusHLJiaBei = 9;//欢乐加倍的状态
-    optional int32 statusSCMenZhua = 10;//四川闷抓的状态
-    optional int32 statusSCZhuaPai = 11;//四川抓牌的状态
-    optional int32 statusSCLaDao = 12;//四川拉倒的状态
-    optional int32 statusJDJiao = 13;//经典叫分的状态
+    optional int32 statusHLJiaBei = 9; //欢乐加倍的状态
+    optional int32 statusSCMenZhua = 10; //四川闷抓的状态
+    optional int32 statusSCZhuaPai = 11; //四川抓牌的状态
+    optional int32 statusSCLaDao = 12; //四川拉倒的状态
+    optional int32 statusJDJiao = 13; //经典叫分的状态
 
     optional bool isShowPokers = 15; //是否明牌
 

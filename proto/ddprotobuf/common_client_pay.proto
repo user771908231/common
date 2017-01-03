@@ -11,7 +11,7 @@ enum pay_enum_tradeStatus {
 // ProtoHeader 需要在每个 Message 中作为第一个字段
 
 //充值套餐
-message pay_base_meal {
+message pay_base_product {
     optional int32 id = 1; //充值套餐
     optional int64 money = 2; //需要的金额
     optional int64 diamond = 3; //购买的钻石数量
@@ -31,7 +31,7 @@ message pay_base_details {
     optional int32 id = 1; //订单id，保存到数据库的id
     optional uint32 userId = 2; //
     optional int32 payModelId = 3; //支付模式
-    optional int32 mealId = 4; //套餐id
+    optional int32 productId = 4; //套餐id
     optional string tradeNo = 5; //支付订单号
     optional pay_enum_tradeStatus status = 6; //订单状态
     optional int64 Diamond = 7;
@@ -44,7 +44,7 @@ message pay_base_details {
 //    总金额	total_fee	是	Int	888	订单总金额，单位为分，详见支付金额
 message wxpay_req_unifiedorder {
     optional ProtoHeader header = 1;
-    optional int32 meal = 2; //要充值的套餐id
+    optional int32 productId = 2; //要充值的套餐id
     optional int32 payModelId = 3; //要充值的套餐id
 }
 
@@ -57,9 +57,15 @@ message wxpay_ack_unifiedorder {
     optional string timeStamp = 5;
     optional string package = 6;
     optional string sign = 7; //签名
+    optional string tradeNo = 8; //系统订单号
+
 }
 
 //app收到同步回调之后，请求服务器检测接收异步回调，得到充值之后的信息
+enum pay_return {
+    ERR_ONLY_APPLE = -250; //只能用苹果支付
+}
+
 message wxpay_req_syncChecker {
     optional ProtoHeader header = 1;
     optional string tradeNo = 2; //制定的商户号，appid等，通过wxpayID区分开
@@ -78,11 +84,11 @@ message wxpay_ack_syncChecker {
 //苹果支付充值回调
 message applepay_req_rechargecb {
     optional ProtoHeader header = 1;
-    optional int64 coin = 2; //要增加的金币数量
+    optional int32 productId = 2; //要增加的金币数量
 }
 
 message applepay_acks_rechargecb {
     optional ProtoHeader header = 1;
-    optional int64 rechargeCoin = 2; //要增加的金币数量
-    optional int64 coin = 3; //增加之后的金币
+    optional int64 rechargeDiamond = 2; //要增加的金币数量
+    optional int64 diamond = 3; //增加之后的金币
 }

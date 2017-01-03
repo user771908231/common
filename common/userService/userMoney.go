@@ -21,11 +21,11 @@ var USER_DIAMOND2_REDIS_KEY = "user_diamond2_redis_key" //钻石朋友桌
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
 
 //更新用户的数据
-func UpdateUserMoney(userId uint32) {
+func UpdateUserMoney(userId uint32) error {
 	user := GetUserById(userId)
 	if user == nil {
-		log.E("更新用户的diamond失败,用户为空")
-		return
+		log.E("更新用户的diamond失败,用户[%v]为空", userId)
+		return errors.New("增加money失败,没有找到用户")
 	}
 
 	//修改并且更新用户数据
@@ -33,6 +33,7 @@ func UpdateUserMoney(userId uint32) {
 	user.Diamond = proto.Int64(GetUserMoney(userId, USER_DIAMOND_REDIS_KEY))
 	user.Diamond2 = proto.Int64(GetUserMoney(userId, USER_DIAMOND2_REDIS_KEY))
 	SaveUser2Redis(user)
+	return nil
 }
 
 func GetUserMoney(userId uint32, money string) int64 {
@@ -84,9 +85,9 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
-	UpdateUserMoney(userid)
+	err := UpdateUserMoney(userid)
 	//3,返回值
-	return remain, nil
+	return remain, err
 }
 
 //减少用户的货币

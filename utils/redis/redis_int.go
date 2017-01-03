@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	Redis_svr string
+	Redis_svr  string
 	Redis_name string
 )
 
@@ -385,8 +385,6 @@ func (t *Data) ZREVRANK(key string, mem string) (interface{}, error) {
 	return values, err
 }
 
-
-
 //=================原子加减
 
 func (t *Data) INCRBY(key string, i int64) (interface{}, error) {
@@ -399,4 +397,7 @@ func (t *Data) DECRBY(key string, i int64) (interface{}, error) {
 	return v, err
 }
 
-
+func (t *Data) SETNX(k string, i int64) (interface{}, error) {
+	v, err := t.conn.Do("DECRBY", k, i)
+	return v, err
+}

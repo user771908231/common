@@ -50,5 +50,5 @@ func SaveUser2Mgo(user *ddproto.User) error {
 }
 
 func UpdateUser2Mgo(user *ddproto.User) error {
-	return db.UpdateMgoData(tableName.DBT_T_USER, user)
+	return db.UpdateMgoDataU32(tableName.DBT_T_USER, user)
 }

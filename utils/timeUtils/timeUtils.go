@@ -44,3 +44,13 @@ func DiffDays(t1, t2 time.Time) int32 {
 	var result int32 = int32(hs)
 	return result
 }
+
+
+/**
+	判断两个日期是否是同一天
+ */
+func EqualDate(time1 time.Time, time2 time.Time) bool {
+	return time1.Year() == time2.Year() &&
+		time1.Month() == time2.Month() &&
+		time1.Day() == time2.Day()
+}

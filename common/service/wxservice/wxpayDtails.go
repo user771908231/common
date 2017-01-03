@@ -7,10 +7,12 @@ import (
 	"errors"
 	"fmt"
 	"casino_common/common/log"
-	"casino_common/utils/db"
-	"casino_common/common/consts/tableName"
 	"strings"
 )
+
+var LOCK int64 = 1;
+
+var UNLOCK int64 = 0;
 
 //得到同步机制的key
 func GetTradeSyncKey(tradeNo string) string {
@@ -22,24 +24,31 @@ func InitTradeSyncStatus(tradeNo string) {
 }
 
 //end_status
-func EndTradeSyncStatus(tradeNo string) error {
-	s := redisUtils.INCRBY(GetTradeSyncKey(tradeNo), 1)
-	if s != int64(ddproto.PayEnumTradeStatus_PAY_S_SUCC) {
-		return ERR_ENDTRADE_REPETITION //重复回调
-	} else {
+func LockPay(tradeNo string) error {
+	s := redisUtils.SETNX(GetTradeSyncKey(tradeNo), 1)
+	if s == UNLOCK {
+		return errors.New("没有获得锁") //重复回调
+	} else if s == LOCK {
 		return nil
+	} else {
+		return errors.New("没有获得锁")
 	}
 }
 
+//这里需要注意死锁
+func UnLockPay(tradeNo string) {
+	redisUtils.Del(GetTradeSyncKey(tradeNo))
+}
+
 //得到一个支付明细
-func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo string) (*ddproto.PayBaseDetails, error) {
+func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo string, diamond int64) (*ddproto.PayBaseDetails, error) {
 	ret := &ddproto.PayBaseDetails{
 		UserId:    proto.Uint32(userId),
-		MealId:    proto.Int32(mealId),
+		ProductId:    proto.Int32(mealId),
 		PayModelId:proto.Int32(payModelId),
 		TradeNo:   proto.String(tradeNo),
+		Diamond:   proto.Int64(diamond),
 		Status:    ddproto.PayEnumTradeStatus_PAY_S_UNIFIEDORDER.Enum()}
-
 	//保存明细
 	SaveDetails(ret)
 	//设置一个订单准备，用于同步，避免重复微信回调时候的重复回调
@@ -48,12 +57,14 @@ func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo
 
 //保存订单
 func SaveDetails(d *ddproto.PayBaseDetails) {
-	//保存
+	log.T("在redis中保存tradNo[%v]的明细", d.GetTradeNo())
 	redisUtils.SetObj(d.GetTradeNo(), d)
 }
 
-func SaveDetails2Mgo(d *ddproto.PayBaseDetails) {
-	db.InsertMgoData(tableName.DBT_T_RECHARGE_DETAILS, d)
+//删除detail
+func DelDetails(t string) {
+	log.T("删除在redis中tradNo[%v]的明细", t)
+	redisUtils.Del(t)
 }
 
 func GetDetailsByTradeNo(tradeNo string) *ddproto.PayBaseDetails {
@@ -76,6 +87,6 @@ func UpdateDetailsStatus(tradeNo string, s ddproto.PayEnumTradeStatus) error {
 	}
 	//更新状态
 	detail.Status = s.Enum()
-	redisUtils.SetObj(tradeNo, detail)
+	SaveDetails(detail)
 	return nil
 }

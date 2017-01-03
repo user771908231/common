@@ -3,8 +3,6 @@ syntax = "proto2";
 import public "common_client.proto";
 
 package ddproto;
-option optimize_for = LITE_RUNTIME;
-
 enum ddz_enum_protoId {
 
     ////////////////////////////////////
@@ -196,10 +194,10 @@ enum ddz_enum_enterType {
 }
 
 enum ddz_enum_coinRoomLevel {
-    LV1 = 1; //100
-    LV2 = 2; //200
-    LV3 = 3; //500
-    //...
+    LV1 = 1; //1000~100000 准入1千到10万 底分10
+    LV2 = 2; //5000~500000 准入5千到50万 底分50
+    LV3 = 3; //10000~600000 准入1万到60万 底分100
+    LV4 = 4; //100000+ 准入10万以上 底分1000
 }
 
 
@@ -213,6 +211,8 @@ message ddz_base_roomTypeInfo {
     optional int64 userMinCoin = 6; //玩家进入房间的下限金额 金币场用
     optional int64 userMaxCoin = 7; //玩家进入房间的上限金额 金币场用
     optional int64 coinTicket = 8; //房费 金币场用
+
+    optional ddz_enum_coinRoomLevel roomLv = 9; //房间级别
 }
 
 message ddz_base_playerInfo {
@@ -251,6 +251,7 @@ message ddz_base_commonRateInfo {
     optional int32 footRate = 4; //底牌倍数
     optional int32 boomRate = 5; //炸弹倍数
     optional int32 springRate = 6; //春天倍数
+    optional int32 totalRate = 7; //公共总倍数
 }
 
 enum ddz_enum_deskGameStatus {
