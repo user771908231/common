@@ -20,6 +20,14 @@ func FindUserByKV(key string, v interface{}) *ddproto.User {
 	}
 }
 
+//找到对应的所有user
+func FindUsersByKV(key string, v interface{}) []*ddproto.User {
+	var tuser []*ddproto.User
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_USER).Find(bson.M{key: v}).All(tuser)
+	})
+	return tuser
+}
 
 //通过id 查找一个user
 func FindUserById(userId uint32) *ddproto.User {
