@@ -131,16 +131,6 @@ func InitUserMoney2Redis(user *ddproto.User) {
 	SetUserMoney(user.GetId(), USER_DIAMOND2_REDIS_KEY, user.GetDiamond2())
 }
 
-//判断user的id 是否是正确的
-func CheckUserIdRightful(userId uint32) bool {
-	u := GetUserById(userId)
-	if u == nil {
-		return false
-	} else {
-		return true
-	}
-}
-
 func GetUserByOpenId(openId string) *ddproto.User {
 	log.T("通过openId[%v]查询用户是否存在...", openId)
 	//2,从数据库中查询

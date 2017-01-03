@@ -52,6 +52,7 @@ func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	ret.RoomId = new(int32)
 	ret.WaitTime = new(int64)
 	ret.GameNumber = new(int32)
+	ret.RoomType = new(int32)
 	return ret
 }
 
@@ -75,8 +76,6 @@ func NewCommonSrvGameDesk() *ddproto.CommonSrvGameDesk {
 	ret.UserCountLimit = new(int32)
 	return ret
 }
-
-
 
 func NewWeixinInfo() *ddproto.WeixinInfo {
 	ret := new(ddproto.WeixinInfo)
@@ -115,7 +114,6 @@ func NewCommonAckGameLogin() *ddproto.CommonAckGameLogin {
 	return ret
 }
 
-
 func NewCommonBcMessage() *ddproto.CommonBcMessage {
 	result := new(ddproto.CommonBcMessage)
 	result.Header = NewHeader()
@@ -138,7 +136,6 @@ func NewCommonAckNotice() *ddproto.CommonAckNotice {
 	return ret
 }
 
-
 //红包回复
 func NewAckRedbag() *ddproto.RedbagAck {
 	ret := new(ddproto.RedbagAck)
@@ -147,6 +144,8 @@ func NewAckRedbag() *ddproto.RedbagAck {
 	ret.TotalCash = new(string)
 	return ret
 }
+<<<<<<< HEAD
+=======
 
 func NewAckEnterAgentMode() *ddproto.CommonAckEnterAgentMode {
 	ret := new(ddproto.CommonAckEnterAgentMode)
@@ -159,3 +158,4 @@ func NewAckQuitAgentMode() *ddproto.CommonAckQuitAgentMode {
 	ret.UserId = new(uint32)
 	return ret
 }
+>>>>>>> f08baae240eb7a879182a1ba1bf30d9f9b19d597
