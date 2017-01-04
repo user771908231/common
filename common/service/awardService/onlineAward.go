@@ -20,7 +20,7 @@ func InitOnlineAward(userId uint32) (*ddproto.AwardMOnline, error) {
 	d := getOnlineData(userId)
 	//初始化之后的数据保存到redis
 	oninit(d)
-	setOnlienData(d)
+	setOnlineData(d)
 	return d, nil
 }
 
@@ -39,14 +39,14 @@ func getOnlineData(userId uint32) *ddproto.AwardMOnline {
 		d := new(ddproto.AwardMOnline)
 		d.UserId = proto.Uint32(userId)
 		log.T("没有找到玩家[%v]在线奖励的数据（第一次登录的时候没有）...")
-		setOnlienData(d)
+		setOnlineData(d)
 		return d
 	} else {
 		return d.(*ddproto.AwardMOnline)
 	}
 }
 
-func setOnlienData(d *ddproto.AwardMOnline) {
+func setOnlineData(d *ddproto.AwardMOnline) {
 	redisUtils.SetObj(redisUtils.K(AWARD_ONLINE_READIS_KEY, d.GetUserId()), d)
 }
 
@@ -75,8 +75,21 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 
 	//再次初始化，并且放置在数据库中...
 	oninit(d)
-	setOnlienData(d)
+	setOnlineData(d)
 	//发送给app
+	a.WriteMsg(ack)
+	return nil
+}
+
+//获取奖励时间
+func GetOnlineInfo(userId uint32, a gate.Agent) error {
+	//获得下次领取的时间
+	d := getOnlineData(userId)
+	dura := timeUtils.String2YYYYMMDDHHMMSS(d.GetBeginTime()).Add(time.Second * time.Duration(d.GetDurationSec())).Unix() - time.Now().Unix()
+
+	//回复消息
+	ack := new(ddproto.AwardAckOnlineInfo)
+	ack.Duration = proto.Int64(dura)
 	a.WriteMsg(ack)
 	return nil
 }
