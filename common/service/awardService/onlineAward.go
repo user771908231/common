@@ -61,7 +61,7 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 	d := getOnlineData(uid)
 	tnow := time.Now()
 	if timeUtils.String2YYYYMMDDHHMMSS(d.GetBeginTime()).Add(time.Second * time.Duration(d.GetDurationSec())).Unix() > tnow.Unix() {
-		log.T("时间不够，[%v]不能获得奖励", uid)
+		log.T("时间不够begin: %v ,duration:%v，[%v]不能获得奖励", d.GetBeginTime(), d.GetDurationSec(), uid)
 		return errors.New("时间不够，不能获得奖励")
 	}
 	//开始发送奖励
