@@ -12,8 +12,6 @@ import (
 	"errors"
 )
 
-const DRUATION_ONLINE int64 = 15 //第一次是15秒
-
 //在线奖励
 func InitOnlineAward(userId uint32) (*ddproto.AwardMOnline, error) {
 	//ddproto.AwardMOnline{} 初始化
