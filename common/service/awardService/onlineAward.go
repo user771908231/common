@@ -89,13 +89,13 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 		log.T("时间不够begin: %v ,duration:%v，[%v]不能获得奖励", d.GetBeginTime(), d.GetDurationSec(), uid)
 		return errors.New("时间不够，不能获得奖励")
 	}
-	//开始发送奖励
-	award := d.GetCapital() * d.GetRate() % 100
+	//计算应该得到的在线奖励
+	award := d.GetCapital() * d.GetRate() % 100 + OnlineConfig.BaseAward
 	balance, _ := userService.INCRUserCOIN(uid, award) //增加用户的金币//是否需要增加金币的订单
 
 	ack := new(ddproto.WardAckOnline)
 	ack.Coin = proto.Int64(balance)
-	ack.Duration = proto.Int64(DRUATION_ONLINE) // 默认值
+	ack.Duration = proto.Int64(d.GetDurationSec()) // 默认值
 	ack.ChangeCoin = proto.Int64(award)
 
 	//再次初始化，并且放置在数据库中...
@@ -108,7 +108,7 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 //获取奖励时间
 func GetOnlineInfo(userId uint32, a gate.Agent) error {
 	//获取在线奖励详情
-	d := getOnlineData(10213)
+	d := getOnlineData(userId)
 	//计算时间差
 	dura := timeUtils.DiffSec(time.Now(), timeUtils.String2YYYYMMDDHHMMSS(d.GetBeginTime()).Add(time.Second * time.Duration(d.GetDurationSec())))
 

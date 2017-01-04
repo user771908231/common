@@ -2,7 +2,6 @@ package timeUtils
 
 import (
 	"time"
-	"casino_common/common/log"
 )
 
 const TIME_LAYOUT = "2006-01-02 15:04:05"
@@ -49,11 +48,14 @@ func DiffDays(t1, t2 time.Time) int32 {
 	判断两个日期是否是同一天
  */
 func EqualDate(time1 time.Time, time2 time.Time) bool {
-	log.T("判断时间是不是同一天time1[%v],time2[%v]", time1, time2)
+	//log.T("判断时间是不是同一天time1[%v],time2[%v]", time1, time2)
+	//log.T("y[%v],2[%v]", time1.UTC().Year(), time2.UTC().Year())
+	//log.T("m[%v],2[%v]", time1.UTC().Month(), time2.UTC().Month())
+	//log.T("r[%v],2[%v]", time1.UTC().Day(), time2.UTC().Day())
 
-	return time1.Local().Year() == time2.Local().Year() &&
-		time1.Local().Month() == time2.Local().Month() &&
-		time1.Local().Day() == time2.Local().Day()
+	return time1.UTC().Year() == time2.UTC().Year() &&
+		time1.UTC().Month() == time2.UTC().Month() &&
+		time1.UTC().Day() == time2.UTC().Day()
 }
 
 //取两者的差
