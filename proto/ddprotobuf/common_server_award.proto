@@ -22,6 +22,7 @@ message award_m_online {
     optional int64 rate = 3; //抽成,可能不会使用
     optional string beginTime = 4; //开始时间
     optional int64 durationSec = 5; //倒计时间隔
+    optional int32 level = 6; //在线奖励等级
 }
 
 //转盘奖励

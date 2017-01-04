@@ -34,7 +34,6 @@ func NowYYYYMMDD() time.Time {
 	return StringYYYYMMDD2time(s)
 }
 
-
 /**
 	判断两个时间多少天
  */
@@ -45,12 +44,23 @@ func DiffDays(t1, t2 time.Time) int32 {
 	return result
 }
 
-
 /**
 	判断两个日期是否是同一天
  */
 func EqualDate(time1 time.Time, time2 time.Time) bool {
-	return time1.Year() == time2.Year() &&
-		time1.Month() == time2.Month() &&
-		time1.Day() == time2.Day()
+	//log.T("判断时间是不是同一天time1[%v],time2[%v]", time1, time2)
+	//log.T("y[%v],2[%v]", time1.UTC().Year(), time2.UTC().Year())
+	//log.T("m[%v],2[%v]", time1.UTC().Month(), time2.UTC().Month())
+	//log.T("r[%v],2[%v]", time1.UTC().Day(), time2.UTC().Day())
+
+	return time1.UTC().Year() == time2.UTC().Year() &&
+		time1.UTC().Month() == time2.UTC().Month() &&
+		time1.UTC().Day() == time2.UTC().Day()
+}
+
+//取两者的差
+func DiffSec(time1, time2 time.Time) int64 {
+	a := String2YYYYMMDDHHMMSS(Format(time1))
+	b := String2YYYYMMDDHHMMSS(Format(time2))
+	return b.Unix() - a.Unix()
 }
