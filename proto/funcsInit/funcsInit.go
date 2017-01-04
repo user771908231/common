@@ -156,3 +156,12 @@ func NewAckQuitAgentMode() *ddproto.CommonAckQuitAgentMode {
 	ret.UserId = new(uint32)
 	return ret
 }
+
+
+func NewAckLeaveDesk() *ddproto.CommonAckLeaveDesk {
+	ret := new(ddproto.CommonAckLeaveDesk)
+	ret.Header = NewHeader()
+	ret.IsExchange = new(bool)
+	ret.UserId = new(uint32)
+	return ret
+}
