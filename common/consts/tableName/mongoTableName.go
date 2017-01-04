@@ -11,5 +11,5 @@ const (
 	DBT_T_USER_MAIL_list              = "t_user_mail_list"  //用户邮件表
 	DBT_T_USER_FRIENDS_LIST           = "t_user_friends_list"  //用户好友关系表
 	DBT_T_PAYBASEDETAILS              = "t_PayBaseDetails" //重新订单信息
-
+	DBT_T_GOODS_INFO   string         = "t_goods_info"      //商品信息表
 )
