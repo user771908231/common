@@ -97,6 +97,10 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_quitAgentMode from common_client.proto
 
+// Ignoring public import of common_req_leaveDesk from common_client.proto
+
+// Ignoring public import of common_ack_leaveDesk from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_pokerColor from common_client.proto
