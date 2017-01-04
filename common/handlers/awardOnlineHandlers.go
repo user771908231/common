@@ -13,3 +13,11 @@ func HandlerAwardOnline(args []interface{}) {
 	//处理奖励
 	awardService.DoAwardOnline(m.GetHeader().GetUserId(), a)
 }
+
+//在线奖励的信息
+func HandlerAwardOnlineInfo(args []interface{}) {
+	m := args[0].(*ddproto.AwardReqOnlineInfo)
+	a := args[1].(gate.Agent)
+	//处理奖励
+	awardService.GetOnlineInfo(m.GetHeader().GetUserId(), a)
+}

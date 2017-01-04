@@ -58,6 +58,8 @@ It has these top-level messages:
 	CommonAckLeaveDesk
 	AwardReqOnline
 	WardAckOnline
+	AwardReqOnlineInfo
+	AwardAckOnlineInfo
 	RedbagReq
 	RedbagAck
 	PayBaseProduct

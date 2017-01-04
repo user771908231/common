@@ -157,7 +157,6 @@ func NewAckQuitAgentMode() *ddproto.CommonAckQuitAgentMode {
 	return ret
 }
 
-
 func NewAckLeaveDesk() *ddproto.CommonAckLeaveDesk {
 	ret := new(ddproto.CommonAckLeaveDesk)
 	ret.Header = NewHeader()
