@@ -9,6 +9,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/userService"
 	"casino_common/utils/timeUtils"
+	"fmt"
 )
 
 
@@ -18,21 +19,13 @@ func DoSign(user *ddproto.User) error {
 	log.T("[%v]开始签到", user.GetId())
 
 	//验证用户能否签到
-	if user.GetLastSignTime() != "" {
-		timeNow := time.Now()
-		lastSignTime, _ := time.Parse(user.GetLastSignTime(), "2006-01-02 15:04:05")
-		//上次签到时间在当前时间之后
-		if lastSignTime.After(timeNow) {
-			log.T("上次签到时间[%v]在当前时间[%v]之后", user.GetLastSignTime(), timeNow.Format("2006-01-02 15:04:05"))
-			return Error.NewError(-1, "上次签到时间在当前时间之后, 签到失败")
-		}
+	if !isAbleToSign(user) {
+		return Error.NewError(-1, fmt.Sprintf("用户[%v]不能签到,签到失败", user.GetId()))
+	}
 
-		// 每天只能签一次
-		//上次签到的日期(天)等于当前日期(天)
-		if timeUtils.EqualDate(lastSignTime, timeNow) {
-			log.T("上次签到日期[%v]等于当前日期[%v]", user.GetLastSignTime(), timeNow.Format("2006-01-02 15:04:05"))
-			return Error.NewError(-1, "上次签到日期等于当前日期, 签到失败")
-		}
+	//不是连续签到 清空连续签到计数
+	if !isContinuousSign(user) {
+		clearContinuousSignCount(user)
 	}
 
 	addSignCount(user)
@@ -43,12 +36,55 @@ func DoSign(user *ddproto.User) error {
 	return nil;
 }
 
-func addSignCount(user *ddproto.User){
-	if user.SignCount == nil {
-		user.SignCount = proto.Int32(1)
-	}else{
-		atomic.AddInt32(user.SignCount, 1)
+func isContinuousSign(user *ddproto.User) bool {
+	if user.GetLastSignTime() == "" {
+		return false
 	}
+	timeNow := time.Now()
+	lastSignTime, _ := time.Parse(user.GetLastSignTime(), "2006-01-02 15:04:05")
+
+	//上次签到＋1天 是否等于今天
+	if !timeUtils.EqualDate(lastSignTime.AddDate(0, 0, 1), timeNow) {
+		log.T("上次签到日期[%v]+1天不等于当前日期[%v]", user.GetLastSignTime(), timeNow.Format("2006-01-02 15:04:05"))
+		return false
+	}
+	return true
+}
+
+func isAbleToSign(user *ddproto.User) bool {
+	//验证用户能否签到
+	if user.GetLastSignTime() != "" {
+		timeNow := time.Now()
+		lastSignTime, _ := time.Parse(user.GetLastSignTime(), "2006-01-02 15:04:05")
+		//上次签到时间在当前时间之后
+		if lastSignTime.After(timeNow) {
+			log.T("上次签到时间[%v]在当前时间[%v]之后", user.GetLastSignTime(), timeNow.Format("2006-01-02 15:04:05"))
+			return false
+		}
+
+		// 每天只能签一次
+		//上次签到的日期(天)等于当前日期(天)
+		if timeUtils.EqualDate(lastSignTime, timeNow) {
+			log.T("上次签到日期[%v]等于当前日期[%v]", user.GetLastSignTime(), timeNow.Format("2006-01-02 15:04:05"))
+			return false
+		}
+	}
+	return true
+}
+
+func addSignCount(user *ddproto.User){
+	if user.SignContinuousDays == nil {
+		user.SignContinuousDays = proto.Int32(0) //addSignCount
+	}
+	if user.SignTotalDays == nil {
+		user.SignTotalDays = proto.Int32(0) //addSignCount
+	}
+	atomic.AddInt32(user.SignContinuousDays, 1)
+	atomic.AddInt32(user.SignTotalDays, 1)
+}
+
+func clearContinuousSignCount(user *ddproto.User){
+	user.SignContinuousDays = proto.Int32(0) //clearContinuousSignCount
 }
 
 

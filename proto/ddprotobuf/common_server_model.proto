@@ -12,14 +12,15 @@ message User {
     optional int32 scores = 6; //积分
     optional string lastDrawLotteryTime = 7; //上一次转盘奖励领取时间
     optional string lastSignTime = 8; //上一次签到的时间
-    optional int32 signCount = 9; //连续签到的次数
-    optional int64 Diamond = 10; //通过钻石开房间
-    optional int64 Diamond2 = 11; //通过钻石开房间
-    optional string openId = 12; //微信openId
-    optional string UnionId = 13; //微信openId
-    optional string headUrl = 14; //头像
-    optional string city = 15; //
-    optional int32 sex = 16;
+    optional int32 signTotalDays = 9; //总共签到天数
+    optional int32 signContinuousDays = 10; //连续签到天数
+    optional int64 Diamond = 11; //通过钻石开房间
+    optional int64 Diamond2 = 12; //通过钻石开房间
+    optional string openId = 13; //微信openId
+    optional string UnionId = 14; //微信openId
+    optional string headUrl = 15; //头像
+    optional string city = 16; //
+    optional int32 sex = 17;
 }
 
 //通知公告
