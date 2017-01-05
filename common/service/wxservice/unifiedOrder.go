@@ -106,7 +106,7 @@ func GetAppWxpayReqParams(payModelId int32, mealId int32, userId uint32, ip stri
 	}
 
 	//开始请求
-	ack, err := UnifiedOrder(meal.GetMoney(), ip, tradeNo, payModel.GetAppId(), payModel.GetMchId(), payModel.GetAppKey(), deviceInfo, tnow, WXPAY_NOTIFYURL)
+	ack, err := UnifiedOrder(meal.GetMoney(), ip, tradeNo, payModel.GetAppId(), payModel.GetMchId(), payModel.GetAppKey(), deviceInfo, tnow, WXConfig.WXPAY_NOTIFYURL)
 	if err != nil {
 		log.E("统一下单的时候出现错误:%v", err.Error())
 		return nil, err
