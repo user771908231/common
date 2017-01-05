@@ -71,6 +71,10 @@ var _ = math.Inf
 
 // Ignoring public import of common_enum_game from common_enum.proto
 
+// Ignoring public import of COMMON_ENUM_ROOMTYPE from common_enum.proto
+
+// Ignoring public import of COMMON_ENUM_GAMESTATUS from common_enum.proto
+
 type VersionInfo struct {
 	FileId           *int32 `protobuf:"varint,1,opt,name=fileId" json:"fileId,omitempty"`
 	FileVer          *int32 `protobuf:"varint,2,opt,name=fileVer" json:"fileVer,omitempty"`

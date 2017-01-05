@@ -1,3 +1,4 @@
+import public "common_enum.proto";
 package ddproto;
 // ProtoHeader 需要在每个 Message 中作为第一个字段
 message ProtoHeader {
@@ -95,8 +96,9 @@ message common_req_gameState {
 
 //回复游戏状态(目前是朋友桌才会请求)
 message common_ack_gameState {
-    optional int32 gameStatus = 1; // 0：未游戏  1：正在朋友桌  2：正在锦标赛
+    optional int32 gameStatus = 1; // 1，未游戏，2，游戏中
     optional string roomPassword = 2; // 朋友桌房间密码
+    optional int32 roomType = 3; //类型,表示是
 }
 
 //客户端请求
