@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"casino_common/proto/ddproto"
-	"casino_server/common/log"
+	"casino_common/common/log"
 )
 
 func HandlerFeedback(args []interface{}) {
