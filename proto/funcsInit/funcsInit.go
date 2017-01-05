@@ -37,6 +37,8 @@ func NewGameSession() *ddproto.GameSession {
 	ret.GameCustomStatus = new(int32)
 	ret.IsBreak = new(bool)
 	ret.IsLeave = new(bool)
+	ret.RoomType = new(int32)
+	ret.RoomPassword = new(string)
 	return ret
 }
 
@@ -53,6 +55,7 @@ func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	ret.WaitTime = new(int64)
 	ret.GameNumber = new(int32)
 	ret.RoomType = new(int32)
+	ret.RoomPassword = new(string)
 	return ret
 }
 
