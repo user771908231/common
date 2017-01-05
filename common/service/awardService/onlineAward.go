@@ -59,7 +59,7 @@ func getOnlineData(userId uint32) *ddproto.AwardMOnline {
 	if d == nil {
 		d := new(ddproto.AwardMOnline)
 		d.UserId = proto.Uint32(userId)
-		log.T("没有找到玩家[%v]在线奖励的数据（第一次登录的时候没有）...")
+		log.T("没有找到玩家[%v]在线奖励的数据（第一次登录的时候没有）...", userId)
 		setOnlineData(d)
 		return d
 	} else {
@@ -91,15 +91,16 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 	award := d.GetCapital() * d.GetRate() % 100 + OnlineConfig.BaseAward
 	balance, _ := userService.INCRUserCOIN(uid, award) //增加用户的金币//是否需要增加金币的订单
 
+	//再次初始化，并且放置在数据库中...
+	oninit(d)
+
+	//返回数据
 	ack := new(ddproto.WardAckOnline)
 	ack.Coin = proto.Int64(balance)
 	ack.Duration = proto.Int64(d.GetDurationSec()) // 默认值
 	ack.ChangeCoin = proto.Int64(award)
-
-	//再次初始化，并且放置在数据库中...
-	oninit(d)
-	//发送给app
 	a.WriteMsg(ack)
+
 	return nil
 }
 
