@@ -12,6 +12,7 @@ message GameSession {
     optional bool isBreak = 8; //断线
     optional bool isLeave = 9; //离开
     optional int32 roomType = 10; //1,朋友桌，2，金币场
+    optional string roomPassword = 11; //房间号码
 }
 
 //服务器游戏玩家通过的协议
@@ -27,7 +28,7 @@ message common_srv_game_user {
     optional int32 Status = 9; //玩家当前的状态
     optional int64 WaitTime = 10; //用户等待的时间
     optional int32 roomType = 11; //玩的是金币场还是朋友桌
-
+    optional string roomPassword = 12; //房间号码
 }
 
 //通用的desk 的协议

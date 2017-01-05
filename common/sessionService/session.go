@@ -23,14 +23,15 @@ const (
 
 var MJSESSION_KEY_PRE = "redis_game_session"
 
-func getSessionKey(userId uint32) string {
+func getSessionKey(userId uint32, gameId int32) string {
 	idstr, _ := numUtils.Uint2String(userId)
-	ret := strings.Join([]string{MJSESSION_KEY_PRE, idstr}, "_")
+	gameIdSrt, _ := numUtils.Int2String(gameId)
+	ret := strings.Join([]string{MJSESSION_KEY_PRE, idstr, gameIdSrt}, "_")
 	return ret
 }
 
-func GetSession(userId uint32) *ddproto.GameSession {
-	s := redisUtils.GetObj(getSessionKey(userId), &ddproto.GameSession{})
+func GetSession(userId uint32, gameId int32) *ddproto.GameSession {
+	s := redisUtils.GetObj(getSessionKey(userId, gameId), &ddproto.GameSession{})
 	if s != nil {
 		return s.(*ddproto.GameSession)
 	} else {
@@ -40,7 +41,7 @@ func GetSession(userId uint32) *ddproto.GameSession {
 
 //更新用户的session信息，具体更新什么信息待定
 func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool, roomType int32) (*ddproto.GameSession, error) {
-	session := GetSession(userId)
+	session := GetSession(userId, gameId)
 	if session == nil {
 		log.E("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
 		session = commonNewPorot.NewGameSession()
@@ -58,6 +59,6 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 
 	//保存session
 	log.T("保存到redis的session【%v】", session)
-	redisUtils.SetObj(getSessionKey(userId), session)
+	redisUtils.SetObj(getSessionKey(userId, gameId), session)
 	return session, nil
 }
