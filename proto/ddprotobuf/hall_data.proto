@@ -76,6 +76,9 @@ enum hall_enum_protoId {
     HALL_PID_APPLE_PAY_CB_ACK = 50; //苹果充值回复
     HALL_PID_ONLINEWARD_INFO_REQ = 51; //51 请求在线奖励的时间
     HALL_PID_ONLINEWARD_INFO_ACK = 52; //52 请求在线奖励的时间回复
+
+    HALL_PID_GOODS_BUY_REQ = 53;  //53 商店购买商品请求
+    HALL_PID_GOODS_BUY_ACK = 54;  //54 商店购买商品回复
 }
 
 //单个活动

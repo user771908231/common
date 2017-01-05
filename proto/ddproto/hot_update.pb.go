@@ -33,6 +33,10 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_gameLogin from common_client.proto
 
+// Ignoring public import of common_req_gameState from common_client.proto
+
+// Ignoring public import of common_ack_gameState from common_client.proto
+
 // Ignoring public import of common_req_logout from common_client.proto
 
 // Ignoring public import of common_ack_logout from common_client.proto
@@ -66,6 +70,10 @@ var _ = math.Inf
 // Ignoring public import of common_enum_pokerColor from common_client.proto
 
 // Ignoring public import of common_enum_game from common_enum.proto
+
+// Ignoring public import of COMMON_ENUM_ROOMTYPE from common_enum.proto
+
+// Ignoring public import of COMMON_ENUM_GAMESTATUS from common_enum.proto
 
 type VersionInfo struct {
 	FileId           *int32 `protobuf:"varint,1,opt,name=fileId" json:"fileId,omitempty"`

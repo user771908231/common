@@ -137,3 +137,9 @@ func K(pre string, userId uint32) string {
 	result := strings.Join([]string{pre, userIdStr}, "_")
 	return result
 }
+
+func KINT32(pre string, id int32) string {
+	userIdStr, _ := numUtils.Int2String(id)
+	result := strings.Join([]string{pre, userIdStr}, "_")
+	return result
+}
