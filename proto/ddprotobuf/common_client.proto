@@ -84,15 +84,19 @@ message common_ack_gameLogin {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; //用户id
     optional string nickName = 3; //昵称
-    optional string roomPassword = 4; // 朋友桌房间密码
-    optional int64 costCreateRoom = 5; // 建房消耗钻石数
-    optional int64 costRebuy = 6; // Rebuy消耗钻石数(锦标赛)
-    optional bool championship = 7; // 是否是锦标赛
-    optional int64 chip = 8; // 用户钻石余额
-    optional int32 mailCount = 9; // 用户邮件数量:>=0 (DdzAckNotice中type=3对应的信息)
-    optional string notice = 10; // 滚动公告的内容
-    optional int32 gameStatus = 11; // 0：未游戏  1：正在朋友桌  2：正在锦标赛
-    optional int64 coin = 12 ; // 用户金币剩余
+    optional int64 chip = 4; // 用户钻石余额
+    optional int64 coin = 5; // 用户金币剩余
+}
+
+//请求游戏状态
+message common_req_gameState {
+    optional ProtoHeader header = 1;
+}
+
+//回复游戏状态(目前是朋友桌才会请求)
+message common_ack_gameState {
+    optional int32 gameStatus = 1; // 0：未游戏  1：正在朋友桌  2：正在锦标赛
+    optional string roomPassword = 2; // 朋友桌房间密码
 }
 
 //客户端请求
@@ -171,8 +175,6 @@ message common_ack_notice {
     repeated string fileds = 7; //公告的字段,目前子还是给充值的协议使用
 }
 
-
-
 //--------------------------------------------托管的协议---------------------------------------
 // 进入托管模式
 message common_req_enterAgentMode {
@@ -197,7 +199,6 @@ message common_ack_quitAgentMode {
     optional ProtoHeader header = 1; //
     optional uint32 userId = 2; //操作人
 }
-
 
 //--------------------------------------------离开的协议---------------------------------------
 // 离开房间
