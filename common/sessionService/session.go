@@ -40,7 +40,7 @@ func GetSession(userId uint32, gameId int32) *ddproto.GameSession {
 }
 
 //更新用户的session信息，具体更新什么信息待定
-func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool, roomType int32) (*ddproto.GameSession, error) {
+func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool, roomType int32, roomPass string) (*ddproto.GameSession, error) {
 	session := GetSession(userId, gameId)
 	if session == nil {
 		log.E("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
@@ -56,6 +56,7 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 	*session.IsBreak = isBreak
 	*session.IsLeave = isLeave
 	session.RoomType = proto.Int32(roomType)
+	session.RoomPassword = proto.String(roomPass)
 
 	//保存session
 	log.T("保存到redis的session【%v】", session)
