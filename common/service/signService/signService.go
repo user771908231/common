@@ -123,7 +123,7 @@ func getUserLotteryId(user *ddproto.User) int32 {
 	m[15] = 5
 	m[20] = 6
 	m[50] = 7
-	return m[user.GetSignCount()]
+	return m[user.GetSignContinuousDays()]
 }
 
 //根据签到情况获得可领的奖品id

@@ -106,7 +106,6 @@ func GetUserById(id uint32) *ddproto.User {
 		buser.Diamond2 = proto.Int64(0)
 		buser.RoomCard = proto.Int64(0)
 		buser.LastSignTime = proto.String("")
-		buser.SignCount = proto.Int32(0)
 		buser.LastDrawLotteryTime = proto.String("")
 		//保存到redis
 		SaveUser2Redis(buser)
