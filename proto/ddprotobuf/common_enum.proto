@@ -1,10 +1,23 @@
 package ddproto;
 
+//游戏的id
 enum common_enum_game {
     GID_SRC = 0;
-    GID_TEXAS = 1;
-    GID_MAHJONG = 2;
-    GID_DDZ = 3;
-    GID_ZJH = 4;
-    GID_HALL = 5;
+    GID_TEXAS = 1; //德州
+    GID_MAHJONG = 2; //麻将
+    GID_DDZ = 3; //斗地主
+    GID_ZJH = 4; //炸金花
+    GID_HALL = 5; //大厅
+}
+
+//房间的类型
+enum COMMON_ENUM_ROOMTYPE {
+    DESK_FRIEND = 1; //朋友桌
+    DESK_COIN = 2; //金币场
+}
+
+//游戏的状态
+enum COMMON_ENUM_GAMESTATUS {
+    NOGAME = 1; //没有在游戏中
+    GAMING = 2; //在游戏中
 }

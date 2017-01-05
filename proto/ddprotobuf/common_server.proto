@@ -5,7 +5,7 @@ message GameSession {
     optional uint32 UserId = 1; //玩家Id
     optional int32 RoomId = 2; //roomId
     optional int32 DeskId = 3; //DeskId
-    optional int32 GameStatus = 4; //游戏的状态，
+    optional int32 GameStatus = 4; //游戏的状态
     optional int32 GameId = 5; //游戏的状态，
     optional int32 GameNumber = 6; //游戏编号
     optional int32 GameCustomStatus = 7; //自定义状态，麻将自己的，斗地主自己的，炸金花自己的

@@ -26,7 +26,6 @@ func HandlerReg(args []interface{}) {
 
 	}
 	a.WriteMsg(ack)
-
 }
 
 func HandlerGame_Login(args []interface{}) {
