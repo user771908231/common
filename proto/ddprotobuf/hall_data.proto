@@ -138,7 +138,8 @@ enum hall_enum_props_type {
 enum hall_lottery_item_type {
     TYPE_ROOM_TICKET = 1; //房卡
     TYPE_FILL_SIGN = 2; //补签卡
-    TYEP_DIAMOND = 3; //钻石
+    TYPE_DIAMOND = 3; //钻石
+    TYPE_COIN = 4; //金币
 }
 
 //单个任务
