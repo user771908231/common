@@ -207,12 +207,13 @@ message common_ack_quitAgentMode {
 // 离开房间
 message common_req_leaveDesk {
     optional ProtoHeader header = 1;
-    optional bool isExchange = 2; //是否换桌离开
+    optional bool isExchange = 2; //是否请求换桌离开
 }
 
 //离开房间的回复
 message common_ack_leaveDesk {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; //离开的玩家
-    optional bool isExchange = 3; //是否换桌离开
+    optional bool isExchange = 3; //是否是换桌离开
+    optional bool isTimeOut = 4; //是否是超时离开
 }
