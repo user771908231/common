@@ -76,6 +76,7 @@ message zjh_srv_desk {
     optional int64 xuepinBaseValue = 15;  //血拼底注
     optional int64 coinCount = 16;  //当前牌桌底注总和
     optional int32 xuepinStartIndex = 17; //血拼开始的位置索引
+    optional int32 xuepinChipCount = 18;  //当前牌桌血拼筹码数
 }
 
 //room 的信息
