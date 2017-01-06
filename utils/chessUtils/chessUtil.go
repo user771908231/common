@@ -3,6 +3,7 @@ package chessUtils
 import (
 	"casino_common/utils/rand"
 	"casino_common/utils/numUtils"
+	"casino_common/common/log"
 )
 
 //随机一副扑克牌的index
@@ -34,13 +35,15 @@ func GetRoomPass(gameId int32) string {
 
 	sum := pre1 + pre2 + pre3 + pre4 + pre5
 	a := gameId - sum % 10
-	if a > 0 {
+	if a >= 0 {
 		pre6 = a
 	} else {
 		pre6 = 10 + a
 	}
-
+	//log.T("pre1[%v], pre2[%v], pre3[%v], pre4[%v], pre5[%v]", pre1, pre2, pre3, pre4, pre5)
+	//log.T("gameId[%v] sum[%v] a[%v] pre6[%v]", gameId, sum, a, pre6)
 	ret := pre1 * 100000 + pre2 * 10000 + pre3 * 1000 + pre4 * 100 + pre5 * 10 + pre6
 	retSrt, _ := numUtils.Int2String(ret)
+	//log.T("ret[%v] retSrt[%v]", ret, retSrt)
 	return retSrt
 }
