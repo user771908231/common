@@ -153,9 +153,10 @@ message hall_bag_item {
 
 //奖励物品类型
 enum hall_lottery_item_type {
-    TYPE_ROOM_TICKET = 1; //房卡
-    TYPE_FILL_SIGN = 2; //补签卡
-    TYEP_DIAMOND = 3; //钻石
+    L_ROOM_TICKET = 1; //房卡
+    L_FILL_SIGN = 2; //补签卡
+    L_DIAMOND = 3; //钻石
+    L_COIN = 4; //金币
 }
 
 //单个任务

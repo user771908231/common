@@ -264,7 +264,7 @@ func (m *HallLotteryItem) GetType() HallLotteryItemType {
 	if m != nil && m.Type != nil {
 		return *m.Type
 	}
-	return HallLotteryItemType_TYPE_ROOM_TICKET
+	return HallLotteryItemType_L_ROOM_TICKET
 }
 
 // 签到信息与奖励物品列表
