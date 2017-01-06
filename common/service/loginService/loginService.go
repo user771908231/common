@@ -13,11 +13,12 @@ import (
 func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 	var user *ddproto.User
 	//不是初次登录,需要用userId 来登录
-	if weixin == nil {
-		//判断uerId
+	if userId > 0 {
+		log.T("玩家使用userid【%v】登录..", userId)
 		user := userService.GetUserById(userId)
 		return user, nil
-	} else {
+	} else if weixin != nil {
+		log.T("微信注册【%v】登录..", userId)
 		//微信不等于空的情况,表示是新用户
 		//1,首先通过weixinInfo 在数据库中查找 用户是否存在，如果用户存在，则表示，登陆成功
 		user = userService.GetUserByOpenId(weixin.GetUnionId())
