@@ -146,8 +146,8 @@ message hall_req_goods_buy {
 //购买商品ACK
 message hall_ack_goods_buy {
     optional ProtoHeader header = 1; //code>=0正常，code<0错误
-    optional hall_enum_trade_type goods_type = 5;  //已购买的商品类型
-    optional int32 amount = 6;  //当前自己拥有的该商品的数量--例：10000金币
+    optional hall_enum_trade_type goods_type = 2;  //已购买的商品类型
+    optional int32 amount = 3;  //当前自己拥有的该商品的数量--例：10000金币
 }
 
 //单个商品信息
