@@ -3,7 +3,6 @@ package chessUtils
 import (
 	"casino_common/utils/rand"
 	"casino_common/utils/numUtils"
-	"casino_common/common/log"
 )
 
 //随机一副扑克牌的index
