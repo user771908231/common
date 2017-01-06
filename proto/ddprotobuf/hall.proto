@@ -103,26 +103,6 @@ enum hall_enum_goods_type {
     TYPE_BUY = 4; //购买道具
     TYPE_VIP = 5; //充值会员
 }
-//货币与商品类型
-enum hall_enum_trade_type {
-    TRADE_COIN = 1;  //金币
-    TRADE_DIAMOND = 2;  //钻石
-    TRADE_BONUS = 3;  //红包
-    TRADE_CODE = 4;  //兑换码
-    TRADE_RMB = 5; //人民币
-    TRADE_VIP = 6;  //会员
-
-    //虚拟道具
-    PROPS_FANGKA = 7;  //房卡
-    PROPS_DALABA = 8;  //大喇叭
-
-    //实物礼品
-    PHONE_CARD_10 = 9;  //10元充值卡
-    PHONE_CARD_50 = 10;  //50元充值卡
-    SHOP_CARD_100 = 11;  //100元购物卡
-    PHONE_IPHONE7 = 12;  //苹果7
-    PC_MACBOOK = 13;   //苹果电脑
-}
 
 //商品列表Req
 message hall_req_goods_list {

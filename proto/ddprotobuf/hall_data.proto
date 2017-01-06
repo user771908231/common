@@ -81,6 +81,28 @@ enum hall_enum_protoId {
     HALL_PID_GOODS_BUY_ACK = 54;  //54 商店购买商品回复
 }
 
+//货币与商品类型
+enum hall_enum_trade_type {
+    //1-100 货币类型与增值服务
+    TRADE_COIN = 1;  //金币
+    TRADE_DIAMOND = 2;  //钻石
+    TRADE_BONUS = 3;  //红包
+    TRADE_CODE = 4;  //兑换码
+    TRADE_RMB = 5; //人民币
+    TRADE_VIP = 6;  //会员
+
+    //100-200 虚拟道具
+    PROPS_FANGKA = 101;  //房卡
+    PROPS_DALABA = 102;  //大喇叭
+
+    //300-400 实物礼品
+    PHONE_CARD_10 = 301;  //10元充值卡
+    PHONE_CARD_50 = 302;  //50元充值卡
+    SHOP_CARD_100 = 303;  //100元购物卡
+    PHONE_IPHONE7 = 304;  //苹果7
+    PC_MACBOOK = 305;   //苹果电脑
+}
+
 //单个活动
 message hall_item_event {
     optional int32 id = 1; // 活动的Id
@@ -125,16 +147,8 @@ enum hall_enum_mail_type {
 
 //背包单个道具
 message hall_bag_item {
-    optional hall_enum_props_type type = 1; //道具类型
+    optional hall_enum_trade_type type = 1; //道具类型
     optional int32 amount = 2; //数量
-}
-
-//道具类型
-enum hall_enum_props_type {
-    TYPE_LABA = 1; //大喇叭
-    TYPE_JIPAIQI = 2; //记牌器
-    TYPE_FANGKA = 3; //房卡
-    TYPE_EXP_3000 = 4; //3000经验
 }
 
 //奖励物品类型
