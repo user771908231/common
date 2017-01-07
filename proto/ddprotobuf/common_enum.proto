@@ -21,3 +21,9 @@ enum COMMON_ENUM_GAMESTATUS {
     NOGAME = 1; //没有在游戏中
     GAMING = 2; //在游戏中
 }
+
+//发布版本
+enum COMMON_ENUM_RELEASETAG {
+    R_PRO = 1; //生产环境使用的版本
+    R_APPLE_VERIFY = 2; //苹果审核使用版本
+}
