@@ -37,8 +37,7 @@ message hotupdate_ack_versionInfo {
     repeated VersionInfo version = 2;
     optional int32 lastestAssetsVersion = 3; //客户端App标识
     optional bool forceUpdate = 4;
-
-
+    optional int32 releaseTag = 5; //发布版本：现在只是审核的时候使用，隐藏特定的ui
 }
 
 // 获取资源文件的详细信息
