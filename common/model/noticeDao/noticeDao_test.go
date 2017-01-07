@@ -22,5 +22,6 @@ func TestSaveNotice2Mgo(t *testing.T) {
 	notice.Id = proto.Int32(4)
 	notice.NoticeTitle = proto.String("活动公告")
 	notice.NoticeContent = proto.String("神经游戏诚招各地代理！申请代理门槛极低，利润丰厚，轻松月入万元。欢迎联系洽谈！")
+	notice.NoticeType = proto.Int32(4)
 	noticeDao.SaveNotice2Mgo(notice)
 }
