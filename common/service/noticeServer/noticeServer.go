@@ -7,6 +7,7 @@ import (
 	"casino_common/proto/ddproto"
 	"casino_common/proto/funcsInit"
 	"casino_common/common/model/noticeDao"
+	"github.com/golang/protobuf/proto"
 )
 
 var NOTICE_TYPE_GUNDONG int32 = 1  //滚动
@@ -42,7 +43,8 @@ func GetCommonAckNotice(noticeType int32) *ddproto.CommonAckNotice {
 		*ack.NoticeTitle = bback.GetNoticeTitle()
 		*ack.NoticeMemo = bback.GetNoticeMemo()
 		*ack.NoticeContent = bback.GetNoticeContent()
-		ack.Fileds = bback.Fileds
+		ack.Fileds = bback.GetNoticefileds()
+		ack.Id = proto.Int32(bback.GetId())
 	}
 	//返回得到的ack notice
 	return ack

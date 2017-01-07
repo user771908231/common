@@ -30,7 +30,7 @@ message TNotice {
     optional string noticeTitle = 3; //公告的标题
     optional string noticeContent = 4; //公告的内容
     optional string noticeMemo = 5; //公告的备注
-    repeated string fileds = 6; //   公告内容
+    repeated string noticefileds = 6; //   公告内容
 }
 
 //玩家游戏场次统计
