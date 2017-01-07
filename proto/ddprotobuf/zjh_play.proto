@@ -43,6 +43,7 @@ message zjh_base_deskInfo {
     optional int64 cuurCoinCount = 15; //当前牌桌上的总金币押注和
     optional int64 cuurBaseValue = 16;  //牌桌当前底注
     optional int32 xuepinChipCount = 17;  //当前血拼筹码数
+    optional int64 xuepinBaseValue = 18;  //血拼底注
 }
 
 // 有玩家进入房间(服务器广播)
