@@ -16,7 +16,7 @@ var GAMEENV struct {
 	APPLEPAY_ONLY bool
 }
 
-func SysInit(prodMode bool, redisAddr string, redisName string, logPath string, logName string, mongoIp string, mongoPort int, mongoName string, mongoSeqKey string, mongoSeqTables []string) error {
+func SysInit(releaseTag int32, prodMode bool, redisAddr string, redisName string, logPath string, logName string, mongoIp string, mongoPort int, mongoName string, mongoSeqKey string, mongoSeqTables []string) error {
 	InitRedis(redisAddr, redisName)
 	initRandSeed()
 	runtime.GOMAXPROCS(runtime.NumCPU())
