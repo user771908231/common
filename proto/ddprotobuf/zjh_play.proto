@@ -76,6 +76,9 @@ message zjh_base_playerInfo {
     optional int32 onlineStatus = 11; // 玩家在线状态: 1=在线  2=离线 3=在线托管 4=离线托管
     optional bool isCheckedPokers = 12; // 当前用户是否已经看牌了
     optional int32 seatIndex = 13; // 当前用户座位索引
+    optional bool isWatch = 14; //是否已看牌
+    optional bool isLost = 15; //是否比牌输了
+    optional bool isDiscard = 16; //是否已弃牌
 }
 
 // 开局（接收服务端消息）: 客户端收到消息后就开始【霸底】、【发牌】的动画, 然后处理第一个 OverTurn

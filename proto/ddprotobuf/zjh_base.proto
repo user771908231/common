@@ -56,7 +56,11 @@ enum EProtoId {
 
 // 玩家当前状态
 enum zjh_enum_playerGameStatus {
-    ZJH_TEMP           = 0; // 初始状态
+    zjh_SS_GAMING = 1; //正在游戏中
+    zjh_SS_STANDING = 2; //已站起
+    zjh_SS_SITED = 3; //已入座/未准备
+    zjh_SS_READY = 4;  //已准备
+    zjh_SS_OFFLINE = 5; //已离线
 }
 
 //桌面状态
