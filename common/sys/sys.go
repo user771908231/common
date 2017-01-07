@@ -11,9 +11,8 @@ import (
 )
 
 var GAMEENV struct {
-	PRODMODE      bool
-	DEVMODE       bool
-	APPLEPAY_ONLY bool
+	PRODMODE bool
+	DEVMODE  bool
 }
 
 func SysInit(releaseTag int32, prodMode bool, redisAddr string, redisName string, logPath string, logName string, mongoIp string, mongoPort int, mongoName string, mongoSeqKey string, mongoSeqTables []string) error {
@@ -26,7 +25,6 @@ func SysInit(releaseTag int32, prodMode bool, redisAddr string, redisName string
 	//初始化游戏环境变量
 	GAMEENV.PRODMODE = prodMode
 	GAMEENV.DEVMODE = !prodMode
-	GAMEENV.APPLEPAY_ONLY = false //上线的时候设置成true
 	return nil
 }
 
