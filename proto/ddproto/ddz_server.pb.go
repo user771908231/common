@@ -23,6 +23,8 @@ var _ = math.Inf
 
 // Ignoring public import of ddz_base_commonRateInfo from ddz_base.proto
 
+// Ignoring public import of ddz_base_timerInfo from ddz_base.proto
+
 // Ignoring public import of ddz_base_deskInfo from ddz_base.proto
 
 // Ignoring public import of ddz_enum_protoId from ddz_base.proto

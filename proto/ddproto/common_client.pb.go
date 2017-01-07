@@ -88,6 +88,7 @@ It has these top-level messages:
 	DdzBasePlayerInfo
 	DdzBasePlayerRateInfo
 	DdzBaseCommonRateInfo
+	DdzBaseTimerInfo
 	DdzBaseDeskInfo
 	DdzReqDissolveDesk
 	DdzAckDissolveDesk
