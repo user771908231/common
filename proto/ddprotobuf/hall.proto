@@ -119,7 +119,7 @@ message hall_ack_goods_list {
 //购买商品REQ
 message hall_req_goods_buy {
     optional ProtoHeader header = 1;
-    optional string goods_id = 2;  //商品id
+    optional int32 goods_id = 2;  //商品id
     optional int32 goods_num = 3;  //购买该商品的数量
 }
 
@@ -132,7 +132,7 @@ message hall_ack_goods_buy {
 
 //单个商品信息
 message hall_goods_item_msg {
-    optional string goods_id = 1; //商品id
+    optional int32 goods_id = 1; //商品id
     optional string name = 2; //  物品名称
     optional hall_enum_trade_type price_type = 3;  //价格类型
     optional int32 price = 4;  //价格数量--例：10个钻石
