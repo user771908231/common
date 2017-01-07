@@ -265,6 +265,12 @@ enum ddz_enum_deskGameStatus {
     FINISH = 4; //已经结束
 }
 
+//定时信息
+message ddz_base_timerInfo {
+    optional uint32 userId = 1; //谁在定时
+    optional int32 remainSec = 2; //剩余时间
+}
+
 message ddz_base_deskInfo {
     optional int32 GameStatus = 1; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
     optional ddz_base_roomTypeInfo roomTypeInfo = 2; //房间类型信息，包括：房间类型、局数、封顶、玩法、牌张、结算、底
@@ -288,5 +294,7 @@ message ddz_base_deskInfo {
     optional ddz_enum_enterType enterType = 18; // 进入的类型  金币场/朋友桌
 
     optional int64 coinTicket = 19; //房费 金币场使用
+
+    optional ddz_base_timerInfo timerInfo = 20; //定时信息
 }
 
