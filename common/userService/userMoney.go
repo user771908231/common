@@ -11,6 +11,7 @@ import (
 	"casino_common/common/consts/tableName"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/cfg"
+	"fmt"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -90,9 +91,10 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 func decrUser(userid uint32, key string, d int64) (int64, error) {
 	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if remain < 0 {
-		log.E("用户[%v]的余额diamond不足,减少的时候失败")
-		incrUser(userid, key, d)
-		return remain, errors.New("用户余额不足")
+		old, _ := incrUser(userid, key, d)
+		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足,减少的时候失败", userid, key, old)
+		log.E(errMsg)
+		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
 		UpdateUserMoney(userid)
