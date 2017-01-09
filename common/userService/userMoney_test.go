@@ -3,6 +3,7 @@ package userService
 import (
 	"casino_common/common/sys"
 	"testing"
+	"casino_common/common/model/userDao"
 )
 
 func init() {
@@ -19,8 +20,15 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	var userId uint32 = 10526
+	var userId uint32 = 10341
 	dia := GetUserDiamond(userId)
 	c := GetUserRoomCard(userId)
 	t.Logf("用户的钻石数量: %v,房卡的数量: %v", dia, c)
+
+	muser := userDao.FindUserById(userId)
+	t.Logf("mongo : 用户的钻石数量: %v,房卡的数量: %v", muser.GetDiamond(), muser.GetRoomCard())
+
+	ruser := GetUserById(userId)
+	t.Logf("redis : 用户的钻石数量: %v,房卡的数量: %v", ruser.GetDiamond(), ruser.GetRoomCard())
+
 }
