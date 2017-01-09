@@ -10,6 +10,8 @@ import (
 	"casino_common/common/consts"
 )
 
+var ERR_SYS = NewError(consts.ACK_RESULT_ERROR, "系统错误")
+
 //func New(errCode int, errStr string) Error {
 //	return Error{errCode, errStr}
 //}

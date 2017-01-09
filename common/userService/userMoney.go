@@ -47,6 +47,10 @@ func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND)
 }
 
+func GetUserRoomCard(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD)
+}
+
 //craete钻石交易记录
 
 func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainDiamond int64, memo string) error {
@@ -114,7 +118,7 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 
 //增加用户的房卡
 func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
-	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
+	return incrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
 }
 
 //减少用户的房卡
