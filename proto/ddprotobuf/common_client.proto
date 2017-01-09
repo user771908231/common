@@ -217,3 +217,21 @@ message common_ack_leaveDesk {
     optional bool isExchange = 3; //是否是换桌离开
     optional bool isTimeOut = 4; //是否是超时离开
 }
+
+//--------------------------------------------补助的协议---------------------------------------
+// 请求补助
+message common_req_allowance {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+}
+
+// 回复补助
+message common_ack_allowance {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool isSuccessed = 3; //是否领取成功
+    optional int32 times2Get = 4; //成功required 第几次领取  一天两次
+    optional int64 allowanceCoin = 5; //成功required 补助金额 1000
+    optional int64 userTotalCoin = 6; //成功required 用户总的金币数
+}
+
