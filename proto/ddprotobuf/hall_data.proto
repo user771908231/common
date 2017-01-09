@@ -79,6 +79,9 @@ enum hall_enum_protoId {
 
     HALL_PID_GOODS_BUY_REQ = 53;  //53 商店购买商品请求
     HALL_PID_GOODS_BUY_ACK = 54;  //54 商店购买商品回复
+
+    HALL_PID_ALLOWANCE_REQ = 55;  //55 补助请求
+    HALL_PID_ALLOWANCE_ACK = 56;  //56 补助回复
 }
 
 //货币与商品类型
