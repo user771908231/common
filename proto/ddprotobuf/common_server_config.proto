@@ -4,4 +4,5 @@ package ddproto;
 message TConfigSys {
     optional int32 id = 1; //id 默认=1
     optional int64 newUserCoin = 2; //生成新用户的时候，默认的金币数量
+    optional int64 newUserRoomcard = 3; //生成新用户的时候，默认的房卡数量
 }

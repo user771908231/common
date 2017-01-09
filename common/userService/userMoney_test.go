@@ -19,6 +19,6 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	dia := GetUserDiamond(10468)
+	dia := GetUserDiamond(10469)
 	t.Logf("用户的钻石数量: %v", dia)
 }

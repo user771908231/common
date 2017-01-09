@@ -10,13 +10,8 @@ import (
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/cfg"
 )
-
-var NEW_USER_DIAMOND_REWARD int64 = 20 //新用户登陆的时候,默认的砖石数量
-
-var USER_COIN_REDIS_KEY = "user_coin_redis_key"         //金币
-var USER_DIAMOND_REDIS_KEY = "user_diamond_redis_key"   //钻石，金币场
-var USER_DIAMOND2_REDIS_KEY = "user_diamond2_redis_key" //钻石朋友桌
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
 
@@ -29,9 +24,10 @@ func UpdateUserMoney(userId uint32) error {
 	}
 
 	//修改并且更新用户数据
-	user.Coin = proto.Int64(GetUserMoney(userId, USER_COIN_REDIS_KEY))
-	user.Diamond = proto.Int64(GetUserMoney(userId, USER_DIAMOND_REDIS_KEY))
-	user.Diamond2 = proto.Int64(GetUserMoney(userId, USER_DIAMOND2_REDIS_KEY))
+	user.Coin = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_COIN))
+	user.Diamond = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_DIAMOND))
+	user.Diamond2 = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_DIAMOND2))
+	user.RoomCard = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD))
 	SaveUser2Redis(user)
 	return nil
 }
@@ -47,7 +43,7 @@ func SetUserMoney(userId uint32, money string, diamond int64) {
 
 //获取用户的钻石
 func GetUserDiamond(userId uint32) int64 {
-	return GetUserMoney(userId, USER_DIAMOND_REDIS_KEY)
+	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND)
 }
 
 //craete钻石交易记录
@@ -106,30 +102,40 @@ func decrUser(userid uint32, key string, d int64) (int64, error) {
 
 //增加用户的钻石
 func INCRUserDiamond(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, USER_DIAMOND_REDIS_KEY, d)
+	return incrUser(userid, cfg.RKEY_USER_DIAMOND, d)
 }
 
 //减少用户的砖石
 func DECRUserDiamond(userid uint32, d int64) (int64, error) {
-	return decrUser(userid, USER_DIAMOND_REDIS_KEY, d)
+	return decrUser(userid, cfg.RKEY_USER_DIAMOND, d)
+}
+
+//增加用户的房卡
+func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
+	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
+}
+
+//减少用户的房卡
+func DECRUserRoomcard(userId uint32, d int64) (int64, error) {
+	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
 }
 
 //增加用户的朋友桌钻石
 func INCRUserDiamond2(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, USER_DIAMOND2_REDIS_KEY, d)
+	return incrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
 }
 
 //减少用户的朋友桌钻石
 func DECRUserDiamond2(userid uint32, d int64) (int64, error) {
-	return decrUser(userid, USER_DIAMOND2_REDIS_KEY, d)
+	return decrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
 }
 
 //增加用户的金币
 func INCRUserCOIN(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, USER_COIN_REDIS_KEY, d)
+	return incrUser(userid, cfg.RKEY_USER_COIN, d)
 }
 
 //减少用户的金币
 func DECRUserCOIN(userid uint32, d int64) (int64, error) {
-	return decrUser(userid, USER_COIN_REDIS_KEY, d)
+	return decrUser(userid, cfg.RKEY_USER_COIN, d)
 }
