@@ -3,7 +3,6 @@ package userService
 import (
 	"casino_common/utils/db"
 	"casino_common/common/log"
-	"casino_common/utils/numUtils"
 	"casino_common/utils/redisUtils"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
@@ -31,7 +30,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.Id = proto.Uint32(uint32(id))
 	user.Sex = proto.Int32(sex)
 	user.City = proto.String(city)
-	user.Diamond = proto.Int64(NEW_USER_DIAMOND_REWARD) //新用户注册的时候,默认的钻石数量
+	user.Diamond = proto.Int64(0)
 	user.NickName = proto.String(wxNickName)
 	user.UnionId = proto.String(unionId)
 	user.OpenId = proto.String(openId)
@@ -47,6 +46,8 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 
 	//3,保存到redis
 	SaveUser2Redis(user)
+	INCRUserRoomcard(uint32(id), sys.CONFIG_SYS.GetNewUserRoomcard()) //新用户注册的时候,默认的房卡数量
+	INCRUserCOIN(uint32(id), sys.CONFIG_SYS.GetNewUserCoin())         //新用户注册的时候，默认的金币数量
 	return user, nil
 }
 
@@ -93,24 +94,6 @@ func GetUserById(id uint32) *ddproto.User {
 		}
 	}
 
-	//4,如果找不到用户并且是开发这模式
-	if buser == nil &&  sys.GAMEENV.DEVMODE {
-		log.T("现在是开发者模式sys.GAMEENV.DEVMODE[%v],生成一个对应id[%v]的user，并且缓存到redis中...", sys.GAMEENV.DEVMODE, id)
-		buser = &ddproto.User{}
-		buser.Id = proto.Uint32(id)
-		nickName, _ := numUtils.Uint2String(id)
-		buser.NickName = proto.String(nickName)
-		buser.Coin = proto.Int64(0)
-		buser.Diamond = proto.Int64(20)
-		buser.Diamond2 = proto.Int64(0)
-		buser.RoomCard = proto.Int64(0)
-		buser.LastSignTime = proto.String("")
-		buser.LastDrawLotteryTime = proto.String("")
-		//保存到redis
-		SaveUser2Redis(buser)
-		InitUserMoney2Redis(buser)
-	}
-
 	//判断用户是否存在,如果不存在,则返回空
 	return buser
 }
@@ -129,12 +112,13 @@ func UpdateUser2Mgo(u *ddproto.User) {
 
 //初始化redis中用户的金额的值
 func InitUserMoney2Redis(user *ddproto.User) {
-	SetUserMoney(user.GetId(), USER_COIN_REDIS_KEY, user.GetCoin())
-	SetUserMoney(user.GetId(), USER_DIAMOND_REDIS_KEY, user.GetDiamond())
-	SetUserMoney(user.GetId(), USER_DIAMOND2_REDIS_KEY, user.GetDiamond2())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_COIN, user.GetCoin())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND, user.GetDiamond())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND2, user.GetDiamond2())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD, user.GetRoomCard())
 }
 
-func GetUserByOpenId(openId string) *ddproto.User {
+func GetUserByUnionId(openId string) *ddproto.User {
 	log.T("通过openId[%v]查询用户是否存在...", openId)
 	//2,从数据库中查询
 	user := userDao.FindUserByUnionId(openId)

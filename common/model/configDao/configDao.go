@@ -19,10 +19,15 @@ func GetConfigSys() *ddproto.TConfigSys {
 	} else {
 		return nil
 	}
-
 }
 
-func InsertConfigSys(data *ddproto.TConfigSys) error {
-	db.InsertMgoData(tableName.DBT_T_CONFIG_SYS, data)
+func UpsertConfigSys(data *ddproto.TConfigSys) error {
+	//判断数据库中是否已经存在
+	od := GetConfigSys()
+	if od == nil {
+		db.InsertMgoData(tableName.DBT_T_CONFIG_SYS, data)
+	} else {
+		db.UpdateMgoData(tableName.DBT_T_CONFIG_SYS, data)
+	}
 	return nil
 }
