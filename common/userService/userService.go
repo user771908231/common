@@ -31,7 +31,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.Id = proto.Uint32(uint32(id))
 	user.Sex = proto.Int32(sex)
 	user.City = proto.String(city)
-	user.Diamond = proto.Int64(NEW_USER_DIAMOND_REWARD) //新用户注册的时候,默认的钻石数量
+	user.Diamond = proto.Int64(0)
 	user.NickName = proto.String(wxNickName)
 	user.UnionId = proto.String(unionId)
 	user.OpenId = proto.String(openId)
@@ -47,6 +47,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 
 	//3,保存到redis
 	SaveUser2Redis(user)
+	INCRUserDiamond(uint32(id), NEW_USER_DIAMOND_REWARD) //新用户注册的时候,默认的钻石数量
 	return user, nil
 }
 
