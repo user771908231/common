@@ -8,17 +8,15 @@ import (
 	"errors"
 	"fmt"
 	"casino_common/common/model/wxpayDao"
+	"casino_common/common/model"
+	"casino_common/common/model/goodsRowDao"
 )
 
 //充值套餐
 
-func GetMealById(id int32) *ddproto.PayBaseProduct {
+func GetMealById(id int32) *model.T_Goods_Row {
 	//返回测试数据
-	test := &ddproto.PayBaseProduct{
-		Id:     proto.Int32(1),
-		Money:  proto.Int64(1),
-		Diamond:proto.Int64(5)}
-	return test
+	return goodsRowDao.GetGoodsInfo(id)
 }
 
 func GetPayModel(id int32) *ddproto.PayBasePaymodel {
@@ -65,7 +63,7 @@ func UpdateUserByMeal(tradeNo string) error {
 	//找到套餐
 	meal := GetMealById(detail.GetProductId())
 	//根据套餐增加用户的余额
-	userService.INCRUserDiamond(detail.GetUserId(), meal.GetDiamond())
+	userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount))
 	//更新订单状态
 	UpdateDetailsStatus(tradeNo, ddproto.PayEnumTradeStatus_PAY_S_SUCC)
 	//保存订单到数据库...

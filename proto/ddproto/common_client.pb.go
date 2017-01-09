@@ -12,6 +12,7 @@ It is generated from these files:
 	common_enum.proto
 	common_server.proto
 	common_server_award.proto
+	common_server_config.proto
 	common_server_model.proto
 	common_server_poker.proto
 	common_server_task.proto
@@ -80,6 +81,7 @@ It has these top-level messages:
 	CommonSrvGameDesk
 	Taward
 	AwardMOnline
+	TConfigSys
 	User
 	TNotice
 	TGameCounts

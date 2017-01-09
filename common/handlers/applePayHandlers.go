@@ -20,16 +20,16 @@ func HandlerApplePayRechargeCb(args []interface{}) {
 	p := service.GetMealById(m.GetProductId())
 
 	//增加钻石
-	d, err := userService.INCRUserDiamond(userId, p.GetDiamond())
+	d, err := userService.INCRUserDiamond(userId, int64(p.Amount))
 	if err != nil {
 		//请求失败
-		log.E("增加用户[%v]的coni[%v]余额失败...", userId, p.GetDiamond())
+		log.E("增加用户[%v]的coni[%v]余额失败...", userId, int64(p.Amount))
 		return
 	} else {
 		//增加用户金币成功之后，返回用户的金币
 		ack := new(ddproto.ApplepayAcksRechargecb)
 		ack.Diamond = proto.Int64(d)
-		ack.RechargeDiamond = proto.Int64(p.GetDiamond())
+		ack.RechargeDiamond = proto.Int64(int64(p.Amount))
 		a.WriteMsg(ack)
 	}
 

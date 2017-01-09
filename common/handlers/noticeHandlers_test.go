@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	db.Oninit("127.0.0.1", 51668, "test", "id")
+	db.Oninit("127.0.0.1", 27017, "test", "id")
 	sys.InitRedis("127.0.0.1:6379", "test")
 }
 

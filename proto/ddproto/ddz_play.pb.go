@@ -140,7 +140,7 @@ func (x *DdzEnumJdScore) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumJdScore(value)
 	return nil
 }
-func (DdzEnumJdScore) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
+func (DdzEnumJdScore) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
 
 type DdzEnumDoubleType int32
 
@@ -174,7 +174,7 @@ func (x *DdzEnumDoubleType) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumDoubleType(value)
 	return nil
 }
-func (DdzEnumDoubleType) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{1} }
+func (DdzEnumDoubleType) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
 
 type DdzEnumLaDaoType int32
 
@@ -211,7 +211,7 @@ func (x *DdzEnumLaDaoType) UnmarshalJSON(data []byte) error {
 	*x = DdzEnumLaDaoType(value)
 	return nil
 }
-func (DdzEnumLaDaoType) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{2} }
+func (DdzEnumLaDaoType) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
 
 // 开局（接收服务端消息）
 type DdzBcOpening struct {
@@ -222,7 +222,7 @@ type DdzBcOpening struct {
 func (m *DdzBcOpening) Reset()                    { *m = DdzBcOpening{} }
 func (m *DdzBcOpening) String() string            { return proto.CompactTextString(m) }
 func (*DdzBcOpening) ProtoMessage()               {}
-func (*DdzBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
+func (*DdzBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
 
 func (m *DdzBcOpening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -241,7 +241,7 @@ type DdzBcDealCards struct {
 func (m *DdzBcDealCards) Reset()                    { *m = DdzBcDealCards{} }
 func (m *DdzBcDealCards) String() string            { return proto.CompactTextString(m) }
 func (*DdzBcDealCards) ProtoMessage()               {}
-func (*DdzBcDealCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{1} }
+func (*DdzBcDealCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
 
 func (m *DdzBcDealCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -268,7 +268,7 @@ type DdzReqShowHandPokers struct {
 func (m *DdzReqShowHandPokers) Reset()                    { *m = DdzReqShowHandPokers{} }
 func (m *DdzReqShowHandPokers) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqShowHandPokers) ProtoMessage()               {}
-func (*DdzReqShowHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{2} }
+func (*DdzReqShowHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
 
 func (m *DdzReqShowHandPokers) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -303,7 +303,7 @@ type DdzAckShowHandPokers struct {
 func (m *DdzAckShowHandPokers) Reset()                    { *m = DdzAckShowHandPokers{} }
 func (m *DdzAckShowHandPokers) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckShowHandPokers) ProtoMessage()               {}
-func (*DdzAckShowHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{3} }
+func (*DdzAckShowHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
 
 func (m *DdzAckShowHandPokers) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -345,7 +345,7 @@ type DdzReqJiaoDiZhu struct {
 func (m *DdzReqJiaoDiZhu) Reset()                    { *m = DdzReqJiaoDiZhu{} }
 func (m *DdzReqJiaoDiZhu) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqJiaoDiZhu) ProtoMessage()               {}
-func (*DdzReqJiaoDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{4} }
+func (*DdzReqJiaoDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
 
 func (m *DdzReqJiaoDiZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -387,7 +387,7 @@ type DdzAckJiaoDiZhu struct {
 func (m *DdzAckJiaoDiZhu) Reset()                    { *m = DdzAckJiaoDiZhu{} }
 func (m *DdzAckJiaoDiZhu) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckJiaoDiZhu) ProtoMessage()               {}
-func (*DdzAckJiaoDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{5} }
+func (*DdzAckJiaoDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
 
 func (m *DdzAckJiaoDiZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -428,7 +428,7 @@ type DdzReqRobDiZhu struct {
 func (m *DdzReqRobDiZhu) Reset()                    { *m = DdzReqRobDiZhu{} }
 func (m *DdzReqRobDiZhu) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqRobDiZhu) ProtoMessage()               {}
-func (*DdzReqRobDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{6} }
+func (*DdzReqRobDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
 
 func (m *DdzReqRobDiZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -461,7 +461,7 @@ type DdzAckRobDiZhu struct {
 func (m *DdzAckRobDiZhu) Reset()                    { *m = DdzAckRobDiZhu{} }
 func (m *DdzAckRobDiZhu) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckRobDiZhu) ProtoMessage()               {}
-func (*DdzAckRobDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{7} }
+func (*DdzAckRobDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{7} }
 
 func (m *DdzAckRobDiZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -495,7 +495,7 @@ type DdzReqDouble struct {
 func (m *DdzReqDouble) Reset()                    { *m = DdzReqDouble{} }
 func (m *DdzReqDouble) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqDouble) ProtoMessage()               {}
-func (*DdzReqDouble) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{8} }
+func (*DdzReqDouble) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{8} }
 
 func (m *DdzReqDouble) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -528,7 +528,7 @@ type DdzAckDouble struct {
 func (m *DdzAckDouble) Reset()                    { *m = DdzAckDouble{} }
 func (m *DdzAckDouble) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckDouble) ProtoMessage()               {}
-func (*DdzAckDouble) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{9} }
+func (*DdzAckDouble) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{9} }
 
 func (m *DdzAckDouble) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -563,7 +563,7 @@ type DdzBcStartPlay struct {
 func (m *DdzBcStartPlay) Reset()                    { *m = DdzBcStartPlay{} }
 func (m *DdzBcStartPlay) String() string            { return proto.CompactTextString(m) }
 func (*DdzBcStartPlay) ProtoMessage()               {}
-func (*DdzBcStartPlay) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{10} }
+func (*DdzBcStartPlay) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{10} }
 
 func (m *DdzBcStartPlay) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -603,7 +603,7 @@ type DdzReqMenuZhua struct {
 func (m *DdzReqMenuZhua) Reset()                    { *m = DdzReqMenuZhua{} }
 func (m *DdzReqMenuZhua) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqMenuZhua) ProtoMessage()               {}
-func (*DdzReqMenuZhua) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{11} }
+func (*DdzReqMenuZhua) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{11} }
 
 func (m *DdzReqMenuZhua) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -629,7 +629,7 @@ type DdzAckMenuZhua struct {
 func (m *DdzAckMenuZhua) Reset()                    { *m = DdzAckMenuZhua{} }
 func (m *DdzAckMenuZhua) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckMenuZhua) ProtoMessage()               {}
-func (*DdzAckMenuZhua) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{12} }
+func (*DdzAckMenuZhua) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{12} }
 
 func (m *DdzAckMenuZhua) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -662,7 +662,7 @@ type DdzReqSeeCards struct {
 func (m *DdzReqSeeCards) Reset()                    { *m = DdzReqSeeCards{} }
 func (m *DdzReqSeeCards) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqSeeCards) ProtoMessage()               {}
-func (*DdzReqSeeCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{13} }
+func (*DdzReqSeeCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{13} }
 
 func (m *DdzReqSeeCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -688,7 +688,7 @@ type DdzAckSeeCards struct {
 func (m *DdzAckSeeCards) Reset()                    { *m = DdzAckSeeCards{} }
 func (m *DdzAckSeeCards) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckSeeCards) ProtoMessage()               {}
-func (*DdzAckSeeCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{14} }
+func (*DdzAckSeeCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{14} }
 
 func (m *DdzAckSeeCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -722,7 +722,7 @@ type DdzReqPull struct {
 func (m *DdzReqPull) Reset()                    { *m = DdzReqPull{} }
 func (m *DdzReqPull) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqPull) ProtoMessage()               {}
-func (*DdzReqPull) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{15} }
+func (*DdzReqPull) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{15} }
 
 func (m *DdzReqPull) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -755,7 +755,7 @@ type DdzAckPull struct {
 func (m *DdzAckPull) Reset()                    { *m = DdzAckPull{} }
 func (m *DdzAckPull) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckPull) ProtoMessage()               {}
-func (*DdzAckPull) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{16} }
+func (*DdzAckPull) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{16} }
 
 func (m *DdzAckPull) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -788,7 +788,7 @@ type DdzReqOutCards struct {
 func (m *DdzReqOutCards) Reset()                    { *m = DdzReqOutCards{} }
 func (m *DdzReqOutCards) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqOutCards) ProtoMessage()               {}
-func (*DdzReqOutCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{17} }
+func (*DdzReqOutCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{17} }
 
 func (m *DdzReqOutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -816,7 +816,7 @@ type DdzAckOutCards struct {
 func (m *DdzAckOutCards) Reset()                    { *m = DdzAckOutCards{} }
 func (m *DdzAckOutCards) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckOutCards) ProtoMessage()               {}
-func (*DdzAckOutCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{18} }
+func (*DdzAckOutCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{18} }
 
 func (m *DdzAckOutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -863,7 +863,7 @@ type DdzReqActGuo struct {
 func (m *DdzReqActGuo) Reset()                    { *m = DdzReqActGuo{} }
 func (m *DdzReqActGuo) String() string            { return proto.CompactTextString(m) }
 func (*DdzReqActGuo) ProtoMessage()               {}
-func (*DdzReqActGuo) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{19} }
+func (*DdzReqActGuo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{19} }
 
 func (m *DdzReqActGuo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -889,7 +889,7 @@ type DdzAckGuoAck struct {
 func (m *DdzAckGuoAck) Reset()                    { *m = DdzAckGuoAck{} }
 func (m *DdzAckGuoAck) String() string            { return proto.CompactTextString(m) }
 func (*DdzAckGuoAck) ProtoMessage()               {}
-func (*DdzAckGuoAck) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{20} }
+func (*DdzAckGuoAck) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{20} }
 
 func (m *DdzAckGuoAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -922,7 +922,7 @@ type DdzBcOverTurn struct {
 func (m *DdzBcOverTurn) Reset()                    { *m = DdzBcOverTurn{} }
 func (m *DdzBcOverTurn) String() string            { return proto.CompactTextString(m) }
 func (*DdzBcOverTurn) ProtoMessage()               {}
-func (*DdzBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{21} }
+func (*DdzBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{21} }
 
 func (m *DdzBcOverTurn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1000,7 +1000,7 @@ type DdzBcGameInfo struct {
 func (m *DdzBcGameInfo) Reset()                    { *m = DdzBcGameInfo{} }
 func (m *DdzBcGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*DdzBcGameInfo) ProtoMessage()               {}
-func (*DdzBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{22} }
+func (*DdzBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{22} }
 
 func (m *DdzBcGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1066,7 +1066,7 @@ func init() {
 	proto.RegisterEnum("ddproto.DdzEnumLaDaoType", DdzEnumLaDaoType_name, DdzEnumLaDaoType_value)
 }
 
-var fileDescriptor12 = []byte{
+var fileDescriptor13 = []byte{
 	// 811 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xc4, 0x56, 0x4d, 0x4f, 0x1a, 0x5d,
 	0x14, 0x7e, 0x87, 0x91, 0xaf, 0x03, 0x22, 0x8e, 0xe6, 0x0d, 0x2f, 0x6f, 0x17, 0x86, 0x74, 0x41,
