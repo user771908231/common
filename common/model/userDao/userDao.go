@@ -24,7 +24,7 @@ func FindUserByKV(key string, v interface{}) *ddproto.User {
 func FindUsersByKV(key string, v interface{}) []*ddproto.User {
 	var tuser []*ddproto.User
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_T_USER).Find(bson.M{key: v}).All(tuser)
+		d.C(tableName.DBT_T_USER).Find(bson.M{key: v}).All(&tuser)
 	})
 	return tuser
 }
