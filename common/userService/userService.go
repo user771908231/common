@@ -123,6 +123,11 @@ func SaveUser2Redis(u *ddproto.User) {
 	redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
 }
 
+//把用户保存到mgo
+func UpdateUser2Mgo(u *ddproto.User) {
+	userDao.UpdateUser2Mgo(u)
+}
+
 //初始化redis中用户的金额的值
 func InitUserMoney2Redis(user *ddproto.User) {
 	SetUserMoney(user.GetId(), USER_COIN_REDIS_KEY, user.GetCoin())

@@ -21,6 +21,8 @@ message User {
     optional string headUrl = 15; //头像
     optional string city = 16; //
     optional int32 sex = 17;
+    optional int32 robotType = 18; //机器人类型
+
 }
 
 //通知公告

@@ -1,21 +1,13 @@
-package main
+package test
 
 import (
-	"fmt"
-	"strings"
+	"casino_common/common/sys"
+	"casino_common/utils/db"
+	"casino_common/common/log"
 )
 
-func main() {
-	s := "jsdfaljfowjfa"
-	sarry := strings.Split(s, ":")
-
-	fmt.Println(sarry)
-	fmt.Println(sarry[0])
-
-	s = "jsdf:al:jfowjfa"
-	sarry = strings.Split(s, ":")
-
-	fmt.Println(sarry)
-	fmt.Println(sarry[0])
-
+func TestInit() {
+	sys.InitRedis("127.0.0.1:6379", "test")
+	db.Oninit("127.0.0.1", 51668, "test", "id")
+	log.InitLogger("", "") //初始化日志处理
 }
