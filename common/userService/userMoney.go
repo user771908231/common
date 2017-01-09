@@ -82,7 +82,7 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 //---------------------------------------增加用户货币的通用方法-----------------------------------------
 //增加用户的货币
 func incrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]增加钻石[%v]", userid, d)
+	log.T("为用户[%v]增加[%v][%v]", userid, key, d)
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
