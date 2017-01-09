@@ -52,6 +52,7 @@ message hotupdate_ack_assetsInfo {
     optional string assetHost = 2; //资源下载的服务器(如:http://www.myhost.com/update/)
     repeated AssetInfo assets = 3; //
     optional int32 lastestAssetsVersion = 4; //全局的版本号
+    optional int32 clientResolution = 5; //客户端分辨率: 0=720x1280 1=1080x1920
 
 }
 
@@ -62,12 +63,13 @@ message hotupdate_req_gameAssetsInfo {
     optional ProtoHeader header = 1;
     optional int32 clientAppId = 2; //客户端App标识
     optional int32 gameId = 3;
+    optional int32 clientResolution = 4; //客户端分辨率: 0=720x1280 1=1080x1920
+
 }
 
 message hotupdate_ack_gameAssetsInfo {
     optional ProtoHeader header = 1;
     optional string assetHost = 2; //资源下载的服务器(如:http://www.myhost.com/update/)
     repeated AssetInfo assets = 3;
-    optional int32 clientResolution = 4; //客户端分辨率: 0=720x1280 1=1080x1920
 }
 
