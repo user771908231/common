@@ -11,6 +11,7 @@ const (
 	DBT_T_USER_MAIL_list       string = "t_user_mail_list"       //用户邮件表
 	DBT_T_USER_FRIENDS_LIST    string = "t_user_friends_list"    //用户好友关系表
 	DBT_T_PAYBASEDETAILS       string = "t_PayBaseDetails"       //重新订单信息
+	DBT_T_STRONGBOX            string = "t_strongbox"            //保险箱
 	DBT_T_GOODS_INFO           string = "t_goods_info"           //商品信息表
 	DBT_T_CONFIG_SYS           string = "t_config_sys"           //系统的配置表
 )

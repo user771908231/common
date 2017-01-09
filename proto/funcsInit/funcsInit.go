@@ -161,3 +161,14 @@ func NewAckLeaveDesk() *ddproto.CommonAckLeaveDesk {
 	ret.UserId = new(uint32)
 	return ret
 }
+
+func NewAckAllowance() *ddproto.CommonAckAllowance {
+	ret := new(ddproto.CommonAckAllowance)
+	ret.Header = NewHeader()
+	ret.AllowanceCoin = new(int64)
+	ret.IsSuccessed = new(bool)
+	ret.Times2Get = new(int32)
+	ret.UserId = new(uint32)
+	ret.UserTotalCoin = new(int64)
+	return ret
+}
