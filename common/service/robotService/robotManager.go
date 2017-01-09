@@ -6,7 +6,7 @@ import (
 	"sync"
 	"casino_common/common/userService"
 	"github.com/golang/protobuf/proto"
-	"casino_server/common/log"
+	"casino_common/common/log"
 )
 
 //机器人管理器
@@ -93,7 +93,7 @@ func (rm *RobotsManager) expropriationRobot() *Robot {
 
 	for _, r := range rm.robots {
 		if r.IsAvailable() {
-			r.IsAvailable() = false
+			r.available = false
 			return r
 		}
 	}
