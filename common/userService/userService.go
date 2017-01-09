@@ -10,10 +10,8 @@ import (
 	"casino_common/common/sys"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/model/userDao"
+	"casino_common/common/cfg"
 )
-
-var USER_REDIS_KEY_AGENT_SESSION = "agent_session" //用户session的key
-var USER_REDIS_KEY = tableName.DBT_T_USER          //用户的key
 
 /**
 	1,create 一个user
@@ -38,6 +36,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.UnionId = proto.String(unionId)
 	user.OpenId = proto.String(openId)
 	user.HeadUrl = proto.String(headUrl)
+	user.Coin = proto.Int64(sys.CONFIG_SYS.GetNewUserCoin())
 
 	//2保存数据到数据库
 	err = userDao.SaveUser2Mgo(user)
@@ -52,7 +51,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 }
 
 func GetRedisUserKey(id uint32) string {
-	return redisUtils.K(USER_REDIS_KEY, id)
+	return redisUtils.K(cfg.RKEY_PRE_USER, id)
 }
 
 func ClearUserSeesion(userId uint32) {
@@ -61,7 +60,7 @@ func ClearUserSeesion(userId uint32) {
 
 //取session的rediskey
 func GetRedisUserSeesionKey(userid uint32) string {
-	return redisUtils.K(USER_REDIS_KEY_AGENT_SESSION, userid)
+	return redisUtils.K(cfg.RKEY_PRE_USER_AGENT_SESSION, userid)
 }
 
 /**

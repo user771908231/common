@@ -39,7 +39,7 @@ type User struct {
 func (m *User) Reset()                    { *m = User{} }
 func (m *User) String() string            { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()               {}
-func (*User) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
+func (*User) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 func (m *User) GetRoomCard() int64 {
 	if m != nil && m.RoomCard != nil {
@@ -181,7 +181,7 @@ type TNotice struct {
 func (m *TNotice) Reset()                    { *m = TNotice{} }
 func (m *TNotice) String() string            { return proto.CompactTextString(m) }
 func (*TNotice) ProtoMessage()               {}
-func (*TNotice) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
+func (*TNotice) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
 
 func (m *TNotice) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -243,7 +243,7 @@ type TGameCounts struct {
 func (m *TGameCounts) Reset()                    { *m = TGameCounts{} }
 func (m *TGameCounts) String() string            { return proto.CompactTextString(m) }
 func (*TGameCounts) ProtoMessage()               {}
-func (*TGameCounts) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
+func (*TGameCounts) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
 
 func (m *TGameCounts) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -327,7 +327,7 @@ type TUserTask struct {
 func (m *TUserTask) Reset()                    { *m = TUserTask{} }
 func (m *TUserTask) String() string            { return proto.CompactTextString(m) }
 func (*TUserTask) ProtoMessage()               {}
-func (*TUserTask) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
+func (*TUserTask) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{3} }
 
 func (m *TUserTask) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -364,7 +364,7 @@ func init() {
 	proto.RegisterType((*TUserTask)(nil), "ddproto.TUserTask")
 }
 
-var fileDescriptor6 = []byte{
+var fileDescriptor7 = []byte{
 	// 454 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x7c, 0x92, 0xcf, 0x8e, 0xd3, 0x30,
 	0x10, 0xc6, 0xd5, 0xa6, 0x6d, 0x9a, 0x69, 0xbb, 0x7f, 0xb2, 0x20, 0x19, 0xb8, 0xa0, 0x9e, 0xf6,

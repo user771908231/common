@@ -1,0 +1,7 @@
+package ddproto;
+
+//对应mgo 中的表单,但是这里主要是做一些配置
+message TConfigSys {
+    optional int32 id = 1; //id 默认=1
+    optional int64 newUserCoin = 2; //生成新用户的时候，默认的金币数量
+}
