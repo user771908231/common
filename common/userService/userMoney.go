@@ -51,6 +51,10 @@ func GetUserRoomCard(userId uint32) int64 {
 	return GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD)
 }
 
+func GetUserCoin(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_COIN)
+}
+
 //craete钻石交易记录
 
 func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainDiamond int64, memo string) error {
