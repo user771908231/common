@@ -7,6 +7,9 @@ import (
 	"casino_common/common/service/signService"
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/rand"
+	"strings"
 )
 
 //做登录的操作...
@@ -47,12 +50,18 @@ func DoLoginSuccess(userId uint32) error {
 
 //游客注册
 func TouristReg() *ddproto.CommonAckReg {
-	//func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string) (*ddproto.User, error) {
-	user, err := userService.NewUserAndSave("", "", "", "", 1, "")
+	//设置游客昵称昵称
+	nick, _ := numUtils.Int2String(rand.Rand(10000, 100000))
+	nickName := strings.Join([]string{"游客", nick}, "")
+
+	//游戏需要创建一个nickName    "游客+[5位随机数]"
+	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "")
 	if err != nil || user == nil {
 		log.E("注册用户的时候失败...")
 		return nil
 	}
+
+	log.T("游客登录的注册user: %v,nick:%v", user, user.GetNickName())
 
 	//返回结果
 	ack := new(ddproto.CommonAckReg)

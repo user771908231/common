@@ -11,6 +11,7 @@ import (
 	"casino_common/common/consts/tableName"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/cfg"
+	"fmt"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -46,6 +47,14 @@ func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND)
 }
 
+func GetUserRoomCard(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD)
+}
+
+func GetUserCoin(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_COIN)
+}
+
 //craete钻石交易记录
 
 func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainDiamond int64, memo string) error {
@@ -77,7 +86,7 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 //---------------------------------------增加用户货币的通用方法-----------------------------------------
 //增加用户的货币
 func incrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]增加钻石[%v]", userid, d)
+	log.T("为用户[%v]增加[%v][%v]", userid, key, d)
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
@@ -90,9 +99,10 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 func decrUser(userid uint32, key string, d int64) (int64, error) {
 	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if remain < 0 {
-		log.E("用户[%v]的余额diamond不足,减少的时候失败")
-		incrUser(userid, key, d)
-		return remain, errors.New("用户余额不足")
+		old, _ := incrUser(userid, key, d)
+		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足,减少的时候失败", userid, key, old)
+		log.E(errMsg)
+		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
 		UpdateUserMoney(userid)
@@ -112,7 +122,7 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 
 //增加用户的房卡
 func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
-	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
+	return incrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
 }
 
 //减少用户的房卡

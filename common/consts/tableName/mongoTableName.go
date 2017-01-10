@@ -1,6 +1,7 @@
 package tableName
 
 const (
+	//大厅
 	DBT_T_USER                 string = "t_user"                 //用户表
 	DBT_T_USER_DIAMOND_DETAILS string = "t_user_diamond_details" //钻石交易记录
 	DBT_T_TH_NOTICE            string = "t_th_notice"            //公告
@@ -15,4 +16,10 @@ const (
 	DBT_T_GOODS_INFO           string = "t_goods_info"           //商品信息表
 	DBT_T_CONFIG_SYS           string = "t_config_sys"           //系统的配置表
 	DBT_T_USER_ATTACH          string = "t_user_attach"          //用户签到/抽奖/补助 领取记录表
+
+	//麻将
+
+	//斗地主
+
+	//扎金花
 )
