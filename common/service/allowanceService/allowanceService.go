@@ -78,11 +78,14 @@ func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 //更新领取记录 时间和次数
 func UpdateUserAllowanceInfo(user *ddproto.User) {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
-	if IsUserReceiveAllowanceToday(user) {
-		userAttach.AllowanceTimes = 1
-	}else {
-		userAttach.AllowanceTimes++
+
+	//今天没有领取补助 清空计数
+	if !IsUserReceiveAllowanceToday(user) {
+		userAttach.AllowanceTimes = 0
 	}
+
+	userAttach.AllowanceTimes++
+
 	userAttach.LastAllowanceTime = timeUtils.Time2String(time.Now())
 	userAttachDao.UpdateUserAttachByModel(userAttach)
 }
