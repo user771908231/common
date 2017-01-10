@@ -229,6 +229,7 @@ message hall_user_info {
     optional int32 sex = 3; //性别：1:男 2:女
     optional string city = 4;  //城市
     optional string sign = 5;  //签名
+    optional uint32 user_id = 6;  //用户id
 }
 
 
