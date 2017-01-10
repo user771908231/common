@@ -14,12 +14,11 @@ message hall_ack_event {
     repeated hall_item_event eventList = 2;
 }
 
-
 // 奖励物品信息
 message hall_lottery_item {
     optional int32 id = 1;
     optional string name = 2;
-    optional hall_enum_trade_type type = 3; //奖励物品类型
+    optional hall_lottery_item_type type = 3; //奖励物品类型
 }
 
 //签到信息与奖励物品列表
@@ -36,9 +35,6 @@ message hall_draw_lottery_info {
     repeated hall_lottery_item dialItems = 2; //转盘奖励物品列表
 }
 
-
-
-
 // 邮件REQ
 message hall_req_mail_list {
     optional ProtoHeader header = 1;
@@ -46,9 +42,8 @@ message hall_req_mail_list {
 //邮件ACK
 message hall_ack_mail_list {
     optional ProtoHeader header = 1;
-    repeated hall_mail_item list = 2;  //邮件列表
+    repeated hall_mail_item list = 2; //邮件列表
 }
-
 
 // 任务
 message hall_req_task {
@@ -60,7 +55,6 @@ message hall_ack_task {
     optional ProtoHeader header = 1;
     repeated hall_item_task taskList = 2;
 }
-
 
 //领取任务奖励
 message hall_req_checkTask {
@@ -82,7 +76,6 @@ message hall_ack_bag_items {
     repeated hall_bag_item items = 2;
 }
 
-
 //个人信息
 message hall_req_userData {
     optional ProtoHeader header = 1;
@@ -92,7 +85,6 @@ message hall_ack_userData {
     optional ProtoHeader header = 1;
     optional hall_userData user = 2;
 }
-
 
 //======================商城商品列表======================
 //商品列表页面类型
@@ -111,35 +103,35 @@ message hall_req_goods_list {
 }
 //商品列表Ack
 message hall_ack_goods_list {
-     optional ProtoHeader header = 1;
-     optional hall_enum_goods_type goods_type = 2;
-     repeated hall_goods_item_msg items = 3; //  物品信息
+    optional ProtoHeader header = 1;
+    optional hall_enum_goods_type goods_type = 2;
+    repeated hall_goods_item_msg items = 3; //  物品信息
 }
 
 //购买商品REQ
 message hall_req_goods_buy {
     optional ProtoHeader header = 1;
-    optional int32 goods_id = 2;  //商品id
-    optional int32 goods_num = 3;  //购买该商品的数量
+    optional int32 goods_id = 2; //商品id
+    optional int32 goods_num = 3; //购买该商品的数量
 }
 
 //购买商品ACK
 message hall_ack_goods_buy {
     optional ProtoHeader header = 1; //code>=0正常，code<0错误
-    optional hall_enum_trade_type goods_type = 2;  //已购买的商品类型
-    optional int32 amount = 3;  //当前自己拥有的该商品的数量--例：10000金币
+    optional hall_enum_trade_type goods_type = 2; //已购买的商品类型
+    optional int32 amount = 3; //当前自己拥有的该商品的数量--例：10000金币
 }
 
 //单个商品信息
 message hall_goods_item_msg {
     optional int32 goods_id = 1; //商品id
     optional string name = 2; //  物品名称
-    optional hall_enum_trade_type price_type = 3;  //价格类型
-    optional int32 price = 4;  //价格数量--例：10个钻石
-    optional hall_enum_trade_type goods_type = 5;  //商品类型
-    optional int32 amount = 6;  //商品数量--例：10000金币
-    optional string discount = 7;  //折扣
-    optional string image = 8;  //商品图片： coin_1 coin_2 coin_3 coin_4 coin_5 coin_6 / diamond_1 diamond_2 diamond_3 diamond_4
+    optional hall_enum_trade_type price_type = 3; //价格类型
+    optional int32 price = 4; //价格数量--例：10个钻石
+    optional hall_enum_trade_type goods_type = 5; //商品类型
+    optional int32 amount = 6; //商品数量--例：10000金币
+    optional string discount = 7; //折扣
+    optional string image = 8; //商品图片： coin_1 coin_2 coin_3 coin_4 coin_5 coin_6 / diamond_1 diamond_2 diamond_3 diamond_4
 }
 
 //排行
@@ -151,7 +143,6 @@ message hall_ack_rank {
     optional ProtoHeader header = 1;
     repeated hall_rank_item rankList = 2;
 }
-
 
 //抽奖动作
 message hall_req_draw_lottery {
@@ -188,7 +179,7 @@ message hall_ack_friends_list {
 //好友搜索
 message hall_req_friends_search {
     optional ProtoHeader header = 1;
-    optional string keyword = 2;  //关键词
+    optional string keyword = 2; //关键词
 }
 
 message hall_ack_friends_search {
@@ -198,41 +189,39 @@ message hall_ack_friends_search {
 
 //添加好友
 message hall_req_add_friend {
-    optional ProtoHeader header = 1;  //自己的userid
-    repeated uint32 add_userid = 2;  //被添加的好友id
+    optional ProtoHeader header = 1; //自己的userid
+    repeated uint32 add_userid = 2; //被添加的好友id
 }
 
 message hall_ack_add_friend {
-    optional ProtoHeader header = 1;  //code 1:成功，0:失败
+    optional ProtoHeader header = 1; //code 1:成功，0:失败
 }
 
 //删除好友
 message hall_req_del_friend {
-    optional ProtoHeader header = 1;  //自己的userid
-    optional uint32 del_userid = 2;  //被删除的好友id
+    optional ProtoHeader header = 1; //自己的userid
+    optional uint32 del_userid = 2; //被删除的好友id
 }
 
 message hall_ack_del_friend {
-    optional ProtoHeader header = 1;  //code 1:成功，0:失败
+    optional ProtoHeader header = 1; //code 1:成功，0:失败
 }
 
 //用户状态
 message hall_friend_state {
-    optional bool is_online = 1;  //是否在线
-    optional hall_user_info info = 2;  //用户信息
+    optional bool is_online = 1; //是否在线
+    optional hall_user_info info = 2; //用户信息
 }
 
 //用户信息
 message hall_user_info {
-    optional string nick_name = 1;  //昵称
-    optional string head_img = 2;  //头像
+    optional string nick_name = 1; //昵称
+    optional string head_img = 2; //头像
     optional int32 sex = 3; //性别：1:男 2:女
-    optional string city = 4;  //城市
-    optional string sign = 5;  //签名
-    optional uint32 user_id = 6;  //用户id
+    optional string city = 4; //城市
+    optional string sign = 5; //签名
+    optional uint32 user_id = 6; //用户id
 }
-
-
 
 //保险箱信息
 message hall_ack_strongbox_info {
@@ -243,7 +232,6 @@ message hall_ack_strongbox_info {
 message hall_req_strongbox_info {
     optional ProtoHeader header = 1;
 }
-
 
 //保险箱操作类型
 enum hall_strongbox_access_type {

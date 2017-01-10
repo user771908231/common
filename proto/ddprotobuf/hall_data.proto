@@ -77,38 +77,38 @@ enum hall_enum_protoId {
     HALL_PID_ONLINEWARD_INFO_REQ = 51; //51 请求在线奖励的时间
     HALL_PID_ONLINEWARD_INFO_ACK = 52; //52 请求在线奖励的时间回复
 
-    HALL_PID_GOODS_BUY_REQ = 53;  //53 商店购买商品请求
-    HALL_PID_GOODS_BUY_ACK = 54;  //54 商店购买商品回复
+    HALL_PID_GOODS_BUY_REQ = 53; //53 商店购买商品请求
+    HALL_PID_GOODS_BUY_ACK = 54; //54 商店购买商品回复
 
-    HALL_PID_ALLOWANCE_REQ = 55;  //55 补助请求
-    HALL_PID_ALLOWANCE_ACK = 56;  //56 补助回复
+    HALL_PID_ALLOWANCE_REQ = 55; //55 补助请求
+    HALL_PID_ALLOWANCE_ACK = 56; //56 补助回复
 
-    HALL_PID_CHECK_TASK_REQ = 57;  //57 领取任务奖励请求
-    HALL_PID_CHECK_TASK_ACK = 58;  //58 领取任务奖励回复
+    HALL_PID_CHECK_TASK_REQ = 57; //57 领取任务奖励请求
+    HALL_PID_CHECK_TASK_ACK = 58; //58 领取任务奖励回复
 }
 
 //货币与商品类型
 enum hall_enum_trade_type {
     //0-50 货币类型与增值服务
-    TRADE_COIN = 1;  //金币
-    TRADE_DIAMOND = 2;  //钻石
-    TRADE_BONUS = 3;  //红包
+    TRADE_COIN = 1; //金币
+    TRADE_DIAMOND = 2; //钻石
+    TRADE_BONUS = 3; //红包
     TRADE_RMB = 5; //人民币
     TRADE_TICKET = 7; //奖券
 
     //50-100  增值服务
-    SERVER_VIP = 51;  //会员
+    SERVER_VIP = 51; //会员
 
     //100-200 虚拟道具
-    PROPS_FANGKA = 101;  //房卡
-    PROPS_DALABA = 102;  //大喇叭
+    PROPS_FANGKA = 101; //房卡
+    PROPS_DALABA = 102; //大喇叭
 
     //300-400 实物礼品
-    REAL_PHONE_CARD_10 = 301;  //10元充值卡
-    REAL_PHONE_CARD_50 = 302;  //50元充值卡
-    REAL_SHOP_CARD_100 = 303;  //100元购物卡
-    REAL_PHONE_IPHONE7 = 304;  //苹果7
-    REAL_PC_MACBOOK = 305;   //苹果电脑
+    REAL_PHONE_CARD_10 = 301; //10元充值卡
+    REAL_PHONE_CARD_50 = 302; //50元充值卡
+    REAL_SHOP_CARD_100 = 303; //100元购物卡
+    REAL_PHONE_IPHONE7 = 304; //苹果7
+    REAL_PC_MACBOOK = 305; //苹果电脑
 }
 
 //单个活动
@@ -165,6 +165,8 @@ enum hall_lottery_item_type {
     L_FILL_SIGN = 2; //补签卡
     L_DIAMOND = 3; //钻石
     L_COIN = 4; //金币
+    L_RED_PACKET = 5; //红包
+    L_COUPON = 6; //奖券
 }
 
 //单个任务
