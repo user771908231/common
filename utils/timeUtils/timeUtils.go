@@ -68,3 +68,13 @@ func DiffSec(time1, time2 time.Time) int64 {
 	b := String2YYYYMMDDHHMMSS(Format(time2))
 	return b.Unix() - a.Unix()
 }
+
+//时间转换成字符串
+func Time2String(t time.Time) string {
+	return t.Format("2006-01-02 15:04:05")
+}
+
+//字符串转换成时间
+func String2Time(s string) (time.Time, error) {
+	return time.Parse(s, "2006-01-02 15:04:05")
+}

@@ -13,23 +13,30 @@ func FindUserAttachByKV(key string, v interface{}) *model.T_user_attach {
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER_ATTACH).Find(bson.M{key: v}).One(tuser)
 	})
-	if *tuser.UserId <= uint32(0) {
+	if tuser.UserId <= uint32(0) {
 		return nil
 	}
 	return tuser
 }
 
-//通过id 查找一个user
+//通过userId 查找一个attach
 func FindUserAttachByUserId(userId uint32) *model.T_user_attach {
-	return FindUserAttachByKV("userId", userId)
+	return FindUserAttachByKV("UserId", userId)
 }
 
-//
-func SaveUser2Mgo(user model.T_user_attach) error {
-	return db.InsertMgoData(tableName.DBT_T_USER, user)
+//新增
+func InsertUserAttachByModel(t *model.T_user_attach) {
+	db.Query(func(d *mgo.Database){
+		d.C(tableName.DBT_T_USER_ATTACH).Insert(t)
+	})
 }
 
-func UpdateUser2Mgo(user model.T_user_attach) error {
-	return db.UpdateMgoDataU32(tableName.DBT_T_USER, user)
+//更新
+func UpdateUserAttachByModel(t *model.T_user_attach) {
+	db.Query(func(d *mgo.Database){
+		d.C(tableName.DBT_T_USER_ATTACH).Update(bson.M{
+			"UserId": t.UserId,
+		}, t)
+	})
 }
 

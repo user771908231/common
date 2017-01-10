@@ -10,6 +10,6 @@ import (
 func HandlerAllowance(args []interface{}) {
 	m := args[0].(*ddproto.AwardReqOnline)
 	a := args[1].(gate.Agent)
-	//处理奖励
+	//处理领取补助
 	allowanceService.DoAllowance(m.GetHeader().GetUserId(), a)
 }
