@@ -9,7 +9,6 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
-	"github.com/golang/protobuf/proto"
 	"casino_common/common/cfg"
 	"fmt"
 )
@@ -17,7 +16,7 @@ import (
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
 
 //更新用户的数据
-func UpdateUserMoney(userId uint32) error {
+func UpdateRedisUserMoney(userId uint32) error {
 	user := GetUserById(userId)
 	if user == nil {
 		log.E("更新用户的diamond失败,用户[%v]为空", userId)
@@ -25,11 +24,7 @@ func UpdateUserMoney(userId uint32) error {
 	}
 
 	//修改并且更新用户数据
-	user.Coin = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_COIN))
-	user.Diamond = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_DIAMOND))
-	user.Diamond2 = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_DIAMOND2))
-	user.RoomCard = proto.Int64(GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD))
-	SaveUser2Redis(user)
+	SyncReidsUserMoney(user)
 	return nil
 }
 
@@ -90,7 +85,7 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
-	err := UpdateUserMoney(userid)
+	err := UpdateRedisUserMoney(userid)
 	//3,返回值
 	return remain, err
 }
@@ -105,7 +100,7 @@ func decrUser(userid uint32, key string, d int64) (int64, error) {
 		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
-		UpdateUserMoney(userid)
+		UpdateRedisUserMoney(userid)
 		return remain, nil
 	}
 }

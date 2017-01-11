@@ -4,6 +4,7 @@ import (
 	"casino_common/common/sys"
 	"testing"
 	"casino_common/common/model/userDao"
+	"casino_common/common/cfg"
 )
 
 func init() {
@@ -31,5 +32,14 @@ func TestGetUserDiamond(t *testing.T) {
 
 	ruser := GetUserById(userId)
 	t.Logf("redis : 用户的钻石数量: %v,房卡的数量: %v 金币的数量:%v", ruser.GetDiamond(), ruser.GetRoomCard(), ruser.GetCoin())
+}
+
+func TestSyncUserMoney(t *testing.T) {
+	userId := uint32(10025)
+	user := GetUserById(userId)
+	t.Logf("玩家[%v]的信息:%v", userId, user)
+	SetUserMoney(userId, cfg.RKEY_USER_DIAMOND, 999)
+	SyncReidsUserMoney(user)
+	t.Logf("玩家2[%v]的信息:%v", userId, user)
 
 }
