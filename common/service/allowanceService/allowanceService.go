@@ -11,6 +11,7 @@ import (
 	"casino_common/common/log"
 	"errors"
 	"time"
+	"casino_common/common/model"
 )
 
 func DoAllowance(uid uint32, a gate.Agent) error {
@@ -23,7 +24,7 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 
 	//检查今日领取补助的次数
 	times := GetTimes4UserReceiveAllowanceToday(user)
-	if times > 2 {
+	if times > 3 {
 		//无法领取
 		ack := commonNewPorot.NewAckAllowance()
 		*ack.UserId = uid
@@ -50,6 +51,7 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 	*ack.UserTotalCoin = user.GetCoin()
 	*ack.Times2Get = times
 	*ack.AllowanceCoin = 1000
+	a.WriteMsg(ack)
 	return nil
 }
 
@@ -69,7 +71,7 @@ func GetTimes4UserReceiveAllowanceToday(user *ddproto.User) int32 {
 //用户今天是否领取补助
 func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
-	if userAttach.LastDrawLotteryTime == "" {
+	if userAttach == nil || userAttach.LastDrawLotteryTime == "" {
 		return false
 	}
 	lastAllowanceTime, _ := timeUtils.String2Time(userAttach.LastAllowanceTime)
@@ -80,6 +82,10 @@ func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 //更新领取记录 时间和次数
 func UpdateUserAllowanceInfo(user *ddproto.User) {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
+
+	if userAttach == nil {
+		userAttach = &model.T_user_attach{}
+	}
 
 	//今天没有领取补助 清空计数
 	if !IsUserReceiveAllowanceToday(user) {

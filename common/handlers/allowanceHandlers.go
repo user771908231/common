@@ -8,7 +8,7 @@ import (
 
 //在线奖励的处理
 func HandlerAllowance(args []interface{}) {
-	m := args[0].(*ddproto.AwardReqOnline)
+	m := args[0].(*ddproto.CommonReqAllowance)
 	a := args[1].(gate.Agent)
 	//处理领取补助
 	allowanceService.DoAllowance(m.GetHeader().GetUserId(), a)
