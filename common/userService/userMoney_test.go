@@ -1,14 +1,14 @@
 package userService
 
 import (
-	"casino_common/common/sys"
 	"testing"
 	"casino_common/common/model/userDao"
 	"casino_common/common/cfg"
+	"casino_common/test"
 )
 
 func init() {
-	sys.InitRedis("192.168.199.200:6379", "test")
+	test.TestInit()
 }
 
 func TestINCRUserCOIN(t *testing.T) {
@@ -21,7 +21,7 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	var userId uint32 = 10610
+	var userId uint32 = 10060
 	dia := GetUserDiamond(userId)
 	c := GetUserRoomCard(userId)
 	coin := GetUserCoin(userId)
