@@ -12,6 +12,9 @@ option optimize_for = LITE_RUNTIME;
 // 开局（接收服务端消息）
 message ddz_bc_opening {
     optional ProtoHeader header = 1;
+    optional userId uint32 = 2; //玩家id
+    optional int64 ticket = 3; //房费
+    optional int64 userCoin = 4; //玩家当前金币
 }
 
 // 发牌
