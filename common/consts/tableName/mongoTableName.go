@@ -16,6 +16,7 @@ const (
 	DBT_T_GOODS_INFO           string = "t_goods_info"           //商品信息表
 	DBT_T_CONFIG_SYS           string = "t_config_sys"           //系统的配置表
 	DBT_T_USER_ATTACH          string = "t_user_attach"          //用户签到/抽奖/补助 领取记录表
+	DBT_T_DRAW_LOTTERY         string = "t_draw_lottery"         //转盘物品信息表
 
 	//麻将
 
