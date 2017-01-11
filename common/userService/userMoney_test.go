@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	sys.InitRedis("127.0.0.1:6379", "test")
+	sys.InitRedis("192.168.199.200:6379", "test")
 }
 
 func TestINCRUserCOIN(t *testing.T) {

@@ -81,14 +81,15 @@ func GetUserById(id uint32) *ddproto.User {
 	//2，从redis 中取到的数据不为空，那么直接返回
 	if result != nil {
 		buser = result.(*ddproto.User)
+		return buser
 	}
 
 	//3，从reids中取到的数据为空，那么从数据库中读取
 	if result == nil {
 		log.E("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
-		tuser := userDao.FindUserById(id)
-		log.T("在mongo中查询到了user[%v],现在开始缓存", tuser)
+		buser = userDao.FindUserById(id)
 		if buser != nil {
+			log.T("在mongo中查询到了user[%v],现在开始缓存", buser)
 			SaveUser2Redis(buser)
 			InitUserMoney2Redis(buser)
 		}
