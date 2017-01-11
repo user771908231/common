@@ -18,10 +18,13 @@ type RobotsManager struct {
 
 //新建一个管理器
 func NewRobotManager(gameId ddproto.CommonEnumGame) *RobotsManager {
-	return &RobotsManager{
+	log.T("初始化NewRobotManager[%v]..", gameId)
+	manager := &RobotsManager{
 		gameId:gameId,
 	}
-	return nil
+	manager.Oninit()
+	log.T("gameId[%v]目前机器人的数量:%v", gameId, len(manager.robots))
+	return manager
 }
 
 //初始化一个管理器
