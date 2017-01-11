@@ -69,7 +69,9 @@ func GetTimes4UserReceiveAllowanceToday(user *ddproto.User) int32 {
 //用户今天是否领取补助
 func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
-
+	if userAttach.LastDrawLotteryTime == "" {
+		return false
+	}
 	lastAllowanceTime, _ := timeUtils.String2Time(userAttach.LastAllowanceTime)
 	return timeUtils.EqualDate(time.Now(), lastAllowanceTime)
 }
