@@ -104,7 +104,7 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 }
 
 //释放一个机器人,那这个机器人就可以被其他的人使用了....
-func (rm *RobotsManager) releaseRobots(id uint32) {
+func (rm *RobotsManager) ReleaseRobots(id uint32) {
 	rm.Lock()
 	defer rm.Unlock()
 	r := rm.getRobotById(id)
