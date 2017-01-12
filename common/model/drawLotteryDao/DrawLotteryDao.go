@@ -19,7 +19,7 @@ func FindDrawLotteryItemByKV(key string, v interface{}) *model.T_Draw_Lottery {
 func FindDrawLotteryItemsByKV(key string, v interface{}) []*model.T_Draw_Lottery {
 	ret := []*model.T_Draw_Lottery{}
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_T_DRAW_LOTTERY).Find(bson.M{key: v}).Sort("Sort").All(ret)
+		d.C(tableName.DBT_T_DRAW_LOTTERY).Find(bson.M{key: v}).Sort("Sort").All(&ret)
 	})
 	return ret
 }

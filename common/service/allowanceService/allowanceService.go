@@ -11,7 +11,10 @@ import (
 	"casino_common/common/log"
 	"errors"
 	"time"
+	"casino_common/common/model"
 )
+
+var TIEMES2GETADAY int32 = 2 //用户一天能领多少次补助
 
 func DoAllowance(uid uint32, a gate.Agent) error {
 	log.T("开始领取补助流程")
@@ -23,7 +26,8 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 
 	//检查今日领取补助的次数
 	times := GetTimes4UserReceiveAllowanceToday(user)
-	if times > 2 {
+	log.T("用户[%v]今日领取补助的次数[%v]", uid, times)
+	if times >= TIEMES2GETADAY {
 		//无法领取
 		ack := commonNewPorot.NewAckAllowance()
 		*ack.UserId = uid
@@ -50,6 +54,7 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 	*ack.UserTotalCoin = user.GetCoin()
 	*ack.Times2Get = times
 	*ack.AllowanceCoin = 1000
+	a.WriteMsg(ack)
 	return nil
 }
 
@@ -69,10 +74,13 @@ func GetTimes4UserReceiveAllowanceToday(user *ddproto.User) int32 {
 //用户今天是否领取补助
 func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
-	if userAttach.LastDrawLotteryTime == "" {
+	if userAttach == nil || userAttach.LastAllowanceTime == "" {
+		//log.T("IsUserReceiveAllowanceToday user[%v] userAttach is nil", user.GetId())
 		return false
 	}
-	lastAllowanceTime, _ := timeUtils.String2Time(userAttach.LastAllowanceTime)
+
+	lastAllowanceTime := timeUtils.String2YYYYMMDDHHMMSS(userAttach.LastAllowanceTime)
+	//log.T("IsUserReceiveAllowanceToday lastAllowanceTime[%v]", userAttach.LastAllowanceTime)
 	return timeUtils.EqualDate(time.Now(), lastAllowanceTime)
 }
 
@@ -81,6 +89,14 @@ func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 func UpdateUserAllowanceInfo(user *ddproto.User) {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
 
+	needInsert := false
+	if userAttach == nil { //为空需要插入一条新数据
+		//log.T("UpdateUserAllowanceInfo userAttach is nil")
+		userAttach = &model.T_user_attach{}
+		userAttach.UserId = user.GetId()
+		needInsert = true
+	}
+
 	//今天没有领取补助 清空计数
 	if !IsUserReceiveAllowanceToday(user) {
 		userAttach.AllowanceTimes = 0
@@ -88,6 +104,9 @@ func UpdateUserAllowanceInfo(user *ddproto.User) {
 
 	userAttach.AllowanceTimes++
 
-	userAttach.LastAllowanceTime = timeUtils.Time2String(time.Now())
+	userAttach.LastAllowanceTime = timeUtils.Format(time.Now())
+	if needInsert {
+		userAttachDao.InsertUserAttachByModel(userAttach)
+	}
 	userAttachDao.UpdateUserAttachByModel(userAttach)
 }
