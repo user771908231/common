@@ -90,7 +90,7 @@ func (rm *RobotsManager) addRobot(r *Robot) error {
 }
 
 //得到一个机器人
-func (rm *RobotsManager) expropriationRobot() *Robot {
+func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	rm.Lock()
 	defer rm.Unlock()
 
