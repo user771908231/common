@@ -86,12 +86,15 @@ func GetUserById(id uint32) *ddproto.User {
 
 	//3，从reids中取到的数据为空，那么从数据库中读取
 	if result == nil {
-		log.E("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
+		log.T("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
 		buser = userDao.FindUserById(id)
 		if buser != nil {
 			log.T("在mongo中查询到了user[%v],现在开始缓存", buser)
 			SaveUser2Redis(buser)
 			InitUserMoney2Redis(buser)
+		} else {
+			log.E("在mongo中没有找到user[%v],玩家不存在", id)
+
 		}
 	}
 
@@ -133,4 +136,21 @@ func GetUserByUnionId(openId string) *ddproto.User {
 	}
 	//判断用户是否存在,如果不存在,则返回空
 	return user
+}
+
+//更新redis user 的各种money ,同步之后会save到redis中
+func SyncReidsUserMoney(user *ddproto.User) {
+	user.Coin = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_COIN))         //更新金币
+	user.Diamond = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND))   //更新钻石
+	user.Diamond2 = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND2)) //更新钻石2
+	user.RoomCard = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD)) //更新房卡
+	SaveUser2Redis(user)
+}
+
+//调用此方法 保证mongey,redisuser,mgo 的数据一致
+func SyncMgoUser(userId uint32) error {
+	user := GetUserById(userId)
+	SyncReidsUserMoney(user)
+	UpdateUser2Mgo(user) //保存用户到mgo
+	return nil
 }

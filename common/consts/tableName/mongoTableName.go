@@ -1,6 +1,9 @@
 package tableName
 
 const (
+	//数据库相关
+	DB_ENSURECOUNTER_KEY string = "id" //自增键
+
 	//大厅
 	DBT_T_USER                 string = "t_user"                 //用户表
 	DBT_T_USER_DIAMOND_DETAILS string = "t_user_diamond_details" //钻石交易记录
@@ -19,8 +22,12 @@ const (
 	DBT_T_DRAW_LOTTERY         string = "t_draw_lottery"         //转盘物品信息表
 
 	//麻将
+	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
+	DBT_MJ_DESK_ROUND       = "t_mj_desk_round"     //一把麻将结束
+	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
 
 	//斗地主
+	DBT_DDZ_DESK_ROUND = "t_ddz_desk_round" //一把斗地主结束
 
 	//扎金花
 )

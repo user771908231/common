@@ -29,6 +29,7 @@ message common_srv_game_user {
     optional int64 WaitTime = 10; //用户等待的时间
     optional int32 roomType = 11; //玩的是金币场还是朋友桌
     optional string roomPassword = 12; //房间号码
+    optional bool isRobot = 13; //是否是机器人
 }
 
 //通用的desk 的协议
