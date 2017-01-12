@@ -41,11 +41,11 @@ func isContinuousSign(user *ddproto.User) bool {
 		return false
 	}
 	timeNow := time.Now()
-	lastSignTime, _ := timeUtils.String2Time(user.GetLastSignTime())
+	lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(user.GetLastSignTime())
 
 	//上次签到＋1天 是否等于今天
 	if !timeUtils.EqualDate(lastSignTime.AddDate(0, 0, 1), timeNow) {
-		log.T("上次签到日期[%v]+1天不等于当前日期[%v]", user.GetLastSignTime(), timeUtils.Time2String(timeNow))
+		log.T("上次签到日期[%v]+1天不等于当前日期[%v]", user.GetLastSignTime(), timeUtils.Format(timeNow))
 		return false
 	}
 	return true
@@ -55,17 +55,17 @@ func isAbleToSign(user *ddproto.User) bool {
 	//验证用户能否签到
 	if user.GetLastSignTime() != "" {
 		timeNow := time.Now()
-		lastSignTime, _ := timeUtils.String2Time(user.GetLastSignTime())
+		lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(user.GetLastSignTime())
 		//上次签到时间在当前时间之后
 		if lastSignTime.After(timeNow) {
-			log.T("上次签到时间[%v]在当前时间[%v]之后", user.GetLastSignTime(), timeUtils.Time2String(timeNow))
+			log.T("上次签到时间[%v]在当前时间[%v]之后", user.GetLastSignTime(), timeUtils.Format(timeNow))
 			return false
 		}
 
 		// 每天只能签一次
 		//上次签到的日期(天)等于当前日期(天)
 		if timeUtils.EqualDate(lastSignTime, timeNow) {
-			log.T("上次签到日期[%v]等于当前日期[%v]", user.GetLastSignTime(), timeUtils.Time2String(timeNow))
+			log.T("上次签到日期[%v]等于当前日期[%v]", user.GetLastSignTime(), timeUtils.Format(timeNow))
 			return false
 		}
 	}
@@ -153,6 +153,6 @@ func deliveryUserSignLottery(user *ddproto.User) error {
 
 func IsUserSignedToday(u *ddproto.User) bool {
 	timeNow := time.Now()
-	lastSignTime, _ := timeUtils.String2Time(u.GetLastSignTime())
+	lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(u.GetLastSignTime())
 	return timeUtils.EqualDate(lastSignTime, timeNow)
 }
