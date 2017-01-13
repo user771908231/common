@@ -12,5 +12,5 @@ const (
 	RKEY_USER_DIAMOND           string = "user_diamond_redis_key"  //钻石，金币场
 	RKEY_USER_DIAMOND2          string = "user_diamond2_redis_key" //钻石朋友桌
 	RKEY_USER_ROOMCARD          string = "user_roomcard_redis_key" //钻石朋友桌
-
+	RKEY_MJSESSION_KEY_PRE      string = "redis_game_session"      //session redis key
 )

@@ -8,6 +8,7 @@ import (
 	"casino_common/proto/funcsInit"
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/cfg"
 )
 
 // session相关的...
@@ -25,12 +26,10 @@ const (
 	GAMEID_ZHAJINHUA int32 = int32(ddproto.CommonEnumGame_GID_ZJH)     //扎金花
 )
 
-var MJSESSION_KEY_PRE = "redis_game_session"
-
 func getSessionKey(userId uint32, gameId int32) string {
 	idstr, _ := numUtils.Uint2String(userId)
 	gameIdSrt, _ := numUtils.Int2String(gameId)
-	ret := strings.Join([]string{MJSESSION_KEY_PRE, idstr, gameIdSrt}, "_")
+	ret := strings.Join([]string{cfg.RKEY_MJSESSION_KEY_PRE, idstr, gameIdSrt}, "_")
 	return ret
 }
 
@@ -65,6 +64,6 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 
 	//保存session
 	log.T("保存到redis的session【%v】", session)
-	redisUtils.SetObj(getSessionKey(userId, gameId), session)
+	redisUtils.SetObj(getSessionKey(userId, roomType), session)
 	return session, nil
 }

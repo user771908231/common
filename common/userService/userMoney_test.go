@@ -25,7 +25,11 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	var userId uint32 = 10241
+	var userId uint32 = 10434
+
+	mongUser := userDao.FindUserById(userId)
+	t.Logf("用mongod user :  %v", mongUser)
+
 	dia := GetUserDiamond(userId)
 	c := GetUserRoomCard(userId)
 	coin := GetUserCoin(userId)
