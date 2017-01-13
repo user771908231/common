@@ -43,6 +43,7 @@ func (rm *RobotsManager) Oninit() {
 	//转换
 	for _, u := range users {
 		r := NewRobots(u)
+		r.available = true
 		rm.robots = append(rm.robots, r)
 	}
 }

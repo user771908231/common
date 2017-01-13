@@ -12,7 +12,11 @@ func init() {
 }
 
 func TestINCRUserCOIN(t *testing.T) {
-	b, e := DECRUserDiamond(1, 2)
+	//10055
+	//10168
+	//10169
+	//10170
+	b, e := INCRUserRoomcard(10241, 20000)
 	if e != nil {
 		t.Logf("出错%v", e)
 	} else {
@@ -21,7 +25,7 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	var userId uint32 = 10060
+	var userId uint32 = 10241
 	dia := GetUserDiamond(userId)
 	c := GetUserRoomCard(userId)
 	coin := GetUserCoin(userId)
