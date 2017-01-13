@@ -86,8 +86,11 @@ enum hall_enum_protoId {
     HALL_PID_CHECK_TASK_REQ = 57; //57 领取任务奖励请求
     HALL_PID_CHECK_TASK_ACK = 58; //58 领取任务奖励回复
 
-    HALL_PID_RECOMMEND_USER_LIST_REQ = 59;  //59 推荐好友列表请求
-    HALL_PID_RECOMMEND_USER_LIST_ACK = 60;  //59 推荐好友列表回复
+    HALL_PID_RECOMMEND_USER_LIST_REQ = 59; //59 推荐好友列表请求
+    HALL_PID_RECOMMEND_USER_LIST_ACK = 60; //59 推荐好友列表回复
+    HALL_PID_GAME_STATE_REQ = 61; //61 获取游戏状态
+    HALL_PID_GAME_STATE_ACK = 62; //62 获取游戏状态
+
 }
 
 //货币与商品类型
