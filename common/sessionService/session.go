@@ -67,3 +67,8 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 	redisUtils.SetObj(getSessionKey(userId, roomType), session)
 	return session, nil
 }
+
+//
+func DelSession(s *ddproto.GameSession) {
+	redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
+}
