@@ -92,6 +92,7 @@ message common_ack_gameLogin {
 //请求游戏状态
 message common_req_gameState {
     optional ProtoHeader header = 1;
+    optional int32 roomType = 2; // 1，朋友桌，2金币场
 }
 
 //回复游戏状态(目前是朋友桌才会请求)
@@ -100,6 +101,7 @@ message common_ack_gameState {
     optional string roomPassword = 2; // 朋友桌房间密码
     optional int32 roomType = 3; //类型,表示是
     optional int32 gameId = 4; //类型,表示是
+    optional int32 roomLevel = 5; //房间等级
 }
 
 //客户端请求
