@@ -16,15 +16,6 @@ import (
 	目前的session每个人将会保存两个：朋友桌和金币场
 
  */
-const (
-	GAMESESSION_STATUS_NOGAME int32 = 1; //没有在游戏中
-	GAMESESSION_STATUS_GAMING int32 = 2; //没有在游戏中
-
-	GAMEID_DEZHOU    int32 = 1                                         //德州
-	GAMEID_MAJAING   int32 = int32(ddproto.CommonEnumGame_GID_MAHJONG) //麻将
-	GAMEID_DOUZIZHU  int32 = int32(ddproto.CommonEnumGame_GID_DDZ)     //斗地主
-	GAMEID_ZHAJINHUA int32 = int32(ddproto.CommonEnumGame_GID_ZJH)     //扎金花
-)
 
 func getSessionKey(userId uint32, gameId int32) string {
 	idstr, _ := numUtils.Uint2String(userId)

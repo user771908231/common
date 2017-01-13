@@ -69,7 +69,7 @@ func HandlerCommonReqGameState(args []interface{}) {
 
 	//1,第一步获取金币场的session
 	session := sessionService.GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
-	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == sessionService.GAMESESSION_STATUS_NOGAME {
+	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
 		//2,第二步获取朋友桌的session
 		session = sessionService.GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
 	}
@@ -83,10 +83,11 @@ func HandlerCommonReqGameState(args []interface{}) {
 		ack.RoomLevel = proto.Int32(session.GetRoomId())
 	} else {
 		ack.GameId = proto.Int32(0)
-		ack.GameStatus = proto.Int32(sessionService.GAMESESSION_STATUS_NOGAME)
+		ack.GameStatus = proto.Int32(int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME))
 		ack.RoomPassword = proto.String("")
 		ack.RoomType = proto.Int32(0)
 		ack.RoomLevel = proto.Int32(0)
+
 	}
 
 	//返回消息
