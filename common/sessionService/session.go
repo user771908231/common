@@ -59,7 +59,11 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 	return session, nil
 }
 
-//
+//删除玩家session 增加对空的判断
 func DelSession(s *ddproto.GameSession) {
-	redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
+	if s == nil {
+		return
+	} else {
+		redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
+	}
 }

@@ -24,8 +24,10 @@ func TestNewRobots(t *testing.T) {
 	m := NewRobotManager(ddproto.CommonEnumGame_GID_MAHJONG)
 	t.Logf("所有的机器人: %v", m.robots)
 
-	m.newRobotAndSave()
-	t.Logf("所有的机器人: %v", m.robots)
+	for i := 0; i < 100; i++ {
+		m.NewRobotAndSave()
+		t.Logf("所有的机器人: %v", m.robots);
+	}
 
 }
 
