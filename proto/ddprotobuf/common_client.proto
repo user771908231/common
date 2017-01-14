@@ -59,11 +59,20 @@ enum common_enum_reg {
     RET_TYPE_TOURIST = 1;
     RET_TYPE_WEIXIN = 2;
 }
+
+//客户端系统类型
+enum common_enum_os_type {
+    OS_IOS          = 1;
+    OS_ANDROID      = 2;
+    OS_WEB          = 3;
+}
+
 //请求
 message common_req_reg {
     optional ProtoHeader header = 1;
     optional int32 regType = 2; //注册类型:1,游客2,微信
     optional WeixinInfo wxInfo = 3; //微信登录信息，如果是游客注册，则不需要填写此信息
+    optional int32 clientOSType = 4;    //1=iOS 2=Android 3=web
 }
 
 //回复
@@ -78,6 +87,7 @@ message common_req_gameLogin {
     optional uint32 userId = 2; // 用户id
     optional int32 protoVersion = 3; // 客户端 proto version
     optional WeixinInfo wxInfo = 4; //微信登录信息
+    optional int32 clientOSType = 5;    //1=iOS 2=Android 3=web
 }
 
 // 游戏登录回复
