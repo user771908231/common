@@ -56,6 +56,7 @@ func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	ret.GameNumber = new(int32)
 	ret.RoomType = new(int32)
 	ret.RoomPassword = new(string)
+	ret.IsRobot = new(bool)
 	return ret
 }
 

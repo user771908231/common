@@ -38,8 +38,12 @@ func FindFreshDrawLotteryItems() []*model.T_Draw_Lottery {
 	return FindDrawLotteryItemsByKV("Version", v)
 }
 
-//新增
-
+//新增一条
+func InserDrawLotteryItem(item *model.T_Draw_Lottery) {
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_DRAW_LOTTERY).Insert(item)
+	})
+}
 
 //更新
 
