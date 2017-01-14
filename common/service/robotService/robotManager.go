@@ -7,6 +7,7 @@ import (
 	"casino_common/common/userService"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/log"
+	"casino_common/utils/numUtils"
 )
 
 //机器人管理器
@@ -59,7 +60,7 @@ func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 }
 
 //新创建一个机器人，并保存到数据库
-func (rm *RobotsManager) newRobotAndSave() *Robot {
+func (rm *RobotsManager) NewRobotAndSave() *Robot {
 	//1,注册普通用户
 	user, err := userService.NewUserAndSave("", "", "", "", 1, "")
 	if err != nil || user == nil {
@@ -68,6 +69,9 @@ func (rm *RobotsManager) newRobotAndSave() *Robot {
 
 	//2,注册机器人
 	user.RobotType = proto.Int32(int32(rm.gameId))
+	ids, _ := numUtils.Uint2String(user.GetId())
+	user.NickName = proto.String("游客" + ids)
+	userService.INCRUserCOIN(user.GetId(), 50000)
 	userService.SaveUser2Redis(user) //保存到redis
 	userService.UpdateUser2Mgo(user) //保存到mgo
 
