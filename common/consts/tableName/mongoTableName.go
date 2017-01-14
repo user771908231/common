@@ -9,6 +9,8 @@ const (
 	DBT_T_USER_DIAMOND_DETAILS string = "t_user_diamond_details" //钻石交易记录
 	DBT_T_TH_NOTICE            string = "t_th_notice"            //公告
 	DBT_T_RECHARGE_DETAILS     string = "t_recharge_details"     //充值记录
+	DBT_T_ACTIVE_LIST          string = "t_active_list"           //活动列表
+	DBT_T_TASK_INFO            string = "t_task_info"            //公共任务信息表
 	DBT_T_USER_TASK            string = "t_user_task"            //用户任务状态表
 	DBT_T_USER_BAG             string = "t_user_bag"             //用户背包道具表
 	DBT_T_MAIL_CONTENT         string = "t_mail_content"         //公共邮件表
