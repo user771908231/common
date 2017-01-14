@@ -24,6 +24,14 @@ func FindDrawLotteryItemsByKV(key string, v interface{}) []*model.T_Draw_Lottery
 	return ret
 }
 
+func FindAllDrawLotteryItems() []*model.T_Draw_Lottery {
+	ret := []*model.T_Draw_Lottery{}
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_DRAW_LOTTERY).Find(nil).Sort("Sort").All(&ret)
+	})
+	return ret
+}
+
 
 func FindDrawLotteryFreshVersion() float32 {
 	ret := &model.T_Draw_Lottery{}
@@ -34,12 +42,17 @@ func FindDrawLotteryFreshVersion() float32 {
 }
 
 func FindFreshDrawLotteryItems() []*model.T_Draw_Lottery {
-	v := FindDrawLotteryFreshVersion()
-	return FindDrawLotteryItemsByKV("Version", v)
+	//v := FindDrawLotteryFreshVersion()
+	//return FindDrawLotteryItemsByKV("Version", v)
+	return FindAllDrawLotteryItems()
 }
 
-//新增
-
+//新增一条
+func InserDrawLotteryItem(item *model.T_Draw_Lottery) {
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_DRAW_LOTTERY).Insert(item)
+	})
+}
 
 //更新
 

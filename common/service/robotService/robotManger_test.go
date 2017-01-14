@@ -30,3 +30,12 @@ func TestNewRobots(t *testing.T) {
 	}
 
 }
+
+func TestNewDdzRobots(t *testing.T) {
+	m := NewRobotManager(ddproto.CommonEnumGame_GID_DDZ)
+	t.Logf("所有的机器人: %v", m.robots)
+
+	m.newRobotAndSave()
+	t.Logf("所有的机器人: %v", m.robots)
+
+}
