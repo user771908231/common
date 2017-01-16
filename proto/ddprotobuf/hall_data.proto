@@ -108,6 +108,7 @@ enum hall_enum_trade_type {
     //100-200 虚拟道具
     PROPS_FANGKA = 101; //房卡
     PROPS_DALABA = 102; //大喇叭
+    PROPS_BUQIANKA = 103; //补签卡
 
     //300-400 实物礼品
     REAL_PHONE_CARD_10 = 301; //10元充值卡
@@ -167,12 +168,13 @@ message hall_bag_item {
 
 //奖励物品类型
 enum hall_lottery_item_type {
-    L_ROOM_TICKET = 1; //房卡
-    L_FILL_SIGN = 2; //补签卡
-    L_DIAMOND = 3; //钻石
-    L_COIN = 4; //金币
-    L_RED_PACKET = 5; //红包
-    L_COUPON = 6; //奖券
+    L_COIN = 1; //金币
+    L_DIAMOND = 2; //钻石
+    L_RED_PACKET = 3; //红包
+    L_COUPON = 7; //奖券
+
+    L_ROOM_TICKET = 101; //房卡
+    L_FILL_SIGN = 103; //补签卡
 }
 
 //单个任务
