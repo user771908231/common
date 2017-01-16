@@ -71,7 +71,8 @@ func (rm *RobotsManager) NewRobotAndSave() *Robot {
 	user.RobotType = proto.Int32(int32(rm.gameId))
 	ids, _ := numUtils.Uint2String(user.GetId())
 	user.NickName = proto.String("游客" + ids)
-	userService.INCRUserCOIN(user.GetId(), 50000)
+	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
+	user.Coin = proto.Int64(c)
 	userService.SaveUser2Redis(user) //保存到redis
 	userService.UpdateUser2Mgo(user) //保存到mgo
 
@@ -101,6 +102,21 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 
 	for _, r := range rm.robots {
 		if r.IsAvailable() {
+			r.available = false
+			return r
+		}
+	}
+	return nil
+}
+
+//得到一个机器人
+func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
+	rm.Lock()
+	defer rm.Unlock()
+
+	for _, r := range rm.robots {
+		log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
+		if r.IsAvailable() && r.GetCoin() >= coin {
 			r.available = false
 			return r
 		}
