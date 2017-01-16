@@ -49,6 +49,8 @@ enum EProtoId {
 
     ZJH_PID_BC_DESK_STATE = 31; //牌桌状态（子协议）
 
+    ZJH_PID_REQ_SEND_MESSAGE = 32;  //发送聊天、道具消息
+    ZJH_PID_BC_MESSAGE = 33;  //聊天、道具消息广播
 }
 
 ///////////////////////////////////////////////////

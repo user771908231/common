@@ -22,6 +22,7 @@ const (
 	DBT_T_CONFIG_SYS           string = "t_config_sys"           //系统的配置表
 	DBT_T_USER_ATTACH          string = "t_user_attach"          //用户签到/抽奖/补助 领取记录表
 	DBT_T_DRAW_LOTTERY         string = "t_draw_lottery"         //转盘物品信息表
+	DBT_T_SIGN_REWARD          string = "t_sign_reward"           //签到奖励表
 
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
