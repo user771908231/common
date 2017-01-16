@@ -1,0 +1,114 @@
+db.t_task_info.insert(
+{
+    "_id" : ObjectId("5879ebd9a513c0bbc83c0f3c"),
+    "taskid" : 1,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励1000金币。",
+    "reward" : [
+        {
+            "type" : 1,
+            "amount" : 1000,
+            "xxx_unrecognized" : { "$binary" : "", "$type" : "00" }
+        }
+    ]
+}
+)
+db.t_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f41"),
+    "taskid" : 2,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成10局比赛",
+    "sort" : 0,
+    "tasksum" : 10,
+    "description" : "奖励1000金币。",
+    "reward" : [
+        {
+            "type" : 1,
+            "amount" : 1000,
+            "xxx_unrecognized" : { "$binary" : "", "$type" : "00" }
+        }
+    ]
+}
+)
+db.t_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f46"),
+    "taskid" : 3,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成15局比赛",
+    "sort" : 0,
+    "tasksum" : 15,
+    "description" : "奖励1000金币。",
+    "reward" : [
+        {
+            "type" : 1,
+            "amount" : 1000,
+            "xxx_unrecognized" : { "$binary" : "", "$type" : "00" }
+        }
+    ]
+}
+)
+db.t_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f4b"),
+    "taskid" : 4,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成20局比赛",
+    "sort" : 0,
+    "tasksum" : 20,
+    "description" : "奖励2000金币。",
+    "reward" : [
+        {
+            "type" : 1,
+            "amount" : 2000,
+            "xxx_unrecognized" : { "$binary" : "", "$type" : "00" }
+        }
+    ]
+}
+)
+db.t_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f50"),
+    "taskid" : 5,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成25局比赛",
+    "sort" : 0,
+    "tasksum" : 25,
+    "description" : "奖励2000金币。",
+    "reward" : [
+        {
+            "type" : 1,
+            "amount" : 2000,
+            "xxx_unrecognized" : { "$binary" : "", "$type" : "00" }
+        }
+    ]
+}
+)
+db.t_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f55"),
+    "taskid" : 6,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成50局比赛",
+    "sort" : 0,
+    "tasksum" : 50,
+    "description" : "奖励3000金币。",
+    "reward" : [
+        {
+            "type" : 1,
+            "amount" : 3000,
+            "xxx_unrecognized" : { "$binary" : "", "$type" : "00" }
+        }
+    ]
+}
+)
