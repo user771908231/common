@@ -10,6 +10,9 @@ import (
 	"casino_common/common/userService"
 	"casino_common/utils/timeUtils"
 	"fmt"
+	"casino_common/common/model/userSignDao"
+	"casino_hall/service/task"
+	"errors"
 )
 
 
@@ -87,7 +90,7 @@ func clearContinuousSignCount(user *ddproto.User){
 	user.SignContinuousDays = proto.Int32(0) //clearContinuousSignCount
 }
 
-
+//签到
 func DoSignLottery(userId uint32) error {
 	log.T("[%v]开始签到领取奖励", userId)
 
@@ -113,40 +116,20 @@ func DoSignLottery(userId uint32) error {
 	return nil
 }
 
-func getUserLotteryId(user *ddproto.User) int32 {
-	//todo 从数据库中取出连续签到天数对应奖励物品id
-	m := make(map[int32]int32) //map[signContinuousDays]lotteryId
-	m[2] = 1
-	m[5] = 2
-	m[7] = 3
-	m[10] = 4
-	m[15] = 5
-	m[20] = 6
-	m[50] = 7
-	return m[user.GetSignContinuousDays()]
-}
-
-//根据签到情况获得可领的奖品id
+//领取签到奖品
 func deliveryUserSignLottery(user *ddproto.User) error {
-	//todo 从数据库根据奖励id中获得奖励类型和数量 设置玩家数据
-	switch getUserLotteryId(user) {
-	case 1:
-		userService.INCRUserCOIN(user.GetId(), 50)
-	case 2:
-		userService.INCRUserCOIN(user.GetId(), 100)
-	case 3:
-		userService.INCRUserCOIN(user.GetId(), 200)
-	case 4:
-		userService.INCRUserCOIN(user.GetId(), 500)
-	case 5:
-		userService.INCRUserCOIN(user.GetId(), 1000)
-	case 6:
-		userService.INCRUserCOIN(user.GetId(), 2000)
-	case 7:
-		userService.INCRUserCOIN(user.GetId(), 5000)
-
-	default:
+	reward := userSignDao.FindSignRewardByDay(user.GetSignContinuousDays())
+	if reward == nil {
+		return errors.New("领取奖品失败")
 	}
+	//发放奖品
+	newReward := []*ddproto.HallBagItem{
+		&ddproto.HallBagItem{
+			Type:ddproto.HallEnumTradeType(reward.Type).Enum(),
+			Amount:&reward.Amount,
+		},
+	}
+	task.CheckReward(user.GetId(), newReward)
 	return nil
 }
 

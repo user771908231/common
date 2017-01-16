@@ -163,7 +163,7 @@ enum hall_enum_mail_type {
 //背包单个道具
 message hall_bag_item {
     optional hall_enum_trade_type type = 1; //道具类型
-    optional int32 amount = 2; //数量
+    optional float amount = 2; //数量
 }
 
 //奖励物品类型
