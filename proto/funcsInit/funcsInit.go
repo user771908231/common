@@ -56,6 +56,7 @@ func NewCommonSrvGameUser() *ddproto.CommonSrvGameUser {
 	ret.GameNumber = new(int32)
 	ret.RoomType = new(int32)
 	ret.RoomPassword = new(string)
+	ret.IsRobot = new(bool)
 	return ret
 }
 
@@ -159,5 +160,16 @@ func NewAckLeaveDesk() *ddproto.CommonAckLeaveDesk {
 	ret.IsExchange = new(bool)
 	ret.IsTimeOut = new(bool)
 	ret.UserId = new(uint32)
+	return ret
+}
+
+func NewAckAllowance() *ddproto.CommonAckAllowance {
+	ret := new(ddproto.CommonAckAllowance)
+	ret.Header = NewHeader()
+	ret.AllowanceCoin = new(int64)
+	ret.IsSuccessed = new(bool)
+	ret.Times2Get = new(int32)
+	ret.UserId = new(uint32)
+	ret.UserTotalCoin = new(int64)
 	return ret
 }

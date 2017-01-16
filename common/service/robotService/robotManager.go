@@ -6,7 +6,8 @@ import (
 	"sync"
 	"casino_common/common/userService"
 	"github.com/golang/protobuf/proto"
-	"casino_server/common/log"
+	"casino_common/common/log"
+	"casino_common/utils/numUtils"
 )
 
 //机器人管理器
@@ -18,10 +19,13 @@ type RobotsManager struct {
 
 //新建一个管理器
 func NewRobotManager(gameId ddproto.CommonEnumGame) *RobotsManager {
-	return &RobotsManager{
+	log.T("初始化NewRobotManager[%v]..", gameId)
+	manager := &RobotsManager{
 		gameId:gameId,
 	}
-	return nil
+	manager.Oninit()
+	log.T("gameId[%v]目前机器人的数量:%v", gameId, len(manager.robots))
+	return manager
 }
 
 //初始化一个管理器
@@ -40,6 +44,7 @@ func (rm *RobotsManager) Oninit() {
 	//转换
 	for _, u := range users {
 		r := NewRobots(u)
+		r.available = true
 		rm.robots = append(rm.robots, r)
 	}
 }
@@ -55,7 +60,7 @@ func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 }
 
 //新创建一个机器人，并保存到数据库
-func (rm *RobotsManager) newRobotAndSave() *Robot {
+func (rm *RobotsManager) NewRobotAndSave() *Robot {
 	//1,注册普通用户
 	user, err := userService.NewUserAndSave("", "", "", "", 1, "")
 	if err != nil || user == nil {
@@ -64,6 +69,10 @@ func (rm *RobotsManager) newRobotAndSave() *Robot {
 
 	//2,注册机器人
 	user.RobotType = proto.Int32(int32(rm.gameId))
+	ids, _ := numUtils.Uint2String(user.GetId())
+	user.NickName = proto.String("游客" + ids)
+	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
+	user.Coin = proto.Int64(c)
 	userService.SaveUser2Redis(user) //保存到redis
 	userService.UpdateUser2Mgo(user) //保存到mgo
 
@@ -87,13 +96,28 @@ func (rm *RobotsManager) addRobot(r *Robot) error {
 }
 
 //得到一个机器人
-func (rm *RobotsManager) expropriationRobot() *Robot {
+func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	rm.Lock()
 	defer rm.Unlock()
 
 	for _, r := range rm.robots {
 		if r.IsAvailable() {
-			r.IsAvailable() = false
+			r.available = false
+			return r
+		}
+	}
+	return nil
+}
+
+//得到一个机器人
+func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
+	rm.Lock()
+	defer rm.Unlock()
+
+	for _, r := range rm.robots {
+		log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
+		if r.IsAvailable() && r.GetCoin() >= coin {
+			r.available = false
 			return r
 		}
 	}
@@ -101,7 +125,7 @@ func (rm *RobotsManager) expropriationRobot() *Robot {
 }
 
 //释放一个机器人,那这个机器人就可以被其他的人使用了....
-func (rm *RobotsManager) releaseRobots(id uint32) {
+func (rm *RobotsManager) ReleaseRobots(id uint32) {
 	rm.Lock()
 	defer rm.Unlock()
 	r := rm.getRobotById(id)

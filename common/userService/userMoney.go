@@ -9,19 +9,14 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
-	"github.com/golang/protobuf/proto"
+	"casino_common/common/cfg"
+	"fmt"
 )
-
-var NEW_USER_DIAMOND_REWARD int64 = 20 //新用户登陆的时候,默认的砖石数量
-
-var USER_COIN_REDIS_KEY = "user_coin_redis_key"         //金币
-var USER_DIAMOND_REDIS_KEY = "user_diamond_redis_key"   //钻石，金币场
-var USER_DIAMOND2_REDIS_KEY = "user_diamond2_redis_key" //钻石朋友桌
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
 
 //更新用户的数据
-func UpdateUserMoney(userId uint32) error {
+func UpdateRedisUserMoney(userId uint32) error {
 	user := GetUserById(userId)
 	if user == nil {
 		log.E("更新用户的diamond失败,用户[%v]为空", userId)
@@ -29,10 +24,7 @@ func UpdateUserMoney(userId uint32) error {
 	}
 
 	//修改并且更新用户数据
-	user.Coin = proto.Int64(GetUserMoney(userId, USER_COIN_REDIS_KEY))
-	user.Diamond = proto.Int64(GetUserMoney(userId, USER_DIAMOND_REDIS_KEY))
-	user.Diamond2 = proto.Int64(GetUserMoney(userId, USER_DIAMOND2_REDIS_KEY))
-	SaveUser2Redis(user)
+	SyncReidsUserMoney(user)
 	return nil
 }
 
@@ -47,7 +39,15 @@ func SetUserMoney(userId uint32, money string, diamond int64) {
 
 //获取用户的钻石
 func GetUserDiamond(userId uint32) int64 {
-	return GetUserMoney(userId, USER_DIAMOND_REDIS_KEY)
+	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND)
+}
+
+func GetUserRoomCard(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD)
+}
+
+func GetUserCoin(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_COIN)
 }
 
 //craete钻石交易记录
@@ -81,11 +81,11 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 //---------------------------------------增加用户货币的通用方法-----------------------------------------
 //增加用户的货币
 func incrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]增加钻石[%v]", userid, d)
+	log.T("为用户[%v]增加[%v][%v]", userid, key, d)
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
-	err := UpdateUserMoney(userid)
+	err := UpdateRedisUserMoney(userid)
 	//3,返回值
 	return remain, err
 }
@@ -94,42 +94,53 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 func decrUser(userid uint32, key string, d int64) (int64, error) {
 	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if remain < 0 {
-		log.E("用户[%v]的余额diamond不足,减少的时候失败")
-		incrUser(userid, key, d)
-		return remain, errors.New("用户余额不足")
+		old, _ := incrUser(userid, key, d)
+		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足,减少的时候失败", userid, key, old)
+		log.E(errMsg)
+		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
-		UpdateUserMoney(userid)
+		UpdateRedisUserMoney(userid)
 		return remain, nil
 	}
 }
 
 //增加用户的钻石
 func INCRUserDiamond(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, USER_DIAMOND_REDIS_KEY, d)
+	return incrUser(userid, cfg.RKEY_USER_DIAMOND, d)
 }
 
 //减少用户的砖石
 func DECRUserDiamond(userid uint32, d int64) (int64, error) {
-	return decrUser(userid, USER_DIAMOND_REDIS_KEY, d)
+	return decrUser(userid, cfg.RKEY_USER_DIAMOND, d)
+}
+
+//增加用户的房卡
+func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
+	return incrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
+}
+
+//减少用户的房卡
+func DECRUserRoomcard(userId uint32, d int64) (int64, error) {
+	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
 }
 
 //增加用户的朋友桌钻石
 func INCRUserDiamond2(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, USER_DIAMOND2_REDIS_KEY, d)
+	return incrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
 }
 
 //减少用户的朋友桌钻石
 func DECRUserDiamond2(userid uint32, d int64) (int64, error) {
-	return decrUser(userid, USER_DIAMOND2_REDIS_KEY, d)
+	return decrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
 }
 
 //增加用户的金币
 func INCRUserCOIN(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, USER_COIN_REDIS_KEY, d)
+	return incrUser(userid, cfg.RKEY_USER_COIN, d)
 }
 
 //减少用户的金币
 func DECRUserCOIN(userid uint32, d int64) (int64, error) {
-	return decrUser(userid, USER_COIN_REDIS_KEY, d)
+	return decrUser(userid, cfg.RKEY_USER_COIN, d)
 }

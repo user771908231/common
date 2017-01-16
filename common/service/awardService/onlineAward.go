@@ -88,7 +88,7 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 		return errors.New("时间不够，不能获得奖励")
 	}
 	//计算应该得到的在线奖励
-	award := d.GetCapital() * d.GetRate() % 100 + OnlineConfig.BaseAward
+	award := d.GetCapital()*d.GetRate()%100 + OnlineConfig.BaseAward
 	balance, _ := userService.INCRUserCOIN(uid, award) //增加用户的金币//是否需要增加金币的订单
 
 	//再次初始化，并且放置在数据库中...
@@ -116,4 +116,11 @@ func GetOnlineInfo(userId uint32, a gate.Agent) error {
 	ack.Duration = proto.Int64(dura)
 	a.WriteMsg(ack)
 	return nil
+}
+
+//增加在线奖励的提成
+func AddOnlineCapital(userId uint32, coin int64) {
+	d := getOnlineData(userId)
+	d.Capital = proto.Int64(d.GetCapital() + coin)
+	setOnlineData(d)
 }

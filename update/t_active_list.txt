@@ -1,0 +1,52 @@
+db.t_active_list.insert(
+{
+    "_id" : ObjectId("5879fc0ca513c0bbc83c1138"),
+    "id" : 0,
+    "type" : 1,
+    "reward" : 1,
+    "richtext" : [
+        " 神经游戏为广大玩家提供休闲娱乐的平台，旗下所属的游戏均为模拟竞技类游戏，我们希望每一位玩家在此能感受到竞技的乐趣。游戏中使用的游戏金币为游戏道具，不具有任何的实际价值，只限玩家本人在游戏中使用。",
+        ""
+    ],
+    "title" : "重要公告",
+}
+)
+db.t_active_list.insert(
+{
+    "_id" : ObjectId("5879fc0ca513c0bbc83c113d"),
+    "id" : 1,
+    "type" : 1,
+    "reward" : 1,
+    "richtext" : [
+        "神经游戏迎新年，丰厚豪礼送不停！每日登录领取金币奖励，多玩游戏即可获得更多丰厚奖励！",
+        ""
+    ],
+    "title" : "迎新春",
+}
+)
+db.t_active_list.insert(
+{
+    "_id" : ObjectId("5879fc0ca513c0bbc83c1142"),
+    "id" : 2,
+    "type" : 1,
+    "reward" : 1,
+    "richtext" : [
+        "活邀请好友注册游戏，可获金币奖励！好友完游戏还可获得更多奖励，钻石、房卡、奖券送不停！",
+        ""
+    ],
+    "title" : "邀请奖励",
+}
+)
+db.t_active_list.insert(
+{
+    "_id" : ObjectId("5879fc0ca513c0bbc83c1147"),
+    "id" : 3,
+    "type" : 1,
+    "reward" : 1,
+    "richtext" : [
+        "登录即可抽取幸运转盘大奖连续登录7天更有惊喜大奖！奖品不限量，人人有份拿！",
+        ""
+    ],
+    "title" : "连续登录",
+}
+)

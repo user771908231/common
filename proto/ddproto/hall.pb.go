@@ -105,7 +105,13 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_leaveDesk from common_client.proto
 
+// Ignoring public import of common_req_allowance from common_client.proto
+
+// Ignoring public import of common_ack_allowance from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
+
+// Ignoring public import of common_enum_os_type from common_client.proto
 
 // Ignoring public import of common_enum_pokerColor from common_client.proto
 
@@ -152,7 +158,7 @@ func (x *HallEnumGoodsType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumGoodsType(value)
 	return nil
 }
-func (HallEnumGoodsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (HallEnumGoodsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 // 保险箱操作类型
 type HallStrongboxAccessType int32
@@ -187,7 +193,7 @@ func (x *HallStrongboxAccessType) UnmarshalJSON(data []byte) error {
 	*x = HallStrongboxAccessType(value)
 	return nil
 }
-func (HallStrongboxAccessType) EnumDescriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
+func (HallStrongboxAccessType) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 // 活动列表
 type HallReqEvent struct {
@@ -198,7 +204,7 @@ type HallReqEvent struct {
 func (m *HallReqEvent) Reset()                    { *m = HallReqEvent{} }
 func (m *HallReqEvent) String() string            { return proto.CompactTextString(m) }
 func (*HallReqEvent) ProtoMessage()               {}
-func (*HallReqEvent) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*HallReqEvent) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *HallReqEvent) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -217,7 +223,7 @@ type HallAckEvent struct {
 func (m *HallAckEvent) Reset()                    { *m = HallAckEvent{} }
 func (m *HallAckEvent) String() string            { return proto.CompactTextString(m) }
 func (*HallAckEvent) ProtoMessage()               {}
-func (*HallAckEvent) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
+func (*HallAckEvent) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 func (m *HallAckEvent) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -244,7 +250,7 @@ type HallLotteryItem struct {
 func (m *HallLotteryItem) Reset()                    { *m = HallLotteryItem{} }
 func (m *HallLotteryItem) String() string            { return proto.CompactTextString(m) }
 func (*HallLotteryItem) ProtoMessage()               {}
-func (*HallLotteryItem) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
+func (*HallLotteryItem) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
 
 func (m *HallLotteryItem) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -264,7 +270,7 @@ func (m *HallLotteryItem) GetType() HallLotteryItemType {
 	if m != nil && m.Type != nil {
 		return *m.Type
 	}
-	return HallLotteryItemType_L_ROOM_TICKET
+	return HallLotteryItemType_L_COIN
 }
 
 // 签到信息与奖励物品列表
@@ -279,7 +285,7 @@ type HallSignLotteryInfo struct {
 func (m *HallSignLotteryInfo) Reset()                    { *m = HallSignLotteryInfo{} }
 func (m *HallSignLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallSignLotteryInfo) ProtoMessage()               {}
-func (*HallSignLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{3} }
+func (*HallSignLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
 
 func (m *HallSignLotteryInfo) GetIsSignToday() bool {
 	if m != nil && m.IsSignToday != nil {
@@ -319,7 +325,7 @@ type HallDrawLotteryInfo struct {
 func (m *HallDrawLotteryInfo) Reset()                    { *m = HallDrawLotteryInfo{} }
 func (m *HallDrawLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallDrawLotteryInfo) ProtoMessage()               {}
-func (*HallDrawLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{4} }
+func (*HallDrawLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
 
 func (m *HallDrawLotteryInfo) GetIsDrawToday() bool {
 	if m != nil && m.IsDrawToday != nil {
@@ -344,7 +350,7 @@ type HallReqMailList struct {
 func (m *HallReqMailList) Reset()                    { *m = HallReqMailList{} }
 func (m *HallReqMailList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqMailList) ProtoMessage()               {}
-func (*HallReqMailList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{5} }
+func (*HallReqMailList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{5} }
 
 func (m *HallReqMailList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -363,7 +369,7 @@ type HallAckMailList struct {
 func (m *HallAckMailList) Reset()                    { *m = HallAckMailList{} }
 func (m *HallAckMailList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckMailList) ProtoMessage()               {}
-func (*HallAckMailList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{6} }
+func (*HallAckMailList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{6} }
 
 func (m *HallAckMailList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -382,14 +388,14 @@ func (m *HallAckMailList) GetList() []*HallMailItem {
 // 任务
 type HallReqTask struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,enum=ddproto.HallEnumTaskType" json:"task_type,omitempty"`
+	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,json=taskType,enum=ddproto.HallEnumTaskType" json:"task_type,omitempty"`
 	XXX_unrecognized []byte            `json:"-"`
 }
 
 func (m *HallReqTask) Reset()                    { *m = HallReqTask{} }
 func (m *HallReqTask) String() string            { return proto.CompactTextString(m) }
 func (*HallReqTask) ProtoMessage()               {}
-func (*HallReqTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{7} }
+func (*HallReqTask) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{7} }
 
 func (m *HallReqTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -414,7 +420,7 @@ type HallAckTask struct {
 func (m *HallAckTask) Reset()                    { *m = HallAckTask{} }
 func (m *HallAckTask) String() string            { return proto.CompactTextString(m) }
 func (*HallAckTask) ProtoMessage()               {}
-func (*HallAckTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{8} }
+func (*HallAckTask) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{8} }
 
 func (m *HallAckTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -430,47 +436,47 @@ func (m *HallAckTask) GetTaskList() []*HallItemTask {
 	return nil
 }
 
-// 领取任务
-type HallReqGetTask struct {
+// 领取任务奖励
+type HallReqCheckTask struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	TaskId           *int32       `protobuf:"varint,2,opt,name=taskId" json:"taskId,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
-func (m *HallReqGetTask) Reset()                    { *m = HallReqGetTask{} }
-func (m *HallReqGetTask) String() string            { return proto.CompactTextString(m) }
-func (*HallReqGetTask) ProtoMessage()               {}
-func (*HallReqGetTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{9} }
+func (m *HallReqCheckTask) Reset()                    { *m = HallReqCheckTask{} }
+func (m *HallReqCheckTask) String() string            { return proto.CompactTextString(m) }
+func (*HallReqCheckTask) ProtoMessage()               {}
+func (*HallReqCheckTask) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{9} }
 
-func (m *HallReqGetTask) GetHeader() *ProtoHeader {
+func (m *HallReqCheckTask) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
 }
 
-type HallAckGetTask struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	FinishedNum      *int32       `protobuf:"varint,2,opt,name=finishedNum" json:"finishedNum,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *HallAckGetTask) Reset()                    { *m = HallAckGetTask{} }
-func (m *HallAckGetTask) String() string            { return proto.CompactTextString(m) }
-func (*HallAckGetTask) ProtoMessage()               {}
-func (*HallAckGetTask) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{10} }
-
-func (m *HallAckGetTask) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *HallAckGetTask) GetFinishedNum() int32 {
-	if m != nil && m.FinishedNum != nil {
-		return *m.FinishedNum
+func (m *HallReqCheckTask) GetTaskId() int32 {
+	if m != nil && m.TaskId != nil {
+		return *m.TaskId
 	}
 	return 0
+}
+
+type HallAckCheckTask struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *HallAckCheckTask) Reset()                    { *m = HallAckCheckTask{} }
+func (m *HallAckCheckTask) String() string            { return proto.CompactTextString(m) }
+func (*HallAckCheckTask) ProtoMessage()               {}
+func (*HallAckCheckTask) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{10} }
+
+func (m *HallAckCheckTask) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
 }
 
 // 背包道具列表
@@ -482,7 +488,7 @@ type HallReqBagItems struct {
 func (m *HallReqBagItems) Reset()                    { *m = HallReqBagItems{} }
 func (m *HallReqBagItems) String() string            { return proto.CompactTextString(m) }
 func (*HallReqBagItems) ProtoMessage()               {}
-func (*HallReqBagItems) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{11} }
+func (*HallReqBagItems) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{11} }
 
 func (m *HallReqBagItems) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -501,7 +507,7 @@ type HallAckBagItems struct {
 func (m *HallAckBagItems) Reset()                    { *m = HallAckBagItems{} }
 func (m *HallAckBagItems) String() string            { return proto.CompactTextString(m) }
 func (*HallAckBagItems) ProtoMessage()               {}
-func (*HallAckBagItems) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{12} }
+func (*HallAckBagItems) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{12} }
 
 func (m *HallAckBagItems) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -526,7 +532,7 @@ type HallReqUserData struct {
 func (m *HallReqUserData) Reset()                    { *m = HallReqUserData{} }
 func (m *HallReqUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallReqUserData) ProtoMessage()               {}
-func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{13} }
+func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{13} }
 
 func (m *HallReqUserData) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -544,7 +550,7 @@ type HallAckUserData struct {
 func (m *HallAckUserData) Reset()                    { *m = HallAckUserData{} }
 func (m *HallAckUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallAckUserData) ProtoMessage()               {}
-func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{14} }
+func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{14} }
 
 func (m *HallAckUserData) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -563,14 +569,14 @@ func (m *HallAckUserData) GetUser() *HallUserData {
 // 商品列表Req
 type HallReqGoodsList struct {
 	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsType        *HallEnumGoodsType `protobuf:"varint,2,opt,name=goods_type,enum=ddproto.HallEnumGoodsType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumGoodsType `protobuf:"varint,2,opt,name=goods_type,json=goodsType,enum=ddproto.HallEnumGoodsType" json:"goods_type,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
 
 func (m *HallReqGoodsList) Reset()                    { *m = HallReqGoodsList{} }
 func (m *HallReqGoodsList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqGoodsList) ProtoMessage()               {}
-func (*HallReqGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{15} }
+func (*HallReqGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{15} }
 
 func (m *HallReqGoodsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -589,7 +595,7 @@ func (m *HallReqGoodsList) GetGoodsType() HallEnumGoodsType {
 // 商品列表Ack
 type HallAckGoodsList struct {
 	Header           *ProtoHeader        `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsType        *HallEnumGoodsType  `protobuf:"varint,2,opt,name=goods_type,enum=ddproto.HallEnumGoodsType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumGoodsType  `protobuf:"varint,2,opt,name=goods_type,json=goodsType,enum=ddproto.HallEnumGoodsType" json:"goods_type,omitempty"`
 	Items            []*HallGoodsItemMsg `protobuf:"bytes,3,rep,name=items" json:"items,omitempty"`
 	XXX_unrecognized []byte              `json:"-"`
 }
@@ -597,7 +603,7 @@ type HallAckGoodsList struct {
 func (m *HallAckGoodsList) Reset()                    { *m = HallAckGoodsList{} }
 func (m *HallAckGoodsList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckGoodsList) ProtoMessage()               {}
-func (*HallAckGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{16} }
+func (*HallAckGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{16} }
 
 func (m *HallAckGoodsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -623,15 +629,15 @@ func (m *HallAckGoodsList) GetItems() []*HallGoodsItemMsg {
 // 购买商品REQ
 type HallReqGoodsBuy struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsId          *int32       `protobuf:"varint,2,opt,name=goods_id" json:"goods_id,omitempty"`
-	GoodsNum         *int32       `protobuf:"varint,3,opt,name=goods_num" json:"goods_num,omitempty"`
+	GoodsId          *int32       `protobuf:"varint,2,opt,name=goods_id,json=goodsId" json:"goods_id,omitempty"`
+	GoodsNum         *int32       `protobuf:"varint,3,opt,name=goods_num,json=goodsNum" json:"goods_num,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *HallReqGoodsBuy) Reset()                    { *m = HallReqGoodsBuy{} }
 func (m *HallReqGoodsBuy) String() string            { return proto.CompactTextString(m) }
 func (*HallReqGoodsBuy) ProtoMessage()               {}
-func (*HallReqGoodsBuy) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{17} }
+func (*HallReqGoodsBuy) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{17} }
 
 func (m *HallReqGoodsBuy) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -657,7 +663,7 @@ func (m *HallReqGoodsBuy) GetGoodsNum() int32 {
 // 购买商品ACK
 type HallAckGoodsBuy struct {
 	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsType        *HallEnumTradeType `protobuf:"varint,2,opt,name=goods_type,enum=ddproto.HallEnumTradeType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumTradeType `protobuf:"varint,2,opt,name=goods_type,json=goodsType,enum=ddproto.HallEnumTradeType" json:"goods_type,omitempty"`
 	Amount           *int32             `protobuf:"varint,3,opt,name=amount" json:"amount,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
@@ -665,7 +671,7 @@ type HallAckGoodsBuy struct {
 func (m *HallAckGoodsBuy) Reset()                    { *m = HallAckGoodsBuy{} }
 func (m *HallAckGoodsBuy) String() string            { return proto.CompactTextString(m) }
 func (*HallAckGoodsBuy) ProtoMessage()               {}
-func (*HallAckGoodsBuy) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{18} }
+func (*HallAckGoodsBuy) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{18} }
 
 func (m *HallAckGoodsBuy) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -690,11 +696,11 @@ func (m *HallAckGoodsBuy) GetAmount() int32 {
 
 // 单个商品信息
 type HallGoodsItemMsg struct {
-	GoodsId          *int32             `protobuf:"varint,1,opt,name=goods_id" json:"goods_id,omitempty"`
+	GoodsId          *int32             `protobuf:"varint,1,opt,name=goods_id,json=goodsId" json:"goods_id,omitempty"`
 	Name             *string            `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	PriceType        *HallEnumTradeType `protobuf:"varint,3,opt,name=price_type,enum=ddproto.HallEnumTradeType" json:"price_type,omitempty"`
+	PriceType        *HallEnumTradeType `protobuf:"varint,3,opt,name=price_type,json=priceType,enum=ddproto.HallEnumTradeType" json:"price_type,omitempty"`
 	Price            *int32             `protobuf:"varint,4,opt,name=price" json:"price,omitempty"`
-	GoodsType        *HallEnumTradeType `protobuf:"varint,5,opt,name=goods_type,enum=ddproto.HallEnumTradeType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumTradeType `protobuf:"varint,5,opt,name=goods_type,json=goodsType,enum=ddproto.HallEnumTradeType" json:"goods_type,omitempty"`
 	Amount           *int32             `protobuf:"varint,6,opt,name=amount" json:"amount,omitempty"`
 	Discount         *string            `protobuf:"bytes,7,opt,name=discount" json:"discount,omitempty"`
 	Image            *string            `protobuf:"bytes,8,opt,name=image" json:"image,omitempty"`
@@ -704,7 +710,7 @@ type HallGoodsItemMsg struct {
 func (m *HallGoodsItemMsg) Reset()                    { *m = HallGoodsItemMsg{} }
 func (m *HallGoodsItemMsg) String() string            { return proto.CompactTextString(m) }
 func (*HallGoodsItemMsg) ProtoMessage()               {}
-func (*HallGoodsItemMsg) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{19} }
+func (*HallGoodsItemMsg) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{19} }
 
 func (m *HallGoodsItemMsg) GetGoodsId() int32 {
 	if m != nil && m.GoodsId != nil {
@@ -771,7 +777,7 @@ type HallReqRank struct {
 func (m *HallReqRank) Reset()                    { *m = HallReqRank{} }
 func (m *HallReqRank) String() string            { return proto.CompactTextString(m) }
 func (*HallReqRank) ProtoMessage()               {}
-func (*HallReqRank) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{20} }
+func (*HallReqRank) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{20} }
 
 func (m *HallReqRank) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -789,7 +795,7 @@ type HallAckRank struct {
 func (m *HallAckRank) Reset()                    { *m = HallAckRank{} }
 func (m *HallAckRank) String() string            { return proto.CompactTextString(m) }
 func (*HallAckRank) ProtoMessage()               {}
-func (*HallAckRank) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{21} }
+func (*HallAckRank) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{21} }
 
 func (m *HallAckRank) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -814,7 +820,7 @@ type HallReqDrawLottery struct {
 func (m *HallReqDrawLottery) Reset()                    { *m = HallReqDrawLottery{} }
 func (m *HallReqDrawLottery) String() string            { return proto.CompactTextString(m) }
 func (*HallReqDrawLottery) ProtoMessage()               {}
-func (*HallReqDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{22} }
+func (*HallReqDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{22} }
 
 func (m *HallReqDrawLottery) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -832,7 +838,7 @@ type HallAckDrawLottery struct {
 func (m *HallAckDrawLottery) Reset()                    { *m = HallAckDrawLottery{} }
 func (m *HallAckDrawLottery) String() string            { return proto.CompactTextString(m) }
 func (*HallAckDrawLottery) ProtoMessage()               {}
-func (*HallAckDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{23} }
+func (*HallAckDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{23} }
 
 func (m *HallAckDrawLottery) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -857,7 +863,7 @@ type HallReqDsLotteryInfo struct {
 func (m *HallReqDsLotteryInfo) Reset()                    { *m = HallReqDsLotteryInfo{} }
 func (m *HallReqDsLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallReqDsLotteryInfo) ProtoMessage()               {}
-func (*HallReqDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{24} }
+func (*HallReqDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{24} }
 
 func (m *HallReqDsLotteryInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -877,7 +883,7 @@ type HallAckDsLotteryInfo struct {
 func (m *HallAckDsLotteryInfo) Reset()                    { *m = HallAckDsLotteryInfo{} }
 func (m *HallAckDsLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallAckDsLotteryInfo) ProtoMessage()               {}
-func (*HallAckDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{25} }
+func (*HallAckDsLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{25} }
 
 func (m *HallAckDsLotteryInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -909,7 +915,7 @@ type HallReqFriendsList struct {
 func (m *HallReqFriendsList) Reset()                    { *m = HallReqFriendsList{} }
 func (m *HallReqFriendsList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqFriendsList) ProtoMessage()               {}
-func (*HallReqFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{26} }
+func (*HallReqFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{26} }
 
 func (m *HallReqFriendsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -927,7 +933,7 @@ type HallAckFriendsList struct {
 func (m *HallAckFriendsList) Reset()                    { *m = HallAckFriendsList{} }
 func (m *HallAckFriendsList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckFriendsList) ProtoMessage()               {}
-func (*HallAckFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{27} }
+func (*HallAckFriendsList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{27} }
 
 func (m *HallAckFriendsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -937,6 +943,49 @@ func (m *HallAckFriendsList) GetHeader() *ProtoHeader {
 }
 
 func (m *HallAckFriendsList) GetUsers() []*HallFriendState {
+	if m != nil {
+		return m.Users
+	}
+	return nil
+}
+
+// 推荐好友列表
+type HallReqRecommendUserList struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *HallReqRecommendUserList) Reset()                    { *m = HallReqRecommendUserList{} }
+func (m *HallReqRecommendUserList) String() string            { return proto.CompactTextString(m) }
+func (*HallReqRecommendUserList) ProtoMessage()               {}
+func (*HallReqRecommendUserList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{28} }
+
+func (m *HallReqRecommendUserList) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+type HallAckRecommendUserList struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Users            []*HallFriendState `protobuf:"bytes,2,rep,name=users" json:"users,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *HallAckRecommendUserList) Reset()                    { *m = HallAckRecommendUserList{} }
+func (m *HallAckRecommendUserList) String() string            { return proto.CompactTextString(m) }
+func (*HallAckRecommendUserList) ProtoMessage()               {}
+func (*HallAckRecommendUserList) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{29} }
+
+func (m *HallAckRecommendUserList) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *HallAckRecommendUserList) GetUsers() []*HallFriendState {
 	if m != nil {
 		return m.Users
 	}
@@ -953,7 +1002,7 @@ type HallReqFriendsSearch struct {
 func (m *HallReqFriendsSearch) Reset()                    { *m = HallReqFriendsSearch{} }
 func (m *HallReqFriendsSearch) String() string            { return proto.CompactTextString(m) }
 func (*HallReqFriendsSearch) ProtoMessage()               {}
-func (*HallReqFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{28} }
+func (*HallReqFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{30} }
 
 func (m *HallReqFriendsSearch) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -978,7 +1027,7 @@ type HallAckFriendsSearch struct {
 func (m *HallAckFriendsSearch) Reset()                    { *m = HallAckFriendsSearch{} }
 func (m *HallAckFriendsSearch) String() string            { return proto.CompactTextString(m) }
 func (*HallAckFriendsSearch) ProtoMessage()               {}
-func (*HallAckFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{29} }
+func (*HallAckFriendsSearch) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{31} }
 
 func (m *HallAckFriendsSearch) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -997,14 +1046,14 @@ func (m *HallAckFriendsSearch) GetUsers() []*HallFriendState {
 // 添加好友
 type HallReqAddFriend struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	AddUserid        []uint32     `protobuf:"varint,2,rep,name=add_userid" json:"add_userid,omitempty"`
+	AddUserid        []uint32     `protobuf:"varint,2,rep,name=add_userid,json=addUserid" json:"add_userid,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *HallReqAddFriend) Reset()                    { *m = HallReqAddFriend{} }
 func (m *HallReqAddFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallReqAddFriend) ProtoMessage()               {}
-func (*HallReqAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{30} }
+func (*HallReqAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{32} }
 
 func (m *HallReqAddFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1028,7 +1077,7 @@ type HallAckAddFriend struct {
 func (m *HallAckAddFriend) Reset()                    { *m = HallAckAddFriend{} }
 func (m *HallAckAddFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallAckAddFriend) ProtoMessage()               {}
-func (*HallAckAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{31} }
+func (*HallAckAddFriend) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{33} }
 
 func (m *HallAckAddFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1040,14 +1089,14 @@ func (m *HallAckAddFriend) GetHeader() *ProtoHeader {
 // 删除好友
 type HallReqDelFriend struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	DelUserid        *uint32      `protobuf:"varint,2,opt,name=del_userid" json:"del_userid,omitempty"`
+	DelUserid        *uint32      `protobuf:"varint,2,opt,name=del_userid,json=delUserid" json:"del_userid,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *HallReqDelFriend) Reset()                    { *m = HallReqDelFriend{} }
 func (m *HallReqDelFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallReqDelFriend) ProtoMessage()               {}
-func (*HallReqDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{32} }
+func (*HallReqDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{34} }
 
 func (m *HallReqDelFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1071,7 +1120,7 @@ type HallAckDelFriend struct {
 func (m *HallAckDelFriend) Reset()                    { *m = HallAckDelFriend{} }
 func (m *HallAckDelFriend) String() string            { return proto.CompactTextString(m) }
 func (*HallAckDelFriend) ProtoMessage()               {}
-func (*HallAckDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{33} }
+func (*HallAckDelFriend) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{35} }
 
 func (m *HallAckDelFriend) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1082,7 +1131,7 @@ func (m *HallAckDelFriend) GetHeader() *ProtoHeader {
 
 // 用户状态
 type HallFriendState struct {
-	IsOnline         *bool         `protobuf:"varint,1,opt,name=is_online" json:"is_online,omitempty"`
+	IsOnline         *bool         `protobuf:"varint,1,opt,name=is_online,json=isOnline" json:"is_online,omitempty"`
 	Info             *HallUserInfo `protobuf:"bytes,2,opt,name=info" json:"info,omitempty"`
 	XXX_unrecognized []byte        `json:"-"`
 }
@@ -1090,7 +1139,7 @@ type HallFriendState struct {
 func (m *HallFriendState) Reset()                    { *m = HallFriendState{} }
 func (m *HallFriendState) String() string            { return proto.CompactTextString(m) }
 func (*HallFriendState) ProtoMessage()               {}
-func (*HallFriendState) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{34} }
+func (*HallFriendState) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{36} }
 
 func (m *HallFriendState) GetIsOnline() bool {
 	if m != nil && m.IsOnline != nil {
@@ -1108,18 +1157,19 @@ func (m *HallFriendState) GetInfo() *HallUserInfo {
 
 // 用户信息
 type HallUserInfo struct {
-	NickName         *string `protobuf:"bytes,1,opt,name=nick_name" json:"nick_name,omitempty"`
-	HeadImg          *string `protobuf:"bytes,2,opt,name=head_img" json:"head_img,omitempty"`
+	NickName         *string `protobuf:"bytes,1,opt,name=nick_name,json=nickName" json:"nick_name,omitempty"`
+	HeadImg          *string `protobuf:"bytes,2,opt,name=head_img,json=headImg" json:"head_img,omitempty"`
 	Sex              *int32  `protobuf:"varint,3,opt,name=sex" json:"sex,omitempty"`
 	City             *string `protobuf:"bytes,4,opt,name=city" json:"city,omitempty"`
 	Sign             *string `protobuf:"bytes,5,opt,name=sign" json:"sign,omitempty"`
+	UserId           *uint32 `protobuf:"varint,6,opt,name=user_id,json=userId" json:"user_id,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
 
 func (m *HallUserInfo) Reset()                    { *m = HallUserInfo{} }
 func (m *HallUserInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallUserInfo) ProtoMessage()               {}
-func (*HallUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{35} }
+func (*HallUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{37} }
 
 func (m *HallUserInfo) GetNickName() string {
 	if m != nil && m.NickName != nil {
@@ -1156,6 +1206,13 @@ func (m *HallUserInfo) GetSign() string {
 	return ""
 }
 
+func (m *HallUserInfo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
 // 保险箱信息
 type HallAckStrongboxInfo struct {
 	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -1166,7 +1223,7 @@ type HallAckStrongboxInfo struct {
 func (m *HallAckStrongboxInfo) Reset()                    { *m = HallAckStrongboxInfo{} }
 func (m *HallAckStrongboxInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallAckStrongboxInfo) ProtoMessage()               {}
-func (*HallAckStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{36} }
+func (*HallAckStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{38} }
 
 func (m *HallAckStrongboxInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1190,7 +1247,7 @@ type HallReqStrongboxInfo struct {
 func (m *HallReqStrongboxInfo) Reset()                    { *m = HallReqStrongboxInfo{} }
 func (m *HallReqStrongboxInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallReqStrongboxInfo) ProtoMessage()               {}
-func (*HallReqStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{37} }
+func (*HallReqStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{39} }
 
 func (m *HallReqStrongboxInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1210,7 +1267,7 @@ type HallReqStrongboxAccess struct {
 func (m *HallReqStrongboxAccess) Reset()                    { *m = HallReqStrongboxAccess{} }
 func (m *HallReqStrongboxAccess) String() string            { return proto.CompactTextString(m) }
 func (*HallReqStrongboxAccess) ProtoMessage()               {}
-func (*HallReqStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{38} }
+func (*HallReqStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{40} }
 
 func (m *HallReqStrongboxAccess) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1242,7 +1299,7 @@ type HallAckStrongboxAccess struct {
 func (m *HallAckStrongboxAccess) Reset()                    { *m = HallAckStrongboxAccess{} }
 func (m *HallAckStrongboxAccess) String() string            { return proto.CompactTextString(m) }
 func (*HallAckStrongboxAccess) ProtoMessage()               {}
-func (*HallAckStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{39} }
+func (*HallAckStrongboxAccess) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{41} }
 
 func (m *HallAckStrongboxAccess) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1268,8 +1325,8 @@ func init() {
 	proto.RegisterType((*HallAckMailList)(nil), "ddproto.hall_ack_mail_list")
 	proto.RegisterType((*HallReqTask)(nil), "ddproto.hall_req_task")
 	proto.RegisterType((*HallAckTask)(nil), "ddproto.hall_ack_task")
-	proto.RegisterType((*HallReqGetTask)(nil), "ddproto.hall_req_getTask")
-	proto.RegisterType((*HallAckGetTask)(nil), "ddproto.hall_ack_getTask")
+	proto.RegisterType((*HallReqCheckTask)(nil), "ddproto.hall_req_checkTask")
+	proto.RegisterType((*HallAckCheckTask)(nil), "ddproto.hall_ack_checkTask")
 	proto.RegisterType((*HallReqBagItems)(nil), "ddproto.hall_req_bag_items")
 	proto.RegisterType((*HallAckBagItems)(nil), "ddproto.hall_ack_bag_items")
 	proto.RegisterType((*HallReqUserData)(nil), "ddproto.hall_req_userData")
@@ -1287,6 +1344,8 @@ func init() {
 	proto.RegisterType((*HallAckDsLotteryInfo)(nil), "ddproto.hall_ack_ds_lottery_info")
 	proto.RegisterType((*HallReqFriendsList)(nil), "ddproto.hall_req_friends_list")
 	proto.RegisterType((*HallAckFriendsList)(nil), "ddproto.hall_ack_friends_list")
+	proto.RegisterType((*HallReqRecommendUserList)(nil), "ddproto.hall_req_recommend_user_list")
+	proto.RegisterType((*HallAckRecommendUserList)(nil), "ddproto.hall_ack_recommend_user_list")
 	proto.RegisterType((*HallReqFriendsSearch)(nil), "ddproto.hall_req_friends_search")
 	proto.RegisterType((*HallAckFriendsSearch)(nil), "ddproto.hall_ack_friends_search")
 	proto.RegisterType((*HallReqAddFriend)(nil), "ddproto.hall_req_add_friend")
@@ -1303,75 +1362,87 @@ func init() {
 	proto.RegisterEnum("ddproto.HallStrongboxAccessType", HallStrongboxAccessType_name, HallStrongboxAccessType_value)
 }
 
-var fileDescriptor14 = []byte{
-	// 1096 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xb4, 0x57, 0xef, 0x6e, 0x1b, 0x45,
-	0x10, 0xe7, 0xfc, 0xa7, 0xb1, 0x27, 0xb1, 0xe3, 0x5c, 0x4a, 0x62, 0x02, 0x88, 0xea, 0x00, 0x29,
-	0x14, 0x35, 0x82, 0x20, 0x50, 0x01, 0x21, 0x08, 0x71, 0x44, 0x2d, 0xa5, 0x89, 0x45, 0x43, 0xa1,
-	0x12, 0xc2, 0x6c, 0xee, 0x36, 0xf6, 0x12, 0xdf, 0x5d, 0xb8, 0x5d, 0xb7, 0xf5, 0x07, 0x3e, 0xc3,
-	0x3b, 0xf0, 0x1a, 0xbc, 0x0d, 0x2f, 0xc3, 0xec, 0xdc, 0xc6, 0xbe, 0x8b, 0x6d, 0xf5, 0x36, 0x12,
-	0x5f, 0xa2, 0xec, 0xec, 0xfc, 0x7e, 0xf3, 0xdb, 0x9d, 0xb9, 0xd9, 0x31, 0xc0, 0x90, 0x8d, 0x46,
-	0x7b, 0x57, 0x49, 0xac, 0x62, 0x77, 0x25, 0x08, 0xe8, 0x9f, 0x9d, 0x75, 0x6d, 0xec, 0x07, 0x4c,
-	0xb1, 0x74, 0x67, 0x67, 0xd3, 0x8f, 0xc3, 0x30, 0x8e, 0xfa, 0xfe, 0x48, 0xf0, 0x48, 0xa5, 0x46,
-	0xef, 0x33, 0x68, 0x92, 0x5f, 0xc2, 0x7f, 0xef, 0xf3, 0xe7, 0x68, 0x77, 0xdf, 0x83, 0x3b, 0x43,
-	0xce, 0x02, 0x9e, 0xb4, 0x9d, 0x7b, 0xce, 0xee, 0xea, 0xfe, 0xdd, 0x3d, 0xc3, 0xb8, 0xd7, 0xd3,
-	0x7f, 0x1f, 0xd1, 0x9e, 0xe7, 0x1b, 0x1c, 0xf3, 0x2f, 0x6d, 0x70, 0xee, 0x87, 0x50, 0x27, 0xf7,
-	0x63, 0x21, 0x55, 0xbb, 0x74, 0xaf, 0x8c, 0x8e, 0xed, 0xa9, 0x23, 0x31, 0x0a, 0xc5, 0xc3, 0x94,
-	0xd2, 0xfb, 0x19, 0x36, 0xc8, 0x34, 0x8a, 0x95, 0xe2, 0xc9, 0x84, 0xb6, 0x5c, 0x80, 0x92, 0x08,
-	0x28, 0x46, 0xd5, 0x5d, 0x83, 0x4a, 0xc4, 0x42, 0x8e, 0x44, 0xce, 0x6e, 0xdd, 0x7d, 0x00, 0x15,
-	0x35, 0xb9, 0xe2, 0xed, 0x32, 0xae, 0x9a, 0xfb, 0xef, 0xe4, 0x69, 0xb3, 0x1c, 0x7d, 0xed, 0xe6,
-	0xfd, 0xe9, 0xc0, 0x16, 0x6d, 0x49, 0x31, 0x88, 0x66, 0xfb, 0xd1, 0x45, 0xec, 0x6e, 0xc2, 0xaa,
-	0x90, 0x4f, 0xd0, 0x7c, 0x16, 0x07, 0x6c, 0x42, 0xc1, 0x6a, 0xee, 0x06, 0xd4, 0x55, 0xac, 0xd8,
-	0xa8, 0xc3, 0x26, 0x92, 0x22, 0x56, 0xdd, 0x2d, 0x68, 0xfa, 0x71, 0xa4, 0x44, 0x34, 0x8e, 0xc7,
-	0x92, 0xec, 0x65, 0xb2, 0x3f, 0x80, 0xba, 0x26, 0xed, 0x62, 0x2c, 0xd9, 0xae, 0xd0, 0x29, 0x77,
-	0x96, 0xcb, 0xc1, 0x73, 0xa6, 0x42, 0x82, 0x84, 0xbd, 0x58, 0x20, 0xa4, 0x83, 0xe6, 0xac, 0x10,
-	0x64, 0x0f, 0x04, 0x1b, 0xa5, 0xec, 0xa5, 0x57, 0xb2, 0x7f, 0x01, 0xee, 0x34, 0xc5, 0x21, 0x13,
-	0xb8, 0x8b, 0x77, 0x5f, 0x30, 0xcd, 0xcc, 0x60, 0x75, 0x9a, 0x2d, 0xb1, 0xee, 0xfb, 0x50, 0x19,
-	0xcd, 0xb2, 0xbc, 0x9d, 0x57, 0x48, 0x64, 0x24, 0x8f, 0x43, 0x63, 0x2a, 0x4f, 0x31, 0x79, 0x59,
-	0x90, 0x7d, 0x0f, 0xb3, 0x81, 0xde, 0x94, 0x4a, 0xca, 0x46, 0x73, 0xff, 0xcd, 0x7c, 0x08, 0x1e,
-	0x8d, 0x43, 0x62, 0x3c, 0xd3, 0xd9, 0xfe, 0xd5, 0x84, 0xd1, 0x27, 0xb1, 0x08, 0xf3, 0x01, 0xd4,
-	0xb4, 0xf7, 0xf1, 0xd2, 0x83, 0xa4, 0xf5, 0x84, 0x2e, 0xde, 0x43, 0x68, 0x4d, 0x0f, 0x32, 0xe0,
-	0xea, 0xac, 0x70, 0x10, 0xef, 0xb1, 0x41, 0x6a, 0x6d, 0x56, 0x48, 0x5d, 0x1f, 0x17, 0x22, 0x12,
-	0x72, 0xc8, 0x83, 0x93, 0x71, 0x98, 0x56, 0x65, 0x2e, 0xe1, 0xe7, 0x6c, 0x40, 0x12, 0xe5, 0x2d,
-	0x12, 0x6e, 0x89, 0xc5, 0x84, 0x57, 0x45, 0xa6, 0x26, 0xb7, 0xf2, 0x17, 0x75, 0xcd, 0xe6, 0x7d,
-	0x6e, 0xbe, 0x6a, 0x2d, 0x6f, 0x2c, 0x79, 0xd2, 0xc1, 0x16, 0x55, 0x50, 0x5d, 0xdf, 0x40, 0xb5,
-	0x3a, 0x3b, 0x28, 0x7a, 0x55, 0x34, 0x82, 0xae, 0x68, 0x4e, 0xdb, 0x35, 0x97, 0x17, 0xc1, 0xe6,
-	0x2c, 0x87, 0x71, 0x1c, 0x48, 0x9b, 0x82, 0xff, 0x18, 0x20, 0xc5, 0x64, 0x6a, 0xf2, 0xed, 0x05,
-	0x35, 0x39, 0x73, 0xf2, 0xfe, 0x76, 0x4c, 0x40, 0x4a, 0xfd, 0xff, 0x1f, 0x10, 0xfb, 0xaf, 0xc9,
-	0x51, 0x99, 0x72, 0xf4, 0x56, 0xde, 0x3b, 0x75, 0xa4, 0x92, 0x0e, 0xe5, 0x00, 0xaf, 0xdb, 0xbd,
-	0x71, 0x1b, 0xe7, 0xe3, 0x49, 0x41, 0x6d, 0x2d, 0xa8, 0x19, 0xb6, 0xc0, 0x34, 0x4b, 0xec, 0x9f,
-	0xa9, 0x05, 0x25, 0xa5, 0x7d, 0xd2, 0xfb, 0x23, 0x53, 0x6d, 0xb6, 0x01, 0x8a, 0x1e, 0x5e, 0x25,
-	0xe8, 0x9e, 0x1e, 0xbe, 0x09, 0x77, 0x58, 0x18, 0x8f, 0x23, 0x65, 0xc2, 0xff, 0x7b, 0x7d, 0xfb,
-	0xf9, 0x73, 0xe7, 0xb4, 0x2f, 0x7a, 0x68, 0x30, 0xf4, 0x55, 0x22, 0xfc, 0x94, 0xd5, 0x3c, 0x37,
-	0xaf, 0x08, 0xdd, 0x80, 0x2a, 0x41, 0xf0, 0x35, 0xd0, 0x7c, 0x79, 0xf1, 0x55, 0x3b, 0xf1, 0x77,
-	0x88, 0x02, 0x45, 0x06, 0x42, 0xfa, 0x64, 0x59, 0x21, 0x59, 0x18, 0x43, 0x84, 0x6c, 0xc0, 0xdb,
-	0x35, 0xbd, 0xf4, 0x3e, 0xcd, 0x34, 0xd6, 0x84, 0x45, 0x45, 0x9b, 0x51, 0xb6, 0x51, 0x16, 0x87,
-	0xe9, 0x46, 0xa9, 0xbd, 0x97, 0x37, 0x4a, 0xbd, 0x9b, 0x36, 0x80, 0xaf, 0xe0, 0xf5, 0xa9, 0xb0,
-	0xec, 0x93, 0x57, 0x50, 0x60, 0xcf, 0xc0, 0xb5, 0x40, 0x7b, 0xb8, 0x2e, 0x43, 0x03, 0xe8, 0x9a,
-	0xca, 0xf4, 0xbe, 0x81, 0xf6, 0x4c, 0x90, 0xcc, 0xbf, 0xc0, 0xc5, 0x34, 0xfd, 0xe3, 0x18, 0x0a,
-	0x12, 0x75, 0x1b, 0x0a, 0xf7, 0x21, 0xac, 0xeb, 0xd3, 0x1c, 0x1b, 0x6d, 0x08, 0x6c, 0xaf, 0x91,
-	0xfb, 0x8d, 0x41, 0x66, 0x7e, 0x48, 0x40, 0xa4, 0x9e, 0x36, 0xb2, 0xc8, 0xc6, 0x22, 0xe4, 0xdc,
-	0x9c, 0x93, 0xcb, 0xc4, 0x45, 0x82, 0x63, 0xa1, 0x55, 0xff, 0xf1, 0x86, 0x99, 0x4c, 0xd8, 0xc3,
-	0xb1, 0x64, 0xaa, 0xba, 0xf1, 0x2e, 0x99, 0x61, 0x52, 0xc2, 0xbe, 0x54, 0x4c, 0x71, 0xcc, 0xf9,
-	0xf6, 0x9c, 0x50, 0xc9, 0x59, 0xe2, 0x0f, 0x0b, 0xc6, 0x5a, 0x87, 0x95, 0x4b, 0x3e, 0x79, 0x11,
-	0x27, 0x69, 0xce, 0xeb, 0xde, 0x6f, 0x86, 0x31, 0xab, 0xdd, 0x8a, 0xd1, 0x42, 0xfd, 0x69, 0xe6,
-	0x55, 0x61, 0x41, 0x60, 0x36, 0x0b, 0xc6, 0xc1, 0x81, 0x57, 0x63, 0x74, 0x2c, 0x6a, 0xa5, 0xe5,
-	0xdd, 0x86, 0xf7, 0x65, 0xe6, 0xd5, 0xb0, 0x25, 0xcc, 0xa9, 0x09, 0xf8, 0xc8, 0x5a, 0x8d, 0xc6,
-	0x4c, 0xd5, 0x38, 0x37, 0xd4, 0xd8, 0x12, 0xe2, 0xec, 0xb3, 0x31, 0x77, 0x61, 0xfa, 0x1b, 0x15,
-	0xb2, 0x1f, 0x47, 0x23, 0x11, 0x71, 0x33, 0xf4, 0xe2, 0x34, 0xa9, 0x4b, 0xd6, 0xbc, 0xdf, 0xdb,
-	0xf3, 0xef, 0x77, 0x5a, 0xd1, 0xbf, 0x98, 0xdf, 0x25, 0x53, 0x8b, 0xe6, 0x8a, 0x04, 0x2a, 0xa3,
-	0xfe, 0xed, 0x50, 0xa3, 0xc4, 0xd6, 0xa9, 0x95, 0xf5, 0x45, 0x38, 0x30, 0x1d, 0x7d, 0x15, 0xca,
-	0x92, 0xbf, 0x34, 0xd3, 0x3b, 0x36, 0x7b, 0x5f, 0xa8, 0x09, 0xb5, 0xea, 0xba, 0x5e, 0xe9, 0x0f,
-	0x87, 0x9a, 0x74, 0xdd, 0x53, 0x99, 0xb2, 0x91, 0x2a, 0x89, 0xa3, 0xc1, 0x79, 0xfc, 0xd2, 0xe6,
-	0x33, 0xff, 0x04, 0x1a, 0x53, 0x5c, 0x77, 0x76, 0xa0, 0x1b, 0x0f, 0x71, 0x9e, 0xda, 0xfb, 0x3a,
-	0x53, 0xfe, 0xb7, 0x89, 0xea, 0xfd, 0xe5, 0xc0, 0x1b, 0x0b, 0x18, 0x98, 0xef, 0x73, 0x29, 0x2d,
-	0x0a, 0x91, 0xfc, 0x0f, 0x63, 0x11, 0x91, 0xec, 0x32, 0xbe, 0x63, 0xd9, 0x9f, 0x5c, 0xef, 0x2e,
-	0x3b, 0x44, 0x8a, 0x4b, 0x47, 0x9e, 0xe7, 0x46, 0x49, 0xfe, 0x06, 0xad, 0x94, 0xdc, 0xe6, 0x0e,
-	0xef, 0x5f, 0xc0, 0xdd, 0x85, 0x13, 0x51, 0x03, 0xea, 0x67, 0xcf, 0x7a, 0x47, 0xfd, 0xc3, 0xd3,
-	0xee, 0x49, 0xcb, 0xc1, 0xda, 0x58, 0xa3, 0x65, 0xa7, 0x7b, 0xf0, 0xf8, 0xf4, 0xa4, 0xd3, 0x2a,
-	0x61, 0x01, 0x35, 0xc8, 0x72, 0xf4, 0xd3, 0xe1, 0xa3, 0x83, 0x93, 0xef, 0x8e, 0x5a, 0x65, 0xac,
-	0x89, 0x1a, 0x99, 0xbe, 0xfd, 0xe1, 0x59, 0xab, 0x32, 0x5d, 0x3d, 0xed, 0xf6, 0x5a, 0xd5, 0xfb,
-	0x1f, 0xc1, 0xce, 0xf2, 0xd3, 0xbb, 0x35, 0xa8, 0x3c, 0x39, 0x78, 0x7a, 0x84, 0x81, 0xf0, 0xbf,
-	0xce, 0xf7, 0x07, 0x3f, 0xb6, 0x4a, 0xbd, 0xd7, 0x7a, 0xce, 0x7f, 0x01, 0x00, 0x00, 0xff, 0xff,
-	0xfc, 0x60, 0x68, 0xf0, 0xc3, 0x0f, 0x00, 0x00,
+var fileDescriptor15 = []byte{
+	// 1285 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xc4, 0x58, 0xdf, 0x6b, 0x1b, 0xc7,
+	0x13, 0xff, 0x9e, 0x7e, 0xd8, 0xd2, 0x24, 0x72, 0x94, 0x8d, 0xbf, 0xb6, 0xec, 0x38, 0xad, 0xd9,
+	0x42, 0x31, 0x6e, 0x30, 0xc1, 0x81, 0x36, 0x0f, 0x69, 0xc1, 0xb6, 0x4c, 0x2c, 0x70, 0x6d, 0x73,
+	0x71, 0xd2, 0xa6, 0x50, 0xc4, 0xfa, 0x6e, 0x2d, 0x2f, 0xba, 0x1f, 0xee, 0xdd, 0x29, 0x8e, 0xfa,
+	0x50, 0xe8, 0x73, 0xe9, 0x7b, 0xa1, 0x2f, 0xa5, 0xff, 0x43, 0x5f, 0xfa, 0xc7, 0xf4, 0x6f, 0x29,
+	0x33, 0xb7, 0x3a, 0xdd, 0xe9, 0x07, 0xe9, 0x9d, 0x0b, 0x7d, 0x11, 0xbb, 0xb3, 0x33, 0x9f, 0xf9,
+	0xcc, 0xee, 0xec, 0xce, 0x9c, 0x00, 0xae, 0x84, 0xe3, 0xec, 0x5c, 0x07, 0x7e, 0xe4, 0xb3, 0x45,
+	0xdb, 0xa6, 0xc1, 0xfa, 0x3d, 0x14, 0x76, 0x6d, 0x11, 0x89, 0x78, 0x65, 0xfd, 0x81, 0xe5, 0xbb,
+	0xae, 0xef, 0x75, 0x2d, 0x47, 0x49, 0x2f, 0x8a, 0x85, 0xfc, 0x0b, 0x58, 0x22, 0xbd, 0x40, 0x7e,
+	0xd7, 0x95, 0x6f, 0xa5, 0x17, 0xb1, 0xc7, 0xb0, 0x70, 0x25, 0x85, 0x2d, 0x83, 0x96, 0xb1, 0x69,
+	0x6c, 0xdd, 0xd9, 0x5d, 0xde, 0xd1, 0x88, 0x3b, 0x67, 0xf8, 0x7b, 0x44, 0x6b, 0xa6, 0xd6, 0xe1,
+	0x6f, 0xb5, 0xbd, 0xb0, 0xfa, 0x45, 0xec, 0xd9, 0xa7, 0x50, 0x27, 0xb3, 0x63, 0x15, 0x46, 0xad,
+	0xd2, 0x66, 0x79, 0xeb, 0xce, 0x6e, 0x2b, 0x31, 0x20, 0x64, 0x15, 0x49, 0x37, 0x86, 0x36, 0xc7,
+	0xaa, 0xdc, 0x81, 0xfb, 0xb4, 0xea, 0xf8, 0x51, 0x24, 0x83, 0x21, 0x69, 0xb1, 0x25, 0x28, 0x29,
+	0x9b, 0xdc, 0x56, 0xcd, 0x92, 0xb2, 0x19, 0x83, 0x8a, 0x27, 0x5c, 0xd9, 0x2a, 0x6d, 0x1a, 0x5b,
+	0x75, 0x93, 0xc6, 0xec, 0x29, 0x54, 0xa2, 0xe1, 0xb5, 0x6c, 0x95, 0x37, 0x8d, 0xad, 0xa5, 0xdd,
+	0x0f, 0xb3, 0xbe, 0xd2, 0x68, 0x5d, 0x54, 0x33, 0x49, 0x99, 0xff, 0x69, 0xc0, 0x0a, 0x29, 0x84,
+	0xaa, 0xe7, 0x8d, 0xb5, 0xbc, 0x4b, 0x9f, 0x6d, 0xc2, 0x1d, 0x15, 0xbe, 0x54, 0x3d, 0xef, 0xdc,
+	0xb7, 0xc5, 0x90, 0x9c, 0xd7, 0xcc, 0xb4, 0x88, 0x6d, 0x40, 0x3d, 0xf2, 0x23, 0xe1, 0xb4, 0xc5,
+	0x30, 0x24, 0x2a, 0x55, 0x73, 0x2c, 0x60, 0x1f, 0xc3, 0x92, 0xe5, 0x7b, 0x91, 0xf2, 0x06, 0xfe,
+	0x20, 0x24, 0x95, 0x32, 0xa9, 0x4c, 0x48, 0xd9, 0x33, 0xa8, 0xa3, 0xf3, 0x4e, 0x24, 0xdd, 0xb0,
+	0x55, 0xa1, 0x8d, 0x5a, 0x9f, 0x4f, 0xde, 0x1c, 0x2b, 0xf3, 0x48, 0x73, 0xb7, 0x03, 0x71, 0x33,
+	0x83, 0x7b, 0x3b, 0x10, 0x37, 0x13, 0xdc, 0x13, 0x11, 0x7a, 0xb5, 0x95, 0x70, 0x62, 0xaf, 0xa5,
+	0xf7, 0x7b, 0x4d, 0x94, 0xf9, 0x3e, 0xb0, 0x24, 0xb1, 0x5c, 0xa1, 0x9c, 0xae, 0xa3, 0xc2, 0xbc,
+	0xc9, 0xe5, 0x6b, 0x0c, 0x4c, 0xae, 0x82, 0x18, 0xec, 0x13, 0xa8, 0x38, 0xe3, 0xdc, 0x5a, 0xcd,
+	0x92, 0x27, 0x50, 0x62, 0x4e, 0x4a, 0xfc, 0x06, 0x1a, 0x09, 0xe9, 0x48, 0x84, 0xfd, 0x9c, 0xbe,
+	0x9e, 0x41, 0x1d, 0xad, 0x28, 0x73, 0xe8, 0xa4, 0x97, 0x76, 0x1f, 0x66, 0x1d, 0x4a, 0x6f, 0xe0,
+	0x12, 0xf2, 0x39, 0x26, 0x57, 0x6d, 0x34, 0xe2, 0x81, 0x76, 0x8c, 0x91, 0x16, 0x70, 0xfc, 0x14,
+	0x08, 0xea, 0x78, 0x6e, 0xa0, 0x71, 0x42, 0x8b, 0xb0, 0x6f, 0x26, 0x8a, 0xfc, 0x9b, 0xd4, 0x09,
+	0x59, 0x57, 0xd2, 0xea, 0x9f, 0xe7, 0x77, 0xbc, 0x02, 0x0b, 0x88, 0xd7, 0xb1, 0x75, 0x62, 0xeb,
+	0x59, 0x72, 0xfa, 0x18, 0x4f, 0x41, 0xec, 0x4c, 0x06, 0x5d, 0x88, 0x1e, 0xc5, 0x10, 0xe6, 0xc4,
+	0xb8, 0x4e, 0xf1, 0x28, 0x88, 0xc1, 0x1e, 0x43, 0x55, 0xa5, 0xf2, 0x7f, 0x25, 0xbb, 0xb3, 0x23,
+	0x54, 0x33, 0x56, 0xe2, 0x7b, 0xfa, 0x61, 0x42, 0xd6, 0x83, 0x50, 0x06, 0x6d, 0x11, 0x89, 0x9c,
+	0xa4, 0x5d, 0x0d, 0x81, 0xa4, 0x8b, 0x41, 0xb0, 0x6d, 0xa8, 0xa0, 0x25, 0x9d, 0xca, 0x14, 0xe5,
+	0x11, 0xa6, 0x49, 0x3a, 0xfc, 0x47, 0x03, 0x1e, 0x24, 0x94, 0x7b, 0xbe, 0x6f, 0x87, 0x45, 0xee,
+	0xd9, 0x73, 0x80, 0xd8, 0x36, 0x95, 0xfc, 0x8f, 0x66, 0x24, 0xff, 0x58, 0xc9, 0xac, 0xd3, 0x98,
+	0xf2, 0xff, 0x8f, 0x11, 0x07, 0x8c, 0xf9, 0xbf, 0xe1, 0xc0, 0x76, 0x47, 0xe7, 0x5c, 0xa6, 0x73,
+	0xde, 0xc8, 0x1a, 0xc6, 0x36, 0x74, 0x8f, 0xdc, 0xb0, 0x37, 0x3a, 0xed, 0xef, 0x53, 0x39, 0x1a,
+	0x6b, 0x5c, 0x0c, 0x86, 0x39, 0x59, 0xaf, 0x41, 0x4d, 0x83, 0x8f, 0x6e, 0xd1, 0x22, 0xcd, 0x3b,
+	0x36, 0x7b, 0x08, 0x31, 0xbf, 0xae, 0x37, 0x70, 0x75, 0x5d, 0x88, 0x75, 0x4f, 0x06, 0x2e, 0xff,
+	0xc5, 0x48, 0x25, 0x77, 0x51, 0xe7, 0xff, 0x74, 0xcb, 0xa2, 0x40, 0xd8, 0x72, 0x6a, 0xcb, 0x56,
+	0x60, 0x41, 0xb8, 0xfe, 0xc0, 0x8b, 0x34, 0x39, 0x3d, 0xe3, 0xbf, 0x95, 0xf4, 0x71, 0x66, 0x77,
+	0x2d, 0x13, 0xaa, 0x91, 0x0d, 0x75, 0x56, 0xad, 0x7e, 0x0e, 0x70, 0x1d, 0x28, 0x2b, 0xf6, 0xab,
+	0x2b, 0xf6, 0xfb, 0xc8, 0x91, 0x01, 0x91, 0x5b, 0x86, 0x2a, 0x4d, 0x5a, 0x15, 0xf2, 0x14, 0x4f,
+	0x26, 0x02, 0xae, 0x16, 0x0e, 0x78, 0x21, 0x1d, 0x30, 0x5b, 0x87, 0x9a, 0xad, 0x42, 0x8b, 0x56,
+	0x16, 0x29, 0x82, 0x64, 0x8e, 0x3c, 0x94, 0x2b, 0x7a, 0xb2, 0x55, 0xa3, 0x85, 0x78, 0xc2, 0x3f,
+	0x4f, 0x95, 0x9a, 0x40, 0x78, 0x79, 0x1f, 0xc7, 0x74, 0xc1, 0xc8, 0x6f, 0x8e, 0x05, 0x03, 0xad,
+	0xe6, 0x17, 0x0c, 0x5c, 0x8d, 0xdf, 0xb5, 0x44, 0x91, 0x1f, 0xc2, 0xff, 0x13, 0xca, 0xe9, 0x66,
+	0x22, 0x27, 0x75, 0x4b, 0xc3, 0x20, 0xf5, 0xe2, 0x30, 0xd8, 0x56, 0x69, 0xc3, 0xa4, 0xfa, 0x8c,
+	0x05, 0xfc, 0x08, 0x5a, 0x63, 0xae, 0x61, 0xb6, 0xed, 0xc9, 0x47, 0xf7, 0x2f, 0x43, 0x43, 0x11,
+	0xdf, 0xdb, 0x40, 0xb1, 0x0e, 0xdc, 0xc3, 0x80, 0x8f, 0x35, 0x4b, 0xef, 0xd2, 0x6f, 0xdd, 0x25,
+	0xb3, 0x89, 0x36, 0x74, 0xaa, 0x53, 0x33, 0x27, 0xed, 0x10, 0x0a, 0x3b, 0xbc, 0x34, 0x54, 0x63,
+	0x16, 0xd4, 0x54, 0xc3, 0x6a, 0x4e, 0xda, 0x65, 0x8e, 0xf5, 0x32, 0x50, 0xd2, 0x2b, 0xf4, 0xf8,
+	0xf2, 0x9b, 0xd4, 0xb1, 0x16, 0x87, 0x61, 0x4f, 0xa0, 0x8a, 0x55, 0x69, 0x4e, 0xb7, 0x19, 0x03,
+	0x77, 0xc3, 0x48, 0x44, 0xd2, 0x8c, 0x15, 0xf9, 0x31, 0x6c, 0x8c, 0x6f, 0x92, 0xc4, 0x8f, 0x1c,
+	0x54, 0xc1, 0xb5, 0x22, 0x61, 0xfc, 0xa0, 0xd1, 0xe8, 0x62, 0xdd, 0x16, 0xad, 0x40, 0x34, 0x02,
+	0x56, 0xa7, 0x4e, 0x23, 0x94, 0x22, 0xb0, 0xae, 0x72, 0xba, 0x6e, 0xc1, 0x62, 0x5f, 0x0e, 0x6f,
+	0xfc, 0xc0, 0xd6, 0x6f, 0xea, 0x68, 0xca, 0x87, 0xda, 0x45, 0xfa, 0xa4, 0x0a, 0xb9, 0xc8, 0x1f,
+	0xdd, 0x45, 0xaa, 0xd5, 0x10, 0xb6, 0xad, 0x75, 0x72, 0xba, 0x7d, 0x04, 0x80, 0xb6, 0x88, 0x48,
+	0x25, 0xb3, 0xbc, 0xd5, 0x30, 0xeb, 0xc2, 0xb6, 0x5f, 0x91, 0x80, 0x1f, 0xa4, 0x5a, 0x89, 0xa2,
+	0x3e, 0x32, 0x44, 0x6d, 0xe9, 0x14, 0x26, 0x8a, 0xb6, 0x09, 0x51, 0x03, 0x89, 0xda, 0xd2, 0x99,
+	0x41, 0xb4, 0xa8, 0x0f, 0xfe, 0xad, 0x6e, 0x16, 0xd3, 0xbb, 0x8d, 0x7d, 0x83, 0x0a, 0xbb, 0xbe,
+	0xe7, 0x28, 0x4f, 0xea, 0xcf, 0xba, 0x9a, 0x0a, 0x4f, 0x69, 0x8e, 0x5f, 0x44, 0xf8, 0x10, 0xe8,
+	0xde, 0x70, 0x75, 0xba, 0x37, 0x8c, 0xdf, 0x09, 0x52, 0xe2, 0xbf, 0x1a, 0xfa, 0x03, 0x3f, 0x59,
+	0x40, 0x70, 0x4f, 0x59, 0xfd, 0x2e, 0x95, 0x6b, 0x23, 0x2e, 0x76, 0x28, 0x38, 0xc1, 0x92, 0xbd,
+	0x06, 0x35, 0x24, 0xd6, 0x55, 0x6e, 0x6f, 0x94, 0x76, 0x38, 0xef, 0xb8, 0x3d, 0xd6, 0x84, 0x72,
+	0x28, 0xdf, 0xe9, 0x4e, 0x01, 0x87, 0x58, 0xf3, 0x2d, 0x15, 0x0d, 0xa9, 0x40, 0xd7, 0x4d, 0x1a,
+	0xa3, 0x0c, 0x1f, 0x28, 0xaa, 0xcc, 0x75, 0x93, 0xc6, 0x6c, 0x15, 0x16, 0x63, 0xf7, 0x36, 0x95,
+	0xdd, 0x86, 0xb9, 0x80, 0xd3, 0x8e, 0xcd, 0x7f, 0x32, 0x52, 0xa9, 0x1c, 0x46, 0x81, 0xef, 0xf5,
+	0x2e, 0xfc, 0x77, 0x45, 0x9e, 0xe6, 0x7d, 0x68, 0x24, 0xf6, 0x9d, 0xf1, 0xee, 0x4c, 0x34, 0x81,
+	0x59, 0x17, 0x66, 0xd6, 0x84, 0xbf, 0x48, 0x5d, 0xdd, 0xdb, 0x90, 0xe1, 0xbf, 0x1b, 0xb0, 0x36,
+	0x03, 0x49, 0x58, 0x96, 0x0c, 0xf3, 0x7e, 0xbd, 0x7c, 0x00, 0x10, 0xdb, 0x1d, 0xf8, 0xca, 0xa3,
+	0xa8, 0xca, 0x66, 0x4a, 0xc2, 0x3e, 0xcb, 0xfc, 0x1f, 0xf2, 0xd1, 0xbc, 0x78, 0x63, 0x8b, 0xf4,
+	0x7f, 0x22, 0x3f, 0x8f, 0x48, 0x66, 0xf7, 0xbe, 0x10, 0xc9, 0x7f, 0x61, 0xf7, 0xb7, 0x2f, 0x61,
+	0x79, 0x56, 0x87, 0xcf, 0x1a, 0x50, 0x3f, 0x7f, 0x73, 0x76, 0xd8, 0x3d, 0x38, 0xed, 0x9c, 0x34,
+	0x0d, 0xd6, 0x84, 0xbb, 0x34, 0x6d, 0x77, 0xf6, 0xbe, 0x3c, 0x3d, 0x69, 0x37, 0x4b, 0xec, 0x3e,
+	0x34, 0x48, 0x72, 0xf8, 0xf5, 0xc1, 0xd1, 0xde, 0xc9, 0x8b, 0xc3, 0x66, 0x99, 0xdd, 0x85, 0x1a,
+	0x89, 0xf6, 0x5f, 0xbd, 0x69, 0x56, 0x92, 0xd9, 0xeb, 0xce, 0x59, 0xb3, 0xba, 0xfd, 0x04, 0xd6,
+	0xe7, 0xef, 0x0d, 0xab, 0x41, 0xe5, 0xe5, 0xde, 0xeb, 0xc3, 0xa6, 0x81, 0xa3, 0xb6, 0xb9, 0xf7,
+	0x55, 0xb3, 0x74, 0xf6, 0xbf, 0x33, 0xe3, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x7a, 0x33, 0xf3,
+	0x67, 0xa3, 0x13, 0x00, 0x00,
 }

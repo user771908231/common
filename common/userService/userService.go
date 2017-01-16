@@ -3,17 +3,14 @@ package userService
 import (
 	"casino_common/utils/db"
 	"casino_common/common/log"
-	"casino_common/utils/numUtils"
 	"casino_common/utils/redisUtils"
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/common/sys"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/model/userDao"
+	"casino_common/common/cfg"
 )
-
-var USER_REDIS_KEY_AGENT_SESSION = "agent_session" //用户session的key
-var USER_REDIS_KEY = tableName.DBT_T_USER          //用户的key
 
 /**
 	1,create 一个user
@@ -33,11 +30,12 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.Id = proto.Uint32(uint32(id))
 	user.Sex = proto.Int32(sex)
 	user.City = proto.String(city)
-	user.Diamond = proto.Int64(NEW_USER_DIAMOND_REWARD) //新用户注册的时候,默认的钻石数量
+	user.Diamond = proto.Int64(0)
 	user.NickName = proto.String(wxNickName)
 	user.UnionId = proto.String(unionId)
 	user.OpenId = proto.String(openId)
 	user.HeadUrl = proto.String(headUrl)
+	user.Coin = proto.Int64(sys.CONFIG_SYS.GetNewUserCoin())
 
 	//初始化默认值
 
@@ -50,11 +48,13 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 
 	//3,保存到redis
 	SaveUser2Redis(user)
+	INCRUserRoomcard(uint32(id), sys.CONFIG_SYS.GetNewUserRoomcard()) //新用户注册的时候,默认的房卡数量
+	INCRUserCOIN(uint32(id), sys.CONFIG_SYS.GetNewUserCoin())         //新用户注册的时候，默认的金币数量
 	return user, nil
 }
 
 func GetRedisUserKey(id uint32) string {
-	return redisUtils.K(USER_REDIS_KEY, id)
+	return redisUtils.K(cfg.RKEY_PRE_USER, id)
 }
 
 func ClearUserSeesion(userId uint32) {
@@ -63,7 +63,7 @@ func ClearUserSeesion(userId uint32) {
 
 //取session的rediskey
 func GetRedisUserSeesionKey(userid uint32) string {
-	return redisUtils.K(USER_REDIS_KEY_AGENT_SESSION, userid)
+	return redisUtils.K(cfg.RKEY_PRE_USER_AGENT_SESSION, userid)
 }
 
 /**
@@ -83,35 +83,21 @@ func GetUserById(id uint32) *ddproto.User {
 	//2，从redis 中取到的数据不为空，那么直接返回
 	if result != nil {
 		buser = result.(*ddproto.User)
+		return buser
 	}
 
 	//3，从reids中取到的数据为空，那么从数据库中读取
 	if result == nil {
-		log.E("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
-		tuser := userDao.FindUserById(id)
-		log.T("在mongo中查询到了user[%v],现在开始缓存", tuser)
+		log.T("redis中没有找到user[%v],需要在mongo中查询,并且缓存在redis中。", id)
+		buser = userDao.FindUserById(id)
 		if buser != nil {
+			log.T("在mongo中查询到了user[%v],现在开始缓存", buser)
 			SaveUser2Redis(buser)
 			InitUserMoney2Redis(buser)
-		}
-	}
+		} else {
+			log.E("在mongo中没有找到user[%v],玩家不存在", id)
 
-	//4,如果找不到用户并且是开发这模式
-	if buser == nil &&  sys.GAMEENV.DEVMODE {
-		log.T("现在是开发者模式sys.GAMEENV.DEVMODE[%v],生成一个对应id[%v]的user，并且缓存到redis中...", sys.GAMEENV.DEVMODE, id)
-		buser = &ddproto.User{}
-		buser.Id = proto.Uint32(id)
-		nickName, _ := numUtils.Uint2String(id)
-		buser.NickName = proto.String(nickName)
-		buser.Coin = proto.Int64(0)
-		buser.Diamond = proto.Int64(20)
-		buser.Diamond2 = proto.Int64(0)
-		buser.RoomCard = proto.Int64(0)
-		buser.LastSignTime = proto.String("")
-		buser.LastDrawLotteryTime = proto.String("")
-		//保存到redis
-		SaveUser2Redis(buser)
-		InitUserMoney2Redis(buser)
+		}
 	}
 
 	//判断用户是否存在,如果不存在,则返回空
@@ -125,19 +111,22 @@ func SaveUser2Redis(u *ddproto.User) {
 	redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
 }
 
-//把用户保存到mgo
+//把用户保存到mgo并且同事更新redis的数据
 func UpdateUser2Mgo(u *ddproto.User) {
 	userDao.UpdateUser2Mgo(u)
+	SaveUser2Redis(u) //保存user到redis
+
 }
 
 //初始化redis中用户的金额的值
 func InitUserMoney2Redis(user *ddproto.User) {
-	SetUserMoney(user.GetId(), USER_COIN_REDIS_KEY, user.GetCoin())
-	SetUserMoney(user.GetId(), USER_DIAMOND_REDIS_KEY, user.GetDiamond())
-	SetUserMoney(user.GetId(), USER_DIAMOND2_REDIS_KEY, user.GetDiamond2())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_COIN, user.GetCoin())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND, user.GetDiamond())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND2, user.GetDiamond2())
+	SetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD, user.GetRoomCard())
 }
 
-func GetUserByOpenId(openId string) *ddproto.User {
+func GetUserByUnionId(openId string) *ddproto.User {
 	log.T("通过openId[%v]查询用户是否存在...", openId)
 	//2,从数据库中查询
 	user := userDao.FindUserByUnionId(openId)
@@ -149,4 +138,21 @@ func GetUserByOpenId(openId string) *ddproto.User {
 	}
 	//判断用户是否存在,如果不存在,则返回空
 	return user
+}
+
+//更新redis user 的各种money ,同步之后会save到redis中
+func SyncReidsUserMoney(user *ddproto.User) {
+	user.Coin = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_COIN))         //更新金币
+	user.Diamond = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND))   //更新钻石
+	user.Diamond2 = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND2)) //更新钻石2
+	user.RoomCard = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD)) //更新房卡
+	SaveUser2Redis(user)
+}
+
+//调用此方法 保证mongey,redisuser,mgo 的数据一致
+func SyncMgoUser(userId uint32) error {
+	user := GetUserById(userId)
+	SyncReidsUserMoney(user)
+	UpdateUser2Mgo(user) //保存用户到mgo
+	return nil
 }

@@ -7,6 +7,8 @@ import (
 	"casino_common/common/log"
 	"casino_common/common/consts"
 	"casino_common/common/service/loginService"
+	"casino_common/common/sessionService"
+	"github.com/golang/protobuf/proto"
 )
 
 //注册的接口
@@ -54,4 +56,40 @@ func HandlerGame_Login(args []interface{}) {
 	}
 	return
 
+}
+
+//获取游戏状态
+func HandlerCommonReqGameState(args []interface{}) {
+	m := args[0].(*ddproto.CommonReqGameState)
+	a := args[1].(gate.Agent)
+
+	ack := new(ddproto.CommonAckGameState)
+	userId := m.GetHeader().GetUserId() //userId
+	//reqRoomType := m.GetRoomType() 暂时没有使用
+
+	//1,第一步获取金币场的session
+	session := sessionService.GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
+	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
+		//2,第二步获取朋友桌的session
+		session = sessionService.GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
+	}
+
+	if session != nil {
+		//组装消息
+		ack.GameId = proto.Int32(session.GetGameId())
+		ack.GameStatus = proto.Int32(session.GetGameStatus())
+		ack.RoomPassword = proto.String(session.GetRoomPassword())
+		ack.RoomType = proto.Int32(session.GetRoomType())
+		ack.RoomLevel = proto.Int32(session.GetRoomId())
+	} else {
+		ack.GameId = proto.Int32(0)
+		ack.GameStatus = proto.Int32(int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME))
+		ack.RoomPassword = proto.String("")
+		ack.RoomType = proto.Int32(0)
+		ack.RoomLevel = proto.Int32(0)
+
+	}
+
+	//返回消息
+	a.WriteMsg(ack)
 }

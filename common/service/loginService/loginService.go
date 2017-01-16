@@ -7,6 +7,9 @@ import (
 	"casino_common/common/service/signService"
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/rand"
+	"strings"
 )
 
 //做登录的操作...
@@ -21,7 +24,7 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 		log.T("微信注册【%v】登录..", userId)
 		//微信不等于空的情况,表示是新用户
 		//1,首先通过weixinInfo 在数据库中查找 用户是否存在，如果用户存在，则表示，登陆成功
-		user = userService.GetUserByOpenId(weixin.GetUnionId())
+		user = userService.GetUserByUnionId(weixin.GetUnionId())
 		if user == nil {
 			//表示数据库中不存在次用户，新增加一个人后返回
 			if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
@@ -47,12 +50,18 @@ func DoLoginSuccess(userId uint32) error {
 
 //游客注册
 func TouristReg() *ddproto.CommonAckReg {
-	//func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string) (*ddproto.User, error) {
-	user, err := userService.NewUserAndSave("", "", "", "", 1, "")
+	//设置游客昵称昵称
+	nick, _ := numUtils.Int2String(rand.Rand(10000, 100000))
+	nickName := strings.Join([]string{"游客", nick}, "")
+
+	//游戏需要创建一个nickName    "游客+[5位随机数]"
+	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "")
 	if err != nil || user == nil {
 		log.E("注册用户的时候失败...")
 		return nil
 	}
+
+	log.T("游客登录的注册user: %v,nick:%v", user, user.GetNickName())
 
 	//返回结果
 	ack := new(ddproto.CommonAckReg)
@@ -69,7 +78,7 @@ func WxReg(weixin *ddproto.WeixinInfo) *ddproto.CommonAckReg {
 	}
 
 	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
-	user := userService.GetUserByOpenId(weixin.GetUnionId())
+	user := userService.GetUserByUnionId(weixin.GetUnionId())
 	if user == nil {
 		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity())
 	}

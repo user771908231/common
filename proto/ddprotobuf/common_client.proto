@@ -59,11 +59,20 @@ enum common_enum_reg {
     RET_TYPE_TOURIST = 1;
     RET_TYPE_WEIXIN = 2;
 }
+
+//客户端系统类型
+enum common_enum_os_type {
+    OS_IOS          = 1;
+    OS_ANDROID      = 2;
+    OS_WEB          = 3;
+}
+
 //请求
 message common_req_reg {
     optional ProtoHeader header = 1;
     optional int32 regType = 2; //注册类型:1,游客2,微信
     optional WeixinInfo wxInfo = 3; //微信登录信息，如果是游客注册，则不需要填写此信息
+    optional int32 clientOSType = 4;    //1=iOS 2=Android 3=web
 }
 
 //回复
@@ -78,6 +87,7 @@ message common_req_gameLogin {
     optional uint32 userId = 2; // 用户id
     optional int32 protoVersion = 3; // 客户端 proto version
     optional WeixinInfo wxInfo = 4; //微信登录信息
+    optional int32 clientOSType = 5;    //1=iOS 2=Android 3=web
 }
 
 // 游戏登录回复
@@ -92,6 +102,7 @@ message common_ack_gameLogin {
 //请求游戏状态
 message common_req_gameState {
     optional ProtoHeader header = 1;
+    optional int32 roomType = 2; // 1，朋友桌，2金币场
 }
 
 //回复游戏状态(目前是朋友桌才会请求)
@@ -100,6 +111,7 @@ message common_ack_gameState {
     optional string roomPassword = 2; // 朋友桌房间密码
     optional int32 roomType = 3; //类型,表示是
     optional int32 gameId = 4; //类型,表示是
+    optional int32 roomLevel = 5; //房间等级
 }
 
 //客户端请求
@@ -217,3 +229,21 @@ message common_ack_leaveDesk {
     optional bool isExchange = 3; //是否是换桌离开
     optional bool isTimeOut = 4; //是否是超时离开
 }
+
+//--------------------------------------------补助的协议---------------------------------------
+// 请求补助
+message common_req_allowance {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+}
+
+// 回复补助
+message common_ack_allowance {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool isSuccessed = 3; //是否领取成功
+    optional int32 times2Get = 4; //成功required 第几次领取  一天两次
+    optional int64 allowanceCoin = 5; //成功required 补助金额 1000
+    optional int64 userTotalCoin = 6; //成功required 用户总的金币数
+}
+
