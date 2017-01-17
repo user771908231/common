@@ -85,9 +85,9 @@ func GetUserById(id uint32) *ddproto.User {
 		buser = result.(*ddproto.User)
 
 		//下三行代码 可以暂时不用，这里很印象性能
-		buser.Coin = GetUserCoin(id)
-		buser.Diamond = GetUserDiamond(id)
-		buser.RoomCard = GetUserRoomCard(id)
+		buser.Coin = proto.Int64(GetUserCoin(id))
+		buser.Diamond = proto.Int64(GetUserDiamond(id))
+		buser.RoomCard = proto.Int64(GetUserRoomCard(id))
 		return buser
 	}
 
