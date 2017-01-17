@@ -37,6 +37,8 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.HeadUrl = proto.String(headUrl)
 	user.Coin = proto.Int64(sys.CONFIG_SYS.GetNewUserCoin())
 
+	//初始化默认值
+
 	//2保存数据到数据库
 	err = userDao.SaveUser2Mgo(user)
 	if err != nil {
