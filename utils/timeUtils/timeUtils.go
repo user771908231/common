@@ -3,6 +3,7 @@ package timeUtils
 import (
 	"time"
 	"casino_common/common/log"
+	"casino_common/utils/rand"
 )
 
 const TIME_LAYOUT = "2006-01-02 15:04:05"
@@ -67,4 +68,9 @@ func DiffSec(time1, time2 time.Time) int64 {
 	a := String2YYYYMMDDHHMMSS(Format(time1))
 	b := String2YYYYMMDDHHMMSS(Format(time2))
 	return b.Unix() - a.Unix()
+}
+
+func RandDuration(a, b int32) time.Duration {
+	d := rand.Rand(a, b)
+	return time.Second * time.Duration(d)
 }
