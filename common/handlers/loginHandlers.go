@@ -68,12 +68,7 @@ func HandlerCommonReqGameState(args []interface{}) {
 	//reqRoomType := m.GetRoomType() 暂时没有使用
 
 	//1,第一步获取金币场的session
-	session := sessionService.GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
-	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
-		//2,第二步获取朋友桌的session
-		session = sessionService.GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
-	}
-
+	session := sessionService.GetSessionAuto(userId)
 	if session != nil {
 		//组装消息
 		ack.GameId = proto.Int32(session.GetGameId())
@@ -87,7 +82,6 @@ func HandlerCommonReqGameState(args []interface{}) {
 		ack.RoomPassword = proto.String("")
 		ack.RoomType = proto.Int32(0)
 		ack.RoomLevel = proto.Int32(0)
-
 	}
 
 	//返回消息
