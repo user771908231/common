@@ -16,7 +16,7 @@ func TestINCRUserCOIN(t *testing.T) {
 	//10168
 	//10169
 	//10170
-	b, e := INCRUserRoomcard(10241, 20000)
+	b, e := INCRUserCOIN(10933, 20000)
 	if e != nil {
 		t.Logf("出错%v", e)
 	} else {
@@ -25,7 +25,7 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	var userId uint32 = 10434
+	var userId uint32 = 10933
 
 	mongUser := userDao.FindUserById(userId)
 	t.Logf("用mongod user :  %v", mongUser)
@@ -49,5 +49,4 @@ func TestSyncUserMoney(t *testing.T) {
 	SetUserMoney(userId, cfg.RKEY_USER_DIAMOND, 999)
 	SyncReidsUserMoney(user)
 	t.Logf("玩家2[%v]的信息:%v", userId, user)
-
 }
