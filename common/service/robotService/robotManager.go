@@ -8,13 +8,15 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/log"
 	"casino_common/utils/numUtils"
+	"sync/atomic"
 )
 
 //机器人管理器
 type RobotsManager struct {
 	sync.Mutex
-	gameId ddproto.CommonEnumGame //游戏类型
-	robots []*Robot               //机器人
+	gameId          ddproto.CommonEnumGame //游戏类型
+	robots          []*Robot               //机器人
+	robotsAbleCount int32                  //可以使用的机器人数量
 }
 
 //新建一个管理器
@@ -31,15 +33,6 @@ func NewRobotManager(gameId ddproto.CommonEnumGame) *RobotsManager {
 //初始化一个管理器
 func (rm *RobotsManager) Oninit() {
 	var users []*ddproto.User
-
-	//switch rm.gameId {
-	//case ddproto.CommonEnumGame_GID_MAHJONG: //初始化麻将
-	//	users = userDao.FindUsersByKV("robottype", rm.gameId)
-	//case ddproto.CommonEnumGame_GID_DDZ: //初始化斗地主
-	//case ddproto.CommonEnumGame_GID_ZJH: //初始化炸金花
-	//
-	//}
-
 	users = userDao.FindUsersByKV("robottype", int32(rm.gameId))
 	//转换
 	for _, u := range users {
@@ -47,6 +40,7 @@ func (rm *RobotsManager) Oninit() {
 		r.available = true
 		rm.robots = append(rm.robots, r)
 	}
+	rm.robotsAbleCount = int32(len(rm.robots)) //初始化机器人的数量
 }
 
 //通过id得到一个机器人
@@ -118,6 +112,10 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 		//log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
 		if r.IsAvailable() && r.GetCoin() >= coin {
 			r.available = false
+			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
+			//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
+			log.T("释放征用一个之后，可以使用的机器人数量还剩下:%v", rm.robotsAbleCount)
+
 			return r
 		}
 	}
@@ -130,4 +128,7 @@ func (rm *RobotsManager) ReleaseRobots(id uint32) {
 	defer rm.Unlock()
 	r := rm.getRobotById(id)
 	r.available = true
+	atomic.AddInt32(&rm.robotsAbleCount, 1) //可以使用的机器人数量+1
+	log.T("释放一个机器人之后，可以使用的机器人数量还剩下:%v", rm.robotsAbleCount)
+
 }
