@@ -11,7 +11,7 @@ func init() {
 }
 
 func TestNewRobotManager(t *testing.T) {
-	m := NewRobotManager(ddproto.CommonEnumGame_GID_MAHJONG)
+	m := NewRobotManager(ddproto.CommonEnumGame_GID_ZJH)
 	t.Logf("机器人总数量[%v]", len(m.robots))
 
 	for _, r := range m.robots {
@@ -21,9 +21,8 @@ func TestNewRobotManager(t *testing.T) {
 }
 
 func TestNewRobots(t *testing.T) {
-	m := NewRobotManager(ddproto.CommonEnumGame_GID_MAHJONG)
+	m := NewRobotManager(ddproto.CommonEnumGame_GID_ZJH)
 	t.Logf("所有的机器人: %v", m.robots)
-
 	for i := 0; i < 100; i++ {
 		m.NewRobotAndSave()
 		t.Logf("所有的机器人: %v", m.robots);
@@ -39,6 +38,5 @@ func TestNewDdzRobots(t *testing.T) {
 		m.NewRobotAndSave()
 		t.Logf("所有的机器人: %v", m.robots)
 	}
-
 
 }

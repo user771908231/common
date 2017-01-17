@@ -45,13 +45,13 @@ func HandlerGame_Login(args []interface{}) {
 	} else {
 		//返回登陆成功的结果
 		ack := commonNewPorot.NewCommonAckGameLogin()
-		*ack.Header.Code = consts.ACK_RESULT_SUCC
-		*ack.UserId = user.GetId()
-		*ack.NickName = user.GetNickName()
-		*ack.Chip = user.GetDiamond()
-		*ack.Coin = user.GetCoin()
+		*ack.Header.Code = consts.ACK_RESULT_SUCC //ack成功
+		*ack.UserId = user.GetId()                //玩家的id
+		*ack.NickName = user.GetNickName()        //玩家的昵称
+		*ack.Chip = user.GetDiamond()             //玩家的钻石信息
+		*ack.Coin = user.GetCoin()                //玩家的金币信息
+		ack.RoomCard = user.RoomCard              //房卡的信息
 		a.WriteMsg(ack)
-
 		loginService.DoLoginSuccess(user.GetId())
 	}
 	return

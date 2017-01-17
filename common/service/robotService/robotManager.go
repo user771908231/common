@@ -115,7 +115,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 	defer rm.Unlock()
 
 	for _, r := range rm.robots {
-		log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
+		//log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
 		if r.IsAvailable() && r.GetCoin() >= coin {
 			r.available = false
 			return r
