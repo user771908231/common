@@ -83,6 +83,11 @@ func GetUserById(id uint32) *ddproto.User {
 	//2，从redis 中取到的数据不为空，那么直接返回
 	if result != nil {
 		buser = result.(*ddproto.User)
+
+		//下三行代码 可以暂时不用，这里很印象性能
+		buser.Coin = GetUserCoin(id)
+		buser.Diamond = GetUserDiamond(id)
+		buser.RoomCard = GetUserRoomCard(id)
 		return buser
 	}
 
@@ -109,6 +114,11 @@ func GetUserById(id uint32) *ddproto.User {
  */
 func SaveUser2Redis(u *ddproto.User) {
 	redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
+}
+
+func UpdateUser2MgoById(userId uint32) {
+	user := GetUserById(userId)
+	UpdateUser2Mgo(user)
 }
 
 //把用户保存到mgo并且同事更新redis的数据
