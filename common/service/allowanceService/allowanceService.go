@@ -11,7 +11,6 @@ import (
 	"casino_common/common/log"
 	"errors"
 	"time"
-	"casino_common/common/model"
 )
 
 var TIEMES2GETADAY int32 = 2 //用户一天能领多少次补助
@@ -89,14 +88,6 @@ func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 func UpdateUserAllowanceInfo(user *ddproto.User) {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
 
-	needInsert := false
-	if userAttach == nil { //为空需要插入一条新数据
-		//log.T("UpdateUserAllowanceInfo userAttach is nil")
-		userAttach = &model.T_user_attach{}
-		userAttach.UserId = user.GetId()
-		needInsert = true
-	}
-
 	//今天没有领取补助 清空计数
 	if !IsUserReceiveAllowanceToday(user) {
 		userAttach.AllowanceTimes = 0
@@ -105,8 +96,5 @@ func UpdateUserAllowanceInfo(user *ddproto.User) {
 	userAttach.AllowanceTimes++
 
 	userAttach.LastAllowanceTime = timeUtils.Format(time.Now())
-	if needInsert {
-		userAttachDao.InsertUserAttachByModel(userAttach)
-	}
 	userAttachDao.UpdateUserAttachByModel(userAttach)
 }

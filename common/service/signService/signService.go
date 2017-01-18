@@ -3,16 +3,16 @@ package signService
 import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/Error"
-	"sync/atomic"
 	"time"
 	"casino_common/common/log"
-	"github.com/golang/protobuf/proto"
 	"casino_common/common/userService"
 	"casino_common/utils/timeUtils"
 	"fmt"
 	"casino_common/common/model/userSignDao"
-	"casino_hall/service/task"
+	task "casino_common/common/service/taskService"
 	"errors"
+	"casino_common/common/model/userAttachDao"
+	"casino_common/common/model"
 )
 
 
@@ -21,73 +21,72 @@ func DoSign(user *ddproto.User) error {
 
 	log.T("[%v]开始签到", user.GetId())
 
+	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
+
 	//验证用户能否签到
-	if !isAbleToSign(user) {
+	if !isAbleToSign(userAttach) {
 		return Error.NewError(-1, fmt.Sprintf("用户[%v]不能签到,签到失败", user.GetId()))
 	}
 
 	//不是连续签到 清空连续签到计数
-	if !isContinuousSign(user) {
-		clearContinuousSignCount(user)
+	if !isContinuousSign(userAttach) {
+		clearContinuousSignCount(userAttach)
 	}
 
-	addSignCount(user)
-	user.LastSignTime = proto.String(time.Now().Format("2006-01-02 15:04:05"))
+	addSignCount(userAttach)
+	userAttach.LastSignTime = timeUtils.Format(time.Now())
+	userAttachDao.UpdateUserAttachByModel(userAttach)
 
 	log.T("[%v]签到成功", user.GetId())
 
 	return nil;
 }
 
-func isContinuousSign(user *ddproto.User) bool {
-	if user.GetLastSignTime() == "" {
+func isContinuousSign(userAttach *model.T_user_attach) bool {
+	if userAttach.LastSignTime == "" {
 		return false
 	}
 	timeNow := time.Now()
-	lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(user.GetLastSignTime())
+	lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(userAttach.LastSignTime)
 
 	//上次签到＋1天 是否等于今天
 	if !timeUtils.EqualDate(lastSignTime.AddDate(0, 0, 1), timeNow) {
-		log.T("上次签到日期[%v]+1天不等于当前日期[%v]", user.GetLastSignTime(), timeUtils.Format(timeNow))
+		log.T("上次签到日期[%v]+1天不等于当前日期[%v]", userAttach.LastSignTime, timeUtils.Format(timeNow))
 		return false
 	}
 	return true
 }
 
-func isAbleToSign(user *ddproto.User) bool {
+func isAbleToSign(userAttach *model.T_user_attach) bool {
 	//验证用户能否签到
-	if user.GetLastSignTime() != "" {
+	if userAttach.LastSignTime != "" {
 		timeNow := time.Now()
-		lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(user.GetLastSignTime())
+		lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(userAttach.LastSignTime)
 		//上次签到时间在当前时间之后
 		if lastSignTime.After(timeNow) {
-			log.T("上次签到时间[%v]在当前时间[%v]之后", user.GetLastSignTime(), timeUtils.Format(timeNow))
+			log.T("上次签到时间[%v]在当前时间[%v]之后", userAttach.LastSignTime, timeUtils.Format(timeNow))
 			return false
 		}
 
 		// 每天只能签一次
 		//上次签到的日期(天)等于当前日期(天)
 		if timeUtils.EqualDate(lastSignTime, timeNow) {
-			log.T("上次签到日期[%v]等于当前日期[%v]", user.GetLastSignTime(), timeUtils.Format(timeNow))
+			log.T("上次签到日期[%v]等于当前日期[%v]", userAttach.LastSignTime, timeUtils.Format(timeNow))
 			return false
 		}
 	}
 	return true
 }
 
-func addSignCount(user *ddproto.User){
-	if user.SignContinuousDays == nil {
-		user.SignContinuousDays = proto.Int32(0) //addSignCount
-	}
-	if user.SignTotalDays == nil {
-		user.SignTotalDays = proto.Int32(0) //addSignCount
-	}
-	atomic.AddInt32(user.SignContinuousDays, 1)
-	atomic.AddInt32(user.SignTotalDays, 1)
+func addSignCount(userAttach *model.T_user_attach){
+	userAttach.SignContinuousDays++
+	userAttach.SignTotalDays++
+	userAttachDao.UpdateUserAttachByModel(userAttach)
 }
 
-func clearContinuousSignCount(user *ddproto.User){
-	user.SignContinuousDays = proto.Int32(0) //clearContinuousSignCount
+func clearContinuousSignCount(userAttach *model.T_user_attach){
+	userAttach.SignContinuousDays = 0 //clearContinuousSignCount
+	userAttachDao.UpdateUserAttachByModel(userAttach)
 }
 
 //签到
@@ -134,8 +133,8 @@ func deliveryUserSignLottery(user *ddproto.User) error {
 }
 
 
-func IsUserSignedToday(u *ddproto.User) bool {
+func IsUserSignedToday(userAttach *model.T_user_attach) bool {
 	timeNow := time.Now()
-	lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(u.GetLastSignTime())
+	lastSignTime := timeUtils.String2YYYYMMDDHHMMSS(userAttach.LastSignTime)
 	return timeUtils.EqualDate(lastSignTime, timeNow)
 }

@@ -26,40 +26,32 @@ message ddz_srv_deskTongJi {
 
 //desk
 message ddz_srv_desk {
-    optional int32 deskId = 1;
-    optional string key = 2;
-    optional int32 userCountLimit = 3; //人数限制
-    repeated common_srv_pokerPai allPokerPai = 4; //所有的牌
-    repeated common_srv_pokerPai diPokerPai = 5; //底牌
-    optional ddz_srv_outPokerPais outPai = 6; //当前出的牌
-    optional uint32 owner = 7; //人数限制
-    optional uint32 dizhuPaiUser = 8; //发的地主牌
-    optional uint32 diZhuUserId = 9; //地主id
-    optional uint32 activeUserId = 10; //当前轮到谁
-    optional ddz_srv_deskTongJi tongji = 11; //关于统计的数据都在这
-    optional int64 baseValue = 12; //底分
-    optional int64 qingDizhuValue = 13; //不明白意义 暂时没用
-    optional int64 winValue = 14; //不明白意义 暂时没用
-    optional int32 ddzType = 15; //游戏类型
-    optional int32 RoomType = 16; //房间类型
-    optional int32 BoardsCount = 17;
-    optional int64 CapMax = 18;
-    optional bool IsJiaoFen = 19;
-    optional int32 roomId = 20; //房间id
-    optional ddz_base_commonRateInfo commonRateInfo = 21; //公共倍数
-    optional int32 playRate = 22; // 桌子倍率
-    optional int32 GameStatus = 23; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
-    optional int64 initRoomCoin = 24; // 房间的初始带入金额
-    optional int32 currPlayCount = 25; // 朋友桌: 当前第几局
-    optional int32 totalPlayCount = 26; // 朋友桌: 总共几局
-    optional int32 playerNum = 27; //玩家数量
-    optional int32 timeOutSecond = 28; //超时时间限制 秒
+    repeated common_srv_pokerPai allPokerPai = 1; //所有的牌
+    repeated common_srv_pokerPai diPokerPai = 2; //底牌
+    optional ddz_srv_outPokerPais outPai = 3; //当前出的牌
+    optional uint32 dizhuPaiUser = 4; //发的地主牌
+    optional uint32 diZhuUserId = 5; //地主id
+    optional uint32 activeUserId = 6; //当前轮到谁
+    optional ddz_srv_deskTongJi tongji = 7; //关于统计的数据都在这
+    optional int32 ddzType = 8; //游戏类型
+    optional int32 RoomType = 9; //房间类型
+    optional int32 BoardsCount = 10;
+    optional int64 CapMax = 11;
+    optional bool IsJiaoFen = 12;
+    optional ddz_base_commonRateInfo commonRateInfo = 13; //公共倍数
+    optional int32 playRate = 14; // 桌子倍率
+    optional int32 GameStatus = 15; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
+    optional int64 initRoomCoin = 16; // 房间的初始带入金额
+    optional int32 currPlayCount = 17; // 朋友桌: 当前第几局
+    optional int32 totalPlayCount = 18; // 朋友桌: 总共几局
+    optional int32 playerNum = 19; //玩家数量
+    optional int32 timeOutSecond = 20; //超时时间限制 秒
 
-    optional int64 userMinCoin = 29; //玩家进入房间的下限金额 金币场用
-    optional int64 userMaxCoin = 30; //玩家进入房间的上限金额 金币场用
-    optional int64 coinTicket = 31; //房费 金币场用
+    optional int64 userMinCoin = 21; //玩家进入房间的下限金额 金币场用
+    optional int64 userMaxCoin = 22; //玩家进入房间的上限金额 金币场用
+    optional int64 coinTicket = 23; //房费 金币场用
 
-    optional ddz_enum_coinRoomLevel coinRoomLv = 32; //金币场桌子的级别
+    optional ddz_enum_coinRoomLevel coinRoomLv = 24; //金币场桌子的级别
 }
 
 //游戏数据
@@ -111,30 +103,25 @@ message ddz_srv_userStatistics {
 message ddz_srv_user {
     optional uint32 userId = 1;
     optional ddz_srv_gameData gameData = 2; //游戏数据
-    optional int32 status = 3; //用户最新的游戏状态
-    optional bool isBreak = 4; //是否掉线
-    optional bool isLeave = 5; //是否掉线
-    optional int32 statusHLQiang = 7; //欢乐抢地主的状态
-    optional int32 statusHLJiao = 8; //欢乐叫地主的状态
-    optional int32 statusHLJiaBei = 9; //欢乐加倍的状态
-    optional int32 statusSCMenZhua = 10; //四川闷抓的状态
-    optional int32 statusSCZhuaPai = 11; //四川抓牌的状态
-    optional int32 statusSCLaDao = 12; //四川拉倒的状态
-    optional int32 statusJDJiao = 13; //经典叫分的状态
+    optional int32 statusHLQiang = 3; //欢乐抢地主的状态
+    optional int32 statusHLJiao = 4; //欢乐叫地主的状态
+    optional int32 statusHLJiaBei = 5; //欢乐加倍的状态
+    optional int32 statusSCMenZhua = 6; //四川闷抓的状态
+    optional int32 statusSCZhuaPai = 7; //四川抓牌的状态
+    optional int32 statusSCLaDao = 8; //四川拉倒的状态
+    optional int32 statusJDJiao = 9; //经典叫分的状态
 
-    optional bool isShowPokers = 15; //是否明牌
+    optional bool isShowPokers = 10; //是否明牌
 
-    optional ddz_srv_bill bill = 16; // 斗地主的账单
-    optional int32 deskId = 17; //deskId
-    optional int32 roomId = 18; //roomId
-    optional int64 coin = 19; //玩家金币
-    optional ddz_srv_userStatistics statistics = 20; //统计信息
-    optional int32 playRate = 21; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
-    optional int32 jiaoScore = 22; //经典斗地主叫多少分 DdzJDScore:1/2/3
-    optional int32 timeOutCount = 23; //操作超时次数
-    optional bool isAgent = 24; //是否托管
-    optional int32 sex = 25; //性别
-    optional int32 roomCard = 26; //玩家房卡
+    optional ddz_srv_bill bill = 11; // 斗地主的账单
+    optional int64 coin = 12; //玩家金币
+    optional ddz_srv_userStatistics statistics = 13; //统计信息
+    optional int32 playRate = 14; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
+    optional int32 jiaoScore = 15; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 timeOutCount = 16; //操作超时次数
+    optional bool isAgent = 17; //是否托管
+    optional int32 sex = 18; //性别
+    optional int32 roomCard = 19; //玩家房卡
 }
 
 //room
