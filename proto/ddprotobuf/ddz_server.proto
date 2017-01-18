@@ -127,12 +127,14 @@ message ddz_srv_user {
     optional ddz_srv_bill bill = 16; // 斗地主的账单
     optional int32 deskId = 17; //deskId
     optional int32 roomId = 18; //roomId
-    optional int64 coin = 19; //
+    optional int64 coin = 19; //玩家金币
     optional ddz_srv_userStatistics statistics = 20; //统计信息
     optional int32 playRate = 21; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
     optional int32 jiaoScore = 22; //经典斗地主叫多少分 DdzJDScore:1/2/3
     optional int32 timeOutCount = 23; //操作超时次数
     optional bool isAgent = 24; //是否托管
+    optional int32 sex = 25; //性别
+    optional int32 roomCard = 26; //玩家房卡
 }
 
 //room

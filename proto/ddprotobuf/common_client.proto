@@ -253,14 +253,26 @@ message common_req_applyDissolve {
     //申请解散房间，只有朋友桌才有
     optional ProtoHeader header = 1;
     optional uint32 userId = 2;
-    optional bool appley = 3; //统一还是拒绝
-
 }
 
 message common_bc_applyDissolve {
     //申请解散房间，只有朋友桌才有
     optional ProtoHeader header = 1;
     repeated uint32 userId = 2;
+}
+
+//回复 申请解散房间，用户同意还是拒绝
+message common_req_applyDissolveBack {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool agree = 3; //同意还是拒绝
+}
+
+
+message common_ack_applyDissolveBack {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool agree = 3; //同意还是拒绝
 }
 
 

@@ -241,6 +241,8 @@ message ddz_base_playerInfo {
     optional int32 num2Win4OpenRB = 17; //再赢多少局可以开红包
 
     optional ddz_base_playerRateInfo playerRateInfo = 18; //玩家倍数详情
+
+    optional int64 roomCard = 19; //玩家房卡数
 }
 
 message ddz_base_playerRateInfo {
