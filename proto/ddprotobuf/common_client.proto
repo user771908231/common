@@ -258,7 +258,7 @@ message common_req_applyDissolve {
 message common_bc_applyDissolve {
     //申请解散房间，只有朋友桌才有
     optional ProtoHeader header = 1;
-    repeated uint32 userId = 2;
+    optional uint32 userId = 2;
 }
 
 //回复 申请解散房间，用户同意还是拒绝
