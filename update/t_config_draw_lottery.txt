@@ -1,4 +1,4 @@
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71b"),
     "sort" : 1.0,
@@ -9,7 +9,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71c"),
     "sort" : 2.0,
@@ -20,7 +20,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71d"),
     "sort" : 3.0,
@@ -31,7 +31,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71e"),
     "sort" : 4.0,
@@ -42,7 +42,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71f"),
     "sort" : 5.0,
@@ -53,7 +53,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a720"),
     "sort" : 6.0,
@@ -64,7 +64,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a721"),
     "sort" : 7.0,
@@ -75,7 +75,7 @@ db.t_draw_lottery.insert(
     "version" : 1.0
 }
 )
-db.t_draw_lottery.insert(
+db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a722"),
     "sort" : 8.0,

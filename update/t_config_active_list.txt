@@ -1,4 +1,4 @@
-db.t_active_list.insert(
+db.t_config_active_list.insert(
 {
     "_id" : ObjectId("5879fc0ca513c0bbc83c1138"),
     "id" : 0,
@@ -11,7 +11,7 @@ db.t_active_list.insert(
     "title" : "重要公告",
 }
 )
-db.t_active_list.insert(
+db.t_config_active_list.insert(
 {
     "_id" : ObjectId("5879fc0ca513c0bbc83c113d"),
     "id" : 1,
@@ -24,7 +24,7 @@ db.t_active_list.insert(
     "title" : "迎新春",
 }
 )
-db.t_active_list.insert(
+db.t_config_active_list.insert(
 {
     "_id" : ObjectId("5879fc0ca513c0bbc83c1142"),
     "id" : 2,
@@ -37,7 +37,7 @@ db.t_active_list.insert(
     "title" : "邀请奖励",
 }
 )
-db.t_active_list.insert(
+db.t_config_active_list.insert(
 {
     "_id" : ObjectId("5879fc0ca513c0bbc83c1147"),
     "id" : 3,

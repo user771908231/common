@@ -11,7 +11,7 @@ import (
 	"casino_common/utils/timeUtils"
 	"fmt"
 	"casino_common/common/model/userSignDao"
-	"casino_hall/service/task"
+	task "casino_common/common/service/taskService"
 	"errors"
 )
 
