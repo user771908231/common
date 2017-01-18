@@ -22,7 +22,14 @@ func FindUserAttachByKV(key string, v interface{}) *model.T_user_attach {
 
 //通过userId 查找一个attach
 func FindUserAttachByUserId(userId uint32) *model.T_user_attach {
-	return FindUserAttachByKV("userid", userId)
+	userAttach := FindUserAttachByKV("userid", userId)
+	if userAttach != nil {
+		return userAttach
+	}
+	userAttach = &model.T_user_attach{}
+	userAttach.UserId = userId
+	InsertUserAttachByModel(userAttach)
+	return userAttach
 }
 
 //新增
