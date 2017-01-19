@@ -27,3 +27,10 @@ enum COMMON_ENUM_RELEASETAG {
     R_PRO = 1; //生产环境使用的版本
     R_APPLE_VERIFY = 2; //苹果审核使用版本
 }
+
+
+//踢人的踢出类型
+enum COMMON_ENUM_KICKOUT {
+    K_TIMEOUT = 1; //超时被踢
+    K_COINUNMATCHED = 2; //金币不符合房间标准
+}
