@@ -220,6 +220,7 @@ message hall_userData {
     optional string userRedBag = 10; //用户红包金额
     optional int64 userLotteryTicket = 11; //用户奖券
     optional bool sex = 12; //性别
+    optional string headUrl = 13;  //头像
 }
 
 //排行信息

@@ -1,7 +1,7 @@
 package taskService
 
 import (
-	ldb "casino_common/common/db"
+	//ldb "casino_common/common/db"
 	"testing"
 	"casino_common/proto/ddproto"
 	"gopkg.in/mgo.v2"
@@ -11,7 +11,7 @@ import (
 )
 
 func init() {
-	ldb.InitMongoDb("192.168.199.155", 27017, "test", "id",[]string{})
+	//ldb.InitMongoDb("192.168.199.155", 27017, "test", "id",[]string{})
 }
 
 //测试任务
@@ -65,7 +65,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Int32(1000),
+					Amount:proto.Float32(1000),
 				},
 			},
 		},TaskInfo{
@@ -78,7 +78,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Int32(1000),
+					Amount:proto.Float32(1000),
 				},
 			},
 		},TaskInfo{
@@ -91,7 +91,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Int32(1000),
+					Amount:proto.Float32(1000),
 				},
 			},
 		},TaskInfo{
@@ -104,7 +104,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Int32(2000),
+					Amount:proto.Float32(2000),
 				},
 			},
 		},TaskInfo{
@@ -117,7 +117,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Int32(2000),
+					Amount:proto.Float32(2000),
 				},
 			},
 		},TaskInfo{
@@ -130,7 +130,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Int32(3000),
+					Amount:proto.Float32(3000),
 				},
 			},
 		},

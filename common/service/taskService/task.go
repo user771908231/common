@@ -8,7 +8,6 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/common/userService"
 	"casino_hall/service/pack"
-	//"github.com/golang/protobuf/proto"
 )
 
 //任务类型
@@ -161,17 +160,15 @@ func GetTaskInfo(task_id int32) *TaskInfo {
 //触发任务
 func OnTask(taskType TaskType, userId uint32) {
 	for _, task := range GetUserTaskShowList(userId, taskType, "") {
-		if task.TaskType == taskType {
-			if task.SumNo != task.TaskSum && task.IsDone {
-				task.IsDone = false
+		if task.SumNo != task.TaskSum && task.IsDone {
+			task.IsDone = false
+			task.SetUserState(userId, task.TaskState)
+		}
+		if !task.IsDone {
+			if task.Validate(GetUserTask(userId, task.TaskId)) {
+				task.IsDone = true
 				task.SetUserState(userId, task.TaskState)
-			}
-			if !task.IsDone {
-				if task.Validate(GetUserTask(userId, task.TaskId)) {
-					task.IsDone = true
-					task.SetUserState(userId, task.TaskState)
-					//推送任务完成广播
-				}
+				//推送任务完成广播
 			}
 		}
 	}
