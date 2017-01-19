@@ -239,7 +239,6 @@ message common_bc_kickout {
     optional string msg = 4; //踢出的消息
 }
 
-
 //--------------------------------------------请求补助的协议---------------------------------------
 // 请求补助
 message common_req_allowance {
@@ -268,6 +267,8 @@ message common_bc_applyDissolve {
     //申请解散房间，只有朋友桌才有
     optional ProtoHeader header = 1;
     optional uint32 userId = 2;
+    optional bool result = 3; //申请结果
+
 }
 
 //回复 申请解散房间，用户同意还是拒绝
