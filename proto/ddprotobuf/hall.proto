@@ -79,6 +79,7 @@ message hall_ack_bag_items {
 //个人信息
 message hall_req_userData {
     optional ProtoHeader header = 1;
+    optional uint32 user_id = 2;  //查询的用户user_id
 }
 
 message hall_ack_userData {

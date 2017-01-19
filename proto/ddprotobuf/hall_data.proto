@@ -221,6 +221,7 @@ message hall_userData {
     optional int64 userLotteryTicket = 11; //用户奖券
     optional bool sex = 12; //性别
     optional string headUrl = 13;  //头像
+    optional bool isFriend = 14;  //是否为好友
 }
 
 //排行信息
