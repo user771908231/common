@@ -28,21 +28,14 @@ func (t *T_game_log)Insert() error {
 	db.Query(func(d *mgo.Database) {
 		err = d.C(tableName.DBT_T_GAME_LOG).Insert(t)
 	})
-	//触发统计任务
-	t.doCount()
-	t.doTask()
+	//触发统计与任务
+	t.doCountAndTask()
 	return err
 }
 
 //触发统计
-func (t *T_game_log)doCount() {
-	counter := GetAllCounter(t.UserId)
-	counter.All_Count += 1
-	counter.Save()
-}
-
-//触发任务系统
-func (t *T_game_log)doTask() {
-	//总局数相关任务
+func (t *T_game_log)doCountAndTask() {
+	//所有比赛局数
+	Add(t.UserId, ALL_COUNT, 1)
 	taskService.OnTask(taskService.TYPE_ALL_GAME_COUNT, t.UserId)
 }
