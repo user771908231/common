@@ -15,6 +15,7 @@ import (
 func HandlerReg(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqReg)
 	a := args[1].(gate.Agent)
+	userId := m.GetHeader().GetUserId()
 
 	regType := m.GetRegType()
 	var ack *ddproto.CommonAckReg
@@ -23,7 +24,12 @@ func HandlerReg(args []interface{}) {
 		ack = loginService.TouristReg()
 	} else if regType == int32(ddproto.CommonEnumReg_RET_TYPE_WEIXIN) {
 		//微信注册
-		ack = loginService.WxReg(m.GetWxInfo())
+		if userId > 0 {
+			//转账号
+			ack = loginService.TransWxReg(m.GetWxInfo(), userId)
+		} else {
+			ack = loginService.WxReg(m.GetWxInfo())
+		}
 	} else {
 
 	}
