@@ -23,7 +23,7 @@ func FindUserAttachByKV(key string, v interface{}) *model.T_user_attach {
 //通过userId 查找一个attach
 func FindUserAttachByUserId(userId uint32) *model.T_user_attach {
 	userAttach := FindUserAttachByKV("userid", userId)
-	if userAttach != nil {
+	if userAttach.UserId > 0 {
 		return userAttach
 	}
 	userAttach = &model.T_user_attach{}
