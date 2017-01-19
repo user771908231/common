@@ -36,7 +36,7 @@ func (t *T_game_log)Insert() error {
 
 //触发统计
 func (t *T_game_log)doCount() {
-	counter := GetCounter(t.UserId)
+	counter := GetAllCounter(t.UserId)
 	counter.All_Count += 1
 	counter.Save()
 }

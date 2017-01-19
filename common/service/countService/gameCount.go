@@ -22,7 +22,7 @@ type T_game_day_count struct {
 }
 
 //获得用户游戏计数器
-func GetCounter(userId uint32) *T_game_count {
+func GetAllCounter(userId uint32) *T_game_count {
 	newCounter := &T_game_count{
 		UserId:userId,
 		All_Count:0,
@@ -45,14 +45,18 @@ func (t *T_game_count)Save() {
 }
 
 //获得用户游戏每日计数器
-func GetDayCounter(userId uint32) *T_game_count {
-	newCounter := &T_game_count{
-		UserId:userId,
-		All_Count:0,
+func GetDayCounter(userId uint32) *T_game_day_count {
+	dayStr := time.Now().Format("2006-01-02")
+	newCounter := &T_game_day_count{
+		Day: dayStr,
+		T_game_count: T_game_count{
+			UserId:userId,
+		},
 	}
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GAME_DAY_COUNT).Find(bson.M{
 			"userid": userId,
+			"day": dayStr,
 		}).One(newCounter)
 	})
 	return newCounter
@@ -63,7 +67,7 @@ func (t *T_game_day_count)Save() {
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GAME_DAY_COUNT).Upsert(bson.M{
 			"userid": t.UserId,
-			"day": time.Now().Format(""),
+			"day": time.Now().Format("2006-01-02"),
 		},t)
 	})
 }
