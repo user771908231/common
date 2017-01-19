@@ -36,7 +36,7 @@ func (t *T_game_log)Insert() error {
 
 //触发统计
 func (t *T_game_log)doCount() {
-	counter := GetUserCounter(t.UserId)
+	counter := GetAllCounter(t.UserId)
 	counter.All_Count += 1
 	counter.Save()
 }
@@ -44,5 +44,5 @@ func (t *T_game_log)doCount() {
 //触发任务系统
 func (t *T_game_log)doTask() {
 	//总局数相关任务
-	taskService.OnTask(taskService.TYPE_WIN_COUNT, t.UserId)
+	taskService.OnTask(taskService.TYPE_ALL_GAME_COUNT, t.UserId)
 }
