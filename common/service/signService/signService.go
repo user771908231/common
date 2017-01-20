@@ -111,15 +111,16 @@ func DoSignLottery(userId uint32) error {
 		return err2
 	}
 
-	log.T("[%v]签到领取奖励成功", user.GetId())
+	log.T("[%v]签到领取奖励成功，签到%v天。", user.GetId(), user.GetSignContinuousDays())
 	return nil
 }
 
 //领取签到奖品
 func deliveryUserSignLottery(user *ddproto.User) error {
-	reward := userSignDao.FindSignRewardByDay(user.GetSignContinuousDays())
+	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
+	reward := userSignDao.FindSignRewardByDay(userAttach.SignContinuousDays)
 	if reward == nil {
-		return errors.New("领取奖品失败")
+		return errors.New("没有找到对应的签到奖励！")
 	}
 	//发放奖品
 	newReward := []*ddproto.HallBagItem{

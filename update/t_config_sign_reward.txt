@@ -1,3 +1,13 @@
+db.getCollection('t_config_sign_reward').insert(
+{
+    "_id" : ObjectId("587c8d5de36aeb81eb71a723"),
+    "id" : 1.0,
+    "day" : 1.0,
+    "type" : 1.0,
+    "name" : "50金币",
+    "amount" : 50.0
+}
+)
 db.t_config_sign_reward.insert(
 {
     "_id" : ObjectId("587c8d5de36aeb81eb71a724"),

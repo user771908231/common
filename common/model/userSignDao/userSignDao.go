@@ -13,8 +13,8 @@ func FindSignRewardByDay(day int32) *model.T_sign_reward {
 	row := &model.T_sign_reward{}
 	db.Query(func(d *mgo.Database) {
 		err := d.C(tableName.DBT_T_SIGN_REWARD).Find(bson.M{
-			"day": day,
-		}).One(row)
+			"day": bson.M{"$lte": day},
+		}).Sort("-day").One(row)
 		if err != nil {
 			row = nil
 		}
