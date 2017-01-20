@@ -74,8 +74,8 @@ func (rm *RobotsManager) NewRobotAndSave() *Robot {
 		User:     user,
 		available:true,
 	}
-	log.T("新创建的机器人:%v", robot)
 	rm.addRobot(robot)
+	log.T("目前机器人的数量 %v ，新增加的 %v", rm.robotsAbleCount, robot)
 
 	//返回增加的机器人
 	return robot
@@ -86,6 +86,7 @@ func (rm *RobotsManager) addRobot(r *Robot) error {
 	rm.Lock()
 	rm.Unlock()
 	rm.robots = append(rm.robots, r)
+	atomic.AddInt32(&rm.robotsAbleCount, 1) //可以使用的机器人数量+1
 	return nil
 }
 
