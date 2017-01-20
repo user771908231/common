@@ -16,7 +16,7 @@ func TestINCRUserCOIN(t *testing.T) {
 	//10168
 	//10169
 	//10170
-	b, e := INCRUserDiamond(10278, 100)
+	b, e := INCRUserCOIN(11564, 1000)
 	if e != nil {
 		t.Logf("出错%v", e)
 	} else {
