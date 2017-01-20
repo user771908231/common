@@ -33,6 +33,13 @@ func HandlerReg(args []interface{}) {
 	} else {
 
 	}
+	if ack == nil {
+		ack = new(ddproto.CommonAckReg)
+		ack.Header = &ddproto.ProtoHeader{
+			Code: proto.Int32(consts.ACK_RESULT_ERROR),
+			Error:proto.String("注册的时候失败"),
+		}
+	}
 	a.WriteMsg(ack)
 }
 
