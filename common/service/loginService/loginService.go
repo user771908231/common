@@ -77,6 +77,8 @@ func WxReg(weixin *ddproto.WeixinInfo) *ddproto.CommonAckReg {
 		return nil
 	}
 
+	//需要判断是否是转账号
+
 	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
 	user := userService.GetUserByUnionId(weixin.GetUnionId())
 	if user == nil {
@@ -93,4 +95,33 @@ func WxReg(weixin *ddproto.WeixinInfo) *ddproto.CommonAckReg {
 	ack.UserId = proto.Uint32(user.GetId())
 	return ack
 
+}
+
+//微信注册
+func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg {
+	//检测参数
+	if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
+		log.E("玩家注册的时候失败，因为微信的信息[%v]不够...", weixin)
+		return nil
+	}
+
+	//需要判断是否是转账号
+	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
+	user := userService.GetUserById(userId)
+	if user != nil {
+		user.NickName = proto.String(weixin.GetNickName())
+		user.HeadUrl = proto.String(weixin.GetHeadUrl())
+		user.OpenId = proto.String(weixin.GetOpenId())
+		user.UnionId = proto.String(weixin.GetUnionId())
+		user.City = proto.String(weixin.GetCity())
+		user.Sex = proto.Int32(weixin.GetSex())
+		userService.UpdateUser2Mgo(user)
+	} else {
+		log.E("玩家游客[%v]转微信的时候出现错误...没有在mongo 找到。")
+	}
+
+	//返回结果
+	ack := new(ddproto.CommonAckReg)
+	ack.UserId = proto.Uint32(user.GetId())
+	return ack
 }

@@ -191,7 +191,7 @@ message common_ack_notice {
     repeated string fileds = 7; //公告的字段,目前子还是给充值的协议使用
 }
 
-//--------------------------------------------托管的协议---------------------------------------
+//--------------------------------------------请求托管的协议---------------------------------------
 // 进入托管模式
 message common_req_enterAgentMode {
     optional ProtoHeader header = 1; //
@@ -216,7 +216,7 @@ message common_ack_quitAgentMode {
     optional uint32 userId = 2; //操作人
 }
 
-//--------------------------------------------离开的协议---------------------------------------
+//--------------------------------------------请求离开的协议---------------------------------------
 // 离开房间
 message common_req_leaveDesk {
     optional ProtoHeader header = 1;
@@ -228,10 +228,18 @@ message common_ack_leaveDesk {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; //离开的玩家
     optional bool isExchange = 3; //是否是换桌离开
-    optional bool isTimeOut = 4; //是否是超时离开
 }
 
-//--------------------------------------------补助的协议---------------------------------------
+//--------------------------------------------踢人的广播---------------------------------------
+//踢人的广播
+message common_bc_kickout {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; //踢掉的玩家
+    optional COMMON_ENUM_KICKOUT type = 3; //踢出的类型
+    optional string msg = 4; //踢出的消息
+}
+
+//--------------------------------------------请求补助的协议---------------------------------------
 // 请求补助
 message common_req_allowance {
     optional ProtoHeader header = 1;
@@ -248,7 +256,7 @@ message common_ack_allowance {
     optional int64 userTotalCoin = 6; //成功required 用户总的金币数
 }
 
-//---------------------------------------------申请解散房间
+//---------------------------------------------请求解散房间---------------------------------------------
 message common_req_applyDissolve {
     //申请解散房间，只有朋友桌才有
     optional ProtoHeader header = 1;
@@ -259,6 +267,8 @@ message common_bc_applyDissolve {
     //申请解散房间，只有朋友桌才有
     optional ProtoHeader header = 1;
     optional uint32 userId = 2;
+    optional bool result = 3; //申请结果
+
 }
 
 //回复 申请解散房间，用户同意还是拒绝
