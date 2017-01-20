@@ -172,3 +172,13 @@ func NewAckAllowance() *ddproto.CommonAckAllowance {
 	ret.UserTotalCoin = new(int64)
 	return ret
 }
+
+
+func NewBCKickOut() *ddproto.CommonBcKickout {
+	ret := new(ddproto.CommonBcKickout)
+	ret.Header = NewHeader()
+	ret.UserId = new(uint32)
+	ret.Msg = new(string)
+	ret.Type = new(ddproto.COMMON_ENUM_KICKOUT)
+	return ret
+}
