@@ -33,4 +33,7 @@ enum COMMON_ENUM_RELEASETAG {
 enum COMMON_ENUM_KICKOUT {
     K_TIMEOUT = 1; //超时被踢
     K_COINUNMATCHED = 2; //金币不符合房间标准
+    K_SYSTEM = 3; //后台系统踢出
+    K_OFFLINE = 4; //离开掉线的踢出
+    K_GAME_BLOCKED = 5; //游戏无法进行的踢出
 }
