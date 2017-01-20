@@ -55,6 +55,7 @@ message zjh_srv_user {
     optional bool isOnline = 10; //是否在线
     optional bool isLost = 11; //是否比牌输了
     optional int32 index = 12;  //所在牌桌的索引
+    optional int32 dashangNum = 13;  //本局给荷官打赏次数
 }
 
 //desk 的信息

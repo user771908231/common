@@ -223,5 +223,6 @@ message zjh_req_daShang {
 message zjh_bc_daShang {
     optional ProtoHeader header = 1;
     optional int64 coin = 2;           //剩余金币
-    optional int32 num = 3;            //本局已打赏次数
+    optional int64 chips = 3;          //打赏的砝码面值
+    optional int32 num = 4;            //本局已打赏次数
 }
