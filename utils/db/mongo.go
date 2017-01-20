@@ -45,7 +45,28 @@ func InsertMgoData(dbt string, data interface{}) error {
 
 	error := s.DB(mongoConfig.dbname).C(dbt).Insert(data)
 	return error
+}
 
+//批量保存数据
+func InsertMgoDatas(dbt string, datas []interface{}) (err error, count int) {
+	c, err := GetMongoConn()
+	if err != nil {
+		return err, -1
+	}
+	defer c.Close()
+
+	// 获取回话 session
+	s := c.Ref()
+	defer c.UnRef(s)
+
+	for _, data := range datas {
+
+		err = s.DB(mongoConfig.dbname).C(dbt).Insert(data)
+		if err == nil {
+			count++
+		}
+	}
+	return nil, count
 }
 
 //更新数据通过_id来更新
