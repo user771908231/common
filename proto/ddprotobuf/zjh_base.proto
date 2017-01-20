@@ -49,6 +49,9 @@ enum EProtoId {
 
     ZJH_PID_REQ_SEND_MESSAGE = 31;  //发送聊天、道具消息
     ZJH_PID_BC_MESSAGE = 32;  //聊天、道具消息广播
+
+    ZJH_PID_REQ_DASHANG = 33;  //给荷官打赏请求
+    ZJH_PID_BC_DASHANG = 34;   //给荷官打赏广播
 }
 
 ///////////////////////////////////////////////////

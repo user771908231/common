@@ -8,6 +8,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/common/userService"
 	"casino_hall/service/pack"
+	"log"
 )
 
 //任务类型
@@ -223,10 +224,14 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
 		switch reward.GetType() {
 		case ddproto.HallEnumTradeType_TRADE_COIN:
 			//领取金币
+			log.Println("coin")
 			userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			//领取钻石
 			userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
+		case ddproto.HallEnumTradeType_PROPS_FANGKA:
+			//领取房卡
+			userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
 			pack.DoUserPropsAdd(userId, ddproto.HallEnumTradeType_TRADE_BONUS, int32(reward.GetAmount()))
