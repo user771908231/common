@@ -229,6 +229,9 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			//领取钻石
 			userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
+		case ddproto.HallEnumTradeType_PROPS_FANGKA:
+			//领取房卡
+			userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
 			pack.DoUserPropsAdd(userId, ddproto.HallEnumTradeType_TRADE_BONUS, int32(reward.GetAmount()))

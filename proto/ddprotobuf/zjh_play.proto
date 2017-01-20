@@ -214,3 +214,14 @@ message zjh_bc_deskState {
     optional int64 coinCount = 2;  //牌桌上的金币总额
     optional int32 cuurCircle = 3;  //当前牌桌圈数
 }
+
+//=================给荷官打赏================
+message zjh_req_daShang {
+    optional ProtoHeader header = 1;
+}
+
+message zjh_bc_daShang {
+    optional ProtoHeader header = 1;
+    optional int64 coin = 2;           //剩余金币
+    optional int32 num = 3;            //本局已打赏次数
+}
