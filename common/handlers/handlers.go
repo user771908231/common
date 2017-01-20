@@ -4,7 +4,7 @@ import (
 	"casino_common/proto/funcsInit"
 	"github.com/name5566/leaf/gate"
 	"casino_common/common/consts"
-	"casino_server/common/log"
+	"casino_common/common/log"
 	"casino_common/common/sys"
 	"casino_common/proto/ddproto"
 )

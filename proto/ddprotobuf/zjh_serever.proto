@@ -78,6 +78,8 @@ message zjh_srv_desk {
     optional int64 coinCount = 16;  //当前牌桌底注总和
     optional int32 xuepinStartIndex = 17; //血拼开始的位置索引
     optional int32 xuepinChipCount = 18;  //当前牌桌血拼筹码数
+    optional int64 minCoin = 19;  //最低进房金币数
+    optional int64 daShangChip = 20;  //荷官打赏单个砝码面值
 }
 
 //room 的信息
@@ -89,4 +91,6 @@ message zjh_srv_room {
     optional int64 baseValue = 5; //底注
     optional int64 maxValue = 6; //押注上限
     optional int64 xuepinBaseValue = 7; //血拼底注
+    optional int64 minCoin = 8;  //最低进房金币数
+    optional int64 daShangChip = 9;  //荷官打赏单个砝码面值
 }
