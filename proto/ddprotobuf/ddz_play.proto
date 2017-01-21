@@ -190,6 +190,7 @@ message ddz_bc_overTurn {
     optional bool canOutCards = 7; //能否出牌：false=“要不起”
     repeated ddz_base_playerInfo playerInfos = 8; //需广播的各个玩家的信息
     optional ddz_enum_jdScore jiaoScore = 9; //可叫的最低分
+    optional bool isCanPass = 10; //能否过 flase不能过 必须出牌
 }
 
 ////////////////////////////////////////////////////////
