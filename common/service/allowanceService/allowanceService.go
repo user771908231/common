@@ -51,7 +51,7 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 	*ack.UserId = uid
 	*ack.IsSuccessed = true
 	*ack.UserTotalCoin = user.GetCoin()
-	*ack.Times2Get = times
+	*ack.Times2Get = times + 1
 	*ack.AllowanceCoin = 1000
 	a.WriteMsg(ack)
 	return nil
