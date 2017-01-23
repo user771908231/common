@@ -288,6 +288,8 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 // Ignoring public import of COMMON_ENUM_KICKOUT from common_enum.proto
 
+// Ignoring public import of COMMON_ENUM_APPLYDISSOLVE from common_enum.proto
+
 // 注册类型
 type CommonEnumReg int32
 
