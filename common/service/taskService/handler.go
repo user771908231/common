@@ -65,4 +65,7 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 	CheckReward(user_id, task.Reward)
 	msg.Header.Code = proto.Int32(1)
 	msg.Header.Error = proto.String("领取奖励成功！")
+	//更新领取状态
+	task.TaskState.IsCheck = true
+	task.SetUserState(user_id, task.TaskState)
 }
