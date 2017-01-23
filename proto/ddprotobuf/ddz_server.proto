@@ -114,14 +114,17 @@ message ddz_srv_user {
     optional bool isShowPokers = 10; //是否明牌
 
     optional ddz_srv_bill bill = 11; // 斗地主的账单
-    optional int64 coin = 12; //玩家金币
-    optional ddz_srv_userStatistics statistics = 13; //统计信息
-    optional int32 playRate = 14; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
-    optional int32 jiaoScore = 15; //经典斗地主叫多少分 DdzJDScore:1/2/3
-    optional int32 timeOutCount = 16; //操作超时次数
-    optional bool isAgent = 17; //是否托管
-    optional int32 sex = 18; //性别
-    optional int32 roomCard = 19; //玩家房卡
+    optional int64 coin = 12; //玩家金币 金币场
+    optional int64 score = 13; //玩家得分 朋友桌
+    optional ddz_srv_userStatistics statistics = 14; //统计信息
+    optional int32 playRate = 15; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
+    optional int32 jiaoScore = 16; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 timeOutCount = 17; //操作超时次数
+    optional bool isAgent = 18; //是否托管
+    optional int32 sex = 19; //性别
+    optional int32 roomCard = 20; //玩家房卡
+
+    optional int32 statusApplyDissolve = 21; //申请解散房间的状态
 }
 
 //room

@@ -37,3 +37,11 @@ enum COMMON_ENUM_KICKOUT {
     K_OFFLINE = 4; //离开掉线的踢出
     K_GAME_BLOCKED = 5; //游戏无法进行的踢出
 }
+
+
+//玩家申请解散房间的操作类型
+enum COMMON_ENUM_APPLYDISSOLVE {
+    AD_AGREE = 1; //同意
+    AD_REFUSE = 2; //拒绝
+    AD_NOACT = 3; //没操作
+}

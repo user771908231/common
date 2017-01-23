@@ -88,6 +88,12 @@ enum ddz_enum_protoId {
     DDZ_PID_ALLOWANCE_ACK = 55; //补助回复
 
     DDZ_PID_KICKOUT_BC = 56; //踢人的广播
+
+    DDZ_PID_APPLYDISSOVLE_REQ = 57; //申请解散房间的请求
+    DDZ_PID_APPLYDISSOVLE_BC = 58; //玩家申请解散房间请求的广播
+
+    DDZ_PID_APPLYDISSOVLE_BACK_REQ = 59; //玩家是否同意解散房间的请求
+    DDZ_PID_APPLYDISSOVLE_BACK_ACK = 60; //玩家是否同意解散房间的广播
 }
 
 enum ddz_enum_errorCode {
