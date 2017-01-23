@@ -123,6 +123,8 @@ message ddz_srv_user {
     optional bool isAgent = 18; //是否托管
     optional int32 sex = 19; //性别
     optional int32 roomCard = 20; //玩家房卡
+
+    optional int32 statusApplyDissolve = 21; //申请解散房间的状态
 }
 
 //room
