@@ -45,7 +45,7 @@ message ddz_base_winCoinInfo {
     optional string description = 8; // 赢牌描述信息 ( 如:"春天 炸弹x2" )
     optional int32 bomb = 9; //炸弹数量
     optional bool isSpring = 10; //是否是春天
-    repeated common_srv_pokerPai handPokers = 11; //手牌
+    repeated client_base_poker handPokers = 11; //手牌
 }
 
 // 本局结果(广播)
