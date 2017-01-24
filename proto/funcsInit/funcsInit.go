@@ -182,3 +182,19 @@ func NewBCKickOut() *ddproto.CommonBcKickout {
 	ret.Type = new(ddproto.COMMON_ENUM_KICKOUT)
 	return ret
 }
+
+func NewBcApplyDissolve() *ddproto.CommonBcApplyDissolve {
+	ret := new(ddproto.CommonBcApplyDissolve)
+	ret.Header = NewHeader()
+	ret.Result = new(bool)
+	ret.UserId = new(uint32)
+	return ret
+}
+
+func NewAckApplyDissolveBack() *ddproto.CommonAckApplyDissolveBack {
+	ret := new(ddproto.CommonAckApplyDissolveBack)
+	ret.Header = NewHeader()
+	ret.Agree = new(bool)
+	ret.UserId = new(uint32)
+	return ret
+}
