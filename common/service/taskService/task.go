@@ -9,17 +9,7 @@ import (
 	"casino_common/common/userService"
 	"casino_hall/service/pack"
 	"log"
-)
-
-//任务类型
-type TaskType string
-
-//警告：任务类型常量一经定义后就不应该修改或删除，以防止把数据库关系搞乱
-const (
-	TYPE_COIN_COUNT     TaskType = "coin_count"     //跟金币数量相关
-	TYPE_WIN_COUNT      TaskType = "win_count"      //跟赢比赛的总局数相关
-	TYPE_ZJH_GAME_COUNT TaskType = "zjh_game_count" //跟扎金花赢的比赛总局数相关
-	TYPE_ALL_GAME_COUNT TaskType = "all_game_count" //所有游戏总局数
+	"casino_common/common/service/countService/countType"
 )
 
 //任务列表
@@ -27,8 +17,9 @@ var TaskList []*Task
 
 //任务详情
 type TaskInfo struct {
+	CateId      int32                  //任务分类 1.普通任务 2.红包任务
 	TaskId      int32                  //任务id
-	TaskType    TaskType               //任务类型
+	TaskType    countType.CountType    //统计类型
 	GameType    string                 //所属的游戏  zjh ddz hall
 	Title       string                 //任务名
 	Sort        int32                  //排序：数字越小排在越前面
@@ -45,9 +36,9 @@ type Task struct {
 }
 
 //获取展示给用户的任务列表  后面两个过滤参数为空则不过滤
-func GetUserTaskShowList(userId uint32, filt_type TaskType, filt_game string) []*UserTask {
+func GetUserTaskShowList(userId uint32, filt_type countType.CountType, filt_game string) []*UserTask {
 	list := []*UserTask{}
-	task_map := make(map[TaskType][]*UserTask)
+	task_map := make(map[countType.CountType][]*UserTask)
 	//按类型将任务保存到map方便处理
 	for _, task := range GetUserTaskList(userId) {
 		//过滤任务类型
@@ -159,14 +150,14 @@ func GetTaskInfo(task_id int32) *TaskInfo {
 }
 
 //触发任务
-func OnTask(taskType TaskType, userId uint32) {
+func OnTask(taskType countType.CountType, userId uint32) {
 	for _, task := range GetUserTaskShowList(userId, taskType, "") {
 		if task.SumNo != task.TaskSum && task.IsDone {
 			task.IsDone = false
 			task.SetUserState(userId, task.TaskState)
 		}
 		if !task.IsDone {
-			if task.Validate(GetUserTask(userId, task.TaskId)) {
+			if task.Validate != nil && task.Validate(GetUserTask(userId, task.TaskId)) {
 				task.IsDone = true
 				task.SetUserState(userId, task.TaskState)
 				//推送任务完成广播

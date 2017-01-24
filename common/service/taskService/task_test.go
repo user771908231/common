@@ -1,22 +1,41 @@
 package taskService
 
 import (
-	//ldb "casino_common/common/db"
+	ldb "casino_common/common/db"
 	"testing"
 	"casino_common/proto/ddproto"
 	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
 	"casino_common/utils/db"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/service/countService/countType"
 )
 
 func init() {
-	//ldb.InitMongoDb("192.168.199.155", 27017, "test", "id",[]string{})
+	ldb.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(1),
+	})
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(2),
+	})
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(3),
+	})
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(4),
+	})
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(5),
+	})
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(6),
+	})
 }
 
 //测试任务
 func TestTask(t *testing.T) {
-	OnTask(TYPE_COIN_COUNT,1)
+	OnTask(countType.ALL_GAME_COUNT,1)
 	t.Log(GetUserTaskShowList(1,"",""))
 }
 
@@ -45,7 +64,7 @@ func TestHandlerTaskListReq(t *testing.T) {
 
 //测试：获取用户的任务状态列表
 func TestGetUserTaskShowList(t *testing.T) {
-	list := GetUserTaskShowList(1, TYPE_COIN_COUNT, "zjh")
+	list := GetUserTaskShowList(1, countType.ALL_GAME_COUNT, "")
 	t.Log(list)
 	for _,task := range list{
 		t.Log(task.UserId, task.TaskInfo, task.TaskState)
@@ -57,7 +76,7 @@ func TestInsertTaskInfo(t *testing.T) {
 	list := []TaskInfo{
 		TaskInfo{
 			TaskId:      1,
-			TaskType:    TYPE_ALL_GAME_COUNT,
+			TaskType:    countType.ALL_GAME_COUNT,
 			GameType:    "all",
 			TaskSum:     5,
 			Title:       "完成5局比赛",
@@ -70,7 +89,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			},
 		},TaskInfo{
 			TaskId:      2,
-			TaskType:    TYPE_ALL_GAME_COUNT,
+			TaskType:    countType.ALL_GAME_COUNT,
 			GameType:    "all",
 			TaskSum:     10,
 			Title:       "完成10局比赛",
@@ -83,7 +102,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			},
 		},TaskInfo{
 			TaskId:      3,
-			TaskType:    TYPE_ALL_GAME_COUNT,
+			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     15,
 			GameType:    "all",
 			Title:       "完成15局比赛",
@@ -96,7 +115,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			},
 		},TaskInfo{
 			TaskId:      4,
-			TaskType:    TYPE_ALL_GAME_COUNT,
+			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     20,
 			GameType:    "all",
 			Title:       "完成20局比赛",
@@ -109,7 +128,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			},
 		},TaskInfo{
 			TaskId:      5,
-			TaskType:    TYPE_ALL_GAME_COUNT,
+			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     25,
 			GameType:    "all",
 			Title:       "完成25局比赛",
@@ -122,7 +141,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			},
 		},TaskInfo{
 			TaskId:      6,
-			TaskType:    TYPE_ALL_GAME_COUNT,
+			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     50,
 			GameType:    "all",
 			Title:       "完成50局比赛",

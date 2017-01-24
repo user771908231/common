@@ -6,6 +6,7 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/utils/db"
 	"casino_common/common/service/taskService"
+	"casino_common/common/service/countService/countType"
 )
 
 //游戏记录表
@@ -36,6 +37,13 @@ func (t *T_game_log)Insert() error {
 //触发统计
 func (t *T_game_log)doCountAndTask() {
 	//所有比赛局数
-	Add(t.UserId, ALL_COUNT, 1)
-	taskService.OnTask(taskService.TYPE_ALL_GAME_COUNT, t.UserId)
+	Add(t.UserId, countType.ALL_GAME_COUNT, 1)
+	taskService.OnTask(countType.ALL_GAME_COUNT, t.UserId)
+
+	//斗地主赢的比赛局数
+	if t.GameId == ddproto.CommonEnumGame_GID_DDZ && t.IsWine == true {
+		Add(t.UserId, countType.DDZ_WIN_COUNT, 1)
+		taskService.OnTask(countType.DDZ_WIN_COUNT, t.UserId)
+	}
+
 }
