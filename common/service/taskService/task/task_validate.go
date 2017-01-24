@@ -18,7 +18,7 @@ func ValidateAllGameCount(user_task *taskService.UserTask) bool {
 	return false
 }
 
-//临时： 计数类型的验证函数
+//临时： 统计类型的验证函数
 func ValidateCount(user_task *taskService.UserTask) bool {
 	counter := countService.GetUserCounterByType(user_task.UserId, user_task.TaskType)
 	user_task.SumNo = counter.AllCount
