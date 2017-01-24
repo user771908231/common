@@ -119,6 +119,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_applyDissolveBack from common_client.proto
 
+// Ignoring public import of common_ack_timeout from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
