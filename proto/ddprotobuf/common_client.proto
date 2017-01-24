@@ -286,3 +286,9 @@ message common_ack_applyDissolveBack {
 }
 
 
+
+//给超时玩家的单播 告知玩家已超时
+message common_ack_timeout {
+    optional ProtoHeader header = 1;
+}
+
