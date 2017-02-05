@@ -2,6 +2,7 @@ db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebd9a513c0bbc83c0f3c"),
     "taskid" : 1,
+    "cateid" : 1,
     "tasktype" : "all_game_count",
     "gametype" : "all",
     "title" : "完成5局比赛",
@@ -20,6 +21,7 @@ db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebdaa513c0bbc83c0f41"),
     "taskid" : 2,
+    "cateid" : 1,
     "tasktype" : "all_game_count",
     "gametype" : "all",
     "title" : "完成10局比赛",
@@ -38,6 +40,7 @@ db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebdaa513c0bbc83c0f46"),
     "taskid" : 3,
+    "cateid" : 1,
     "tasktype" : "all_game_count",
     "gametype" : "all",
     "title" : "完成15局比赛",
@@ -56,6 +59,7 @@ db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebdaa513c0bbc83c0f4b"),
     "taskid" : 4,
+    "cateid" : 1,
     "tasktype" : "all_game_count",
     "gametype" : "all",
     "title" : "完成20局比赛",
@@ -74,6 +78,7 @@ db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebdaa513c0bbc83c0f50"),
     "taskid" : 5,
+    "cateid" : 1,
     "tasktype" : "all_game_count",
     "gametype" : "all",
     "title" : "完成25局比赛",
@@ -92,6 +97,7 @@ db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebdaa513c0bbc83c0f55"),
     "taskid" : 6,
+    "cateid" : 1,
     "tasktype" : "all_game_count",
     "gametype" : "all",
     "title" : "完成50局比赛",
@@ -102,6 +108,44 @@ db.t_config_task_info.insert(
         {
             "type" : 1,
             "amount" : 3000
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f56"),
+    "taskid" : 7,
+    "cateid" : 2,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成10局比赛",
+    "sort" : 0,
+    "tasksum" : 10,
+    "description" : "奖励1.0红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 1
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "_id" : ObjectId("5879ebdaa513c0bbc83c0f57"),
+    "taskid" : 8,
+    "cateid" : 2,
+    "tasktype" : "all_game_count",
+    "gametype" : "all",
+    "title" : "完成20局比赛",
+    "sort" : 0,
+    "tasksum" : 20,
+    "description" : "奖励1.0红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 1
         }
     ]
 }
