@@ -42,7 +42,8 @@ func init() {
 
 //测试任务
 func TestTask(t *testing.T) {
-	OnTask(countType.ALL_GAME_COUNT,1)
+	//OnTask(countType.ALL_GAME_COUNT,1)
+	t.Log(GetUserTaskList(1))
 	t.Log(GetUserTaskShowList(1,1,"",""))
 }
 
@@ -170,7 +171,7 @@ func TestInsertTaskInfo(t *testing.T) {
 	}
 }
 
-//测试：检查还差多少局领取红包
+//测试：检查还差多少局领取红包 和 领取红包
 func TestCheckBonus(t *testing.T) {
 	var user_id uint32= 1
 	game_id := ddproto.CommonEnumGame_GID_ZJH
