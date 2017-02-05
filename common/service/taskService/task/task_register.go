@@ -29,4 +29,12 @@ func InitTask() {
 		TaskInfo: taskService.GetTaskInfo(6),
 		Validate: ValidateCount,
 	})
+	taskService.RegistTask(taskService.Task{
+		TaskInfo: taskService.GetTaskInfo(7),
+		Validate: ValidateCount,
+	})
+	taskService.RegistTask(taskService.Task{
+		TaskInfo: taskService.GetTaskInfo(8),
+		Validate: ValidateCount,
+	})
 }
