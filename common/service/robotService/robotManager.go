@@ -111,7 +111,8 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 
 	for _, r := range rm.robots {
 		//log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
-		if r.IsAvailable() && r.GetCoin() >= coin {
+		robotCoin := userService.GetUserCoin(r.GetId())
+		if r.IsAvailable() && robotCoin >= coin {
 			r.available = false
 			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
 			//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
@@ -129,8 +130,9 @@ func (rm *RobotsManager) ExpropriationRobotByRange(minCoin, maxCoin int64) *Robo
 	defer rm.Unlock()
 
 	for _, r := range rm.robots {
-		log.T("机器人[%v]的coin %v,min[%v]~max[%v]", r.GetId(), r.GetCoin(), minCoin, maxCoin)
-		if r.IsAvailable() && r.GetCoin() >= minCoin && r.GetCoin() < maxCoin {
+		robotCoin := userService.GetUserCoin(r.GetId())
+		log.T("机器人[%v]的coin %v,min[%v]~max[%v]", r.GetId(), robotCoin, minCoin, maxCoin)
+		if r.IsAvailable() && robotCoin >= minCoin && robotCoin < maxCoin {
 			r.available = false
 			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
 			//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
