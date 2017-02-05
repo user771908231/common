@@ -198,3 +198,10 @@ func NewAckApplyDissolveBack() *ddproto.CommonAckApplyDissolveBack {
 	ret.UserId = new(uint32)
 	return ret
 }
+
+
+func NewAckTimeOut() *ddproto.CommonAckTimeout {
+	ret := new(ddproto.CommonAckTimeout)
+	ret.Header = NewHeader()
+	return ret
+}
