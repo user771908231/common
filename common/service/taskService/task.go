@@ -10,6 +10,7 @@ import (
 	"casino_hall/service/pack"
 	"log"
 	"casino_common/common/service/countService/countType"
+	"errors"
 )
 
 //任务列表
@@ -32,21 +33,28 @@ type TaskInfo struct {
 type Task struct {
 	*TaskInfo
 	Data     interface{}          //自定义数据
-	Validate func(*UserTask) bool //单次任务完成的验证函数
+	Validate func(*UserTask) //单次任务完成的验证函数
 }
 
-//获取展示给用户的任务列表  后面两个过滤参数为空则不过滤
-func GetUserTaskShowList(userId uint32, filt_type countType.CountType, filt_game string) []*UserTask {
+/**
+	获取展示给用户的任务列表
+	后面两个过滤参数为空则不过滤
+ */
+func GetUserTaskShowList(userId uint32, fill_cateid int32, fill_type countType.CountType, fill_game string) []*UserTask {
 	list := []*UserTask{}
 	task_map := make(map[countType.CountType][]*UserTask)
 	//按类型将任务保存到map方便处理
 	for _, task := range GetUserTaskList(userId) {
+		//过滤任务分类
+		if fill_cateid != 0 && fill_cateid != task.CateId {
+			continue
+		}
 		//过滤任务类型
-		if filt_type != "" && filt_type != task.TaskType {
+		if fill_type != "" && fill_type != task.TaskType {
 			continue
 		}
 		//过滤所属游戏
-		if filt_game != "" && filt_game != task.GameType {
+		if fill_game != "" && fill_game != task.GameType && task.GameType != "all" {
 			continue
 		}
 		if _, ok := task_map[task.TaskType]; ok {
@@ -151,15 +159,17 @@ func GetTaskInfo(task_id int32) *TaskInfo {
 
 //触发任务
 func OnTask(taskType countType.CountType, userId uint32) {
-	for _, task := range GetUserTaskShowList(userId, taskType, "") {
+	for _, task := range GetUserTaskShowList(userId, 0, taskType, "") {
 		if task.SumNo != task.TaskSum && task.IsDone {
 			task.IsDone = false
 			task.SetUserState(userId, task.TaskState)
 		}
-		if !task.IsDone {
-			if task.Validate != nil && task.Validate(GetUserTask(userId, task.TaskId)) {
-				task.IsDone = true
-				task.SetUserState(userId, task.TaskState)
+		if !task.IsDone && task.Validate != nil{
+			user_task := GetUserTask(userId, task.TaskId)
+			task.Validate(user_task)
+			//更新状态
+			user_task.SetUserState(user_task.UserId, user_task.TaskState)
+			if task.IsDone == true {
 				//推送任务完成广播
 			}
 		}
@@ -239,4 +249,59 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
 			}
 		}
 	}
+}
+
+//领取任务奖励
+func CheckTaskReward(userId uint32, taskId int32) error {
+	task := GetUserTask(userId, taskId)
+	if task == nil {
+		return errors.New("领取失败！")
+	}
+	if !task.IsDone {
+		return errors.New("任务未完成，领取奖励失败！")
+	}
+	if task.IsCheck {
+		return errors.New("任务奖励已被领取，无法重复领取！")
+	}
+	CheckReward(userId, task.Reward)
+	task.IsCheck = true
+	task.SetUserState(userId, task.TaskState)
+	return nil
+}
+
+/**
+	获取距离完成条件最近的一个任务状态
+	参数：game : ("ddz"|"zjh"|"mj")
+	返回值：numer: 剩余局数 taskId: 任务id
+	如果任务不存在则返回 （-1，-1）
+ */
+func GetUserNearBonusTask(userId uint32, game ddproto.CommonEnumGame) *UserTask {
+	game_str := "all"
+	switch game {
+	case ddproto.CommonEnumGame_GID_DDZ:
+		game_str = "ddz"
+	case ddproto.CommonEnumGame_GID_ZJH:
+		game_str = "zjh"
+	case ddproto.CommonEnumGame_GID_MAHJONG:
+		game_str = "mj"
+	}
+	taskList := GetUserTaskShowList(userId, 2, "", game_str)
+	num_map := make(map[*UserTask]int32)
+	for _,task := range taskList {
+		if !task.IsCheck {
+			num_map[task] = task.TaskSum-task.SumNo
+		}
+	}
+	var result *UserTask = nil
+	//选出最接近完成的一个任务
+	for task,sum := range num_map{
+		if result == nil {
+			result = task
+			continue
+		}
+		if num_map[result] > sum {
+			result = task
+		}
+	}
+	return result
 }

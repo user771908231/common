@@ -17,7 +17,7 @@ func HandlerReqEvent(req *ddproto.HallReqEvent, agent gate.Agent) {
 
 //任务列表ACK
 func HandlerTaskListReq(req *ddproto.HallReqTask, agent gate.Agent) {
-	list := GetUserTaskShowList(req.GetHeader().GetUserId(), "", "")
+	list := GetUserTaskShowList(req.GetHeader().GetUserId(), 1,  "", "")
 	items := []*ddproto.HallItemTask{}
 	for _, task := range list {
 		new_task := ddproto.HallItemTask{
