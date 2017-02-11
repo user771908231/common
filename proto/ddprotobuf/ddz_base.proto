@@ -253,6 +253,8 @@ message ddz_base_playerInfo {
     optional ddz_base_playerRateInfo playerRateInfo = 18; //玩家倍数详情
 
     optional int64 roomCard = 19; //玩家房卡数
+
+    optional bool isShowPokers = 20; //是否已明牌
 }
 
 message ddz_base_playerRateInfo {
