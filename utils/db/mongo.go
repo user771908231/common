@@ -128,3 +128,135 @@ func Query(f func(*mgo.Database)) {
 	defer c.UnRef(s)
 	f(s.DB(mongoConfig.dbname))
 }
+
+//通过k==v查询一条数据
+func FindByKV(dbt string, key string, value interface{}, obj interface{}) error {
+	var err error = nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(dbt).Find(bson.M{
+			key: value,
+		}).One(obj)
+	})
+	return err
+}
+
+//通过k==v查询多条数据
+func SelectByKV(dbt string, key string, value interface{}, obj interface{}) error {
+	var err error = nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(dbt).Find(bson.M{
+			key: value,
+		}).All(obj)
+	})
+	return err
+}
+
+//模拟类似ThinkPHP的M()方法
+type C string
+
+//查询单条
+func (c C)Find(query interface{}, result interface{}) error {
+	var err error = nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).Find(query).One(result)
+	})
+	return err
+}
+
+//查询多条
+func (c C)FindAll(query interface{}, result interface{}) error {
+	var err error = nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).Find(query).All(result)
+	})
+	return err
+}
+
+//查询分页
+func (c C)Page(query interface{}, result interface{}, sort string, page int, limit int) (err error, count int) {
+	Query(func(mgo *mgo.Database) {
+		q := mgo.C(string(c)).Find(query)
+		//统计数量
+		count,err = q.Count()
+
+		if sort != "" {
+			q = q.Sort(sort)
+		}
+		if limit > 0 && page >= 1 {
+			q = q.Skip((page-1)*limit).Limit(limit)
+		}
+		err = q.All(result)
+	})
+	return err, count
+}
+
+//更新一条
+func (c C)Update(query interface{}, update interface{}) error {
+	var err error = nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).Update(query, update)
+	})
+	return err
+}
+
+//更新多条
+func (c C)UpdateAll(query interface{}, update interface{}) (change_info *mgo.ChangeInfo ,err error) {
+	Query(func(mgo *mgo.Database) {
+		change_info, err = mgo.C(string(c)).UpdateAll(query, update)
+	})
+	return
+}
+
+//插入一条或多条
+func (c C)Insert(docs ...interface{}) error {
+	var err error = nil
+	for _,doc := range docs {
+		Query(func(mgo *mgo.Database) {
+			err = mgo.C(string(c)).Insert(doc)
+		})
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+//插入多条Slice数据，遇到错误则停止继续插入，并返回错误和出错处的索引
+func (c C)InsertAll(doc_slice []interface{}) (error, int) {
+	var i int = 0
+	var err error = nil
+	for _,doc := range doc_slice {
+		err = c.Insert(doc)
+		if err != nil {
+			return err, i
+		}else {
+			i++
+		}
+	}
+	return nil, i
+}
+
+//删除单条数据
+func (c C)Remove(query interface{}) error {
+	var err error = nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).Remove(query)
+	})
+	return err
+}
+
+//删除多条数据
+func (c C)RemoveAll(query interface{}) (change_info *mgo.ChangeInfo ,err error) {
+	Query(func(mgo *mgo.Database) {
+		change_info, err = mgo.C(string(c)).RemoveAll(query)
+	})
+	return
+}
+
+//计数
+func (c C)Count(query interface{}) (count int, err error) {
+	Query(func(mgo *mgo.Database) {
+		count, err = mgo.C(string(c)).Find(query).Count()
+	})
+	return
+}

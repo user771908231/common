@@ -86,6 +86,7 @@ func addSignCount(userAttach *model.T_user_attach){
 
 func clearContinuousSignCount(userAttach *model.T_user_attach){
 	userAttach.SignContinuousDays = 0 //clearContinuousSignCount
+	userAttach.LastSignTime = timeUtils.Format(time.Now())
 	userAttachDao.UpdateUserAttachByModel(userAttach)
 }
 
