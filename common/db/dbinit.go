@@ -15,7 +15,7 @@ func InitMongoDb(mongoIp string, mongoPort int, DBNAME string, DB_ENSURECOUNTER_
 		fmt.Println(err)
 		panic(err)
 	}
-	defer c.Close()
+	//defer c.Close()
 
 	//初始化自增键
 	if len(seqTableName) > 0 {
