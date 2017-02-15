@@ -110,21 +110,22 @@ message ddz_srv_user {
     optional int32 statusSCZhuaPai = 7; //四川抓牌的状态
     optional int32 statusSCLaDao = 8; //四川拉倒的状态
     optional int32 statusJDJiao = 9; //经典叫分的状态
+    optional int32 statusShowPokers = 10; //明牌的状态
 
-    optional bool isShowPokers = 10; //是否明牌
+    optional bool isShowPokers = 11; //是否明牌
 
-    optional ddz_srv_bill bill = 11; // 斗地主的账单
-    optional int64 coin = 12; //玩家金币 金币场
-    optional int64 score = 13; //玩家得分 朋友桌
-    optional ddz_srv_userStatistics statistics = 14; //统计信息
-    optional int32 playRate = 15; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
-    optional int32 jiaoScore = 16; //经典斗地主叫多少分 DdzJDScore:1/2/3
-    optional int32 timeOutCount = 17; //操作超时次数
-    optional bool isAgent = 18; //是否托管
-    optional int32 sex = 19; //性别
-    optional int32 roomCard = 20; //玩家房卡
+    optional ddz_srv_bill bill = 12; // 斗地主的账单
+    optional int64 coin = 13; //玩家金币 金币场
+    optional int64 score = 14; //玩家得分 朋友桌
+    optional ddz_srv_userStatistics statistics = 15; //统计信息
+    optional int32 playRate = 16; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
+    optional int32 jiaoScore = 17; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 timeOutCount = 18; //操作超时次数
+    optional bool isAgent = 19; //是否托管
+    optional int32 sex = 20; //性别
+    optional int32 roomCard = 21; //玩家房卡
 
-    optional int32 statusApplyDissolve = 21; //申请解散房间的状态
+    optional int32 statusApplyDissolve = 22; //申请解散房间的状态
 }
 
 //room
