@@ -16,6 +16,7 @@ message ddz_bc_opening {
     optional int64 ticket = 3; //房费 金币场填入
     optional int64 userCoin = 4; //玩家当前金币 金币场填入
     optional int64 userRoomCard = 5; //玩家当前房卡数 朋友桌填入
+    repeated ddz_base_playerInfo playerInfos = 6; //需广播的各个玩家的信息
 }
 
 // 发牌
