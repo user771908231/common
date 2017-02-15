@@ -12,7 +12,7 @@ import (
 )
 
 func init() {
-	ldb.InitMongoDb("192.168.199.155", 27017, "test", "id",[]string{})
+	ldb.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
 	RegistTask(Task{
 		TaskInfo: GetTaskInfo(1),
 	})
@@ -43,8 +43,8 @@ func init() {
 //测试任务
 func TestTask(t *testing.T) {
 	//OnTask(countType.ALL_GAME_COUNT,1)
-	t.Log(GetUserTaskList(1))
-	t.Log(GetUserTaskShowList(1,1,"",""))
+	//t.Log(GetUserTaskList(1))
+	t.Log(GetUserTaskShowList(1,2,"","zjh"))
 }
 
 //测试任务列表
