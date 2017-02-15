@@ -48,7 +48,7 @@ func GetSessionAuto(userId uint32) *ddproto.GameSession {
 func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool, roomType int32, roomPass string) (*ddproto.GameSession, error) {
 	session := GetSession(userId, roomType)
 	if session == nil {
-		log.E("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
+		log.W("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
 		session = commonNewPorot.NewGameSession()
 	}
 	*session.UserId = userId
