@@ -23,7 +23,7 @@ type RobotsManager struct {
 func NewRobotManager(gameId ddproto.CommonEnumGame) *RobotsManager {
 	log.T("初始化NewRobotManager[%v]..", gameId)
 	manager := &RobotsManager{
-		gameId:gameId,
+		gameId: gameId,
 	}
 	manager.Oninit()
 	log.T("gameId[%v]目前机器人的数量:%v", gameId, len(manager.robots))
@@ -67,12 +67,12 @@ func (rm *RobotsManager) NewRobotAndSave() *Robot {
 	user.NickName = proto.String("游客" + ids)
 	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
 	user.Coin = proto.Int64(c)
-	userService.SaveUser2Redis(user) //保存到redis
-	userService.UpdateUser2Mgo(user) //保存到mgo
+	//userService.SaveUser2Redis(user) //保存到redis
+	userService.UpdateUser2Mgo(user) //创建机器人保存到mgo
 
 	robot := &Robot{
-		User:     user,
-		available:true,
+		User:      user,
+		available: true,
 	}
 	rm.addRobot(robot)
 	log.T("目前机器人的数量 %v ，新增加的 %v", rm.robotsAbleCount, robot)

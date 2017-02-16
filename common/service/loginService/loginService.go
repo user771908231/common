@@ -115,7 +115,7 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 		user.UnionId = proto.String(weixin.GetUnionId())
 		user.City = proto.String(weixin.GetCity())
 		user.Sex = proto.Int32(weixin.GetSex())
-		userService.UpdateUser2Mgo(user)
+		userService.UpdateUser2Mgo(user) //微信注册
 	} else {
 		log.E("玩家游客[%v]转微信的时候出现错误...没有在mongo 找到。")
 	}

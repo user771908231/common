@@ -83,7 +83,6 @@ func GetUserById(id uint32) *ddproto.User {
 	//2，从redis 中取到的数据不为空，那么直接返回
 	if result != nil {
 		buser = result.(*ddproto.User)
-
 		//下三行代码 可以暂时不用，这里很印象性能
 		buser.Coin = proto.Int64(GetUserCoin(id))
 		buser.Diamond = proto.Int64(GetUserDiamond(id))
@@ -118,7 +117,7 @@ func SaveUser2Redis(u *ddproto.User) {
 
 func UpdateUser2MgoById(userId uint32) {
 	user := GetUserById(userId)
-	UpdateUser2Mgo(user)
+	UpdateUser2Mgo(user) //通过id update user
 }
 
 //把用户保存到mgo并且同事更新redis的数据
@@ -152,17 +151,17 @@ func GetUserByUnionId(openId string) *ddproto.User {
 
 //更新redis user 的各种money ,同步之后会save到redis中
 func SyncReidsUserMoney(user *ddproto.User) {
-	user.Coin = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_COIN))         //更新金币
-	user.Diamond = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND))   //更新钻石
-	user.Diamond2 = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND2)) //更新钻石2
-	user.RoomCard = proto.Int64(GetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD)) //更新房卡
+	user.Coin = proto.Int64(GetUserCoin(user.GetId()))         //更新金币
+	user.Diamond = proto.Int64(GetUserDiamond(user.GetId()))   //更新钻石
+	user.Diamond2 = proto.Int64(GetUserDiamond2(user.GetId())) //更新钻石2
+	user.RoomCard = proto.Int64(GetUserRoomCard(user.GetId())) //更新房卡
 	SaveUser2Redis(user)
 }
 
 //调用此方法 保证mongey,redisuser,mgo 的数据一致
-func SyncMgoUser(userId uint32) error {
+func SyncMgoUserMoney(userId uint32) error {
 	user := GetUserById(userId)
 	SyncReidsUserMoney(user)
-	UpdateUser2Mgo(user) //保存用户到mgo
+	userDao.UpdateUser2Mgo(user) //保存用户到mgo
 	return nil
 }

@@ -42,6 +42,11 @@ func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND)
 }
 
+//获取用户的钻石
+func GetUserDiamond2(userId uint32) int64 {
+	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND2)
+}
+
 func GetUserRoomCard(userId uint32) int64 {
 	return GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD)
 }
