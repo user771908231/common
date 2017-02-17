@@ -12,7 +12,7 @@ type Robot struct {
 
 func NewRobots(u *ddproto.User) *Robot {
 	return &Robot{
-		User:u,
+		User: u,
 	}
 }
 

@@ -11,6 +11,11 @@ import (
 	"sync/atomic"
 )
 
+type RobotsMgrApi interface {
+	ExpropriationRobotByCoin(coin int64) *Robot
+	ReleaseRobots(id uint32)
+}
+
 //机器人管理器
 type RobotsManager struct {
 	sync.Mutex
