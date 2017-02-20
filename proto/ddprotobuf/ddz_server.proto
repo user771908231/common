@@ -126,6 +126,9 @@ message ddz_srv_user {
     optional int32 roomCard = 21; //玩家房卡
 
     optional int32 statusApplyDissolve = 22; //申请解散房间的状态
+
+    optional int32 scRate = 23; //明牌倍数
+    optional int32 jbRate = 24; //加倍倍数
 }
 
 //room
