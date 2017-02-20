@@ -128,9 +128,9 @@ message hall_goods_item_msg {
     optional int32 goods_id = 1; //商品id
     optional string name = 2; //  物品名称
     optional hall_enum_trade_type price_type = 3; //价格类型
-    optional float price = 4; //价格数量--例：10个钻石
+    optional double price = 4; //价格数量--例：10个钻石
     optional hall_enum_trade_type goods_type = 5; //商品类型
-    optional float amount = 6; //商品数量--例：10000金币
+    optional double amount = 6; //商品数量--例：10000金币
     optional string discount = 7; //折扣
     optional string image = 8; //商品图片： coin_1 coin_2 coin_3 coin_4 coin_5 coin_6 / diamond_1 diamond_2 diamond_3 diamond_4
 }
