@@ -36,8 +36,8 @@ func HandlerReg(args []interface{}) {
 	if ack == nil {
 		ack = new(ddproto.CommonAckReg)
 		ack.Header = &ddproto.ProtoHeader{
-			Code: proto.Int32(consts.ACK_RESULT_ERROR),
-			Error:proto.String("注册的时候失败"),
+			Code:  proto.Int32(consts.ACK_RESULT_ERROR),
+			Error: proto.String("注册的时候失败"),
 		}
 	}
 	a.WriteMsg(ack)
@@ -98,5 +98,6 @@ func HandlerCommonReqGameState(args []interface{}) {
 	}
 
 	//返回消息
+	log.T("回复游戏状态 %v", ack)
 	a.WriteMsg(ack)
 }
