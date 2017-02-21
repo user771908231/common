@@ -163,7 +163,7 @@ enum hall_enum_mail_type {
 //背包单个道具
 message hall_bag_item {
     optional hall_enum_trade_type type = 1; //道具类型
-    optional float amount = 2; //数量
+    optional double amount = 2; //数量
 }
 
 //奖励物品类型
@@ -217,7 +217,7 @@ message hall_userData {
     optional hall_user_VIP userVIPLv = 7; //会员等级
     optional int64 userMoney = 8; //用户金币
     optional int64 userDiamond = 9; //用户钻石
-    optional string userRedBag = 10; //用户红包金额
+    optional double userRedBag = 10; //用户红包金额
     optional int64 userLotteryTicket = 11; //用户奖券
     optional bool sex = 12; //性别
     optional string headUrl = 13;  //头像

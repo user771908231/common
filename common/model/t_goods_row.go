@@ -23,9 +23,9 @@ type T_Goods_Row struct {
 	Name      string
 	Category  CateEnum
 	PriceType ddproto.HallEnumTradeType
-	Price     int32
+	Price     float64
 	GoodsType ddproto.HallEnumTradeType
-	Amount    int32 //amount 代表数量，不是现金， 1转世兑换100金币,,amount == 100
+	Amount    float64 //amount 代表数量，不是现金， 1转世兑换100金币,,amount == 100
 	Discount  string
 	Image     string
 	IsShow    bool

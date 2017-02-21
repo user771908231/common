@@ -22,7 +22,8 @@ message User {
     optional string city = 16; //
     optional int32 sex = 17;
     optional int32 robotType = 18; //机器人类型
-
+    optional int32 ticket = 19;  //奖券
+    optional double bonus = 20;  //红包
 }
 
 //通知公告
