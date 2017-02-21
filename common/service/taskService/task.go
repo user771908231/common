@@ -157,6 +157,15 @@ func GetTaskInfo(task_id int32) *TaskInfo {
 	return task_info
 }
 
+//从数据库获取所有的任务信息
+func GetTaskInfoList() []*TaskInfo {
+	task_info := []*TaskInfo{}
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_TASK_INFO).Find(bson.M{}).All(&task_info)
+	})
+	return task_info
+}
+
 //触发任务
 func OnTask(taskType countType.CountType, userId uint32) {
 	for _, task := range GetUserTaskShowList(userId, 0, taskType, "") {
@@ -165,10 +174,7 @@ func OnTask(taskType countType.CountType, userId uint32) {
 			task.SetUserState(userId, task.TaskState)
 		}
 		if !task.IsDone && task.Validate != nil{
-			user_task := GetUserTask(userId, task.TaskId)
-			task.Validate(user_task)
-			//更新状态
-			user_task.SetUserState(user_task.UserId, user_task.TaskState)
+			task.Validate(task)
 			if task.IsDone == true {
 				//推送任务完成广播
 			}
