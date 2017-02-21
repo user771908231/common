@@ -69,3 +69,38 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 	task.TaskState.IsCheck = true
 	task.SetUserState(user_id, task.TaskState)
 }
+
+//未领取的任务数
+func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
+	fill_game := ""
+	switch req.GetTaskType() {
+	case ddproto.HallEnumTaskType_TYPE_DDZ:
+		fill_game = "ddz"
+	case ddproto.HallEnumTaskType_TYPE_MJ:
+		fill_game = "mj"
+	case ddproto.HallEnumTaskType_TYPE_ZJH:
+		fill_game = "zjh"
+	default:
+		fill_game = ""
+	}
+	list := GetUserTaskShowList(req.GetHeader().GetUserId(), 0,  "", fill_game)
+
+	var i,j int32
+	for _, task := range list {
+		if task.CateId == 1 {
+			if task.IsDone == true && task.IsCheck == false {
+				i++
+			}
+		}
+		if task.CateId == 2 {
+			if task.IsDone == true && task.IsCheck == false {
+				j++
+			}
+		}
+	}
+	msg := ddproto.HallAckTaskSum{
+		TaskSum: &i,
+		BonusSum: &j,
+	}
+	agent.WriteMsg(&msg)
+}

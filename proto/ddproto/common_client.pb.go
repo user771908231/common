@@ -162,6 +162,8 @@ It has these top-level messages:
 	HallAckTask
 	HallReqCheckTask
 	HallAckCheckTask
+	HallReqTaskSum
+	HallAckTaskSum
 	HallReqBagItems
 	HallAckBagItems
 	HallReqUserData
