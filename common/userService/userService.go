@@ -31,11 +31,15 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.Sex = proto.Int32(sex)
 	user.City = proto.String(city)
 	user.Diamond = proto.Int64(0)
+	user.Diamond2 = proto.Int64(0)
 	user.NickName = proto.String(wxNickName)
 	user.UnionId = proto.String(unionId)
 	user.OpenId = proto.String(openId)
 	user.HeadUrl = proto.String(headUrl)
 	user.Coin = proto.Int64(sys.CONFIG_SYS.GetNewUserCoin())
+	user.RoomCard = proto.Int64(sys.CONFIG_SYS.GetNewUserRoomcard())
+	user.Ticket = proto.Int32(0)
+	user.Bonus = proto.Float64(0)
 
 	//初始化默认值
 

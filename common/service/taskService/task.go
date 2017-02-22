@@ -241,10 +241,10 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
 			userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			pack.DoUserPropsAdd(userId, ddproto.HallEnumTradeType_TRADE_BONUS, int32(reward.GetAmount()))
+			userService.INCRUserBonus(userId, reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
-			pack.DoUserPropsAdd(userId, ddproto.HallEnumTradeType_TRADE_TICKET, int32(reward.GetAmount()))
+			userService.INCRUserTicket(userId, int32(reward.GetAmount()))
 		default:
 			switch {
 			case reward.GetType() > 200 && reward.GetType() < 300:
