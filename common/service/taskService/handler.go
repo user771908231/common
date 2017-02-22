@@ -73,15 +73,20 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 //未领取的任务数
 func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 	fill_game := ""
+	var user_task *UserTask = nil
 	switch req.GetTaskType() {
 	case ddproto.HallEnumTaskType_TYPE_DDZ:
 		fill_game = "ddz"
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_DDZ)
 	case ddproto.HallEnumTaskType_TYPE_MJ:
 		fill_game = "mj"
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_MAHJONG)
 	case ddproto.HallEnumTaskType_TYPE_ZJH:
 		fill_game = "zjh"
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_ZJH)
 	default:
 		fill_game = ""
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_HALL)
 	}
 	list := GetUserTaskShowList(req.GetHeader().GetUserId(), 0,  "", fill_game)
 
@@ -101,6 +106,10 @@ func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 	msg := ddproto.HallAckTaskSum{
 		TaskSum: &i,
 		BonusSum: &j,
+	}
+	msg.BonusNext = proto.Int32(-1)
+	if user_task != nil {
+		*msg.BonusNext = user_task.TaskSum - user_task.SumNo
 	}
 	agent.WriteMsg(&msg)
 }
