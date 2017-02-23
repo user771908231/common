@@ -113,3 +113,8 @@ func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 	}
 	agent.WriteMsg(&msg)
 }
+
+//领取红包
+func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
+
+}
