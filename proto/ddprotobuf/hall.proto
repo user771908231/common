@@ -79,6 +79,15 @@ message hall_ack_task_sum {
     optional int32 bonus_next = 4; //距离领取下个红包的局数
 }
 
+//领取红包任务奖励
+message hall_req_checkBonus {
+    optional ProtoHeader header = 1;
+}
+
+message hall_ack_checkBonus {
+    optional ProtoHeader header = 1;
+}
+
 // 背包道具列表
 message hall_req_bag_items {
     optional ProtoHeader header = 1;
