@@ -24,6 +24,9 @@ message User {
     optional int32 robotType = 18; //机器人类型
     optional int32 ticket = 19;  //奖券
     optional double bonus = 20;  //红包
+    optional int64 regTime = 21;  //注册时间
+    optional string regChannel = 22;  //注册渠道
+    optional uint32 agentId = 23;  //所属代理商
 }
 
 //通知公告

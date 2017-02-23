@@ -66,6 +66,30 @@ message hall_ack_checkTask {
     optional ProtoHeader header = 1;
 }
 
+//已完成，但未领取奖励的任务数
+message hall_req_task_sum {
+    optional ProtoHeader header = 1;
+    optional hall_enum_taskType task_type = 3;  //任务所属游戏
+}
+
+message hall_ack_task_sum {
+    optional ProtoHeader header = 1;
+    optional int32 task_sum = 2;  //已完成普通任务数
+    optional int32 bonus_sum = 3;  //已完成红包任务数
+    optional int32 bonus_next = 4; //距离领取下个红包的局数
+}
+
+//领取红包任务奖励
+message hall_req_checkBonus {
+    optional ProtoHeader header = 1;
+    optional hall_enum_taskType task_type = 2;  //红包所属游戏
+}
+
+message hall_ack_checkBonus {
+    optional ProtoHeader header = 1;
+    optional double give_bonus = 2;  //获得的红包数
+}
+
 // 背包道具列表
 message hall_req_bag_items {
     optional ProtoHeader header = 1;

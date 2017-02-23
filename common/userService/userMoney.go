@@ -11,6 +11,8 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/common/cfg"
 	"fmt"
+	"gopkg.in/mgo.v2/bson"
+	"casino_common/proto/ddproto"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -53,6 +55,20 @@ func GetUserRoomCard(userId uint32) int64 {
 
 func GetUserCoin(userId uint32) int64 {
 	return GetUserMoney(userId, cfg.RKEY_USER_COIN)
+}
+
+//获取用户奖券
+func GetUserTicket(userId uint32) int32 {
+	user := new(ddproto.User)
+	db.C(tableName.DBT_T_USER).Find(bson.M{"id":userId}, user)
+	return user.GetTicket()
+}
+
+//获取用户红包
+func GetUserBonus(userId uint32) float64 {
+	user := new(ddproto.User)
+	db.C(tableName.DBT_T_USER).Find(bson.M{"id":userId}, user)
+	return user.GetBonus()
 }
 
 //craete钻石交易记录
@@ -148,4 +164,33 @@ func INCRUserCOIN(userid uint32, d int64) (int64, error) {
 //减少用户的金币
 func DECRUserCOIN(userid uint32, d int64) (int64, error) {
 	return decrUser(userid, cfg.RKEY_USER_COIN, d)
+}
+
+//增加用户奖券
+func INCRUserTicket(userid uint32, d int32) (int32, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$inc":bson.M{"ticket":d}})
+	ticket := GetUserTicket(userid)
+	return ticket, err
+}
+
+//减少用户奖券
+func DECUserTicket(userid uint32, d int32) (int32, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$dec":bson.M{"ticket":d}})
+	ticket := GetUserTicket(userid)
+	return ticket, err
+}
+
+
+//增加用户红包
+func INCRUserBonus(userid uint32, d float64) (float64, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$inc":bson.M{"bonus":d}})
+	bonus := GetUserBonus(userid)
+	return bonus, err
+}
+
+//减少用户红包
+func DECUserBonus(userid uint32, d float64) (float64, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$dec":bson.M{"bonus":d}})
+	bonus := GetUserBonus(userid)
+	return bonus, err
 }

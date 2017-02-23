@@ -157,18 +157,39 @@ func GetTaskInfo(task_id int32) *TaskInfo {
 	return task_info
 }
 
+//从数据库获取所有的任务信息
+func GetTaskInfoList() []*TaskInfo {
+	task_info := []*TaskInfo{}
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_TASK_INFO).Find(bson.M{}).All(&task_info)
+	})
+	return task_info
+}
+
 //触发任务
 func OnTask(taskType countType.CountType, userId uint32) {
-	for _, task := range GetUserTaskShowList(userId, 0, taskType, "") {
+	//普通任务
+	for _, task := range GetUserTaskShowList(userId, 1, taskType, "") {
 		if task.SumNo != task.TaskSum && task.IsDone {
 			task.IsDone = false
 			task.SetUserState(userId, task.TaskState)
 		}
 		if !task.IsDone && task.Validate != nil{
-			user_task := GetUserTask(userId, task.TaskId)
-			task.Validate(user_task)
-			//更新状态
-			user_task.SetUserState(user_task.UserId, user_task.TaskState)
+			task.Validate(task)
+			if task.IsDone == true {
+				//推送任务完成广播
+			}
+		}
+	}
+	//红包任务
+	for _, task := range GetUserTaskShowList(userId, 2, taskType, "") {
+		log.Println(task.UserId, *task.Task, *task.TaskState)
+		if task.SumNo != task.TaskSum && task.IsDone {
+			task.IsDone = false
+			task.SetUserState(userId, task.TaskState)
+		}
+		if !task.IsDone && task.Validate != nil{
+			task.Validate(task)
 			if task.IsDone == true {
 				//推送任务完成广播
 			}
@@ -235,10 +256,10 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
 			userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			pack.DoUserPropsAdd(userId, ddproto.HallEnumTradeType_TRADE_BONUS, int32(reward.GetAmount()))
+			userService.INCRUserBonus(userId, reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
-			pack.DoUserPropsAdd(userId, ddproto.HallEnumTradeType_TRADE_TICKET, int32(reward.GetAmount()))
+			userService.INCRUserTicket(userId, int32(reward.GetAmount()))
 		default:
 			switch {
 			case reward.GetType() > 200 && reward.GetType() < 300:
