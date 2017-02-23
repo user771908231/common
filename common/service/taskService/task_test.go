@@ -92,7 +92,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Float32(1000),
+					Amount:proto.Float64(1000),
 				},
 			},
 		},TaskInfo{
@@ -105,7 +105,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Float32(1000),
+					Amount:proto.Float64(1000),
 				},
 			},
 		},TaskInfo{
@@ -118,7 +118,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Float32(1000),
+					Amount:proto.Float64(1000),
 				},
 			},
 		},TaskInfo{
@@ -131,7 +131,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Float32(2000),
+					Amount:proto.Float64(2000),
 				},
 			},
 		},TaskInfo{
@@ -144,7 +144,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Float32(2000),
+					Amount:proto.Float64(2000),
 				},
 			},
 		},TaskInfo{
@@ -157,7 +157,7 @@ func TestInsertTaskInfo(t *testing.T) {
 			Reward:[]*ddproto.HallBagItem{
 				&ddproto.HallBagItem{
 					Type:ddproto.HallEnumTradeType_TRADE_COIN.Enum(),
-					Amount:proto.Float32(3000),
+					Amount:proto.Float64(3000),
 				},
 			},
 		},
@@ -173,7 +173,7 @@ func TestInsertTaskInfo(t *testing.T) {
 
 //测试：检查还差多少局领取红包 和 领取红包
 func TestCheckBonus(t *testing.T) {
-	var user_id uint32= 1
+	var user_id uint32 = 13516
 	game_id := ddproto.CommonEnumGame_GID_ZJH
 	//还差多少局领取红包
 	res := GetUserNearBonusTask(user_id, game_id)
@@ -182,10 +182,34 @@ func TestCheckBonus(t *testing.T) {
 		t.Log("还差",num,"局比赛才能领取红包！")
 	}
 	t.Log(res.UserId, *res.TaskInfo, *res.TaskState)
-	//领取红包
-	err := CheckTaskReward(user_id, res.TaskId)
-	t.Log(err)
-	if err == nil {
-		t.Log(*res.Reward[0], "领取红包奖励成功！")
+	////领取红包
+	//err := CheckTaskReward(user_id, res.TaskId)
+	//t.Log(err)
+	//if err == nil {
+	//	t.Log(*res.Reward[0], "领取红包奖励成功！")
+	//}
+}
+
+func TestTaxkSum(t *testing.T) {
+	list_task := GetUserTaskShowList(13516, 1,  "", "zjh")
+	list_bonus := GetUserTaskShowList(13516, 2,  "", "zjh")
+
+	var i,j int32
+	for _, task := range list_task {
+		if task.CateId == 1 {
+			if task.IsDone == true && task.IsCheck == false {
+				i++
+			}
+		}
 	}
+
+	for _, task := range list_bonus{
+		if task.CateId == 2 {
+			if task.IsDone == true && task.IsCheck == false {
+				j++
+			}
+		}
+	}
+
+	t.Log(i,j)
 }
