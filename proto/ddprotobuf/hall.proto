@@ -87,6 +87,7 @@ message hall_req_checkBonus {
 
 message hall_ack_checkBonus {
     optional ProtoHeader header = 1;
+    optional double give_bonus = 2;  //获得的红包数
 }
 
 // 背包道具列表

@@ -168,7 +168,22 @@ func GetTaskInfoList() []*TaskInfo {
 
 //触发任务
 func OnTask(taskType countType.CountType, userId uint32) {
-	for _, task := range GetUserTaskShowList(userId, 0, taskType, "") {
+	//普通任务
+	for _, task := range GetUserTaskShowList(userId, 1, taskType, "") {
+		if task.SumNo != task.TaskSum && task.IsDone {
+			task.IsDone = false
+			task.SetUserState(userId, task.TaskState)
+		}
+		if !task.IsDone && task.Validate != nil{
+			task.Validate(task)
+			if task.IsDone == true {
+				//推送任务完成广播
+			}
+		}
+	}
+	//红包任务
+	for _, task := range GetUserTaskShowList(userId, 2, taskType, "") {
+		log.Println(task.UserId, *task.Task, *task.TaskState)
 		if task.SumNo != task.TaskSum && task.IsDone {
 			task.IsDone = false
 			task.SetUserState(userId, task.TaskState)
