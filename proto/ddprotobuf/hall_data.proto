@@ -92,7 +92,11 @@ enum hall_enum_protoId {
     HALL_PID_GAME_STATE_ACK = 62; //62 获取游戏状态
 
     HALL_PID_TASK_SUM_REQ = 63;  //63 未领取奖励的任务数请求
-    HALL_PID_TASK_SUM_ACK = 64;  //63 未领取奖励的任务数回复
+    HALL_PID_TASK_SUM_ACK = 64;  //64 未领取奖励的任务数回复
+
+    HALL_PID_CHECK_BONUS_REQ = 65;  //65 领取红包请求
+    HALL_PID_CHECK_BONUS_ACK = 66;  //66 领取红包回复
+
 }
 
 //货币与商品类型
