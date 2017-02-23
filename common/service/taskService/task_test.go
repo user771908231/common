@@ -173,7 +173,7 @@ func TestInsertTaskInfo(t *testing.T) {
 
 //测试：检查还差多少局领取红包 和 领取红包
 func TestCheckBonus(t *testing.T) {
-	var user_id uint32 = 13516
+	var user_id uint32 = 13525
 	game_id := ddproto.CommonEnumGame_GID_ZJH
 	//还差多少局领取红包
 	res := GetUserNearBonusTask(user_id, game_id)
@@ -191,8 +191,8 @@ func TestCheckBonus(t *testing.T) {
 }
 
 func TestTaxkSum(t *testing.T) {
-	list_task := GetUserTaskShowList(13516, 1,  "", "zjh")
-	list_bonus := GetUserTaskShowList(13516, 2,  "", "zjh")
+	list_task := GetUserTaskShowList(13525, 1,  "", "zjh")
+	list_bonus := GetUserTaskShowList(13525, 2,  "", "zjh")
 
 	var i,j int32
 	for _, task := range list_task {

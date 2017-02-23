@@ -146,10 +146,12 @@ func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
 			}
 			*msg.Header.Code = 1
 			msg.GiveBonus = &bonus_count
+			list[0].IsCheck = true
+			list[0].SetUserState(list[0].UserId, list[0].TaskState)
 			*msg.Header.Error = fmt.Sprintf("成功领取%d个红包！", bonus_count)
 			return
 		}else {
-			*msg.Header.Code = 2
+			*msg.Header.Code = -2
 			*msg.Header.Error = fmt.Sprintf("再赢%d局比赛才能领红包哦！", list[0].TaskSum - list[0].SumNo)
 			return
 		}
