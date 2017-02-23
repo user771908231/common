@@ -21,13 +21,3 @@ message award_req_onlineInfo {
 message award_ack_onlineInfo {
     optional int64 duration = 1; //下次可以领取的时间间隔
 }
-//请求得到红包奖励
-message redbag_req {
-    optional ProtoHeader header = 1;
-}
-
-message redbag_ack {
-    optional string cash = 1; //奖励红包的金额
-    optional int32 num2Win4OpenRB = 2; //再赢多少局可以开红包
-    optional string totalCash = 3; //总共获得奖励红包的金额
-}
