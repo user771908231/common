@@ -12,6 +12,7 @@ import (
 	"casino_common/common/cfg"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
+	"casino_common/proto/ddproto"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -58,13 +59,15 @@ func GetUserCoin(userId uint32) int64 {
 
 //获取用户奖券
 func GetUserTicket(userId uint32) int32 {
-	user := GetUserById(userId)
+	user := new(ddproto.User)
+	db.C(tableName.DBT_T_USER).Find(bson.M{"id":userId}, user)
 	return user.GetTicket()
 }
 
 //获取用户红包
 func GetUserBonus(userId uint32) float64 {
-	user := GetUserById(userId)
+	user := new(ddproto.User)
+	db.C(tableName.DBT_T_USER).Find(bson.M{"id":userId}, user)
 	return user.GetBonus()
 }
 
