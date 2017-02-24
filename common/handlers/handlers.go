@@ -4,14 +4,13 @@ import (
 	"casino_common/proto/funcsInit"
 	"github.com/name5566/leaf/gate"
 	"casino_common/common/consts"
-	"casino_common/common/log"
 	"casino_common/common/sys"
-	"casino_common/proto/ddproto"
+	//"casino_common/proto/ddproto"
 )
 
 //处理心跳协议
 func HandlerHeartBeat(args []interface{}) {
-	m := args[0].(*ddproto.Heartbeat)
+	//m := args[0].(*ddproto.Heartbeat)
 	a := args[1].(gate.Agent)
 	//回复信息
 	ack := commonNewPorot.NewHeartbeat()
