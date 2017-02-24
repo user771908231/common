@@ -1,3 +1,5 @@
+db.getCollection('t_config_task_info').drop()
+
 db.t_config_task_info.insert(
 {
     "_id" : ObjectId("5879ebd9a513c0bbc83c0f3c"),
