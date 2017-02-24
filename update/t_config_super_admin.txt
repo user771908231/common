@@ -1,3 +1,5 @@
+db.getCollection('t_super_admin').drop()
+
 db.getCollection('t_super_admin').insert({
     "_id" : ObjectId("589af0b70e4041708bb8e4d5"),
     "id" : 10007.0,

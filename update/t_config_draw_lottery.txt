@@ -1,3 +1,5 @@
+db.getCollection('t_config_draw_lottery').drop()
+
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71b"),
