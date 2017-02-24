@@ -168,29 +168,37 @@ func DECRUserCOIN(userid uint32, d int64) (int64, error) {
 
 //增加用户奖券
 func INCRUserTicket(userid uint32, d int32) (int32, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$inc":bson.M{"ticket":d}})
 	ticket := GetUserTicket(userid)
-	return ticket, err
+	ticket_new := ticket + d
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"ticket": ticket_new}})
+
+	return ticket_new, err
 }
 
 //减少用户奖券
 func DECUserTicket(userid uint32, d int32) (int32, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$dec":bson.M{"ticket":d}})
 	ticket := GetUserTicket(userid)
-	return ticket, err
+	ticket_new := ticket - d
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"ticket": ticket_new}})
+
+	return ticket_new, err
 }
 
 
 //增加用户红包
 func INCRUserBonus(userid uint32, d float64) (float64, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$inc":bson.M{"bonus":d}})
 	bonus := GetUserBonus(userid)
-	return bonus, err
+	bonus_new := bonus + d
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"bonus": bonus_new}})
+
+	return bonus_new, err
 }
 
 //减少用户红包
 func DECUserBonus(userid uint32, d float64) (float64, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$dec":bson.M{"bonus":d}})
 	bonus := GetUserBonus(userid)
-	return bonus, err
+	bonus_new := bonus - d
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"bonus": bonus_new}})
+
+	return bonus_new, err
 }
