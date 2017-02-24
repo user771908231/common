@@ -17,7 +17,7 @@ func HandlerHeartBeat(args []interface{}) {
 	ack := commonNewPorot.NewHeartbeat()
 	*ack.Header.Code = consts.ACK_RESULT_SUCC
 	if sys.GAMEENV.DEVMODE {
-		log.T("回复[%v]心跳", m.GetHeader().GetUserId())
+		//log.T("回复[%v]心跳", m.GetHeader().GetUserId())
 	}
 	a.WriteMsg(ack)
 }
