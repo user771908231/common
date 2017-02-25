@@ -8,15 +8,24 @@ import (
 
 //通过链接得到ip
 func GetIP(a gate.Agent) string {
+	ipDefault := "127.0.0.1"
 	if a == nil {
-		return "127.0.0.1"
+		return ipDefault
 	}
+
 	ipi := a.RemoteAddr()
-	ip := ipi.(*net.TCPAddr)
-	iparrs := strings.Split(string(ip.IP), ":")
-	if iparrs != nil && len(iparrs) == 2 {
+	if ipi == nil {
+		return ipDefault
+	}
+	ip := ipi.(net.Addr)
+	if ip == nil {
+		return ipDefault
+	}
+
+	iparrs := strings.Split(ip.String(), ":")
+	if iparrs != nil {
 		return iparrs[0] //返回ip地址，不需要端口
 	} else {
-		return "127.0.0.1"
+		return ipDefault
 	}
 }
