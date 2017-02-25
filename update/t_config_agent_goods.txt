@@ -1,0 +1,11 @@
+db.getCollection('t_agent_goods').drop()
+
+db.getCollection('t_agent_goods').insert({
+    "_id" : ObjectId("58aa56dd6fec9cba7bbab63d"),
+    "name" : "10房卡",
+    "description" : "价值10块钱",
+    "type" : "房卡",
+    "num" : 10.0,
+    "givenum" : 30.0,
+    "price" : 10.0
+})

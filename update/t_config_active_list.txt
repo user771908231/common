@@ -1,3 +1,5 @@
+db.getCollection('t_config_active_list').drop()
+
 db.t_config_active_list.insert(
 {
     "_id" : ObjectId("5879fc0ca513c0bbc83c1138"),

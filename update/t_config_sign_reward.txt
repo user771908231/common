@@ -1,3 +1,5 @@
+db.getCollection('t_config_sign_reward').drop()
+
 db.t_config_sign_reward.insert(
 {
     "_id" : ObjectId("587c8d5de36aeb81eb71a723"),
