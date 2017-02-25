@@ -623,6 +623,8 @@ type DdzSrvUser struct {
 	Sex                 *int32                `protobuf:"varint,20,opt,name=sex" json:"sex,omitempty"`
 	RoomCard            *int32                `protobuf:"varint,21,opt,name=roomCard" json:"roomCard,omitempty"`
 	StatusApplyDissolve *int32                `protobuf:"varint,22,opt,name=statusApplyDissolve" json:"statusApplyDissolve,omitempty"`
+	ScRate              *int32                `protobuf:"varint,23,opt,name=scRate" json:"scRate,omitempty"`
+	JbRate              *int32                `protobuf:"varint,24,opt,name=jbRate" json:"jbRate,omitempty"`
 	XXX_unrecognized    []byte                `json:"-"`
 }
 
@@ -781,6 +783,20 @@ func (m *DdzSrvUser) GetRoomCard() int32 {
 func (m *DdzSrvUser) GetStatusApplyDissolve() int32 {
 	if m != nil && m.StatusApplyDissolve != nil {
 		return *m.StatusApplyDissolve
+	}
+	return 0
+}
+
+func (m *DdzSrvUser) GetScRate() int32 {
+	if m != nil && m.ScRate != nil {
+		return *m.ScRate
+	}
+	return 0
+}
+
+func (m *DdzSrvUser) GetJbRate() int32 {
+	if m != nil && m.JbRate != nil {
+		return *m.JbRate
 	}
 	return 0
 }

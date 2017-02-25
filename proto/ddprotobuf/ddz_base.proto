@@ -78,8 +78,8 @@ enum ddz_enum_protoId {
     DDZ_PID_ONLINEWARD_REQ = 48; //在线奖励
     DDZ_PID_ONLINEWARD_ACK = 49; //在线奖励 回复
 
-    DDZ_PID_REDBAG_REQ = 50; //红包
-    DDZ_PID_REDBAG_ACK = 51; //红包 回复
+//    DDZ_PID_REDBAG_REQ = 50; //红包
+//    DDZ_PID_REDBAG_ACK = 51; //红包 回复
 
     DDZ_PID_REG_REQ = 52; //注册
     DDZ_PID_REG_ACK = 53; //注册 回复
