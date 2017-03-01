@@ -285,10 +285,13 @@ message common_ack_applyDissolveBack {
     optional bool agree = 3; //同意还是拒绝
 }
 
-
-
 //给超时玩家的单播 告知玩家已超时
 message common_ack_timeout {
     optional ProtoHeader header = 1;
 }
 
+//玩家掉线的广播
+message common_bc_userBreak {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+}
