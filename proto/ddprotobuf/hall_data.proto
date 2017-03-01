@@ -230,6 +230,8 @@ message hall_userData {
     optional string headUrl = 13;  //头像
     optional bool isFriend = 14;  //是否为好友
     optional int64 roomCard = 15;  //用户房卡数
+    optional string lastIp = 16;  //上次登录的ip
+    optional int64 lastTime = 17; //上次登录时间
 }
 
 //排行信息
