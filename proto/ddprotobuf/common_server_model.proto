@@ -27,6 +27,7 @@ message User {
     optional int64 regTime = 21;  //注册时间
     optional string regChannel = 22;  //注册渠道
     optional uint32 agentId = 23;  //所属代理商
+    optional string lastIp = 24;  //上次登录的ip
 }
 
 //通知公告
