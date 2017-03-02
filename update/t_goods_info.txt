@@ -7,7 +7,7 @@ db.getCollection('t_goods_info').insert(
     "name" : "3万金币",
     "category" : 1,
     "pricetype" : 2,
-    "price" : 3,
+    "price" : 30,
     "goodstype" : 1,
     "amount" : 30000,
     "discount" : "10折",
@@ -23,7 +23,7 @@ db.getCollection('t_goods_info').insert(
     "name" : "6万金币",
     "category" : 1,
     "pricetype" : 2,
-    "price" : 6,
+    "price" : 60,
     "goodstype" : 1,
     "amount" : 60000,
     "discount" : "10折",
@@ -39,7 +39,7 @@ db.getCollection('t_goods_info').insert(
     "name" : "18万金币",
     "category" : 1,
     "pricetype" : 2,
-    "price" : 18,
+    "price" : 180,
     "goodstype" : 1,
     "amount" : 180000,
     "discount" : "10折",
@@ -55,7 +55,7 @@ db.getCollection('t_goods_info').insert(
     "name" : "30万金币",
     "category" : 1,
     "pricetype" : 2,
-    "price" : 30,
+    "price" : 300,
     "goodstype" : 1,
     "amount" : 300000,
     "discount" : "10折",
@@ -68,12 +68,12 @@ db.getCollection('t_goods_info').insert(
 {
     "_id" : ObjectId("586c6b2549e80a142c527819"),
     "goodsid" : 5,
-    "name" : "68万金币",
+    "name" : "98万金币",
     "category" : 1,
     "pricetype" : 2,
-    "price" : 68,
+    "price" : 680,
     "goodstype" : 1,
-    "amount" : 680000,
+    "amount" : 980000,
     "discount" : "10折",
     "image" : "coin_5",
     "isshow" : true,
@@ -84,12 +84,12 @@ db.getCollection('t_goods_info').insert(
 {
     "_id" : ObjectId("586c6b2549e80a142c52781a"),
     "goodsid" : 6,
-    "name" : "168万金币",
+    "name" : "198万金币",
     "category" : 1,
     "pricetype" : 2,
-    "price" : 168,
+    "price" : 1680,
     "goodstype" : 1,
-    "amount" : 1680000,
+    "amount" : 1980000,
     "discount" : "10折",
     "image" : "coin_6",
     "isshow" : true,
@@ -198,7 +198,7 @@ db.getCollection('t_goods_info').insert(
     "goodsid" : 13,
     "name" : "红包",
     "category" : 3,
-    "pricetype" : 2,
+    "pricetype" : 3,
     "price" : 10,
     "goodstype" : 3,
     "amount" : 1,
@@ -214,8 +214,8 @@ db.getCollection('t_goods_info').insert(
     "goodsid" : 14,
     "name" : "iphone7",
     "category" : 3,
-    "pricetype" : 2,
-    "price" : 5000,
+    "pricetype" : 7,
+    "price" : 500000,
     "goodstype" : 304,
     "amount" : 1,
     "discount" : "10折",
@@ -224,22 +224,7 @@ db.getCollection('t_goods_info').insert(
     "sort" : 2
 }
 )
-db.getCollection('t_goods_info').insert(
-{
-    "_id" : ObjectId("586c6b2549e80a142c527831"),
-    "goodsid" : 15,
-    "name" : "大喇叭",
-    "category" : 4,
-    "pricetype" : 1,
-    "price" : 1000000,
-    "goodstype" : 102,
-    "amount" : 10,
-    "discount" : "10折",
-    "image" : "",
-    "isshow" : true,
-    "sort" : 1
-}
-)
+
 db.getCollection('t_goods_info').insert(
 {
     "_id" : ObjectId("586c6b2549e80a142c527832"),
@@ -247,12 +232,12 @@ db.getCollection('t_goods_info').insert(
     "name" : "房卡",
     "category" : 4,
     "pricetype" : 2,
-    "price" : 1,
+    "price" : 30,
     "goodstype" : 101,
     "amount" : 1,
     "discount" : "10折",
     "image" : "",
     "isshow" : true,
-    "sort" : 2
+    "sort" : 1
 }
 )
