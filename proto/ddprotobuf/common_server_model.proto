@@ -29,6 +29,12 @@ message User {
     optional uint32 agentId = 23;  //所属代理商
     optional string lastIp = 24;  //上次登录的ip
     optional int64 lastTime = 25;  //上次登录时间
+
+    //用户兑换信息
+    optional string realName = 26;  //真实姓名
+    optional string phoneNumber = 27;  //联系电话
+    optional string wxNumber = 28;  //微信号码
+    optional string realAddress = 29;  //真实地址
 }
 
 //通知公告
