@@ -266,3 +266,11 @@ func (c C) Count(query interface{}) (count int, err error) {
 	})
 	return
 }
+
+//删除表
+func (c C)Drop() (err error) {
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).DropCollection()
+	})
+	return
+}
