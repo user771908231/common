@@ -196,3 +196,10 @@ func NewAckTimeOut() *ddproto.CommonAckTimeout {
 	ret.Header = NewHeader()
 	return ret
 }
+
+func NewBCUserBreak() *ddproto.CommonBcUserBreak {
+	ret := new(ddproto.CommonBcUserBreak)
+	ret.Header = NewHeader()
+	ret.UserId = new(uint32)
+	return ret
+}
