@@ -133,15 +133,6 @@ func NewCommonAckNotice() *ddproto.CommonAckNotice {
 	return ret
 }
 
-//红包回复
-func NewAckRedbag() *ddproto.RedbagAck {
-	ret := new(ddproto.RedbagAck)
-	ret.Cash = new(string)
-	ret.Num2Win4OpenRB = new(int32)
-	ret.TotalCash = new(string)
-	return ret
-}
-
 func NewAckEnterAgentMode() *ddproto.CommonAckEnterAgentMode {
 	ret := new(ddproto.CommonAckEnterAgentMode)
 	ret.UserId = new(uint32)
