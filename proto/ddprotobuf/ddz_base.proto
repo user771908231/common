@@ -78,26 +78,23 @@ enum ddz_enum_protoId {
     DDZ_PID_ONLINEWARD_REQ = 48; //在线奖励
     DDZ_PID_ONLINEWARD_ACK = 49; //在线奖励 回复
 
-//    DDZ_PID_REDBAG_REQ = 50; //红包
-//    DDZ_PID_REDBAG_ACK = 51; //红包 回复
+    DDZ_PID_REG_REQ = 50; //注册
+    DDZ_PID_REG_ACK = 51; //注册 回复
 
-    DDZ_PID_REG_REQ = 52; //注册
-    DDZ_PID_REG_ACK = 53; //注册 回复
+    DDZ_PID_ALLOWANCE_REQ = 52; //补助
+    DDZ_PID_ALLOWANCE_ACK = 53; //补助回复
 
-    DDZ_PID_ALLOWANCE_REQ = 54; //补助
-    DDZ_PID_ALLOWANCE_ACK = 55; //补助回复
+    DDZ_PID_KICKOUT_BC = 54; //踢人的广播
 
-    DDZ_PID_KICKOUT_BC = 56; //踢人的广播
+    DDZ_PID_APPLYDISSOVLE_REQ = 55; //申请解散房间的请求
+    DDZ_PID_APPLYDISSOVLE_BC = 56; //玩家申请解散房间请求的广播
 
-    DDZ_PID_APPLYDISSOVLE_REQ = 57; //申请解散房间的请求
-    DDZ_PID_APPLYDISSOVLE_BC = 58; //玩家申请解散房间请求的广播
+    DDZ_PID_APPLYDISSOVLE_BACK_REQ = 57; //玩家是否同意解散房间的请求
+    DDZ_PID_APPLYDISSOVLE_BACK_ACK = 58; //玩家是否同意解散房间的广播
 
-    DDZ_PID_APPLYDISSOVLE_BACK_REQ = 59; //玩家是否同意解散房间的请求
-    DDZ_PID_APPLYDISSOVLE_BACK_ACK = 60; //玩家是否同意解散房间的广播
+    DDZ_PID_TIMEOUT = 59; //给超时玩家发的提示消息
 
-    DDZ_PID_TIMEOUT = 61; //给超时玩家发的提示消息
-
-    DDZ_PID_USERBREAK = 62; //玩家掉线的广播
+    DDZ_PID_USERBREAK = 60; //玩家掉线的广播
 }
 
 enum ddz_enum_errorCode {
