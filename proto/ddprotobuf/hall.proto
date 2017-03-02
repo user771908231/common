@@ -111,6 +111,20 @@ message hall_ack_userData {
     optional hall_userData user = 2;
 }
 
+//完善个人信息
+message hall_req_updateRealData {
+    optional ProtoHeader header = 1;  //user_id
+
+    optional string realName = 2;  //真实姓名
+    optional string phoneNumber = 3;  //联系电话
+    optional string wxNumber = 4;  //微信号码
+    optional string realAddress = 5;  //真实地址
+}
+
+message hall_ack_updateRealData {
+    optional ProtoHeader header = 1;
+}
+
 //======================商城商品列表======================
 //商品列表页面类型
 enum hall_enum_goods_type {

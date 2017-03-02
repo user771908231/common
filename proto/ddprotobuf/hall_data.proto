@@ -232,6 +232,11 @@ message hall_userData {
     optional int64 roomCard = 15;  //用户房卡数
     optional string lastIp = 16;  //上次登录的ip
     optional int64 lastTime = 17; //上次登录时间
+    //用户兑换信息
+    optional string realName = 18;  //真实姓名
+    optional string phoneNumber = 19;  //联系电话
+    optional string wxNumber = 20;  //微信号码
+    optional string realAddress = 21;  //真实地址
 }
 
 //排行信息
