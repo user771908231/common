@@ -31,11 +31,12 @@ enum COMMON_ENUM_RELEASETAG {
 
 //踢人的踢出类型
 enum COMMON_ENUM_KICKOUT {
-    K_TIMEOUT = 1; //超时被踢
-    K_COINUNMATCHED = 2; //金币不符合房间标准
-    K_SYSTEM = 3; //后台系统踢出
-    K_OFFLINE = 4; //离开掉线的踢出
-    K_GAME_BLOCKED = 5; //游戏无法进行的踢出
+    K_COINUNMATCHED = 1; //金币不符合房间标准
+    K_SYSTEM = 2; //后台系统踢出
+    K_OFFLINE = 3; //离开掉线的踢出
+    K_GAME_BLOCKED = 4; //游戏无法进行的踢出
+    K_TIMEOUT_NOTREADY_LOTTERY = 5; //一局结束未准备超时被踢
+    K_TIMEOUT_NOTREADY_ENTERDESK = 6; //进房未准备超时被踢
 }
 
 
