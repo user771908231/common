@@ -96,6 +96,8 @@ enum ddz_enum_protoId {
     DDZ_PID_APPLYDISSOVLE_BACK_ACK = 60; //玩家是否同意解散房间的广播
 
     DDZ_PID_TIMEOUT = 61; //给超时玩家发的提示消息
+
+    DDZ_PID_USERBREAK = 62; //玩家掉线的广播
 }
 
 enum ddz_enum_errorCode {
