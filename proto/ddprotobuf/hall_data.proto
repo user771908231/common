@@ -97,6 +97,8 @@ enum hall_enum_protoId {
     HALL_PID_CHECK_BONUS_REQ = 65;  //65 领取红包请求
     HALL_PID_CHECK_BONUS_ACK = 66;  //66 领取红包回复
 
+    HALL_PID_UPDATE_REAL_DATA_REQ = 67;  //67 更新用户兑换信息请求
+    HALL_PID_UPDATE_REAL_DATA_ACK = 68;  //67 更新用户兑换信息回复
 }
 
 //货币与商品类型
