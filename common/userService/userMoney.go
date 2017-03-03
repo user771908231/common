@@ -182,6 +182,9 @@ func INCRUserTicket(userid uint32, d int32) (int32, error) {
 func DECUserTicket(userid uint32, d int32) (int32, error) {
 	ticket := GetUserTicket(userid)
 	ticket_new := ticket - d
+	if ticket_new < 0 {
+		return ticket, errors.New("奖券余额不足")
+	}
 	user := GetUserById(userid)
 	user.Ticket = proto.Int32(ticket_new)
 	UpdateUser2Mgo(user)
@@ -205,6 +208,9 @@ func INCRUserBonus(userid uint32, d float64) (float64, error) {
 func DECUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus - d
+	if bonus_new < 0 {
+		return bonus, errors.New("红包余额不足")
+	}
 	user := GetUserById(userid)
 	user.Bonus = proto.Float64(bonus_new)
 	UpdateUser2Mgo(user)

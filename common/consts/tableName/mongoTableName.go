@@ -40,4 +40,6 @@ const (
 	DBT_AGENT_GOODS = "t_agent_goods"  //商品信息表
 	DBT_AGENT_RECHARGE_LOG = "t_agent_recharge_log"  //代理商充值记录表
 	DBT_AGENT_SALES_LOG = "t_agent_sales_log"  //代理商销售记录表
+
+	DBT_ADMIN_EXCHANGE_RECORD = "t_admin_exchange_record"  //红包、实物兑换记录表
 )
