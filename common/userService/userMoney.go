@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/proto/ddproto"
+	"github.com/golang/protobuf/proto"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -170,18 +171,22 @@ func DECRUserCOIN(userid uint32, d int64) (int64, error) {
 func INCRUserTicket(userid uint32, d int32) (int32, error) {
 	ticket := GetUserTicket(userid)
 	ticket_new := ticket + d
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"ticket": ticket_new}})
+	user := GetUserById(userid)
+	user.Ticket = proto.Int32(ticket_new)
+	UpdateUser2Mgo(user)
 
-	return ticket_new, err
+	return ticket_new, nil
 }
 
 //减少用户奖券
 func DECUserTicket(userid uint32, d int32) (int32, error) {
 	ticket := GetUserTicket(userid)
 	ticket_new := ticket - d
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"ticket": ticket_new}})
+	user := GetUserById(userid)
+	user.Ticket = proto.Int32(ticket_new)
+	UpdateUser2Mgo(user)
 
-	return ticket_new, err
+	return ticket_new, nil
 }
 
 
@@ -189,16 +194,20 @@ func DECUserTicket(userid uint32, d int32) (int32, error) {
 func INCRUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus + d
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"bonus": bonus_new}})
+	user := GetUserById(userid)
+	user.Bonus = proto.Float64(bonus_new)
+	UpdateUser2Mgo(user)
 
-	return bonus_new, err
+	return bonus_new, nil
 }
 
 //减少用户红包
 func DECUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus - d
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id":userid}, bson.M{"$set": bson.M{"bonus": bonus_new}})
+	user := GetUserById(userid)
+	user.Bonus = proto.Float64(bonus_new)
+	UpdateUser2Mgo(user)
 
-	return bonus_new, err
+	return bonus_new, nil
 }
