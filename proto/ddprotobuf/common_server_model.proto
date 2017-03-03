@@ -22,19 +22,21 @@ message User {
     optional string city = 16; //
     optional int32 sex = 17;
     optional int32 robotType = 18; //机器人类型
-    optional int32 ticket = 19;  //奖券
-    optional double bonus = 20;  //红包
-    optional int64 regTime = 21;  //注册时间
-    optional string regChannel = 22;  //注册渠道
-    optional uint32 agentId = 23;  //所属代理商
-    optional string lastIp = 24;  //上次登录的ip
-    optional int64 lastTime = 25;  //上次登录时间
+    optional int32 ticket = 19; //奖券
+    optional double bonus = 20; //红包
+    optional int64 regTime = 21; //注册时间
+    optional string regChannel = 22; //注册渠道
+    optional uint32 agentId = 23; //所属代理商
+    optional string lastIp = 24; //上次登录的ip
+    optional int64 lastTime = 25; //上次登录时间
 
     //用户兑换信息
-    optional string realName = 26;  //真实姓名
-    optional string phoneNumber = 27;  //联系电话
-    optional string wxNumber = 28;  //微信号码
-    optional string realAddress = 29;  //真实地址
+    optional string realName = 26; //真实姓名
+    optional string phoneNumber = 27; //联系电话
+    optional string wxNumber = 28; //微信号码
+    optional string realAddress = 29; //真实地址
+    optional int32 channelId = 30; //渠道id和渠道string 配置使用
+
 }
 
 //通知公告

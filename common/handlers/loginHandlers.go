@@ -15,20 +15,21 @@ import (
 func HandlerReg(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqReg)
 	a := args[1].(gate.Agent)
-	
+
 	userId := m.GetHeader().GetUserId()
 	regType := m.GetRegType()
+	channel := m.GetChannelId() //渠道id
 	var ack *ddproto.CommonAckReg
 	if regType == int32(ddproto.CommonEnumReg_RET_TYPE_TOURIST) {
 		//游客注册
-		ack = loginService.TouristReg()
+		ack = loginService.TouristReg(channel)
 	} else if regType == int32(ddproto.CommonEnumReg_RET_TYPE_WEIXIN) {
 		//微信注册
 		if userId > 0 {
 			//转账号
 			ack = loginService.TransWxReg(m.GetWxInfo(), userId)
 		} else {
-			ack = loginService.WxReg(m.GetWxInfo())
+			ack = loginService.WxReg(m.GetWxInfo(),channel)
 		}
 	} else {
 
