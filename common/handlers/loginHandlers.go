@@ -15,8 +15,8 @@ import (
 func HandlerReg(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqReg)
 	a := args[1].(gate.Agent)
+	
 	userId := m.GetHeader().GetUserId()
-
 	regType := m.GetRegType()
 	var ack *ddproto.CommonAckReg
 	if regType == int32(ddproto.CommonEnumReg_RET_TYPE_TOURIST) {
