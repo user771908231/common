@@ -71,3 +71,8 @@ message TUserTask {
     optional int32 awardId = 4; //奖励的记录id，如果奖励的记录id <1000 表示没有领取奖励
 }
 
+//推送协议
+message Push {
+    optional uint32 id = 1;  //转发的用户
+    optional bytes data = 2;  //转发的数据
+}
