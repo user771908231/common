@@ -29,7 +29,7 @@ func HandlerReg(args []interface{}) {
 			//转账号
 			ack = loginService.TransWxReg(m.GetWxInfo(), userId)
 		} else {
-			ack = loginService.WxReg(m.GetWxInfo(),channel)
+			ack = loginService.WxReg(m.GetWxInfo(), channel)
 		}
 	} else {
 
@@ -47,7 +47,7 @@ func HandlerReg(args []interface{}) {
 func HandlerGame_Login(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqGameLogin)
 	a := args[1].(gate.Agent)
-	log.T("请求handlerGame_Login  m[%v]", m)
+	log.T("请求handlerGame_Login[%v]  登录IP[%v]", m, a.RemoteAddr())
 
 	//调用登录方法
 	user, err := loginService.DoLogin(m.GetWxInfo(), m.GetUserId())
