@@ -61,14 +61,14 @@ func NewRecord(userId uint32, goods_type ddproto.HallEnumTradeType, amount float
 	if goods_type > 300 && goods_type < 400 && user.GetRealAddress() == "" {
 		return nil, errors.New("请填写收货地址！")
 	}
-	if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS {
-		amount = userService.GetUserBonus(userId)
-		if amount < 10 {
-			return nil, errors.New("满10个红包才能兑换！")
-		}
-		//扣除红包数
-		userService.DECUserBonus(userId, amount)
-	}
+	//if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS {
+	//	amount = userService.GetUserBonus(userId)
+	//	if amount < 10 {
+	//		return nil, errors.New("满10个红包才能兑换！")
+	//	}
+	//	//扣除红包数
+	//	userService.DECUserBonus(userId, amount)
+	//}
 	new_record := &ExchangeRecord{
 		Type: goods_type,
 		Amount: amount,
