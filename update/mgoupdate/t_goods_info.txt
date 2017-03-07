@@ -228,12 +228,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 16,
-    "name" : "25红包",
+    "name" : "50红包",
     "category" : 3,
     "pricetype" : 3,
-    "price" : 25,
+    "price" : 50,
     "goodstype" : 3,
-    "amount" : 25,
+    "amount" : 50,
     "discount" : "10折",
     "image" : "coin_6",
     "isshow" : true,
@@ -243,12 +243,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 17,
-    "name" : "50红包",
+    "name" : "100红包",
     "category" : 3,
     "pricetype" : 3,
-    "price" : 50,
+    "price" : 100,
     "goodstype" : 3,
-    "amount" : 50,
+    "amount" : 100,
     "discount" : "10折",
     "image" : "coin_6",
     "isshow" : true,

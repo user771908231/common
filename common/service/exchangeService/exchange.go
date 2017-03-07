@@ -17,21 +17,15 @@ const (
 	PROCESS_ING ExchangeState = 1 //"审核中"
 	PROCESS_FALSE ExchangeState = 2 //"申请被拒"
 	PROCESS_TRUE ExchangeState = 3 //"申请通过"
-	SEND_ING ExchangeState = 4 //"发放中"
-	SEND_DONE ExchangeState = 5 //"已发放"
 )
 
 func (s ExchangeState) Name() string {
 	switch int32(s) {
 	case 1:
-		return "审核中"
+		return "待审核"
 	case 2:
-		return "申请被拒"
+		return "已被拒"
 	case 3:
-		return "申请通过"
-	case 4:
-		return "发放中"
-	case 5:
 		return "已发放"
 	}
 	return "未知状态"
