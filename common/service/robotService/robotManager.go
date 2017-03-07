@@ -9,6 +9,7 @@ import (
 	"casino_common/common/log"
 	"casino_common/utils/numUtils"
 	"sync/atomic"
+	"casino_common/utils/rand"
 )
 
 type RobotsMgrApi interface {
@@ -100,9 +101,10 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	rm.Lock()
 	defer rm.Unlock()
 
-	for _, r := range rm.robots {
-		if r.IsAvailable() {
-			r.available = false
+	randIndex := rand.Rand(0, rm.robotsAbleCount)
+	for i := 0; i < int(rm.robotsAbleCount); i++ {
+		r := rm.robots[(i+int(randIndex))%int(rm.robotsAbleCount)]
+		if r.available {
 			return r
 		}
 	}
