@@ -101,9 +101,10 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	rm.Lock()
 	defer rm.Unlock()
 
-	randIndex := rand.Rand(0, rm.robotsAbleCount)
+	tall := len(rm.robots)
+	randIndex := rand.Rand(0, int32(tall))
 	for i := 0; i < int(rm.robotsAbleCount); i++ {
-		r := rm.robots[(i+int(randIndex))%int(rm.robotsAbleCount)]
+		r := rm.robots[(i+int(randIndex))%tall]
 		if r.available {
 			return r
 		}

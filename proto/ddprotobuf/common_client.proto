@@ -73,7 +73,7 @@ message common_req_reg {
     optional int32 regType = 2; //注册类型:1,游客2,微信
     optional WeixinInfo wxInfo = 3; //微信登录信息，如果是游客注册，则不需要填写此信息
     optional int32 clientOSType = 4; //1=iOS 2=Android 3=web
-    optional int32 channelId = 5; //渠道id
+    optional string channelId = 5; //渠道
 }
 
 //回复
