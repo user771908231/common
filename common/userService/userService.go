@@ -18,7 +18,7 @@ import (
 	2,保存mongo
 	3,缓存到redis
  */
-func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string, channel int32) (*ddproto.User, error) {
+func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string, channel string) (*ddproto.User, error) {
 	log.T("创建新用户，并且保存到mgo")
 	//1,创建user获得自增主键
 	id, err := db.GetNextSeq(tableName.DBT_T_USER)
@@ -44,7 +44,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.RegTime = proto.Int64(time.Now().Unix())
 	user.RegChannel = proto.String("weixin")
 	user.AgentId = proto.Uint32(0)
-	user.ChannelId = proto.Int32(channel)
+	user.RegChannel = proto.String(channel)
 	//初始化默认值
 
 	//2保存数据到数据库

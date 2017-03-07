@@ -31,7 +31,7 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 				return nil, errors.New("新增用户失败...")
 			}
 			//如果数据库中不存在用户，那么重新生成一个user
-			return userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), 0)
+			return userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), "")
 		}
 	}
 
@@ -49,7 +49,7 @@ func DoLoginSuccess(userId uint32) error {
 }
 
 //游客注册
-func TouristReg(channel int32) *ddproto.CommonAckReg {
+func TouristReg(channel string) *ddproto.CommonAckReg {
 	//设置游客昵称昵称
 	nick, _ := numUtils.Int2String(rand.Rand(10000, 100000))
 	nickName := strings.Join([]string{"游客", nick}, "")
@@ -70,7 +70,7 @@ func TouristReg(channel int32) *ddproto.CommonAckReg {
 }
 
 //微信注册
-func WxReg(weixin *ddproto.WeixinInfo, channelId int32) *ddproto.CommonAckReg {
+func WxReg(weixin *ddproto.WeixinInfo, channelId string) *ddproto.CommonAckReg {
 	//检测参数
 	if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
 		log.E("玩家注册的时候失败，因为微信的信息[%v]不够...", weixin)

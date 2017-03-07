@@ -62,7 +62,7 @@ func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 //新创建一个机器人，并保存到数据库
 func (rm *RobotsManager) NewRobotAndSave() *Robot {
 	//1,注册普通用户
-	user, err := userService.NewUserAndSave("", "", "", "", 1, "", 0)
+	user, err := userService.NewUserAndSave("", "", "", "", 1, "", "robot")
 	if err != nil || user == nil {
 		return nil
 	}
