@@ -2,7 +2,7 @@ package utils
 
 import (
 	"casino_common/proto/ddproto"
-	"casino_common/common/log"
+	//"casino_common/common/log"
 )
 
 /*
@@ -11,7 +11,7 @@ import (
 	roomType : 金币场 还是朋友桌
  */
 func GetGameName(gid int32, roomType int32) string {
-	log.T("查询游戏的名字 gid:%v roomType %v", gid, roomType)
+	//log.T("查询游戏的名字 gid:%v roomType %v", gid, roomType)
 	if gid == int32(ddproto.CommonEnumGame_GID_TEXAS) {
 		return "德州扑克"
 	} else if gid == int32(ddproto.CommonEnumGame_GID_MAHJONG) {
