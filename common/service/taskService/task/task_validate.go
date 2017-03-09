@@ -9,7 +9,7 @@ import (
 //公共统计类型的验证函数
 func ValidateCount(user_task *taskService.UserTask) {
 	counter := countService.GetUserCounterByType(user_task.UserId, user_task.TaskType)
-	user_task.SumNo = counter.AllCount
+	user_task.SumNo = counter.DayCount
 	if user_task.SumNo >= user_task.TaskSum {
 		user_task.SumNo = user_task.TaskSum
 		user_task.IsDone = true

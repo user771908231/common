@@ -267,6 +267,23 @@ func (c C) Count(query interface{}) (count int, err error) {
 	return
 }
 
+//管道
+func (c C)PipeAll(query interface{}, result interface{}) (err error) {
+	Query(func(mgo *mgo.Database) {
+		pipe := mgo.C(string(c)).Pipe(query)
+		err = pipe.All(result)
+	})
+	return
+}
+//管道
+func (c C)Pipe(query interface{}, result interface{}) (err error) {
+	Query(func(mgo *mgo.Database) {
+		pipe := mgo.C(string(c)).Pipe(query)
+		err = pipe.One(result)
+	})
+	return
+}
+
 //删除表
 func (c C)Drop() (err error) {
 	Query(func(mgo *mgo.Database) {
