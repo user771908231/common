@@ -26,7 +26,7 @@ func (s ExchangeState) Name() string {
 	case 2:
 		return "已被拒"
 	case 3:
-		return "已发放"
+		return "已通过"
 	}
 	return "未知状态"
 }
