@@ -157,6 +157,11 @@ func SelectByKV(dbt string, key string, value interface{}, obj interface{}) erro
 	return err
 }
 
+func CloseMGO() {
+	log.Release("mgo close...")
+	mongoConfig.dialc.Close()
+}
+
 //模拟类似ThinkPHP的M()方法
 type C string
 
@@ -268,7 +273,7 @@ func (c C) Count(query interface{}) (count int, err error) {
 }
 
 //删除表
-func (c C)Drop() (err error) {
+func (c C) Drop() (err error) {
 	Query(func(mgo *mgo.Database) {
 		err = mgo.C(string(c)).DropCollection()
 	})
