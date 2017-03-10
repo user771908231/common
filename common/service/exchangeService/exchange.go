@@ -34,16 +34,16 @@ func (s ExchangeState) Name() string {
 //兑换记录
 type ExchangeRecord struct {
 	Id          bson.ObjectId             `bson:"_id"` //编号
-	UserId      uint32                    //用户id
-	Type        ddproto.HallEnumTradeType //兑换商品的类型
-	Amount      float64                   //兑换数量
-	Name        string                    //姓名
-	Phone       string                    //电话
-	WxNumber    string                    //微信号码
-	Address     string                    //收货地址
-	Status      ExchangeState             //审核状态
-	RequestTime time.Time                 //申请时间
-	ProcessTime time.Time                 //审核时间
+	UserId      uint32                                 //用户id
+	Type        ddproto.HallEnumTradeType              //兑换商品的类型
+	Money       float64                                //兑换数量
+	Name        string                                 //姓名
+	Phone       string                                 //电话
+	WxNumber    string                                 //微信号码
+	Address     string                                 //收货地址
+	Status      ExchangeState                          //审核状态
+	RequestTime time.Time                              //申请时间
+	ProcessTime time.Time                              //审核时间
 }
 
 //新兑换记录
@@ -65,7 +65,7 @@ func NewRecord(userId uint32, goods_type ddproto.HallEnumTradeType, amount float
 	//}
 	new_record := &ExchangeRecord{
 		Type: goods_type,
-		Amount: amount,
+		Money: amount,
 		UserId: userId,
 		Name: user.GetRealName(),
 		Phone: user.GetPhoneNumber(),
