@@ -1,22 +1,22 @@
 package pushService
 
 import (
-	//"net"
+	"net"
 	"casino_common/proto/ddproto"
 	"gopkg.in/fatih/pool.v2"
-	//"casino_hall/conf"
+	"casino_hall/conf"
 )
 
 func init() {
-	//todo 此处注释以便单机运行
-	//factory := func() (net.Conn, error) {
-	//	return net.Dial("tcp", conf.Server.TCPAddr)
-	//}
-	//var err error = nil
-	//PoolStack, err = pool.NewChannelPool(5, 30, factory)
-	//if err != nil {
-	//	panic("pool init fail.")
-	//}
+	//此处注释以便单机运行
+	factory := func() (net.Conn, error) {
+		return net.Dial("tcp", conf.Server.TCPAddr)
+	}
+	var err error = nil
+	PoolStack, err = pool.NewChannelPool(5, 30, factory)
+	if err != nil {
+		panic("pool init fail.")
+	}
 }
 
 var PoolStack pool.Pool
