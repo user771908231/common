@@ -28,7 +28,6 @@ enum COMMON_ENUM_RELEASETAG {
     R_APPLE_VERIFY = 2; //苹果审核使用版本
 }
 
-
 //踢人的踢出类型
 enum COMMON_ENUM_KICKOUT {
     K_COINUNMATCHED = 1; //金币不符合房间标准
@@ -39,10 +38,15 @@ enum COMMON_ENUM_KICKOUT {
     K_TIMEOUT_NOTREADY_ENTERDESK = 6; //进房未准备超时被踢
 }
 
-
 //玩家申请解散房间的操作类型
 enum COMMON_ENUM_APPLYDISSOLVE {
     AD_AGREE = 1; //同意
     AD_REFUSE = 2; //拒绝
     AD_NOACT = 3; //没操作
+}
+
+//按钮的类型
+enum BTN_TYPE {
+    BTNTYPE_NEWUSERBUTTON = 1; // 新用户奖励按钮
+    BTNTYPE_SHARELINKTIMELINE = 2; //  分享到朋友圈按钮
 }
