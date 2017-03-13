@@ -83,6 +83,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_bc_userBreak from common_client.proto
 
+// Ignoring public import of common_req_clickStatistic from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto

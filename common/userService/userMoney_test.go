@@ -16,7 +16,7 @@ func TestINCRUserCOIN(t *testing.T) {
 	//10168
 	//10169
 	//10170
-	b, e := INCRUserCOIN(11569, 1000)
+	b, e := INCRUserCOIN(13702, 1000000)
 	if e != nil {
 		t.Logf("出错%v", e)
 	} else {
@@ -25,7 +25,7 @@ func TestINCRUserCOIN(t *testing.T) {
 }
 
 func TestGetUserDiamond(t *testing.T) {
-	var userId uint32 = 10933
+	var userId uint32 = 13702
 
 	mongUser := userDao.FindUserById(userId)
 	t.Logf("用mongod user :  %v", mongUser)
