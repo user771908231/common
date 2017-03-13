@@ -96,7 +96,7 @@ db.getCollection('t_goods_info').insert(
     "name" : "3钻石",
     "category" : 2,
     "pricetype" : 5,
-    "price" : 3,
+    "price" : 0.01,
     "goodstype" : 2,
     "amount" : 3,
     "discount" : "10折",
