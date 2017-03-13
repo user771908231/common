@@ -45,6 +45,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.RegChannel = proto.String("weixin")
 	user.AgentId = proto.Uint32(0)
 	user.RegChannel = proto.String(channel)
+	user.NewUserAward = proto.Bool(true) //注册之后是有新手奖励的,领取奖励之后设置为false
 	//初始化默认值
 
 	//2保存数据到数据库
@@ -132,7 +133,6 @@ func UpdateUser2MgoById(userId uint32) {
 func UpdateUser2Mgo(u *ddproto.User) {
 	userDao.UpdateUser2Mgo(u)
 	SaveUser2Redis(u) //保存user到redis
-
 }
 
 //初始化redis中用户的金额的值

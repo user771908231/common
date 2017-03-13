@@ -102,6 +102,8 @@ enum hall_enum_protoId {
 
     HALL_PID_PUSH_REQ = 69; //推送协议（服务器间通信用）
     HALL_PID_REQ_COMMONCLICKSTATISTIC = 70; //统计按钮点击
+    HALL_PID_REQ_AWARDGETNEWUSER = 71; //获取新手奖励红包
+    HALL_PID_ACK_AWARDGETNEWUSER = 72; //返回获取新手奖励红包的ack
 }
 
 //货币与商品类型

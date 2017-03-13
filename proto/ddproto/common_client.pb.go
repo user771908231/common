@@ -73,6 +73,8 @@ It has these top-level messages:
 	WardAckOnline
 	AwardReqOnlineInfo
 	AwardAckOnlineInfo
+	AwardReqGetNewUser
+	AwardAckGetNewUser
 	PayBaseProduct
 	PayBasePaymodel
 	PayBaseDetails
