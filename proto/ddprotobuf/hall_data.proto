@@ -91,17 +91,17 @@ enum hall_enum_protoId {
     HALL_PID_GAME_STATE_REQ = 61; //61 获取游戏状态
     HALL_PID_GAME_STATE_ACK = 62; //62 获取游戏状态
 
-    HALL_PID_TASK_SUM_REQ = 63;  //63 未领取奖励的任务数请求
-    HALL_PID_TASK_SUM_ACK = 64;  //64 未领取奖励的任务数回复
+    HALL_PID_TASK_SUM_REQ = 63; //63 未领取奖励的任务数请求
+    HALL_PID_TASK_SUM_ACK = 64; //64 未领取奖励的任务数回复
 
-    HALL_PID_CHECK_BONUS_REQ = 65;  //65 领取红包请求
-    HALL_PID_CHECK_BONUS_ACK = 66;  //66 领取红包回复
+    HALL_PID_CHECK_BONUS_REQ = 65; //65 领取红包请求
+    HALL_PID_CHECK_BONUS_ACK = 66; //66 领取红包回复
 
-    HALL_PID_UPDATE_REAL_DATA_REQ = 67;  //67 更新用户兑换信息请求
-    HALL_PID_UPDATE_REAL_DATA_ACK = 68;  //67 更新用户兑换信息回复
+    HALL_PID_UPDATE_REAL_DATA_REQ = 67; //67 更新用户兑换信息请求
+    HALL_PID_UPDATE_REAL_DATA_ACK = 68; //67 更新用户兑换信息回复
 
-    HALL_PID_PUSH_REQ = 69;  //推送协议（服务器间通信用）
-    HALL_PID_REQ_COMMONCLICKSTATISTIC = 70;//统计按钮点击
+    HALL_PID_PUSH_REQ = 69; //推送协议（服务器间通信用）
+    HALL_PID_REQ_COMMONCLICKSTATISTIC = 70; //统计按钮点击
 }
 
 //货币与商品类型
@@ -202,7 +202,7 @@ message hall_item_task {
 
 //任务类型
 enum hall_enum_taskType {
-    TYPE_HALL = 0;  //大厅
+    TYPE_HALL = 0; //大厅
     TYPE_MJ = 1; //麻将
     TYPE_DDZ = 2; //斗地主
     TYPE_ZJH = 3; //炸金花
@@ -232,16 +232,16 @@ message hall_userData {
     optional double userRedBag = 10; //用户红包金额
     optional int64 userLotteryTicket = 11; //用户奖券
     optional bool sex = 12; //性别
-    optional string headUrl = 13;  //头像
-    optional bool isFriend = 14;  //是否为好友
-    optional int64 roomCard = 15;  //用户房卡数
-    optional string lastIp = 16;  //上次登录的ip
+    optional string headUrl = 13; //头像
+    optional bool isFriend = 14; //是否为好友
+    optional int64 roomCard = 15; //用户房卡数
+    optional string lastIp = 16; //上次登录的ip
     optional int64 lastTime = 17; //上次登录时间
     //用户兑换信息
-    optional string realName = 18;  //真实姓名
-    optional string phoneNumber = 19;  //联系电话
-    optional string wxNumber = 20;  //微信号码
-    optional string realAddress = 21;  //真实地址
+    optional string realName = 18; //真实姓名
+    optional string phoneNumber = 19; //联系电话
+    optional string wxNumber = 20; //微信号码
+    optional string realAddress = 21; //真实地址
 }
 
 //排行信息
