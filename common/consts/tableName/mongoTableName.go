@@ -9,8 +9,8 @@ const (
 	DBT_T_USER_DIAMOND_DETAILS string = "t_user_diamond_details" //钻石交易记录
 	DBT_T_TH_NOTICE            string = "t_th_notice"            //公告
 	DBT_T_RECHARGE_DETAILS     string = "t_recharge_details"     //充值记录
-	DBT_T_ACTIVE_LIST          string = "t_config_active_list"           //活动列表
-	DBT_T_TASK_INFO            string = "t_config_task_info"            //公共任务信息表
+	DBT_T_ACTIVE_LIST          string = "t_config_active_list"   //活动列表
+	DBT_T_TASK_INFO            string = "t_config_task_info"     //公共任务信息表
 	DBT_T_USER_TASK            string = "t_user_task"            //用户任务状态表
 	DBT_T_USER_BAG             string = "t_user_bag"             //用户背包道具表
 	DBT_T_MAIL_CONTENT         string = "t_mail_content"         //公共邮件表
@@ -21,11 +21,11 @@ const (
 	DBT_T_GOODS_INFO           string = "t_goods_info"           //商品信息表
 	DBT_T_CONFIG_SYS           string = "t_config_sys"           //系统的配置表
 	DBT_T_USER_ATTACH          string = "t_user_attach"          //用户签到/抽奖/补助 领取记录表
-	DBT_T_DRAW_LOTTERY         string = "t_config_draw_lottery"         //转盘物品信息表
-	DBT_T_SIGN_REWARD          string = "t_config_sign_reward"           //签到奖励表
-	DBT_T_GAME_LOG             string = "t_game_log"              //游戏记录表
-	DBT_T_GAME_COUNT             string = "t_game_count"              //游戏记录表
-	DBT_T_GAME_DAY_COUNT             string = "t_game_day_count"              //游戏记录表
+	DBT_T_DRAW_LOTTERY         string = "t_config_draw_lottery"  //转盘物品信息表
+	DBT_T_SIGN_REWARD          string = "t_config_sign_reward"   //签到奖励表
+	DBT_T_GAME_LOG             string = "t_game_log"             //游戏记录表
+	DBT_T_GAME_COUNT           string = "t_game_count"           //游戏记录表
+	DBT_T_GAME_DAY_COUNT       string = "t_game_day_count"       //游戏记录表
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
 	DBT_MJ_DESK_ROUND       = "t_mj_desk_round"     //一把麻将结束
@@ -37,12 +37,15 @@ const (
 	//扎金花
 
 	//代理充值系统
-	DBT_AGENT_GOODS = "t_agent_goods"  //商品信息表
-	DBT_AGENT_RECHARGE_LOG = "t_agent_recharge_log"  //代理商充值记录表
-	DBT_AGENT_SALES_LOG = "t_agent_sales_log"  //代理商销售记录表
-	DBT_AGENT_APPLY_LOG = "t_agent_apply_log"  //代理商申请记录表
-	DBT_AGENT_REBATE_LOG = "t_agent_rebate_log"  //代理商领取返利记录表
+	DBT_AGENT_GOODS        = "t_agent_goods"        //商品信息表
+	DBT_AGENT_RECHARGE_LOG = "t_agent_recharge_log" //代理商充值记录表
+	DBT_AGENT_SALES_LOG    = "t_agent_sales_log"    //代理商销售记录表
+	DBT_AGENT_APPLY_LOG    = "t_agent_apply_log"    //代理商申请记录表
+	DBT_AGENT_REBATE_LOG   = "t_agent_rebate_log"   //代理商领取返利记录表
 
-	DBT_ADMIN_EXCHANGE_RECORD = "t_admin_exchange_record"  //红包、实物兑换记录表
+	DBT_ADMIN_EXCHANGE_RECORD = "t_admin_exchange_record" //红包、实物兑换记录表
+
+	//统计相关的数据库表名字
+	DBT_STATISTIC_BTN_CLICK = "T_statistic_btn_click" //数据库的表名字
 
 )
