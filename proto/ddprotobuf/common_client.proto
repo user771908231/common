@@ -99,6 +99,7 @@ message common_ack_gameLogin {
     optional int64 chip = 4; // 用户钻石余额
     optional int64 coin = 5; // 用户金币剩余
     optional int64 roomCard = 6; // 用户房卡的数量
+    optional bool newUserAward = 7; //新用户的奖励
 }
 
 //请求游戏状态

@@ -65,6 +65,7 @@ func HandlerGame_Login(args []interface{}) {
 		*ack.Chip = user.GetDiamond()             //玩家的钻石信息
 		*ack.Coin = user.GetCoin()                //玩家的金币信息
 		ack.RoomCard = user.RoomCard              //房卡的信息
+		ack.NewUserAward = user.NewUserAward      //是否有新手奖励：如果用户领取之后，需要更新redis和mgo
 		a.WriteMsg(ack)
 		loginService.DoLoginSuccess(user.GetId())
 	}
