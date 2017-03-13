@@ -17,6 +17,7 @@ const (
 	PROCESS_ING ExchangeState = 1 //"审核中"
 	PROCESS_FALSE ExchangeState = 2 //"申请被拒"
 	PROCESS_TRUE ExchangeState = 3 //"申请通过"
+	PROCESS_SENDED ExchangeState = 4  //"已发放"
 )
 
 func (s ExchangeState) Name() string {
@@ -27,6 +28,8 @@ func (s ExchangeState) Name() string {
 		return "已被拒"
 	case 3:
 		return "已通过"
+	case 4:
+		return "已发放"
 	}
 	return "未知状态"
 }

@@ -8,6 +8,7 @@ import (
 )
 
 func init() {
+	//此处注释以便单机运行
 	factory := func() (net.Conn, error) {
 		return net.Dial("tcp", conf.Server.TCPAddr)
 	}
