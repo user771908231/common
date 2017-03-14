@@ -4,13 +4,13 @@ import (
 	"net"
 	"casino_common/proto/ddproto"
 	"gopkg.in/fatih/pool.v2"
-	"casino_hall/conf"
+	"casino_super/conf"
 )
 
 func init() {
 	//此处注释以便单机运行
 	factory := func() (net.Conn, error) {
-		return net.Dial("tcp", conf.Server.TCPAddr)
+		return net.Dial("tcp", conf.Server.HallTcpAddr)
 	}
 	var err error = nil
 	PoolStack, err = pool.NewChannelPool(5, 30, factory)
