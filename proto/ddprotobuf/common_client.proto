@@ -301,5 +301,5 @@ message common_bc_userBreak {
 //---------------------------------------------常用统计信息---------------------------------------------
 message common_req_clickStatistic {
     optional ProtoHeader header = 1;
-    optional int32 BtnId = 2; //按钮点击统计
+    optional BTN_TYPE BtnId = 2; //按钮点击统计
 }

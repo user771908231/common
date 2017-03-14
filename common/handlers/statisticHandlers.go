@@ -12,5 +12,5 @@ func HandlerClickStatistic(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqClickStatistic)
 	a := args[1].(gate.Agent)
 	c := statisticsService.NewDefaultBtnClickCounter()
-	c.C(m.GetHeader().GetUserId(), agentUtils.GetIP(a), m.GetBtnId(), time.Now())
+	c.C(m.GetHeader().GetUserId(), agentUtils.GetIP(a), int32(m.GetBtnId()), time.Now())
 }

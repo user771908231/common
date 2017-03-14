@@ -49,4 +49,5 @@ enum COMMON_ENUM_APPLYDISSOLVE {
 enum BTN_TYPE {
     BTNTYPE_NEWUSERBUTTON = 1; // 新用户奖励按钮
     BTNTYPE_SHARELINKTIMELINE = 2; //  分享到朋友圈按钮
+    REDBAGSHAR = 3; //  领取游戏内红包奖励后分享到朋友圈
 }
