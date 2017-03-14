@@ -23,17 +23,9 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 		return user, nil
 	} else if weixin != nil {
 		log.T("微信注册【%v】登录..", userId)
-		//微信不等于空的情况,表示是新用户
-		//1,首先通过weixinInfo 在数据库中查找 用户是否存在，如果用户存在，则表示，登陆成功
 		user = userService.GetUserByUnionId(weixin.GetUnionId())
 		if user == nil {
 			return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败")
-			//表示数据库中不存在次用户，新增加一个人后返回
-			//if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
-			//	return nil, errors.New("新增用户失败...")
-			//}
-			//如果数据库中不存在用户，那么重新生成一个user
-			//return userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), "")
 		}
 	}
 
