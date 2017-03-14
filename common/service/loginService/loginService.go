@@ -3,13 +3,14 @@ package loginService
 import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/userService"
-	"errors"
 	"casino_common/common/service/signService"
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
 	"casino_common/utils/numUtils"
 	"casino_common/utils/rand"
 	"strings"
+	"casino_common/common/Error"
+	"casino_common/common/consts"
 )
 
 //做登录的操作...
@@ -26,12 +27,13 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 		//1,首先通过weixinInfo 在数据库中查找 用户是否存在，如果用户存在，则表示，登陆成功
 		user = userService.GetUserByUnionId(weixin.GetUnionId())
 		if user == nil {
+			return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败")
 			//表示数据库中不存在次用户，新增加一个人后返回
-			if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
-				return nil, errors.New("新增用户失败...")
-			}
+			//if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
+			//	return nil, errors.New("新增用户失败...")
+			//}
 			//如果数据库中不存在用户，那么重新生成一个user
-			return userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), "")
+			//return userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), "")
 		}
 	}
 
@@ -83,6 +85,8 @@ func WxReg(weixin *ddproto.WeixinInfo, channelId string) *ddproto.CommonAckReg {
 	user := userService.GetUserByUnionId(weixin.GetUnionId())
 	if user == nil {
 		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), channelId)
+	} else {
+		log.W("玩家[%v],unionId[%v]已经注册成功了，不需要重复注册", user.GetId(), user.GetUnionId())
 	}
 
 	if user == nil {

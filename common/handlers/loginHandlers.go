@@ -9,6 +9,7 @@ import (
 	"casino_common/common/service/loginService"
 	"casino_common/common/sessionService"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/Error"
 )
 
 //注册的接口
@@ -44,6 +45,7 @@ func HandlerReg(args []interface{}) {
 	a.WriteMsg(ack)
 }
 
+//登录的逻辑
 func HandlerGame_Login(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqGameLogin)
 	a := args[1].(gate.Agent)
@@ -52,9 +54,10 @@ func HandlerGame_Login(args []interface{}) {
 	//调用登录方法
 	user, err := loginService.DoLogin(m.GetWxInfo(), m.GetUserId())
 	if err != nil || user == nil {
-		log.E("登录出现出错..")
+		log.E("玩家[%v]登录出现出错..", m)
 		ack := commonNewPorot.NewCommonAckGameLogin()
-		*ack.Header.Code = consts.ACK_RESULT_ERROR
+		*ack.Header.Code = Error.GetErrorCode(err)
+		ack.Header.Error = proto.String(Error.GetErrorMsg(err))
 		a.WriteMsg(ack)
 	} else {
 		//返回登陆成功的结果
