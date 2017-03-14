@@ -105,6 +105,8 @@ var _ = math.Inf
 
 // Ignoring public import of BTN_TYPE from common_enum.proto
 
+// Ignoring public import of COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM from common_enum.proto
+
 type VersionInfo struct {
 	FileId           *int32 `protobuf:"varint,1,opt,name=fileId" json:"fileId,omitempty"`
 	FileVer          *int32 `protobuf:"varint,2,opt,name=fileVer" json:"fileVer,omitempty"`
