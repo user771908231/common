@@ -5,6 +5,8 @@ import (
 	"casino_common/common/model/userDao"
 	"casino_common/common/cfg"
 	"casino_common/test"
+	"casino_server/service/userService"
+	"casino_common/utils/redisUtils"
 )
 
 func init() {
@@ -54,6 +56,5 @@ func TestSyncUserMoney(t *testing.T) {
 func TestUserInfo(t *testing.T) {
 	mongUser := userDao.FindUserByUnionId("oKKIfxG1i1CzbjDn-KlT50B3Pcxg")
 	t.Log("user:", mongUser)
-
 	//userDao.
 }
