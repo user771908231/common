@@ -50,3 +50,10 @@ func TestSyncUserMoney(t *testing.T) {
 	SyncReidsUserMoney(user)
 	t.Logf("玩家2[%v]的信息:%v", userId, user)
 }
+
+func TestUserInfo(t *testing.T) {
+	mongUser := userDao.FindUserByUnionId("oKKIfxG1i1CzbjDn-KlT50B3Pcxg")
+	t.Log("user:", mongUser)
+
+	//userDao.
+}

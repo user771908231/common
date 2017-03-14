@@ -39,6 +39,10 @@ func HandlerNewUserAward(args []interface{}) {
 			Code:   proto.Int32(consts.ACK_RESULT_SUCC),
 		},
 	}
+	user := userService.GetUserById(userId)
+	if !user.GetNewUserAward() {
+		return
+	}
 
 	//todo 增加红包信息处理新手奖励
 	_, err := userService.INCRUserBonus(userId, cfg.GetNewUserAward())
@@ -50,11 +54,10 @@ func HandlerNewUserAward(args []interface{}) {
 	}
 
 	//更新redis和mgo
-	user := userService.GetUserById(userId)
+	user = userService.GetUserById(userId)
 	user.NewUserAward = proto.Bool(false)
 	userService.UpdateUser2Mgo(user)
 
 	//领取成功,返回信息
 	a.WriteMsg(ack)
-
 }
