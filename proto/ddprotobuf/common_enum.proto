@@ -51,3 +51,13 @@ enum BTN_TYPE {
     BTNTYPE_SHARELINKTIMELINE = 2; //  分享到朋友圈按钮
     REDBAGSHAR = 3; //  领取游戏内红包奖励后分享到朋友圈
 }
+
+//进入金币场房间的错误类型
+enum COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM {
+    COIN_UNDER_MIN = 1; //玩家金币小于最低倍场的金币下限
+    COIN_OVER_LIMIT = 2; //玩家金币高于本场次的金币上限
+    COIN_UNDER_LIMIT = 3; //玩家金币低于本场次的金币下限
+    GAMING = 4; //玩家正在其他场次的游戏中
+    NONE_DESK_AVAILABLE = 5; //没有桌子可以用
+    OTHER = 6; //其他错误
+}
