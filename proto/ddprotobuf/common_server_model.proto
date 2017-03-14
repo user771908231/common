@@ -38,6 +38,7 @@ message User {
     optional int32 channelId = 30; //渠道id和渠道string 配置使用
 
     optional bool newUserAward = 31; //是否有新用户奖励:没有领取的时候是true,领取之后是false
+    optional string regIp = 32; //注册ip
 
 }
 
