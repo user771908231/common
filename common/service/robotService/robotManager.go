@@ -10,11 +10,13 @@ import (
 	"casino_common/utils/numUtils"
 	"sync/atomic"
 	"casino_common/utils/rand"
+	"casino_common/common/cfg"
 )
 
 type RobotsMgrApi interface {
 	ExpropriationRobotByCoin(coin int64) *Robot
 	ReleaseRobots(id uint32)
+	ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot
 }
 
 //机器人管理器
@@ -62,7 +64,7 @@ func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 //新创建一个机器人，并保存到数据库
 func (rm *RobotsManager) NewRobotAndSave() *Robot {
 	//1,注册普通用户
-	user, err := userService.NewUserAndSave("", "", "", "", 1, "", "robot","localhost")
+	user, err := userService.NewUserAndSave("", "", "", "", 1, "", "robot", "localhost")
 	if err != nil || user == nil {
 		return nil
 	}
@@ -96,7 +98,7 @@ func (rm *RobotsManager) addRobot(r *Robot) error {
 	return nil
 }
 
-//得到一个机器人
+//得到一个机器人,不限制金额
 func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	rm.Lock()
 	defer rm.Unlock()
@@ -110,6 +112,14 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 		}
 	}
 	return nil
+}
+
+func (rm *RobotsManager) ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot {
+	robot := rm.ExpropriationRobot()
+	rand := rand.RandInt64(c1, c2)
+	userService.SetUserMoney(robot.GetId(), cfg.RKEY_USER_COIN, rand) //设置机器人玩家的金币
+	robot.Coin = proto.Int64(rand)                                    //设置机器人的金额
+	return robot
 }
 
 //得到一个机器人
