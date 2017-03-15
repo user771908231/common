@@ -5,6 +5,7 @@ type CountType string
 
 const (
 	ALL_GAME_COUNT CountType = "all_game_count"   //所有游戏局数
+	ALL_GAME_WIN CountType = "all_game_win"      //所有游戏赢的局数
 
 	MJ_GAME_COUNT CountType = "mj_game_count"    //麻将游戏局数
 	MJ_WIN_COUNT CountType = "mj_win_count"      //麻将赢的局数

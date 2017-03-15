@@ -40,10 +40,10 @@ func (t *T_game_log)doCountAndTask() {
 	Add(t.UserId, countType.ALL_GAME_COUNT, 1)
 	taskService.OnTask(countType.ALL_GAME_COUNT, t.UserId)
 
-	//斗地主赢的比赛局数
-	if t.GameId == ddproto.CommonEnumGame_GID_DDZ && t.IsWine == true {
-		Add(t.UserId, countType.DDZ_WIN_COUNT, 1)
-		taskService.OnTask(countType.DDZ_WIN_COUNT, t.UserId)
+	//赢比赛拆红包
+	if t.IsWine == true {
+		Add(t.UserId, countType.ALL_GAME_WIN, 1)
+		taskService.OnTask(countType.ALL_GAME_WIN, t.UserId)
 	}
 
 }
