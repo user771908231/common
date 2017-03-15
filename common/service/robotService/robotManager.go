@@ -116,6 +116,9 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 
 func (rm *RobotsManager) ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot {
 	robot := rm.ExpropriationRobot()
+	if c2 > 10000000 {
+		c2 = 10000000
+	}
 	rand := rand.RandInt64(c1, c2)
 	userService.SetUserMoney(robot.GetId(), cfg.RKEY_USER_COIN, rand) //设置机器人玩家的金币
 	robot.Coin = proto.Int64(rand)                                    //设置机器人的金额
