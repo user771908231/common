@@ -2,7 +2,6 @@ db.getCollection('t_config_task_info').drop()
 
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebd9a513c0bbc83c0f3c"),
     "taskid" : 1,
     "cateid" : 1,
     "tasktype" : "all_game_count",
@@ -21,7 +20,6 @@ db.t_config_task_info.insert(
 )
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f41"),
     "taskid" : 2,
     "cateid" : 1,
     "tasktype" : "all_game_count",
@@ -40,7 +38,6 @@ db.t_config_task_info.insert(
 )
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f46"),
     "taskid" : 3,
     "cateid" : 1,
     "tasktype" : "all_game_count",
@@ -59,7 +56,6 @@ db.t_config_task_info.insert(
 )
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f4b"),
     "taskid" : 4,
     "cateid" : 1,
     "tasktype" : "all_game_count",
@@ -78,7 +74,6 @@ db.t_config_task_info.insert(
 )
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f50"),
     "taskid" : 5,
     "cateid" : 1,
     "tasktype" : "all_game_count",
@@ -97,7 +92,6 @@ db.t_config_task_info.insert(
 )
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f55"),
     "taskid" : 6,
     "cateid" : 1,
     "tasktype" : "all_game_count",
@@ -114,40 +108,381 @@ db.t_config_task_info.insert(
     ]
 }
 )
+
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f56"),
     "taskid" : 7,
     "cateid" : 2,
-    "tasktype" : "all_game_count",
+    "tasktype" : "all_game_win",
     "gametype" : "all",
-    "title" : "完成10局比赛",
+    "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 10,
-    "description" : "奖励1.0红包。",
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
     "reward" : [
         {
             "type" : 3,
-            "amount" : 1
+            "amount" : 0.08
         }
     ]
 }
 )
 db.t_config_task_info.insert(
 {
-    "_id" : ObjectId("5879ebdaa513c0bbc83c0f57"),
     "taskid" : 8,
     "cateid" : 2,
-    "tasktype" : "all_game_count",
+    "tasktype" : "all_game_win",
     "gametype" : "all",
-    "title" : "完成20局比赛",
+    "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 20,
-    "description" : "奖励1.0红包。",
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
     "reward" : [
         {
             "type" : 3,
-            "amount" : 1
+            "amount" : 0.09
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 9,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.10
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 10,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.11
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 11,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 12,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.10
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 13,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.08
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 14,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.09
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 15,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.11
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 16,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 17,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.09
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 18,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.11
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 19,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.08
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 20,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 21,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.11
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 22,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.09
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 23,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.10
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 24,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.09
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 25,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.11
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 26,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.09
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 27,
+    "cateid" : 2,
+    "tasktype" : "all_game_win",
+    "gametype" : "all",
+    "title" : "赢5局比赛",
+    "sort" : 0,
+    "tasksum" : 5,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
         }
     ]
 }
