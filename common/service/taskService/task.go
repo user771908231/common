@@ -11,6 +11,7 @@ import (
 	"log"
 	"casino_common/common/service/countService/countType"
 	"errors"
+	"time"
 )
 
 //任务列表
@@ -25,6 +26,7 @@ type TaskInfo struct {
 	Title       string                 //任务名
 	Sort        int32                  //排序：数字越小排在越前面
 	TaskSum     int32                  //任务需要完成的次数
+	RepeatSum   int32                  //可重复领取的次数
 	Description string                 //任务详情
 	Reward      []*ddproto.HallBagItem //任务的奖励
 }
@@ -101,6 +103,7 @@ func (task *Task) GetState(userId uint32) *TaskState {
 			userState.IsDone = false
 			userState.IsCheck = false
 			userState.SumNo = 0
+			userState.RepeatNo = 0
 		}
 	})
 	return userState
@@ -120,6 +123,7 @@ func (task *Task) SetUserState(userId uint32, state *TaskState) {
 				"sumno":   state.SumNo,
 				"isdone":  state.IsDone,
 				"ischeck": state.IsCheck,
+				"repeatno": state.RepeatNo,
 			},
 		)
 	})
@@ -131,6 +135,7 @@ type TaskState struct {
 	IsDone  bool  //是否已完成任务条件
 	IsCheck bool  //是否已领取任务奖励
 	SumNo   int32 //当前完成任务的次数
+	RepeatNo int32  //已领取的次数
 }
 
 //注册任务
@@ -274,19 +279,44 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
 
 //领取任务奖励
 func CheckTaskReward(userId uint32, taskId int32) error {
-	task := GetUserTask(userId, taskId)
-	if task == nil {
-		return errors.New("领取失败！")
+	user_task := GetUserTask(userId, taskId)
+	if user_task == nil {
+		return errors.New("系统未找到该条任务，领取奖励失败！")
 	}
-	if !task.IsDone {
+	if user_task.Validate != nil {
+		user_task.Validate(user_task)
+	}
+	if !user_task.IsDone {
 		return errors.New("任务未完成，领取奖励失败！")
 	}
-	if task.IsCheck {
-		return errors.New("任务奖励已被领取，无法重复领取！")
+
+	if user_task.IsCheck {
+		if user_task.RepeatSum > 1 {
+			return errors.New("任务奖励领取次数已达上限，无法继续领取！")
+		}else {
+			return errors.New("领取任务奖励失败！")
+		}
 	}
-	CheckReward(userId, task.Reward)
-	task.IsCheck = true
-	task.SetUserState(userId, task.TaskState)
+
+	CheckReward(userId, user_task.Reward)
+	user_task.IsCheck = true
+
+	//处理可重复领取的任务
+	if user_task.RepeatSum == 0 {
+		user_task.RepeatSum = 1
+	}
+	if user_task.RepeatNo < user_task.RepeatSum {
+		user_task.RepeatNo += 1
+	}
+	if user_task.RepeatNo < user_task.RepeatSum {
+		user_task.IsDone = false
+		user_task.IsCheck = false
+		user_task.SumNo = 0
+		user_task.StartTime = time.Now().Unix()
+	}
+
+	//保存任务状态
+	user_task.SetUserState(userId, user_task.TaskState)
 	return nil
 }
 
