@@ -5,8 +5,6 @@ import (
 	"casino_common/common/model/userDao"
 	"casino_common/common/cfg"
 	"casino_common/test"
-	"casino_server/service/userService"
-	"casino_common/utils/redisUtils"
 )
 
 func init() {
@@ -18,7 +16,7 @@ func TestINCRUserCOIN(t *testing.T) {
 	//10168
 	//10169
 	//10170
-	b, e := INCRUserCOIN(13702, 1000000)
+	b, e := DECRUserCOIN(13702, 970000)
 	if e != nil {
 		t.Logf("出错%v", e)
 	} else {
