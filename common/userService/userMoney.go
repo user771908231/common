@@ -61,14 +61,14 @@ func GetUserCoin(userId uint32) int64 {
 //获取用户奖券
 func GetUserTicket(userId uint32) int32 {
 	user := new(ddproto.User)
-	db.C(tableName.DBT_T_USER).Find(bson.M{"id":userId}, user)
+	db.C(tableName.DBT_T_USER).Find(bson.M{"id": userId}, user)
 	return user.GetTicket()
 }
 
 //获取用户红包
 func GetUserBonus(userId uint32) float64 {
 	user := new(ddproto.User)
-	db.C(tableName.DBT_T_USER).Find(bson.M{"id":userId}, user)
+	db.C(tableName.DBT_T_USER).Find(bson.M{"id": userId}, user)
 	return user.GetBonus()
 }
 
@@ -107,7 +107,7 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
-	err := UpdateRedisUserMoney(userid)
+	err := UpdateRedisUserMoney(userid) //增加用户货币之后
 	//3,返回值
 	return remain, err
 }
@@ -191,7 +191,6 @@ func DECUserTicket(userid uint32, d int32) (int32, error) {
 
 	return ticket_new, nil
 }
-
 
 //增加用户红包
 func INCRUserBonus(userid uint32, d float64) (float64, error) {

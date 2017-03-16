@@ -18,7 +18,7 @@ import (
 	2,保存mongo
 	3,缓存到redis
  */
-func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string, channel string) (*ddproto.User, error) {
+func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string, channel string, regIp string) (*ddproto.User, error) {
 	log.T("创建新用户，并且保存到mgo")
 	//1,创建user获得自增主键
 	id, err := db.GetNextSeq(tableName.DBT_T_USER)
@@ -43,6 +43,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	user.Bonus = proto.Float64(0)
 	user.RegTime = proto.Int64(time.Now().Unix())
 	user.RegChannel = proto.String("weixin")
+	user.RegIp = proto.String(regIp)
 	user.AgentId = proto.Uint32(0)
 	user.RegChannel = proto.String(channel)
 	user.NewUserAward = proto.Bool(true) //注册之后是有新手奖励的,领取奖励之后设置为false

@@ -9,6 +9,6 @@ func init() {
 	test.TestInit()
 }
 func TestTouristReg(t *testing.T) {
-	ret := TouristReg()
+	ret := TouristReg("","")
 	t.Logf("游客注册: %v", ret)
 }

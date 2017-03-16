@@ -10,27 +10,28 @@ import (
 	"casino_common/common/sessionService"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/Error"
+	"casino_common/utils/agentUtils"
 )
 
 //注册的接口
 func HandlerReg(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqReg)
 	a := args[1].(gate.Agent)
-
+	regIp := agentUtils.GetIP(a)
 	userId := m.GetHeader().GetUserId()
 	regType := m.GetRegType()
 	channel := m.GetChannelId() //渠道id
 	var ack *ddproto.CommonAckReg
 	if regType == int32(ddproto.CommonEnumReg_RET_TYPE_TOURIST) {
 		//游客注册
-		ack = loginService.TouristReg(channel)
+		ack = loginService.TouristReg(channel,regIp)
 	} else if regType == int32(ddproto.CommonEnumReg_RET_TYPE_WEIXIN) {
 		//微信注册
 		if userId > 0 {
 			//转账号
 			ack = loginService.TransWxReg(m.GetWxInfo(), userId)
 		} else {
-			ack = loginService.WxReg(m.GetWxInfo(), channel)
+			ack = loginService.WxReg(m.GetWxInfo(), channel, regIp)
 		}
 	} else {
 
