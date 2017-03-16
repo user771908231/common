@@ -246,14 +246,11 @@ message ddz_base_playerInfo {
     repeated client_base_poker outPais = 14; //玩家出的牌
     optional ddz_enum_paiType outPaiType = 15; //玩家出的牌类型
     optional int32 jiaoScore = 16; //叫分
-
     optional int32 num2Win4OpenRB = 17; //再赢多少局可以开红包
-
     optional ddz_base_playerRateInfo playerRateInfo = 18; //玩家倍数详情
-
     optional int64 roomCard = 19; //玩家房卡数
-
     optional bool isShowPokers = 20; //是否已明牌
+    optional bool isJiaBei = 21; //是否加倍
 }
 
 message ddz_base_playerRateInfo {
