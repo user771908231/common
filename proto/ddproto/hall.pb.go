@@ -73,6 +73,10 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_gameLogin from common_client.proto
 
+// Ignoring public import of common_ack_reconnect from common_client.proto
+
+// Ignoring public import of common_req_reconnect from common_client.proto
+
 // Ignoring public import of common_req_gameState from common_client.proto
 
 // Ignoring public import of common_ack_gameState from common_client.proto
