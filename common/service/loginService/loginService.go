@@ -43,13 +43,13 @@ func DoLoginSuccess(userId uint32) error {
 }
 
 //游客注册
-func TouristReg(channel string,regIp string) *ddproto.CommonAckReg {
+func TouristReg(channel string, regIp string) *ddproto.CommonAckReg {
 	//设置游客昵称昵称
 	nick, _ := numUtils.Int2String(rand.Rand(10000, 100000))
 	nickName := strings.Join([]string{"游客", nick}, "")
 
 	//游戏需要创建一个nickName    "游客+[5位随机数]"
-	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "", channel,regIp)
+	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "", channel, regIp)
 	if err != nil || user == nil {
 		log.E("注册用户的时候失败...")
 		return nil
@@ -64,9 +64,9 @@ func TouristReg(channel string,regIp string) *ddproto.CommonAckReg {
 }
 
 //微信注册
-func WxReg(weixin *ddproto.WeixinInfo, channelId string,regIp string) *ddproto.CommonAckReg {
+func WxReg(weixin *ddproto.WeixinInfo, channelId string, regIp string) *ddproto.CommonAckReg {
 	//检测参数
-	if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
+	if weixin.GetOpenId() == "" || weixin.GetUnionId() == "" || weixin.GetNickName() == "" {
 		log.E("玩家注册的时候失败，因为微信的信息[%v]不够...", weixin)
 		return nil
 	}
@@ -76,7 +76,7 @@ func WxReg(weixin *ddproto.WeixinInfo, channelId string,regIp string) *ddproto.C
 	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
 	user := userService.GetUserByUnionId(weixin.GetUnionId())
 	if user == nil {
-		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), channelId,regIp)
+		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), channelId, regIp)
 	} else {
 		log.W("玩家[%v],unionId[%v]已经注册成功了，不需要重复注册", user.GetId(), user.GetUnionId())
 	}
@@ -96,7 +96,7 @@ func WxReg(weixin *ddproto.WeixinInfo, channelId string,regIp string) *ddproto.C
 //微信注册
 func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg {
 	//检测参数
-	if weixin.GetOpenId() == "" || weixin.GetHeadUrl() == "" || weixin.GetNickName() == "" {
+	if weixin.GetOpenId() == "" || weixin.GetUnionId() == "" || weixin.GetNickName() == "" {
 		log.E("玩家注册的时候失败，因为微信的信息[%v]不够...", weixin)
 		return nil
 	}
