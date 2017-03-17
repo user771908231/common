@@ -59,6 +59,10 @@ func TouristReg(channel string, regIp string) *ddproto.CommonAckReg {
 
 	//返回结果
 	ack := new(ddproto.CommonAckReg)
+	ack.Header = &ddproto.ProtoHeader{
+		Code:  proto.Int32(consts.ACK_RESULT_SUCC),
+		Error: proto.String("注册成功"),
+	}
 	ack.UserId = proto.Uint32(user.GetId())
 	return ack
 }
@@ -88,6 +92,10 @@ func WxReg(weixin *ddproto.WeixinInfo, channelId string, regIp string) *ddproto.
 
 	//返回结果
 	ack := new(ddproto.CommonAckReg)
+	ack.Header = &ddproto.ProtoHeader{
+		Code:  proto.Int32(consts.ACK_RESULT_SUCC),
+		Error: proto.String("注册成功"),
+	}
 	ack.UserId = proto.Uint32(user.GetId())
 	return ack
 
@@ -118,6 +126,10 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 
 	//返回结果
 	ack := new(ddproto.CommonAckReg)
+	ack.Header = &ddproto.ProtoHeader{
+		Code:  proto.Int32(consts.ACK_RESULT_SUCC),
+		Error: proto.String("注册成功"),
+	}
 	ack.UserId = proto.Uint32(user.GetId())
 	return ack
 }
