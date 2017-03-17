@@ -258,22 +258,6 @@ db.getCollection('t_goods_info').insert(
 
 db.getCollection('t_goods_info').insert(
 {
-    "goodsid" : 18,
-    "name" : "iphone7",
-    "category" : 3,
-    "pricetype" : 7,
-    "price" : 500000,
-    "goodstype" : 304,
-    "amount" : 1,
-    "discount" : "10折",
-    "image" : "coin_6",
-    "isshow" : true,
-    "sort" : 6
-}
-)
-
-db.getCollection('t_goods_info').insert(
-{
     "goodsid" : 19,
     "name" : "房卡",
     "category" : 4,
