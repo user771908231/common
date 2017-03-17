@@ -142,7 +142,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 10,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -161,7 +161,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 15,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -180,7 +180,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 20,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -199,7 +199,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 25,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -218,7 +218,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 30,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -237,7 +237,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 35,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -256,7 +256,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 40,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -275,7 +275,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 45,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -294,7 +294,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 50,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -313,7 +313,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 55,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -351,7 +351,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 60,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -370,7 +370,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 65,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -389,7 +389,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 70,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -408,7 +408,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 75,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -427,7 +427,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 80,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -446,7 +446,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 85,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -465,7 +465,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 90,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -484,7 +484,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 95,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
@@ -503,7 +503,7 @@ db.t_config_task_info.insert(
     "gametype" : "all",
     "title" : "赢5局比赛",
     "sort" : 0,
-    "tasksum" : 5,
+    "tasksum" : 100,
     "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
