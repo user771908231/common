@@ -80,5 +80,7 @@ func DelSession(s *ddproto.GameSession) {
 
 //通过suerId roomType 删除玩家的session
 func DelSessionByKey(userId uint32, roomType int32) {
+	s := GetSession(userId, roomType)
+	log.T("开始删除玩家[%v]的roomType[%v] session[%v] ", userId, roomType, s)
 	redisUtils.Del(getSessionKey(userId, roomType))
 }
