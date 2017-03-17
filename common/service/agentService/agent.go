@@ -13,7 +13,6 @@ func init() {
 var AgentMap map[uint32]gate.Agent
 
 func GetAgent(userId uint32) (gate.Agent, error) {
-	log.T("get %v", AgentMap)
 	a,ok := AgentMap[userId]
 	if ok {
 		return a, nil
