@@ -192,6 +192,7 @@ message common_bc_message {
 message common_req_notice {
     optional ProtoHeader header = 1;
     optional int32 noticeType = 2; //公告的类型
+    optional string channelId = 3; //渠道号
 }
 
 // 返回公告的内容
