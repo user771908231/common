@@ -43,32 +43,20 @@ func HandlerTaskListReq(req *ddproto.HallReqTask, agent gate.Agent) {
 func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 	user_id := req.GetHeader().GetUserId()
 	task_id := req.GetTaskId()
-	task := GetUserTask(user_id, task_id)
+
 	msg := &ddproto.HallAckCheckTask{
 		Header:commonNewPorot.NewHeader(),
 	}
 	defer agent.WriteMsg(msg)
-	if task == nil {
+
+	err := CheckTaskReward(user_id, task_id)
+	if err != nil {
 		msg.Header.Code = proto.Int32(-1)
-		msg.Header.Error = proto.String("该任务不存在！")
+		msg.Header.Error = proto.String(err.Error())
 		return
 	}
-	if !task.IsDone {
-		msg.Header.Code = proto.Int32(-2)
-		msg.Header.Error = proto.String("该任务未完成，领取奖励失败！")
-		return
-	}
-	if task.IsCheck {
-		msg.Header.Code = proto.Int32(-3)
-		msg.Header.Error = proto.String("该任务已领取，重复领取奖励失败！")
-		return
-	}
-	CheckReward(user_id, task.Reward)
 	msg.Header.Code = proto.Int32(1)
 	msg.Header.Error = proto.String("领取奖励成功！")
-	//更新领取状态
-	task.TaskState.IsCheck = true
-	task.SetUserState(user_id, task.TaskState)
 }
 
 //未领取的任务数

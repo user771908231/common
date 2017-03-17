@@ -9,6 +9,7 @@ db.t_config_task_info.insert(
     "title" : "完成5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励1000金币。",
     "reward" : [
         {
@@ -27,6 +28,7 @@ db.t_config_task_info.insert(
     "title" : "完成10局比赛",
     "sort" : 0,
     "tasksum" : 10,
+    "repeatsum" : 1,
     "description" : "奖励1000金币。",
     "reward" : [
         {
@@ -45,6 +47,7 @@ db.t_config_task_info.insert(
     "title" : "完成15局比赛",
     "sort" : 0,
     "tasksum" : 15,
+    "repeatsum" : 1,
     "description" : "奖励1000金币。",
     "reward" : [
         {
@@ -63,6 +66,7 @@ db.t_config_task_info.insert(
     "title" : "完成20局比赛",
     "sort" : 0,
     "tasksum" : 20,
+    "repeatsum" : 1,
     "description" : "奖励2000金币。",
     "reward" : [
         {
@@ -81,6 +85,7 @@ db.t_config_task_info.insert(
     "title" : "完成25局比赛",
     "sort" : 0,
     "tasksum" : 25,
+    "repeatsum" : 1,
     "description" : "奖励2000金币。",
     "reward" : [
         {
@@ -99,6 +104,7 @@ db.t_config_task_info.insert(
     "title" : "完成50局比赛",
     "sort" : 0,
     "tasksum" : 50,
+    "repeatsum" : 1,
     "description" : "奖励3000金币。",
     "reward" : [
         {
@@ -118,6 +124,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -136,6 +143,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -154,6 +162,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -172,6 +181,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -190,6 +200,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -208,6 +219,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -226,6 +238,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -244,6 +257,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -262,6 +276,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -280,6 +295,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -298,6 +314,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -316,6 +333,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -334,6 +352,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -352,6 +371,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -370,6 +390,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -388,6 +409,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -406,6 +428,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -424,6 +447,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -442,6 +466,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -460,6 +485,7 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
@@ -478,6 +504,46 @@ db.t_config_task_info.insert(
     "title" : "赢5局比赛",
     "sort" : 0,
     "tasksum" : 5,
+    "repeatsum" : 1,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+
+db.t_config_task_info.insert(
+{
+    "taskid" : 101,
+    "cateid" : 2,
+    "tasktype" : "daily_share",
+    "gametype" : "all",
+    "title" : "每日分享领三次红包",
+    "sort" : 0,
+    "tasksum" : 5,
+    "repeatsum" : 1,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+db.t_config_task_info.insert(
+{
+    "taskid" : 102,
+    "cateid" : 2,
+    "tasktype" : "daily_share",
+    "gametype" : "all",
+    "title" : "每日分享领三次红包",
+    "sort" : 0,
+    "tasksum" : 5,
+    "repeatsum" : 3,
     "description" : "奖励0.08红包。",
     "reward" : [
         {

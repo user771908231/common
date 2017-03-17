@@ -58,3 +58,25 @@ func TestActiveInsert(t *testing.T) {
 func TestGetActiveList(t *testing.T) {
 	t.Log(GetActiveList())
 }
+
+//测试：领取任务奖励
+func TestCheckTaskReward(t *testing.T) {
+	var user_id uint32 = 11
+	var task_id int32 = 101
+	//初始化任务
+	RegistTask(Task{
+		TaskInfo: GetTaskInfo(task_id),
+		Validate:func(task *UserTask) {
+			task.IsDone = true
+			task.SetUserState(task.UserId, task.TaskState)
+		},
+	})
+
+	state := GetUserTask(user_id, task_id)
+	t.Error(state.TaskInfo, state.TaskState)
+
+	t.Log(CheckTaskReward(user_id, task_id))
+
+	state = GetUserTask(user_id, task_id)
+	t.Error(state.TaskInfo, state.TaskState)
+}
