@@ -310,6 +310,8 @@ func init() {
 	proto.RegisterEnum("ddproto.ZjhEnumRoomType", ZjhEnumRoomType_name, ZjhEnumRoomType_value)
 }
 
+func init() { proto.RegisterFile("zjh_base.proto", fileDescriptor20) }
+
 var fileDescriptor20 = []byte{
 	// 578 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x5c, 0x94, 0x49, 0x73, 0xdb, 0x3c,
