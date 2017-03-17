@@ -139,6 +139,7 @@ enum hall_enum_goods_type {
 message hall_req_goods_list {
     optional ProtoHeader header = 1;
     optional hall_enum_goods_type goods_type = 2;
+    optional string channelId = 3;  //渠道id
 }
 //商品列表Ack
 message hall_ack_goods_list {
