@@ -69,7 +69,7 @@ func GetUserTicket(userId uint32) int32 {
 func GetUserBonus(userId uint32) float64 {
 	user := new(ddproto.User)
 	db.C(tableName.DBT_T_USER).Find(bson.M{"id": userId}, user)
-	return user.GetBonus()
+	return float64(int64(user.GetBonus()*100))/100
 }
 
 //craete钻石交易记录
@@ -196,6 +196,9 @@ func DECUserTicket(userid uint32, d int32) (int32, error) {
 func INCRUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus + d
+	//保留有效小数
+	bonus_new = float64(int64(bonus_new*100))/100
+
 	user := GetUserById(userid)
 	user.Bonus = proto.Float64(bonus_new)
 	UpdateUser2Mgo(user)
@@ -207,6 +210,9 @@ func INCRUserBonus(userid uint32, d float64) (float64, error) {
 func DECUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus - d
+	//保留有效小数
+	bonus_new = float64(int64(bonus_new*100))/100
+
 	if bonus_new < 0 {
 		return bonus, errors.New("红包余额不足")
 	}
