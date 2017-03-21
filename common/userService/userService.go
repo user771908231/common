@@ -66,16 +66,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 func GetRedisUserKey(id uint32) string {
 	return redisUtils.K(cfg.RKEY_PRE_USER, id)
 }
-
-func ClearUserSeesion(userId uint32) {
-	redisUtils.Del(GetRedisUserSeesionKey(userId))
-}
-
-//取session的rediskey
-func GetRedisUserSeesionKey(userid uint32) string {
-	return redisUtils.K(cfg.RKEY_PRE_USER_AGENT_SESSION, userid)
-}
-
+ 
 /**
 	根据用户id得到User的id
 	1,首先从redis中查询user信息
