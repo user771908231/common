@@ -7,8 +7,16 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
 	"github.com/name5566/leaf/log"
-	"casino_common/common/model"
 )
+
+type BaseMode interface {
+	GetId() int32
+}
+
+type BaseModeu32 interface {
+	GetId() uint32
+}
+
 
 var mongoConfig struct {
 	ip                   string
@@ -76,7 +84,7 @@ func InsertMgoDatas(dbt string, datas []interface{}) (err error, count int) {
 }
 
 //更新数据通过_id来更新
-func UpdateMgoData(dbt string, data model.BaseMode) error {
+func UpdateMgoData(dbt string, data BaseMode) error {
 	c, err := GetMongoConn()
 	if err != nil {
 		return err
@@ -91,7 +99,7 @@ func UpdateMgoData(dbt string, data model.BaseMode) error {
 	return error
 }
 
-func UpdateMgoDataU32(dbt string, data model.BaseModeu32) error {
+func UpdateMgoDataU32(dbt string, data BaseModeu32) error {
 	c, err := GetMongoConn()
 	if err != nil {
 		return err
