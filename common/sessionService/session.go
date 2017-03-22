@@ -11,8 +11,6 @@ import (
 	"casino_common/common/cfg"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
-	"fmt"
-	"casino_common/utils"
 )
 
 // session相关的...
@@ -117,7 +115,7 @@ func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error,
 	if s.GetGameId() != gid {
 		return Error.NewError(consts.ACK_RESULT_ERROR, "在其他游戏中"), nil
 	}
-	
+
 	return nil, s
 }
 
