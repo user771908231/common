@@ -3,6 +3,8 @@ package model
 import (
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/proto/ddproto"
+	"casino_common/common/consts/tableName"
+	"casino_common/utils/db"
 )
 
 //商品分类枚举
@@ -18,16 +20,36 @@ const (
 
 //商品表结构
 type T_Goods_Row struct {
-	GoodsId   int32
-	ObjId     bson.ObjectId `bson:"_id"`
-	Name      string
-	Category  CateEnum
-	PriceType ddproto.HallEnumTradeType
-	Price     float64
-	GoodsType ddproto.HallEnumTradeType
-	Amount    float64 //amount 代表数量，不是现金， 1转世兑换100金币,,amount == 100
-	Discount  string
-	Image     string
-	IsShow    bool
-	Sort      int32
+	ObjId     bson.ObjectId `bson:"_id" binding:"Required"`
+	GoodsId   int32 `binding:Required`
+	Name      string `binding:Required`
+	Category  CateEnum `binding:Required`
+	PriceType ddproto.HallEnumTradeType `binding:Required`
+	Price     float64 `binding:Required`
+	GoodsType ddproto.HallEnumTradeType `binding:Required`
+	Amount    float64 `binding:Required` //amount 代表数量，不是现金， 1转世兑换100金币,,amount == 100
+	Discount  string `binding:Required`
+	Image     string `binding:Required`
+	IsShow    bool `binding:Required`
+	Sort      int32 `binding:Required`
+}
+
+//更新
+func (r *T_Goods_Row) Save() (error) {
+	return db.C(tableName.DBT_T_GOODS_INFO).Update(bson.M{
+		"_id": r.ObjId,
+	}, r)
+}
+
+//删除
+func (r *T_Goods_Row) Remove() error {
+	return db.C(tableName.DBT_T_GOODS_INFO).Remove(bson.M{
+		"_id": r.ObjId,
+	})
+}
+
+//插入
+func (r *T_Goods_Row) Insert() error {
+	r.ObjId = bson.NewObjectId()
+	return db.C(tableName.DBT_T_GOODS_INFO).Insert(r)
 }
