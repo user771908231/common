@@ -91,7 +91,7 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 }
 
 //删除玩家session 增加对空的判断
-func DelSession(s *ddproto.GameSession) {
+func delSession(s *ddproto.GameSession) {
 	if s == nil {
 		return
 	} else {
@@ -101,7 +101,25 @@ func DelSession(s *ddproto.GameSession) {
 }
 
 //通过suerId roomType 删除玩家的session
-func DelSessionByKey(userId uint32, roomType int32) {
+func DelSessionByKey(userId uint32, roomType int32, gid int32, deskId int32) {
 	s := GetSession(userId, roomType)
-	DelSession(s)
+
+	if s == nil {
+		log.E("删除玩家[%v]roomType[%v],gid[%v],dekid[%v] 的时候出错 session[%v],",
+			userId, roomType, gid, deskId, s)
+		return
+	}
+
+	if s.GetGameId() != gid {
+		log.E("删除玩家[%v]roomType[%v],gid[%v],dekid[%v] 的时候出错 session[%v],",
+			userId, roomType, gid, deskId, s)
+		return
+	}
+
+	if s.GetDeskId() != deskId {
+		log.E("删除玩家[%v]roomType[%v],gid[%v],dekid[%v] 的时候出错 session[%v],",
+			userId, roomType, gid, deskId, s)
+		return
+	}
+	delSession(s)
 }
