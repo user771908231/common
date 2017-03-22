@@ -35,7 +35,7 @@ func GetSession(userId uint32, roomType int32) *ddproto.GameSession {
 }
 
 //自动查找session
-func GetSessionAuto(userId uint32, gid int32) *ddproto.GameSession {
+func GetSessionAuto(userId uint32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
 	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
 		//2,第二步获取朋友桌的session
@@ -49,7 +49,10 @@ func GetFriendSession(userId uint32, gid int32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
 	if session == nil || session.GetDeskId() == 0 || session.GetGameId() != gid {
 		return nil
+	} else {
+		return session
 	}
+
 }
 
 //得到金币场的session
@@ -57,6 +60,8 @@ func GetCoinSession(userId uint32, gid int32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
 	if session == nil || session.GetDeskId() == 0 || session.GetGameId() != gid {
 		return nil
+	} else {
+		return session
 	}
 }
 
