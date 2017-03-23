@@ -1,0 +1,46 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+
+package ddproto;
+
+/********************************* 协议的id ***************************************/
+//跑得快游戏中用到的协议枚举id
+enum pdk_enum_protoId {
+    //common
+    PDK_PID_HEARTBEAT = 0; //心跳
+    PDK_PID_QUICK_CONN = 1; //连接服务器
+    PDK_PID_QUICK_CONN_ACK = 2; //
+    PDK_PID_GAME_LOGIN = 3; //登录游戏
+    PDK_PID_GAME_LOGIN_ACK = 4; //
+
+   //pdk proto
+    PDK_PID_CREATEROOM = 5; //创建房间
+    PDK_PID_CREATEROOM_ACK = 6; //创建房间-回复
+    PDK_PID_ENTER_ROOM = 7; //进入房间
+    PDK_PID_ENTER_ROOM_ACK = 8; //进入房间-回复
+}
+
+
+
+/********************************* 协议的结构 ***************************************/
+
+// 跑得快创建房间
+message pdk_req_createDesk {
+    optional ProtoHeader header = 1;
+}
+
+// 跑得快创建房间回复
+message pdk_ack_createDesk {
+    optional ProtoHeader header = 1;
+}
+
+// 跑得快请求进入房间
+message pdk_req_enterDesk {
+    optional ProtoHeader header = 1;
+}
+
+// 跑得快请求进入房间的回复
+message pdk_ack_enterDesk {
+    optional ProtoHeader header = 1;
+}
