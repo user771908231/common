@@ -348,6 +348,8 @@ func init() {
 	proto.RegisterEnum("ddproto.COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM", COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_name, COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_value)
 }
 
+func init() { proto.RegisterFile("common_enum.proto", fileDescriptor3) }
+
 var fileDescriptor3 = []byte{
 	// 513 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x6c, 0x92, 0x4d, 0x6f, 0x13, 0x3d,
