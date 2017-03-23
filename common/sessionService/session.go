@@ -9,6 +9,8 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/cfg"
+	"casino_common/common/Error"
+	"casino_common/common/consts"
 )
 
 // session相关的...
@@ -98,6 +100,23 @@ func delSession(s *ddproto.GameSession) {
 		log.T("开始删除玩家[%v]的roomType[%v] session[%v] ", s.GetUserId(), s.GetRoomType(), s)
 		redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
 	}
+}
+
+//检测是否能够进入游戏房间
+func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error, *ddproto.GameSession) {
+	//判断朋友桌是否能进去
+	//1,得到朋友桌的session
+	s := GetSession(userId, roomType)
+	if s == nil {
+		//之前没有在朋友桌当中游戏
+		return nil, nil
+	}
+
+	if s.GetGameId() != gid {
+		return Error.NewError(consts.ACK_RESULT_ERROR, "在其他游戏中"), nil
+	}
+
+	return nil, s
 }
 
 //通过suerId roomType 删除玩家的session
