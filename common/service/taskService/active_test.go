@@ -6,12 +6,14 @@ import (
 	"github.com/golang/protobuf/proto"
 	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/sys"
+	//db_init "casino_common/common/db"
 	"casino_common/utils/db"
-	ldb "casino_common/common/db"
 )
 
 func init() {
-	ldb.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
+	//db_init.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
+	sys.InitRedis("192.168.199.200:6379","test")
 }
 
 func TestActiveInsert(t *testing.T) {

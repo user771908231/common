@@ -8,10 +8,10 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/common/userService"
 	"casino_hall/service/pack"
-	"log"
 	"casino_common/common/service/countService/countType"
 	"errors"
 	"time"
+	"fmt"
 )
 
 //任务列表
@@ -87,6 +87,19 @@ func GetUserTaskShowList(userId uint32, fill_cateid int32, fill_type countType.C
 				list[i] = t
 			}
 		}
+	}
+	return list
+}
+
+//通过任务来类型筛选任务
+func GetTaskListByType(userId uint32, fill_type countType.CountType) []*UserTask {
+	list := []*UserTask{}
+	for _, task := range GetUserTaskList(userId) {
+		//过滤任务类型
+		if fill_type != "" && fill_type != task.TaskType {
+			continue
+		}
+		list = append(list, task)
 	}
 	return list
 }
@@ -173,22 +186,8 @@ func GetTaskInfoList() []*TaskInfo {
 
 //触发任务
 func OnTask(taskType countType.CountType, userId uint32) {
-	//普通任务
-	for _, task := range GetUserTaskShowList(userId, 1, taskType, "") {
-		if task.SumNo != task.TaskSum && task.IsDone {
-			task.IsDone = false
-			task.SetUserState(userId, task.TaskState)
-		}
-		if !task.IsDone && task.Validate != nil{
-			task.Validate(task)
-			if task.IsDone == true {
-				//推送任务完成广播
-			}
-		}
-	}
-	//红包任务
-	for _, task := range GetUserTaskShowList(userId, 2, taskType, "") {
-		log.Println(task.UserId, *task.Task, *task.TaskState)
+	//触发该类型的任务
+	for _, task := range GetTaskListByType(userId,taskType) {
 		if task.SumNo != task.TaskSum && task.IsDone {
 			task.IsDone = false
 			task.SetUserState(userId, task.TaskState)
@@ -246,59 +245,72 @@ func GetActiveList() []*ddproto.HallItemEvent {
 }
 
 //领取奖励
-func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) {
+func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name string) {
+	i := 0
 	for _, reward := range rewards {
+		if i > 0 {
+			name += "、"
+		}
 		switch reward.GetType() {
 		case ddproto.HallEnumTradeType_TRADE_COIN:
 			//领取金币
-			log.Println("coin")
-			userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
+			_,err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
+			name += fmt.Sprintf("%f金币", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			//领取钻石
-			userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
+			_,err = userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
+			name += fmt.Sprintf("%f钻石", reward.GetAmount())
 		case ddproto.HallEnumTradeType_PROPS_FANGKA:
 			//领取房卡
-			userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
+			_,err = userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
+			name += fmt.Sprintf("%f房卡", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			userService.INCRUserBonus(userId, reward.GetAmount())
+			_,err = userService.INCRUserBonus(userId, reward.GetAmount())
+			name += fmt.Sprintf("%.2f红包", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
-			userService.INCRUserTicket(userId, int32(reward.GetAmount()))
+			_,err = userService.INCRUserTicket(userId, int32(reward.GetAmount()))
+			name += fmt.Sprintf("%f奖券", reward.GetAmount())
 		default:
 			switch {
 			case reward.GetType() > 200 && reward.GetType() < 300:
 				//领取道具
-				pack.DoUserPropsAdd(userId, reward.GetType(), int32(reward.GetAmount()))
+				err = pack.DoUserPropsAdd(userId, reward.GetType(), int32(reward.GetAmount()))
 			case reward.GetType() > 300 && reward.GetType() < 400:
 				//领取实物
 			}
 		}
+		if err != nil {
+			return
+		}
+		i++
 	}
+	return
 }
 
 //领取任务奖励
-func CheckTaskReward(userId uint32, taskId int32) error {
+func CheckTaskReward(userId uint32, taskId int32) (error, string) {
 	user_task := GetUserTask(userId, taskId)
 	if user_task == nil {
-		return errors.New("系统未找到该条任务，领取奖励失败！")
+		return errors.New("系统未找到该条任务，领取奖励失败！"), ""
 	}
 	if user_task.Validate != nil {
 		user_task.Validate(user_task)
 	}
 	if !user_task.IsDone {
-		return errors.New("任务未完成，领取奖励失败！")
+		return errors.New("任务未完成，领取奖励失败！"), ""
 	}
 
 	if user_task.IsCheck {
 		if user_task.RepeatSum > 1 {
-			return errors.New("任务奖励领取次数已达上限，无法继续领取！")
+			return errors.New("任务奖励领取次数已达上限，无法继续领取！"), ""
 		}else {
-			return errors.New("领取任务奖励失败！")
+			return errors.New("领取任务奖励失败！"), ""
 		}
 	}
 
-	CheckReward(userId, user_task.Reward)
+	_,name := CheckReward(userId, user_task.Reward)
 	user_task.IsCheck = true
 
 	//处理可重复领取的任务
@@ -317,7 +329,7 @@ func CheckTaskReward(userId uint32, taskId int32) error {
 
 	//保存任务状态
 	user_task.SetUserState(userId, user_task.TaskState)
-	return nil
+	return nil, name
 }
 
 /**
