@@ -8,6 +8,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/consts"
 	"casino_common/common/cfg"
+	"fmt"
 )
 
 //在线奖励的处理
@@ -35,7 +36,7 @@ func HandlerNewUserAward(args []interface{}) {
 	ack := &ddproto.AwardAckGetNewUser{
 		Header: &ddproto.ProtoHeader{
 			UserId: proto.Uint32(userId),
-			Error:  proto.String("红包领取成功"),
+			Error:  proto.String(fmt.Sprintf("恭喜你，成功领取 %.2f红包 新手奖励。",cfg.GetNewUserAward())),
 			Code:   proto.Int32(consts.ACK_RESULT_SUCC),
 		},
 	}
@@ -48,7 +49,7 @@ func HandlerNewUserAward(args []interface{}) {
 	_, err := userService.INCRUserBonus(userId, cfg.GetNewUserAward())
 	if err != nil {
 		ack.Header.Code = proto.Int32(consts.ACK_RESULT_ERROR)
-		ack.Header.Error = proto.String("领取奖励失败")
+		ack.Header.Error = proto.String("领取新手奖励失败。")
 		a.WriteMsg(ack)
 		return
 	}
