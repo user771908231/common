@@ -19,6 +19,8 @@ enum pdk_enum_protoId {
     PDK_PID_CREATEROOM_ACK = 6; //创建房间-回复
     PDK_PID_ENTER_ROOM = 7; //进入房间
     PDK_PID_ENTER_ROOM_ACK = 8; //进入房间-回复
+
+    PDK_PID_SEND_GAMEINFO = 9; //进入房间成功的游戏信息 广播
 }
 
 
@@ -42,5 +44,10 @@ message pdk_req_enterDesk {
 
 // 跑得快请求进入房间的回复
 message pdk_ack_enterDesk {
+    optional ProtoHeader header = 1;
+}
+
+// 进入房间成功发送游戏信息(广播)
+message pdk_bc_gameInfo {
     optional ProtoHeader header = 1;
 }
