@@ -28,8 +28,8 @@ db.t_config_draw_lottery.insert(
     "sort" : 3.0,
     "type" : 3.0,
     "name" : "0.2",
-    "number" : 1.0,
-    "percent" : 15.0,
+    "number" : 0.2,
+    "percent" : 5.0,
     "version" : 1.0
 }
 )
