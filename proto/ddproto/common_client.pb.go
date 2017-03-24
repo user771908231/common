@@ -241,6 +241,7 @@ It has these top-level messages:
 	PdkAckCreateDesk
 	PdkReqEnterDesk
 	PdkAckEnterDesk
+	PdkBcGameInfo
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
