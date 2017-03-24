@@ -49,14 +49,14 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 	}
 	defer agent.WriteMsg(msg)
 
-	err := CheckTaskReward(user_id, task_id)
+	err,name := CheckTaskReward(user_id, task_id)
 	if err != nil {
 		msg.Header.Code = proto.Int32(-1)
 		msg.Header.Error = proto.String(err.Error())
 		return
 	}
 	msg.Header.Code = proto.Int32(1)
-	msg.Header.Error = proto.String("领取奖励成功！")
+	msg.Header.Error = proto.String("恭喜你,成功领取 "+ name +" 奖励！")
 }
 
 //未领取的任务数

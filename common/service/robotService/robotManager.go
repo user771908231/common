@@ -108,6 +108,7 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	for i := 0; i < int(rm.robotsAbleCount); i++ {
 		r := rm.robots[(i+int(randIndex))%tall]
 		if r.available {
+			r.available = false
 			return r
 		}
 	}
