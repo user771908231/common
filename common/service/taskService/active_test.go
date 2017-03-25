@@ -9,6 +9,7 @@ import (
 	"casino_common/common/sys"
 	//db_init "casino_common/common/db"
 	"casino_common/utils/db"
+	"casino_common/common/service/taskService/taskType"
 )
 
 func init() {
@@ -66,9 +67,9 @@ func TestCheckTaskReward(t *testing.T) {
 	var user_id uint32 = 11
 	var task_id int32 = 101
 	//初始化任务
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(task_id),
-		Validate:func(task *UserTask) {
+		ValidateFun:func(task *taskType.UserTask) {
 			task.IsDone = true
 			task.SetUserState(task.UserId, task.TaskState)
 		},

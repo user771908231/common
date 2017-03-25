@@ -7,3 +7,6 @@
 4. 再部署casino_super、casino_mj、casino_ddz、casino_zjh
 ### 2017-03-20:
 1. 更新t_th_notice表。
+### 2017-03-25:
+1. 更新t_config_task_info表。
+2. 新版红包系统还差房费统计、不同游戏及房间金币兑率配置等。目前暂时兼容老版红包
