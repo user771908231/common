@@ -242,6 +242,10 @@ It has these top-level messages:
 	PdkReqEnterDesk
 	PdkAckEnterDesk
 	PdkBcGameInfo
+	PdkReqReady
+	PdkAckReady
+	PdkBcOpening
+	PdkBcDealCards
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
