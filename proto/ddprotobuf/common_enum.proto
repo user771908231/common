@@ -8,7 +8,7 @@ enum common_enum_game {
     GID_DDZ = 3; //斗地主
     GID_ZJH = 4; //炸金花
     GID_HALL = 5; //大厅
-    GID_PDK = 6; //跑得快
+    GID_PDK = 7; //跑得快
 }
 
 //房间的类型
