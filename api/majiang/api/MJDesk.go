@@ -7,3 +7,14 @@ type MJDesk interface {
 	ActReady(userId uint32) error
 	GetDeskId() int32 //得到desk id
 }
+
+type MJDeskCore struct {
+	s     *module.Skeleton
+	users []MJUser
+}
+
+func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
+	return &MJDeskCore{
+		s: s,
+	}
+}

@@ -1,6 +1,9 @@
 package api
 
-import "github.com/name5566/leaf/util"
+import (
+	"github.com/name5566/leaf/util"
+	"github.com/name5566/leaf/module"
+)
 
 type MJRoom interface {
 	CreateDesk(interface{}) (MJDesk, error) //创建房间
@@ -8,12 +11,14 @@ type MJRoom interface {
 
 //room 基本的操作
 type MJRoomCore struct {
+	s     *module.Skeleton
 	desks *util.Map //所有的desk
 }
 
-func NewMJRoomCore() *MJRoomCore {
+func NewMJRoomCore(s *module.Skeleton) *MJRoomCore {
 	return &MJRoomCore{
-		desks: new(util.Map),
+		desks: new(util.Map), //所有的desk
+		s:     s,             //组合leaf的骨架
 	}
 }
 
