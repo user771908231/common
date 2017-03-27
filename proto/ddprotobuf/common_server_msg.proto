@@ -16,4 +16,5 @@ message common_srv_msg_game_count {
     optional string data = 8;
     optional int64 start_time = 9;
     optional int64 end_time = 10;
+    optional int32 coin_fee = 11;
 }

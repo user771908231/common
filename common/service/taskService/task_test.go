@@ -9,32 +9,33 @@ import (
 	"casino_common/utils/db"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/service/countService/countType"
+	"casino_common/common/service/taskService/taskType"
 )
 
 func init() {
 	ldb.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(1),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(2),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(3),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(4),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(5),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(6),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(7),
 	})
-	RegistTask(Task{
+	RegistTask(taskType.Task{
 		TaskInfo: GetTaskInfo(8),
 	})
 
@@ -44,13 +45,13 @@ func init() {
 func TestTask(t *testing.T) {
 	//OnTask(countType.ALL_GAME_COUNT,1)
 	//t.Log(GetUserTaskList(1))
-	t.Log(GetUserTaskShowList(1,2,"","zjh"))
+	t.Log(GetUserTaskShowList(1,2,"", ddproto.CommonEnumGame_GID_ZJH))
 }
 
 //测试任务列表
 func TestHandlerTaskListReq(t *testing.T) {
 	items := []*ddproto.HallItemTask{}
-	list := GetUserTaskShowList(1, 1,"","")
+	list := GetUserTaskShowList(1, 1,"", ddproto.CommonEnumGame_GID_SRC)
 	for _,task := range list{
 		new_task := ddproto.HallItemTask{
 			TaskId:&task.TaskId,
@@ -72,7 +73,7 @@ func TestHandlerTaskListReq(t *testing.T) {
 
 //测试：获取用户的任务状态列表
 func TestGetUserTaskShowList(t *testing.T) {
-	list := GetUserTaskShowList(1, 1, countType.ALL_GAME_COUNT, "")
+	list := GetUserTaskShowList(1, 1, countType.ALL_GAME_COUNT, ddproto.CommonEnumGame_GID_ZJH)
 	t.Log(list)
 	for _,task := range list{
 		t.Log(task.UserId, task.TaskInfo, task.TaskState)
@@ -81,11 +82,11 @@ func TestGetUserTaskShowList(t *testing.T) {
 
 //测试：插入用户列表
 func TestInsertTaskInfo(t *testing.T) {
-	list := []TaskInfo{
-		TaskInfo{
+	list := []taskType.TaskInfo{
+		taskType.TaskInfo{
 			TaskId:      1,
 			TaskType:    countType.ALL_GAME_COUNT,
-			GameType:    "all",
+			GameId:    ddproto.CommonEnumGame_GID_SRC,
 			TaskSum:     5,
 			Title:       "完成5局比赛",
 			Description: "奖励1000金币。",
@@ -95,10 +96,10 @@ func TestInsertTaskInfo(t *testing.T) {
 					Amount:proto.Float64(1000),
 				},
 			},
-		},TaskInfo{
+		},taskType.TaskInfo{
 			TaskId:      2,
 			TaskType:    countType.ALL_GAME_COUNT,
-			GameType:    "all",
+			GameId:    ddproto.CommonEnumGame_GID_SRC,
 			TaskSum:     10,
 			Title:       "完成10局比赛",
 			Description: "奖励1000金币。",
@@ -108,11 +109,11 @@ func TestInsertTaskInfo(t *testing.T) {
 					Amount:proto.Float64(1000),
 				},
 			},
-		},TaskInfo{
+		},taskType.TaskInfo{
 			TaskId:      3,
 			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     15,
-			GameType:    "all",
+			GameId:    ddproto.CommonEnumGame_GID_SRC,
 			Title:       "完成15局比赛",
 			Description: "奖励1000金币。",
 			Reward:[]*ddproto.HallBagItem{
@@ -121,11 +122,11 @@ func TestInsertTaskInfo(t *testing.T) {
 					Amount:proto.Float64(1000),
 				},
 			},
-		},TaskInfo{
+		},taskType.TaskInfo{
 			TaskId:      4,
 			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     20,
-			GameType:    "all",
+			GameId:    ddproto.CommonEnumGame_GID_SRC,
 			Title:       "完成20局比赛",
 			Description: "奖励2000金币。",
 			Reward:[]*ddproto.HallBagItem{
@@ -134,11 +135,11 @@ func TestInsertTaskInfo(t *testing.T) {
 					Amount:proto.Float64(2000),
 				},
 			},
-		},TaskInfo{
+		},taskType.TaskInfo{
 			TaskId:      5,
 			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     25,
-			GameType:    "all",
+			GameId:    ddproto.CommonEnumGame_GID_SRC,
 			Title:       "完成25局比赛",
 			Description: "奖励2000金币。",
 			Reward:[]*ddproto.HallBagItem{
@@ -147,11 +148,11 @@ func TestInsertTaskInfo(t *testing.T) {
 					Amount:proto.Float64(2000),
 				},
 			},
-		},TaskInfo{
+		},taskType.TaskInfo{
 			TaskId:      6,
 			TaskType:    countType.ALL_GAME_COUNT,
 			TaskSum:     50,
-			GameType:    "all",
+			GameId:    ddproto.CommonEnumGame_GID_SRC,
 			Title:       "完成50局比赛",
 			Description: "奖励3000金币。",
 			Reward:[]*ddproto.HallBagItem{
@@ -191,8 +192,8 @@ func TestCheckBonus(t *testing.T) {
 }
 
 func TestTaxkSum(t *testing.T) {
-	list_task := GetUserTaskShowList(13525, 1,  "", "zjh")
-	list_bonus := GetUserTaskShowList(13525, 2,  "", "zjh")
+	list_task := GetUserTaskShowList(13525, 1,  "", ddproto.CommonEnumGame_GID_ZJH)
+	list_bonus := GetUserTaskShowList(13525, 2,  "", ddproto.CommonEnumGame_GID_ZJH)
 
 	var i,j int32
 	for _, task := range list_task {
