@@ -6,6 +6,8 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/proto/funcsInit"
 	"fmt"
+	"casino_common/common/userService"
+	"casino_common/common/service/taskService/taskType"
 )
 
 //活动列表请求
@@ -18,7 +20,7 @@ func HandlerReqEvent(req *ddproto.HallReqEvent, agent gate.Agent) {
 
 //任务列表ACK
 func HandlerTaskListReq(req *ddproto.HallReqTask, agent gate.Agent) {
-	list := GetUserTaskShowList(req.GetHeader().GetUserId(), 1,  "", "")
+	list := GetUserTaskShowList(req.GetHeader().GetUserId(), 1,  "", ddproto.CommonEnumGame_GID_SRC)
 	items := []*ddproto.HallItemTask{}
 	for _, task := range list {
 		new_task := ddproto.HallItemTask{
@@ -61,21 +63,21 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 
 //未领取的任务数
 func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
-	fill_game := ""
-	var user_task *UserTask = nil
+	fill_game := ddproto.CommonEnumGame_GID_SRC
+	var user_task *taskType.UserTask = nil
 	switch req.GetTaskType() {
 	case ddproto.HallEnumTaskType_TYPE_DDZ:
-		fill_game = "ddz"
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_DDZ)
+		fill_game = ddproto.CommonEnumGame_GID_DDZ
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
 	case ddproto.HallEnumTaskType_TYPE_MJ:
-		fill_game = "mj"
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_MAHJONG)
+		fill_game = ddproto.CommonEnumGame_GID_MAHJONG
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
 	case ddproto.HallEnumTaskType_TYPE_ZJH:
-		fill_game = "zjh"
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_ZJH)
+		fill_game = ddproto.CommonEnumGame_GID_ZJH
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
 	default:
-		fill_game = ""
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), ddproto.CommonEnumGame_GID_HALL)
+		fill_game = ddproto.CommonEnumGame_GID_SRC
+		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
 	}
 	list_task := GetUserTaskShowList(req.Header.GetUserId(), 1,  "", fill_game)
 	list_bonus := GetUserTaskShowList(req.Header.GetUserId(), 2,  "", fill_game)
@@ -109,18 +111,19 @@ func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 
 //领取红包
 func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
-	fill_game := ""
+	fill_game := ddproto.CommonEnumGame_GID_SRC
 	switch req.GetTaskType() {
 	case ddproto.HallEnumTaskType_TYPE_DDZ:
-		fill_game = "ddz"
+		fill_game = ddproto.CommonEnumGame_GID_DDZ
 	case ddproto.HallEnumTaskType_TYPE_MJ:
-		fill_game = "mj"
+		fill_game = ddproto.CommonEnumGame_GID_MAHJONG
 	case ddproto.HallEnumTaskType_TYPE_ZJH:
-		fill_game = "zjh"
+		fill_game = ddproto.CommonEnumGame_GID_MAHJONG
 	default:
-		fill_game = ""
+		fill_game = ddproto.CommonEnumGame_GID_SRC
 	}
-	list := GetUserTaskShowList(req.GetHeader().GetUserId(), 2,  "", fill_game)
+	user_id := req.GetHeader().GetUserId()
+	list := GetUserTaskShowList(user_id, 2,  "", fill_game)
 	msg := &ddproto.HallAckCheckBonus{
 		Header: commonNewPorot.NewHeader(),
 	}
@@ -136,6 +139,8 @@ func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
 			msg.GiveBonus = &bonus_count
 			list[0].IsCheck = true
 			list[0].SetUserState(list[0].UserId, list[0].TaskState)
+			//发放红包
+			userService.INCRUserBonus(user_id, bonus_count)
 			*msg.Header.Error = fmt.Sprintf("成功领取%d个红包！", bonus_count)
 			return
 		}else {
