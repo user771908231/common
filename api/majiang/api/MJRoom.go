@@ -11,14 +11,14 @@ type MJRoom interface {
 
 //room 基本的操作
 type MJRoomCore struct {
-	s     *module.Skeleton
+	S     *module.Skeleton
 	desks *util.Map //所有的desk
 }
 
 func NewMJRoomCore(s *module.Skeleton) *MJRoomCore {
 	return &MJRoomCore{
 		desks: new(util.Map), //所有的desk
-		s:     s,             //组合leaf的骨架
+		S:     s,             //组合leaf的骨架
 	}
 }
 

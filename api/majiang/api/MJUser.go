@@ -6,6 +6,8 @@ import (
 )
 
 type MJUser interface {
+	GetUserId() uint32
+	AddBillBean(interface{}) error  //增加账单
 	WriteMsg(p proto.Message) error //发送信息
 }
 
