@@ -1,0 +1,28 @@
+db.getCollection('t_bonus_task_compute_config').drop()
+
+//麻将
+db.t_bonus_task_compute_config.insert({
+    "gameid": 2,
+    "coinpercent": 0.1,
+    "bonuspercent": 0.7,
+    "min": 0.1,
+    "max": 0.8
+})
+
+//斗地主
+db.t_bonus_task_compute_config.insert({
+    "gameid": 3,
+    "coinpercent": 0.1,
+    "bonuspercent": 0.7,
+    "min": 0.1,
+    "max": 0.8
+})
+
+//炸金花
+db.t_bonus_task_compute_config.insert({
+    "gameid": 4,
+    "coinpercent": 0.1,
+    "bonuspercent": 0.7,
+    "min": 0.1,
+    "max": 0.8
+})

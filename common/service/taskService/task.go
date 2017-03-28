@@ -199,7 +199,7 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name 
 			name += fmt.Sprintf("%.0f房卡", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			_,err = userService.INCRUserBonus(userId, reward.GetAmount())
+			//_,err = userService.INCRUserBonus(userId, reward.GetAmount())
 			name += fmt.Sprintf("%.2f红包", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
@@ -274,6 +274,11 @@ func CheckTaskReward(userId uint32, taskId int32) (error, string) {
 	//刷新任务状态
 	if user_task.ValidateFun != nil {
 		user_task.ValidateFun(user_task)
+	}
+
+	//触发成功领取任务奖励后的回调函数
+	if user_task.AfterRewardFun != nil {
+		user_task.AfterRewardFun(user_task)
 	}
 	return nil, name
 }

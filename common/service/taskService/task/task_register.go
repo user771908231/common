@@ -34,12 +34,21 @@ func InitTask() {
 			})
 
 		default:
-			//普通计数类任务
-			taskService.RegistTask(taskType.Task{
-				TaskInfo: task,
-				ValidateFun:ValidateCountFun,
-			})
-
+			if task.CateId == 4 {
+				//新版红包任务
+				taskService.RegistTask(taskType.Task{
+					TaskInfo: task,
+					ValidateFun:ValidateBonusFun,
+					GetRewardFun: GetRewardBonusFun,
+					AfterRewardFun: ResetCoinFeeCount,
+				})
+			}else {
+				//普通计数类任务
+				taskService.RegistTask(taskType.Task{
+					TaskInfo: task,
+					ValidateFun:ValidateCountFun,
+				})
+			}
 		}
 	}
 

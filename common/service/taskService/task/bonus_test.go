@@ -13,6 +13,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/service/countService"
 	"time"
+	"casino_common/common/service/countService/countModel"
 )
 
 func init() {
@@ -110,4 +111,55 @@ func TestNearTask(t *testing.T) {
 	InitTask()
 	task := taskService.GetUserNearBonusTask(112, ddproto.CommonEnumGame_GID_ZJH)
 	t.Log(task)
+}
+
+//测试：新版红包任务
+func TestNewBonusTask(t *testing.T) {
+	InitTask()
+	ShowUserTask(11, 203)
+	row := countService.T_game_log{
+		UserId: 11,
+		GameId:ddproto.CommonEnumGame_GID_ZJH,
+		GameNumber: 323541,
+		RoomType: ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN,
+		RoomLevel:1,
+		Bill: 640,
+		CoinFee: 200,
+		IsWine: true,
+		StartTime:time.Now().Unix() - int64(10*60*time.Second),
+		EndTime: time.Now().Unix(),
+	}
+	row.DoCountAndTask()
+	ShowUserTask(11, 203)
+	err,name := taskService.CheckTaskReward(11, 203)
+	t.Log(err, name)
+	ShowUserTask(11, 203)
+}
+
+//测试：红包任务奖励计算
+func TestBonusTaskCompute(t *testing.T) {
+	user_coin_fee := float64(countModel.GetUserDayCoinFeeByGameId(11, ddproto.CommonEnumGame_GID_ZJH).DayCount)
+	conf := GetBonusTaskComputeConfigByGameId(ddproto.CommonEnumGame_GID_ZJH)
+	reward := (user_coin_fee/10000)*conf.CoinPercent*conf.BonusPercent
+
+	t.Log(reward)
+	if reward < conf.Min {
+		reward = conf.Min
+	}else if reward > conf.Max {
+		reward = conf.Max
+	}
+
+	t.Log(user_coin_fee)
+	t.Log(conf)
+	t.Log(reward)
+}
+
+//测试：再赢多少局可以领红包
+func TestNearBonusNum(t *testing.T) {
+	//fill_game := ddproto.CommonEnumGame_GID_ZJH
+	InitTask()
+	var user_id uint32 = 11
+	user_task := taskService.GetUserTask(user_id, 203)
+	t.Log(user_task)
+	ShowUserTask(user_id, 201)
 }

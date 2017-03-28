@@ -518,7 +518,7 @@ db.t_config_task_info.insert(
 db.t_config_task_info.insert(
 {
     "taskid" : 101,
-    "cateid" : 2,
+    "cateid" : 3,
     "tasktype" : "daily_share",
     "gameid" : 0,
     "title" : "每日分享领三次红包",
@@ -537,13 +537,74 @@ db.t_config_task_info.insert(
 db.t_config_task_info.insert(
 {
     "taskid" : 102,
-    "cateid" : 2,
+    "cateid" : 3,
     "tasktype" : "daily_share",
     "gameid" : 0,
     "title" : "每日分享领三次红包",
     "sort" : 0,
     "tasksum" : 5,
     "repeatsum" : 3,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+
+//麻将红包任务
+db.t_config_task_info.insert(
+{
+    "taskid" : 201,
+    "cateid" : 4,
+    "tasktype" : "mj_win_coin_count",
+    "gameid" : 4,
+    "title" : "麻将金币场红包任务",
+    "sort" : 0,
+    "tasksum" : 5,
+    "repeatsum" : 10,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+//斗地主红包任务
+db.t_config_task_info.insert(
+{
+    "taskid" : 202,
+    "cateid" : 4,
+    "tasktype" : "ddz_win_coin_count",
+    "gameid" : 3,
+    "title" : "斗地主金币场红包任务",
+    "sort" : 0,
+    "tasksum" : 5,
+    "repeatsum" : 10,
+    "description" : "奖励0.08红包。",
+    "reward" : [
+        {
+            "type" : 3,
+            "amount" : 0.12
+        }
+    ]
+}
+)
+//炸金花红包任务
+db.t_config_task_info.insert(
+{
+    "taskid" : 203,
+    "cateid" : 4,
+    "tasktype" : "zjh_win_coin_count",
+    "gameid" : 4,
+    "title" : "炸金花金币场红包任务",
+    "sort" : 0,
+    "tasksum" : 5,
+    "repeatsum" : 10,
     "description" : "奖励0.08红包。",
     "reward" : [
         {
