@@ -106,6 +106,12 @@ enum hall_enum_protoId {
     HALL_PID_ACK_AWARDGETNEWUSER = 72; //返回获取新手奖励红包的ack
 
     HALL_PID_PUSH_GAME_COUNT = 73;  //游戏结束后的数据统计协议（服务器间通信用）
+
+    HALL_PID_QRLOGIN_GETCODE_REQ = 74;  //微信扫码登陆获取code
+    HALL_PID_QRLOGIN_GETCODE_ACK = 75;
+
+    HALL_PID_QRLOGIN_WXINFO_REQ = 76;  //微信扫码通过code获取wx_info
+    HALL_PID_QRLOGIN_WXINFO_ACK = 77;
 }
 
 //货币与商品类型
