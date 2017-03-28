@@ -18,8 +18,10 @@ const (
 	MJ_WIN_COUNT CountType = "mj_win_count"      //麻将赢的局数
 	MJ_LOSE_COUNT CountType = "mj_lose_count"    //麻将输的局数
 
-	MJ_WIN_FRIEND_COUNT CountType = "mj_win_friend_count" //斗地主好友桌赢的局数
-	MJ_LOSE_FRIEND_COUNT CountType = "mj_lose_friend_count" //斗地主好友桌输的局数
+	MJ_WIN_COIN_COUNT CountType = "mj_win_coin_count" //麻将金币场赢的局数
+	MJ_LOSE_COIN_COUNT CountType = "mj_lose_coin_count" //麻将金币场输的局数
+	MJ_WIN_FRIEND_COUNT CountType = "mj_win_friend_count" //麻将好友桌赢的局数
+	MJ_LOSE_FRIEND_COUNT CountType = "mj_lose_friend_count" //麻将好友桌输的局数
 
 	MJ_WIN_LV1_COUNT CountType = "mj_win_lv1_count"  //麻将房间1赢
 	MJ_WIN_LV2_COUNT CountType = "mj_win_lv2_count"  //麻将房间2赢
@@ -37,6 +39,8 @@ const (
 	DDZ_WIN_COUNT CountType = "ddz_win_count"      //斗地主赢的局数
 	DDZ_LOSE_COUNT CountType = "ddz_lose_count"    //斗地主输的局数
 
+	DDZ_WIN_COIN_COUNT CountType = "ddz_win_coin_count" //斗地主金币场赢的局数
+	DDZ_LOSE_COIN_COUNT CountType = "ddz_lose_coin_count" //斗地主金币场输的局数
 	DDZ_WIN_FRIEND_COUNT CountType = "ddz_win_friend_count" //斗地主好友桌赢的局数
 	DDZ_LOSE_FRIEND_COUNT CountType = "ddz_lose_friend_count" //斗地主好友桌输的局数
 
@@ -55,6 +59,9 @@ const (
 	ZJH_WIN_COUNT CountType = "zjh_win_count"      //扎金花赢的游戏局数
 	ZJH_LOSE_COUNT CountType = "zjh_lose_count"     //扎金花输的游戏局数
 
+
+	ZJH_WIN_COIN_COUNT CountType = "zjh_win_coin_count" //炸金花金币场赢的局数
+	ZJH_LOSE_COIN_COUNT CountType = "zjh_lose_coin_count" //炸金花金币场输的局数
 	ZJH_WIN_FRIEND_COUNT CountType = "zjh_win_friend_count" //炸金花好友桌赢的局数
 	ZJH_LOSE_FRIEND_COUNT CountType = "zjh_lose_friend_count" //炸金花好友桌输的局数
 

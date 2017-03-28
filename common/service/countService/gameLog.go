@@ -80,10 +80,12 @@ func (t *T_game_log)DoCountAndTask() {
 		isWinStr = "lose"
 	}
 
-	roomTypeStr := "friend"
+	roomTypeStr := ""
 	switch t.RoomType {
 	case ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN:
-		roomTypeStr = fmt.Sprintf("lv%d", t.RoomLevel)
+		roomTypeStr = "coin"
+		//房费统计
+
 	case ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND:
 		roomTypeStr = "friend"
 	}
@@ -98,6 +100,10 @@ func (t *T_game_log)DoCountAndTask() {
 	count_type = countType.CountType(countKeyStr)
 	gameCounter.Add(t.UserId, count_type, 1)
 	taskService.OnTask(count_type, t.UserId)
-
+	//金币场子房间输赢
+	countKeyStr = fmt.Sprintf("%s_%s_lv%d_count", gameIdMap[t.GameId], isWinStr, t.RoomLevel)
+	count_type = countType.CountType(countKeyStr)
+	gameCounter.Add(t.UserId, count_type, 1)
+	taskService.OnTask(count_type, t.UserId)
 
 }

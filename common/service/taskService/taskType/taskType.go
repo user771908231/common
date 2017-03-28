@@ -26,7 +26,6 @@ type TaskInfo struct {
 //任务结构
 type Task struct {
 	*TaskInfo
-	Data         interface{}                           //自定义数据
 	ValidateFun  func(*UserTask)                       //单次任务完成的验证函数
 	GetRewardFun func(*UserTask)[]*ddproto.HallBagItem //动态获取任务奖励
 	AfterRewardFun func(*UserTask)                     //领取任务奖励后

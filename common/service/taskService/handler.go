@@ -5,9 +5,6 @@ import (
 	"github.com/name5566/leaf/gate"
 	"github.com/golang/protobuf/proto"
 	"casino_common/proto/funcsInit"
-	"fmt"
-	"casino_common/common/userService"
-	"casino_common/common/service/taskService/taskType"
 )
 
 //活动列表请求
@@ -64,23 +61,22 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 //未领取的任务数
 func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 	fill_game := ddproto.CommonEnumGame_GID_SRC
-	var user_task *taskType.UserTask = nil
+	var task_id int32 = 0
+
 	switch req.GetTaskType() {
 	case ddproto.HallEnumTaskType_TYPE_DDZ:
 		fill_game = ddproto.CommonEnumGame_GID_DDZ
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
+		task_id = 202
 	case ddproto.HallEnumTaskType_TYPE_MJ:
 		fill_game = ddproto.CommonEnumGame_GID_MAHJONG
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
+		task_id = 201
 	case ddproto.HallEnumTaskType_TYPE_ZJH:
 		fill_game = ddproto.CommonEnumGame_GID_ZJH
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
+		task_id = 203
 	default:
 		fill_game = ddproto.CommonEnumGame_GID_SRC
-		user_task = GetUserNearBonusTask(req.Header.GetUserId(), fill_game)
 	}
 	list_task := GetUserTaskShowList(req.Header.GetUserId(), 1,  "", fill_game)
-	list_bonus := GetUserTaskShowList(req.Header.GetUserId(), 2,  "", fill_game)
 
 	var i,j int32
 	for _, task := range list_task {
@@ -91,67 +87,53 @@ func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 		}
 	}
 
-	for _, task := range list_bonus{
-		if task.CateId == 2 {
-			if task.IsDone == true && task.IsCheck == false {
-				j++
-			}
-		}
-	}
+	bonus_task := GetUserTask(req.Header.GetUserId(), task_id)
 	msg := ddproto.HallAckTaskSum{
 		TaskSum: &i,
 		BonusSum: &j,
 	}
 	msg.BonusNext = proto.Int32(-1)
-	if user_task != nil {
-		*msg.BonusNext = user_task.TaskSum - user_task.SumNo
+	if bonus_task != nil {
+		*msg.BonusNext = bonus_task.TaskSum - bonus_task.SumNo
+	}
+	if *msg.BonusNext == 0 {
+		*msg.BonusSum = 1
 	}
 	agent.WriteMsg(&msg)
 }
 
 //领取红包
 func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
-	fill_game := ddproto.CommonEnumGame_GID_SRC
+	var task_id int32 = 0
 	switch req.GetTaskType() {
 	case ddproto.HallEnumTaskType_TYPE_DDZ:
-		fill_game = ddproto.CommonEnumGame_GID_DDZ
+		task_id = 202
 	case ddproto.HallEnumTaskType_TYPE_MJ:
-		fill_game = ddproto.CommonEnumGame_GID_MAHJONG
+		task_id = 201
 	case ddproto.HallEnumTaskType_TYPE_ZJH:
-		fill_game = ddproto.CommonEnumGame_GID_MAHJONG
-	default:
-		fill_game = ddproto.CommonEnumGame_GID_SRC
+		task_id = 203
 	}
 	user_id := req.GetHeader().GetUserId()
-	list := GetUserTaskShowList(user_id, 2,  "", fill_game)
-	msg := &ddproto.HallAckCheckBonus{
+	msg := ddproto.HallAckCheckBonus{
 		Header: commonNewPorot.NewHeader(),
+		GiveBonus: proto.Float64(0),
 	}
-	defer agent.WriteMsg(msg)
-	msg.GiveBonus = proto.Float64(0)
-	if len(list) >= 1 {
-		if list[0].IsDone == true && list[0].IsCheck == false {
-			var bonus_count float64 = 0
-			if len(list[0].Reward) >= 1 {
-				bonus_count = list[0].Reward[0].GetAmount()
-			}
-			*msg.Header.Code = 1
-			msg.GiveBonus = &bonus_count
-			list[0].IsCheck = true
-			list[0].SetUserState(list[0].UserId, list[0].TaskState)
-			//发放红包
-			userService.INCRUserBonus(user_id, bonus_count)
-			*msg.Header.Error = fmt.Sprintf("成功领取%d个红包！", bonus_count)
-			return
-		}else {
-			*msg.Header.Code = -2
-			*msg.Header.Error = fmt.Sprintf("再赢%d局比赛才能领红包哦！", list[0].TaskSum - list[0].SumNo)
-			return
-		}
-	}else {
+
+	if task_id == 0 {
 		*msg.Header.Code = -1
-		*msg.Header.Error = "您今天的红包被领完了~"
+		*msg.Header.Error = "TaskType参数错误！"
+		agent.WriteMsg(&msg)
 		return
 	}
 
+	err, name := CheckTaskReward(user_id, task_id)
+
+	if err != nil {
+		*msg.Header.Code = -2
+		*msg.Header.Error = err.Error()
+	}else {
+		*msg.Header.Code = 1
+		*msg.Header.Error = "恭喜你，成功领取" + name + "."
+	}
+	agent.WriteMsg(&msg)
 }
