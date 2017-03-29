@@ -10,9 +10,9 @@ import (
 //跑得快解析器
 type MJParser interface {
 	CanPeng(interface{}, interface{}) (bool, error)
-	CanGang(interface{}, interface{}) (bool, error)
-	CanChi(interface{}, interface{}) (bool, error)
-	CanBu(interface{}, interface{}) (bool, error)
+	CanGang(interface{}, interface{}) (interface{}, error)
+	CanChi(interface{}, interface{}) (interface{}, error)
+	CanBu(interface{}, interface{}) (interface{}, error)
 	GetJiaoInfos(interface{}) (interface{}, error) //判断是否有叫
 	Parse(pids []int32) (interface{}, error)       //通过一副牌的id解析牌型
 	XiPai() interface{}                            //洗牌
@@ -52,7 +52,7 @@ func (p *MJParserCore) CanPeng(userGameData interface{}, pengPai interface{}) (b
 /**
 	判断别人打的牌是否能杠(这里都是点杠)
  */
-func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (bool, error) {
+func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (interface{}, error) {
 	log.T("判断是否能杠:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
@@ -65,7 +65,17 @@ func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (b
 			paiCount++
 		}
 	}
-	return paiCount >= 2, nil
+
+	ret := &CanGangInfo{}
+	if paiCount >= 2 {
+		ret.CanGang = true
+		ret.GangInfoBean = append(ret.GangInfoBean, &CanGangInfoBean{
+			GangPai:  gangPai2,
+			GangType: GANGTYPE_MING,
+		})
+	}
+
+	return ret, nil
 }
 
 /**
@@ -78,21 +88,26 @@ var (
 	GANGTYPE_AN   int32 = 3
 )
 
-type ZimoGangCards struct {
+type CanGangInfo struct {
+	CanGang      bool
+	GangInfoBean []*CanGangInfoBean
+}
+
+type CanGangInfoBean struct {
 	GangPai  *majiang.MJPAI
 	GangType int32 //杠牌的类型
 }
 
-func (p *MJParserCore) ZiMoGangCards(userGameData interface{}, gangPai interface{}) (interface{}, error) {
+func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, error) {
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
 	pengPais := gameData.GetPengPais()        //得到所有的吃牌
-	var ret []*ZimoGangCards
+	var ret []*CanGangInfoBean
 	//首先判断明杠
 	counts := p.countHandPais(handPais) //统计牌
 	for _, p := range handPais {
 		if 4 == counts[ p.GetCountIndex()] {
-			r := &ZimoGangCards{
+			r := &CanGangInfoBean{
 				GangPai:  p,
 				GangType: GANGTYPE_MING,
 			}
@@ -106,7 +121,7 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}, gangPai interface
 			pengPai := peng.Pais[0] //判断碰牌的第一张和手牌是否一致
 			if p.Flower == pengPai.Flower &&
 				p.Value == pengPai.Value {
-				r := &ZimoGangCards{
+				r := &CanGangInfoBean{
 					GangPai:  p,
 					GangType: GANGTYPE_BA,
 				}
@@ -117,9 +132,9 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}, gangPai interface
 	}
 
 	//清楚重复的数据
-	var ret2 []*ZimoGangCards
-	isexistRet2 := func(g *ZimoGangCards) bool {
-		for _, r := range ret2 {
+	var ret2 *CanGangInfo
+	isexistRet2 := func(g *CanGangInfoBean) bool {
+		for _, r := range ret2.GangInfoBean {
 			if r.GangPai.Flower == g.GangPai.Flower &&
 				r.GangPai.Value == g.GangPai.Value {
 				return true
@@ -131,16 +146,17 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}, gangPai interface
 	for _, g := range ret {
 		//首先判断ret2中是否有杠牌了
 		if !isexistRet2(g) {
-			ret2 = append(ret2, g)
+			ret2.GangInfoBean = append(ret2.GangInfoBean, g)
 		}
 	}
+
 	//返回最后的杠牌的数据
 	return ret2, nil
 }
 
 //是否可以吃牌
-func (p *MJParserCore) CanChi(interface{}, interface{}) (bool, error) {
-	return false, nil
+func (p *MJParserCore) CanChi(interface{}, interface{}) (interface{}, error) {
+	return nil, nil
 
 }
 

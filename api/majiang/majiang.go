@@ -1,5 +1,7 @@
 package majiang
 
+import "casino_majiang/msg/protogo"
+
 type MJ_FLOWER int32
 
 type PengPai struct {
@@ -8,9 +10,15 @@ type PengPai struct {
 }
 
 type GangPai struct {
+	GangType int32
+	Pai      *MJPAI
 }
 
 type ChiPai struct {
+}
+
+type HuPai struct {
+	Pai *MJPAI
 }
 
 var (
@@ -30,4 +38,19 @@ type MJPAI struct {
 //这里得到牌的计数index
 func (p *MJPAI) GetCountIndex() int32 {
 	return p.Value - 1 + (int32(p.Flower - 1))*9 //todo 此方法是否合适...
+}
+
+//todo
+func (p *MJPAI) GetCardInfo() *mjproto.CardInfo {
+	return nil
+}
+
+//todo
+func (p *MJPAI) GetClientId() int32 {
+	return 0
+}
+
+//todo
+func (p *MJPAI) LogDes() string {
+	return ""
 }

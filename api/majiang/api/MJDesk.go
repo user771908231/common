@@ -4,6 +4,10 @@ import (
 	"github.com/name5566/leaf/module"
 	"casino_common/common/consts/tableName"
 	"casino_common/utils/db"
+	"sync"
+	"casino_common/common/Error"
+	"casino_common/common/consts"
+	"github.com/golang/protobuf/proto"
 )
 
 //麻将桌子的定义
@@ -13,6 +17,7 @@ type MJDesk interface {
 	ActReady(userId uint32) error              //准备
 	GetDeskId() int32                          //得到desk id
 	GetPassword() string                       //得到房间号
+	DlogDes() string                           //打印日志用到的tag
 }
 
 type MJDeskCore struct {
@@ -21,6 +26,7 @@ type MJDeskCore struct {
 	password string //房间号
 	parser   MJParser
 	users    []MJUser
+	sync.Mutex
 }
 
 func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
@@ -57,6 +63,40 @@ func (d *MJDeskCore) GetUserById(userId uint32) MJUser {
 	return nil
 }
 
+func (d *MJDeskCore) GetIndexByUserId(userId uint32) int {
+	for i, u := range d.GetUsers() {
+		if u != nil && u.GetUserId() == userId {
+			return i
+		}
+	}
+	return -1
+}
+
 func (d *MJDeskCore) GetUsers() []MJUser {
 	return d.users
+}
+
+func (d *MJDeskCore) BroadCastProto(p proto.Message) {
+	for _, u := range d.users {
+		u.WriteMsg(p)
+	}
+}
+
+var ERR_ADDUSERBEAN error = Error.NewError(consts.ACK_RESULT_ERROR, "进入失败，房间已满")
+var ERR_ADDUSERBEAN2 error = Error.NewError(consts.ACK_RESULT_ERROR, "进入失败")
+
+func (d *MJDeskCore) AddUserBean(user MJUser) error {
+
+	//判断
+	if user == nil {
+		return ERR_ADDUSERBEAN2
+	}
+	//根据房间类型判断人数是否已满
+	for i := 0; i < len(d.users); i++ {
+		if d.users[i] == nil {
+			d.users[i] = user
+			return nil
+		}
+	}
+	return ERR_ADDUSERBEAN
 }
