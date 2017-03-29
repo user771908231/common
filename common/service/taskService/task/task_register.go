@@ -13,18 +13,8 @@ func InitTask() {
 	all_task := taskService.GetTaskInfoList()
 	for _,task := range all_task{
 		switch task.TaskId {
-		case 101:
-			//大厅每日分享任务
-			taskService.RegistTask(taskType.Task{
-				TaskInfo: task,
-				ValidateFun:func(task *taskType.UserTask) {
-					task.IsDone = true
-					task.SetUserState(task.UserId, task.TaskState)
-				},
-			})
-
-		case 102:
-			//游戏内每日分享任务
+		case 101, 102:
+			//大厅每日分享任务、游戏内每日分享任务
 			taskService.RegistTask(taskType.Task{
 				TaskInfo: task,
 				ValidateFun:func(task *taskType.UserTask) {

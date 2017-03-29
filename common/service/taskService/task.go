@@ -187,7 +187,7 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name 
 		switch reward.GetType() {
 		case ddproto.HallEnumTradeType_TRADE_COIN:
 			//领取金币
-			//_,err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
+			_,err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
 			name += fmt.Sprintf("%.0f金币", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			//领取钻石
@@ -199,7 +199,7 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name 
 			name += fmt.Sprintf("%.0f房卡", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			//_,err = userService.INCRUserBonus(userId, reward.GetAmount())
+			_,err = userService.INCRUserBonus(userId, reward.GetAmount())
 			name += fmt.Sprintf("%.2f红包", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
@@ -223,10 +223,10 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name 
 }
 
 //领取任务奖励
-func CheckTaskReward(userId uint32, taskId int32) (error, string) {
+func CheckTaskReward(userId uint32, taskId int32) (error, string, []*ddproto.HallBagItem) {
 	user_task := GetUserTask(userId, taskId)
 	if user_task == nil {
-		return errors.New("系统未找到该条任务，领取奖励失败！"), ""
+		return errors.New("系统未找到该条任务，领取奖励失败！"), "", []*ddproto.HallBagItem{}
 	}
 	//刷新任务状态
 	if user_task.ValidateFun != nil {
@@ -234,23 +234,25 @@ func CheckTaskReward(userId uint32, taskId int32) (error, string) {
 	}
 	//判断领取次数
 	if user_task.RepeatSum > 0 && user_task.RepeatNo >= user_task.RepeatSum {
-		return errors.New("任务奖励领取次数已达上限，无法继续领取！"), ""
+		return errors.New("任务奖励领取次数已达上限，无法继续领取！"), "", []*ddproto.HallBagItem{}
 	}
 	//是否已完成
 	if !user_task.IsDone {
-		return errors.New("任务未完成，领取奖励失败！"), ""
+		return errors.New("任务未完成，领取奖励失败！"), "", []*ddproto.HallBagItem{}
 	}
 	//是否已领取
 	if user_task.IsCheck {
-		return errors.New("领取任务奖励失败！"), ""
+		return errors.New("领取任务奖励失败！"), "", []*ddproto.HallBagItem{}
 	}
 
 	name := ""
+	reward := []*ddproto.HallBagItem{}
 	if user_task.GetRewardFun == nil {
-		_,name = CheckReward(userId, user_task.Reward)
+		reward = user_task.Reward
 	}else {
-		_,name = CheckReward(userId, user_task.GetRewardFun(user_task))
+		reward = user_task.GetRewardFun(user_task)
 	}
+	_,name = CheckReward(userId, reward)
 
 	user_task.IsCheck = true
 
@@ -280,7 +282,7 @@ func CheckTaskReward(userId uint32, taskId int32) (error, string) {
 	if user_task.AfterRewardFun != nil {
 		user_task.AfterRewardFun(user_task)
 	}
-	return nil, name
+	return nil, name, reward
 }
 
 /**

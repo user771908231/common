@@ -67,7 +67,7 @@ func (task *Task) SetUserState(userId uint32, state *TaskState) {
 				"ischeck": state.IsCheck,
 				"repeatno": state.RepeatNo,
 				"lastchecksumno": state.LastCheckSumNo,
-				"data": map[string]float64{},
+				"data": state.Data,
 			},
 		)
 	})

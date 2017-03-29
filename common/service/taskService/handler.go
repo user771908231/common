@@ -48,7 +48,7 @@ func HandlerCheckTaskReq(req *ddproto.HallReqCheckTask, agent gate.Agent) {
 	}
 	defer agent.WriteMsg(msg)
 
-	err,name := CheckTaskReward(user_id, task_id)
+	err,name,_ := CheckTaskReward(user_id, task_id)
 	if err != nil {
 		msg.Header.Code = proto.Int32(-1)
 		msg.Header.Error = proto.String(err.Error())
@@ -126,13 +126,16 @@ func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
 		return
 	}
 
-	err, name := CheckTaskReward(user_id, task_id)
+	err, name, reward := CheckTaskReward(user_id, task_id)
 
 	if err != nil {
 		*msg.Header.Code = -2
 		*msg.Header.Error = err.Error()
 	}else {
 		*msg.Header.Code = 1
+		if len(reward) > 0 {
+			*msg.GiveBonus = reward[0].GetAmount()
+		}
 		*msg.Header.Error = "恭喜你，成功领取" + name + "."
 	}
 	agent.WriteMsg(&msg)
