@@ -48,7 +48,8 @@ func GetRewardBonusFun(user_task *taskType.UserTask) []*ddproto.HallBagItem {
 		reward = (use_coin_fee/10000)*conf.CoinPercent*conf.BonusPercent
 		if reward < conf.Min {
 			reward = conf.Min
-		}else if reward > conf.Max {
+		}
+		if reward > conf.Max {
 			reward = conf.Max
 		}
 	}

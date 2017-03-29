@@ -2,7 +2,6 @@ db.getCollection('t_config_active_list').drop()
 
 db.t_config_active_list.insert(
 {
-    "_id" : ObjectId("5879fc0ca513c0bbc83c1138"),
     "id" : 0,
     "type" : 1,
     "reward" : 1,
@@ -10,12 +9,11 @@ db.t_config_active_list.insert(
         "在来一圈棋牌任意金币场游戏，只需赢五局就可拆红包，所得红包在游戏商城兑换区进行兑换，登录微信进入“来一圈棋牌”公众号即可一键领取。",
         "banner"
     ],
-    "title" : "迎新春",
+    "title" : "清明节",
 }
 )
 db.t_config_active_list.insert(
 {
-    "_id" : ObjectId("5879fc0ca513c0bbc83c113d"),
     "id" : 1,
     "type" : 1,
     "reward" : 1,
@@ -28,7 +26,6 @@ db.t_config_active_list.insert(
 )
 db.t_config_active_list.insert(
 {
-    "_id" : ObjectId("5879fc0ca513c0bbc83c1142"),
     "id" : 2,
     "type" : 1,
     "reward" : 1,

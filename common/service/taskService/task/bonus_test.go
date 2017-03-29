@@ -52,7 +52,7 @@ func ShowUserTask(user_id uint32, task_id int32) {
 	user_task := taskService.GetUserTask(user_id, task_id)
 	if user_task != nil {
 		//user_task.ValidateFun(user_task)
-		log.Println("isDone", user_task.IsDone,"isCheck", user_task.IsCheck,"sumNo",user_task.SumNo,"lastCheckSumNo",user_task.LastCheckSumNo,"repeatNo",user_task.RepeatNo)
+		log.Println("isDone", user_task.IsDone,"isCheck", user_task.IsCheck,"sumNo",user_task.SumNo,"lastCheckSumNo",user_task.LastCheckSumNo,"repeatNo",user_task.RepeatNo, "data", user_task.Data)
 	}else {
 		log.Println("用户", user_id, "的任务", task_id, "不存在。")
 	}
@@ -71,7 +71,7 @@ func TestBonusTask(t *testing.T)  {
 		gameCounter.Add(user_id, count_type, 1)
 		taskService.OnTask(count_type, user_id)
 		ShowUserTask(user_id, task_id)
-		err,name := taskService.CheckTaskReward(user_id, task_id)
+		err,name,_ := taskService.CheckTaskReward(user_id, task_id)
 		if err != nil {
 			log.Println(err.Error())
 		}else {
@@ -100,7 +100,7 @@ func TestInitTask(t *testing.T) {
 	ShowUserTask(11, 221)
 	row.DoCountAndTask()
 	//尝试领取
-	err,name := taskService.CheckTaskReward(11, 221)
+	err,name,_ := taskService.CheckTaskReward(11, 221)
 	t.Log(err, name)
 	t.Log(gameCounter.GetDayCounter(11))
 	ShowUserTask(11, 221)
@@ -116,24 +116,27 @@ func TestNearTask(t *testing.T) {
 //测试：新版红包任务
 func TestNewBonusTask(t *testing.T) {
 	InitTask()
-	ShowUserTask(11, 203)
-	row := countService.T_game_log{
-		UserId: 11,
-		GameId:ddproto.CommonEnumGame_GID_ZJH,
-		GameNumber: 323541,
-		RoomType: ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN,
-		RoomLevel:1,
-		Bill: 640,
-		CoinFee: 200,
-		IsWine: true,
-		StartTime:time.Now().Unix() - int64(10*60*time.Second),
-		EndTime: time.Now().Unix(),
+	for i:= 0; i< 20; i++ {
+		log.Println(i)
+		ShowUserTask(11, 203)
+		row := countService.T_game_log{
+			UserId: 11,
+			GameId:ddproto.CommonEnumGame_GID_DDZ,
+			GameNumber: 323541,
+			RoomType: ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN,
+			RoomLevel:1,
+			Bill: 640,
+			CoinFee: 2000,
+			IsWine: true,
+			StartTime:time.Now().Unix() - int64(10 * 60 * time.Second),
+			EndTime: time.Now().Unix(),
+		}
+		row.DoCountAndTask()
+		ShowUserTask(11, 203)
+		err, name,_ := taskService.CheckTaskReward(11, 203)
+		log.Println(err, name)
+		ShowUserTask(11, 203)
 	}
-	row.DoCountAndTask()
-	ShowUserTask(11, 203)
-	err,name := taskService.CheckTaskReward(11, 203)
-	t.Log(err, name)
-	ShowUserTask(11, 203)
 }
 
 //测试：红包任务奖励计算
