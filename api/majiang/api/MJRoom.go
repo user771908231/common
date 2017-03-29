@@ -7,6 +7,8 @@ import (
 
 type MJRoom interface {
 	CreateDesk(interface{}) (MJDesk, error) //创建房间
+	GetDesk(interface{}) (MJDesk, error)    //得到一个房间
+	CreateFee(...interface{}) int64         //房费
 }
 
 //room 基本的操作
@@ -34,6 +36,20 @@ func (rs *MJRoomCore) GetDesk(deskId int32) MJDesk {
 		return ret.(MJDesk)
 	}
 	return nil
+}
+
+//通过key得到desk
+func (rs *MJRoomCore) GetDeskByPass(key string) MJDesk {
+	var ret MJDesk
+	rs.desks.UnsafeRange(func(k interface{}, v interface{}) {
+		if v != nil {
+			d := v.(MJDesk)
+			if d.GetPassword() == key {
+				ret = d
+			}
+		}
+	})
+	return ret
 }
 
 //删除一个desk
