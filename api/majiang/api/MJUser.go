@@ -10,6 +10,7 @@ import (
 type MJUser interface {
 	//所有基本信息的优化
 	GetUserId() uint32
+	GetCoin() int64
 	GetSex() int32
 	GetHeadUrl() string
 	GetOpenId() string
@@ -19,7 +20,9 @@ type MJUser interface {
 	GetDesk() MJDesk //得到桌子
 
 	//基本功能
-	WriteMsg(p proto.Message) error //发送信息
+	SendOverTurn(p proto.Message) error //发送overTurn
+	WriteMsg(p proto.Message) error     //发送信息
+	DoReady() error                     //准备
 
 	//业务
 	AddBillBean(interface{}) error //增加账单

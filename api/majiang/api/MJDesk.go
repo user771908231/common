@@ -17,6 +17,7 @@ type MJDesk interface {
 	ActReady(userId uint32) error              //准备
 	GetDeskId() int32                          //得到desk id
 	GetPassword() string                       //得到房间号
+	GetCfg() interface{}                       //的牌桌子的配置信息
 	DlogDes() string                           //打印日志用到的tag
 }
 
@@ -79,6 +80,15 @@ func (d *MJDeskCore) GetUsers() []MJUser {
 func (d *MJDeskCore) BroadCastProto(p proto.Message) {
 	for _, u := range d.users {
 		u.WriteMsg(p)
+	}
+}
+
+//发送广播
+func (d *MJDeskCore) BroadCastProtoExclusive(p proto.Message, userId uint32) {
+	for _, u := range d.users {
+		if u.GetUserId() != userId {
+			u.WriteMsg(p)
+		}
 	}
 }
 
