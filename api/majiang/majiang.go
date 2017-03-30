@@ -13,7 +13,7 @@ type PengPai struct {
 
 type GangPai struct {
 	GangType int32
-	Pai      *MJPAI
+	Pais     []*MJPAI
 }
 
 type ChiPai struct {

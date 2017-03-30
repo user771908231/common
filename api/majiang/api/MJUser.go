@@ -23,6 +23,7 @@ type MJUser interface {
 	SendOverTurn(p proto.Message) error //发送overTurn
 	WriteMsg(p proto.Message) error     //发送信息
 	DoReady() error                     //准备
+	DoOut(interface{}) error            //玩家出牌
 
 	//业务
 	AddBillBean(interface{}) error //增加账单
