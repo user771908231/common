@@ -17,6 +17,7 @@ type MJParser interface {
 	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
 	XiPai() interface{}                               //洗牌
 	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
+	InitMjPaiByIndex(index int32) *majiang.MJPAI      //通过id得到一张麻将牌
 }
 
 //麻将的骨架，通用的方法都在这里

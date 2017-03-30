@@ -14,10 +14,16 @@ import (
 type MJDesk interface {
 	EnterUser(...interface{}) error            //玩家进入desk，不定参数
 	ActOut(userId uint32, p interface{}) error //出牌的user和牌型
+	ActPeng(...interface{}) error              //碰
+	ActGuo(...interface{}) error               //过
+	ActGang(...interface{}) error              //杠
+	ActBu(...interface{}) error                //补
+	ActHu(...interface{}) error                //胡
 	ActReady(userId uint32) error              //准备
 	GetDeskId() int32                          //得到desk id
 	GetPassword() string                       //得到房间号
 	GetCfg() interface{}                       //的牌桌子的配置信息
+	GetParser() MJParser                       //得到解析器
 	DlogDes() string                           //打印日志用到的tag
 }
 
