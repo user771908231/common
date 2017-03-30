@@ -134,6 +134,10 @@ func INCRUserDiamond(userid uint32, d int64) (int64, error) {
 
 //减少用户的砖石
 func DECRUserDiamond(userid uint32, d int64) (int64, error) {
+	count := GetUserDiamond(userid)
+	if count - d < 0 {
+		return count, errors.New("余额不足，减少钻石失败！")
+	}
 	return decrUser(userid, cfg.RKEY_USER_DIAMOND, d)
 }
 
@@ -144,6 +148,10 @@ func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
 
 //减少用户的房卡
 func DECRUserRoomcard(userId uint32, d int64) (int64, error) {
+	count := GetUserRoomCard(userId)
+	if count - d < 0 {
+		return count, errors.New("余额不足，减少房卡失败！")
+	}
 	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
 }
 
@@ -154,6 +162,10 @@ func INCRUserDiamond2(userid uint32, d int64) (int64, error) {
 
 //减少用户的朋友桌钻石
 func DECRUserDiamond2(userid uint32, d int64) (int64, error) {
+	count := GetUserDiamond2(userid)
+	if count - d < 0 {
+		return count, errors.New("余额不足，减少朋友桌钻石失败！")
+	}
 	return decrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
 }
 
@@ -164,6 +176,10 @@ func INCRUserCOIN(userid uint32, d int64) (int64, error) {
 
 //减少用户的金币
 func DECRUserCOIN(userid uint32, d int64) (int64, error) {
+	count := GetUserCoin(userid)
+	if count - d < 0 {
+		return count, errors.New("余额不足，减少用户金币失败！")
+	}
 	return decrUser(userid, cfg.RKEY_USER_COIN, d)
 }
 
