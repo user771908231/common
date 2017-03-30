@@ -1,3 +1,45 @@
 syntax = "proto2";
 
+import public "ddz_server.proto";
+
 package ddproto;
+
+//user
+message pdk_srv_user {
+    optional uint32 userId = 1;
+    optional ddz_srv_gameData gameData = 2; //游戏数据
+    optional int32 statusShowPokers = 3; //明牌的状态
+
+    optional bool isShowPokers = 4; //是否明牌
+
+    optional pdk_srv_bill bill = 5; // 跑得快的账单
+    optional int64 coin = 6; //玩家金币 金币场
+    optional int64 score = 7; //玩家得分 朋友桌
+    optional ddz_srv_userStatistics statistics = 8; //统计信息
+    optional int32 playRate = 9; //当前倍数 触发条件: 炸弹、叫地主、抢地主、叫分、闷抓、拉、倒、春天
+    optional int32 jiaoScore = 10; //经典斗地主叫多少分 DdzJDScore:1/2/3
+    optional int32 timeOutCount = 11; //操作超时次数
+    optional bool isAgent = 12; //是否托管
+    optional int32 sex = 13; //性别
+    optional int32 roomCard = 14; //玩家房卡
+
+    optional int32 statusApplyDissolve = 15; //申请解散房间的状态
+
+    optional int32 scRate = 16; //明牌倍数
+    optional int32 jbRate = 17; //加倍倍数
+}
+
+message pdk_srv_bill {
+    //跑得快的账单
+    optional int64 winCoin = 1; //关于统计的数据都在这
+    repeated pdk_srv_billBean billBean = 2; //所有的牌
+}
+
+message pdk_srv_billBean {
+    //跑得快的账单
+    optional int64 coin = 1; //关于统计的数据都在这
+    optional uint32 loseUser = 2; //
+    optional uint32 winUser = 3; //
+    optional string desc = 4;
+    optional ddz_srv_outPokerPais outPokerPais = 5; //出手的牌结构 from 斗地主
+}

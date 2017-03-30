@@ -73,7 +73,6 @@ message ddz_srv_bill {
     //斗地主的账单
     optional int64 winCoin = 1; //关于统计的数据都在这
     repeated ddz_srv_billBean billBean = 2; //所有的牌
-
 }
 
 message ddz_srv_userStatisticsRound {
