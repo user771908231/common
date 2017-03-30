@@ -13,9 +13,282 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// Ignoring public import of ddz_srv_outPokerPais from ddz_server.proto
+
+// Ignoring public import of ddz_srv_deskTongJi from ddz_server.proto
+
+// Ignoring public import of ddz_srv_desk from ddz_server.proto
+
+// Ignoring public import of ddz_srv_gameData from ddz_server.proto
+
+// Ignoring public import of ddz_srv_billBean from ddz_server.proto
+
+// Ignoring public import of ddz_srv_bill from ddz_server.proto
+
+// Ignoring public import of ddz_srv_userStatisticsRound from ddz_server.proto
+
+// Ignoring public import of ddz_srv_userStatistics from ddz_server.proto
+
+// Ignoring public import of ddz_srv_user from ddz_server.proto
+
+// Ignoring public import of ddz_srv_room from ddz_server.proto
+
+// Ignoring public import of ddz_srv_bak from ddz_server.proto
+
+// user
+type PdkSrvUser struct {
+	UserId              *uint32               `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	GameData            *DdzSrvGameData       `protobuf:"bytes,2,opt,name=gameData" json:"gameData,omitempty"`
+	StatusShowPokers    *int32                `protobuf:"varint,3,opt,name=statusShowPokers" json:"statusShowPokers,omitempty"`
+	IsShowPokers        *bool                 `protobuf:"varint,4,opt,name=isShowPokers" json:"isShowPokers,omitempty"`
+	Bill                *PdkSrvBill           `protobuf:"bytes,5,opt,name=bill" json:"bill,omitempty"`
+	Coin                *int64                `protobuf:"varint,6,opt,name=coin" json:"coin,omitempty"`
+	Score               *int64                `protobuf:"varint,7,opt,name=score" json:"score,omitempty"`
+	Statistics          *DdzSrvUserStatistics `protobuf:"bytes,8,opt,name=statistics" json:"statistics,omitempty"`
+	PlayRate            *int32                `protobuf:"varint,9,opt,name=playRate" json:"playRate,omitempty"`
+	JiaoScore           *int32                `protobuf:"varint,10,opt,name=jiaoScore" json:"jiaoScore,omitempty"`
+	TimeOutCount        *int32                `protobuf:"varint,11,opt,name=timeOutCount" json:"timeOutCount,omitempty"`
+	IsAgent             *bool                 `protobuf:"varint,12,opt,name=isAgent" json:"isAgent,omitempty"`
+	Sex                 *int32                `protobuf:"varint,13,opt,name=sex" json:"sex,omitempty"`
+	RoomCard            *int32                `protobuf:"varint,14,opt,name=roomCard" json:"roomCard,omitempty"`
+	StatusApplyDissolve *int32                `protobuf:"varint,15,opt,name=statusApplyDissolve" json:"statusApplyDissolve,omitempty"`
+	ScRate              *int32                `protobuf:"varint,16,opt,name=scRate" json:"scRate,omitempty"`
+	JbRate              *int32                `protobuf:"varint,17,opt,name=jbRate" json:"jbRate,omitempty"`
+	XXX_unrecognized    []byte                `json:"-"`
+}
+
+func (m *PdkSrvUser) Reset()                    { *m = PdkSrvUser{} }
+func (m *PdkSrvUser) String() string            { return proto.CompactTextString(m) }
+func (*PdkSrvUser) ProtoMessage()               {}
+func (*PdkSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{0} }
+
+func (m *PdkSrvUser) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetGameData() *DdzSrvGameData {
+	if m != nil {
+		return m.GameData
+	}
+	return nil
+}
+
+func (m *PdkSrvUser) GetStatusShowPokers() int32 {
+	if m != nil && m.StatusShowPokers != nil {
+		return *m.StatusShowPokers
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetIsShowPokers() bool {
+	if m != nil && m.IsShowPokers != nil {
+		return *m.IsShowPokers
+	}
+	return false
+}
+
+func (m *PdkSrvUser) GetBill() *PdkSrvBill {
+	if m != nil {
+		return m.Bill
+	}
+	return nil
+}
+
+func (m *PdkSrvUser) GetCoin() int64 {
+	if m != nil && m.Coin != nil {
+		return *m.Coin
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetScore() int64 {
+	if m != nil && m.Score != nil {
+		return *m.Score
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetStatistics() *DdzSrvUserStatistics {
+	if m != nil {
+		return m.Statistics
+	}
+	return nil
+}
+
+func (m *PdkSrvUser) GetPlayRate() int32 {
+	if m != nil && m.PlayRate != nil {
+		return *m.PlayRate
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetJiaoScore() int32 {
+	if m != nil && m.JiaoScore != nil {
+		return *m.JiaoScore
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetTimeOutCount() int32 {
+	if m != nil && m.TimeOutCount != nil {
+		return *m.TimeOutCount
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetIsAgent() bool {
+	if m != nil && m.IsAgent != nil {
+		return *m.IsAgent
+	}
+	return false
+}
+
+func (m *PdkSrvUser) GetSex() int32 {
+	if m != nil && m.Sex != nil {
+		return *m.Sex
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetRoomCard() int32 {
+	if m != nil && m.RoomCard != nil {
+		return *m.RoomCard
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetStatusApplyDissolve() int32 {
+	if m != nil && m.StatusApplyDissolve != nil {
+		return *m.StatusApplyDissolve
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetScRate() int32 {
+	if m != nil && m.ScRate != nil {
+		return *m.ScRate
+	}
+	return 0
+}
+
+func (m *PdkSrvUser) GetJbRate() int32 {
+	if m != nil && m.JbRate != nil {
+		return *m.JbRate
+	}
+	return 0
+}
+
+type PdkSrvBill struct {
+	// 跑得快的账单
+	WinCoin          *int64            `protobuf:"varint,1,opt,name=winCoin" json:"winCoin,omitempty"`
+	BillBean         []*PdkSrvBillBean `protobuf:"bytes,2,rep,name=billBean" json:"billBean,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *PdkSrvBill) Reset()                    { *m = PdkSrvBill{} }
+func (m *PdkSrvBill) String() string            { return proto.CompactTextString(m) }
+func (*PdkSrvBill) ProtoMessage()               {}
+func (*PdkSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{1} }
+
+func (m *PdkSrvBill) GetWinCoin() int64 {
+	if m != nil && m.WinCoin != nil {
+		return *m.WinCoin
+	}
+	return 0
+}
+
+func (m *PdkSrvBill) GetBillBean() []*PdkSrvBillBean {
+	if m != nil {
+		return m.BillBean
+	}
+	return nil
+}
+
+type PdkSrvBillBean struct {
+	// 跑得快的账单
+	Coin             *int64              `protobuf:"varint,1,opt,name=coin" json:"coin,omitempty"`
+	LoseUser         *uint32             `protobuf:"varint,2,opt,name=loseUser" json:"loseUser,omitempty"`
+	WinUser          *uint32             `protobuf:"varint,3,opt,name=winUser" json:"winUser,omitempty"`
+	Desc             *string             `protobuf:"bytes,4,opt,name=desc" json:"desc,omitempty"`
+	OutPokerPais     *DdzSrvOutPokerPais `protobuf:"bytes,5,opt,name=outPokerPais" json:"outPokerPais,omitempty"`
+	XXX_unrecognized []byte              `json:"-"`
+}
+
+func (m *PdkSrvBillBean) Reset()                    { *m = PdkSrvBillBean{} }
+func (m *PdkSrvBillBean) String() string            { return proto.CompactTextString(m) }
+func (*PdkSrvBillBean) ProtoMessage()               {}
+func (*PdkSrvBillBean) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{2} }
+
+func (m *PdkSrvBillBean) GetCoin() int64 {
+	if m != nil && m.Coin != nil {
+		return *m.Coin
+	}
+	return 0
+}
+
+func (m *PdkSrvBillBean) GetLoseUser() uint32 {
+	if m != nil && m.LoseUser != nil {
+		return *m.LoseUser
+	}
+	return 0
+}
+
+func (m *PdkSrvBillBean) GetWinUser() uint32 {
+	if m != nil && m.WinUser != nil {
+		return *m.WinUser
+	}
+	return 0
+}
+
+func (m *PdkSrvBillBean) GetDesc() string {
+	if m != nil && m.Desc != nil {
+		return *m.Desc
+	}
+	return ""
+}
+
+func (m *PdkSrvBillBean) GetOutPokerPais() *DdzSrvOutPokerPais {
+	if m != nil {
+		return m.OutPokerPais
+	}
+	return nil
+}
+
+func init() {
+	proto.RegisterType((*PdkSrvUser)(nil), "ddproto.pdk_srv_user")
+	proto.RegisterType((*PdkSrvBill)(nil), "ddproto.pdk_srv_bill")
+	proto.RegisterType((*PdkSrvBillBean)(nil), "ddproto.pdk_srv_billBean")
+}
+
 var fileDescriptor22 = []byte{
-	// 46 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2b, 0x48, 0xc9, 0x8e,
-	0x2f, 0xc8, 0x49, 0xac, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0x49, 0x01, 0x33,
-	0x00, 0x01, 0x00, 0x00, 0xff, 0xff, 0x1d, 0x9e, 0x87, 0x26, 0x19, 0x00, 0x00, 0x00,
+	// 406 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x64, 0x51, 0xc1, 0x6e, 0xd3, 0x40,
+	0x10, 0xc5, 0x38, 0x69, 0x9c, 0x89, 0x9d, 0xba, 0x0b, 0x48, 0x0b, 0x08, 0x81, 0xc2, 0x05, 0x09,
+	0x29, 0x07, 0xf8, 0x82, 0x92, 0x5e, 0x90, 0x90, 0x88, 0x88, 0x38, 0x47, 0x5b, 0xef, 0xaa, 0x6c,
+	0xeb, 0x78, 0xad, 0x9d, 0x75, 0x4a, 0xf9, 0x00, 0x3e, 0x82, 0xaf, 0x65, 0x76, 0x12, 0x87, 0xd0,
+	0x9e, 0xec, 0x79, 0x33, 0xf3, 0xf6, 0xcd, 0x7b, 0x30, 0x6d, 0xf5, 0xcd, 0xba, 0xad, 0xd5, 0xdd,
+	0xbc, 0xf5, 0x2e, 0x38, 0x31, 0xd2, 0x9a, 0x7f, 0x5e, 0x94, 0x5a, 0xff, 0x5a, 0xa3, 0xf1, 0x5b,
+	0xe3, 0x77, 0xad, 0xd9, 0x9f, 0x14, 0xf2, 0x38, 0x8d, 0x7e, 0xbb, 0xee, 0xa8, 0x23, 0xa6, 0x70,
+	0x12, 0xbf, 0x9f, 0xb5, 0x4c, 0xde, 0x24, 0xef, 0x0a, 0xf1, 0x1e, 0xb2, 0x2b, 0xb5, 0x31, 0x17,
+	0x2a, 0x28, 0xf9, 0x98, 0x90, 0xc9, 0x87, 0xe7, 0xf3, 0x3d, 0xdd, 0x9c, 0xd9, 0x68, 0xb1, 0x1f,
+	0x10, 0x12, 0x4a, 0x0c, 0x2a, 0x74, 0xb8, 0xfa, 0xe1, 0x6e, 0x97, 0xee, 0xc6, 0x78, 0x94, 0x29,
+	0x2d, 0x0d, 0xc5, 0x53, 0xc8, 0xed, 0x31, 0x3a, 0x20, 0x34, 0x13, 0x6f, 0x61, 0x70, 0x69, 0xeb,
+	0x5a, 0x0e, 0x99, 0xf8, 0xd9, 0x81, 0xb8, 0x57, 0x14, 0x9b, 0x22, 0x87, 0x41, 0xe5, 0x6c, 0x23,
+	0x4f, 0x68, 0x28, 0x15, 0x05, 0x0c, 0xb1, 0x72, 0xde, 0xc8, 0x11, 0x97, 0x1f, 0x01, 0xe2, 0x8b,
+	0x16, 0x83, 0xad, 0x50, 0x66, 0xcc, 0xf3, 0xfa, 0x81, 0xc0, 0x78, 0xd1, 0xea, 0x30, 0x26, 0x4a,
+	0xc8, 0xa2, 0x3b, 0xdf, 0x54, 0x30, 0x72, 0xcc, 0xf2, 0xce, 0x60, 0x7c, 0x6d, 0x95, 0x5b, 0x31,
+	0x33, 0xf4, 0x8a, 0x83, 0xdd, 0x98, 0xaf, 0x5d, 0x58, 0xb8, 0xae, 0x09, 0x72, 0xc2, 0xe8, 0x29,
+	0x8c, 0x2c, 0x9e, 0x5f, 0x19, 0x02, 0x72, 0x3e, 0x61, 0x02, 0x29, 0x9a, 0x9f, 0xb2, 0xe0, 0x2e,
+	0x11, 0x7b, 0xe7, 0x36, 0x0b, 0xe5, 0xb5, 0x9c, 0x32, 0xf2, 0x12, 0x9e, 0xec, 0x1c, 0x39, 0x6f,
+	0xdb, 0xfa, 0xee, 0xc2, 0x22, 0xba, 0x7a, 0x6b, 0xe4, 0x29, 0x37, 0xc9, 0x6b, 0xac, 0x58, 0x45,
+	0xd9, 0xd7, 0xd7, 0x97, 0x5c, 0x9f, 0xc5, 0x7a, 0xf6, 0xe5, 0x5f, 0x36, 0xec, 0x04, 0x3d, 0x7e,
+	0x6b, 0x9b, 0x45, 0x34, 0x23, 0xe1, 0xeb, 0x29, 0x9c, 0xd8, 0xf8, 0x64, 0x54, 0x43, 0xe1, 0xa4,
+	0xff, 0x85, 0x73, 0xbc, 0x19, 0x07, 0x66, 0xbf, 0x13, 0x28, 0xef, 0x83, 0x07, 0x73, 0x77, 0x7c,
+	0xa4, 0xbf, 0x76, 0x68, 0xbe, 0x93, 0x5d, 0x1c, 0x76, 0xb1, 0x7f, 0x92, 0x81, 0x94, 0x01, 0x5a,
+	0xd0, 0x06, 0x2b, 0x0e, 0x70, 0x4c, 0xf6, 0xe7, 0xae, 0x0b, 0x9c, 0xe9, 0x52, 0x59, 0xdc, 0x07,
+	0xf9, 0xea, 0x41, 0x00, 0xc7, 0x43, 0xcb, 0x47, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0xff, 0x63,
+	0xe3, 0xf7, 0xa1, 0x02, 0x00, 0x00,
 }

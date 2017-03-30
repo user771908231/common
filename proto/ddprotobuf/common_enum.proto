@@ -9,6 +9,7 @@ enum common_enum_game {
     GID_ZJH = 4; //炸金花
     GID_HALL = 5; //大厅
     GID_PDK = 7; //跑得快
+    GID_ZXZ = 8; //捉虾子
 }
 
 //房间的类型
