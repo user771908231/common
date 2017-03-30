@@ -133,6 +133,10 @@ enum ddz_enum_paiType {
     AIRCRAFTDOUBLECARD = 13; //飞机带对子
     SUPERBOMB = 14; //   王炸
     FOURWITHONEDOUBLE = 15; //四个带一对
+    DdzEnumPaiType_AIRCRAFTFOURSIG = 16; //飞机带四张单牌
+    DdzEnumPaiType_AIRCRAFTLASTCARD = 17;  //最后一手飞机带单牌
+    DdzEnumPaiType_AIRCRAFTLASTDOU = 18;  //最后一手飞机带对子
+    DdzEnumPaiType_THREETWOSIG = 19; //三带2单
 }
 
 // 轮到玩家操作时：可执行何种操作
