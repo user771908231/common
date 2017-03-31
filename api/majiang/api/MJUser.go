@@ -25,6 +25,7 @@ type MJUser interface {
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
 	DoPeng(...interface{}) (interface{}, error) //碰牌
+	DoBu(...interface{}) (interface{}, error)   //补牌
 	DoHu(interface{}) (interface{}, error)      //胡牌
 	DoGang(...interface{}) (interface{}, error) //杠牌
 

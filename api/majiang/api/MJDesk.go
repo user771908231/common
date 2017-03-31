@@ -8,18 +8,21 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"github.com/golang/protobuf/proto"
+	"casino_common/proto/funcsInit"
+	"casino_common/proto/ddproto"
 )
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error             //玩家进入desk，不定参数
-	ActOut(userId uint32, p interface{}) error  //出牌的user和牌型
-	ActPeng(...interface{}) error               //碰
-	ActGuo(...interface{}) error                //过
-	ActGang(...interface{}) error               //杠
-	ActBu(...interface{}) error                 //补
-	ActHu(...interface{}) error                 //胡
-	ActReady(userId uint32) error               //准备
+	EnterUser(...interface{}) error //玩家进入desk，不定参数
+	ActOut(...interface{}) error    //出牌的user和牌型
+	ActPeng(...interface{}) error   //碰
+	ActGuo(...interface{}) error    //过
+	ActGang(...interface{}) error   //杠
+	ActBu(...interface{}) error     //补
+	ActHu(...interface{}) error     //胡
+	ActReady(userId uint32) error   //准备
+	SendMessage(interface{}) error
 	GetDeskId() int32                           //得到desk id
 	GetRoom() MJRoom                            //得到一个room
 	GetPassword() string                        //得到房间号
@@ -131,4 +134,17 @@ func (d *MJDeskCore) AddUserBean(user MJUser) error {
 		}
 	}
 	return ERR_ADDUSERBEAN
+}
+
+func (d *MJDeskCore) SendMessage(m interface{}) error {
+	msg := m.(*ddproto.CommonReqMessage)
+	result := commonNewPorot.NewCommonBcMessage()
+	*result.UserId = msg.GetHeader().GetUserId()
+	*result.Id = msg.GetId()
+	*result.Msg = msg.GetMsg()
+	*result.MsgType = msg.GetMsgType()
+	*result.ToUserId = msg.GetToUserId()
+	//发送消息
+	d.BroadCastProto(result)
+	return nil
 }

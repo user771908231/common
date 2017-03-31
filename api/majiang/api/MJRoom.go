@@ -6,10 +6,11 @@ import (
 )
 
 type MJRoom interface {
-	CreateDesk(interface{}) (MJDesk, error) //创建房间
-	GetDesk(interface{}) (MJDesk, error)    //得到一个房间
-	GetRoomId() int32                       //得到id
-	GetRoomType() int32                     //房间类型
+	CreateDesk(interface{}) (MJDesk, error)   //创建房间
+	GetEnterDesk(interface{}) (MJDesk, error) //得到一个房间
+	GetDeskById(int32) MJDesk                 //得到一个desk
+	GetRoomId() int32                         //得到id
+	GetRoomType() int32                       //房间类型
 	DissolveDesk(...interface{}) error
 	CreateFee(...interface{}) int64 //房费
 }
@@ -43,7 +44,7 @@ func (rs *MJRoomCore) AddDesk(desk MJDesk) {
 }
 
 //得到一个desk
-func (rs *MJRoomCore) GetDesk(deskId int32) MJDesk {
+func (rs *MJRoomCore) GetDeskById(deskId int32) MJDesk {
 	ret := rs.desks.Get(deskId)
 	if ret != nil {
 		return ret.(MJDesk)
