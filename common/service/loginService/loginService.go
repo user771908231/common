@@ -12,6 +12,7 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"casino_common/common/model/userDao"
+	"regexp"
 )
 
 //做登录的操作...
@@ -36,25 +37,28 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 
 
 //做登录的操作...
-func DoLoginViaInput(userName, passWord string, userId uint32) (*ddproto.User, error) {
+func DoLoginViaInput(userName, password string, userId uint32) (*ddproto.User, error) {
 	var user *ddproto.User
-	//不是初次登录,需要用userId 来登录
-	if userId > 0 {
-		log.T("玩家使用userid【%v】登录..", userId)
-		user := userService.GetUserById(userId)
-		return user, nil
-	}
-	log.T("用户名【%v】密码【%v】登录..", userName, passWord)
+	////不是初次登录,需要用userId 来登录
+	//if userId > 0 {
+	//	log.T("玩家使用userid【%v】登录..", userId)
+	//	user := userService.GetUserById(userId)
+	//	return user, nil
+	//}
+	log.T("用户名【%v】密码【%v】登录..", userName, password)
 	user = userService.GetUserByUserName(userName)
 	if user == nil {
+		log.W("用户名[%v] 数据库中找不到该用户, 登录失败", userName)
 		return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败")
 	}
 
-	if user.GetPwd() == passWord {
-		return user, nil
+	if user.GetPwd() != passWord {
+		log.W("用户名[%v] 数据库中密码[%v]与请求密码不符, 登录失败", userName, user.GetPwd(), password)
+		return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败, 密码错误")
 	}
-	//最终表示登录失败...
-	return nil, nil
+	log.T("用户名【%v】密码【%v】登录成功", userName, password)
+	//最终表示登录成功...
+	return user, nil
 }
 
 func DoLoginSuccess(userId uint32) error {
@@ -163,6 +167,20 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 //用户名密码注册
 func InputsReg(channel, regIp, userName, pwd string) *ddproto.CommonAckReg {
 	log.T("用户名密码的方式请求注册注册信息:渠道[%v] regIp[%v] username[%v] pwd[%v]", channel, regIp, userName, pwd)
+
+	reg := `^1([38][0-9]|14[57]|5[^4])\d{8}$`
+	rgx := regexp.MustCompile(reg)
+	if !rgx.MatchString(userName) {
+		log.W("注册用户的时候失败, 用户名[%v]不是手机号...", userName)
+		return nil
+	}
+
+	oldUser := userService.GetUserByUserName(userName)
+	if oldUser != nil {
+		log.W("注册用户的时候失败, 用户名[%v]已存在...", userName)
+		return nil
+	}
+
 	//设置游客昵称昵称
 	nick, _ := numUtils.Int2String(rand.Rand(10000, 100000))
 	nickName := strings.Join([]string{"游客", nick}, "")
