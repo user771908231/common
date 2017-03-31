@@ -25,7 +25,7 @@ type MJParserCore struct {
 }
 
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
-func (p *MJParserCore) countHandPais(pais []*majiang.MJPAI) []int {
+func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	counts := make([]int, 27) //0~27
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
@@ -229,6 +229,19 @@ func (p *MJParserCore) GettPaiValueByCountPos(countPos int) int32 {
 	return int32(countPos%9 + 1)
 }
 
+func (p *MJParserCore) IsMengQing(g MJUserGameData) bool {
+	if len(g.GetChiPais()) > 0 {
+		return false
+	}
+	if len(g.GetPengPais()) > 0 {
+		return false
+	}
+	if len(g.GetGangPais()) > 0 {
+		return false
+	}
+	return true
+}
+
 /**
 
 func (p *MJParserCore) is258(val int) bool {
@@ -238,7 +251,7 @@ func (p *MJParserCore) is258(val int) bool {
 
 **/
 
-func (p *MJParserCore) tryHU(count []int, len int) (result bool, isAll19 bool, jiang int) {
+func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, jiang int) {
 	//log.T("开始判断tryHu(%v,%v)", count, len)
 	isAll19 = true //全带幺
 	result = false

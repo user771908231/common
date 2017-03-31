@@ -12,23 +12,27 @@ import (
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error            //玩家进入desk，不定参数
-	ActOut(userId uint32, p interface{}) error //出牌的user和牌型
-	ActPeng(...interface{}) error              //碰
-	ActGuo(...interface{}) error               //过
-	ActGang(...interface{}) error              //杠
-	ActBu(...interface{}) error                //补
-	ActHu(...interface{}) error                //胡
-	ActReady(userId uint32) error              //准备
-	GetDeskId() int32                          //得到desk id
-	GetPassword() string                       //得到房间号
-	GetCfg() interface{}                       //的牌桌子的配置信息
-	GetParser() MJParser                       //得到解析器
-	DlogDes() string                           //打印日志用到的tag
-	GetUserById(userId uint32) MJUser          //得到一个User
+	EnterUser(...interface{}) error             //玩家进入desk，不定参数
+	ActOut(userId uint32, p interface{}) error  //出牌的user和牌型
+	ActPeng(...interface{}) error               //碰
+	ActGuo(...interface{}) error                //过
+	ActGang(...interface{}) error               //杠
+	ActBu(...interface{}) error                 //补
+	ActHu(...interface{}) error                 //胡
+	ActReady(userId uint32) error               //准备
+	GetDeskId() int32                           //得到desk id
+	GetRoom() MJRoom                            //得到一个room
+	GetPassword() string                        //得到房间号
+	GetCfg() interface{}                        //的牌桌子的配置信息
+	GetUsers() []MJUser                         //得到所有的玩家
+	GetParser() MJParser                        //得到解析器
+	BroadCastProto(message proto.Message) error //发送广播
+	DlogDes() string                            //打印日志用到的tag
+	GetUserById(userId uint32) MJUser           //得到一个User
 }
 
 type MJDeskCore struct {
+	room     MJRoom
 	s        *module.Skeleton
 	deskId   int32
 	password string //房间号
@@ -44,6 +48,14 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	//main key
 	desk.deskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
 	return desk
+}
+
+func (d *MJDeskCore) GetRoom() MJRoom {
+	return d.room
+}
+
+func (d *MJDeskCore) SetRoom(r MJRoom) {
+	d.room = r
 }
 
 //胡牌的 解析器
@@ -84,12 +96,13 @@ func (d *MJDeskCore) GetUsers() []MJUser {
 	return d.Users
 }
 
-func (d *MJDeskCore) BroadCastProto(p proto.Message) {
+func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
 	for _, u := range d.Users {
 		if u != nil {
 			u.WriteMsg(p)
 		}
 	}
+	return nil
 }
 
 //发送广播
