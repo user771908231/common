@@ -25,6 +25,7 @@ type MJDesk interface {
 	GetCfg() interface{}                       //的牌桌子的配置信息
 	GetParser() MJParser                       //得到解析器
 	DlogDes() string                           //打印日志用到的tag
+	GetUserById(userId uint32) MJUser          //得到一个User
 }
 
 type MJDeskCore struct {

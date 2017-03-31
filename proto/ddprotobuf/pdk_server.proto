@@ -43,3 +43,5 @@ message pdk_srv_billBean {
     optional string desc = 4;
     optional ddz_srv_outPokerPais outPokerPais = 5; //出手的牌结构 from 斗地主
 }
+
+

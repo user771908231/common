@@ -8,12 +8,16 @@ import (
 
 type PengPai struct {
 	OutUserId uint32
+	InUserId  uint32
 	Pais      []*MJPAI
 }
 
 type GangPai struct {
-	GangType int32
-	Pais     []*MJPAI
+	GangType   int32
+	Pais       []*MJPAI
+	Pai        *MJPAI
+	GetUserId  uint32
+	SendUserId uint32
 }
 
 type ChiPai struct {
