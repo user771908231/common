@@ -13,10 +13,11 @@ type MJParser interface {
 	CanGang(interface{}, interface{}) (interface{}, error)
 	CanChi(interface{}, interface{}) (interface{}, error)
 	CanBu(interface{}, interface{}) (interface{}, error)
-	GetJiaoInfos(interface{}) (interface{}, error) //判断是否有叫
-	Parse(pids []int32) (interface{}, error)       //通过一副牌的id解析牌型
-	XiPai() interface{}                            //洗牌
-	Hu(...interface{}) (interface{}, error)        //胡牌的方式...
+	GetJiaoInfos(...interface{}) (interface{}, error) //判断是否有叫
+	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
+	XiPai() interface{}                               //洗牌
+	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
+	InitMjPaiByIndex(index int32) *majiang.MJPAI      //通过id得到一张麻将牌
 }
 
 //麻将的骨架，通用的方法都在这里
@@ -161,7 +162,7 @@ func (p *MJParserCore) CanChi(interface{}, interface{}) (interface{}, error) {
 }
 
 //得到叫牌的信息
-func (p *MJParserCore) GetJiaoInfos(interface{}) (interface{}, error) {
+func (p *MJParserCore) GetJiaoInfos(...interface{}) (interface{}, error) {
 	return nil, nil
 }
 

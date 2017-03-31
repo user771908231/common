@@ -13,9 +13,1193 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-var fileDescriptor22 = []byte{
-	// 46 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2b, 0x48, 0xc9, 0x8e,
-	0x2f, 0xc8, 0x49, 0xac, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0x49, 0x01, 0x33,
-	0x00, 0x01, 0x00, 0x00, 0xff, 0xff, 0x1d, 0x9e, 0x87, 0x26, 0x19, 0x00, 0x00, 0x00,
+// Ignoring public import of ProtoHeader from common_client.proto
+
+// Ignoring public import of Heartbeat from common_client.proto
+
+// Ignoring public import of ServerInfo from common_client.proto
+
+// Ignoring public import of QuickConn from common_client.proto
+
+// Ignoring public import of AckQuickConn from common_client.proto
+
+// Ignoring public import of WeixinInfo from common_client.proto
+
+// Ignoring public import of common_req_reg from common_client.proto
+
+// Ignoring public import of common_ack_reg from common_client.proto
+
+// Ignoring public import of common_req_gameLogin from common_client.proto
+
+// Ignoring public import of common_ack_gameLogin from common_client.proto
+
+// Ignoring public import of common_req_qrLogin from common_client.proto
+
+// Ignoring public import of common_ack_qrLogin from common_client.proto
+
+// Ignoring public import of common_req_qrWxInfo from common_client.proto
+
+// Ignoring public import of common_ack_qrWxInfo from common_client.proto
+
+// Ignoring public import of common_ack_reconnect from common_client.proto
+
+// Ignoring public import of common_req_reconnect from common_client.proto
+
+// Ignoring public import of common_req_gameState from common_client.proto
+
+// Ignoring public import of common_ack_gameState from common_client.proto
+
+// Ignoring public import of common_req_logout from common_client.proto
+
+// Ignoring public import of common_ack_logout from common_client.proto
+
+// Ignoring public import of common_req_feedback from common_client.proto
+
+// Ignoring public import of client_base_poker from common_client.proto
+
+// Ignoring public import of common_req_message from common_client.proto
+
+// Ignoring public import of common_bc_message from common_client.proto
+
+// Ignoring public import of common_req_notice from common_client.proto
+
+// Ignoring public import of common_ack_notice from common_client.proto
+
+// Ignoring public import of common_req_enterAgentMode from common_client.proto
+
+// Ignoring public import of common_ack_enterAgentMode from common_client.proto
+
+// Ignoring public import of common_req_quitAgentMode from common_client.proto
+
+// Ignoring public import of common_ack_quitAgentMode from common_client.proto
+
+// Ignoring public import of common_req_leaveDesk from common_client.proto
+
+// Ignoring public import of common_ack_leaveDesk from common_client.proto
+
+// Ignoring public import of common_bc_kickout from common_client.proto
+
+// Ignoring public import of common_req_allowance from common_client.proto
+
+// Ignoring public import of common_ack_allowance from common_client.proto
+
+// Ignoring public import of common_req_applyDissolve from common_client.proto
+
+// Ignoring public import of common_bc_applyDissolve from common_client.proto
+
+// Ignoring public import of common_req_applyDissolveBack from common_client.proto
+
+// Ignoring public import of common_ack_applyDissolveBack from common_client.proto
+
+// Ignoring public import of common_ack_timeout from common_client.proto
+
+// Ignoring public import of common_bc_userBreak from common_client.proto
+
+// Ignoring public import of common_req_clickStatistic from common_client.proto
+
+// Ignoring public import of common_enum_reg from common_client.proto
+
+// Ignoring public import of common_enum_os_type from common_client.proto
+
+// Ignoring public import of common_enum_pokerColor from common_client.proto
+
+// Ignoring public import of pdk_base_roomTypeInfo from pdk_base.proto
+
+// Ignoring public import of pdk_base_playerInfo from pdk_base.proto
+
+// Ignoring public import of pdk_base_playerRateInfo from pdk_base.proto
+
+// Ignoring public import of pdk_base_commonRateInfo from pdk_base.proto
+
+// Ignoring public import of pdk_base_timerInfo from pdk_base.proto
+
+// Ignoring public import of pdk_base_deskInfo from pdk_base.proto
+
+// Ignoring public import of pdk_enum_protoId from pdk_base.proto
+
+// Ignoring public import of pdk_enum_errorCode from pdk_base.proto
+
+// Ignoring public import of pdk_enum_paiType from pdk_base.proto
+
+// Ignoring public import of pdk_enum_actType from pdk_base.proto
+
+// Ignoring public import of pdk_enum_gameStatus from pdk_base.proto
+
+// Ignoring public import of pdk_enum_playerStatus from pdk_base.proto
+
+// Ignoring public import of pdk_enum_roomType from pdk_base.proto
+
+// Ignoring public import of pdk_enum_enterType from pdk_base.proto
+
+// Ignoring public import of pdk_enum_coinRoomLevel from pdk_base.proto
+
+// Ignoring public import of pdk_enum_deskGameStatus from pdk_base.proto
+
+type PdkEnumJdScore int32
+
+const (
+	PdkEnumJdScore_pdk_ONE   PdkEnumJdScore = 1
+	PdkEnumJdScore_pdk_TWO   PdkEnumJdScore = 2
+	PdkEnumJdScore_pdk_THREE PdkEnumJdScore = 3
+)
+
+var PdkEnumJdScore_name = map[int32]string{
+	1: "pdk_ONE",
+	2: "pdk_TWO",
+	3: "pdk_THREE",
+}
+var PdkEnumJdScore_value = map[string]int32{
+	"pdk_ONE":   1,
+	"pdk_TWO":   2,
+	"pdk_THREE": 3,
+}
+
+func (x PdkEnumJdScore) Enum() *PdkEnumJdScore {
+	p := new(PdkEnumJdScore)
+	*p = x
+	return p
+}
+func (x PdkEnumJdScore) String() string {
+	return proto.EnumName(PdkEnumJdScore_name, int32(x))
+}
+func (x *PdkEnumJdScore) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumJdScore_value, data, "PdkEnumJdScore")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumJdScore(value)
+	return nil
+}
+func (PdkEnumJdScore) EnumDescriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
+
+type PdkEnumDoubleType int32
+
+const (
+	PdkEnumDoubleType_pdk_JIA   PdkEnumDoubleType = 1
+	PdkEnumDoubleType_pdk_BUJIA PdkEnumDoubleType = 2
+)
+
+var PdkEnumDoubleType_name = map[int32]string{
+	1: "pdk_JIA",
+	2: "pdk_BUJIA",
+}
+var PdkEnumDoubleType_value = map[string]int32{
+	"pdk_JIA":   1,
+	"pdk_BUJIA": 2,
+}
+
+func (x PdkEnumDoubleType) Enum() *PdkEnumDoubleType {
+	p := new(PdkEnumDoubleType)
+	*p = x
+	return p
+}
+func (x PdkEnumDoubleType) String() string {
+	return proto.EnumName(PdkEnumDoubleType_name, int32(x))
+}
+func (x *PdkEnumDoubleType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumDoubleType_value, data, "PdkEnumDoubleType")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumDoubleType(value)
+	return nil
+}
+func (PdkEnumDoubleType) EnumDescriptor() ([]byte, []int) { return fileDescriptor24, []int{1} }
+
+type PdkEnumLaDaoType int32
+
+const (
+	PdkEnumLaDaoType_pdk_LA      PdkEnumLaDaoType = 1
+	PdkEnumLaDaoType_pdk_DAO     PdkEnumLaDaoType = 2
+	PdkEnumLaDaoType_pdk_BULADAO PdkEnumLaDaoType = 3
+)
+
+var PdkEnumLaDaoType_name = map[int32]string{
+	1: "pdk_LA",
+	2: "pdk_DAO",
+	3: "pdk_BULADAO",
+}
+var PdkEnumLaDaoType_value = map[string]int32{
+	"pdk_LA":      1,
+	"pdk_DAO":     2,
+	"pdk_BULADAO": 3,
+}
+
+func (x PdkEnumLaDaoType) Enum() *PdkEnumLaDaoType {
+	p := new(PdkEnumLaDaoType)
+	*p = x
+	return p
+}
+func (x PdkEnumLaDaoType) String() string {
+	return proto.EnumName(PdkEnumLaDaoType_name, int32(x))
+}
+func (x *PdkEnumLaDaoType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumLaDaoType_value, data, "PdkEnumLaDaoType")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumLaDaoType(value)
+	return nil
+}
+func (PdkEnumLaDaoType) EnumDescriptor() ([]byte, []int) { return fileDescriptor24, []int{2} }
+
+// 开局（接收服务端消息）
+type PdkBcOpening struct {
+	Header           *ProtoHeader         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32              `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Ticket           *int64               `protobuf:"varint,3,opt,name=ticket" json:"ticket,omitempty"`
+	UserCoin         *int64               `protobuf:"varint,4,opt,name=userCoin" json:"userCoin,omitempty"`
+	UserRoomCard     *int64               `protobuf:"varint,5,opt,name=userRoomCard" json:"userRoomCard,omitempty"`
+	PlayerInfos      []*PdkBasePlayerInfo `protobuf:"bytes,6,rep,name=playerInfos" json:"playerInfos,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
+}
+
+func (m *PdkBcOpening) Reset()                    { *m = PdkBcOpening{} }
+func (m *PdkBcOpening) String() string            { return proto.CompactTextString(m) }
+func (*PdkBcOpening) ProtoMessage()               {}
+func (*PdkBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
+
+func (m *PdkBcOpening) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkBcOpening) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkBcOpening) GetTicket() int64 {
+	if m != nil && m.Ticket != nil {
+		return *m.Ticket
+	}
+	return 0
+}
+
+func (m *PdkBcOpening) GetUserCoin() int64 {
+	if m != nil && m.UserCoin != nil {
+		return *m.UserCoin
+	}
+	return 0
+}
+
+func (m *PdkBcOpening) GetUserRoomCard() int64 {
+	if m != nil && m.UserRoomCard != nil {
+		return *m.UserRoomCard
+	}
+	return 0
+}
+
+func (m *PdkBcOpening) GetPlayerInfos() []*PdkBasePlayerInfo {
+	if m != nil {
+		return m.PlayerInfos
+	}
+	return nil
+}
+
+// 发牌
+type PdkBcDealCards struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerPokers     []*ClientBasePoker `protobuf:"bytes,2,rep,name=playerPokers" json:"playerPokers,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkBcDealCards) Reset()                    { *m = PdkBcDealCards{} }
+func (m *PdkBcDealCards) String() string            { return proto.CompactTextString(m) }
+func (*PdkBcDealCards) ProtoMessage()               {}
+func (*PdkBcDealCards) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{1} }
+
+func (m *PdkBcDealCards) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkBcDealCards) GetPlayerPokers() []*ClientBasePoker {
+	if m != nil {
+		return m.PlayerPokers
+	}
+	return nil
+}
+
+// 明牌
+type PdkReqShowHandPokers struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Rate             *int32       `protobuf:"varint,3,opt,name=rate" json:"rate,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkReqShowHandPokers) Reset()                    { *m = PdkReqShowHandPokers{} }
+func (m *PdkReqShowHandPokers) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqShowHandPokers) ProtoMessage()               {}
+func (*PdkReqShowHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{2} }
+
+func (m *PdkReqShowHandPokers) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqShowHandPokers) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkReqShowHandPokers) GetRate() int32 {
+	if m != nil && m.Rate != nil {
+		return *m.Rate
+	}
+	return 0
+}
+
+// 明牌ack
+type PdkAckShowHandPokers struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32            `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	PlayerPokers     []*ClientBasePoker `protobuf:"bytes,3,rep,name=playerPokers" json:"playerPokers,omitempty"`
+	PlayerRate       *int32             `protobuf:"varint,4,opt,name=playerRate" json:"playerRate,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkAckShowHandPokers) Reset()                    { *m = PdkAckShowHandPokers{} }
+func (m *PdkAckShowHandPokers) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckShowHandPokers) ProtoMessage()               {}
+func (*PdkAckShowHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{3} }
+
+func (m *PdkAckShowHandPokers) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckShowHandPokers) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckShowHandPokers) GetPlayerPokers() []*ClientBasePoker {
+	if m != nil {
+		return m.PlayerPokers
+	}
+	return nil
+}
+
+func (m *PdkAckShowHandPokers) GetPlayerRate() int32 {
+	if m != nil && m.PlayerRate != nil {
+		return *m.PlayerRate
+	}
+	return 0
+}
+
+// 叫地主
+type PdkReqJiaoDiZhu struct {
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32         `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Jiao             *bool           `protobuf:"varint,3,opt,name=jiao" json:"jiao,omitempty"`
+	Score            *PdkEnumJdScore `protobuf:"varint,4,opt,name=score,enum=ddproto.PdkEnumJdScore" json:"score,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *PdkReqJiaoDiZhu) Reset()                    { *m = PdkReqJiaoDiZhu{} }
+func (m *PdkReqJiaoDiZhu) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqJiaoDiZhu) ProtoMessage()               {}
+func (*PdkReqJiaoDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{4} }
+
+func (m *PdkReqJiaoDiZhu) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqJiaoDiZhu) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkReqJiaoDiZhu) GetJiao() bool {
+	if m != nil && m.Jiao != nil {
+		return *m.Jiao
+	}
+	return false
+}
+
+func (m *PdkReqJiaoDiZhu) GetScore() PdkEnumJdScore {
+	if m != nil && m.Score != nil {
+		return *m.Score
+	}
+	return PdkEnumJdScore_pdk_ONE
+}
+
+// 叫地主回复
+type PdkAckJiaoDiZhu struct {
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32         `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Jiao             *bool           `protobuf:"varint,3,opt,name=jiao" json:"jiao,omitempty"`
+	Score            *PdkEnumJdScore `protobuf:"varint,4,opt,name=score,enum=ddproto.PdkEnumJdScore" json:"score,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *PdkAckJiaoDiZhu) Reset()                    { *m = PdkAckJiaoDiZhu{} }
+func (m *PdkAckJiaoDiZhu) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckJiaoDiZhu) ProtoMessage()               {}
+func (*PdkAckJiaoDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{5} }
+
+func (m *PdkAckJiaoDiZhu) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckJiaoDiZhu) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckJiaoDiZhu) GetJiao() bool {
+	if m != nil && m.Jiao != nil {
+		return *m.Jiao
+	}
+	return false
+}
+
+func (m *PdkAckJiaoDiZhu) GetScore() PdkEnumJdScore {
+	if m != nil && m.Score != nil {
+		return *m.Score
+	}
+	return PdkEnumJdScore_pdk_ONE
+}
+
+// 抢地主
+type PdkReqRobDiZhu struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Rob              *bool        `protobuf:"varint,3,opt,name=rob" json:"rob,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkReqRobDiZhu) Reset()                    { *m = PdkReqRobDiZhu{} }
+func (m *PdkReqRobDiZhu) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqRobDiZhu) ProtoMessage()               {}
+func (*PdkReqRobDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{6} }
+
+func (m *PdkReqRobDiZhu) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqRobDiZhu) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkReqRobDiZhu) GetRob() bool {
+	if m != nil && m.Rob != nil {
+		return *m.Rob
+	}
+	return false
+}
+
+type PdkAckRobDiZhu struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Rob              *bool        `protobuf:"varint,3,opt,name=rob" json:"rob,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkAckRobDiZhu) Reset()                    { *m = PdkAckRobDiZhu{} }
+func (m *PdkAckRobDiZhu) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckRobDiZhu) ProtoMessage()               {}
+func (*PdkAckRobDiZhu) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{7} }
+
+func (m *PdkAckRobDiZhu) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckRobDiZhu) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckRobDiZhu) GetRob() bool {
+	if m != nil && m.Rob != nil {
+		return *m.Rob
+	}
+	return false
+}
+
+// 加倍
+type PdkReqDouble struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32            `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Double           *PdkEnumDoubleType `protobuf:"varint,3,opt,name=double,enum=ddproto.PdkEnumDoubleType" json:"double,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkReqDouble) Reset()                    { *m = PdkReqDouble{} }
+func (m *PdkReqDouble) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqDouble) ProtoMessage()               {}
+func (*PdkReqDouble) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{8} }
+
+func (m *PdkReqDouble) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqDouble) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkReqDouble) GetDouble() PdkEnumDoubleType {
+	if m != nil && m.Double != nil {
+		return *m.Double
+	}
+	return PdkEnumDoubleType_pdk_JIA
+}
+
+type PdkAckDouble struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32            `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Double           *PdkEnumDoubleType `protobuf:"varint,3,opt,name=double,enum=ddproto.PdkEnumDoubleType" json:"double,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkAckDouble) Reset()                    { *m = PdkAckDouble{} }
+func (m *PdkAckDouble) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckDouble) ProtoMessage()               {}
+func (*PdkAckDouble) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{9} }
+
+func (m *PdkAckDouble) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckDouble) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckDouble) GetDouble() PdkEnumDoubleType {
+	if m != nil && m.Double != nil {
+		return *m.Double
+	}
+	return PdkEnumDoubleType_pdk_JIA
+}
+
+// 叫地主结束，开始游戏 (广播)
+type PdkBcStartPlay struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	FootPokers       []*ClientBasePoker `protobuf:"bytes,2,rep,name=footPokers" json:"footPokers,omitempty"`
+	FootRate         *int32             `protobuf:"varint,3,opt,name=footRate" json:"footRate,omitempty"`
+	Dizhu            *uint32            `protobuf:"varint,4,opt,name=dizhu" json:"dizhu,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkBcStartPlay) Reset()                    { *m = PdkBcStartPlay{} }
+func (m *PdkBcStartPlay) String() string            { return proto.CompactTextString(m) }
+func (*PdkBcStartPlay) ProtoMessage()               {}
+func (*PdkBcStartPlay) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{10} }
+
+func (m *PdkBcStartPlay) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkBcStartPlay) GetFootPokers() []*ClientBasePoker {
+	if m != nil {
+		return m.FootPokers
+	}
+	return nil
+}
+
+func (m *PdkBcStartPlay) GetFootRate() int32 {
+	if m != nil && m.FootRate != nil {
+		return *m.FootRate
+	}
+	return 0
+}
+
+func (m *PdkBcStartPlay) GetDizhu() uint32 {
+	if m != nil && m.Dizhu != nil {
+		return *m.Dizhu
+	}
+	return 0
+}
+
+// 闷抓
+type PdkReqMenuZhua struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkReqMenuZhua) Reset()                    { *m = PdkReqMenuZhua{} }
+func (m *PdkReqMenuZhua) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqMenuZhua) ProtoMessage()               {}
+func (*PdkReqMenuZhua) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{11} }
+
+func (m *PdkReqMenuZhua) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqMenuZhua) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+type PdkAckMenuZhua struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32            `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	HandPokers       []*ClientBasePoker `protobuf:"bytes,3,rep,name=handPokers" json:"handPokers,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkAckMenuZhua) Reset()                    { *m = PdkAckMenuZhua{} }
+func (m *PdkAckMenuZhua) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckMenuZhua) ProtoMessage()               {}
+func (*PdkAckMenuZhua) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{12} }
+
+func (m *PdkAckMenuZhua) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckMenuZhua) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckMenuZhua) GetHandPokers() []*ClientBasePoker {
+	if m != nil {
+		return m.HandPokers
+	}
+	return nil
+}
+
+// 看牌
+type PdkReqSeeCards struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkReqSeeCards) Reset()                    { *m = PdkReqSeeCards{} }
+func (m *PdkReqSeeCards) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqSeeCards) ProtoMessage()               {}
+func (*PdkReqSeeCards) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{13} }
+
+func (m *PdkReqSeeCards) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqSeeCards) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+type PdkAckSeeCards struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32            `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	HandPokers       []*ClientBasePoker `protobuf:"bytes,3,rep,name=handPokers" json:"handPokers,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkAckSeeCards) Reset()                    { *m = PdkAckSeeCards{} }
+func (m *PdkAckSeeCards) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckSeeCards) ProtoMessage()               {}
+func (*PdkAckSeeCards) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{14} }
+
+func (m *PdkAckSeeCards) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckSeeCards) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckSeeCards) GetHandPokers() []*ClientBasePoker {
+	if m != nil {
+		return m.HandPokers
+	}
+	return nil
+}
+
+// 拉/倒
+type PdkReqPull struct {
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32           `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Act              *PdkEnumLaDaoType `protobuf:"varint,3,opt,name=act,enum=ddproto.PdkEnumLaDaoType" json:"act,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *PdkReqPull) Reset()                    { *m = PdkReqPull{} }
+func (m *PdkReqPull) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqPull) ProtoMessage()               {}
+func (*PdkReqPull) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{15} }
+
+func (m *PdkReqPull) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqPull) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkReqPull) GetAct() PdkEnumLaDaoType {
+	if m != nil && m.Act != nil {
+		return *m.Act
+	}
+	return PdkEnumLaDaoType_pdk_LA
+}
+
+type PdkAckPull struct {
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32           `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Act              *PdkEnumLaDaoType `protobuf:"varint,3,opt,name=act,enum=ddproto.PdkEnumLaDaoType" json:"act,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *PdkAckPull) Reset()                    { *m = PdkAckPull{} }
+func (m *PdkAckPull) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckPull) ProtoMessage()               {}
+func (*PdkAckPull) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{16} }
+
+func (m *PdkAckPull) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckPull) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckPull) GetAct() PdkEnumLaDaoType {
+	if m != nil && m.Act != nil {
+		return *m.Act
+	}
+	return PdkEnumLaDaoType_pdk_LA
+}
+
+// 出牌
+type PdkReqOutCards struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	OutCards         []*ClientBasePoker `protobuf:"bytes,2,rep,name=outCards" json:"outCards,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkReqOutCards) Reset()                    { *m = PdkReqOutCards{} }
+func (m *PdkReqOutCards) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqOutCards) ProtoMessage()               {}
+func (*PdkReqOutCards) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{17} }
+
+func (m *PdkReqOutCards) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqOutCards) GetOutCards() []*ClientBasePoker {
+	if m != nil {
+		return m.OutCards
+	}
+	return nil
+}
+
+type PdkAckOutCards struct {
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32            `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	CardType         *PdkEnumPaiType    `protobuf:"varint,3,opt,name=cardType,enum=ddproto.PdkEnumPaiType" json:"cardType,omitempty"`
+	RemainPokers     *int32             `protobuf:"varint,4,opt,name=remainPokers" json:"remainPokers,omitempty"`
+	OutCards         []*ClientBasePoker `protobuf:"bytes,5,rep,name=outCards" json:"outCards,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *PdkAckOutCards) Reset()                    { *m = PdkAckOutCards{} }
+func (m *PdkAckOutCards) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckOutCards) ProtoMessage()               {}
+func (*PdkAckOutCards) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{18} }
+
+func (m *PdkAckOutCards) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckOutCards) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkAckOutCards) GetCardType() PdkEnumPaiType {
+	if m != nil && m.CardType != nil {
+		return *m.CardType
+	}
+	return PdkEnumPaiType_PDK_ERRORCARD
+}
+
+func (m *PdkAckOutCards) GetRemainPokers() int32 {
+	if m != nil && m.RemainPokers != nil {
+		return *m.RemainPokers
+	}
+	return 0
+}
+
+func (m *PdkAckOutCards) GetOutCards() []*ClientBasePoker {
+	if m != nil {
+		return m.OutCards
+	}
+	return nil
+}
+
+// 过牌
+type PdkReqActGuo struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkReqActGuo) Reset()                    { *m = PdkReqActGuo{} }
+func (m *PdkReqActGuo) String() string            { return proto.CompactTextString(m) }
+func (*PdkReqActGuo) ProtoMessage()               {}
+func (*PdkReqActGuo) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{19} }
+
+func (m *PdkReqActGuo) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkReqActGuo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+//
+type PdkAckGuoAck struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PdkAckGuoAck) Reset()                    { *m = PdkAckGuoAck{} }
+func (m *PdkAckGuoAck) String() string            { return proto.CompactTextString(m) }
+func (*PdkAckGuoAck) ProtoMessage()               {}
+func (*PdkAckGuoAck) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{20} }
+
+func (m *PdkAckGuoAck) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkAckGuoAck) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+// 轮到谁操作
+type PdkBcOverTurn struct {
+	Header           *ProtoHeader         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32              `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Time             *int32               `protobuf:"varint,3,opt,name=time" json:"time,omitempty"`
+	ActType          *PdkEnumActType      `protobuf:"varint,4,opt,name=actType,enum=ddproto.PdkEnumActType" json:"actType,omitempty"`
+	CanDouble        *bool                `protobuf:"varint,5,opt,name=canDouble" json:"canDouble,omitempty"`
+	PullOrPush       *int32               `protobuf:"varint,6,opt,name=pullOrPush" json:"pullOrPush,omitempty"`
+	CanOutCards      *bool                `protobuf:"varint,7,opt,name=canOutCards" json:"canOutCards,omitempty"`
+	PlayerInfos      []*PdkBasePlayerInfo `protobuf:"bytes,8,rep,name=playerInfos" json:"playerInfos,omitempty"`
+	JiaoScore        *PdkEnumJdScore      `protobuf:"varint,9,opt,name=jiaoScore,enum=ddproto.PdkEnumJdScore" json:"jiaoScore,omitempty"`
+	IsCanPass        *bool                `protobuf:"varint,10,opt,name=isCanPass" json:"isCanPass,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
+}
+
+func (m *PdkBcOverTurn) Reset()                    { *m = PdkBcOverTurn{} }
+func (m *PdkBcOverTurn) String() string            { return proto.CompactTextString(m) }
+func (*PdkBcOverTurn) ProtoMessage()               {}
+func (*PdkBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{21} }
+
+func (m *PdkBcOverTurn) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkBcOverTurn) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkBcOverTurn) GetTime() int32 {
+	if m != nil && m.Time != nil {
+		return *m.Time
+	}
+	return 0
+}
+
+func (m *PdkBcOverTurn) GetActType() PdkEnumActType {
+	if m != nil && m.ActType != nil {
+		return *m.ActType
+	}
+	return PdkEnumActType_PDK_T_NORMAL_ACT
+}
+
+func (m *PdkBcOverTurn) GetCanDouble() bool {
+	if m != nil && m.CanDouble != nil {
+		return *m.CanDouble
+	}
+	return false
+}
+
+func (m *PdkBcOverTurn) GetPullOrPush() int32 {
+	if m != nil && m.PullOrPush != nil {
+		return *m.PullOrPush
+	}
+	return 0
+}
+
+func (m *PdkBcOverTurn) GetCanOutCards() bool {
+	if m != nil && m.CanOutCards != nil {
+		return *m.CanOutCards
+	}
+	return false
+}
+
+func (m *PdkBcOverTurn) GetPlayerInfos() []*PdkBasePlayerInfo {
+	if m != nil {
+		return m.PlayerInfos
+	}
+	return nil
+}
+
+func (m *PdkBcOverTurn) GetJiaoScore() PdkEnumJdScore {
+	if m != nil && m.JiaoScore != nil {
+		return *m.JiaoScore
+	}
+	return PdkEnumJdScore_pdk_ONE
+}
+
+func (m *PdkBcOverTurn) GetIsCanPass() bool {
+	if m != nil && m.IsCanPass != nil {
+		return *m.IsCanPass
+	}
+	return false
+}
+
+// 游戏信息(广播)
+type PdkBcGameInfo struct {
+	Header           *ProtoHeader         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerInfo       []*PdkBasePlayerInfo `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
+	PdkDeskInfo      *PdkBaseDeskInfo     `protobuf:"bytes,3,opt,name=pdkDeskInfo" json:"pdkDeskInfo,omitempty"`
+	SenderUserId     *uint32              `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
+	IsReconnect      *int32               `protobuf:"varint,5,opt,name=isReconnect" json:"isReconnect,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
+}
+
+func (m *PdkBcGameInfo) Reset()                    { *m = PdkBcGameInfo{} }
+func (m *PdkBcGameInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBcGameInfo) ProtoMessage()               {}
+func (*PdkBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{22} }
+
+func (m *PdkBcGameInfo) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PdkBcGameInfo) GetPlayerInfo() []*PdkBasePlayerInfo {
+	if m != nil {
+		return m.PlayerInfo
+	}
+	return nil
+}
+
+func (m *PdkBcGameInfo) GetPdkDeskInfo() *PdkBaseDeskInfo {
+	if m != nil {
+		return m.PdkDeskInfo
+	}
+	return nil
+}
+
+func (m *PdkBcGameInfo) GetSenderUserId() uint32 {
+	if m != nil && m.SenderUserId != nil {
+		return *m.SenderUserId
+	}
+	return 0
+}
+
+func (m *PdkBcGameInfo) GetIsReconnect() int32 {
+	if m != nil && m.IsReconnect != nil {
+		return *m.IsReconnect
+	}
+	return 0
+}
+
+func init() {
+	proto.RegisterType((*PdkBcOpening)(nil), "ddproto.pdk_bc_opening")
+	proto.RegisterType((*PdkBcDealCards)(nil), "ddproto.pdk_bc_dealCards")
+	proto.RegisterType((*PdkReqShowHandPokers)(nil), "ddproto.pdk_req_showHandPokers")
+	proto.RegisterType((*PdkAckShowHandPokers)(nil), "ddproto.pdk_ack_showHandPokers")
+	proto.RegisterType((*PdkReqJiaoDiZhu)(nil), "ddproto.pdk_req_jiaoDiZhu")
+	proto.RegisterType((*PdkAckJiaoDiZhu)(nil), "ddproto.pdk_ack_jiaoDiZhu")
+	proto.RegisterType((*PdkReqRobDiZhu)(nil), "ddproto.pdk_req_robDiZhu")
+	proto.RegisterType((*PdkAckRobDiZhu)(nil), "ddproto.pdk_ack_robDiZhu")
+	proto.RegisterType((*PdkReqDouble)(nil), "ddproto.pdk_req_double")
+	proto.RegisterType((*PdkAckDouble)(nil), "ddproto.pdk_ack_double")
+	proto.RegisterType((*PdkBcStartPlay)(nil), "ddproto.pdk_bc_startPlay")
+	proto.RegisterType((*PdkReqMenuZhua)(nil), "ddproto.pdk_req_menuZhua")
+	proto.RegisterType((*PdkAckMenuZhua)(nil), "ddproto.pdk_ack_menuZhua")
+	proto.RegisterType((*PdkReqSeeCards)(nil), "ddproto.pdk_req_seeCards")
+	proto.RegisterType((*PdkAckSeeCards)(nil), "ddproto.pdk_ack_seeCards")
+	proto.RegisterType((*PdkReqPull)(nil), "ddproto.pdk_req_pull")
+	proto.RegisterType((*PdkAckPull)(nil), "ddproto.pdk_ack_pull")
+	proto.RegisterType((*PdkReqOutCards)(nil), "ddproto.pdk_req_outCards")
+	proto.RegisterType((*PdkAckOutCards)(nil), "ddproto.pdk_ack_outCards")
+	proto.RegisterType((*PdkReqActGuo)(nil), "ddproto.pdk_req_actGuo")
+	proto.RegisterType((*PdkAckGuoAck)(nil), "ddproto.pdk_ack_guoAck")
+	proto.RegisterType((*PdkBcOverTurn)(nil), "ddproto.pdk_bc_overTurn")
+	proto.RegisterType((*PdkBcGameInfo)(nil), "ddproto.pdk_bc_gameInfo")
+	proto.RegisterEnum("ddproto.PdkEnumJdScore", PdkEnumJdScore_name, PdkEnumJdScore_value)
+	proto.RegisterEnum("ddproto.PdkEnumDoubleType", PdkEnumDoubleType_name, PdkEnumDoubleType_value)
+	proto.RegisterEnum("ddproto.PdkEnumLaDaoType", PdkEnumLaDaoType_name, PdkEnumLaDaoType_value)
+}
+
+func init() { proto.RegisterFile("pdk_play.proto", fileDescriptor24) }
+
+var fileDescriptor24 = []byte{
+	// 861 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xc4, 0x56, 0x5f, 0x6f, 0xe3, 0x44,
+	0x10, 0xc7, 0x71, 0xf3, 0x6f, 0xf2, 0xe7, 0x72, 0xee, 0x09, 0x99, 0xc0, 0x43, 0x14, 0xf1, 0x10,
+	0x85, 0x2a, 0x70, 0x7d, 0x45, 0x42, 0x4a, 0x9b, 0x1e, 0x29, 0x3a, 0x91, 0x28, 0x34, 0x42, 0x3a,
+	0x21, 0x45, 0x1b, 0x7b, 0xdb, 0xb8, 0xb1, 0x77, 0xcd, 0xae, 0x0d, 0x94, 0x37, 0x1e, 0x79, 0xe7,
+	0x8b, 0xdc, 0x23, 0x1f, 0x80, 0xef, 0x85, 0x66, 0xd7, 0x8e, 0x69, 0x7a, 0x5c, 0x12, 0xf7, 0x74,
+	0xf7, 0x12, 0x65, 0xd7, 0x33, 0xbf, 0xf9, 0xfd, 0x66, 0x67, 0x67, 0x16, 0x9a, 0xa1, 0xbb, 0x5e,
+	0x84, 0x3e, 0xb9, 0x1b, 0x84, 0x82, 0x47, 0xdc, 0x2a, 0xbb, 0xae, 0xfa, 0xd3, 0x3e, 0x76, 0x78,
+	0x10, 0x70, 0xb6, 0x70, 0x7c, 0x8f, 0xb2, 0x48, 0x7f, 0x6d, 0x2b, 0xeb, 0x25, 0x91, 0x54, 0xaf,
+	0xbb, 0xaf, 0x0d, 0x0d, 0xb0, 0x74, 0x16, 0x3c, 0xa4, 0xcc, 0x63, 0x37, 0xd6, 0xe7, 0x50, 0x5a,
+	0x51, 0xe2, 0x52, 0x61, 0x1b, 0x1d, 0xa3, 0x57, 0x3b, 0x7d, 0x36, 0x48, 0x10, 0x07, 0x53, 0xfc,
+	0x1d, 0xab, 0x6f, 0x56, 0x13, 0x4a, 0xb1, 0xa4, 0xe2, 0xd2, 0xb5, 0x0b, 0x1d, 0xa3, 0xd7, 0xc0,
+	0x75, 0xe4, 0x39, 0x6b, 0x1a, 0xd9, 0x66, 0xc7, 0xe8, 0x99, 0x56, 0x0b, 0x2a, 0xf8, 0xfd, 0x9c,
+	0x7b, 0xcc, 0x3e, 0x52, 0x3b, 0xcf, 0xa0, 0x8e, 0x3b, 0x33, 0xce, 0x83, 0x73, 0x22, 0x5c, 0xbb,
+	0xa8, 0x76, 0x9f, 0x43, 0x0d, 0xc9, 0x53, 0x71, 0xc9, 0xae, 0xb9, 0xb4, 0x4b, 0x1d, 0xb3, 0x57,
+	0x3b, 0xfd, 0x6c, 0x13, 0x32, 0xa5, 0xbb, 0xc8, 0x8c, 0xba, 0xb7, 0xd0, 0x4a, 0x28, 0xbb, 0x94,
+	0xf8, 0x88, 0x25, 0xf7, 0x24, 0xfd, 0x15, 0xd4, 0x35, 0xce, 0x94, 0xaf, 0xa9, 0x90, 0x76, 0x41,
+	0x45, 0x6b, 0x6f, 0x6c, 0x75, 0xaa, 0x92, 0x80, 0x68, 0xd2, 0xfd, 0x09, 0x3e, 0xc6, 0x58, 0x82,
+	0xfe, 0xbc, 0x90, 0x2b, 0xfe, 0xeb, 0x98, 0x30, 0x57, 0xfb, 0xe6, 0x4c, 0x53, 0x1d, 0x8e, 0x04,
+	0x89, 0xa8, 0x4a, 0x52, 0xb1, 0xfb, 0x97, 0xa1, 0xe1, 0x89, 0xb3, 0x7e, 0x37, 0xf0, 0xdb, 0x02,
+	0xcd, 0x5d, 0x02, 0x2d, 0x0b, 0x40, 0x7b, 0xcc, 0x90, 0xd6, 0x91, 0xa2, 0xf5, 0x87, 0x01, 0x4f,
+	0x53, 0xd5, 0xb7, 0x1e, 0xe1, 0x23, 0xef, 0xd5, 0x2a, 0xce, 0x2f, 0x18, 0x21, 0x94, 0xe0, 0x8a,
+	0xd5, 0x83, 0xa2, 0x74, 0xb8, 0xd0, 0x81, 0x9a, 0xa7, 0x9f, 0xdc, 0x3b, 0x67, 0xca, 0xe2, 0x60,
+	0x71, 0xeb, 0xfe, 0x80, 0x06, 0x1b, 0x0e, 0x98, 0x9a, 0x0f, 0xc5, 0x61, 0xae, 0x0b, 0x0d, 0xd3,
+	0x20, 0xf8, 0xf2, 0x31, 0x0c, 0x6a, 0x60, 0x0a, 0xbe, 0xd4, 0x04, 0x52, 0x58, 0x54, 0xf6, 0x2e,
+	0x61, 0x23, 0x7d, 0x93, 0x91, 0xad, 0xcb, 0xe3, 0xa5, 0x4f, 0x73, 0x82, 0x9e, 0x40, 0x49, 0xfb,
+	0x2b, 0xdc, 0xe6, 0xd6, 0x65, 0x54, 0x09, 0xd2, 0xdf, 0xaf, 0xee, 0x42, 0x9a, 0x46, 0x45, 0x31,
+	0xef, 0x31, 0xea, 0x9f, 0xc6, 0xa6, 0x07, 0xc8, 0x88, 0x88, 0x68, 0xea, 0x93, 0xbb, 0x3d, 0x03,
+	0x0f, 0x00, 0xae, 0x39, 0x8f, 0xf6, 0xed, 0x00, 0xd8, 0xc8, 0xd0, 0x7e, 0xb6, 0xb9, 0xb5, 0x56,
+	0x03, 0x8a, 0xae, 0xf7, 0xfb, 0x2a, 0x56, 0x05, 0xd4, 0xe8, 0x8e, 0xb3, 0x2a, 0x09, 0x28, 0x8b,
+	0x5f, 0xad, 0x62, 0x92, 0x2f, 0x07, 0xdd, 0xdf, 0xb2, 0xc2, 0x78, 0x1c, 0x12, 0x8a, 0x5c, 0x6d,
+	0x7a, 0xc9, 0xee, 0x2e, 0xf0, 0x5f, 0x0d, 0x92, 0xd2, 0x43, 0x5a, 0xea, 0x5b, 0x34, 0x3c, 0x0e,
+	0xe9, 0x60, 0x0d, 0x0c, 0xea, 0xa9, 0x86, 0x30, 0xf6, 0xfd, 0x9c, 0x51, 0x7b, 0x60, 0x12, 0x27,
+	0x4a, 0x8a, 0xf0, 0xd3, 0x87, 0x45, 0xe8, 0x93, 0x11, 0xe1, 0xaa, 0x06, 0x93, 0x78, 0xa8, 0xf4,
+	0xbd, 0xc4, 0xbb, 0xce, 0xce, 0x88, 0xc7, 0xd1, 0x21, 0x99, 0x3d, 0x81, 0x4a, 0xea, 0xb1, 0xc7,
+	0xc8, 0xfb, 0xdb, 0xc8, 0x8e, 0xf0, 0xc0, 0x40, 0xdb, 0xe2, 0xbe, 0x80, 0x8a, 0x43, 0x84, 0x8b,
+	0xf4, 0x13, 0x85, 0x6f, 0xe8, 0xb6, 0x21, 0xf1, 0xd0, 0x00, 0xdf, 0x07, 0x82, 0x06, 0xc4, 0x63,
+	0xc9, 0x89, 0xab, 0x59, 0x74, 0x8f, 0x7b, 0x71, 0x27, 0xf7, 0x17, 0x59, 0x0f, 0x24, 0x4e, 0xf4,
+	0x6d, 0xcc, 0x73, 0x56, 0xf1, 0x8b, 0xac, 0xab, 0xdd, 0xc4, 0x7c, 0xe8, 0xac, 0x73, 0xe2, 0xbc,
+	0x2e, 0xc0, 0x93, 0xf4, 0x79, 0xf5, 0x0b, 0x15, 0x57, 0xb1, 0x60, 0xf9, 0x67, 0x58, 0xe4, 0x05,
+	0x69, 0x0b, 0xea, 0x43, 0x99, 0x38, 0x91, 0xca, 0xeb, 0xff, 0x4e, 0xb1, 0xc4, 0xc0, 0x7a, 0x0a,
+	0x55, 0x87, 0xb0, 0x91, 0x6e, 0xae, 0x45, 0x35, 0x02, 0x71, 0xe8, 0xc7, 0xbe, 0x3f, 0x11, 0xd3,
+	0x58, 0xae, 0xec, 0x92, 0x82, 0x3c, 0x86, 0x9a, 0x43, 0xd8, 0x24, 0xcd, 0x75, 0x59, 0x19, 0x6e,
+	0xbd, 0xce, 0x2a, 0xbb, 0x5f, 0x67, 0xd6, 0x09, 0x54, 0x71, 0xd8, 0xaa, 0x09, 0x6a, 0x57, 0x77,
+	0x8c, 0x58, 0x24, 0xe7, 0xc9, 0x73, 0xc2, 0xa6, 0x44, 0x4a, 0x1b, 0xd4, 0x1c, 0xfb, 0xc7, 0xd8,
+	0xe4, 0xec, 0x86, 0x04, 0x54, 0x81, 0xee, 0xfb, 0xbc, 0x83, 0x8c, 0x48, 0x52, 0xe9, 0x6f, 0x27,
+	0xfb, 0x25, 0xd4, 0x42, 0x77, 0x3d, 0xa2, 0x72, 0xad, 0x5c, 0x4c, 0x05, 0xde, 0x7e, 0xe8, 0xe2,
+	0x26, 0x16, 0x58, 0xa4, 0x92, 0x32, 0x97, 0x8a, 0xb9, 0x3e, 0x1c, 0x35, 0x02, 0x30, 0x77, 0x9e,
+	0x9c, 0x51, 0x87, 0x33, 0x46, 0x9d, 0x48, 0x25, 0xb9, 0xd8, 0xff, 0x5a, 0x5f, 0xa3, 0x7b, 0x72,
+	0x6b, 0x50, 0xc6, 0xbd, 0xc9, 0xf7, 0x17, 0x2d, 0x23, 0x5d, 0x5c, 0xfd, 0x38, 0x69, 0x15, 0xac,
+	0x06, 0x54, 0xd5, 0x62, 0x3c, 0xbb, 0xb8, 0x68, 0x99, 0xfd, 0xe7, 0x70, 0xfc, 0x86, 0xb9, 0x97,
+	0xba, 0x7c, 0x77, 0x39, 0x6c, 0x19, 0xa9, 0xcb, 0xd9, 0x1c, 0x97, 0x85, 0xfe, 0x37, 0x60, 0x3d,
+	0xec, 0x1a, 0x16, 0x40, 0x09, 0x77, 0x5f, 0x0e, 0xb3, 0x80, 0xa3, 0x21, 0x06, 0x7c, 0xa2, 0xa4,
+	0x2f, 0xce, 0xe6, 0x2f, 0x87, 0xb8, 0x61, 0x9e, 0x15, 0xc6, 0xe6, 0xf4, 0xa3, 0xa9, 0xf1, 0x6f,
+	0x00, 0x00, 0x00, 0xff, 0xff, 0x41, 0xba, 0x22, 0xdd, 0x51, 0x0c, 0x00, 0x00,
 }

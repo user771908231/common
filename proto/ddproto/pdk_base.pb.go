@@ -103,17 +103,16 @@ var _ = math.Inf
 
 // Ignoring public import of common_enum_pokerColor from common_client.proto
 
-// 跑得快游戏中用到的协议枚举id
 type PdkEnumProtoId int32
 
 const (
-	// common
+	// //////////////////////////////////
+	//
 	PdkEnumProtoId_PDK_PID_HEARTBEAT      PdkEnumProtoId = 0
 	PdkEnumProtoId_PDK_PID_QUICK_CONN     PdkEnumProtoId = 1
 	PdkEnumProtoId_PDK_PID_QUICK_CONN_ACK PdkEnumProtoId = 2
 	PdkEnumProtoId_PDK_PID_GAME_LOGIN     PdkEnumProtoId = 3
 	PdkEnumProtoId_PDK_PID_GAME_LOGIN_ACK PdkEnumProtoId = 4
-	// pdk proto
 	PdkEnumProtoId_PDK_PID_CREATEROOM     PdkEnumProtoId = 5
 	PdkEnumProtoId_PDK_PID_CREATEROOM_ACK PdkEnumProtoId = 6
 	PdkEnumProtoId_PDK_PID_ENTER_ROOM     PdkEnumProtoId = 7
@@ -123,6 +122,60 @@ const (
 	PdkEnumProtoId_PDK_PID_READY_ACK      PdkEnumProtoId = 11
 	PdkEnumProtoId_PDK_PID_OPENING        PdkEnumProtoId = 12
 	PdkEnumProtoId_PDK_PID_DEAL_CARDS     PdkEnumProtoId = 13
+	PdkEnumProtoId_PDK_PID_JIAO_DIZHU     PdkEnumProtoId = 14
+	PdkEnumProtoId_PDK_PID_JIAO_DIZHU_ACK PdkEnumProtoId = 15
+	// //////////////////////////////////////////
+	// 欢乐斗地主
+	PdkEnumProtoId_PDK_PID_ROB_DIZHU           PdkEnumProtoId = 16
+	PdkEnumProtoId_PDK_PID_ROB_DIZHU_ACK       PdkEnumProtoId = 17
+	PdkEnumProtoId_PDK_PID_DOUBLE              PdkEnumProtoId = 18
+	PdkEnumProtoId_PDK_PID_DOUBLE_ACK          PdkEnumProtoId = 19
+	PdkEnumProtoId_PDK_PID_SHOW_HANDPOKERS     PdkEnumProtoId = 20
+	PdkEnumProtoId_PDK_PID_SHOW_HANDPOKERS_ACK PdkEnumProtoId = 21
+	// //////////////////////////////////////////
+	// 四川斗地主
+	PdkEnumProtoId_PDK_PID_MEN_ZHUA      PdkEnumProtoId = 22
+	PdkEnumProtoId_PDK_PID_MEN_ZHUA_ACK  PdkEnumProtoId = 23
+	PdkEnumProtoId_PDK_PID_SEE_CARDS     PdkEnumProtoId = 24
+	PdkEnumProtoId_PDK_PID_SEE_CARDS_ACK PdkEnumProtoId = 25
+	PdkEnumProtoId_PDK_PID_PULL          PdkEnumProtoId = 26
+	PdkEnumProtoId_PDK_PID_PULL_ACK      PdkEnumProtoId = 27
+	// //////////////////////////////////////////
+	PdkEnumProtoId_PDK_PID_OUT_CARDS     PdkEnumProtoId = 28
+	PdkEnumProtoId_PDK_PID_OUT_CARDS_ACK PdkEnumProtoId = 29
+	PdkEnumProtoId_PDK_PID_ACT_GUO       PdkEnumProtoId = 30
+	PdkEnumProtoId_PDK_PID_ACT_GUO_ACK   PdkEnumProtoId = 31
+	// //////////////////////////////////////////
+	PdkEnumProtoId_PDK_PID_START_PLAY     PdkEnumProtoId = 32
+	PdkEnumProtoId_PDK_PID_OVERTURN       PdkEnumProtoId = 33
+	PdkEnumProtoId_PDK_PID_CURRENTRESULT  PdkEnumProtoId = 34
+	PdkEnumProtoId_PDK_PID_SENDENDLOTTERY PdkEnumProtoId = 35
+	// //////////////////////////////////////////
+	PdkEnumProtoId_PDK_PID_DISSOLVE_DESK           PdkEnumProtoId = 36
+	PdkEnumProtoId_PDK_PID_DISSOLVE_DESK_ACK       PdkEnumProtoId = 37
+	PdkEnumProtoId_PDK_PID_LEAVE_DESK              PdkEnumProtoId = 38
+	PdkEnumProtoId_PDK_PID_LEAVE_DESK_ACK          PdkEnumProtoId = 39
+	PdkEnumProtoId_PDK_PID_MESSAGE                 PdkEnumProtoId = 40
+	PdkEnumProtoId_PDK_PID_SEND_MESSAGE            PdkEnumProtoId = 41
+	PdkEnumProtoId_PDK_PID_GAME_GAMERECORD         PdkEnumProtoId = 42
+	PdkEnumProtoId_PDK_PID_GAME_GAMERECORD_ACK     PdkEnumProtoId = 43
+	PdkEnumProtoId_PDK_PID_GAME_ENTERAGENTMODE     PdkEnumProtoId = 44
+	PdkEnumProtoId_PDK_PID_GAME_ENTERAGENTMODE_ACK PdkEnumProtoId = 45
+	PdkEnumProtoId_PDK_PID_GAME_QUITAGENTMODE      PdkEnumProtoId = 46
+	PdkEnumProtoId_PDK_PID_GAME_QUITAGENTMODE_ACK  PdkEnumProtoId = 47
+	PdkEnumProtoId_PDK_PID_ONLINEWARD_REQ          PdkEnumProtoId = 48
+	PdkEnumProtoId_PDK_PID_ONLINEWARD_ACK          PdkEnumProtoId = 49
+	PdkEnumProtoId_PDK_PID_REG_REQ                 PdkEnumProtoId = 50
+	PdkEnumProtoId_PDK_PID_REG_ACK                 PdkEnumProtoId = 51
+	PdkEnumProtoId_PDK_PID_ALLOWANCE_REQ           PdkEnumProtoId = 52
+	PdkEnumProtoId_PDK_PID_ALLOWANCE_ACK           PdkEnumProtoId = 53
+	PdkEnumProtoId_PDK_PID_KICKOUT_BC              PdkEnumProtoId = 54
+	PdkEnumProtoId_PDK_PID_APPLYDISSOVLE_REQ       PdkEnumProtoId = 55
+	PdkEnumProtoId_PDK_PID_APPLYDISSOVLE_BC        PdkEnumProtoId = 56
+	PdkEnumProtoId_PDK_PID_APPLYDISSOVLE_BACK_REQ  PdkEnumProtoId = 57
+	PdkEnumProtoId_PDK_PID_APPLYDISSOVLE_BACK_ACK  PdkEnumProtoId = 58
+	PdkEnumProtoId_PDK_PID_TIMEOUT                 PdkEnumProtoId = 59
+	PdkEnumProtoId_PDK_PID_USERBREAK               PdkEnumProtoId = 60
 )
 
 var PdkEnumProtoId_name = map[int32]string{
@@ -140,22 +193,116 @@ var PdkEnumProtoId_name = map[int32]string{
 	11: "PDK_PID_READY_ACK",
 	12: "PDK_PID_OPENING",
 	13: "PDK_PID_DEAL_CARDS",
+	14: "PDK_PID_JIAO_DIZHU",
+	15: "PDK_PID_JIAO_DIZHU_ACK",
+	16: "PDK_PID_ROB_DIZHU",
+	17: "PDK_PID_ROB_DIZHU_ACK",
+	18: "PDK_PID_DOUBLE",
+	19: "PDK_PID_DOUBLE_ACK",
+	20: "PDK_PID_SHOW_HANDPOKERS",
+	21: "PDK_PID_SHOW_HANDPOKERS_ACK",
+	22: "PDK_PID_MEN_ZHUA",
+	23: "PDK_PID_MEN_ZHUA_ACK",
+	24: "PDK_PID_SEE_CARDS",
+	25: "PDK_PID_SEE_CARDS_ACK",
+	26: "PDK_PID_PULL",
+	27: "PDK_PID_PULL_ACK",
+	28: "PDK_PID_OUT_CARDS",
+	29: "PDK_PID_OUT_CARDS_ACK",
+	30: "PDK_PID_ACT_GUO",
+	31: "PDK_PID_ACT_GUO_ACK",
+	32: "PDK_PID_START_PLAY",
+	33: "PDK_PID_OVERTURN",
+	34: "PDK_PID_CURRENTRESULT",
+	35: "PDK_PID_SENDENDLOTTERY",
+	36: "PDK_PID_DISSOLVE_DESK",
+	37: "PDK_PID_DISSOLVE_DESK_ACK",
+	38: "PDK_PID_LEAVE_DESK",
+	39: "PDK_PID_LEAVE_DESK_ACK",
+	40: "PDK_PID_MESSAGE",
+	41: "PDK_PID_SEND_MESSAGE",
+	42: "PDK_PID_GAME_GAMERECORD",
+	43: "PDK_PID_GAME_GAMERECORD_ACK",
+	44: "PDK_PID_GAME_ENTERAGENTMODE",
+	45: "PDK_PID_GAME_ENTERAGENTMODE_ACK",
+	46: "PDK_PID_GAME_QUITAGENTMODE",
+	47: "PDK_PID_GAME_QUITAGENTMODE_ACK",
+	48: "PDK_PID_ONLINEWARD_REQ",
+	49: "PDK_PID_ONLINEWARD_ACK",
+	50: "PDK_PID_REG_REQ",
+	51: "PDK_PID_REG_ACK",
+	52: "PDK_PID_ALLOWANCE_REQ",
+	53: "PDK_PID_ALLOWANCE_ACK",
+	54: "PDK_PID_KICKOUT_BC",
+	55: "PDK_PID_APPLYDISSOVLE_REQ",
+	56: "PDK_PID_APPLYDISSOVLE_BC",
+	57: "PDK_PID_APPLYDISSOVLE_BACK_REQ",
+	58: "PDK_PID_APPLYDISSOVLE_BACK_ACK",
+	59: "PDK_PID_TIMEOUT",
+	60: "PDK_PID_USERBREAK",
 }
 var PdkEnumProtoId_value = map[string]int32{
-	"PDK_PID_HEARTBEAT":      0,
-	"PDK_PID_QUICK_CONN":     1,
-	"PDK_PID_QUICK_CONN_ACK": 2,
-	"PDK_PID_GAME_LOGIN":     3,
-	"PDK_PID_GAME_LOGIN_ACK": 4,
-	"PDK_PID_CREATEROOM":     5,
-	"PDK_PID_CREATEROOM_ACK": 6,
-	"PDK_PID_ENTER_ROOM":     7,
-	"PDK_PID_ENTER_ROOM_ACK": 8,
-	"PDK_PID_SEND_GAMEINFO":  9,
-	"PDK_PID_READY":          10,
-	"PDK_PID_READY_ACK":      11,
-	"PDK_PID_OPENING":        12,
-	"PDK_PID_DEAL_CARDS":     13,
+	"PDK_PID_HEARTBEAT":               0,
+	"PDK_PID_QUICK_CONN":              1,
+	"PDK_PID_QUICK_CONN_ACK":          2,
+	"PDK_PID_GAME_LOGIN":              3,
+	"PDK_PID_GAME_LOGIN_ACK":          4,
+	"PDK_PID_CREATEROOM":              5,
+	"PDK_PID_CREATEROOM_ACK":          6,
+	"PDK_PID_ENTER_ROOM":              7,
+	"PDK_PID_ENTER_ROOM_ACK":          8,
+	"PDK_PID_SEND_GAMEINFO":           9,
+	"PDK_PID_READY":                   10,
+	"PDK_PID_READY_ACK":               11,
+	"PDK_PID_OPENING":                 12,
+	"PDK_PID_DEAL_CARDS":              13,
+	"PDK_PID_JIAO_DIZHU":              14,
+	"PDK_PID_JIAO_DIZHU_ACK":          15,
+	"PDK_PID_ROB_DIZHU":               16,
+	"PDK_PID_ROB_DIZHU_ACK":           17,
+	"PDK_PID_DOUBLE":                  18,
+	"PDK_PID_DOUBLE_ACK":              19,
+	"PDK_PID_SHOW_HANDPOKERS":         20,
+	"PDK_PID_SHOW_HANDPOKERS_ACK":     21,
+	"PDK_PID_MEN_ZHUA":                22,
+	"PDK_PID_MEN_ZHUA_ACK":            23,
+	"PDK_PID_SEE_CARDS":               24,
+	"PDK_PID_SEE_CARDS_ACK":           25,
+	"PDK_PID_PULL":                    26,
+	"PDK_PID_PULL_ACK":                27,
+	"PDK_PID_OUT_CARDS":               28,
+	"PDK_PID_OUT_CARDS_ACK":           29,
+	"PDK_PID_ACT_GUO":                 30,
+	"PDK_PID_ACT_GUO_ACK":             31,
+	"PDK_PID_START_PLAY":              32,
+	"PDK_PID_OVERTURN":                33,
+	"PDK_PID_CURRENTRESULT":           34,
+	"PDK_PID_SENDENDLOTTERY":          35,
+	"PDK_PID_DISSOLVE_DESK":           36,
+	"PDK_PID_DISSOLVE_DESK_ACK":       37,
+	"PDK_PID_LEAVE_DESK":              38,
+	"PDK_PID_LEAVE_DESK_ACK":          39,
+	"PDK_PID_MESSAGE":                 40,
+	"PDK_PID_SEND_MESSAGE":            41,
+	"PDK_PID_GAME_GAMERECORD":         42,
+	"PDK_PID_GAME_GAMERECORD_ACK":     43,
+	"PDK_PID_GAME_ENTERAGENTMODE":     44,
+	"PDK_PID_GAME_ENTERAGENTMODE_ACK": 45,
+	"PDK_PID_GAME_QUITAGENTMODE":      46,
+	"PDK_PID_GAME_QUITAGENTMODE_ACK":  47,
+	"PDK_PID_ONLINEWARD_REQ":          48,
+	"PDK_PID_ONLINEWARD_ACK":          49,
+	"PDK_PID_REG_REQ":                 50,
+	"PDK_PID_REG_ACK":                 51,
+	"PDK_PID_ALLOWANCE_REQ":           52,
+	"PDK_PID_ALLOWANCE_ACK":           53,
+	"PDK_PID_KICKOUT_BC":              54,
+	"PDK_PID_APPLYDISSOVLE_REQ":       55,
+	"PDK_PID_APPLYDISSOVLE_BC":        56,
+	"PDK_PID_APPLYDISSOVLE_BACK_REQ":  57,
+	"PDK_PID_APPLYDISSOVLE_BACK_ACK":  58,
+	"PDK_PID_TIMEOUT":                 59,
+	"PDK_PID_USERBREAK":               60,
 }
 
 func (x PdkEnumProtoId) Enum() *PdkEnumProtoId {
@@ -176,205 +323,1198 @@ func (x *PdkEnumProtoId) UnmarshalJSON(data []byte) error {
 }
 func (PdkEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{0} }
 
-// 跑得快创建房间
-type PdkReqCreateDesk struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+type PdkEnumErrorCode int32
+
+const (
+	PdkEnumErrorCode_PDK_EC_SUCCESS PdkEnumErrorCode = 0
+	// -101   -200	游戏异常
+	PdkEnumErrorCode_PDK_EC_CREATE_DESK_DIAMOND_NOTENOUGH PdkEnumErrorCode = -101
+	PdkEnumErrorCode_PDK_EC_CREATE_DESK_USER_NOTFOUND     PdkEnumErrorCode = -102
+	PdkEnumErrorCode_PDK_EC_INTO_DESK_NOTFOUND            PdkEnumErrorCode = -103
+	PdkEnumErrorCode_PDK_EC_INTO_DESK_ISFULL              PdkEnumErrorCode = -104
+	PdkEnumErrorCode_PDK_EC_GAME_READY_REPEAT             PdkEnumErrorCode = -110
+	PdkEnumErrorCode_PDK_EC_GAME_READY_CHIP_NOT_ENOUGH    PdkEnumErrorCode = -111
+)
+
+var PdkEnumErrorCode_name = map[int32]string{
+	0:    "PDK_EC_SUCCESS",
+	-101: "PDK_EC_CREATE_DESK_DIAMOND_NOTENOUGH",
+	-102: "PDK_EC_CREATE_DESK_USER_NOTFOUND",
+	-103: "PDK_EC_INTO_DESK_NOTFOUND",
+	-104: "PDK_EC_INTO_DESK_ISFULL",
+	-110: "PDK_EC_GAME_READY_REPEAT",
+	-111: "PDK_EC_GAME_READY_CHIP_NOT_ENOUGH",
+}
+var PdkEnumErrorCode_value = map[string]int32{
+	"PDK_EC_SUCCESS":                       0,
+	"PDK_EC_CREATE_DESK_DIAMOND_NOTENOUGH": -101,
+	"PDK_EC_CREATE_DESK_USER_NOTFOUND":     -102,
+	"PDK_EC_INTO_DESK_NOTFOUND":            -103,
+	"PDK_EC_INTO_DESK_ISFULL":              -104,
+	"PDK_EC_GAME_READY_REPEAT":             -110,
+	"PDK_EC_GAME_READY_CHIP_NOT_ENOUGH":    -111,
 }
 
-func (m *PdkReqCreateDesk) Reset()                    { *m = PdkReqCreateDesk{} }
-func (m *PdkReqCreateDesk) String() string            { return proto.CompactTextString(m) }
-func (*PdkReqCreateDesk) ProtoMessage()               {}
-func (*PdkReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{0} }
+func (x PdkEnumErrorCode) Enum() *PdkEnumErrorCode {
+	p := new(PdkEnumErrorCode)
+	*p = x
+	return p
+}
+func (x PdkEnumErrorCode) String() string {
+	return proto.EnumName(PdkEnumErrorCode_name, int32(x))
+}
+func (x *PdkEnumErrorCode) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumErrorCode_value, data, "PdkEnumErrorCode")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumErrorCode(value)
+	return nil
+}
+func (PdkEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{1} }
 
-func (m *PdkReqCreateDesk) GetHeader() *ProtoHeader {
+// 牌型
+type PdkEnumPaiType int32
+
+const (
+	PdkEnumPaiType_PDK_ERRORCARD          PdkEnumPaiType = 0
+	PdkEnumPaiType_PDK_SINGLECARD         PdkEnumPaiType = 1
+	PdkEnumPaiType_PDK_DOUBLECARD         PdkEnumPaiType = 2
+	PdkEnumPaiType_PDK_THREECARD          PdkEnumPaiType = 3
+	PdkEnumPaiType_PDK_BOMBCARD           PdkEnumPaiType = 4
+	PdkEnumPaiType_PDK_THREEONECARD       PdkEnumPaiType = 5
+	PdkEnumPaiType_PDK_THREETWOCARD       PdkEnumPaiType = 6
+	PdkEnumPaiType_PDK_BOMBTWOCARD        PdkEnumPaiType = 7
+	PdkEnumPaiType_PDK_BOMBTWOOOCARD      PdkEnumPaiType = 8
+	PdkEnumPaiType_PDK_CONNECTCARD        PdkEnumPaiType = 9
+	PdkEnumPaiType_PDK_COMPANYCARD        PdkEnumPaiType = 10
+	PdkEnumPaiType_PDK_AIRCRAFTCARD       PdkEnumPaiType = 11
+	PdkEnumPaiType_PDK_AIRCRAFTSINGLECARD PdkEnumPaiType = 12
+	PdkEnumPaiType_PDK_AIRCRAFTDOUBLECARD PdkEnumPaiType = 13
+	PdkEnumPaiType_PDK_SUPERBOMB          PdkEnumPaiType = 14
+	PdkEnumPaiType_PDK_FOURWITHONEDOUBLE  PdkEnumPaiType = 15
+	PdkEnumPaiType_PDK_AIRCRAFTFOURSIG    PdkEnumPaiType = 16
+	PdkEnumPaiType_PDK_AIRCRAFTLASTCARD   PdkEnumPaiType = 17
+	PdkEnumPaiType_PDK_AIRCRAFTLASTDOU    PdkEnumPaiType = 18
+	PdkEnumPaiType_PDK_THREETWOSIG        PdkEnumPaiType = 19
+)
+
+var PdkEnumPaiType_name = map[int32]string{
+	0:  "PDK_ERRORCARD",
+	1:  "PDK_SINGLECARD",
+	2:  "PDK_DOUBLECARD",
+	3:  "PDK_THREECARD",
+	4:  "PDK_BOMBCARD",
+	5:  "PDK_THREEONECARD",
+	6:  "PDK_THREETWOCARD",
+	7:  "PDK_BOMBTWOCARD",
+	8:  "PDK_BOMBTWOOOCARD",
+	9:  "PDK_CONNECTCARD",
+	10: "PDK_COMPANYCARD",
+	11: "PDK_AIRCRAFTCARD",
+	12: "PDK_AIRCRAFTSINGLECARD",
+	13: "PDK_AIRCRAFTDOUBLECARD",
+	14: "PDK_SUPERBOMB",
+	15: "PDK_FOURWITHONEDOUBLE",
+	16: "PDK_AIRCRAFTFOURSIG",
+	17: "PDK_AIRCRAFTLASTCARD",
+	18: "PDK_AIRCRAFTLASTDOU",
+	19: "PDK_THREETWOSIG",
+}
+var PdkEnumPaiType_value = map[string]int32{
+	"PDK_ERRORCARD":          0,
+	"PDK_SINGLECARD":         1,
+	"PDK_DOUBLECARD":         2,
+	"PDK_THREECARD":          3,
+	"PDK_BOMBCARD":           4,
+	"PDK_THREEONECARD":       5,
+	"PDK_THREETWOCARD":       6,
+	"PDK_BOMBTWOCARD":        7,
+	"PDK_BOMBTWOOOCARD":      8,
+	"PDK_CONNECTCARD":        9,
+	"PDK_COMPANYCARD":        10,
+	"PDK_AIRCRAFTCARD":       11,
+	"PDK_AIRCRAFTSINGLECARD": 12,
+	"PDK_AIRCRAFTDOUBLECARD": 13,
+	"PDK_SUPERBOMB":          14,
+	"PDK_FOURWITHONEDOUBLE":  15,
+	"PDK_AIRCRAFTFOURSIG":    16,
+	"PDK_AIRCRAFTLASTCARD":   17,
+	"PDK_AIRCRAFTLASTDOU":    18,
+	"PDK_THREETWOSIG":        19,
+}
+
+func (x PdkEnumPaiType) Enum() *PdkEnumPaiType {
+	p := new(PdkEnumPaiType)
+	*p = x
+	return p
+}
+func (x PdkEnumPaiType) String() string {
+	return proto.EnumName(PdkEnumPaiType_name, int32(x))
+}
+func (x *PdkEnumPaiType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumPaiType_value, data, "PdkEnumPaiType")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumPaiType(value)
+	return nil
+}
+func (PdkEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{2} }
+
+// 轮到玩家操作时：可执行何种操作
+type PdkEnumActType int32
+
+const (
+	PdkEnumActType_PDK_T_NORMAL_ACT PdkEnumActType = 1
+	PdkEnumActType_PDK_T_JIAO_DIZHU PdkEnumActType = 2
+	PdkEnumActType_PDK_T_ROB_DIZHU  PdkEnumActType = 3
+	PdkEnumActType_PDK_T_DOUBLE     PdkEnumActType = 4
+	PdkEnumActType_PDK_T_MEN_ZHUA   PdkEnumActType = 5
+	PdkEnumActType_PDK_T_PULL       PdkEnumActType = 6
+	PdkEnumActType_PDK_T_PUSH       PdkEnumActType = 7
+)
+
+var PdkEnumActType_name = map[int32]string{
+	1: "PDK_T_NORMAL_ACT",
+	2: "PDK_T_JIAO_DIZHU",
+	3: "PDK_T_ROB_DIZHU",
+	4: "PDK_T_DOUBLE",
+	5: "PDK_T_MEN_ZHUA",
+	6: "PDK_T_PULL",
+	7: "PDK_T_PUSH",
+}
+var PdkEnumActType_value = map[string]int32{
+	"PDK_T_NORMAL_ACT": 1,
+	"PDK_T_JIAO_DIZHU": 2,
+	"PDK_T_ROB_DIZHU":  3,
+	"PDK_T_DOUBLE":     4,
+	"PDK_T_MEN_ZHUA":   5,
+	"PDK_T_PULL":       6,
+	"PDK_T_PUSH":       7,
+}
+
+func (x PdkEnumActType) Enum() *PdkEnumActType {
+	p := new(PdkEnumActType)
+	*p = x
+	return p
+}
+func (x PdkEnumActType) String() string {
+	return proto.EnumName(PdkEnumActType_name, int32(x))
+}
+func (x *PdkEnumActType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumActType_value, data, "PdkEnumActType")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumActType(value)
+	return nil
+}
+func (PdkEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{3} }
+
+type PdkEnumGameStatus int32
+
+const (
+	PdkEnumGameStatus_PDK_U_INIT       PdkEnumGameStatus = 0
+	PdkEnumGameStatus_PDK_U_JIAO_DIZHU PdkEnumGameStatus = 1
+	PdkEnumGameStatus_PDK_U_ROB_DIZHU  PdkEnumGameStatus = 2
+	PdkEnumGameStatus_PDK_U_PLAYING    PdkEnumGameStatus = 3
+	PdkEnumGameStatus_PDK_U_FINISH     PdkEnumGameStatus = 4
+)
+
+var PdkEnumGameStatus_name = map[int32]string{
+	0: "PDK_U_INIT",
+	1: "PDK_U_JIAO_DIZHU",
+	2: "PDK_U_ROB_DIZHU",
+	3: "PDK_U_PLAYING",
+	4: "PDK_U_FINISH",
+}
+var PdkEnumGameStatus_value = map[string]int32{
+	"PDK_U_INIT":       0,
+	"PDK_U_JIAO_DIZHU": 1,
+	"PDK_U_ROB_DIZHU":  2,
+	"PDK_U_PLAYING":    3,
+	"PDK_U_FINISH":     4,
+}
+
+func (x PdkEnumGameStatus) Enum() *PdkEnumGameStatus {
+	p := new(PdkEnumGameStatus)
+	*p = x
+	return p
+}
+func (x PdkEnumGameStatus) String() string {
+	return proto.EnumName(PdkEnumGameStatus_name, int32(x))
+}
+func (x *PdkEnumGameStatus) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumGameStatus_value, data, "PdkEnumGameStatus")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumGameStatus(value)
+	return nil
+}
+func (PdkEnumGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{4} }
+
+// 玩家当前状态
+type PdkEnumPlayerStatus int32
+
+const (
+	PdkEnumPlayerStatus_PDK_NORMAL_DEFAULT      PdkEnumPlayerStatus = 0
+	PdkEnumPlayerStatus_PDK_NORMAL_ENTERDESK    PdkEnumPlayerStatus = 1
+	PdkEnumPlayerStatus_PDK_NORMAL_READY        PdkEnumPlayerStatus = 2
+	PdkEnumPlayerStatus_PDK_NORMAL_DAPAI        PdkEnumPlayerStatus = 3
+	PdkEnumPlayerStatus_PDK_NORMAL_LOTTERY      PdkEnumPlayerStatus = 4
+	PdkEnumPlayerStatus_PDK_NORMAL_END          PdkEnumPlayerStatus = 5
+	PdkEnumPlayerStatus_PDK_HLJIAO_NOACT        PdkEnumPlayerStatus = 6
+	PdkEnumPlayerStatus_PDK_HLJIAO_JIAO         PdkEnumPlayerStatus = 7
+	PdkEnumPlayerStatus_PDK_HLJIAO_BUJIAO       PdkEnumPlayerStatus = 8
+	PdkEnumPlayerStatus_PDK_HLQIANG_NOACT       PdkEnumPlayerStatus = 9
+	PdkEnumPlayerStatus_PDK_HLQIANG_QIANG       PdkEnumPlayerStatus = 10
+	PdkEnumPlayerStatus_PDK_HLQIANG_BUQIANG     PdkEnumPlayerStatus = 11
+	PdkEnumPlayerStatus_PDK_HLJB_NOACT          PdkEnumPlayerStatus = 12
+	PdkEnumPlayerStatus_PDK_HLJB_JIA            PdkEnumPlayerStatus = 13
+	PdkEnumPlayerStatus_PDK_HLJB_BUJIA          PdkEnumPlayerStatus = 14
+	PdkEnumPlayerStatus_PDK_SCMZ_NOACT          PdkEnumPlayerStatus = 15
+	PdkEnumPlayerStatus_PDK_SCMZ_MENZHUA        PdkEnumPlayerStatus = 16
+	PdkEnumPlayerStatus_PDK_SCMZ_SEECARDS       PdkEnumPlayerStatus = 17
+	PdkEnumPlayerStatus_PDK_SCZP_NOACT          PdkEnumPlayerStatus = 18
+	PdkEnumPlayerStatus_PDK_SCZP_ZHUA           PdkEnumPlayerStatus = 19
+	PdkEnumPlayerStatus_PDK_SCZP_BUZHUA         PdkEnumPlayerStatus = 20
+	PdkEnumPlayerStatus_PDK_SCLD_NOACT          PdkEnumPlayerStatus = 21
+	PdkEnumPlayerStatus_PDK_SCLD_LA             PdkEnumPlayerStatus = 22
+	PdkEnumPlayerStatus_PDK_SCLD_DAO            PdkEnumPlayerStatus = 23
+	PdkEnumPlayerStatus_PDK_SCLD_BULD           PdkEnumPlayerStatus = 24
+	PdkEnumPlayerStatus_PDK_JDJIAO_NOACT        PdkEnumPlayerStatus = 25
+	PdkEnumPlayerStatus_PDK_JDJIAO_JIAO         PdkEnumPlayerStatus = 26
+	PdkEnumPlayerStatus_PDK_JDJIAO_BUJIAO       PdkEnumPlayerStatus = 27
+	PdkEnumPlayerStatus_PDK_SHOWPOKER_READY     PdkEnumPlayerStatus = 28
+	PdkEnumPlayerStatus_PDK_SHOWPOKER_ENTERDESK PdkEnumPlayerStatus = 29
+)
+
+var PdkEnumPlayerStatus_name = map[int32]string{
+	0:  "PDK_NORMAL_DEFAULT",
+	1:  "PDK_NORMAL_ENTERDESK",
+	2:  "PDK_NORMAL_READY",
+	3:  "PDK_NORMAL_DAPAI",
+	4:  "PDK_NORMAL_LOTTERY",
+	5:  "PDK_NORMAL_END",
+	6:  "PDK_HLJIAO_NOACT",
+	7:  "PDK_HLJIAO_JIAO",
+	8:  "PDK_HLJIAO_BUJIAO",
+	9:  "PDK_HLQIANG_NOACT",
+	10: "PDK_HLQIANG_QIANG",
+	11: "PDK_HLQIANG_BUQIANG",
+	12: "PDK_HLJB_NOACT",
+	13: "PDK_HLJB_JIA",
+	14: "PDK_HLJB_BUJIA",
+	15: "PDK_SCMZ_NOACT",
+	16: "PDK_SCMZ_MENZHUA",
+	17: "PDK_SCMZ_SEECARDS",
+	18: "PDK_SCZP_NOACT",
+	19: "PDK_SCZP_ZHUA",
+	20: "PDK_SCZP_BUZHUA",
+	21: "PDK_SCLD_NOACT",
+	22: "PDK_SCLD_LA",
+	23: "PDK_SCLD_DAO",
+	24: "PDK_SCLD_BULD",
+	25: "PDK_JDJIAO_NOACT",
+	26: "PDK_JDJIAO_JIAO",
+	27: "PDK_JDJIAO_BUJIAO",
+	28: "PDK_SHOWPOKER_READY",
+	29: "PDK_SHOWPOKER_ENTERDESK",
+}
+var PdkEnumPlayerStatus_value = map[string]int32{
+	"PDK_NORMAL_DEFAULT":      0,
+	"PDK_NORMAL_ENTERDESK":    1,
+	"PDK_NORMAL_READY":        2,
+	"PDK_NORMAL_DAPAI":        3,
+	"PDK_NORMAL_LOTTERY":      4,
+	"PDK_NORMAL_END":          5,
+	"PDK_HLJIAO_NOACT":        6,
+	"PDK_HLJIAO_JIAO":         7,
+	"PDK_HLJIAO_BUJIAO":       8,
+	"PDK_HLQIANG_NOACT":       9,
+	"PDK_HLQIANG_QIANG":       10,
+	"PDK_HLQIANG_BUQIANG":     11,
+	"PDK_HLJB_NOACT":          12,
+	"PDK_HLJB_JIA":            13,
+	"PDK_HLJB_BUJIA":          14,
+	"PDK_SCMZ_NOACT":          15,
+	"PDK_SCMZ_MENZHUA":        16,
+	"PDK_SCMZ_SEECARDS":       17,
+	"PDK_SCZP_NOACT":          18,
+	"PDK_SCZP_ZHUA":           19,
+	"PDK_SCZP_BUZHUA":         20,
+	"PDK_SCLD_NOACT":          21,
+	"PDK_SCLD_LA":             22,
+	"PDK_SCLD_DAO":            23,
+	"PDK_SCLD_BULD":           24,
+	"PDK_JDJIAO_NOACT":        25,
+	"PDK_JDJIAO_JIAO":         26,
+	"PDK_JDJIAO_BUJIAO":       27,
+	"PDK_SHOWPOKER_READY":     28,
+	"PDK_SHOWPOKER_ENTERDESK": 29,
+}
+
+func (x PdkEnumPlayerStatus) Enum() *PdkEnumPlayerStatus {
+	p := new(PdkEnumPlayerStatus)
+	*p = x
+	return p
+}
+func (x PdkEnumPlayerStatus) String() string {
+	return proto.EnumName(PdkEnumPlayerStatus_name, int32(x))
+}
+func (x *PdkEnumPlayerStatus) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumPlayerStatus_value, data, "PdkEnumPlayerStatus")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumPlayerStatus(value)
+	return nil
+}
+func (PdkEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{5} }
+
+type PdkEnumRoomType int32
+
+const (
+	PdkEnumRoomType_PDK_T_NORMAL_PDK  PdkEnumRoomType = 1
+	PdkEnumRoomType_PDK_T_HAPPY_PDK   PdkEnumRoomType = 2
+	PdkEnumRoomType_PDK_T_SICHUAN_PDK PdkEnumRoomType = 3
+)
+
+var PdkEnumRoomType_name = map[int32]string{
+	1: "PDK_T_NORMAL_PDK",
+	2: "PDK_T_HAPPY_PDK",
+	3: "PDK_T_SICHUAN_PDK",
+}
+var PdkEnumRoomType_value = map[string]int32{
+	"PDK_T_NORMAL_PDK":  1,
+	"PDK_T_HAPPY_PDK":   2,
+	"PDK_T_SICHUAN_PDK": 3,
+}
+
+func (x PdkEnumRoomType) Enum() *PdkEnumRoomType {
+	p := new(PdkEnumRoomType)
+	*p = x
+	return p
+}
+func (x PdkEnumRoomType) String() string {
+	return proto.EnumName(PdkEnumRoomType_name, int32(x))
+}
+func (x *PdkEnumRoomType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumRoomType_value, data, "PdkEnumRoomType")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumRoomType(value)
+	return nil
+}
+func (PdkEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{6} }
+
+type PdkEnumEnterType int32
+
+const (
+	PdkEnumEnterType_PDK_FRIEND PdkEnumEnterType = 1
+	PdkEnumEnterType_PDK_COIN   PdkEnumEnterType = 2
+)
+
+var PdkEnumEnterType_name = map[int32]string{
+	1: "PDK_FRIEND",
+	2: "PDK_COIN",
+}
+var PdkEnumEnterType_value = map[string]int32{
+	"PDK_FRIEND": 1,
+	"PDK_COIN":   2,
+}
+
+func (x PdkEnumEnterType) Enum() *PdkEnumEnterType {
+	p := new(PdkEnumEnterType)
+	*p = x
+	return p
+}
+func (x PdkEnumEnterType) String() string {
+	return proto.EnumName(PdkEnumEnterType_name, int32(x))
+}
+func (x *PdkEnumEnterType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumEnterType_value, data, "PdkEnumEnterType")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumEnterType(value)
+	return nil
+}
+func (PdkEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{7} }
+
+type PdkEnumCoinRoomLevel int32
+
+const (
+	PdkEnumCoinRoomLevel_PDK_LV1 PdkEnumCoinRoomLevel = 1
+	PdkEnumCoinRoomLevel_PDK_LV2 PdkEnumCoinRoomLevel = 2
+	PdkEnumCoinRoomLevel_PDK_LV3 PdkEnumCoinRoomLevel = 3
+	PdkEnumCoinRoomLevel_PDK_LV4 PdkEnumCoinRoomLevel = 4
+)
+
+var PdkEnumCoinRoomLevel_name = map[int32]string{
+	1: "PDK_LV1",
+	2: "PDK_LV2",
+	3: "PDK_LV3",
+	4: "PDK_LV4",
+}
+var PdkEnumCoinRoomLevel_value = map[string]int32{
+	"PDK_LV1": 1,
+	"PDK_LV2": 2,
+	"PDK_LV3": 3,
+	"PDK_LV4": 4,
+}
+
+func (x PdkEnumCoinRoomLevel) Enum() *PdkEnumCoinRoomLevel {
+	p := new(PdkEnumCoinRoomLevel)
+	*p = x
+	return p
+}
+func (x PdkEnumCoinRoomLevel) String() string {
+	return proto.EnumName(PdkEnumCoinRoomLevel_name, int32(x))
+}
+func (x *PdkEnumCoinRoomLevel) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumCoinRoomLevel_value, data, "PdkEnumCoinRoomLevel")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumCoinRoomLevel(value)
+	return nil
+}
+func (PdkEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{8} }
+
+type PdkEnumDeskGameStatus int32
+
+const (
+	PdkEnumDeskGameStatus_PDK_INIT       PdkEnumDeskGameStatus = 0
+	PdkEnumDeskGameStatus_PDK_DEAL_CARDS PdkEnumDeskGameStatus = 1
+	PdkEnumDeskGameStatus_PDK_JIAO_DIZHU PdkEnumDeskGameStatus = 2
+	PdkEnumDeskGameStatus_PDK_PLAYING    PdkEnumDeskGameStatus = 3
+	PdkEnumDeskGameStatus_PDK_FINISH     PdkEnumDeskGameStatus = 4
+)
+
+var PdkEnumDeskGameStatus_name = map[int32]string{
+	0: "PDK_INIT",
+	1: "PDK_DEAL_CARDS",
+	2: "PDK_JIAO_DIZHU",
+	3: "PDK_PLAYING",
+	4: "PDK_FINISH",
+}
+var PdkEnumDeskGameStatus_value = map[string]int32{
+	"PDK_INIT":       0,
+	"PDK_DEAL_CARDS": 1,
+	"PDK_JIAO_DIZHU": 2,
+	"PDK_PLAYING":    3,
+	"PDK_FINISH":     4,
+}
+
+func (x PdkEnumDeskGameStatus) Enum() *PdkEnumDeskGameStatus {
+	p := new(PdkEnumDeskGameStatus)
+	*p = x
+	return p
+}
+func (x PdkEnumDeskGameStatus) String() string {
+	return proto.EnumName(PdkEnumDeskGameStatus_name, int32(x))
+}
+func (x *PdkEnumDeskGameStatus) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PdkEnumDeskGameStatus_value, data, "PdkEnumDeskGameStatus")
+	if err != nil {
+		return err
+	}
+	*x = PdkEnumDeskGameStatus(value)
+	return nil
+}
+func (PdkEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor21, []int{9} }
+
+type PdkBaseRoomTypeInfo struct {
+	RoomType         *PdkEnumRoomType      `protobuf:"varint,1,opt,name=roomType,enum=ddproto.PdkEnumRoomType" json:"roomType,omitempty"`
+	BoardsCount      *int32                `protobuf:"varint,2,opt,name=boardsCount" json:"boardsCount,omitempty"`
+	CapMax           *int64                `protobuf:"varint,3,opt,name=capMax" json:"capMax,omitempty"`
+	BaseValue        *int64                `protobuf:"varint,4,opt,name=baseValue" json:"baseValue,omitempty"`
+	IsJiaoFen        *bool                 `protobuf:"varint,5,opt,name=isJiaoFen" json:"isJiaoFen,omitempty"`
+	UserMinCoin      *int64                `protobuf:"varint,6,opt,name=userMinCoin" json:"userMinCoin,omitempty"`
+	UserMaxCoin      *int64                `protobuf:"varint,7,opt,name=userMaxCoin" json:"userMaxCoin,omitempty"`
+	CoinTicket       *int64                `protobuf:"varint,8,opt,name=coinTicket" json:"coinTicket,omitempty"`
+	RoomLv           *PdkEnumCoinRoomLevel `protobuf:"varint,9,opt,name=roomLv,enum=ddproto.PdkEnumCoinRoomLevel" json:"roomLv,omitempty"`
+	XXX_unrecognized []byte                `json:"-"`
+}
+
+func (m *PdkBaseRoomTypeInfo) Reset()                    { *m = PdkBaseRoomTypeInfo{} }
+func (m *PdkBaseRoomTypeInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBaseRoomTypeInfo) ProtoMessage()               {}
+func (*PdkBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{0} }
+
+func (m *PdkBaseRoomTypeInfo) GetRoomType() PdkEnumRoomType {
+	if m != nil && m.RoomType != nil {
+		return *m.RoomType
+	}
+	return PdkEnumRoomType_PDK_T_NORMAL_PDK
+}
+
+func (m *PdkBaseRoomTypeInfo) GetBoardsCount() int32 {
+	if m != nil && m.BoardsCount != nil {
+		return *m.BoardsCount
+	}
+	return 0
+}
+
+func (m *PdkBaseRoomTypeInfo) GetCapMax() int64 {
+	if m != nil && m.CapMax != nil {
+		return *m.CapMax
+	}
+	return 0
+}
+
+func (m *PdkBaseRoomTypeInfo) GetBaseValue() int64 {
+	if m != nil && m.BaseValue != nil {
+		return *m.BaseValue
+	}
+	return 0
+}
+
+func (m *PdkBaseRoomTypeInfo) GetIsJiaoFen() bool {
+	if m != nil && m.IsJiaoFen != nil {
+		return *m.IsJiaoFen
+	}
+	return false
+}
+
+func (m *PdkBaseRoomTypeInfo) GetUserMinCoin() int64 {
+	if m != nil && m.UserMinCoin != nil {
+		return *m.UserMinCoin
+	}
+	return 0
+}
+
+func (m *PdkBaseRoomTypeInfo) GetUserMaxCoin() int64 {
+	if m != nil && m.UserMaxCoin != nil {
+		return *m.UserMaxCoin
+	}
+	return 0
+}
+
+func (m *PdkBaseRoomTypeInfo) GetCoinTicket() int64 {
+	if m != nil && m.CoinTicket != nil {
+		return *m.CoinTicket
+	}
+	return 0
+}
+
+func (m *PdkBaseRoomTypeInfo) GetRoomLv() PdkEnumCoinRoomLevel {
+	if m != nil && m.RoomLv != nil {
+		return *m.RoomLv
+	}
+	return PdkEnumCoinRoomLevel_PDK_LV1
+}
+
+type PdkBasePlayerInfo struct {
+	IsDiZhu          *bool                  `protobuf:"varint,1,opt,name=isDiZhu" json:"isDiZhu,omitempty"`
+	PlayerPokers     []*ClientBasePoker     `protobuf:"bytes,2,rep,name=playerPokers" json:"playerPokers,omitempty"`
+	Coin             *int64                 `protobuf:"varint,3,opt,name=coin" json:"coin,omitempty"`
+	NickName         *string                `protobuf:"bytes,4,opt,name=nickName" json:"nickName,omitempty"`
+	Sex              *int32                 `protobuf:"varint,5,opt,name=sex" json:"sex,omitempty"`
+	UserId           *uint32                `protobuf:"varint,6,opt,name=userId" json:"userId,omitempty"`
+	IsOwner          *bool                  `protobuf:"varint,7,opt,name=isOwner" json:"isOwner,omitempty"`
+	BReady           *int32                 `protobuf:"varint,8,opt,name=bReady" json:"bReady,omitempty"`
+	Status           *PdkEnumPlayerStatus   `protobuf:"varint,9,opt,name=status,enum=ddproto.PdkEnumPlayerStatus" json:"status,omitempty"`
+	WxInfo           *WeixinInfo            `protobuf:"bytes,10,opt,name=wxInfo" json:"wxInfo,omitempty"`
+	OnlineStatus     *int32                 `protobuf:"varint,11,opt,name=onlineStatus" json:"onlineStatus,omitempty"`
+	RemainPaiCount   *int32                 `protobuf:"varint,13,opt,name=remainPaiCount" json:"remainPaiCount,omitempty"`
+	OutPais          []*ClientBasePoker     `protobuf:"bytes,14,rep,name=outPais" json:"outPais,omitempty"`
+	OutPaiType       *PdkEnumPaiType        `protobuf:"varint,15,opt,name=outPaiType,enum=ddproto.PdkEnumPaiType" json:"outPaiType,omitempty"`
+	JiaoScore        *int32                 `protobuf:"varint,16,opt,name=jiaoScore" json:"jiaoScore,omitempty"`
+	Num2Win4OpenRB   *int32                 `protobuf:"varint,17,opt,name=num2Win4OpenRB" json:"num2Win4OpenRB,omitempty"`
+	PlayerRateInfo   *PdkBasePlayerRateInfo `protobuf:"bytes,18,opt,name=playerRateInfo" json:"playerRateInfo,omitempty"`
+	RoomCard         *int64                 `protobuf:"varint,19,opt,name=roomCard" json:"roomCard,omitempty"`
+	IsShowPokers     *bool                  `protobuf:"varint,20,opt,name=isShowPokers" json:"isShowPokers,omitempty"`
+	IsJiaBei         *bool                  `protobuf:"varint,21,opt,name=isJiaBei" json:"isJiaBei,omitempty"`
+	XXX_unrecognized []byte                 `json:"-"`
+}
+
+func (m *PdkBasePlayerInfo) Reset()                    { *m = PdkBasePlayerInfo{} }
+func (m *PdkBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBasePlayerInfo) ProtoMessage()               {}
+func (*PdkBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{1} }
+
+func (m *PdkBasePlayerInfo) GetIsDiZhu() bool {
+	if m != nil && m.IsDiZhu != nil {
+		return *m.IsDiZhu
+	}
+	return false
+}
+
+func (m *PdkBasePlayerInfo) GetPlayerPokers() []*ClientBasePoker {
 	if m != nil {
-		return m.Header
+		return m.PlayerPokers
 	}
 	return nil
 }
 
-// 跑得快创建房间回复
-type PdkAckCreateDesk struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBasePlayerInfo) GetCoin() int64 {
+	if m != nil && m.Coin != nil {
+		return *m.Coin
+	}
+	return 0
 }
 
-func (m *PdkAckCreateDesk) Reset()                    { *m = PdkAckCreateDesk{} }
-func (m *PdkAckCreateDesk) String() string            { return proto.CompactTextString(m) }
-func (*PdkAckCreateDesk) ProtoMessage()               {}
-func (*PdkAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{1} }
+func (m *PdkBasePlayerInfo) GetNickName() string {
+	if m != nil && m.NickName != nil {
+		return *m.NickName
+	}
+	return ""
+}
 
-func (m *PdkAckCreateDesk) GetHeader() *ProtoHeader {
+func (m *PdkBasePlayerInfo) GetSex() int32 {
+	if m != nil && m.Sex != nil {
+		return *m.Sex
+	}
+	return 0
+}
+
+func (m *PdkBasePlayerInfo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkBasePlayerInfo) GetIsOwner() bool {
+	if m != nil && m.IsOwner != nil {
+		return *m.IsOwner
+	}
+	return false
+}
+
+func (m *PdkBasePlayerInfo) GetBReady() int32 {
+	if m != nil && m.BReady != nil {
+		return *m.BReady
+	}
+	return 0
+}
+
+func (m *PdkBasePlayerInfo) GetStatus() PdkEnumPlayerStatus {
+	if m != nil && m.Status != nil {
+		return *m.Status
+	}
+	return PdkEnumPlayerStatus_PDK_NORMAL_DEFAULT
+}
+
+func (m *PdkBasePlayerInfo) GetWxInfo() *WeixinInfo {
 	if m != nil {
-		return m.Header
+		return m.WxInfo
 	}
 	return nil
 }
 
-// 请求进入房间
-type PdkReqEnterDesk struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBasePlayerInfo) GetOnlineStatus() int32 {
+	if m != nil && m.OnlineStatus != nil {
+		return *m.OnlineStatus
+	}
+	return 0
 }
 
-func (m *PdkReqEnterDesk) Reset()                    { *m = PdkReqEnterDesk{} }
-func (m *PdkReqEnterDesk) String() string            { return proto.CompactTextString(m) }
-func (*PdkReqEnterDesk) ProtoMessage()               {}
-func (*PdkReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{2} }
+func (m *PdkBasePlayerInfo) GetRemainPaiCount() int32 {
+	if m != nil && m.RemainPaiCount != nil {
+		return *m.RemainPaiCount
+	}
+	return 0
+}
 
-func (m *PdkReqEnterDesk) GetHeader() *ProtoHeader {
+func (m *PdkBasePlayerInfo) GetOutPais() []*ClientBasePoker {
 	if m != nil {
-		return m.Header
+		return m.OutPais
 	}
 	return nil
 }
 
-// 请求进入房间的回复
-type PdkAckEnterDesk struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBasePlayerInfo) GetOutPaiType() PdkEnumPaiType {
+	if m != nil && m.OutPaiType != nil {
+		return *m.OutPaiType
+	}
+	return PdkEnumPaiType_PDK_ERRORCARD
 }
 
-func (m *PdkAckEnterDesk) Reset()                    { *m = PdkAckEnterDesk{} }
-func (m *PdkAckEnterDesk) String() string            { return proto.CompactTextString(m) }
-func (*PdkAckEnterDesk) ProtoMessage()               {}
-func (*PdkAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{3} }
+func (m *PdkBasePlayerInfo) GetJiaoScore() int32 {
+	if m != nil && m.JiaoScore != nil {
+		return *m.JiaoScore
+	}
+	return 0
+}
 
-func (m *PdkAckEnterDesk) GetHeader() *ProtoHeader {
+func (m *PdkBasePlayerInfo) GetNum2Win4OpenRB() int32 {
+	if m != nil && m.Num2Win4OpenRB != nil {
+		return *m.Num2Win4OpenRB
+	}
+	return 0
+}
+
+func (m *PdkBasePlayerInfo) GetPlayerRateInfo() *PdkBasePlayerRateInfo {
 	if m != nil {
-		return m.Header
+		return m.PlayerRateInfo
 	}
 	return nil
 }
 
-// 进入房间成功发送游戏信息(广播)
-type PdkBcGameInfo struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBasePlayerInfo) GetRoomCard() int64 {
+	if m != nil && m.RoomCard != nil {
+		return *m.RoomCard
+	}
+	return 0
 }
 
-func (m *PdkBcGameInfo) Reset()                    { *m = PdkBcGameInfo{} }
-func (m *PdkBcGameInfo) String() string            { return proto.CompactTextString(m) }
-func (*PdkBcGameInfo) ProtoMessage()               {}
-func (*PdkBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{4} }
+func (m *PdkBasePlayerInfo) GetIsShowPokers() bool {
+	if m != nil && m.IsShowPokers != nil {
+		return *m.IsShowPokers
+	}
+	return false
+}
 
-func (m *PdkBcGameInfo) GetHeader() *ProtoHeader {
+func (m *PdkBasePlayerInfo) GetIsJiaBei() bool {
+	if m != nil && m.IsJiaBei != nil {
+		return *m.IsJiaBei
+	}
+	return false
+}
+
+type PdkBasePlayerRateInfo struct {
+	TotalRate        *int32                 `protobuf:"varint,1,opt,name=totalRate" json:"totalRate,omitempty"`
+	CommonRateInfo   *PdkBaseCommonRateInfo `protobuf:"bytes,2,opt,name=commonRateInfo" json:"commonRateInfo,omitempty"`
+	DizhuJBRate      *int32                 `protobuf:"varint,3,opt,name=dizhuJBRate" json:"dizhuJBRate,omitempty"`
+	FamerJBRate      *int32                 `protobuf:"varint,4,opt,name=famerJBRate" json:"famerJBRate,omitempty"`
+	XXX_unrecognized []byte                 `json:"-"`
+}
+
+func (m *PdkBasePlayerRateInfo) Reset()                    { *m = PdkBasePlayerRateInfo{} }
+func (m *PdkBasePlayerRateInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBasePlayerRateInfo) ProtoMessage()               {}
+func (*PdkBasePlayerRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{2} }
+
+func (m *PdkBasePlayerRateInfo) GetTotalRate() int32 {
+	if m != nil && m.TotalRate != nil {
+		return *m.TotalRate
+	}
+	return 0
+}
+
+func (m *PdkBasePlayerRateInfo) GetCommonRateInfo() *PdkBaseCommonRateInfo {
 	if m != nil {
-		return m.Header
+		return m.CommonRateInfo
 	}
 	return nil
 }
 
-// 请求准备游戏
-type PdkReqReady struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBasePlayerRateInfo) GetDizhuJBRate() int32 {
+	if m != nil && m.DizhuJBRate != nil {
+		return *m.DizhuJBRate
+	}
+	return 0
 }
 
-func (m *PdkReqReady) Reset()                    { *m = PdkReqReady{} }
-func (m *PdkReqReady) String() string            { return proto.CompactTextString(m) }
-func (*PdkReqReady) ProtoMessage()               {}
-func (*PdkReqReady) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{5} }
+func (m *PdkBasePlayerRateInfo) GetFamerJBRate() int32 {
+	if m != nil && m.FamerJBRate != nil {
+		return *m.FamerJBRate
+	}
+	return 0
+}
 
-func (m *PdkReqReady) GetHeader() *ProtoHeader {
+type PdkBaseCommonRateInfo struct {
+	InitPlayRate     *int32 `protobuf:"varint,1,opt,name=initPlayRate" json:"initPlayRate,omitempty"`
+	SeeCardsRate     *int32 `protobuf:"varint,2,opt,name=seeCardsRate" json:"seeCardsRate,omitempty"`
+	JrDizhuRate      *int32 `protobuf:"varint,3,opt,name=jrDizhuRate" json:"jrDizhuRate,omitempty"`
+	FootRate         *int32 `protobuf:"varint,4,opt,name=footRate" json:"footRate,omitempty"`
+	BoomRate         *int32 `protobuf:"varint,5,opt,name=boomRate" json:"boomRate,omitempty"`
+	SpringRate       *int32 `protobuf:"varint,6,opt,name=springRate" json:"springRate,omitempty"`
+	TotalRate        *int32 `protobuf:"varint,7,opt,name=totalRate" json:"totalRate,omitempty"`
+	XXX_unrecognized []byte `json:"-"`
+}
+
+func (m *PdkBaseCommonRateInfo) Reset()                    { *m = PdkBaseCommonRateInfo{} }
+func (m *PdkBaseCommonRateInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBaseCommonRateInfo) ProtoMessage()               {}
+func (*PdkBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{3} }
+
+func (m *PdkBaseCommonRateInfo) GetInitPlayRate() int32 {
+	if m != nil && m.InitPlayRate != nil {
+		return *m.InitPlayRate
+	}
+	return 0
+}
+
+func (m *PdkBaseCommonRateInfo) GetSeeCardsRate() int32 {
+	if m != nil && m.SeeCardsRate != nil {
+		return *m.SeeCardsRate
+	}
+	return 0
+}
+
+func (m *PdkBaseCommonRateInfo) GetJrDizhuRate() int32 {
+	if m != nil && m.JrDizhuRate != nil {
+		return *m.JrDizhuRate
+	}
+	return 0
+}
+
+func (m *PdkBaseCommonRateInfo) GetFootRate() int32 {
+	if m != nil && m.FootRate != nil {
+		return *m.FootRate
+	}
+	return 0
+}
+
+func (m *PdkBaseCommonRateInfo) GetBoomRate() int32 {
+	if m != nil && m.BoomRate != nil {
+		return *m.BoomRate
+	}
+	return 0
+}
+
+func (m *PdkBaseCommonRateInfo) GetSpringRate() int32 {
+	if m != nil && m.SpringRate != nil {
+		return *m.SpringRate
+	}
+	return 0
+}
+
+func (m *PdkBaseCommonRateInfo) GetTotalRate() int32 {
+	if m != nil && m.TotalRate != nil {
+		return *m.TotalRate
+	}
+	return 0
+}
+
+// 定时信息
+type PdkBaseTimerInfo struct {
+	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	RemainSec        *int32  `protobuf:"varint,2,opt,name=remainSec" json:"remainSec,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *PdkBaseTimerInfo) Reset()                    { *m = PdkBaseTimerInfo{} }
+func (m *PdkBaseTimerInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBaseTimerInfo) ProtoMessage()               {}
+func (*PdkBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{4} }
+
+func (m *PdkBaseTimerInfo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PdkBaseTimerInfo) GetRemainSec() int32 {
+	if m != nil && m.RemainSec != nil {
+		return *m.RemainSec
+	}
+	return 0
+}
+
+type PdkBaseDeskInfo struct {
+	GameStatus       *int32               `protobuf:"varint,1,opt,name=GameStatus" json:"GameStatus,omitempty"`
+	RoomTypeInfo     *PdkBaseRoomTypeInfo `protobuf:"bytes,2,opt,name=roomTypeInfo" json:"roomTypeInfo,omitempty"`
+	PlayerNum        *int32               `protobuf:"varint,3,opt,name=playerNum" json:"playerNum,omitempty"`
+	ActiveUserId     *uint32              `protobuf:"varint,4,opt,name=activeUserId" json:"activeUserId,omitempty"`
+	ActionTime       *int32               `protobuf:"varint,5,opt,name=actionTime" json:"actionTime,omitempty"`
+	NInitActionTime  *int32               `protobuf:"varint,7,opt,name=nInitActionTime" json:"nInitActionTime,omitempty"`
+	InitRoomCoin     *int64               `protobuf:"varint,9,opt,name=initRoomCoin" json:"initRoomCoin,omitempty"`
+	CurrPlayCount    *int32               `protobuf:"varint,10,opt,name=currPlayCount" json:"currPlayCount,omitempty"`
+	TotalPlayCount   *int32               `protobuf:"varint,11,opt,name=totalPlayCount" json:"totalPlayCount,omitempty"`
+	RoomNumber       *string              `protobuf:"bytes,12,opt,name=roomNumber" json:"roomNumber,omitempty"`
+	DiZhuUserId      *uint32              `protobuf:"varint,14,opt,name=diZhuUserId" json:"diZhuUserId,omitempty"`
+	FootPokers       []*ClientBasePoker   `protobuf:"bytes,15,rep,name=footPokers" json:"footPokers,omitempty"`
+	FootRate         *int32               `protobuf:"varint,16,opt,name=footRate" json:"footRate,omitempty"`
+	PlayRate         *int32               `protobuf:"varint,17,opt,name=playRate" json:"playRate,omitempty"`
+	EnterType        *PdkEnumEnterType    `protobuf:"varint,18,opt,name=enterType,enum=ddproto.PdkEnumEnterType" json:"enterType,omitempty"`
+	CoinTicket       *int64               `protobuf:"varint,19,opt,name=coinTicket" json:"coinTicket,omitempty"`
+	TimerInfo        *PdkBaseTimerInfo    `protobuf:"bytes,20,opt,name=timerInfo" json:"timerInfo,omitempty"`
+	XXX_unrecognized []byte               `json:"-"`
+}
+
+func (m *PdkBaseDeskInfo) Reset()                    { *m = PdkBaseDeskInfo{} }
+func (m *PdkBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
+func (*PdkBaseDeskInfo) ProtoMessage()               {}
+func (*PdkBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{5} }
+
+func (m *PdkBaseDeskInfo) GetGameStatus() int32 {
+	if m != nil && m.GameStatus != nil {
+		return *m.GameStatus
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetRoomTypeInfo() *PdkBaseRoomTypeInfo {
 	if m != nil {
-		return m.Header
+		return m.RoomTypeInfo
 	}
 	return nil
 }
 
-// 请求准备游戏的回复
-type PdkAckReady struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBaseDeskInfo) GetPlayerNum() int32 {
+	if m != nil && m.PlayerNum != nil {
+		return *m.PlayerNum
+	}
+	return 0
 }
 
-func (m *PdkAckReady) Reset()                    { *m = PdkAckReady{} }
-func (m *PdkAckReady) String() string            { return proto.CompactTextString(m) }
-func (*PdkAckReady) ProtoMessage()               {}
-func (*PdkAckReady) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{6} }
+func (m *PdkBaseDeskInfo) GetActiveUserId() uint32 {
+	if m != nil && m.ActiveUserId != nil {
+		return *m.ActiveUserId
+	}
+	return 0
+}
 
-func (m *PdkAckReady) GetHeader() *ProtoHeader {
+func (m *PdkBaseDeskInfo) GetActionTime() int32 {
+	if m != nil && m.ActionTime != nil {
+		return *m.ActionTime
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetNInitActionTime() int32 {
+	if m != nil && m.NInitActionTime != nil {
+		return *m.NInitActionTime
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetInitRoomCoin() int64 {
+	if m != nil && m.InitRoomCoin != nil {
+		return *m.InitRoomCoin
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetCurrPlayCount() int32 {
+	if m != nil && m.CurrPlayCount != nil {
+		return *m.CurrPlayCount
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetTotalPlayCount() int32 {
+	if m != nil && m.TotalPlayCount != nil {
+		return *m.TotalPlayCount
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetRoomNumber() string {
+	if m != nil && m.RoomNumber != nil {
+		return *m.RoomNumber
+	}
+	return ""
+}
+
+func (m *PdkBaseDeskInfo) GetDiZhuUserId() uint32 {
+	if m != nil && m.DiZhuUserId != nil {
+		return *m.DiZhuUserId
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetFootPokers() []*ClientBasePoker {
 	if m != nil {
-		return m.Header
+		return m.FootPokers
 	}
 	return nil
 }
 
-// 通知开局的广播 扣除的房费放在这里
-type PdkBcOpening struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *PdkBcOpening) Reset()                    { *m = PdkBcOpening{} }
-func (m *PdkBcOpening) String() string            { return proto.CompactTextString(m) }
-func (*PdkBcOpening) ProtoMessage()               {}
-func (*PdkBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{7} }
-
-func (m *PdkBcOpening) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
+func (m *PdkBaseDeskInfo) GetFootRate() int32 {
+	if m != nil && m.FootRate != nil {
+		return *m.FootRate
 	}
-	return nil
+	return 0
 }
 
-// 发牌的广播 每个玩家的手牌id数组 明牌开始的需要亮出来
-type PdkBcDealCards struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+func (m *PdkBaseDeskInfo) GetPlayRate() int32 {
+	if m != nil && m.PlayRate != nil {
+		return *m.PlayRate
+	}
+	return 0
 }
 
-func (m *PdkBcDealCards) Reset()                    { *m = PdkBcDealCards{} }
-func (m *PdkBcDealCards) String() string            { return proto.CompactTextString(m) }
-func (*PdkBcDealCards) ProtoMessage()               {}
-func (*PdkBcDealCards) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{8} }
+func (m *PdkBaseDeskInfo) GetEnterType() PdkEnumEnterType {
+	if m != nil && m.EnterType != nil {
+		return *m.EnterType
+	}
+	return PdkEnumEnterType_PDK_FRIEND
+}
 
-func (m *PdkBcDealCards) GetHeader() *ProtoHeader {
+func (m *PdkBaseDeskInfo) GetCoinTicket() int64 {
+	if m != nil && m.CoinTicket != nil {
+		return *m.CoinTicket
+	}
+	return 0
+}
+
+func (m *PdkBaseDeskInfo) GetTimerInfo() *PdkBaseTimerInfo {
 	if m != nil {
-		return m.Header
+		return m.TimerInfo
 	}
 	return nil
 }
 
 func init() {
-	proto.RegisterType((*PdkReqCreateDesk)(nil), "ddproto.pdk_req_createDesk")
-	proto.RegisterType((*PdkAckCreateDesk)(nil), "ddproto.pdk_ack_createDesk")
-	proto.RegisterType((*PdkReqEnterDesk)(nil), "ddproto.pdk_req_enterDesk")
-	proto.RegisterType((*PdkAckEnterDesk)(nil), "ddproto.pdk_ack_enterDesk")
-	proto.RegisterType((*PdkBcGameInfo)(nil), "ddproto.pdk_bc_gameInfo")
-	proto.RegisterType((*PdkReqReady)(nil), "ddproto.pdk_req_ready")
-	proto.RegisterType((*PdkAckReady)(nil), "ddproto.pdk_ack_ready")
-	proto.RegisterType((*PdkBcOpening)(nil), "ddproto.pdk_bc_opening")
-	proto.RegisterType((*PdkBcDealCards)(nil), "ddproto.pdk_bc_dealCards")
+	proto.RegisterType((*PdkBaseRoomTypeInfo)(nil), "ddproto.pdk_base_roomTypeInfo")
+	proto.RegisterType((*PdkBasePlayerInfo)(nil), "ddproto.pdk_base_playerInfo")
+	proto.RegisterType((*PdkBasePlayerRateInfo)(nil), "ddproto.pdk_base_playerRateInfo")
+	proto.RegisterType((*PdkBaseCommonRateInfo)(nil), "ddproto.pdk_base_commonRateInfo")
+	proto.RegisterType((*PdkBaseTimerInfo)(nil), "ddproto.pdk_base_timerInfo")
+	proto.RegisterType((*PdkBaseDeskInfo)(nil), "ddproto.pdk_base_deskInfo")
 	proto.RegisterEnum("ddproto.PdkEnumProtoId", PdkEnumProtoId_name, PdkEnumProtoId_value)
+	proto.RegisterEnum("ddproto.PdkEnumErrorCode", PdkEnumErrorCode_name, PdkEnumErrorCode_value)
+	proto.RegisterEnum("ddproto.PdkEnumPaiType", PdkEnumPaiType_name, PdkEnumPaiType_value)
+	proto.RegisterEnum("ddproto.PdkEnumActType", PdkEnumActType_name, PdkEnumActType_value)
+	proto.RegisterEnum("ddproto.PdkEnumGameStatus", PdkEnumGameStatus_name, PdkEnumGameStatus_value)
+	proto.RegisterEnum("ddproto.PdkEnumPlayerStatus", PdkEnumPlayerStatus_name, PdkEnumPlayerStatus_value)
+	proto.RegisterEnum("ddproto.PdkEnumRoomType", PdkEnumRoomType_name, PdkEnumRoomType_value)
+	proto.RegisterEnum("ddproto.PdkEnumEnterType", PdkEnumEnterType_name, PdkEnumEnterType_value)
+	proto.RegisterEnum("ddproto.PdkEnumCoinRoomLevel", PdkEnumCoinRoomLevel_name, PdkEnumCoinRoomLevel_value)
+	proto.RegisterEnum("ddproto.PdkEnumDeskGameStatus", PdkEnumDeskGameStatus_name, PdkEnumDeskGameStatus_value)
 }
 
+func init() { proto.RegisterFile("pdk_base.proto", fileDescriptor21) }
+
 var fileDescriptor21 = []byte{
-	// 376 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x91, 0x4f, 0x4f, 0xf2, 0x30,
-	0x1c, 0xc7, 0x81, 0xe7, 0x11, 0xb4, 0x88, 0x94, 0x22, 0x44, 0x39, 0x19, 0x4f, 0xc6, 0x18, 0x0e,
-	0xde, 0xfd, 0x53, 0xb6, 0x0a, 0x0b, 0xd0, 0xcd, 0x31, 0x0f, 0x9e, 0x9a, 0xba, 0x56, 0x24, 0xb0,
-	0x0d, 0xc7, 0x3c, 0xf8, 0x9a, 0x7d, 0x13, 0x66, 0x65, 0x0b, 0x4d, 0x3c, 0xb1, 0xcb, 0xb2, 0x7c,
-	0x7f, 0xbf, 0xcf, 0x27, 0xdf, 0xb6, 0xe0, 0x64, 0x2d, 0x96, 0xec, 0x8d, 0x6f, 0x64, 0x7f, 0x1d,
-	0x47, 0x49, 0x84, 0x6a, 0x42, 0xa8, 0x9f, 0x5e, 0xdb, 0x8f, 0x82, 0x20, 0x0a, 0x99, 0xbf, 0x5a,
-	0xc8, 0x30, 0xd9, 0x4e, 0x2f, 0x07, 0x00, 0xa5, 0xfb, 0xb1, 0xfc, 0x64, 0x7e, 0x2c, 0x79, 0x22,
-	0x4d, 0xb9, 0x59, 0xa2, 0x1b, 0x50, 0xfd, 0x90, 0x5c, 0xc8, 0xf8, 0xac, 0x7c, 0x51, 0xbe, 0xaa,
-	0xdf, 0x9e, 0xf6, 0x33, 0x49, 0xdf, 0x49, 0xbf, 0x23, 0x35, 0x73, 0xb3, 0x9d, 0xdc, 0xc1, 0xfd,
-	0x65, 0x71, 0x07, 0x06, 0xad, 0xbc, 0x87, 0x0c, 0x13, 0x19, 0x17, 0x57, 0xa4, 0x35, 0x8a, 0x2a,
-	0x1e, 0x40, 0x53, 0xdd, 0x9e, 0xcf, 0xe6, 0x3c, 0x90, 0x56, 0xf8, 0x1e, 0xed, 0x29, 0xb8, 0x03,
-	0x8d, 0xfc, 0x18, 0xb1, 0xe4, 0xe2, 0xbb, 0x18, 0x9e, 0x1e, 0xa1, 0x08, 0x7e, 0x9f, 0x3d, 0xbe,
-	0xcf, 0xa2, 0xb5, 0x0c, 0x17, 0xe1, 0x7c, 0x4f, 0xfe, 0x11, 0xc0, 0x8c, 0x17, 0x92, 0xaf, 0x0c,
-	0x1e, 0x8b, 0xcd, 0x7e, 0x86, 0xeb, 0x9f, 0xca, 0x56, 0x21, 0xc3, 0xaf, 0x80, 0xa9, 0x35, 0x4b,
-	0xa0, 0x0e, 0x68, 0x39, 0xe6, 0x98, 0x39, 0x96, 0xc9, 0x46, 0x04, 0xbb, 0xde, 0x80, 0x60, 0x0f,
-	0x96, 0x50, 0x17, 0xa0, 0x3c, 0x7e, 0x7e, 0xb1, 0x8c, 0x31, 0x33, 0x6c, 0x4a, 0x61, 0x19, 0xf5,
-	0x40, 0xf7, 0x6f, 0xce, 0xb0, 0x31, 0x86, 0x15, 0x9d, 0x19, 0xe2, 0x29, 0x61, 0x13, 0x7b, 0x68,
-	0x51, 0xf8, 0x4f, 0x67, 0x76, 0xb9, 0x62, 0xfe, 0xeb, 0x8c, 0xe1, 0x12, 0xec, 0x11, 0xd7, 0xb6,
-	0xa7, 0xf0, 0x40, 0x67, 0x76, 0xb9, 0x62, 0xaa, 0x3a, 0x43, 0xa8, 0x47, 0x5c, 0xa6, 0x98, 0x9a,
-	0xce, 0xec, 0x72, 0xc5, 0x1c, 0xa2, 0x73, 0xd0, 0xc9, 0x67, 0x33, 0x42, 0xb7, 0x45, 0x2c, 0xfa,
-	0x64, 0xc3, 0x23, 0xd4, 0x02, 0x8d, 0x7c, 0xe4, 0x12, 0x6c, 0xbe, 0x42, 0xa0, 0x5f, 0x8a, 0x8a,
-	0x94, 0xa4, 0x8e, 0xda, 0xa0, 0x99, 0xc7, 0xb6, 0x43, 0xa8, 0x45, 0x87, 0xf0, 0x58, 0x6f, 0x63,
-	0x12, 0x3c, 0x61, 0x06, 0x76, 0xcd, 0x19, 0x6c, 0x38, 0xa5, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0x2d, 0x9e, 0xd2, 0x39, 0xed, 0x03, 0x00, 0x00,
+	// 2216 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x58, 0x4b, 0x77, 0xdb, 0xc6,
+	0x15, 0x36, 0x49, 0x3d, 0xc8, 0x21, 0x25, 0x8d, 0x46, 0x92, 0x05, 0xcb, 0x2f, 0x45, 0x76, 0x52,
+	0x55, 0x89, 0x95, 0x58, 0x71, 0x9b, 0xf4, 0xb1, 0x01, 0x81, 0x11, 0x09, 0x09, 0x04, 0x60, 0x3c,
+	0xac, 0x23, 0x6d, 0x70, 0x60, 0x12, 0x8e, 0x11, 0x8b, 0x80, 0x0e, 0x1f, 0x7e, 0xf4, 0x57, 0xb4,
+	0x5d, 0x35, 0xed, 0xb2, 0xa7, 0xeb, 0x6e, 0xfa, 0x43, 0xda, 0x9f, 0xd1, 0x5f, 0x91, 0x9e, 0xb9,
+	0x83, 0x01, 0x86, 0x94, 0x5c, 0x6b, 0xc1, 0x23, 0x7c, 0x73, 0xef, 0x9d, 0xef, 0x3e, 0x67, 0x00,
+	0xb4, 0x7a, 0x35, 0x78, 0x13, 0xbe, 0x8c, 0xc6, 0xf1, 0xe1, 0xd5, 0x28, 0x9b, 0x64, 0x64, 0x79,
+	0x30, 0x80, 0x7f, 0x76, 0x36, 0xfa, 0xd9, 0x70, 0x98, 0xa5, 0x61, 0xff, 0x32, 0x89, 0xd3, 0x09,
+	0x5f, 0xdd, 0xfb, 0xb9, 0x82, 0xb6, 0x84, 0x42, 0x38, 0xca, 0xb2, 0xa1, 0xff, 0xe1, 0x2a, 0x36,
+	0xd2, 0x57, 0x19, 0xf9, 0x0a, 0xd5, 0xc5, 0xb3, 0x52, 0xd9, 0xad, 0xec, 0xaf, 0x1e, 0xed, 0x1c,
+	0xe6, 0xa6, 0x0e, 0x99, 0x46, 0x9c, 0x4e, 0x87, 0x85, 0x06, 0xd9, 0x40, 0xcd, 0x97, 0x59, 0x34,
+	0x1a, 0x8c, 0xb5, 0x6c, 0x9a, 0x4e, 0x94, 0xea, 0x6e, 0x65, 0x7f, 0x91, 0xac, 0xa2, 0xa5, 0x7e,
+	0x74, 0xd5, 0x8b, 0xde, 0x2b, 0xb5, 0xdd, 0xca, 0x7e, 0x8d, 0xac, 0xa3, 0x06, 0xdb, 0xe7, 0x45,
+	0x74, 0x39, 0x8d, 0x95, 0x05, 0x01, 0x25, 0xe3, 0x93, 0x24, 0xca, 0x8e, 0xe3, 0x54, 0x59, 0xdc,
+	0xad, 0xec, 0xd7, 0x99, 0xa9, 0xe9, 0x38, 0x1e, 0xf5, 0x92, 0x54, 0xcb, 0x92, 0x54, 0x59, 0x02,
+	0x39, 0x01, 0x46, 0xef, 0x01, 0x5c, 0x06, 0x90, 0x20, 0xd4, 0xcf, 0x92, 0xd4, 0x4f, 0xfa, 0x6f,
+	0xe2, 0x89, 0x52, 0x07, 0xec, 0x6b, 0xb4, 0xc4, 0x48, 0x99, 0x6f, 0x95, 0x06, 0x90, 0x7e, 0x78,
+	0x9d, 0x34, 0xd3, 0x71, 0x99, 0x4c, 0xfc, 0x36, 0xbe, 0xdc, 0xfb, 0xd7, 0x02, 0xda, 0x28, 0x22,
+	0x70, 0x75, 0x19, 0x7d, 0x88, 0x47, 0xe0, 0xff, 0x1a, 0x5a, 0x4e, 0xc6, 0x7a, 0x72, 0xf1, 0x7a,
+	0x0a, 0xee, 0xd7, 0xc9, 0x37, 0xa8, 0xc5, 0x97, 0x9d, 0xec, 0x4d, 0x3c, 0x1a, 0x2b, 0xd5, 0xdd,
+	0xda, 0x7e, 0x53, 0x0a, 0x0a, 0x8f, 0x6b, 0x6e, 0x87, 0x89, 0x90, 0x16, 0x5a, 0x60, 0x7b, 0xe5,
+	0xde, 0x63, 0x54, 0x4f, 0x93, 0xfe, 0x1b, 0x2b, 0x1a, 0x72, 0xe7, 0x1b, 0xa4, 0x89, 0x6a, 0xe3,
+	0xf8, 0x3d, 0xb8, 0x0d, 0xc1, 0x62, 0x1e, 0x1a, 0x03, 0xf0, 0x78, 0x85, 0xef, 0x6f, 0xbf, 0x4b,
+	0xe3, 0x11, 0x78, 0x5b, 0x67, 0x02, 0x2f, 0xdd, 0x38, 0x1a, 0x7c, 0x00, 0x4f, 0x17, 0xc9, 0x21,
+	0x5a, 0x1a, 0x4f, 0xa2, 0xc9, 0x74, 0x9c, 0x7b, 0xfa, 0xe0, 0xba, 0xa7, 0x9c, 0xaf, 0x07, 0x52,
+	0xe4, 0x11, 0x5a, 0x7a, 0xf7, 0x9e, 0xb9, 0xa6, 0xa0, 0xdd, 0xca, 0x7e, 0xf3, 0x68, 0xa3, 0x90,
+	0x3f, 0x8b, 0x93, 0xf7, 0x49, 0x0a, 0x5e, 0x6f, 0xa2, 0x56, 0x96, 0x5e, 0x26, 0x69, 0xcc, 0x95,
+	0x94, 0x26, 0x6c, 0x75, 0x1b, 0xad, 0x8e, 0xe2, 0x61, 0x94, 0xa4, 0x4e, 0x94, 0xf0, 0x04, 0xaf,
+	0x00, 0xfe, 0x25, 0x5a, 0xce, 0xa6, 0x13, 0x27, 0x4a, 0xc6, 0xca, 0xea, 0x27, 0xa3, 0xf1, 0x04,
+	0x21, 0x2e, 0x0c, 0x25, 0xb5, 0x06, 0x9c, 0xef, 0xdc, 0xc0, 0x99, 0x0b, 0xb0, 0xca, 0xf8, 0x31,
+	0x89, 0x32, 0xaf, 0x9f, 0x8d, 0x62, 0x05, 0x0b, 0x1a, 0xe9, 0x74, 0x78, 0x74, 0x96, 0xa4, 0xcf,
+	0xec, 0xab, 0x38, 0x75, 0xdb, 0xca, 0x3a, 0xe0, 0xdf, 0xa3, 0x55, 0xee, 0xa9, 0x1b, 0x4d, 0xa0,
+	0x78, 0x15, 0x02, 0x1e, 0xee, 0xce, 0x58, 0x97, 0x12, 0x2c, 0xe4, 0x58, 0x4e, 0x58, 0xb5, 0x68,
+	0xd1, 0x68, 0xa0, 0x6c, 0x40, 0x96, 0x36, 0x51, 0x2b, 0x19, 0x7b, 0xaf, 0xb3, 0x77, 0x79, 0x96,
+	0x37, 0x21, 0xf6, 0x18, 0xd5, 0xa1, 0x4c, 0xdb, 0x71, 0xa2, 0x6c, 0x31, 0x64, 0xef, 0x8f, 0x15,
+	0xb4, 0xfd, 0x31, 0xab, 0xeb, 0xa8, 0x31, 0xc9, 0x26, 0xd1, 0x25, 0x03, 0xa0, 0x78, 0x80, 0x22,
+	0x6f, 0xbf, 0x82, 0x62, 0xf5, 0x63, 0x14, 0x67, 0xe5, 0x58, 0xe5, 0x0f, 0x92, 0x3f, 0xbc, 0x9e,
+	0x9e, 0xb4, 0xc1, 0x5c, 0x0d, 0xcc, 0x6d, 0xa0, 0xe6, 0xab, 0x68, 0x18, 0x8f, 0x72, 0x90, 0x95,
+	0xd3, 0xe2, 0xde, 0x3f, 0x64, 0x4a, 0x73, 0x56, 0x98, 0x5b, 0x69, 0x32, 0x71, 0x2e, 0xa3, 0x0f,
+	0x12, 0xab, 0x4d, 0xd4, 0x1a, 0xc7, 0x31, 0xf3, 0x7e, 0x0c, 0x68, 0x55, 0x18, 0xff, 0x71, 0xa4,
+	0xb3, 0x3d, 0xa5, 0x1d, 0x31, 0xaa, 0xbf, 0xca, 0xb2, 0x49, 0xb9, 0x1d, 0x43, 0x5e, 0x66, 0xd9,
+	0x10, 0x10, 0x5e, 0xc2, 0x04, 0xa1, 0xf1, 0xd5, 0x28, 0x49, 0x7f, 0x00, 0x6c, 0x09, 0xb0, 0x99,
+	0x58, 0x2c, 0x03, 0xcf, 0xef, 0x10, 0x29, 0x68, 0x4e, 0x92, 0x61, 0xde, 0x6f, 0x65, 0xfd, 0x57,
+	0xa0, 0xfe, 0xd7, 0x51, 0x83, 0xd7, 0x9c, 0x17, 0xf7, 0x39, 0xb1, 0xbd, 0xff, 0xd6, 0xd0, 0x7a,
+	0xa1, 0x39, 0x88, 0xc7, 0x6f, 0x40, 0x91, 0x20, 0xd4, 0x89, 0x86, 0xa2, 0x60, 0xb9, 0x63, 0xcf,
+	0x50, 0x4b, 0x1e, 0x66, 0x79, 0xb0, 0x1f, 0x5c, 0x0f, 0xf6, 0xcc, 0xc8, 0x5b, 0x47, 0x0d, 0x9e,
+	0x49, 0x6b, 0x3a, 0xcc, 0xdd, 0xde, 0x44, 0xad, 0xa8, 0x3f, 0x49, 0xde, 0xc6, 0x01, 0xe7, 0xb6,
+	0x00, 0xdc, 0x08, 0x42, 0x0c, 0xcd, 0x52, 0x3f, 0x19, 0x0a, 0xe7, 0xb7, 0xd1, 0x5a, 0x6a, 0xa4,
+	0xc9, 0x44, 0x2d, 0x17, 0x96, 0x85, 0x09, 0x16, 0x7a, 0x36, 0x71, 0x60, 0x76, 0x35, 0xa0, 0xce,
+	0xb6, 0xd0, 0x4a, 0x7f, 0x3a, 0x1a, 0xb1, 0x84, 0xf0, 0x8e, 0x42, 0xa2, 0xc4, 0x21, 0x5c, 0x25,
+	0xde, 0x14, 0xa1, 0x65, 0x54, 0xad, 0xe9, 0xf0, 0x65, 0x3c, 0x52, 0x5a, 0x30, 0x3e, 0xa0, 0x32,
+	0x2e, 0x5e, 0x4f, 0x73, 0x6a, 0xab, 0x40, 0xed, 0x10, 0x21, 0x96, 0xa7, 0xbc, 0x7a, 0xd7, 0x3e,
+	0xd9, 0x95, 0x72, 0x5e, 0xb1, 0xc8, 0xeb, 0x95, 0x28, 0x93, 0xf5, 0x7c, 0xd2, 0x34, 0xe2, 0x74,
+	0x12, 0x8f, 0xa0, 0x71, 0x09, 0x34, 0xee, 0xdd, 0xeb, 0x8d, 0x5b, 0x88, 0xcc, 0xcd, 0x65, 0xde,
+	0x57, 0x87, 0xa8, 0x51, 0xe4, 0x1a, 0x9a, 0xaa, 0x39, 0x67, 0x63, 0xb6, 0x1c, 0x0e, 0xfe, 0xdd,
+	0x42, 0xb8, 0x9c, 0x09, 0x4c, 0xca, 0x18, 0x90, 0x2d, 0xb4, 0xee, 0xe8, 0xa7, 0xa1, 0x63, 0xe8,
+	0x61, 0x97, 0xaa, 0xae, 0xdf, 0xa6, 0xaa, 0x8f, 0x6f, 0x91, 0xdb, 0x88, 0x08, 0xf8, 0x79, 0x60,
+	0x68, 0xa7, 0xa1, 0x66, 0x5b, 0x16, 0xae, 0x90, 0x1d, 0x74, 0xfb, 0x3a, 0x1e, 0xaa, 0xda, 0x29,
+	0xae, 0xca, 0x3a, 0x1d, 0xb5, 0x47, 0x43, 0xd3, 0xee, 0x18, 0x16, 0xae, 0xc9, 0x3a, 0x25, 0x0e,
+	0x3a, 0x0b, 0xb2, 0x8e, 0xe6, 0x52, 0xd5, 0xa7, 0xae, 0x6d, 0xf7, 0xf0, 0xa2, 0xac, 0x53, 0xe2,
+	0xa0, 0xb3, 0x24, 0xeb, 0x50, 0xcb, 0xa7, 0x6e, 0x08, 0x3a, 0xcb, 0xb2, 0x4e, 0x89, 0x83, 0x4e,
+	0x9d, 0xdc, 0x41, 0x5b, 0x62, 0xcd, 0xa3, 0x16, 0x27, 0x62, 0x58, 0xc7, 0x36, 0x6e, 0x90, 0x75,
+	0xb4, 0x22, 0x96, 0x5c, 0xaa, 0xea, 0xe7, 0x18, 0xc9, 0x41, 0x01, 0x08, 0x8c, 0x34, 0xc9, 0x06,
+	0x5a, 0x13, 0xb0, 0xed, 0x50, 0xcb, 0xb0, 0x3a, 0xb8, 0x25, 0xb3, 0xd1, 0xa9, 0x6a, 0x86, 0x9a,
+	0xea, 0xea, 0x1e, 0x5e, 0x91, 0xf1, 0x13, 0x43, 0xb5, 0x43, 0xdd, 0xb8, 0xe8, 0x06, 0x78, 0x55,
+	0x66, 0x59, 0xe2, 0xb0, 0xc1, 0xda, 0xcc, 0xbe, 0x76, 0x3b, 0x57, 0xc1, 0x32, 0xf9, 0x02, 0x06,
+	0x8d, 0x75, 0x42, 0xd0, 0x6a, 0xb1, 0xbb, 0x1d, 0xb4, 0x4d, 0x8a, 0xc9, 0x0c, 0x23, 0xc0, 0x40,
+	0x76, 0x83, 0xdc, 0x45, 0xdb, 0x45, 0x0c, 0xba, 0xf6, 0x59, 0xd8, 0x55, 0x2d, 0xdd, 0xb1, 0x4f,
+	0xa9, 0xeb, 0xe1, 0x4d, 0xf2, 0x10, 0xdd, 0xfd, 0xc8, 0x22, 0x68, 0x6f, 0x91, 0x4d, 0x84, 0x85,
+	0x40, 0x8f, 0x5a, 0xe1, 0x45, 0x37, 0x50, 0xf1, 0x6d, 0xa2, 0xa0, 0xcd, 0x79, 0x14, 0xe4, 0xb7,
+	0x65, 0x5f, 0x3c, 0x4a, 0xf3, 0xb0, 0x28, 0xb3, 0x89, 0xc8, 0x61, 0xd0, 0xb8, 0x43, 0x30, 0x6a,
+	0x89, 0x25, 0x27, 0x30, 0x4d, 0xbc, 0x23, 0xef, 0xc9, 0x10, 0x90, 0xbb, 0x2b, 0x5b, 0xb6, 0x03,
+	0x3f, 0xb7, 0x7c, 0x4f, 0xb6, 0x5c, 0xc0, 0xa0, 0x71, 0x5f, 0x4e, 0x9c, 0xaa, 0xf9, 0x61, 0x27,
+	0xb0, 0xf1, 0x03, 0xb2, 0x8d, 0x36, 0xe6, 0x40, 0x90, 0x7e, 0x28, 0xc7, 0xcf, 0xf3, 0x55, 0xd7,
+	0x0f, 0x1d, 0x53, 0x3d, 0xc7, 0xbb, 0x32, 0x1b, 0xfb, 0x05, 0x75, 0xfd, 0xc0, 0xb5, 0xf0, 0x67,
+	0xf2, 0xb6, 0x5a, 0xe0, 0xba, 0xd4, 0xf2, 0x5d, 0xea, 0x05, 0xa6, 0x8f, 0xf7, 0xe4, 0x54, 0xb3,
+	0xa2, 0xa3, 0x96, 0x6e, 0xda, 0xbe, 0x4f, 0xdd, 0x73, 0xfc, 0x48, 0x56, 0xd3, 0x0d, 0xcf, 0xb3,
+	0xcd, 0x17, 0x34, 0xd4, 0xa9, 0x77, 0x8a, 0x1f, 0x93, 0xfb, 0xe8, 0xce, 0x8d, 0x4b, 0x40, 0xef,
+	0x73, 0x99, 0x9e, 0x49, 0x55, 0xa1, 0xf6, 0x85, 0xbc, 0x5b, 0x89, 0x83, 0xce, 0x2f, 0xe4, 0x00,
+	0xf4, 0xa8, 0xe7, 0xa9, 0x1d, 0x8a, 0xf7, 0xe5, 0xdc, 0x41, 0x4f, 0x88, 0x95, 0x5f, 0xca, 0x95,
+	0x02, 0x1d, 0xcb, 0x7e, 0x5c, 0xaa, 0xd9, 0xae, 0x8e, 0x0f, 0xe4, 0x4a, 0x99, 0x5b, 0x84, 0xcd,
+	0xbe, 0xbc, 0x26, 0x00, 0xcd, 0xa8, 0x76, 0xa8, 0xe5, 0xf7, 0x6c, 0x9d, 0xe2, 0xaf, 0xc8, 0x23,
+	0xf4, 0xf0, 0xff, 0x08, 0x80, 0x95, 0x27, 0xe4, 0x01, 0xda, 0x99, 0x11, 0x7a, 0x1e, 0x18, 0x7e,
+	0x69, 0xe4, 0x90, 0xec, 0xa1, 0x07, 0x1f, 0x5f, 0x07, 0x1b, 0x5f, 0xcb, 0x21, 0xb1, 0x2d, 0xd3,
+	0xb0, 0xe8, 0x99, 0xea, 0xb2, 0x96, 0x7e, 0x8e, 0xbf, 0xf9, 0xc8, 0x1a, 0xd3, 0x7b, 0x2a, 0x87,
+	0xcb, 0xa5, 0x1d, 0x50, 0x38, 0x9a, 0x07, 0x99, 0xe4, 0xb7, 0x72, 0x1a, 0x55, 0xd3, 0xb4, 0xcf,
+	0x54, 0x4b, 0xa3, 0x20, 0xff, 0xec, 0xe6, 0x25, 0xa6, 0xf5, 0x2b, 0x39, 0x85, 0xa7, 0x86, 0x76,
+	0xca, 0xca, 0xb5, 0xad, 0xe1, 0x5f, 0xcb, 0x99, 0x57, 0x1d, 0xc7, 0x3c, 0x87, 0xf4, 0xbf, 0x30,
+	0xb9, 0xc5, 0xef, 0xc8, 0x3d, 0xa4, 0xdc, 0xbc, 0xdc, 0xd6, 0xf0, 0xf7, 0x72, 0x40, 0xe6, 0x56,
+	0x55, 0xed, 0x14, 0x2c, 0xfc, 0xe6, 0x13, 0x32, 0x8c, 0xdc, 0x6f, 0x65, 0x3f, 0x7d, 0xa3, 0x47,
+	0xed, 0xc0, 0xc7, 0xbf, 0x93, 0x7b, 0x2e, 0xf0, 0xa8, 0xdb, 0x76, 0xa9, 0x7a, 0x8a, 0x7f, 0x7f,
+	0xf0, 0xcf, 0x2a, 0xbf, 0x78, 0xf0, 0xd3, 0x6a, 0x34, 0xca, 0x46, 0x5a, 0x36, 0x88, 0xc5, 0x54,
+	0xa2, 0x5a, 0xe8, 0x05, 0x9a, 0x46, 0x3d, 0x0f, 0xdf, 0x22, 0x4f, 0xd1, 0xe3, 0x1c, 0xe3, 0x03,
+	0x9d, 0x97, 0xa7, 0x6e, 0xa8, 0x3d, 0xdb, 0xd2, 0x43, 0xcb, 0xf6, 0xa9, 0x65, 0x07, 0x9d, 0x2e,
+	0xfe, 0xdb, 0xcf, 0xf9, 0x5f, 0x85, 0x3c, 0x41, 0xbb, 0x37, 0xa8, 0xb0, 0xfd, 0x99, 0xfc, 0xb1,
+	0x1d, 0x58, 0x3a, 0xfe, 0x6b, 0x29, 0xfe, 0x05, 0x8f, 0x1e, 0xd5, 0x42, 0xc3, 0xf2, 0x6d, 0x2e,
+	0x5c, 0xc8, 0xfd, 0x54, 0xca, 0x3d, 0xe6, 0xd5, 0x3d, 0x23, 0x67, 0x78, 0xc7, 0x6c, 0xe4, 0xfc,
+	0xa5, 0x94, 0xfa, 0x9c, 0x07, 0x9b, 0x6a, 0xbc, 0xbc, 0xf8, 0x39, 0xe0, 0x52, 0x87, 0x9d, 0x8f,
+	0x7f, 0x2e, 0xc5, 0x0e, 0xd1, 0x67, 0xd7, 0xc5, 0xb4, 0xae, 0xe1, 0xb0, 0xad, 0xc3, 0xdc, 0xa7,
+	0x3f, 0x15, 0xf2, 0x07, 0xff, 0xa9, 0xc9, 0x87, 0x70, 0x71, 0x31, 0x87, 0x23, 0x88, 0xba, 0xae,
+	0xed, 0xb2, 0xb9, 0x85, 0x6f, 0x89, 0x10, 0x7a, 0x86, 0xd5, 0x31, 0x29, 0x60, 0x15, 0x81, 0xf1,
+	0xa1, 0x0e, 0x58, 0x55, 0xa8, 0xfa, 0x5d, 0x97, 0x72, 0xa8, 0x26, 0xe6, 0x68, 0xdb, 0xee, 0xb5,
+	0x01, 0x59, 0x10, 0x93, 0x0b, 0x84, 0x6c, 0x8b, 0xcb, 0x2d, 0xce, 0xa0, 0xfe, 0x99, 0x0d, 0xe8,
+	0x92, 0x48, 0x3f, 0xd3, 0x16, 0xe0, 0xb2, 0x48, 0x7f, 0x0e, 0xda, 0x1c, 0xae, 0x0b, 0x59, 0x76,
+	0x07, 0xa0, 0x9a, 0x0f, 0x60, 0xa3, 0x04, 0x7b, 0x8e, 0x6a, 0x9d, 0x03, 0x88, 0xc4, 0x5e, 0xaa,
+	0xe1, 0x6a, 0xae, 0x7a, 0xcc, 0x45, 0x9b, 0xa2, 0x07, 0x05, 0x2a, 0x39, 0xdb, 0x9a, 0x5f, 0x93,
+	0x9c, 0x5e, 0x11, 0x4e, 0x7b, 0x81, 0x43, 0x5d, 0xc6, 0x09, 0xaf, 0x8a, 0x6e, 0x3b, 0xb6, 0x03,
+	0xf7, 0xcc, 0xf0, 0xbb, 0xb6, 0x45, 0xf3, 0xf3, 0x70, 0x4d, 0x0c, 0x7a, 0x61, 0x89, 0x89, 0x78,
+	0x46, 0x07, 0x63, 0x31, 0x00, 0xc5, 0x82, 0xa9, 0x7a, 0x9c, 0xd8, 0xfa, 0xbc, 0x0a, 0x5b, 0xd1,
+	0xed, 0x00, 0x13, 0xe1, 0x9c, 0x88, 0x19, 0xb3, 0xb3, 0x71, 0xf0, 0x53, 0x45, 0xca, 0x69, 0xd4,
+	0x9f, 0x40, 0x4e, 0x45, 0x74, 0x43, 0xcb, 0x76, 0x7b, 0x2a, 0x3b, 0xbb, 0x7c, 0x5c, 0x29, 0x51,
+	0xe9, 0x4e, 0x50, 0x2d, 0xac, 0x4a, 0xa7, 0x7e, 0x91, 0x46, 0x5f, 0x1c, 0xec, 0x0b, 0x22, 0xff,
+	0x7e, 0x79, 0x00, 0xb3, 0x77, 0x5c, 0xc4, 0x31, 0x38, 0x32, 0x97, 0xe4, 0x67, 0xaf, 0x8b, 0x97,
+	0x0f, 0xa6, 0xfc, 0x55, 0x1c, 0xa8, 0xfd, 0x50, 0xdc, 0xe9, 0x85, 0x58, 0x10, 0x1a, 0x96, 0xc1,
+	0xee, 0x7b, 0x39, 0xaf, 0x40, 0xe6, 0x55, 0x11, 0xbc, 0x02, 0x89, 0x57, 0x51, 0x71, 0x01, 0x1c,
+	0x8b, 0xec, 0x0e, 0x54, 0x50, 0x0d, 0xc2, 0x63, 0xc3, 0x32, 0xbc, 0x2e, 0x5e, 0x38, 0xf8, 0xfb,
+	0x22, 0xff, 0x08, 0x72, 0xfd, 0x9d, 0x39, 0x9f, 0x7d, 0x79, 0x54, 0x74, 0x7a, 0xac, 0xb2, 0xc3,
+	0xf2, 0x96, 0x48, 0x46, 0x8e, 0xc3, 0x91, 0x00, 0x07, 0x5b, 0x11, 0xb3, 0x7c, 0x85, 0xdf, 0xd1,
+	0xaa, 0x73, 0xa8, 0xae, 0x3a, 0xaa, 0x81, 0x6b, 0x73, 0xd6, 0xc5, 0x71, 0x5b, 0x84, 0xae, 0xb0,
+	0x2e, 0xd5, 0x7f, 0xd7, 0x04, 0x9f, 0x2d, 0x9b, 0x65, 0xa8, 0xa8, 0xff, 0x1c, 0x65, 0x3f, 0x65,
+	0xfd, 0xe7, 0x60, 0x3b, 0x00, 0xb8, 0x5e, 0xc2, 0xcf, 0x0d, 0xd5, 0xea, 0xe4, 0x26, 0x1a, 0xf3,
+	0x30, 0xfc, 0x62, 0x24, 0x8a, 0x4a, 0xc0, 0xed, 0x80, 0x2f, 0x34, 0x05, 0xb9, 0xae, 0x79, 0xd2,
+	0xce, 0x6d, 0xb4, 0x44, 0x48, 0x01, 0x3b, 0x31, 0x54, 0xbc, 0x32, 0x23, 0x05, 0x0c, 0xf0, 0x6a,
+	0x31, 0x25, 0xb4, 0xde, 0x45, 0xae, 0xb9, 0x26, 0xdc, 0x02, 0xac, 0x47, 0x2d, 0xa8, 0x13, 0x2c,
+	0x38, 0x01, 0xea, 0xf1, 0x51, 0xe1, 0x95, 0xf7, 0x47, 0x4f, 0xbb, 0x70, 0x72, 0x03, 0xa4, 0xe8,
+	0x2e, 0x86, 0x81, 0xf6, 0x86, 0x08, 0x0a, 0x40, 0xed, 0x00, 0xc0, 0xcd, 0x52, 0xd7, 0xd4, 0x73,
+	0xdd, 0x2d, 0xb2, 0x86, 0x9a, 0x05, 0x66, 0xb2, 0x0b, 0x62, 0xee, 0x07, 0x00, 0xba, 0x6a, 0xe3,
+	0xed, 0xd2, 0xbc, 0xa9, 0x87, 0xed, 0xc0, 0xd4, 0xb1, 0x22, 0x28, 0x9f, 0xe8, 0x52, 0x26, 0xee,
+	0x88, 0x4d, 0x73, 0x14, 0x42, 0xbe, 0x23, 0xfc, 0xc8, 0xc1, 0x3c, 0x13, 0x77, 0x45, 0x6c, 0xd9,
+	0xd5, 0x15, 0x6e, 0xad, 0x79, 0x99, 0xdc, 0x13, 0x57, 0x99, 0x72, 0xa1, 0xac, 0xac, 0xfb, 0x07,
+	0x01, 0x7f, 0xf9, 0x9d, 0xfd, 0xee, 0x36, 0xdf, 0xb8, 0x8e, 0x7e, 0x5a, 0xb6, 0x82, 0x1f, 0x76,
+	0x55, 0xc7, 0x39, 0x07, 0xb0, 0x2a, 0xc8, 0xf8, 0xa1, 0x67, 0x68, 0xdd, 0x40, 0xb5, 0x00, 0xae,
+	0x1d, 0x1c, 0xc9, 0x87, 0x62, 0xf1, 0x0a, 0x97, 0xb7, 0xdc, 0xb1, 0x6b, 0xb0, 0xf2, 0xab, 0x90,
+	0x16, 0xaa, 0xf3, 0x39, 0x69, 0x58, 0xb8, 0x7a, 0x60, 0xa2, 0xdb, 0x37, 0x7f, 0x4d, 0x23, 0x4d,
+	0xb4, 0xcc, 0xe4, 0xcc, 0x17, 0x4f, 0x71, 0xa5, 0x7c, 0x38, 0xc2, 0xd5, 0xf2, 0xe1, 0x5b, 0x5c,
+	0x2b, 0x1f, 0x9e, 0xe1, 0x85, 0x83, 0x2b, 0xfe, 0xd9, 0x02, 0xac, 0xb1, 0xb7, 0xfa, 0xf2, 0x6d,
+	0x5e, 0x6c, 0x9b, 0xf7, 0xbd, 0x38, 0x52, 0xca, 0x37, 0x97, 0xe2, 0x98, 0x99, 0x99, 0x50, 0x79,
+	0x5e, 0xcb, 0x96, 0x17, 0xde, 0xe4, 0x0d, 0xef, 0xdc, 0xfa, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff,
+	0x92, 0x5f, 0xf4, 0xe7, 0x26, 0x15, 0x00, 0x00,
 }
