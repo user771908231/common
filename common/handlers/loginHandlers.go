@@ -75,7 +75,38 @@ func HandlerGame_Login(args []interface{}) {
 		loginService.DoLoginSuccess(user.GetId())
 	}
 	return
+}
 
+
+//登录的逻辑 通过用户名密码
+func HandlerGame_Login_Via_Input(args []interface{}) {
+	m := args[0].(*ddproto.CommonReqGameLoginViaInput)
+	a := args[1].(gate.Agent)
+	log.T("请求handlerGame_Login_Via_Input[%v]  登录IP[%v]", m, a.RemoteAddr())
+
+	//调用登录方法
+	user, err := loginService.DoLoginViaInput(m.GetUserName(), m.GetPassword(), m.GetUserId())
+	if err != nil || user == nil {
+		log.E("玩家[%v]登录出现出错..", m)
+		ack := commonNewPorot.NewCommonAckGameLogin()
+		*ack.Header.Code = Error.GetErrorCode(err)
+		ack.Header.Error = proto.String(Error.GetErrorMsg(err))
+		a.WriteMsg(ack)
+	} else {
+		//返回登陆成功的结果
+		ack := commonNewPorot.NewCommonAckGameLogin()
+		*ack.Header.Code = consts.ACK_RESULT_SUCC //ack成功
+		*ack.UserId = user.GetId()                //玩家的id
+		*ack.NickName = user.GetNickName()        //玩家的昵称
+		*ack.Chip = user.GetDiamond()             //玩家的钻石信息
+		*ack.Coin = user.GetCoin()                //玩家的金币信息
+		ack.RoomCard = user.RoomCard              //房卡的信息
+		ack.NewUserAward = user.NewUserAward      //是否有新手奖励：如果用户领取之后，需要更新redis和mgo
+		log.T("玩家%v登录之后返回ack:%v", user.GetId(), ack)
+		a.WriteMsg(ack)
+		loginService.DoLoginSuccess(user.GetId())
+	}
+	return
 }
 
 //获取游戏状态
