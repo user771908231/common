@@ -173,8 +173,8 @@ func InputsReg(channel, regIp, userName, pwd string) *ddproto.CommonAckReg {
 		log.E("注册用户的时候失败...")
 		return nil
 	}
-	*user.Pwd = pwd
-	*user.PhoneNumber = userName //用户名即电话号码
+	user.Pwd = proto.String(pwd)
+	user.PhoneNumber = proto.String(userName) //用户名即电话号码
 
 	//2保存数据到数据库
 	err = userDao.SaveUser2Mgo(user)
