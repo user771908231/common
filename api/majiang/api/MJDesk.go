@@ -33,7 +33,7 @@ type MJDeskCore struct {
 	deskId   int32
 	password string //房间号
 	parser   MJParser
-	users    []MJUser
+	Users    []MJUser
 	sync.Mutex
 }
 
@@ -63,7 +63,7 @@ func (d *MJDeskCore) GetPassword() string {
 	return d.password
 }
 func (d *MJDeskCore) GetUserById(userId uint32) MJUser {
-	for _, u := range d.users {
+	for _, u := range d.Users {
 		if u != nil && u.GetUserId() == userId {
 			return u
 		}
@@ -81,18 +81,20 @@ func (d *MJDeskCore) GetIndexByUserId(userId uint32) int {
 }
 
 func (d *MJDeskCore) GetUsers() []MJUser {
-	return d.users
+	return d.Users
 }
 
 func (d *MJDeskCore) BroadCastProto(p proto.Message) {
-	for _, u := range d.users {
-		u.WriteMsg(p)
+	for _, u := range d.Users {
+		if u != nil {
+			u.WriteMsg(p)
+		}
 	}
 }
 
 //发送广播
 func (d *MJDeskCore) BroadCastProtoExclusive(p proto.Message, userId uint32) {
-	for _, u := range d.users {
+	for _, u := range d.Users {
 		if u.GetUserId() != userId {
 			u.WriteMsg(p)
 		}
@@ -109,9 +111,9 @@ func (d *MJDeskCore) AddUserBean(user MJUser) error {
 		return ERR_ADDUSERBEAN2
 	}
 	//根据房间类型判断人数是否已满
-	for i := 0; i < len(d.users); i++ {
-		if d.users[i] == nil {
-			d.users[i] = user
+	for i := 0; i < len(d.Users); i++ {
+		if d.Users[i] == nil {
+			d.Users[i] = user
 			return nil
 		}
 	}
