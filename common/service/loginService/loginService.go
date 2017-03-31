@@ -33,6 +33,29 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 	return nil, nil
 }
 
+
+//做登录的操作...
+func DoLoginViaInput(userName, passWord string, userId uint32) (*ddproto.User, error) {
+	var user *ddproto.User
+	//不是初次登录,需要用userId 来登录
+	if userId > 0 {
+		log.T("玩家使用userid【%v】登录..", userId)
+		user := userService.GetUserById(userId)
+		return user, nil
+	}
+	log.T("用户名【%v】密码【%v】登录..", userName, passWord)
+	user = userService.GetUserByUserName(userName)
+	if user == nil {
+		return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败")
+	}
+
+	if user.GetPwd() == passWord {
+		return user, nil
+	}
+	//最终表示登录失败...
+	return nil, nil
+}
+
 func DoLoginSuccess(userId uint32) error {
 	error := signService.DoSignLottery(userId)
 	if error != nil {

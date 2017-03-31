@@ -76,6 +76,15 @@ message common_req_reg {
     optional string channelId = 5; //渠道
 }
 
+//请求注册 通过输入的用户名密码
+message common_req_reg_via_input {
+    optional ProtoHeader header = 1;
+    optional string userName = 2; //用户名称
+    optional string password = 3; //用户密码
+    optional int32 clientOSType = 4; //1=iOS 2=Android 3=web
+    optional string channelId = 5; //渠道
+}
+
 //回复
 message common_ack_reg {
     optional ProtoHeader header = 1;
@@ -91,6 +100,16 @@ message common_req_gameLogin {
     optional int32 clientOSType = 5; //1=iOS 2=Android 3=web
 }
 
+//登录的结构 通过输入的用户名密码
+message common_req_gameLogin_via_input {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; // 用户id
+    optional string userName = 3; //用户名
+    optional string password = 4; //密码
+    optional int32 protoVersion = 5; // 客户端 proto version
+    optional int32 clientOSType = 6; //1=iOS 2=Android 3=web
+}
+
 // 游戏登录回复
 message common_ack_gameLogin {
     optional ProtoHeader header = 1;
@@ -101,6 +120,7 @@ message common_ack_gameLogin {
     optional int64 roomCard = 6; // 用户房卡的数量
     optional bool newUserAward = 7; //新用户的奖励
 }
+
 
 // 获取二维码链接req
 message common_req_qrLogin {

@@ -109,6 +109,31 @@ func GetUserById(id uint32) *ddproto.User {
 	return buser
 }
 
+
+/**
+	根据用户userName即phonenumber得到User
+	1,从mongo中查询
+	3,如果mongo不存在,返回错误信息,客户端跳转到登陆界面
+
+ */
+func GetUserByUserName(userName string) *ddproto.User {
+
+	//1,首先在 redis中去的数据
+	var buser *ddproto.User = nil
+
+	buser = userDao.FindUserByKV("phonenumber", userName)
+	if buser != nil {
+		log.T("在mongo中查询到了user[%v],现在开始缓存", buser)
+		SaveUser2Redis(buser)
+		InitUserMoney2Redis(buser)
+	} else {
+		log.E("在mongo中没有找到user[%v],玩家不存在", userName)
+
+	}
+	//判断用户是否存在,如果不存在,则返回空
+	return buser
+}
+
 /**
 	将用户model保存在redis中
  */

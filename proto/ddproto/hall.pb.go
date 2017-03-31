@@ -67,9 +67,13 @@ var _ = math.Inf
 
 // Ignoring public import of common_req_reg from common_client.proto
 
+// Ignoring public import of common_req_reg_via_input from common_client.proto
+
 // Ignoring public import of common_ack_reg from common_client.proto
 
 // Ignoring public import of common_req_gameLogin from common_client.proto
+
+// Ignoring public import of common_req_gameLogin_via_input from common_client.proto
 
 // Ignoring public import of common_ack_gameLogin from common_client.proto
 
