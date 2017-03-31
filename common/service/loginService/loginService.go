@@ -52,7 +52,7 @@ func DoLoginViaInput(userName, password string, userId uint32) (*ddproto.User, e
 		return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败")
 	}
 
-	if user.GetPwd() != passWord {
+	if user.GetPwd() != password {
 		log.W("用户名[%v] 数据库中密码[%v]与请求密码不符, 登录失败", userName, user.GetPwd(), password)
 		return nil, Error.NewError(consts.ACK_RESULT_ERROR, "登录失败, 密码错误")
 	}
