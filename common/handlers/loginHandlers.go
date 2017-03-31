@@ -46,6 +46,29 @@ func HandlerReg(args []interface{}) {
 	a.WriteMsg(ack)
 }
 
+
+//注册的接口 通过用户名密码
+func HandlerRegViaInput(args []interface{}) {
+	m := args[0].(*ddproto.CommonReqRegViaInput)
+	a := args[1].(gate.Agent)
+	regIp := agentUtils.GetIP(a)
+	channel := m.GetChannelId() //渠道id
+
+	userName := m.GetUserName()
+	pwd := m.GetPassword()
+
+	var ack *ddproto.CommonAckReg
+	ack = loginService.InputsReg(channel, regIp, userName, pwd)
+	if ack == nil {
+		ack = new(ddproto.CommonAckReg)
+		ack.Header = &ddproto.ProtoHeader{
+			Code:  proto.Int32(consts.ACK_RESULT_ERROR),
+			Error: proto.String("注册的时候失败"),
+		}
+	}
+	a.WriteMsg(ack)
+}
+
 //登录的逻辑
 func HandlerGame_Login(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqGameLogin)

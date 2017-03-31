@@ -11,6 +11,7 @@ import (
 	"strings"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
+	"casino_common/common/model/userDao"
 )
 
 //做登录的操作...
@@ -146,6 +147,46 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 	} else {
 		log.E("玩家游客[%v]转微信的时候出现错误...没有在mongo 找到。")
 	}
+
+	//返回结果
+	ack := new(ddproto.CommonAckReg)
+	ack.Header = &ddproto.ProtoHeader{
+		Code:  proto.Int32(consts.ACK_RESULT_SUCC),
+		Error: proto.String("注册成功"),
+	}
+	ack.UserId = proto.Uint32(user.GetId())
+	return ack
+}
+
+
+
+//用户名密码注册
+func InputsReg(channel, regIp, userName, pwd string) *ddproto.CommonAckReg {
+	log.T("用户名密码的方式请求注册注册信息:渠道[%v] regIp[%v] username[%v] pwd[%v]", channel, regIp, userName, pwd)
+	//设置游客昵称昵称
+	nick, _ := numUtils.Int2String(rand.Rand(10000, 100000))
+	nickName := strings.Join([]string{"游客", nick}, "")
+
+	//游戏需要创建一个nickName    "游客+[5位随机数]"
+	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "", channel, regIp)
+	if err != nil || user == nil {
+		log.E("注册用户的时候失败...")
+		return nil
+	}
+	*user.Pwd = pwd
+	*user.PhoneNumber = userName //用户名即电话号码
+
+	//2保存数据到数据库
+	err = userDao.SaveUser2Mgo(user)
+	if err != nil {
+		log.E("保存用户到mongo的时候失败 error【%v】", err.Error())
+		return nil
+	}
+
+	//3,保存到redis
+	userService.SaveUser2Redis(user)
+
+	log.T("游客登录的注册user: %v,nick:%v", user, user.GetNickName())
 
 	//返回结果
 	ack := new(ddproto.CommonAckReg)
