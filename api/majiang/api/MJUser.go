@@ -20,10 +20,14 @@ type MJUser interface {
 	GetDesk() MJDesk //得到桌子
 
 	//基本功能
-	SendOverTurn(p proto.Message) error //发送overTurn
-	WriteMsg(p proto.Message) error     //发送信息
-	DoReady() error                     //准备
-	DoOut(interface{}) error            //玩家出牌
+	SendOverTurn(p proto.Message) error         //发送overTurn
+	WriteMsg(p proto.Message) error             //发送信息
+	DoReady() error                             //准备
+	DoOut(interface{}) error                    //玩家出牌
+	DoPeng(...interface{}) (interface{}, error) //碰牌
+	DoBu(...interface{}) (interface{}, error)   //补牌
+	DoHu(interface{}) (interface{}, error)      //胡牌
+	DoGang(...interface{}) (interface{}, error) //杠牌
 
 	//业务
 	AddBillBean(interface{}) error //增加账单

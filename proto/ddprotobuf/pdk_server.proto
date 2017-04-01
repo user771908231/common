@@ -62,15 +62,16 @@ message pdk_srv_gameData {
 }
 
 message pdk_srv_billBean {
-    //斗地主的账单
+    //跑得快的账单
     optional int64 coin = 1; //关于统计的数据都在这
     optional uint32 loseUser = 2; //
     optional uint32 winUser = 3; //
     optional string desc = 4;
+    optional pdk_srv_outPokerPais OutPokerPais = 5; //
 }
 
 message pdk_srv_bill {
-    //斗地主的账单
+    //跑得快的账单
     optional int64 winCoin = 1; //关于统计的数据都在这
     repeated pdk_srv_billBean billBean = 2; //所有的牌
 }

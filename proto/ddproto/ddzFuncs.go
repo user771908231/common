@@ -10,6 +10,11 @@ func (out *DdzSrvOutPokerPais) GetPaiCount() int32 {
 	return int32(len(out.PokerPais))
 }
 
+//得到牌的张数
+func (out *PdkSrvOutPokerPais) GetPaiCount() int32 {
+	return int32(len(out.PokerPais))
+}
+
 //牌相关的方法
 
 func ( p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {

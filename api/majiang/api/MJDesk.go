@@ -8,31 +8,39 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"github.com/golang/protobuf/proto"
+	"casino_common/proto/funcsInit"
+	"casino_common/proto/ddproto"
 )
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error            //玩家进入desk，不定参数
-	ActOut(userId uint32, p interface{}) error //出牌的user和牌型
-	ActPeng(...interface{}) error              //碰
-	ActGuo(...interface{}) error               //过
-	ActGang(...interface{}) error              //杠
-	ActBu(...interface{}) error                //补
-	ActHu(...interface{}) error                //胡
-	ActReady(userId uint32) error              //准备
-	GetDeskId() int32                          //得到desk id
-	GetPassword() string                       //得到房间号
-	GetCfg() interface{}                       //的牌桌子的配置信息
-	GetParser() MJParser                       //得到解析器
-	DlogDes() string                           //打印日志用到的tag
+	EnterUser(...interface{}) error //玩家进入desk，不定参数
+	ActOut(...interface{}) error    //出牌的user和牌型
+	ActPeng(...interface{}) error   //碰
+	ActGuo(...interface{}) error    //过
+	ActGang(...interface{}) error   //杠
+	ActBu(...interface{}) error     //补
+	ActHu(...interface{}) error     //胡
+	ActReady(userId uint32) error   //准备
+	SendMessage(interface{}) error
+	GetDeskId() int32                           //得到desk id
+	GetRoom() MJRoom                            //得到一个room
+	GetPassword() string                        //得到房间号
+	GetCfg() interface{}                        //的牌桌子的配置信息
+	GetUsers() []MJUser                         //得到所有的玩家
+	GetParser() MJParser                        //得到解析器
+	BroadCastProto(message proto.Message) error //发送广播
+	DlogDes() string                            //打印日志用到的tag
+	GetUserById(userId uint32) MJUser           //得到一个User
 }
 
 type MJDeskCore struct {
+	room     MJRoom
 	s        *module.Skeleton
 	deskId   int32
 	password string //房间号
 	parser   MJParser
-	users    []MJUser
+	Users    []MJUser
 	sync.Mutex
 }
 
@@ -43,6 +51,14 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	//main key
 	desk.deskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
 	return desk
+}
+
+func (d *MJDeskCore) GetRoom() MJRoom {
+	return d.room
+}
+
+func (d *MJDeskCore) SetRoom(r MJRoom) {
+	d.room = r
 }
 
 //胡牌的 解析器
@@ -62,7 +78,7 @@ func (d *MJDeskCore) GetPassword() string {
 	return d.password
 }
 func (d *MJDeskCore) GetUserById(userId uint32) MJUser {
-	for _, u := range d.users {
+	for _, u := range d.Users {
 		if u != nil && u.GetUserId() == userId {
 			return u
 		}
@@ -80,18 +96,21 @@ func (d *MJDeskCore) GetIndexByUserId(userId uint32) int {
 }
 
 func (d *MJDeskCore) GetUsers() []MJUser {
-	return d.users
+	return d.Users
 }
 
-func (d *MJDeskCore) BroadCastProto(p proto.Message) {
-	for _, u := range d.users {
-		u.WriteMsg(p)
+func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
+	for _, u := range d.Users {
+		if u != nil {
+			u.WriteMsg(p)
+		}
 	}
+	return nil
 }
 
 //发送广播
 func (d *MJDeskCore) BroadCastProtoExclusive(p proto.Message, userId uint32) {
-	for _, u := range d.users {
+	for _, u := range d.Users {
 		if u.GetUserId() != userId {
 			u.WriteMsg(p)
 		}
@@ -108,11 +127,24 @@ func (d *MJDeskCore) AddUserBean(user MJUser) error {
 		return ERR_ADDUSERBEAN2
 	}
 	//根据房间类型判断人数是否已满
-	for i := 0; i < len(d.users); i++ {
-		if d.users[i] == nil {
-			d.users[i] = user
+	for i := 0; i < len(d.Users); i++ {
+		if d.Users[i] == nil {
+			d.Users[i] = user
 			return nil
 		}
 	}
 	return ERR_ADDUSERBEAN
+}
+
+func (d *MJDeskCore) SendMessage(m interface{}) error {
+	msg := m.(*ddproto.CommonReqMessage)
+	result := commonNewPorot.NewCommonBcMessage()
+	*result.UserId = msg.GetHeader().GetUserId()
+	*result.Id = msg.GetId()
+	*result.Msg = msg.GetMsg()
+	*result.MsgType = msg.GetMsgType()
+	*result.ToUserId = msg.GetToUserId()
+	//发送消息
+	d.BroadCastProto(result)
+	return nil
 }
