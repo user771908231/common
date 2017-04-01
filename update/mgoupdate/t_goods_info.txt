@@ -93,12 +93,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 7,
-    "name" : "3钻石",
+    "name" : "30钻石",
     "category" : 2,
     "pricetype" : 5,
     "price" : 3,
     "goodstype" : 2,
-    "amount" : 3,
+    "amount" : 30,
     "discount" : "10折",
     "image" : "diamond_1",
     "isshow" : true,
@@ -108,12 +108,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 8,
-    "name" : "6钻石",
+    "name" : "60钻石",
     "category" : 2,
     "pricetype" : 5,
     "price" : 6,
     "goodstype" : 2,
-    "amount" : 6,
+    "amount" : 60,
     "discount" : "10折",
     "image" : "diamond_2",
     "isshow" : true,
@@ -123,12 +123,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 9,
-    "name" : "18钻石",
+    "name" : "180钻石",
     "category" : 2,
     "pricetype" : 5,
     "price" : 18,
     "goodstype" : 2,
-    "amount" : 18,
+    "amount" : 180,
     "discount" : "10折",
     "image" : "diamond_3",
     "isshow" : true,
@@ -138,12 +138,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 10,
-    "name" : "30钻石",
+    "name" : "300钻石",
     "category" : 2,
     "pricetype" : 5,
     "price" : 30,
     "goodstype" : 2,
-    "amount" : 30,
+    "amount" : 300,
     "discount" : "10折",
     "image" : "diamond_4",
     "isshow" : true,
@@ -153,12 +153,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 11,
-    "name" : "68钻石",
+    "name" : "680钻石",
     "category" : 2,
     "pricetype" : 5,
     "price" : 68,
     "goodstype" : 2,
-    "amount" : 68,
+    "amount" : 680,
     "discount" : "10折",
     "image" : "diamond_5",
     "isshow" : true,
@@ -168,12 +168,12 @@ db.getCollection('t_goods_info').insert(
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 12,
-    "name" : "168钻石",
+    "name" : "1680钻石",
     "category" : 2,
     "pricetype" : 5,
     "price" : 168,
     "goodstype" : 2,
-    "amount" : 168,
+    "amount" : 1680,
     "discount" : "10折",
     "image" : "diamond_6",
     "isshow" : true,
