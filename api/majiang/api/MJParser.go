@@ -88,7 +88,9 @@ var (
 )
 
 type CanGangInfo struct {
-	CanGang      bool
+	OutUserId    uint32             //打牌的人
+	GangsUserId  uint32             //杠牌的人
+	CanGang      bool               //是否能杠
 	GangInfoBean []*CanGangInfoBean //这里可以使用 map 来存储
 }
 
