@@ -7,7 +7,6 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/common/userService"
-	"casino_hall/service/pack"
 	"casino_common/common/service/countService/countType"
 	"errors"
 	"time"
@@ -209,7 +208,6 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name 
 			switch {
 			case reward.GetType() > 200 && reward.GetType() < 300:
 				//领取道具
-				err = pack.DoUserPropsAdd(userId, reward.GetType(), int32(reward.GetAmount()))
 			case reward.GetType() > 300 && reward.GetType() < 400:
 				//领取实物
 			}
