@@ -18,3 +18,9 @@
     1. 修复了红包任务领取时总时0元的bug。
     2. 修复了保险箱提示里含有错误码的问题。
     3. 将活动里的"迎新春"改为"清明节"。
+
+### 2017-04-01:
+1. 更新t_goods_info.txt表。
+2. 更新t_config_super_admin.txt表。
+3. 更新casino_hall
+4. 更新casino_super
