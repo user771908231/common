@@ -11,15 +11,16 @@ import (
 
 //任务详情
 type TaskInfo struct {
-	CateId      int32                  //任务分类 1.普通任务 2.红包任务
-	TaskId      int32                  //任务id
-	TaskType    countType.CountType    //统计类型
-	GameId      ddproto.CommonEnumGame  //所属的游戏  zjh ddz hall
-	Title       string                 //任务名
-	Sort        int32                  //排序：数字越小排在越前面
-	TaskSum     int32                  //任务需要完成的次数
-	RepeatSum   int32                  //可重复领取的次数
-	Description string                 //任务详情
+	Id bson.ObjectId `bson:"_id" binding:"Required"`
+	CateId      int32   `binding:"Required"`               //任务分类 1.普通任务 2.红包任务
+	TaskId      int32    `binding:"Required"`              //任务id
+	TaskType    countType.CountType  `binding:"Required"`  //统计类型
+	GameId      ddproto.CommonEnumGame                     //所属的游戏  zjh ddz hall
+	Title       string        `binding:"Required"`         //任务名
+	Sort        int32                                      //排序：数字越小排在越前面
+	TaskSum     int32       `binding:"Required"`           //任务需要完成的次数
+	RepeatSum   int32      `binding:"Required"`            //可重复领取的次数
+	Description string     `binding:"Required"`            //任务详情
 	Reward      []*ddproto.HallBagItem //任务的奖励
 }
 
