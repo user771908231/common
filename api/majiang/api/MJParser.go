@@ -2,7 +2,6 @@ package api
 
 import (
 	"casino_common/api/majiang"
-	"fmt"
 	"reflect"
 	"casino_common/common/log"
 )
@@ -61,7 +60,6 @@ func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (i
 
 	paiCount := 0
 	for _, p := range handPais {
-		fmt.Printf("得到的碰牌的信息:%v", p)
 		if p.Value == gangPai2.Value && p.Flower == gangPai2.Flower {
 			paiCount++
 		}
@@ -150,7 +148,7 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 	}
 
 	//清楚重复的数据
-	var ret2 *CanGangInfo
+	var ret2 *CanGangInfo = &CanGangInfo{CanGang: false}
 	isexistRet2 := func(g *CanGangInfoBean) bool {
 		for _, r := range ret2.GangInfoBean {
 			if r.GangPai.Flower == g.GangPai.Flower &&
@@ -164,6 +162,7 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 	for _, g := range ret {
 		//首先判断ret2中是否有杠牌了
 		if !isexistRet2(g) {
+			ret2.CanGang = true
 			ret2.GangInfoBean = append(ret2.GangInfoBean, g)
 		}
 	}

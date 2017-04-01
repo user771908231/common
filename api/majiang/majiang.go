@@ -226,7 +226,24 @@ func (p *MJPAI) GetClientId() int32 {
 	return clienMap[int(p.Index)]
 }
 
-//todo
 func (p *MJPAI) LogDes() string {
-	return ""
+	if p == nil {
+		return "空牌"
+	}
+	valueStr, _ := numUtils.Int2String(p.Value)
+	idStr, _ := numUtils.Int2String(p.Index)
+	return idStr + "-" + valueStr + GetFlow(int32(p.Flower))
+}
+
+func GetFlow(f int32) string {
+	if f == 1 {
+		return "万"
+	} else if f == 2 {
+		return "条"
+	} else if f == 3 {
+		return "筒"
+	} else {
+		return "白"
+	}
+
 }

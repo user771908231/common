@@ -21,8 +21,12 @@ type MJDesk interface {
 	ActGang(...interface{}) error   //杠
 	ActBu(...interface{}) error     //补
 	ActHu(...interface{}) error     //胡
-	ActReady(userId uint32) error   //准备
-	SendMessage(interface{}) error
+
+	ActReady(userId uint32) error               //准备
+	Dissolve(...interface{}) error              //解散
+	ApplyDissolve(...interface{}) error         //申请解散
+	ApplyDissolveBack(...interface{}) error     //申请解散回复
+	SendMessage(interface{}) error              //聊天
 	GetDeskId() int32                           //得到desk id
 	GetRoom() MJRoom                            //得到一个room
 	GetPassword() string                        //得到房间号
@@ -51,6 +55,10 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	//main key
 	desk.deskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
 	return desk
+}
+
+func (d *MJDeskCore) LeafS() *module.Skeleton {
+	return d.s
 }
 
 func (d *MJDeskCore) GetRoom() MJRoom {
