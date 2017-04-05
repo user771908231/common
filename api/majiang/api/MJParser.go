@@ -23,12 +23,16 @@ type MJParser interface {
 type MJParserCore struct {
 }
 
+//
+
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
 func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
+	//log.T("开始统计牌的数量:%v", utils.List2Str(pais))
 	counts := make([]int, 27) //0~27
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
 	}
+	log.T("统计出来的count:%v", counts)
 	return counts
 }
 
