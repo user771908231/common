@@ -39,9 +39,12 @@ func GetSession(userId uint32, roomType int32) *ddproto.GameSession {
 //自动查找session
 func GetSessionAuto(userId uint32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
+	log.T("开始自动查找玩家[%v]朋友sessin[%v]",userId,session)
 	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
 		//2,第二步获取朋友桌的session
 		session = GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
+		log.T("开始自动查找玩家[%v]金币ses。sin[%v]",userId,session)
+
 	}
 	return session
 }
