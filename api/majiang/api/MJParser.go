@@ -109,6 +109,7 @@ type CanHuInfo struct {
 	HuUser   uint32
 	IsZimo   bool
 	IsBanker bool //指胡牌的人是否是庄
+	Pai      *majiang.MJPAI
 }
 
 type CanBuInfo struct {
