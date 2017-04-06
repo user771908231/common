@@ -251,3 +251,33 @@ func GetFlow(f int32) string {
 	}
 
 }
+
+//-----------------------------------------------------------------排序--------------------------------------
+
+type MjPAIList []*MJPAI
+
+func (list MjPAIList) Len() int {
+	return len(list)
+
+}
+
+func (list MjPAIList) Less(i, j int) bool {
+	if list[i].Flower < list[j].Flower {
+		return true
+	} else if list[i].Flower == list[j].Flower {
+		if list[i].Value < list[j].Value {
+			return true
+		} else {
+			return false
+		}
+
+	} else {
+		return false
+	}
+
+}
+func (list MjPAIList) Swap(i, j int) {
+	temp := list[i]
+	list[i] = list[j]
+	list[j] = temp
+}
