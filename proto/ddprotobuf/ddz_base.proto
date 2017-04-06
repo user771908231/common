@@ -243,7 +243,7 @@ message ddz_base_playerInfo {
     optional WeixinInfo wxInfo = 10; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
     optional int32 onlineStatus = 11; //玩家在线状态: 1=在线  2=离线 3=在线托管 4=离线托管
     optional int32 remainPaiCount = 13; //玩家当前牌数
-    repeated client_base_poker outPais = 14; //玩家出的牌
+    repeated client_base_poker outPais = 14; //玩家最近一手出的牌
     optional ddz_enum_paiType outPaiType = 15; //玩家出的牌类型
     optional int32 jiaoScore = 16; //叫分
     optional int32 num2Win4OpenRB = 17; //再赢多少局可以开红包
@@ -251,6 +251,8 @@ message ddz_base_playerInfo {
     optional int64 roomCard = 19; //玩家房卡数
     optional bool isShowPokers = 20; //是否已明牌
     optional bool isJiaBei = 21; //是否加倍
+
+    repeated client_base_poker allOutPais = 22; //玩家所有出过的牌
 }
 
 message ddz_base_playerRateInfo {
