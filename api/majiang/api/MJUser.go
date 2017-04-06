@@ -5,6 +5,7 @@ import (
 	"casino_common/common/userService"
 	"github.com/name5566/leaf/gate"
 	"casino_common/utils/agentUtils"
+	"sync/atomic"
 )
 
 type MJUser interface {
@@ -77,4 +78,8 @@ func (u *MJUserCore) GetIp() string {
 
 func (u *MJUserCore) GetCoin() int64 {
 	return u.coin
+}
+
+func (u *MJUserCore) AddCoin(c int64) int64 {
+	return atomic.AddInt64(&u.coin, c)
 }
