@@ -188,6 +188,10 @@ type MJPAI struct {
 	Des    string
 }
 
+func (p *MJPAI) GetIndex() int32 {
+	return p.Index
+}
+
 func (p *MJPAI) InitByDes() error {
 	//拆分描述
 	sarry := strings.Split(p.Des, "_")

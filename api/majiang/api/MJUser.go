@@ -15,7 +15,7 @@ type MJUser interface {
 	GetSex() int32
 	GetHeadUrl() string
 	GetOpenId() string
-	GetNickname() string
+	GetNickName() string
 	GetUserSkeleton() interface{}
 	GetGameData() interface{}
 	GetDesk() MJDesk //得到桌子
@@ -68,7 +68,7 @@ func (u *MJUserCore) GetOpenId() string {
 	return u.uRedis.GetOpenId()
 }
 
-func (u *MJUserCore) GetNickname() string {
+func (u *MJUserCore) GetNickName() string {
 	return u.uRedis.GetNickName()
 }
 
