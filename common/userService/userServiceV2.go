@@ -12,21 +12,21 @@ func (s U_REDIS) GetMainSession() *ddproto.GameSession {
 }
 
 func (s U_REDIS) GetNickName() string {
-	return ""
+	user := GetUserById(uint32(s))
+	return user.GetNickName()
 }
 
 func (s U_REDIS) GetSex() int32 {
-	return 0
+	user := GetUserById(uint32(s))
+	return user.GetSex()
 }
 
 func (u U_REDIS) GetHeadUrl() string {
-	return ""
+	user := GetUserById(uint32(u))
+	return user.GetHeadUrl()
 }
 
 func (u U_REDIS) GetOpenId() string {
-	return ""
-}
-
-func (u U_REDIS) GetNickname() string {
-	return ""
+	user := GetUserById(uint32(u))
+	return user.GetOpenId()
 }
