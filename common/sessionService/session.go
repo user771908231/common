@@ -9,8 +9,6 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/cfg"
-	"casino_common/common/Error"
-	"casino_common/common/consts"
 )
 
 // session相关的...
@@ -40,9 +38,6 @@ func GetSession(userId uint32, roomType int32) *ddproto.GameSession {
 func GetSessionAuto(userId uint32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
 	log.T("开始自动查找玩家[%v]朋友sessin[%v]", userId, session)
-	//log.T("session==nil?", session == nil)
-	//log.T("session.GetDeskId() == 0 ?%v", session.GetDeskId() == 0)
-	//log.T("session.GetGameStatus() ?%v", session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME))
 	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
 		//2,第二步获取朋友桌的session
 		session = GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
@@ -109,20 +104,45 @@ func delSession(s *ddproto.GameSession) {
 }
 
 //检测是否能够进入游戏房间
-func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error, *ddproto.GameSession) {
+func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (bool, *ddproto.GameSession) {
 	//判断朋友桌是否能进去
-	//1,得到朋友桌的session
-	s := GetSession(userId, roomType)
+	//1,如果没有session表示没有在游戏中，可以直接进入
+	s := GetSessionAuto(userId)
 	if s == nil {
-		//之前没有在朋友桌当中游戏
-		return nil, nil
+		return true, nil
 	}
 
-	if s.GetGameId() != gid {
-		return Error.NewError(consts.ACK_RESULT_ERROR, "在其他游戏中"), nil
+	/**
+		如果请求的是朋友桌子
+		1，在玩金币场，可以进入朋友桌
+		2，在朋友桌中，并且gid一样，那么可以进入朋友桌
+	 */
+	if roomType == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) {
+		if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN) {
+			return true, nil
+		}
+
+		if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) && s.GetGameId() == gid {
+			return true, s
+		}
 	}
 
-	return nil, s
+	/**
+		如果请求的是金币场
+		1，在玩金币场，并且游戏id，等级一样的表示可以进入
+	 */
+	if roomType == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN) {
+		if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN) &&
+			s.GetGameId() == gid &&
+			s.GetRoomLevel() == roomLevel {
+			return true, s
+		}
+	}
+
+	/**
+		默认返回不能进入房间
+	 */
+	return false, nil
 }
 
 //通过suerId roomType 删除玩家的session
