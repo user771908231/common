@@ -2,7 +2,6 @@ package api
 
 import (
 	"casino_common/api/majiang"
-	"casino_common/common/log"
 )
 
 //跑得快解析器
@@ -31,7 +30,7 @@ func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
 	}
-	log.T("统计出来的count:%v", counts)
+	//log.T("统计出来的count:%v", counts)
 	return counts
 }
 
