@@ -10,6 +10,7 @@ type MJRoom interface {
 	GetEnterDesk(interface{}) (MJDesk, error) //得到一个房间
 	GetDeskById(int32) MJDesk                 //得到一个desk
 	GetRoomId() int32                         //得到id
+	ListDesk() *util.Map                      //获取所有桌子
 	GetRoomType() int32                       //房间类型
 	DissolveDesk(...interface{}) error
 	CreateFee(...interface{}) int64 //房费
@@ -26,7 +27,7 @@ type MJRoomCore struct {
 func NewMJRoomCore(s *module.Skeleton) *MJRoomCore {
 	return &MJRoomCore{
 		desks: new(util.Map), //所有的desk
-		S:     s,             //组合leaf的骨架
+		S:     s, //组合leaf的骨架
 	}
 }
 

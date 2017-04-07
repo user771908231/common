@@ -5,6 +5,7 @@ import (
 	"casino_common/common/userService"
 	"github.com/name5566/leaf/gate"
 	"casino_common/utils/agentUtils"
+	"sync/atomic"
 )
 
 type MJUser interface {
@@ -14,7 +15,7 @@ type MJUser interface {
 	GetSex() int32
 	GetHeadUrl() string
 	GetOpenId() string
-	GetNickname() string
+	GetNickName() string
 	GetUserSkeleton() interface{}
 	GetGameData() interface{}
 	GetDesk() MJDesk //得到桌子
@@ -67,7 +68,7 @@ func (u *MJUserCore) GetOpenId() string {
 	return u.uRedis.GetOpenId()
 }
 
-func (u *MJUserCore) GetNickname() string {
+func (u *MJUserCore) GetNickName() string {
 	return u.uRedis.GetNickName()
 }
 
@@ -77,4 +78,8 @@ func (u *MJUserCore) GetIp() string {
 
 func (u *MJUserCore) GetCoin() int64 {
 	return u.coin
+}
+
+func (u *MJUserCore) AddCoin(c int64) int64 {
+	return atomic.AddInt64(&u.coin, c)
 }

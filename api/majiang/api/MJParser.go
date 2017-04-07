@@ -2,7 +2,6 @@ package api
 
 import (
 	"casino_common/api/majiang"
-	"reflect"
 	"casino_common/common/log"
 )
 
@@ -38,7 +37,7 @@ func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 
 //是否能碰牌
 func (p *MJParserCore) CanPeng(userGameData interface{}, pengPai interface{}) (bool, error) {
-	log.T("判断是否能碰:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
+	//log.T("判断是否能碰:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
 	pengPai2 := pengPai.(*majiang.MJPAI)      //判断的碰牌
@@ -57,7 +56,7 @@ func (p *MJParserCore) CanPeng(userGameData interface{}, pengPai interface{}) (b
 	判断别人打的牌是否能杠(这里都是点杠)
  */
 func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (interface{}, error) {
-	log.T("判断是否能杠:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
+	//log.T("判断是否能杠:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
 	gangPai2 := gangPai.(*majiang.MJPAI)      //判断的碰牌

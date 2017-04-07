@@ -66,7 +66,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 func GetRedisUserKey(id uint32) string {
 	return redisUtils.K(cfg.RKEY_PRE_USER, id)
 }
- 
+
 /**
 	根据用户id得到User的id
 	1,首先从redis中查询user信息
@@ -108,7 +108,6 @@ func GetUserById(id uint32) *ddproto.User {
 	//判断用户是否存在,如果不存在,则返回空
 	return buser
 }
-
 
 /**
 	根据用户userName即phonenumber得到User
