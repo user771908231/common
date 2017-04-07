@@ -218,6 +218,9 @@ func (p *MJPAI) GetCountIndex() int32 {
 
 //todo
 func (p *MJPAI) GetCardInfo() *mjproto.CardInfo {
+	if p == nil {
+		return &mjproto.CardInfo{}
+	}
 	cardInfo := newProto.NewCardInfo()
 	*cardInfo.Id = p.Index
 	*cardInfo.Type = int32(p.Flower)
