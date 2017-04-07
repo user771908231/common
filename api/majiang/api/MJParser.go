@@ -56,7 +56,6 @@ func (p *MJParserCore) CanPeng(userGameData interface{}, pengPai interface{}) (b
 	判断别人打的牌是否能杠(这里都是点杠)
  */
 func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (interface{}, error) {
-	//log.T("判断是否能杠:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
 	gangPai2 := gangPai.(*majiang.MJPAI)      //判断的碰牌
@@ -69,14 +68,13 @@ func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (i
 	}
 
 	ret := &CanGangInfo{}
-	if paiCount >= 2 {
+	if paiCount == 3 {
 		ret.CanGang = true
 		ret.GangInfoBean = append(ret.GangInfoBean, &CanGangInfoBean{
 			GangPai:  gangPai2,
 			GangType: GANGTYPE_MING,
 		})
 	}
-
 	return ret, nil
 }
 

@@ -71,8 +71,9 @@ func ListGameData2Str(g *data.ZXZUserGameData) string {
 		List2Str(g.GetHandPais()),
 		ListGang2Str(g.GetGangPais()),
 		List2Str(ListPeng2Str(g.PengPais)),
-		"",
-		g.MoPai.LogDes(), )
+		"--",
+		"--",
+		g.MoPai.LogDes())
 }
 
 func ListPeng2Str(pps []*majiang.PengPai) []*majiang.MJPAI {

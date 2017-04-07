@@ -13,6 +13,7 @@ message GameSession {
     optional bool isLeave = 9; //离开
     optional int32 roomType = 10; //1,朋友桌，2，金币场
     optional string roomPassword = 11; //房间号码
+    optional int32 RoomLevel = 12; //房间等级
 }
 
 //服务器游戏玩家通过的协议
