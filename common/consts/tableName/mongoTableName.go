@@ -27,6 +27,7 @@ const (
 	DBT_T_GAME_COUNT           string = "t_game_count"           //游戏记录表
 	DBT_T_GAME_DAY_COUNT       string = "t_game_day_count"       //游戏记录表
 	DBT_T_BONUS_TASK_COMPUTE_CONFIG    string = "t_bonus_task_compute_config"    //红包任务计算配置表
+	DBT_T_TRADE_LOG            string = "t_game_trade_log"       //游戏货币流水记录表
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
 	DBT_MJ_DESK_ROUND       = "t_mj_desk_round"     //一把麻将结束

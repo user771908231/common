@@ -7,6 +7,8 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
 	"github.com/name5566/leaf/log"
+	"reflect"
+	"errors"
 )
 
 type BaseMode interface {
@@ -227,32 +229,26 @@ func (c C) UpdateAll(query interface{}, update interface{}) (change_info *mgo.Ch
 }
 
 //插入一条或多条
-func (c C) Insert(docs ...interface{}) error {
+func (c C) Insert(doc ...interface{}) error {
 	var err error = nil
-	for _, doc := range docs {
-		Query(func(mgo *mgo.Database) {
-			err = mgo.C(string(c)).Insert(doc)
-		})
-		if err != nil {
-			return err
-		}
-	}
-	return nil
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).Insert(doc...)
+	})
+	return err
 }
 
-//插入多条Slice数据，遇到错误则停止继续插入，并返回错误和出错处的索引
-func (c C) InsertAll(doc_slice []interface{}) (error, int) {
-	var i int = 0
-	var err error = nil
-	for _, doc := range doc_slice {
-		err = c.Insert(doc)
-		if err != nil {
-			return err, i
-		} else {
-			i++
-		}
+//一次性插入多条数据
+func (c C) InsertAll(doc_slice interface{}) (error, int) {
+	if reflect.TypeOf(doc_slice).Kind() != reflect.Slice {
+		return errors.New("doc_slice must be a slice."), 0
 	}
-	return nil, i
+	val := reflect.ValueOf(doc_slice)
+	doc_arr := []interface{}{}
+	doc_len := val.Len()
+	for i:=0; i<doc_len; i++ {
+		doc_arr = append(doc_arr, val.Index(i).Interface())
+	}
+	return c.Insert(doc_arr...), doc_len
 }
 
 //删除单条数据
