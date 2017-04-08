@@ -2,7 +2,6 @@ package api
 
 import (
 	"casino_common/api/majiang"
-	"casino_common/common/log"
 )
 
 //跑得快解析器
@@ -31,7 +30,7 @@ func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
 	}
-	log.T("统计出来的count:%v", counts)
+	//log.T("统计出来的count:%v", counts)
 	return counts
 }
 
@@ -121,7 +120,11 @@ type CanBuInfo struct {
 func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, error) {
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
-	pengPais := gameData.GetPengPais()        //得到所有的吃牌
+	//把摸的牌放进手牌里进行判断
+	if gameData.GetMoPai() != nil {
+		handPais = append(handPais, gameData.GetMoPai())
+	}
+	pengPais := gameData.GetPengPais() //得到所有的吃牌
 	var ret []*CanGangInfoBean
 	//首先判断明杠
 	counts := p.CountHandPais(handPais) //统计牌
@@ -129,7 +132,7 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 		if 4 == counts[ p.GetCountIndex()] {
 			r := &CanGangInfoBean{
 				GangPai:  p,
-				GangType: GANGTYPE_MING,
+				GangType: GANGTYPE_AN,
 			}
 			ret = append(ret, r)
 		}

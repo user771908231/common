@@ -10,7 +10,7 @@ func init() {
 }
 
 func TestUSESSION_GetMainSession(t *testing.T) {
-	var u UREDIS = 10356
+	var u U_REDIS = 10356
 	s := u.GetMainSession()
 	t.Logf("得到的session%v", s)
 }
