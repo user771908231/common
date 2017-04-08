@@ -16,7 +16,7 @@ func TestINCRUserCOIN(t *testing.T) {
 	//10168
 	//10169
 	//10170
-	b, e := DECRUserCOIN(13702, 970000)
+	b, e := INCRUserRoomcard(14289, 970000)
 	if e != nil {
 		t.Logf("出错%v", e)
 	} else {
