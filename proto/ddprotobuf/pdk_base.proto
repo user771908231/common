@@ -117,27 +117,20 @@ enum pdk_enum_errorCode {
 
 //牌型
 enum pdk_enum_paiType {
-    PDK_ERRORCARD = 0; //错误牌型
-    PDK_SINGLECARD = 1; //单牌
-    PDK_DOUBLECARD = 2; //对子
-    PDK_THREECARD = 3; //三不带
-    PDK_BOMBCARD = 4; //炸弹
-    PDK_THREEONECARD = 5; //三带1
-    PDK_THREETWOCARD = 6; //三带二
-    PDK_BOMBTWOCARD = 7; //四带两个单张
-    PDK_BOMBTWOOOCARD = 8; //四带两个对子
-    PDK_CONNECTCARD = 9; //链子
-    PDK_COMPANYCARD = 10; //连队
-    PDK_AIRCRAFTCARD = 11; //飞机不带牌
-    PDK_AIRCRAFTSINGLECARD = 12; //飞机带单牌
-    PDK_AIRCRAFTDOUBLECARD = 13; //飞机带对子
-    PDK_SUPERBOMB = 14; //   王炸
-    PDK_FOURWITHONEDOUBLE = 15; //四个带一对
-
+    PDK_ERRORCARD = 0; //错误牌型 跑得快
+    PDK_SINGLECARD = 1; //单牌 跑得快
+    PDK_DOUBLECARD = 2; //对子 跑得快
+    PDK_THREECARD = 3; //三不带 跑得快最后一手三带
+    PDK_BOMBCARD = 4; //炸弹 跑得快
+    PDK_THREEONECARD = 5; //三带1 跑得快最后一手三带
+    PDK_THREETWOCARD = 6; //三带二 跑得快
+    PDK_CONNECTCARD = 9; //链子  跑得快
+    PDK_COMPANYCARD = 10; //连队  跑得快
+    PDK_AIRCRAFTCARD = 11; //飞机不带牌 跑得快最后一手飞机
+    PDK_AIRCRAFTSINGLECARD = 12; //飞机带单牌  跑得快最后一手飞机
     PDK_AIRCRAFTFOURSIG = 16; //跑得快飞机带四张单牌
     PDK_AIRCRAFTLASTCARD = 17;  //跑得快最后一手飞机带单牌
     PDK_AIRCRAFTLASTDOU = 18;  //跑得快最后一手飞机带对子
-    PDK_THREETWOSIG = 19; //跑得快三带2单
 }
 
 // 轮到玩家操作时：可执行何种操作
