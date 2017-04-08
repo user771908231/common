@@ -99,6 +99,9 @@ type CanGangInfoBean struct {
 	GangType int32 //杠牌的类型
 }
 
+var (
+	PAI_TYPE_MENQING int32 = int32(mjproto.PaiType_H_MenQing) //门清
+)
 //胡牌之后的信息
 type CanHuInfo struct {
 	CanHu    bool
@@ -107,9 +110,10 @@ type CanHuInfo struct {
 	Score    int64
 	OutUser  uint32
 	HuUser   uint32
-	IsZimo   bool
-	IsBanker bool //指胡牌的人是否是庄
-	Pai      *majiang.MJPAI
+	IsZimo   bool           //自摸
+	IsBanker bool           //指胡牌的人是否是庄
+	Pai      *majiang.MJPAI //胡的牌
+	PaiType  []int32
 }
 
 type CanBuInfo struct {
