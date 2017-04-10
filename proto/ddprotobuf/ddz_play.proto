@@ -192,6 +192,8 @@ message ddz_bc_overTurn {
     repeated ddz_base_playerInfo playerInfos = 8; //需广播的各个玩家的信息
     optional ddz_enum_jdScore jiaoScore = 9; //可叫的最低分
     optional bool isCanPass = 10; //能否过 flase不能过 必须出牌
+    optional bool mustZhua = 11; //四川麻将 必抓
+    optional bool mustDao = 12; //四川麻将 必倒
 }
 
 ////////////////////////////////////////////////////////
