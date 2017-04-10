@@ -4,5 +4,5 @@ db.getCollection('t_super_admin').insert({
     "_id" : ObjectId("589af0b70e4041708bb8e4d5"),
     "id" : 10007.0,
     "nickname" : "admin",
-    "passwd" : "21232f297a57a5a743894a0e4a801fc3"
+    "passwd" : "33ced495ab6ce4eb238053ab1e28e176"
 })

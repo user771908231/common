@@ -20,18 +20,18 @@ const (
 
 //商品表结构
 type T_Goods_Row struct {
-	ObjId     bson.ObjectId `bson:"_id" binding:"Required"`
-	GoodsId   int32 `binding:Required`
-	Name      string `binding:Required`
-	Category  CateEnum `binding:Required`
-	PriceType ddproto.HallEnumTradeType `binding:Required`
-	Price     float64 `binding:Required`
-	GoodsType ddproto.HallEnumTradeType `binding:Required`
-	Amount    float64 `binding:Required` //amount 代表数量，不是现金， 1转世兑换100金币,,amount == 100
-	Discount  string `binding:Required`
-	Image     string `binding:Required`
-	IsShow    bool `binding:Required`
-	Sort      int32 `binding:Required`
+	ObjId     bson.ObjectId `bson:"_id" binding:"Required" title:"id"`
+	GoodsId   int32 `bson:"goodsid" binding:"Required" title:"商品Id"`
+	Name      string `bson:"name" binding:"Required" title:"名称"`
+	Category  CateEnum `bson:"category" binding:"Required" title:"分类Id"`
+	PriceType ddproto.HallEnumTradeType `bson:"pricetype" binding:"Required" title:"价格类型"`
+	Price     float64 `bson:"price" binding:"Required" title:"价格"`
+	GoodsType ddproto.HallEnumTradeType `bson:"goodstype" binding:"Required" title:"商品类型"`
+	Amount    float64 `bson:"amount" binding:"Required" title:"商品数量"` //amount 代表数量，不是现金， 1转世兑换100金币,,amount == 100
+	Discount  string `bson:"discount" binding:"Required" title:"折扣"`
+	Image     string `bson:"image" binding:"Required" title:"图片"`
+	IsShow    bool `bson:"isshow" binding:"Required" title:"是否显示"`
+	Sort      int32 `bson:"sort" binding:"Required" title:"排序"`
 }
 
 //更新
