@@ -2,6 +2,7 @@ package api
 
 import (
 	"casino_common/api/majiang"
+	"casino_majiang/msg/protogo"
 )
 
 //跑得快解析器
