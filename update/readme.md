@@ -24,3 +24,6 @@
 2. 更新t_config_super_admin.txt表。
 3. 更新casino_hall
 4. 更新casino_super
+
+### 2017-04-10:
+1. 插入t_game_config_login_list.txt表
