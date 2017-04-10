@@ -51,4 +51,8 @@ const (
 	//统计相关的数据库表名字
 	DBT_STATISTIC_BTN_CLICK = "T_statistic_btn_click" //数据库的表名字
 
+	//游戏配置表
+	DBT_GAME_CONFIG_LOGIN = "t_game_config_login"  //登陆服配置
+	//登陆服游戏列表
+	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置
 )
