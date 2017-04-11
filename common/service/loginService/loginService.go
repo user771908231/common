@@ -195,7 +195,7 @@ func InputsReg(channel, regIp, userName, pwd string) *ddproto.CommonAckReg {
 	user.PhoneNumber = proto.String(userName) //用户名即电话号码
 
 	//2保存数据到数据库
-	err = userDao.SaveUser2Mgo(user)
+	err = userDao.UpdateUser2Mgo(user)
 	if err != nil {
 		log.E("保存用户到mongo的时候失败 error【%v】", err.Error())
 		return nil
