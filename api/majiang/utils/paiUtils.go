@@ -4,8 +4,8 @@ import (
 	"casino_majiang/msg/protogo"
 	"casino_common/api/majiang"
 	"github.com/golang/protobuf/proto"
-	"casino_mj_zhuoxiazi/core/data"
 	"fmt"
+	"casino_common/api/majiang/api"
 )
 
 func Mjapi2Card(p *majiang.MJPAI) *mjproto.CardInfo {
@@ -58,7 +58,7 @@ func List2Str(pais []*majiang.MJPAI) string {
 	return s
 }
 
-func ListGameData2Str(g *data.ZXZUserGameData) string {
+func ListGameData2Str(g api.MJUserGameData) string {
 	/**
 	u.GameData.HandPais,
 		u.GameData.GangPais,
@@ -70,10 +70,10 @@ func ListGameData2Str(g *data.ZXZUserGameData) string {
 	return fmt.Sprintf("手牌:%v ,杠牌:%v ,碰牌:%v,吃牌:%v,胡牌:%v摸牌:%v",
 		List2Str(g.GetHandPais()),
 		ListGang2Str(g.GetGangPais()),
-		List2Str(ListPeng2Str(g.PengPais)),
+		List2Str(ListPeng2Str(g.GetPengPais())),
 		"--",
 		"--",
-		g.MoPai.LogDes())
+		g.GetMoPai().LogDes())
 }
 
 func ListPeng2Str(pps []*majiang.PengPai) []*majiang.MJPAI {
