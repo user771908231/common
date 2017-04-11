@@ -10,6 +10,10 @@ enum common_enum_game {
     GID_HALL = 5; //大厅
     GID_PDK = 7; //跑得快
     GID_ZXZ = 8; //捉虾子
+    GID_MJBAISHAN = 9; //白山麻将
+    GID_MJCHANGCHUN = 10; //长春麻将
+    GID_NIUNIUJINGDIAN = 11; //经典牛牛
+    GID_BANTUOZI = 12; //搬坨子
 }
 
 //房间的类型
