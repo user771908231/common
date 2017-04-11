@@ -1,0 +1,337 @@
+syntax = "proto2";
+
+
+import public "common_client.proto";
+import public "mj_common.proto";
+import public "mj_baishan_base.proto";
+
+package ddproto;
+option optimize_for = LITE_RUNTIME;
+
+////////////////////////////////////////////////////////////////////
+// 通信协议
+
+message user_coin_bean {
+    optional uint32 userId = 1; //玩家id
+    optional int64 coin = 2; //本场的积分
+}
+
+// 开局（接收服务端消息）
+message game_Opening {
+    optional ProtoHeader header = 1;
+    optional int32 CurrPlayCount = 2; //当前玩到第几局
+    optional int32 dice1 = 3; //骰子的数目
+    optional int32 dice2 = 4; //骰子的数目
+    repeated user_coin_bean userCoinBeans = 5; //玩家的详细信息
+}
+
+// 发牌
+message game_DealCards {
+    optional ProtoHeader header = 1;
+    repeated PlayerCard playerCard = 2; //发给我的牌
+    optional uint32 dealerUserId = 3; //庄家的userId
+}
+
+// 换牌（3张）
+message game_ExchangeCards {
+    optional ProtoHeader header = 1;
+    repeated CardInfo exchangeOutCards = 2; // 要换出的 3 张牌
+    optional uint32 userId = 3; // 操作人 (广播给其它用户时用到)
+    optional int32 exchangeNum = 4; //换几张: 3张, 2张
+}
+
+//发海底牌：长沙麻将需要询问是否需要海底牌
+message game_DealHaiDiCards {
+    optional ProtoHeader header = 1;
+    optional CardInfo haidiCard = 2; // 海底牌
+    optional uint32 userId = 3; //询问的对象
+}
+
+message game_ReqDealHaiDiCards {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool need = 3; //是否需要需要海底牌
+}
+
+message game_AckDealHaiDiCards {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool need = 3; //是否需要需要海底牌
+}
+
+//
+message game_AckExchangeCards {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; //换牌的Userid
+    repeated CardInfo exchangeOutCards = 3; // 要换出的 3 张牌
+}
+
+
+enum exchange_type {
+    EXCHANGE_TYPE_DUIJIA = 0;
+    EXCHANGE_TYPE_SHUNSHIZHEN = 1;
+    EXCHANGE_TYPE_NISHIZHEN = 2;
+}
+
+message Game_ExchangeCardsEnd {
+    optional ProtoHeader header = 1;
+    repeated CardInfo exchangeInCards = 2; // 要换出的 3 张牌
+    optional int32 exchangeNum = 3; //换几张: 3张, 2张
+    optional int32 exchangeType = 4; //换几张: 3张, 2张
+
+}
+
+// 定缺（和个人玩家ACK）
+message game_DingQue {
+    optional ProtoHeader header = 1;
+    optional int32 color = 2; // 定缺的花色
+    optional uint32 userId = 3; // 操作人 (广播给其它用户时用到)
+}
+
+message DingQueEndBean {
+    optional uint32 userId = 1; // 定缺的人
+    optional int32 flower = 2; // 定缺的花色
+}
+
+message game_DingQueEnd {
+    optional ProtoHeader header = 1;
+    repeated DingQueEndBean Ques = 2;
+}
+
+// 定缺开始广播（和ACK）
+message game_BroadcastBeginDingQue {
+    optional ProtoHeader header = 1;
+    repeated int32 color = 2; // 定缺的花色
+    optional bool reconnect = 3; // 是否是重新连接
+}
+
+// 换牌开始(广播)
+message game_BroadcastBeginExchange {
+    optional ProtoHeader header = 1;
+    optional bool reconnect = 2; // 是否是重新连接
+}
+
+// 摸牌
+message game_GetInCard {
+    optional ProtoHeader header = 1;
+    optional CardInfo card = 2;
+}
+
+// 出牌
+message game_SendOutCard {
+    optional ProtoHeader header = 1;
+    optional int32 cardId = 2; //要出的牌id
+}
+
+message game_AckSendOutCard {
+    optional ProtoHeader header = 1;
+    optional int32 result = 2; // 0:出牌成功 1:有人可碰/胡
+    optional uint32 userId = 3; //出牌的人(广播)
+    optional CardInfo card = 4; // 出的牌(广播)
+    optional CardInfo card2 = 5; // 出的第二张牌(广播)
+    optional bool isAuto = 6; // 是否是自动打牌
+}
+
+// 碰牌
+message game_ActPeng {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional CardInfo pengCard = 3; // 被碰的牌
+}
+
+message game_AckActPeng {
+    optional ProtoHeader header = 1;
+    repeated CardInfo pengCard = 2; //广播碰的哪几张牌
+    optional uint32 userIdOut = 3; //出牌的人
+    optional uint32 userIdIn = 4; //碰牌的人
+    repeated JiaoInfo jiaoInfos = 5; //碰牌后，可以胡牌的信息
+}
+
+//吃牌
+message game_ActChi {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional CardInfo chiCard = 3; //被吃的牌
+    repeated CardInfo chooseCards = 4; //选择吃的牌
+}
+
+message game_AckActChi {
+    optional ProtoHeader header = 1;
+    repeated CardInfo chiCard = 2; //广播碰的吃几张牌
+    optional uint32 userIdOut = 3; //出牌的人
+    optional uint32 userIdIn = 4; //碰牌的人
+    repeated JiaoInfo jiaoInfos = 5; //碰牌后，可以胡牌的信息
+}
+
+// 杠牌
+message game_ActGang {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional CardInfo gangCard = 3; // 被杠的牌
+    optional bool bu = 4; // 杠牌是否是补牌
+
+}
+message game_AckActGang {
+    optional ProtoHeader header = 1;
+    optional int32 gangType = 2; //1:点杠  2:巴杠  3:暗杠
+    repeated CardInfo GangCard = 3;
+    optional uint32 userIdOut = 4; //出牌的人
+    optional uint32 userIdIn = 5; //杠牌的人
+    optional bool changShaBu = 6; //补牌
+    repeated user_coin_bean userCoinBeans = 7; //玩家的详细信息
+}
+
+//长沙杠牌杠牌
+message game_ChangShaActGang {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional CardInfo gangCard = 3; // 被杠的牌
+    optional bool changShaGang = 4; //是否是长沙杠
+}
+
+//长沙杠牌回复
+message game_ChangShaAckActGang {
+    optional ProtoHeader header = 1;
+    optional int32 gangType = 2; //1:点杠  2:巴杠  3:暗杠
+    repeated CardInfo GangCard = 3;
+    optional uint32 userIdOut = 4; //出牌的人
+    optional uint32 userIdIn = 5; //杠牌的人
+    optional bool bu = 6; //是否补牌
+}
+
+// 胡牌
+message game_ActHu {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional CardInfo huCard = 3; // 胡的牌
+}
+
+message game_AckActHu {
+    optional ProtoHeader header = 1;
+    optional int32 huType = 2; //胡牌类型: 1=点炮、2=自摸、3=抢杠、4=杠上炮、5=杠上花、6=海底捞、7=一炮双响、8=一炮三响
+    optional CardInfo huCard = 3;
+    optional uint32 userIdOut = 4; //出牌的人
+    optional uint32 userIdIn = 5; //胡牌的人
+    optional bool isZiMo = 6; //是否是自摸
+    repeated mj_enum_paiType paiType = 7; //牌的类型
+    repeated user_coin_bean userCoinBeans = 8; //玩家的详细信息
+}
+
+//长沙起手胡牌
+message game_ActChangShaQiShouHu {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+    optional bool hu = 3; //true 表示胡，false 表示过
+
+}
+
+//长沙起手胡牌 这里需要广播
+message game_AckActChangShaQiShouHu {
+    optional ProtoHeader header = 1;
+    optional int32 huType = 2; //胡类型
+    repeated CardInfo handPais = 3; //起手胡牌的所有手牌
+    optional uint32 huUserId = 4; //胡牌人的Id
+    repeated mj_enum_paiType paiType = 5; //牌类型
+}
+
+//长沙麻将的胡牌结果
+message game_AckActHuChangSha {
+    repeated game_AckActHu hus = 1; //长沙麻将胡牌的结果，有可能是多张牌
+}
+
+// 过牌
+message game_ActGuo {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2;
+}
+
+// 过牌收到服务器确认后，还是要协议 【PID_game_SENDOVERTURN ：game_SendOverTurn】 后结束此轮
+message game_AckActGuo {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; //操作人(广播时用)
+}
+
+//一般OverTurn 只有一张牌，可以对于长沙麻将，在杠之后会有两张牌，这了需要特殊处理
+message game_ChangShaOverTurnAfterGang {
+    optional ProtoHeader header = 1;
+    optional bool canHu = 2;
+    optional bool canGuo = 3;
+    repeated CardInfo gangPai = 4; //杠起来的牌
+    repeated CardInfo huCards = 5; //可以胡的牌
+}
+
+message game_ChangshQiShouHuOverTurn {
+    optional ProtoHeader header = 1;
+}
+
+// 轮到谁操作(摸牌、碰/杠/过/胡)
+message game_OverTurn {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; // 当前谁正在操作
+    optional uint32 nextUserId = 3;
+    optional int32 actType = 4; // 1:正常摸牌 2:其它
+    optional bool canPeng = 5;
+    optional bool canGang = 6;
+    optional bool canHu = 7;
+    optional CardInfo actCard = 8; // 如果有出牌，表示出的是哪张牌，否则置为空 别人打牌的判断
+    repeated CardInfo gangCards = 9; // 手牌中可杠的牌(可能多张) 自己摸牌的时候
+    optional int32 time = 10;
+    optional int32 paiCount = 11; //剩余多少牌还没有摸
+    repeated JiaoInfo jiaoInfos = 12; //可以胡牌的信息,只有在摸牌的时候才会有值
+    optional bool canChi = 13; //是否能够吃牌
+    repeated ChiOverTurn chiInfo = 14; //吃牌的信息
+    optional bool canBu = 15; //是否能够吃牌
+    optional bool canGuo = 16; //是否能过牌
+    repeated CardInfo buCards = 17; // 手中的牌，可以补的牌
+}
+
+//吃牌的结构
+message ChiOverTurn {
+    repeated CardInfo chiCard = 14; //可以吃的牌
+}
+
+message JiaoInfo {
+    optional CardInfo outCard = 1;
+    repeated JiaoPaiInfo paiInfos = 2;
+}
+
+message JiaoPaiInfo {
+    optional CardInfo huCard = 1; //可以胡的牌
+    optional int32 fan = 2; //可以胡的牌的翻数
+    optional int32 count = 3; //可以胡的牌的剩余张数
+}
+
+
+enum RECONNECT_TYPE {
+    NORMAL = 1;
+    RECONNECT = 2;
+}
+// 发送游戏信息(广播)
+message game_SendGameInfo {
+    optional ProtoHeader header = 1;
+    // 1. 首先是牌桌的玩家数据（玩家数据包括其id昵称筹码头像等基本信息，其手牌数据，以及自己打出的牌的数据，还有状态是否已经胡牌了，玩家在整局的总输赢）
+    repeated PlayerInfo playerInfo = 2;
+    // 2. 桌面信息（包括：游戏是否结束，当前轮到哪个玩家，倒计时剩余时间）
+    optional DeskGameInfo deskGameInfo = 3;
+    // 
+    optional uint32 senderUserId = 4; // 发起请求的人
+
+    optional RECONNECT_TYPE isReconnect = 5; // 1=正常连接（默认） 2=断线重连
+}
+
+message game_req_buxiazi {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; // 发起请求的人
+}
+
+message game_ack_buxiazi {
+    optional ProtoHeader header = 1;
+    repeated CardInfo buCards = 2; //补起来了牌
+    optional int32 xiaCouont = 3; // 虾的数量
+    repeated CardInfo moCards = 4; //补起来了牌
+    optional uint32 userId = 5; // 发起请求的人
+    optional bool IsZhuoXiaBu = 6; //是否是做虾子的补：捉虾子的时候为true 杠的时候为false
+}
+
+
+
