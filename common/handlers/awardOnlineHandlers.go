@@ -36,7 +36,7 @@ func HandlerNewUserAward(args []interface{}) {
 	ack := &ddproto.AwardAckGetNewUser{
 		Header: &ddproto.ProtoHeader{
 			UserId: proto.Uint32(userId),
-			Error:  proto.String(fmt.Sprintf("恭喜你，成功领取 %.2f红包 新手奖励。",cfg.GetNewUserAward())),
+			Error:  proto.String(fmt.Sprintf("恭喜你，成功领取 %.2f红包 分享奖励。",cfg.GetNewUserAward())),
 			Code:   proto.Int32(consts.ACK_RESULT_SUCC),
 		},
 	}
@@ -45,11 +45,11 @@ func HandlerNewUserAward(args []interface{}) {
 		return
 	}
 
-	//todo 增加红包信息处理新手奖励
+	//增加红包信息处理新手奖励
 	_, err := userService.INCRUserBonus(userId, cfg.GetNewUserAward())
 	if err != nil {
 		ack.Header.Code = proto.Int32(consts.ACK_RESULT_ERROR)
-		ack.Header.Error = proto.String("领取新手奖励失败。")
+		ack.Header.Error = proto.String("领取分享奖励失败。")
 		a.WriteMsg(ack)
 		return
 	}
