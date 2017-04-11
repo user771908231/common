@@ -311,5 +311,7 @@ message ddz_base_deskInfo {
     optional int64 coinTicket = 19; //房费 金币场使用
 
     optional ddz_base_timerInfo timerInfo = 20; //定时信息
+
+    optional bool isDizhuLDLa = 21; //四川斗地主 地主是否拉过
 }
 
