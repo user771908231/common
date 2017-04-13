@@ -1,4 +1,7 @@
-db.t_th_notice.remove({})
+conn = new Mongo();
+db = conn.getDB("test");
+
+db.t_th_notice.remove({});
 
 db.t_th_notice.insert({
 	"id" : 1,
@@ -7,7 +10,7 @@ db.t_th_notice.insert({
 	"noticecontent" : "来一圈游戏, 邀约好友切磋牌技娱乐, 切不可赌博! 若有疑问, 请联系客服微信shenjingyouxi",
 	"noticememo" : "",
 	"noticefileds" : [ ]
-})
+});
 
 db.t_th_notice.insert({
 	"_id" : ObjectId("57aae42b2e7eeff0be9514ab"),
@@ -16,7 +19,7 @@ db.t_th_notice.insert({
 	"noticecontent" : "创建房间后,点击微信邀请,发送邀请链接给好友,好友安装App后可一键点击分享的房号进入房间. 赶快去试试吧",
 	"noticememo" : "",
 	"noticefileds" : [ "购买钻石请联系微信", "shenjingyouxi", "代理加盟请联系微信", "shenjingyouxi", "投诉建议请联系客服QQ", "3298896830", "【湖南麻将】客服微信号", "229459253", "【湖南麻将】QQ","229459253" ]
-})
+});
 
 
 db.t_th_notice.insert({
@@ -25,7 +28,7 @@ db.t_th_notice.insert({
 	"noticecontent" : "创建房间后,点击微信邀请,发送邀请链接给好友,好友安装App后可一键点击分享的房号进入房间. 赶快去试试吧",
 	"noticememo" : "",
 	"noticefileds" : [ ]
-})
+});
 
 db.t_th_notice.insert({
 	"id" : 4,
@@ -34,5 +37,5 @@ db.t_th_notice.insert({
 	"活动公告",
 	"noticecontent" : "来一圈游戏诚招各地代理！申请代理门槛极低，利润丰厚，轻松月入万元。欢迎联系洽谈！",
 	"noticememo" : null,
-	"fileds" : [],
-})
+	"fileds" : []
+});

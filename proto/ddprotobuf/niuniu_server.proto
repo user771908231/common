@@ -1,0 +1,65 @@
+syntax = "proto2";
+
+import public "common_server_poker.proto";
+package ddproto;
+
+//牛牛牌的类型
+enum niuniu_enum_PokerType {
+    NO_NIU = 1;  //每牛
+    NIU_1 = 2; //牛1
+    NIU_2 = 3; //牛2
+}
+
+//打出去的牌
+message niuniu_srv_poker {
+    repeated common_srv_pokerPai pais = 2; //出的牌
+    optional niuniu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
+}
+
+//用户游戏状态
+enum niuniu_enum_game_state {
+    NO_READY = 1;  //未准备
+    IS_READY = 2;  //已准备
+    IS_GAMMING = 3;  //正在游戏中
+}
+
+//对局账单信息
+message niuniu_srv_user_bill {
+    optional int32 score = 1;  //低分
+    optional int32 count_has_niu = 2;  //有牛
+    optional int32 count_no_niu = 3;  //没牛
+    optional int32 count_win = 4;  //赢的局数
+    optional int32 count_lost = 5;  //输的局数
+}
+
+//用户属性
+message niuniu_srv_user {
+    optional uint32 userId = 1;
+    optional int32 roomId = 3;
+    optional int32 deskId = 4;
+    optional int32 gameNumber = 5; //游戏编号，每一句游戏都有一个游戏编号
+    optional niuniu_srv_user_bill bill = 6; //玩家这一句的账单数据
+    optional niuniu_enum_game_state status = 7;
+    optional bool isOnline = 10; //是否在线
+    optional int32 index = 12;  //所在牌桌的索引
+}
+
+//desk 的信息
+message niuniu_srv_desk {
+    optional int32 deskId = 1;  //牌桌id
+    optional string deskNumber = 2; //朋友桌房号
+    optional int32 gameNumber = 3; //游戏编号，每一句游戏都有一个游戏编号
+    optional int32 roomId = 4; //房间id
+    optional uint32 lastWiner = 5; //上一位赢牌的玩家
+    optional niuniu_enum_game_state status = 6; //房间游戏状态
+    optional int32 minUser = 7; //最小准备人数
+    optional int32 circleNo = 8; //当前是第几圈
+}
+
+//room 的信息
+message niuniu_srv_room {
+    optional int32 roomId = 1; //房间id
+    optional int32 roomType = 2; //房间的类型
+    optional int32 roomLevel = 3; //金币限制
+    optional string roomTitle = 4; //房间名
+}
