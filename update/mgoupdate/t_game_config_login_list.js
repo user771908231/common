@@ -1,4 +1,7 @@
-db.getCollection('t_game_config_login_list').remove()
+conn = new Mongo();
+db = conn.getDB("test");
+
+db.getCollection('t_game_config_login_list').remove();
 
 db.getCollection('t_game_config_login_list').insert({
     "GameId" : 2.0,
@@ -13,7 +16,7 @@ db.getCollection('t_game_config_login_list').insert({
     "IP" : "192.168.199.120",
     "PORT" : 3802.0,
     "STATUS" : 1.0
-})
+});
 db.getCollection('t_game_config_login_list').insert({
     "GameId" : 3.0,
     "name" : "斗地主",
@@ -27,7 +30,7 @@ db.getCollection('t_game_config_login_list').insert({
     "IP" : "192.168.199.120",
     "PORT" : 3799.0,
     "STATUS" : 1.0
-})
+});
 db.getCollection('t_game_config_login_list').insert({
     "GameId" : 4.0,
     "name" : "炸金花",
@@ -41,7 +44,7 @@ db.getCollection('t_game_config_login_list').insert({
     "IP" : "192.168.199.120",
     "PORT" : 3799.0,
     "STATUS" : 2.0
-})
+});
 db.getCollection('t_game_config_login_list').insert({
     "GameId" : 5.0,
     "name" : "大厅",
@@ -55,7 +58,7 @@ db.getCollection('t_game_config_login_list').insert({
     "IP" : "192.168.199.120",
     "PORT" : 3801.0,
     "STATUS" : 1.0
-})
+});
 db.getCollection('t_game_config_login_list').insert({
     "GameId" : 5.0,
     "name" : "大厅",
@@ -69,7 +72,7 @@ db.getCollection('t_game_config_login_list').insert({
     "IP" : "192.168.199.120",
     "PORT" : 3801.0,
     "STATUS" : 1.0
-})
+});
 db.getCollection('t_game_config_login_list').insert({
     "GameId" : 8.0,
     "name" : "抓瞎子",
@@ -83,4 +86,4 @@ db.getCollection('t_game_config_login_list').insert({
     "IP" : "192.168.199.120",
     "PORT" : 3803.0,
     "STATUS" : 1.0
-})
+});

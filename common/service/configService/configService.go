@@ -7,8 +7,8 @@ import (
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"gopkg.in/mgo.v2/bson"
-	db_init "casino_common/common/db"
-	"casino_common/common/sys"
+	//db_init "casino_common/common/db"
+	//"casino_common/common/sys"
 	"errors"
 	login_conf "casino_login/conf"
 	"time"
@@ -18,8 +18,8 @@ func init() {
 	ConfigMap = map[string]ConfInfo {
 		tableName.DBT_GAME_CONFIG_LOGIN: ConfInfo{
 			Name: "登陆服配置",
-			List: &[]login_conf.ConfStruct{},
-			Row: &login_conf.ConfStruct{},
+			List: &[]login_conf.ConfigMongo{},
+			Row: &login_conf.ConfigMongo{},
 		},
 		tableName.DBT_GAME_CONFIG_LOGIN_LIST: ConfInfo{
 			Name: "登陆服游戏列表",
@@ -27,8 +27,8 @@ func init() {
 			Row: &login_conf.ServerInfo{},
 		},
 	}
-	db_init.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
-	sys.InitRedis("192.168.199.200:6379","test")
+	//db_init.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
+	//sys.InitRedis("192.168.199.200:6379","test")
 }
 
 //列信息
@@ -146,21 +146,21 @@ func GetConfig(table_name string) (conf ConfInfo, err error) {
 }
 
 //注册配置
-func Regist(tableName string, iPtr interface{}) error {
-	val_conf := reflect.ValueOf(iPtr)
-
-	conf,err := GetConfig(tableName)
-	if err != nil {
-		return err
-	}
-	conf_val := reflect.ValueOf(conf.List)
-
-	if val_conf.Kind() != reflect.Ptr {
-		return errors.New("必须传指针进来！")
-	}
-	val_conf.Elem().Set(conf_val.Elem())
-	return nil
-}
+//func Regist(tableName string, iPtr interface{}) error {
+//	val_conf := reflect.ValueOf(iPtr)
+//
+//	conf,err := GetConfig(tableName)
+//	if err != nil {
+//		return err
+//	}
+//	conf_val := reflect.ValueOf(conf.List)
+//
+//	if val_conf.Kind() != reflect.Ptr {
+//		return errors.New("必须传指针进来！")
+//	}
+//	val_conf.Elem().Set(conf_val.Elem())
+//	return nil
+//}
 
 
 

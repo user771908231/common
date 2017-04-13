@@ -1,4 +1,7 @@
-db.getCollection('t_config_task_info').drop()
+conn = new Mongo();
+db = conn.getDB("test");
+
+db.getCollection('t_config_task_info').drop();
 
 db.t_config_task_info.insert(
 {
@@ -18,7 +21,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 2,
@@ -56,7 +59,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 4,
@@ -75,7 +78,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 5,
@@ -94,7 +97,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 6,
@@ -113,7 +116,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 
 db.t_config_task_info.insert(
 {
@@ -133,7 +136,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 8,
@@ -152,7 +155,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 9,
@@ -171,7 +174,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 10,
@@ -190,7 +193,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 11,
@@ -209,7 +212,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 12,
@@ -228,7 +231,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 13,
@@ -247,7 +250,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 14,
@@ -266,7 +269,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 15,
@@ -285,7 +288,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 16,
@@ -304,7 +307,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 17,
@@ -323,7 +326,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 18,
@@ -342,7 +345,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 19,
@@ -361,7 +364,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 20,
@@ -380,7 +383,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 21,
@@ -399,7 +402,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 22,
@@ -418,7 +421,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 23,
@@ -437,7 +440,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 24,
@@ -456,7 +459,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 25,
@@ -475,7 +478,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 26,
@@ -494,7 +497,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 27,
@@ -513,7 +516,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 
 db.t_config_task_info.insert(
 {
@@ -533,7 +536,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 102,
@@ -552,7 +555,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 
 //麻将红包任务
 db.t_config_task_info.insert(
@@ -573,7 +576,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 //斗地主红包任务
 db.t_config_task_info.insert(
 {
@@ -593,7 +596,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 //炸金花红包任务
 db.t_config_task_info.insert(
 {
@@ -613,4 +616,4 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
