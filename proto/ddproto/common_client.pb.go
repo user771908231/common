@@ -22,6 +22,10 @@ It is generated from these files:
 	ddz_hall.proto
 	ddz_play.proto
 	ddz_server.proto
+	erddz_base.proto
+	erddz_desk.proto
+	erddz_hall.proto
+	erddz_play.proto
 	hall.proto
 	hall_data.proto
 	hot_update.proto
@@ -174,6 +178,41 @@ It has these top-level messages:
 	DdzSrvUser
 	DdzSrvRoom
 	DdzSrvBak
+	ErddzBaseRoomTypeInfo
+	ErddzBasePlayerInfo
+	ErddzBasePlayerRateInfo
+	ErddzBaseCommonRateInfo
+	ErddzBaseTimerInfo
+	ErddzBaseDeskInfo
+	ErddzReqDissolveDesk
+	ErddzAckDissolveDesk
+	ErddzReqReady
+	ErddzAckReady
+	ErddzBaseWinCoinInfo
+	ErddzBcCurrentResult
+	ErddzBaseEndLotteryInfo
+	ErddzBcEndLottery
+	ErddzReqCreateDesk
+	ErddzAckCreateDesk
+	ErddzReqEnterDesk
+	ErddzAckEnterDesk
+	ErddzBcOpening
+	ErddzBcDealCards
+	ErddzReqJiaoDiZhu
+	ErddzAckJiaoDiZhu
+	ErddzReqRobDiZhu
+	ErddzAckRobDiZhu
+	ErddzReqRangcards
+	ErddzAckRangcards
+	ErddzReqDouble
+	ErddzAckDouble
+	ErddzBcStartPlay
+	ErddzReqOutCards
+	ErddzAckOutCards
+	ErddzReqActGuo
+	ErddzAckActGuo
+	ErddzBcOverTurn
+	ErddzBcGameInfo
 	HallReqEvent
 	HallAckEvent
 	HallLotteryItem

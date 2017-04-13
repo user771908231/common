@@ -392,7 +392,7 @@ func (x *MJ_BAISHAN_PID) UnmarshalJSON(data []byte) error {
 	*x = MJ_BAISHAN_PID(value)
 	return nil
 }
-func (MJ_BAISHAN_PID) EnumDescriptor() ([]byte, []int) { return fileDescriptor19, []int{0} }
+func (MJ_BAISHAN_PID) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{0} }
 
 type MJOption int32
 
@@ -467,7 +467,7 @@ func (x *MJOption) UnmarshalJSON(data []byte) error {
 	*x = MJOption(value)
 	return nil
 }
-func (MJOption) EnumDescriptor() ([]byte, []int) { return fileDescriptor19, []int{1} }
+func (MJOption) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{1} }
 
 // 玩法：包括自摸、点炮、以及可多选的玩法
 type PlayOptions struct {
@@ -481,7 +481,7 @@ type PlayOptions struct {
 func (m *PlayOptions) Reset()                    { *m = PlayOptions{} }
 func (m *PlayOptions) String() string            { return proto.CompactTextString(m) }
 func (*PlayOptions) ProtoMessage()               {}
-func (*PlayOptions) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{0} }
+func (*PlayOptions) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{0} }
 
 func (m *PlayOptions) GetZiMoRadio() int32 {
 	if m != nil && m.ZiMoRadio != nil {
@@ -523,7 +523,7 @@ type ChangShaPlayOptions struct {
 func (m *ChangShaPlayOptions) Reset()                    { *m = ChangShaPlayOptions{} }
 func (m *ChangShaPlayOptions) String() string            { return proto.CompactTextString(m) }
 func (*ChangShaPlayOptions) ProtoMessage()               {}
-func (*ChangShaPlayOptions) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{1} }
+func (*ChangShaPlayOptions) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{1} }
 
 func (m *ChangShaPlayOptions) GetPlayerCount() int32 {
 	if m != nil && m.PlayerCount != nil {
@@ -568,7 +568,7 @@ type RoomTypeInfo struct {
 func (m *RoomTypeInfo) Reset()                    { *m = RoomTypeInfo{} }
 func (m *RoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*RoomTypeInfo) ProtoMessage()               {}
-func (*RoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{2} }
+func (*RoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{2} }
 
 func (m *RoomTypeInfo) GetMjRoomType() MJRoomType {
 	if m != nil && m.MjRoomType != nil {
@@ -636,7 +636,7 @@ type ComposeCard struct {
 func (m *ComposeCard) Reset()                    { *m = ComposeCard{} }
 func (m *ComposeCard) String() string            { return proto.CompactTextString(m) }
 func (*ComposeCard) ProtoMessage()               {}
-func (*ComposeCard) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{3} }
+func (*ComposeCard) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{3} }
 
 func (m *ComposeCard) GetValue() int32 {
 	if m != nil && m.Value != nil {
@@ -672,7 +672,7 @@ type PlayerCard struct {
 func (m *PlayerCard) Reset()                    { *m = PlayerCard{} }
 func (m *PlayerCard) String() string            { return proto.CompactTextString(m) }
 func (*PlayerCard) ProtoMessage()               {}
-func (*PlayerCard) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{4} }
+func (*PlayerCard) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{4} }
 
 func (m *PlayerCard) GetHandCard() []*CardInfo {
 	if m != nil {
@@ -740,7 +740,7 @@ type PlayerInfo struct {
 func (m *PlayerInfo) Reset()                    { *m = PlayerInfo{} }
 func (m *PlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PlayerInfo) ProtoMessage()               {}
-func (*PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{5} }
+func (*PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{5} }
 
 func (m *PlayerInfo) GetIsBanker() bool {
 	if m != nil && m.IsBanker != nil {
@@ -882,7 +882,7 @@ type DeskGameInfo struct {
 func (m *DeskGameInfo) Reset()                    { *m = DeskGameInfo{} }
 func (m *DeskGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*DeskGameInfo) ProtoMessage()               {}
-func (*DeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor19, []int{6} }
+func (*DeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{6} }
 
 func (m *DeskGameInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -994,7 +994,7 @@ func init() {
 	proto.RegisterEnum("ddproto.MJOption", MJOption_name, MJOption_value)
 }
 
-var fileDescriptor19 = []byte{
+var fileDescriptor23 = []byte{
 	// 1926 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x57, 0xeb, 0x76, 0xdb, 0xb8,
 	0xd5, 0xfd, 0x7c, 0x97, 0x21, 0x47, 0x46, 0x60, 0x3b, 0xc3, 0x38, 0x4e, 0xe2, 0x51, 0x32, 0x19,

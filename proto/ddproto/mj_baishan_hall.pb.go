@@ -157,7 +157,7 @@ type Game_Notice struct {
 func (m *Game_Notice) Reset()                    { *m = Game_Notice{} }
 func (m *Game_Notice) String() string            { return proto.CompactTextString(m) }
 func (*Game_Notice) ProtoMessage()               {}
-func (*Game_Notice) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{0} }
+func (*Game_Notice) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{0} }
 
 func (m *Game_Notice) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -195,7 +195,7 @@ type Game_AckNotice struct {
 func (m *Game_AckNotice) Reset()                    { *m = Game_AckNotice{} }
 func (m *Game_AckNotice) String() string            { return proto.CompactTextString(m) }
 func (*Game_AckNotice) ProtoMessage()               {}
-func (*Game_AckNotice) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{1} }
+func (*Game_AckNotice) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{1} }
 
 func (m *Game_AckNotice) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -258,7 +258,7 @@ type Game_GameRecord struct {
 func (m *Game_GameRecord) Reset()                    { *m = Game_GameRecord{} }
 func (m *Game_GameRecord) String() string            { return proto.CompactTextString(m) }
 func (*Game_GameRecord) ProtoMessage()               {}
-func (*Game_GameRecord) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{2} }
+func (*Game_GameRecord) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{2} }
 
 func (m *Game_GameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -300,7 +300,7 @@ type BeanUserRecord struct {
 func (m *BeanUserRecord) Reset()                    { *m = BeanUserRecord{} }
 func (m *BeanUserRecord) String() string            { return proto.CompactTextString(m) }
 func (*BeanUserRecord) ProtoMessage()               {}
-func (*BeanUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{3} }
+func (*BeanUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{3} }
 
 func (m *BeanUserRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -343,7 +343,7 @@ type BeanGameRecord struct {
 func (m *BeanGameRecord) Reset()                    { *m = BeanGameRecord{} }
 func (m *BeanGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*BeanGameRecord) ProtoMessage()               {}
-func (*BeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{4} }
+func (*BeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{4} }
 
 func (m *BeanGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -392,7 +392,7 @@ type Game_AckGameRecord struct {
 func (m *Game_AckGameRecord) Reset()                    { *m = Game_AckGameRecord{} }
 func (m *Game_AckGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*Game_AckGameRecord) ProtoMessage()               {}
-func (*Game_AckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{5} }
+func (*Game_AckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{5} }
 
 func (m *Game_AckGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -432,7 +432,7 @@ type Game_Feedback struct {
 func (m *Game_Feedback) Reset()                    { *m = Game_Feedback{} }
 func (m *Game_Feedback) String() string            { return proto.CompactTextString(m) }
 func (*Game_Feedback) ProtoMessage()               {}
-func (*Game_Feedback) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{6} }
+func (*Game_Feedback) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{6} }
 
 func (m *Game_Feedback) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -458,7 +458,7 @@ type Game_CreateRoom struct {
 func (m *Game_CreateRoom) Reset()                    { *m = Game_CreateRoom{} }
 func (m *Game_CreateRoom) String() string            { return proto.CompactTextString(m) }
 func (*Game_CreateRoom) ProtoMessage()               {}
-func (*Game_CreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{7} }
+func (*Game_CreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{7} }
 
 func (m *Game_CreateRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -488,7 +488,7 @@ type Game_AckCreateRoom struct {
 func (m *Game_AckCreateRoom) Reset()                    { *m = Game_AckCreateRoom{} }
 func (m *Game_AckCreateRoom) String() string            { return proto.CompactTextString(m) }
 func (*Game_AckCreateRoom) ProtoMessage()               {}
-func (*Game_AckCreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{8} }
+func (*Game_AckCreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{8} }
 
 func (m *Game_AckCreateRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -548,7 +548,7 @@ type Game_EnterRoom struct {
 func (m *Game_EnterRoom) Reset()                    { *m = Game_EnterRoom{} }
 func (m *Game_EnterRoom) String() string            { return proto.CompactTextString(m) }
 func (*Game_EnterRoom) ProtoMessage()               {}
-func (*Game_EnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{9} }
+func (*Game_EnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{9} }
 
 func (m *Game_EnterRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -614,7 +614,7 @@ type Game_AckEnterRoom struct {
 func (m *Game_AckEnterRoom) Reset()                    { *m = Game_AckEnterRoom{} }
 func (m *Game_AckEnterRoom) String() string            { return proto.CompactTextString(m) }
 func (*Game_AckEnterRoom) ProtoMessage()               {}
-func (*Game_AckEnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor21, []int{10} }
+func (*Game_AckEnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{10} }
 
 func (m *Game_AckEnterRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -637,7 +637,7 @@ func init() {
 	proto.RegisterType((*Game_AckEnterRoom)(nil), "ddproto.game_AckEnterRoom")
 }
 
-var fileDescriptor21 = []byte{
+var fileDescriptor25 = []byte{
 	// 643 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xcd, 0x6e, 0xd3, 0x40,
 	0x10, 0xc6, 0x76, 0x9d, 0x9f, 0x09, 0x6d, 0x85, 0xa1, 0xc5, 0x8a, 0x10, 0xb2, 0x2c, 0x0e, 0x39,

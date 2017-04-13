@@ -134,5 +134,7 @@ enum MJRoomType {
     roomType_sanRenSanFang = 8; // 三人三房
     roomType_changSha = 9; //长沙麻将
     roomType_zhuoxiazi = 10; //捉虾子
+    roomType_mj_baishan = 12; //白山麻将
 }
+
 

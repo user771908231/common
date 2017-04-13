@@ -51,7 +51,7 @@ func (x *NiuniuEnum_PokerType) UnmarshalJSON(data []byte) error {
 	*x = NiuniuEnum_PokerType(value)
 	return nil
 }
-func (NiuniuEnum_PokerType) EnumDescriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
+func (NiuniuEnum_PokerType) EnumDescriptor() ([]byte, []int) { return fileDescriptor28, []int{0} }
 
 // 用户游戏状态
 type NiuniuEnumGameState int32
@@ -89,7 +89,7 @@ func (x *NiuniuEnumGameState) UnmarshalJSON(data []byte) error {
 	*x = NiuniuEnumGameState(value)
 	return nil
 }
-func (NiuniuEnumGameState) EnumDescriptor() ([]byte, []int) { return fileDescriptor24, []int{1} }
+func (NiuniuEnumGameState) EnumDescriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
 
 // 打出去的牌
 type NiuniuSrvPoker struct {
@@ -101,7 +101,7 @@ type NiuniuSrvPoker struct {
 func (m *NiuniuSrvPoker) Reset()                    { *m = NiuniuSrvPoker{} }
 func (m *NiuniuSrvPoker) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvPoker) ProtoMessage()               {}
-func (*NiuniuSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
+func (*NiuniuSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{0} }
 
 func (m *NiuniuSrvPoker) GetPais() []*CommonSrvPokerPai {
 	if m != nil {
@@ -130,7 +130,7 @@ type NiuniuSrvUserBill struct {
 func (m *NiuniuSrvUserBill) Reset()                    { *m = NiuniuSrvUserBill{} }
 func (m *NiuniuSrvUserBill) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvUserBill) ProtoMessage()               {}
-func (*NiuniuSrvUserBill) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{1} }
+func (*NiuniuSrvUserBill) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
 
 func (m *NiuniuSrvUserBill) GetScore() int32 {
 	if m != nil && m.Score != nil {
@@ -183,7 +183,7 @@ type NiuniuSrvUser struct {
 func (m *NiuniuSrvUser) Reset()                    { *m = NiuniuSrvUser{} }
 func (m *NiuniuSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvUser) ProtoMessage()               {}
-func (*NiuniuSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{2} }
+func (*NiuniuSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{2} }
 
 func (m *NiuniuSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -257,7 +257,7 @@ type NiuniuSrvDesk struct {
 func (m *NiuniuSrvDesk) Reset()                    { *m = NiuniuSrvDesk{} }
 func (m *NiuniuSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvDesk) ProtoMessage()               {}
-func (*NiuniuSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{3} }
+func (*NiuniuSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{3} }
 
 func (m *NiuniuSrvDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -327,7 +327,7 @@ type NiuniuSrvRoom struct {
 func (m *NiuniuSrvRoom) Reset()                    { *m = NiuniuSrvRoom{} }
 func (m *NiuniuSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvRoom) ProtoMessage()               {}
-func (*NiuniuSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{4} }
+func (*NiuniuSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{4} }
 
 func (m *NiuniuSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -367,7 +367,7 @@ func init() {
 	proto.RegisterEnum("ddproto.NiuniuEnumGameState", NiuniuEnumGameState_name, NiuniuEnumGameState_value)
 }
 
-var fileDescriptor24 = []byte{
+var fileDescriptor28 = []byte{
 	// 572 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0xcf, 0x6f, 0xd3, 0x30,
 	0x14, 0x26, 0x4d, 0xdb, 0xa5, 0x6f, 0x3f, 0x88, 0xcc, 0x98, 0xcc, 0xd8, 0x46, 0x94, 0x53, 0xb5,
