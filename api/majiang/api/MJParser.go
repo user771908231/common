@@ -27,7 +27,14 @@ type MJParserCore struct {
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
 func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	//log.T("开始统计牌的数量:%v", utils.List2Str(pais))
-	counts := make([]int, 27) //0~27
+	//0 ~ 45
+	// 0 ~ 8 万
+	// 9 ~ 17 索
+	// 18 ~ 26 筒
+	// 27 ~ 35 中27 发28 白29 东30 南31 西32 北33
+
+	//counts := make([]int, 27) //0~27
+	counts := make([]int, 36) //0~35
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
 	}
@@ -381,6 +388,125 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 			if (count[i] >= 3) {
 				count[i] -= 3
 				result, isAll19, jiang = p.TryHU(count, len-3)
+				if (result) {
+					//log.T("i: %v, value: %v", i, count[i])
+					if !p.is19(i) {
+						//不是幺九
+						//log.T("branch 5 pos%v不是幺九", i)
+						isAll19 = false
+					}
+					return true, isAll19, jiang
+				}
+				count[i] += 3
+			}
+		}
+	}
+	return false, isAll19, jiang
+}
+
+
+func (p *MJParserCore) TryHU2(count []int, len int) (result bool, isAll19 bool, jiang int) {
+	//log.T("开始判断tryHu(%v,%v)", count, len)
+	isAll19 = true //全带幺
+	result = false
+	jiang = -1
+	//递归完所有的牌表示 胡了
+	if (len == 0) {
+		//log.T("len == 0")
+		return true, isAll19, jiang
+	}
+
+	if (len%3 == 2) {
+		//log.T("if %v 取模 3 == 2", len)
+		// 说明对牌出现
+		for i := 0; i < 27; i++ {
+			if (count[i] >= 2) {
+				count[i] -= 2
+
+				result, isAll19, jiang = p.TryHU2(count, len-2)
+				if (result) {
+					//log.T("i: %v, value: %v", i, count[i])
+					if ! p.is19(i) {
+						//不是幺九
+						isAll19 = false
+					}
+					jiang = i
+					return true, isAll19, jiang
+				}
+				count[i] += 2
+			}
+		}
+	} else {
+		//log.T("else %v", len)
+		// 是否是顺子，这里应该分开判断
+		for i := 0; i < 7; i++ {
+			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+				count[i] -= 1;
+				count[i+1] -= 1;
+				count[i+2] -= 1;
+				result, isAll19, jiang = p.TryHU2(count, len-3)
+				if (result) {
+					//log.T("i: %v, value: %v", i, count[i])
+					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
+						//不是幺九
+						//log.T("branch 2 pos%v不是幺九", i)
+						isAll19 = false
+					}
+					return true, isAll19, jiang
+				}
+				count[i] += 1
+				count[i+1] += 1
+				count[i+2] += 1
+			}
+		}
+
+		for i := 9; i < 16; i++ {
+			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+				count[i] -= 1
+				count[i+1] -= 1
+				count[i+2] -= 1
+				result, isAll19, jiang = p.TryHU2(count, len-3)
+				if (result) {
+					//log.T("i: %v, value: %v", i, count[i])
+					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
+						//不是幺九
+						//log.T("branch 3 pos%v不是幺九", i)
+						isAll19 = false
+					}
+					return true, isAll19, jiang
+				}
+				count[i] += 1
+				count[i+1] += 1
+				count[i+2] += 1
+			}
+		}
+
+		for i := 18; i < 25; i++ {
+			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+				count[i] -= 1;
+				count[i+1] -= 1;
+				count[i+2] -= 1;
+				result, isAll19, jiang = p.TryHU2(count, len-3)
+				if (result) {
+					//log.T("i: %v, value: %v", i, count[i])
+					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
+						//不是幺九
+						//log.T("branch 4 pos%v不是幺九", i)
+						isAll19 = false
+					}
+					return true, isAll19, jiang
+				}
+				count[i] += 1;
+				count[i+1] += 1;
+				count[i+2] += 1;
+			}
+		}
+
+		// 三个一样的
+		for i := 0; i < 35; i++ {
+			if (count[i] >= 3) {
+				count[i] -= 3
+				result, isAll19, jiang = p.TryHU2(count, len-3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) {
