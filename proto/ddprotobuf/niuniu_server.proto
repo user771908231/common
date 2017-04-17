@@ -17,10 +17,19 @@ message niuniu_srv_poker {
 }
 
 //用户游戏状态
-enum niuniu_enum_game_state {
-    NO_READY = 1;  //未准备
-    IS_READY = 2;  //已准备
-    IS_GAMMING = 3;  //正在游戏中
+enum niuniu_enum_user_state {
+    NIU_USER_STATUS_NO_READY = 1;  //未准备
+    NIU_USER_STATUS_IS_READY = 2;  //已准备
+    NIU_USER_STATUS_IS_GAMMING = 3;  //正在游戏中
+}
+
+//房间状态
+enum niuniu_enum_desk_state {
+    NIU_DESK_STATUS_WAIT_ENTER = 1; //等待玩家进入
+
+    NIU_DESK_STATUS_NO_READY = 2;  //未准备-有一个或多人未准备
+    NIU_DESK_STATUS_IS_READY = 3;  //已准备-所有人都已准备，但是庄家还没有点开始比赛
+    NIU_DESK_STATUS_IS_GAMMING = 4;  //正在游戏中-已经开始比赛
 }
 
 //对局账单信息
@@ -39,9 +48,27 @@ message niuniu_srv_user {
     optional int32 deskId = 4;
     optional int32 gameNumber = 5; //游戏编号，每一句游戏都有一个游戏编号
     optional niuniu_srv_user_bill bill = 6; //玩家这一句的账单数据
-    optional niuniu_enum_game_state status = 7;
+    optional niuniu_enum_user_state status = 7;
     optional bool isOnline = 10; //是否在线
     optional int32 index = 12;  //所在牌桌的索引
+    optional niuniu_srv_poker pokers = 13; //发的牌
+}
+
+//坐庄规则
+enum niuniu_enum_banker_rule {
+    DING_ZHUANG = 1; //定庄
+    SUI_JI_ZUO_ZHUANG = 2; //随机坐庄
+    QIANG_ZHUANG = 3;  //抢庄
+}
+
+//desk 配置选项
+message niuniu_srv_desk_option {
+    optional int32 minUser = 1; //最小开局人数 2
+    optional int32 maxUser = 2; //最大开局人数 6
+    optional int32 maxCircle = 3; //最大圈数 10、20
+    optional bool hasFlower = 4;  //是否有花牌 J、Q、K
+    optional niuniu_enum_banker_rule bankRule = 5;  //坐庄规则 轮流坐庄、随机坐庄、看牌抢庄
+
 }
 
 //desk 的信息
@@ -50,10 +77,12 @@ message niuniu_srv_desk {
     optional string deskNumber = 2; //朋友桌房号
     optional int32 gameNumber = 3; //游戏编号，每一句游戏都有一个游戏编号
     optional int32 roomId = 4; //房间id
-    optional uint32 lastWiner = 5; //上一位赢牌的玩家
-    optional niuniu_enum_game_state status = 6; //房间游戏状态
-    optional int32 minUser = 7; //最小准备人数
+    optional niuniu_enum_desk_state status = 5; //房间游戏状态
+    optional uint32 lastWiner = 6; //上一位赢牌的玩家
     optional int32 circleNo = 8; //当前是第几圈
+    optional uint32 owner = 10;  //房主
+    optional uint32 currBanker = 11;  //当前庄家
+    optional niuniu_srv_desk_option deskOption = 12;  //房间配置
 }
 
 //room 的信息

@@ -1,7 +1,7 @@
 conn = new Mongo();
 db = conn.getDB("test");
 
-db.getCollection('t_game_config_login_list').remove();
+db.getCollection('t_game_config_login_list').remove({});
 
 var loginIp = "192.168.199.120";
 
