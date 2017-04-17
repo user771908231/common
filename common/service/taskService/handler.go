@@ -134,7 +134,9 @@ func HandlerCheckBonusReq(req *ddproto.HallReqCheckBonus, agent gate.Agent) {
 	}else {
 		*msg.Header.Code = 1
 		if len(reward) > 0 {
-			*msg.GiveBonus = reward[0].GetAmount()
+			reward_num := reward[0].GetAmount()
+			reward_num = float64(int64(reward_num*100))/100
+			*msg.GiveBonus = reward_num
 		}
 		*msg.Header.Error = "恭喜你，成功领取" + name + "."
 	}
