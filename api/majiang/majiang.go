@@ -11,7 +11,7 @@ var clienMap map[int]int32
 
 func init() {
 
-	clienMap = make(map[int]int32, 108)
+	clienMap = make(map[int]int32, 135) //108
 	clienMap[0] = 19
 	clienMap[1] = 19
 	clienMap[2] = 19
@@ -146,6 +146,49 @@ func init() {
 	clienMap[105] = 9
 	clienMap[106] = 9
 	clienMap[107] = 9
+
+	//东
+	clienMap[108] = 28
+	clienMap[109] = 28
+	clienMap[110] = 28
+	clienMap[111] = 28
+
+	//南
+	clienMap[112] = 29
+	clienMap[113] = 29
+	clienMap[114] = 29
+	clienMap[115] = 29
+
+	//西
+	clienMap[116] = 30
+	clienMap[117] = 30
+	clienMap[118] = 30
+	clienMap[119] = 30
+
+	//北
+	clienMap[120] = 31
+	clienMap[121] = 31
+	clienMap[122] = 31
+	clienMap[123] = 31
+
+	//中
+	clienMap[124] = 32
+	clienMap[125] = 32
+	clienMap[126] = 32
+	clienMap[127] = 32
+
+	//白
+	clienMap[128] = 33
+	clienMap[129] = 33
+	clienMap[130] = 33
+	clienMap[131] = 33
+
+	//发
+	clienMap[132] = 34
+	clienMap[133] = 34
+	clienMap[134] = 34
+	clienMap[135] = 34
+
 }
 
 //番数 顶番5
@@ -174,10 +217,15 @@ type HuPai struct {
 type MJ_FLOWER int32
 
 var (
+	MJ_FLOWER_ERROR MJ_FLOWER = 0
+
 	//万条同，分别是123
 	MJ_FLOWER_W MJ_FLOWER = 1
 	MJ_FLOWER_S MJ_FLOWER = 2
 	MJ_FLOWER_T MJ_FLOWER = 3
+
+	//风牌 中发白东南西北 分别是1234567
+	MJ_FLOWER_FENG MJ_FLOWER = 4
 )
 
 //麻将牌的结构
@@ -198,13 +246,20 @@ func (p *MJPAI) InitByDes() error {
 	flowerStr := sarry[0]
 
 	//初始化花色
-	if flowerStr == "T" {
+	switch flowerStr {
+	case "T": //筒
 		p.Flower = MJ_FLOWER_T
-	} else if flowerStr == "S" {
+	case "S": //索
 		p.Flower = MJ_FLOWER_S
-	} else {
+	case "W": //万
 		p.Flower = MJ_FLOWER_W
+	case "FENG": //风牌
+		p.Flower = MJ_FLOWER_FENG
+
+	default:
+		p.Flower = MJ_FLOWER_ERROR
 	}
+
 	//初始化大小
 	p.Value = int32(numUtils.String2Int(sarry[1]))
 	return nil
@@ -213,7 +268,7 @@ func (p *MJPAI) InitByDes() error {
 
 //这里得到牌的计数index
 func (p *MJPAI) GetCountIndex() int32 {
-	return p.Value - 1 + (int32(p.Flower - 1))*9 //todo 此方法是否合适...
+	return p.Value - 1 + (int32(p.Flower - 1)) * 9 //todo 此方法是否合适...
 }
 
 //todo
@@ -243,16 +298,18 @@ func (p *MJPAI) LogDes() string {
 }
 
 func GetFlow(f int32) string {
-	if f == 1 {
+	switch MJ_FLOWER(f) {
+	case MJ_FLOWER_W:
 		return "万"
-	} else if f == 2 {
-		return "条"
-	} else if f == 3 {
+	case MJ_FLOWER_T:
 		return "筒"
-	} else {
+	case MJ_FLOWER_S:
+		return "索"
+	case MJ_FLOWER_FENG:
+		return "风"
+	default:
 		return "白"
 	}
-
 }
 
 //-----------------------------------------------------------------排序--------------------------------------

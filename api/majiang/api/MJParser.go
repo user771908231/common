@@ -27,7 +27,14 @@ type MJParserCore struct {
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
 func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	//log.T("开始统计牌的数量:%v", utils.List2Str(pais))
-	counts := make([]int, 27) //0~27
+	//0 ~ 45
+	// 0 ~ 8 万
+	// 9 ~ 17 索
+	// 18 ~ 26 筒
+	// 27 ~ 35 中27 发28 白29 东30 南31 西32 北33
+
+	//counts := make([]int, 27) //0~27
+	counts := make([]int, 36) //0~35
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
 	}
