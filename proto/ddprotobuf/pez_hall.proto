@@ -1,6 +1,4 @@
 syntax = "proto2";
-import public "common_client.proto";
-import public "mj_common.proto";
 import public "pez_base.proto";
 
 package ddproto;
@@ -29,7 +27,8 @@ message pez_req_EnterRoom {
     optional int32 tableId = 3;
     optional string PassWord = 4; // 房间密码
     optional uint32 userId = 5; // 请求的userId
-    optional int32 enterType = 8; //0,普通进入，1，自动进入或者断线重连
+    optional int32 roomType = 6; //1,朋友桌，2金币场
+    optional int32 enterType = 7; //0,普通进入，1，自动进入或者断线重连
 }
 
 message pez_req_AckEnterRoom {
