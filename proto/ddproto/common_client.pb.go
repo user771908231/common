@@ -41,6 +41,11 @@ It is generated from these files:
 	pdk_hall.proto
 	pdk_play.proto
 	pdk_server.proto
+	pez_base.proto
+	pez_desk.proto
+	pez_hall.proto
+	pez_play.proto
+	pez_server.proto
 	zjh_base.proto
 	zjh_desk.proto
 	zjh_hall.proto
@@ -417,6 +422,37 @@ It has these top-level messages:
 	PdkSrvUser
 	PdkSrvRoom
 	PdkSrvBak
+	PezBase_PaiInfo
+	PezBase_PlayOptions
+	PezBase_PlayConf
+	PezBase_RoomTypeInfo
+	PezBase_PaiValue
+	PezBase_PlayerCard
+	PezBase_PlayerInfo
+	PezBase_DeskGameInfo
+	PezGame_DissolveDesk
+	PezGame_AckDissolveDesk
+	PezGame_ReqDissolveDesk
+	PezGame_AckReqDissolveDesk
+	PezGame_Ready
+	PezGame_AckReady
+	BetInfo
+	Pez_WinScoreInfo
+	Pez_EndLotteryInfo
+	PezGame_SendCurrentResult
+	PezGame_SendEndLottery
+	PezReq_CreateRoom
+	PezReq_AckCreateRoom
+	PezReq_EnterRoom
+	PezReq_AckEnterRoom
+	PezUserCoinBean
+	PezGame_Opening
+	PezGame_DealCards
+	PezGame_Bet
+	PezGame_AckBet
+	PezGame_OpenCard
+	PezGame_AckOpenCard
+	PezGame_SendGameInfo
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
