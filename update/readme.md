@@ -27,3 +27,7 @@
 
 ### 2017-04-10:
 1. 插入t_game_config_login_list.txt表
+
+### 2017-04-13:
+1. 更新t_bonus_task_compute_config.txt表
+2. 重启大厅

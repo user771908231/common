@@ -66,6 +66,11 @@ func NewRecord(userId uint32, goods_type ddproto.HallEnumTradeType, amount float
 	//	//扣除红包数
 	//	userService.DECUserBonus(userId, amount)
 	//}
+	//扣除红包
+	_, err_dec := userService.DECUserBonus(userId, amount)
+	if err_dec != nil {
+		return nil, errors.New("您的红包余额不足，兑换失败！")
+	}
 	new_record := &ExchangeRecord{
 		Type: goods_type,
 		Money: amount,

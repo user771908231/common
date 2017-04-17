@@ -1,4 +1,7 @@
-db.getCollection('t_goods_info').drop()
+conn = new Mongo();
+db = conn.getDB("test");
+
+db.getCollection('t_goods_info').drop();
 
 db.getCollection('t_goods_info').insert(
 {
@@ -14,7 +17,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 1
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 2,
@@ -29,7 +32,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 2
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 3,
@@ -44,7 +47,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 3
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 4,
@@ -59,7 +62,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 4
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 5,
@@ -74,7 +77,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 5
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 6,
@@ -89,7 +92,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 6
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 7,
@@ -104,7 +107,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 1
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 8,
@@ -119,7 +122,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 2
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 9,
@@ -134,7 +137,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 3
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 10,
@@ -149,7 +152,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 4
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 11,
@@ -164,7 +167,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 5
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 12,
@@ -179,7 +182,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 6
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 13,
@@ -194,7 +197,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 1
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 14,
@@ -209,7 +212,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 2
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 15,
@@ -224,7 +227,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 3
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 16,
@@ -239,7 +242,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 4
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 17,
@@ -254,7 +257,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 5
 }
-)
+);
 
 db.getCollection('t_goods_info').insert(
 {
@@ -270,7 +273,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 1
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 20,
@@ -285,7 +288,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 2
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 21,
@@ -300,7 +303,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 3
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 22,
@@ -315,7 +318,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 4
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 23,
@@ -330,7 +333,7 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 5
 }
-)
+);
 db.getCollection('t_goods_info').insert(
 {
     "goodsid" : 24,
@@ -345,4 +348,4 @@ db.getCollection('t_goods_info').insert(
     "isshow" : true,
     "sort" : 6
 }
-)
+);

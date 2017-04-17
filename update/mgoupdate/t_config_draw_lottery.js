@@ -1,4 +1,7 @@
-db.getCollection('t_config_draw_lottery').drop()
+conn = new Mongo();
+db = conn.getDB("test");
+
+db.getCollection('t_config_draw_lottery').drop();
 
 db.t_config_draw_lottery.insert(
 {
@@ -10,7 +13,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 10.0,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71c"),
@@ -21,7 +24,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 15.0,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71d"),
@@ -32,7 +35,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 5.0,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71e"),
@@ -43,7 +46,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 24.5,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a71f"),
@@ -54,7 +57,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 10.0,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a720"),
@@ -65,7 +68,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 0.5,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a721"),
@@ -76,7 +79,7 @@ db.t_config_draw_lottery.insert(
     "percent" : 20.0,
     "version" : 1.0
 }
-)
+);
 db.t_config_draw_lottery.insert(
 {
     "_id" : ObjectId("587c4e74e36aeb81eb71a722"),
@@ -87,4 +90,4 @@ db.t_config_draw_lottery.insert(
     "percent" : 5.0,
     "version" : 1.0
 }
-)
+);
