@@ -7,7 +7,7 @@ db.t_th_notice.insert({
 	"id" : 1,
 	"noticetype" : 1,
 	"noticetitle" : "来一圈游戏,邀约好友玩牌的利器",
-	"noticecontent" : "来一圈游戏, 邀约好友切磋牌技娱乐, 切不可赌博! 若有疑问, 请联系客服微信shenjingyouxi",
+	"noticecontent" : "来一圈游戏, 邀约好友切磋牌技娱乐, 切不可赌博! 若有疑问, 请联系客服微信lyqyouxi",
 	"noticememo" : "",
 	"noticefileds" : [ ]
 });
@@ -18,7 +18,7 @@ db.t_th_notice.insert({
 	"noticetitle" : "来一圈游戏,邀约好友玩牌的利器",
 	"noticecontent" : "创建房间后,点击微信邀请,发送邀请链接给好友,好友安装App后可一键点击分享的房号进入房间. 赶快去试试吧",
 	"noticememo" : "",
-	"noticefileds" : [ "购买钻石请联系微信", "shenjingyouxi", "代理加盟请联系微信", "shenjingyouxi", "投诉建议请联系客服QQ", "3298896830", "【湖南麻将】客服微信号", "229459253", "【湖南麻将】QQ","229459253" ]
+	"noticefileds" : [ "购买钻石请联系微信", "lyqyouxi", "代理加盟请联系微信", "lyqyouxi", "投诉建议请联系客服QQ", "3298896830", "【湖南麻将】客服微信号", "229459253", "【湖南麻将】QQ","229459253" ]
 });
 
 
