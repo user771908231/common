@@ -1,11 +1,12 @@
+var loginIp = "182.92.225.121";
+var tableName = "t_game_config_login_list";
+var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
+
 conn = new Mongo();
 db = conn.getDB("test");
 
 db.getCollection('t_game_config_login_list').remove({});
 
-var loginIp = "192.168.199.120";
-var tableName = "t_game_config_login_list";
-var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html"
 
 db.getCollection(tableName).insert({
     "GameId": 2.0,
@@ -13,7 +14,7 @@ db.getCollection(tableName).insert({
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
     "IsMaintain": 0.0,
-    "MaintainMsg": "测试斗地主的维护信息",
+    "MaintainMsg": "麻将",
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
@@ -28,7 +29,7 @@ db.getCollection(tableName).insert({
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
     "IsMaintain": 0.0,
-    "MaintainMsg": "测试麻将的维护信息",
+    "MaintainMsg": "斗地主",
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
@@ -43,7 +44,7 @@ db.getCollection(tableName).insert({
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
     "IsMaintain": 0.0,
-    "MaintainMsg": "测试炸金花的维护信息",
+    "MaintainMsg": "炸金花",
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
@@ -58,7 +59,7 @@ db.getCollection(tableName).insert({
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
     "IsMaintain": 0.0,
-    "MaintainMsg": "大厅的维护信息",
+    "MaintainMsg": "大厅",
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
@@ -73,7 +74,7 @@ db.getCollection(tableName).insert({
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
     "IsMaintain": 0.0,
-    "MaintainMsg": "测试抓虾子的维护信息",
+    "MaintainMsg": "跑得快",
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
@@ -88,7 +89,7 @@ db.getCollection(tableName).insert({
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
     "IsMaintain": 0.0,
-    "MaintainMsg": "测试抓虾子的维护信息",
+    "MaintainMsg": "抓瞎子",
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
