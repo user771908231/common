@@ -190,7 +190,7 @@ func (x *PEZ_RECONNECT_TYPE) UnmarshalJSON(data []byte) error {
 	*x = PEZ_RECONNECT_TYPE(value)
 	return nil
 }
-func (PEZ_RECONNECT_TYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor36, []int{0} }
+func (PEZ_RECONNECT_TYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor37, []int{0} }
 
 // 积分
 type PezUserCoinBean struct {
@@ -202,7 +202,7 @@ type PezUserCoinBean struct {
 func (m *PezUserCoinBean) Reset()                    { *m = PezUserCoinBean{} }
 func (m *PezUserCoinBean) String() string            { return proto.CompactTextString(m) }
 func (*PezUserCoinBean) ProtoMessage()               {}
-func (*PezUserCoinBean) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{0} }
+func (*PezUserCoinBean) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{0} }
 
 func (m *PezUserCoinBean) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -231,7 +231,7 @@ type PezGame_Opening struct {
 func (m *PezGame_Opening) Reset()                    { *m = PezGame_Opening{} }
 func (m *PezGame_Opening) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_Opening) ProtoMessage()               {}
-func (*PezGame_Opening) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{1} }
+func (*PezGame_Opening) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{1} }
 
 func (m *PezGame_Opening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -280,7 +280,7 @@ type PezGame_DealCards struct {
 func (m *PezGame_DealCards) Reset()                    { *m = PezGame_DealCards{} }
 func (m *PezGame_DealCards) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_DealCards) ProtoMessage()               {}
-func (*PezGame_DealCards) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{2} }
+func (*PezGame_DealCards) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{2} }
 
 func (m *PezGame_DealCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -321,7 +321,7 @@ type PezGame_Bet struct {
 func (m *PezGame_Bet) Reset()                    { *m = PezGame_Bet{} }
 func (m *PezGame_Bet) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_Bet) ProtoMessage()               {}
-func (*PezGame_Bet) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{3} }
+func (*PezGame_Bet) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{3} }
 
 func (m *PezGame_Bet) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -354,7 +354,7 @@ type PezGame_AckBet struct {
 func (m *PezGame_AckBet) Reset()                    { *m = PezGame_AckBet{} }
 func (m *PezGame_AckBet) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_AckBet) ProtoMessage()               {}
-func (*PezGame_AckBet) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{4} }
+func (*PezGame_AckBet) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{4} }
 
 func (m *PezGame_AckBet) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -387,7 +387,7 @@ type PezGame_OpenCard struct {
 func (m *PezGame_OpenCard) Reset()                    { *m = PezGame_OpenCard{} }
 func (m *PezGame_OpenCard) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_OpenCard) ProtoMessage()               {}
-func (*PezGame_OpenCard) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{5} }
+func (*PezGame_OpenCard) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{5} }
 
 func (m *PezGame_OpenCard) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -417,7 +417,7 @@ type PezGame_AckOpenCard struct {
 func (m *PezGame_AckOpenCard) Reset()                    { *m = PezGame_AckOpenCard{} }
 func (m *PezGame_AckOpenCard) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_AckOpenCard) ProtoMessage()               {}
-func (*PezGame_AckOpenCard) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{6} }
+func (*PezGame_AckOpenCard) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{6} }
 
 func (m *PezGame_AckOpenCard) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -484,7 +484,7 @@ type PezGame_SendGameInfo struct {
 func (m *PezGame_SendGameInfo) Reset()                    { *m = PezGame_SendGameInfo{} }
 func (m *PezGame_SendGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*PezGame_SendGameInfo) ProtoMessage()               {}
-func (*PezGame_SendGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{7} }
+func (*PezGame_SendGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{7} }
 
 func (m *PezGame_SendGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -533,7 +533,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PEZ_RECONNECT_TYPE", PEZ_RECONNECT_TYPE_name, PEZ_RECONNECT_TYPE_value)
 }
 
-var fileDescriptor36 = []byte{
+var fileDescriptor37 = []byte{
 	// 589 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0xcd, 0x6e, 0xd3, 0x40,
 	0x10, 0xc6, 0xce, 0x4f, 0xab, 0x49, 0x53, 0xda, 0xa5, 0x54, 0x26, 0x20, 0x14, 0x59, 0x1c, 0x22,

@@ -119,7 +119,6 @@ enum pez_enum_PaiType {
 message pez_base_RoomTypeInfo {
     optional int32 boardsCout = 1; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
     optional pez_base_PlayOptions playOptions = 2; // 玩法：轮庄、定庄、通比
-    optional int32 cardsNum = 3; // 牌张，2张
     optional int64 baseValue = 4; // 底
 }
 
