@@ -42,6 +42,7 @@ It is generated from these files:
 	pdk_server.proto
 	pez_base.proto
 	pez_desk.proto
+	pez_hall.proto
 	pez_play.proto
 	pez_server.proto
 	zjh_base.proto
@@ -434,6 +435,10 @@ It has these top-level messages:
 	Pez_EndLotteryInfo
 	PezGame_SendCurrentResult
 	PezGame_SendEndLottery
+	PezReq_CreateRoom
+	PezReq_AckCreateRoom
+	PezReq_EnterRoom
+	PezReq_AckEnterRoom
 	PezUserCoinBean
 	PezGame_Opening
 	PezGame_DealCards
