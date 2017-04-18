@@ -130,8 +130,8 @@ message pez_base_PlayConf {
 }
 
 message pez_base_RoomTypeInfo {
-    optional int32 ownerID = 1;     //房间的房主ID
-    optional int32 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
+    optional uint32 ownerID = 1;     //房间的房主ID
+    optional int64 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
     optional pez_enum_Option playOption = 3;  //玩法：轮庄、定庄、通比
     optional pez_enum_Base baseValue = 4;    //底
 }
