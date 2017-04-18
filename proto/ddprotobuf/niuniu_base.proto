@@ -53,3 +53,64 @@ message niu_enter_desk_bc {
     optional uint32 newUser = 4; //新增的用户
 }
 
+//=============================准备===================================
+message niu_switch_ready_ot {
+    optional ProtoHeader header = 1;
+}
+
+message niu_switch_ready_req {
+    optional ProtoHeader header = 1;
+    optional bool isReady = 2;  //准备状态：true准备 false取消准备
+}
+
+message niu_switch_ready_bc {
+    optional ProtoHeader header = 1;
+    optional uint32 user = 2;  //切换状态的用户
+    optional bool isReady = 3;  //准备状态
+}
+
+//=============================开始游戏================================
+message niu_start_game_req {
+    optional ProtoHeader header = 1;
+}
+
+//=============================发牌===================================
+message niu_fapai_bc {
+    optional ProtoHeader header = 1;
+    optional niuniu_srv_poker pai = 2;  //牌
+}
+
+//=============================加倍===================================
+message niu_jiabei_ot {
+    optional ProtoHeader header = 1;
+}
+
+message niu_jiabei_req {
+    optional ProtoHeader header = 1;
+    optional int32 addNum = 2;  //加倍数量 1 2 3
+}
+
+message niu_jiabei_bc {
+    optional ProtoHeader header = 1;
+    optional int32 addNum = 2;  //加倍数量 1 2 3
+}
+
+//=============================抢庄===================================
+//抢庄over turn
+message niu_qiangzhuang_ot {
+    optional ProtoHeader header = 1;
+}
+
+message niu_qiangzhuang_req {
+    optional ProtoHeader header = 1;
+    optional int32 addNum = 2;  //抢庄分数 1 2 3
+}
+
+message niu_qiangzhuang_bc {
+    optional ProtoHeader header = 1;
+    optional uint32 addUser = 2; //抢庄的人
+    optional int32 addNum = 3;  //抢庄分数 1 2 3
+}
+
+//============================与庄家比牌================================
+

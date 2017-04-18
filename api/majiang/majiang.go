@@ -11,7 +11,7 @@ var clienMap map[int]int32
 
 func init() {
 
-	clienMap = make(map[int]int32, 135) //108
+	clienMap = make(map[int]int32, 136) //108
 	clienMap[0] = 19
 	clienMap[1] = 19
 	clienMap[2] = 19
@@ -208,6 +208,9 @@ type GangPai struct {
 }
 
 type ChiPai struct {
+	OutUserId uint32
+	InUserId  uint32
+	Pais      []*MJPAI
 }
 
 type HuPai struct {
