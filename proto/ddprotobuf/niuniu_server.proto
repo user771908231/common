@@ -5,9 +5,23 @@ package ddproto;
 
 //牛牛牌的类型
 enum niuniu_enum_PokerType {
-    NO_NIU = 1;  //每牛
+    NO_NIU = 1;  //没牛
     NIU_1 = 2; //牛1
     NIU_2 = 3; //牛2
+    NIU_3 = 4;
+    NIU_4 = 5;
+    NIU_5 = 6;
+    NIU_6 = 7;
+    NIU_7 = 8;
+    NIU_8 = 9;
+    NIU_9 = 10; //牛九
+    NIU_NIU = 11;  //牛牛
+    YIN_NIU = 12; //银牛
+    JIN_NIU = 13; //金牛
+    WU_XIAO_NIU = 14; //五小牛
+    NIU_ZHA_DAN = 15;  //炸弹
+    NIU_YI_TIAO_LONG = 16; //一条龙
+
 }
 
 //打出去的牌
