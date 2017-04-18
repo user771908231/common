@@ -6,12 +6,12 @@ package ddproto;
 option optimize_for = LITE_RUNTIME;
 
 //房主解散房间(未开局)
-message pez_game_DissolveDesk {
+message pez_DissolveDesk {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; // 解散房间的用户 id
 }
 //解散房间回复
-message pez_game_AckDissolveDesk {
+message pez_AckDissolveDesk {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; // 解散房间的用户 id
     optional int32 deskId = 3; //房间Id
@@ -19,12 +19,12 @@ message pez_game_AckDissolveDesk {
 }
 
 // 申请解散房间(游戏中)
-message pez_game_ReqDissolveDesk {
+message pez_ApplyDissolveDesk {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; // 申请解散房间的人
 }
 
-message pez_game_AckReqDissolveDesk {
+message pez_AckApplyDissolveDesk {
     optional ProtoHeader header = 1;
     repeated uint32 userIdAgree = 2; //已同意解散的人
     repeated uint32 userIdWait = 3; //等待答复的人
@@ -32,13 +32,13 @@ message pez_game_AckReqDissolveDesk {
 }
 
 //准备游戏
-message pez_game_Ready {
+message pez_Ready {
     optional ProtoHeader header = 1;
     optional uint32 userId = 2; // 操作人 (广播给其它用户时用到)
 }
 
 //准备游戏的结果
-message pez_game_AckReady {
+message pez_AckReady {
     optional ProtoHeader header = 1;
     optional string msg = 2; //提示信息
     optional uint32 userId = 3; //广播推送时：表示谁已准备
@@ -71,7 +71,7 @@ message pez_EndLotteryInfo {
 }
 
 // 本局结果(广播)
-message pez_game_SendCurrentResult {
+message pez_SendCurrentResult {
     optional ProtoHeader header = 1;
     optional string nickName = 2;
     optional uint32 userId = 3;
@@ -80,7 +80,7 @@ message pez_game_SendCurrentResult {
 }
 
 // 牌局结束(广播)
-message pez_game_SendEndLottery {
+message pez_SendEndLottery {
     optional ProtoHeader header = 1;
     repeated pez_EndLotteryInfo ScoreInfo = 2; //4人的汇总输赢明细
 }

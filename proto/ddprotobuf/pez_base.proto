@@ -70,25 +70,6 @@ enum pez_enum_ErrorCode {
     PEZ_EC_GAME_READY_REPEAT = -110; // 重复准备
 }
 
-
-// 麻将牌
-message pez_base_PaiInfo {
-    optional int32 type = 1;
-    optional int32 value = 2; //0:牌背； 1~9：筒  10: 1条。
-    optional int32 id = 3; //牌的id
-}
-
-// 玩法
-message pez_base_PlayOptions {
-    optional int32 bankRadio = 1;//单选，随机庄、顺序庄、定庄、通比
-}
-
-//拼二张的配置
-message pez_base_PlayConf {
-    optional int32 playerCount = 1; //玩家的人数
-    optional bool ignoreBank = 2; //是否忽略庄（通比）
-}
-
 enum pez_enum_Option {
 
     LUN_BANK = 1; // 轮庄
@@ -99,7 +80,6 @@ enum pez_enum_Option {
 // 房间类型信息：包含房间类型和对应的局数、封顶、玩法等信息
 // 房间类型枚举
 enum pez_RoomType {
-
     roomType_pingerzhang = 0; // 拼二张
 }
 
@@ -114,12 +94,46 @@ enum pez_enum_PaiType {
     PEZ_DUIZI = 1; // 对子 点数相同
     PEZ_DUIJI = 2; // 对鸡 两张1条
 }
+enum pez_enum_Base {
+    PEZ_LOW = 0;    //低倍 1-2-3
+    PEZ_HIGH = 1;   //高倍 5-10-20
+}
 
+enum pez_enum_UserGameStatus {
+    PEZ_U_INIT = 0; //初始化
+    PEZ_U_READY = 1; // 准备
+    PEZ_U_BET = 2; // 押注
+    PEZ_U_PLAYING = 3; //游戏中
+    PEZ_U_FINISH = 4; //已经结束
+}
+
+enum pez_enum_DeskGameStatus {
+    PEZ_INIT = 0; //初始化
+    PEZ_FAPAI = 1; //发牌的阶段
+    PEZ_BET = 2; //押注
+    PEZ_OPENPAI = 3; //开牌
+    PEZ_PLAYING = 4; //游戏中
+    PEZ_FINISH = 5; //已经结束
+}
+
+// 麻将牌
+message pez_base_PaiInfo {
+    optional int32 type = 1;   //麻将牌的类型：条和筒
+    optional int32 value = 2; //0:牌背； 1~9：筒  10: 1条。
+    optional int32 id = 3; //牌的id
+}
+
+//拼二张的配置
+message pez_base_PlayConf {
+    optional int32 playerCount = 1; //玩家的人数
+    optional bool ignoreBank = 2; //是否忽略庄（通比）
+}
 
 message pez_base_RoomTypeInfo {
-    optional int32 boardsCout = 1; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
-    optional pez_base_PlayOptions playOptions = 2; // 玩法：轮庄、定庄、通比
-    optional int64 baseValue = 4; // 底
+    optional int32 ownerID = 1;     //房间的房主ID
+    optional int32 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
+    optional pez_enum_Option playOption = 3;  //玩法：轮庄、定庄、通比
+    optional pez_enum_Base baseValue = 4;    //底
 }
 
 
@@ -134,41 +148,22 @@ message pez_base_PlayerCard {
     optional int32 handCardCount = 3; //手牌的长度,当不用显示手牌的时候，只显示长度就行了
 }
 
-
-enum pez_enum_UserGameStatus {
-    PEZ_U_INIT = 0; //初始化
-    PEZ_U_READY = 1; // 准备
-    PEZ_U_BET = 2; // 押注
-    PEZ_U_PLAYING = 3; //游戏中
-    PEZ_U_FINISH = 4; //已经结束
-}
-
 message pez_base_PlayerInfo {
     optional bool isBanker = 1; // 是否庄家
     optional pez_base_PlayerCard playerCard = 2; // 玩家的手牌。客户端需根据服务端的返回进行排序动画。
-    optional int64 coin = 3; // 玩家当前显示的自己的筹码数
-    optional int32 betNum = 4; // 玩家当前的押注数
-    optional string nickName = 5; // 昵称
-    optional int32 sex = 6; // 性别: 1=男  2=女
-    optional uint32 userId = 7; // 用户id
-    optional bool isOwner = 8; // 当前用户是否房主
-    optional int32 isReady = 9; // 是否已准备
-    optional int32 isBet = 10; //是否已押注
-    optional WeixinInfo wxInfo = 11; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
-    optional int32 GameStatus = 12; //玩家的游戏状态
-    optional string ip = 13; //玩家的ip地址
+    optional pez_enum_PaiType HandPaiType = 3;  //玩家的手牌的类型
+    optional int64 coin = 4; // 玩家当前显示的自己的筹码数
+    optional int32 betNum = 5; // 玩家当前的押注数
+    optional string nickName = 6; // 昵称
+    optional int32 sex = 7; // 性别: 1=男  2=女
+    optional uint32 userId = 8; // 用户id
+    optional bool isOwner = 9; // 当前用户是否房主
+    optional int32 isReady = 10; // 是否已准备
+    optional int32 isBet = 11; //是否已押注
+    optional WeixinInfo wxInfo = 12; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
+    optional int32 GameStatus = 13; //玩家的游戏状态
+    optional string ip = 14; //玩家的ip地址
 }
-
-
-enum pez_enum_DeskGameStatus {
-    PEZ_INIT = 0; //初始化
-    PEZ_FAPAI = 1; //发牌的阶段
-    PEZ_BET = 2; //押注
-    PEZ_OPENPAI = 3; //开牌
-    PEZ_PLAYING = 4; //游戏中
-    PEZ_FINISH = 5; //已经结束
-}
-
 
 message pez_base_DeskGameInfo {
     optional int32 GameStatus = 1; //游戏所处状态: 0:INIT 1:FAPAI 2:BET 3:OPENPAI 4:PLAYING 5:FINISH

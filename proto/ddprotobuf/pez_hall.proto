@@ -35,3 +35,59 @@ message pez_req_AckEnterRoom {
     optional ProtoHeader header = 1;
 }
 
+
+//公告消息
+message pez_Notice {
+    optional ProtoHeader header = 1;
+    optional int32 noticeType = 2; //公告的类型
+    optional string channelId = 3; //渠道Id
+
+}
+
+// 公告的内容
+message pez_AckNotice {
+    optional ProtoHeader header = 1;
+    optional int32 noticeType = 2; //公告的类型:1,滚动信息,2,充值信息,3,公告信息
+    optional string noticeTitle = 3; //公告的标题
+    optional string noticeContent = 4; //公告的内容
+    optional string noticeMemo = 5; //公告的备注
+    optional int32 id = 6; //公告的id
+    repeated string fileds = 7; //公告的字段,目前子还是给充值的协议使用
+}
+
+//游戏战绩
+message pez_GameRecord {
+    optional ProtoHeader header = 1;
+    optional int32 id = 2; //战绩id
+    optional int32 gameId = 3; //游戏类别
+    optional uint32 userId = 4; //用户id
+}
+//
+message pezBeanUserRecord {
+    optional ProtoHeader header = 1;
+    optional uint32 UserId = 2; //用户id
+    optional string NickName = 3; //用户昵称
+    optional int64 WinAmount = 4; //用户输赢金额
+}
+//
+message pezBeanGameRecord {
+    optional ProtoHeader header = 1;
+    optional int32 id = 2; //战绩id
+    optional int32 deskId = 3; //关联的桌子的Id
+    optional string beginTime = 4; //游戏开始的时间
+    repeated pezBeanUserRecord users = 5; //用户
+}
+//
+message pez_AckGameRecord {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; //用户id
+    optional int32 gameId = 3; //游戏类别
+    repeated pezBeanGameRecord records = 4; //结果
+}
+
+// 反馈信息的协议
+message pez_Feedback {
+    optional ProtoHeader header = 1;
+    optional string message = 2; //用户提交的反馈内容
+}
+
