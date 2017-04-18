@@ -16,7 +16,7 @@ message pez_user_coin_bean {
 }
 
 // 开局（接收服务端消息）
-message pez_game_Opening {
+message pez_Opening {
     optional ProtoHeader header = 1;
     optional int32 CurrPlayCount = 2; //当前玩到第几局
     optional int32 dice1 = 3; //骰子的数目
@@ -27,7 +27,7 @@ message pez_game_Opening {
 }
 
 // 发牌
-message pez_game_DealCards {
+message pez_DealCards {
     optional ProtoHeader header = 1;
     repeated pez_base_PlayerCard playerCard = 2; //发给我的牌
     optional int32 paiCount = 3; //剩余多少牌还没有发
@@ -35,25 +35,25 @@ message pez_game_DealCards {
 }
 
 // 押注
-message pez_game_Bet {
+message pez_Bet {
     optional uint32 userId = 1; // 押注的人
     optional int32 betNum = 2; // 押注的数量
     optional int32 time = 3; // 押注剩余时间
 }
 
-message pez_game_AckBet {
+message pez_AckBet {
     optional uint32 userId = 1; // 押注的人
     optional int32 betCount = 2; // 押注的数量
     optional int32 time = 3; // 押注剩余时间
 }
 
 // 开牌
-message pez_game_OpenCard {
+message pez_OpenCard {
     optional ProtoHeader header = 1;
     optional int32 cardId = 2; //要开的牌id
 }
 
-message pez_game_AckOpenCard {
+message pez_AckOpenCard {
     optional ProtoHeader header = 1;
     optional int32 result = 2; // 0:开牌成功 1:不成功
     optional int32 paiType = 3; //牌型 癞子、对子、对鸡
@@ -65,13 +65,27 @@ message pez_game_AckOpenCard {
 
 }
 
+message pez_ActCompare {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起比牌的用户)
+    optional uint32 comparedUserId = 2; // 被比牌的用户
+}
+
+message pez_AckActCompare {
+    optional ProtoHeader header = 1;    //header中传userId， 操作人(广播给其它用户)(发起比牌的用户)
+    optional uint32 comparedUserId = 2;
+    optional bool isCpareWin = 3;
+    optional pez_base_PlayerInfo playerInfo= 4;
+    optional pez_enum_DeskGameStatus deskstate = 5;
+}
+
+
 //链接类型
 enum PEZ_RECONNECT_TYPE {
     PEZ_NORMAL = 1;
     PEZ_RECONNECT = 2;
 }
 // 发送游戏信息(广播)
-message pez_game_SendGameInfo {
+message pez_SendGameInfo {
     optional ProtoHeader header = 1;
     // 1. 首先是牌桌的玩家数据（玩家数据包括其id昵称筹码头像等基本信息，其手牌数据，以及自己打开牌的数据，还有状态是否已经押注了，玩家在整局的总输赢）
     repeated pez_base_PlayerInfo playerInfo = 2;

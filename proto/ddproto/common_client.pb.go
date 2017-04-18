@@ -423,36 +423,44 @@ It has these top-level messages:
 	PdkSrvRoom
 	PdkSrvBak
 	PezBase_PaiInfo
-	PezBase_PlayOptions
 	PezBase_PlayConf
 	PezBase_RoomTypeInfo
 	PezBase_PaiValue
 	PezBase_PlayerCard
 	PezBase_PlayerInfo
 	PezBase_DeskGameInfo
-	PezGame_DissolveDesk
-	PezGame_AckDissolveDesk
-	PezGame_ReqDissolveDesk
-	PezGame_AckReqDissolveDesk
-	PezGame_Ready
-	PezGame_AckReady
+	Pez_DissolveDesk
+	Pez_AckDissolveDesk
+	Pez_ApplyDissolveDesk
+	Pez_AckApplyDissolveDesk
+	Pez_Ready
+	Pez_AckReady
 	BetInfo
 	Pez_WinScoreInfo
 	Pez_EndLotteryInfo
-	PezGame_SendCurrentResult
-	PezGame_SendEndLottery
+	Pez_SendCurrentResult
+	Pez_SendEndLottery
 	PezReq_CreateRoom
 	PezReq_AckCreateRoom
 	PezReq_EnterRoom
 	PezReq_AckEnterRoom
+	Pez_Notice
+	Pez_AckNotice
+	Pez_GameRecord
+	PezBeanUserRecord
+	PezBeanGameRecord
+	Pez_AckGameRecord
+	Pez_Feedback
 	PezUserCoinBean
-	PezGame_Opening
-	PezGame_DealCards
-	PezGame_Bet
-	PezGame_AckBet
-	PezGame_OpenCard
-	PezGame_AckOpenCard
-	PezGame_SendGameInfo
+	Pez_Opening
+	Pez_DealCards
+	Pez_Bet
+	Pez_AckBet
+	Pez_OpenCard
+	Pez_AckOpenCard
+	Pez_ActCompare
+	Pez_AckActCompare
+	Pez_SendGameInfo
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
