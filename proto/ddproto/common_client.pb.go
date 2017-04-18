@@ -360,6 +360,17 @@ It has these top-level messages:
 	NiuCreateDeskAck
 	NiuEnterDeskReq
 	NiuEnterDeskBc
+	NiuSwitchReadyOt
+	NiuSwitchReadyReq
+	NiuSwitchReadyBc
+	NiuStartGameReq
+	NiuFapaiBc
+	NiuJiabeiOt
+	NiuJiabeiReq
+	NiuJiabeiBc
+	NiuQiangzhuangOt
+	NiuQiangzhuangReq
+	NiuQiangzhuangBc
 	NiuniuSrvPoker
 	NiuniuSrvUserBill
 	NiuniuSrvUser
