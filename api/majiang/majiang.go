@@ -208,6 +208,9 @@ type GangPai struct {
 }
 
 type ChiPai struct {
+	OutUserId uint32
+	InUserId  uint32
+	Pais      []*MJPAI
 }
 
 type HuPai struct {
