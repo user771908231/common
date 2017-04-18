@@ -25,7 +25,7 @@ db.t_th_notice.insert({
 db.t_th_notice.insert({
     "id": 3, "noticetype": 3,
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
-    "noticecontent": "客服微信号:lyqyouxi \n客户QQ号: 3298896830 \n关注公众号 :来一圈棋牌\n\n轻松加盟代理,赚取丰厚利润!",
+    "noticecontent": "如有购买房卡疑,请联系来一圈棋牌:\n\n客服微信号:lyqyouxi \n客户QQ号: 3298896830 \n关注公众号 :来一圈棋牌\n\n轻松加盟代理,赚取丰厚利润!",
     "noticememo": "",
     "noticefileds": []
 });
