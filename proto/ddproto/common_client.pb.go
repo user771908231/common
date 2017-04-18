@@ -34,12 +34,18 @@ It is generated from these files:
 	mj_baishan_hall.proto
 	mj_baishan_play.proto
 	mj_common.proto
+	niuniu_base.proto
 	niuniu_server.proto
 	pdk_base.proto
 	pdk_desk.proto
 	pdk_hall.proto
 	pdk_play.proto
 	pdk_server.proto
+	pez_base.proto
+	pez_desk.proto
+	pez_hall.proto
+	pez_play.proto
+	pez_server.proto
 	zjh_base.proto
 	zjh_desk.proto
 	zjh_hall.proto
@@ -350,9 +356,14 @@ It has these top-level messages:
 	GameReqBuxiazi
 	GameAckBuxiazi
 	CardInfo
+	NiuCreateDeskReq
+	NiuCreateDeskAck
+	NiuEnterDeskReq
+	NiuEnterDeskBc
 	NiuniuSrvPoker
 	NiuniuSrvUserBill
 	NiuniuSrvUser
+	NiuniuSrvDeskOption
 	NiuniuSrvDesk
 	NiuniuSrvRoom
 	PdkBaseRoomTypeInfo
@@ -411,6 +422,45 @@ It has these top-level messages:
 	PdkSrvUser
 	PdkSrvRoom
 	PdkSrvBak
+	PezBase_PaiInfo
+	PezBase_PlayConf
+	PezBase_RoomTypeInfo
+	PezBase_PaiValue
+	PezBase_PlayerCard
+	PezBase_PlayerInfo
+	PezBase_DeskGameInfo
+	Pez_DissolveDesk
+	Pez_AckDissolveDesk
+	Pez_ApplyDissolveDesk
+	Pez_AckApplyDissolveDesk
+	Pez_Ready
+	Pez_AckReady
+	BetInfo
+	Pez_WinScoreInfo
+	Pez_EndLotteryInfo
+	Pez_SendCurrentResult
+	Pez_SendEndLottery
+	PezReq_CreateRoom
+	PezReq_AckCreateRoom
+	PezReq_EnterRoom
+	PezReq_AckEnterRoom
+	Pez_Notice
+	Pez_AckNotice
+	Pez_GameRecord
+	PezBeanUserRecord
+	PezBeanGameRecord
+	Pez_AckGameRecord
+	Pez_Feedback
+	PezUserCoinBean
+	Pez_Opening
+	Pez_DealCards
+	Pez_Bet
+	Pez_AckBet
+	Pez_OpenCard
+	Pez_AckOpenCard
+	Pez_ActCompare
+	Pez_AckActCompare
+	Pez_SendGameInfo
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList

@@ -7,10 +7,7 @@ import (
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"gopkg.in/mgo.v2/bson"
-	//db_init "casino_common/common/db"
-	//"casino_common/common/sys"
 	"errors"
-	login_conf "casino_login/conf"
 	"time"
 )
 
@@ -18,17 +15,15 @@ func init() {
 	ConfigMap = map[string]ConfInfo {
 		tableName.DBT_GAME_CONFIG_LOGIN: ConfInfo{
 			Name: "登陆服配置",
-			List: &[]login_conf.ConfigMongo{},
-			Row: &login_conf.ConfigMongo{},
+			List: &[]LoginConfigMongo{},
+			Row: &LoginConfigMongo{},
 		},
 		tableName.DBT_GAME_CONFIG_LOGIN_LIST: ConfInfo{
 			Name: "登陆服游戏列表",
-			List: &[]login_conf.ServerInfo{},
-			Row: &login_conf.ServerInfo{},
+			List: &[]LoginServerInfo{},
+			Row: &LoginServerInfo{},
 		},
 	}
-	//db_init.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
-	//sys.InitRedis("192.168.199.200:6379","test")
 }
 
 //列信息

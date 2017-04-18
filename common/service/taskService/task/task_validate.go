@@ -46,6 +46,8 @@ func GetRewardBonusFun(user_task *taskType.UserTask) []*ddproto.HallBagItem {
 	conf := GetBonusTaskComputeConfigByGameId(user_task.GameId)
 	if conf != nil {
 		reward = (use_coin_fee/10000)*conf.CoinPercent*conf.BonusPercent
+		//取小数点后面两位有效值
+		reward = float64(int64(reward*100))/100
 		if reward < conf.Min {
 			reward = conf.Min
 		}

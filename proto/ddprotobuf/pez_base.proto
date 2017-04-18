@@ -1,0 +1,182 @@
+syntax = "proto2";
+import public "common_client.proto";
+
+package ddproto;
+enum pez_enum_protoId {
+    PEZ_PID_HEARTBEAT = 0; //心跳协议
+    PEZ_PID_QUICK_CONN = 1; //连接服务器
+    PEZ_PID_QUICK_CONN_ACK = 2; //
+    PEZ_PID_GAME_LOGIN = 3; //登录游戏
+    PEZ_PID_GAME_LOGIN_ACK = 4; //
+    PEZ_PID_CREATEROOM = 5; //创建房间
+    PEZ_PID_CREATEROOM_ACK = 6; //创建房间-回复
+    PEZ_PID_ENTER_ROOM = 7; //进入房间
+    PEZ_PID_ENTER_ROOM_ACK = 8; //进入房间-回复
+    PEZ_PID_SEND_GAMEINFO = 9; //游戏信息
+    PEZ_PID_READY = 10; //准备
+    PEZ_PID_READY_ACK = 11; //准备-ack
+    PEZ_PID_OPENING = 12; //开局
+    PEZ_PID_DEAL_CARDS = 13; //发牌
+    PEZ_PID_BET = 14; //押注
+    PEZ_PID_BET_ACK = 15; //押注ACK
+    PEZ_PID_CONTINUE_BET = 16; //续押
+    PEZ_PID_CONTINUE_BET_ACK = 17; //续押ACK
+    PEZ_PID_ALLBET = 18;    //压注完毕
+    PEZ_PID_OPENPAI = 19;   //开牌
+    PEZ_PID_CURRENTRESULT = 20; //本局结果
+    PEZ_PID_SENDENDLOTTERY = 21; //牌局结束
+    PEZ_PID_DISSOLVE_DESK = 22; //离开房间
+    PEZ_PID_DISSOLVE_DESK_ACK = 23; //
+    PEZ_PID_LEAVE_DESK = 24; //解散房间
+    PEZ_PID_LEAVE_DESK_ACK = 25; //
+    PEZ_PID_MESSAGE = 26; //聊天信息
+    PEZ_PID_SEND_MESSAGE = 27; //广播聊天
+
+    PEZ_PID_GAME_GAMERECORD = 28; //查询战绩
+    PEZ_PID_GAME_ACKGAMERECORD = 29; //战绩回复
+    PEZ_PID_GAME_NOTICE = 30; //请求通知
+    PEZ_PID_GAME_ACKNOTICE = 31; //通知回复
+
+
+    PEZ_PID_LOGOUT_REQ = 32; //请求退出
+    PEZ_PID_LOGOUT_ACK = 33; //回复请求退出
+    PEZ_PID_REG_REQ = 34; //注册
+    PEZ_PID_REG_ACK = 35; //注册回复
+    PEZ_PID_GAMESTATE_REQ = 36; //查询游戏状态
+    PEZ_PID_GAMESTATE_ACK = 37; //查询游戏状态回复
+    PEZ_PID_APPLYDISSOLVE_REQ = 38; // 申请解散房间
+    PEZ_PID_APPLYDISSOLVE_ACK = 39; // 申请解散房间回复
+    PEZ_PID_APPLYDISSOLVEBACK_REQ = 40; // 同意或拒绝解散房间回复
+    PEZ_PID_APPLYDISSOLVEBACK_ACK = 41; // 同意或拒绝解散房间回复
+    PEZ_PID_COMMONBCKICKOUT = 42; //强制退出 连接超时把人踢掉
+    PEZ_PID_COMMONBCUSERBREAK = 43; //断线的pid
+    PEZ_PID_COMMONREQRECONNECT = 44; //断线重连的pid
+    PEZ_PID_OFFLINE_REQ = 45; // 请求: 离线
+    PEZ_PID_RECONNECT_REQ = 46; // 请求: reqReconnect 断线重连
+    PEZ_PID_RECONNECT_ACK = 47; // 回复: reqReconnect 断线重连
+}
+
+enum pez_enum_ErrorCode {
+    PEZ_EC_SUCCESS = 0; //表示成功
+
+    //-1   -100 登陆异常
+
+    //-101   -200	游戏异常
+    PEZ_EC_CREATE_DESK_DIAMOND_NOTENOUGH = -101; // 创建房间的时候房卡不足
+    PEZ_EC_CREATE_DESK_USER_NOTFOUND = -102; // 创建房间的时候未知用户
+
+    PEZ_EC_INTO_DESK_NOTFOUND = -103; // 进入房间的时候没有找到房间
+
+    PEZ_EC_GAME_READY_REPEAT = -110; // 重复准备
+}
+
+enum pez_enum_Option {
+
+    LUN_BANK = 1; // 轮庄
+    DING_BANK = 2; // 定庄
+    TONG_BI = 3; // 通比
+}
+
+// 房间类型信息：包含房间类型和对应的局数、封顶、玩法等信息
+// 房间类型枚举
+enum pez_RoomType {
+    roomType_pingerzhang = 0; // 拼二张
+}
+
+//麻将花色
+enum pez_enum_mjColor {
+    PEZ_TIAO = 1; //条
+    PEZ_TONG = 2; //筒
+}
+
+enum pez_enum_PaiType {
+    PEZ_LAIZI = 0; // 癞子 点数不同
+    PEZ_DUIZI = 1; // 对子 点数相同
+    PEZ_DUIJI = 2; // 对鸡 两张1条
+}
+enum pez_enum_Base {
+    PEZ_LOW = 0;    //低倍 1-2-3
+    PEZ_HIGH = 1;   //高倍 5-10-20
+}
+
+enum pez_enum_UserGameStatus {
+    PEZ_U_INIT = 0; //初始化
+    PEZ_U_READY = 1; // 准备
+    PEZ_U_BET = 2; // 押注
+    PEZ_U_PLAYING = 3; //游戏中
+    PEZ_U_FINISH = 4; //已经结束
+}
+
+enum pez_enum_DeskGameStatus {
+    PEZ_INIT = 0; //初始化
+    PEZ_FAPAI = 1; //发牌的阶段
+    PEZ_BET = 2; //押注
+    PEZ_OPENPAI = 3; //开牌
+    PEZ_PLAYING = 4; //游戏中
+    PEZ_FINISH = 5; //已经结束
+}
+
+// 麻将牌
+message pez_base_PaiInfo {
+    optional int32 type = 1;   //麻将牌的类型：条和筒
+    optional int32 value = 2; //0:牌背； 1~9：筒  10: 1条。
+    optional int32 id = 3; //牌的id
+}
+
+//拼二张的配置
+message pez_base_PlayConf {
+    optional int32 playerCount = 1; //玩家的人数
+    optional bool ignoreBank = 2; //是否忽略庄（通比）
+}
+
+message pez_base_RoomTypeInfo {
+    optional int32 ownerID = 1;     //房间的房主ID
+    optional int32 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
+    optional pez_enum_Option playOption = 3;  //玩法：轮庄、定庄、通比
+    optional pez_enum_Base baseValue = 4;    //底
+}
+
+
+message pez_base_PaiValue {
+    optional int32 value = 1; //牌值 1~10
+}
+
+//手里的牌
+message pez_base_PlayerCard {
+    repeated pez_base_PaiInfo handCard = 1; // 手牌数组（服务器返回暗值，避免外挂获取别的玩家手牌）
+    optional uint32 UserId = 2; //
+    optional int32 handCardCount = 3; //手牌的长度,当不用显示手牌的时候，只显示长度就行了
+}
+
+message pez_base_PlayerInfo {
+    optional bool isBanker = 1; // 是否庄家
+    optional pez_base_PlayerCard playerCard = 2; // 玩家的手牌。客户端需根据服务端的返回进行排序动画。
+    optional pez_enum_PaiType HandPaiType = 3;  //玩家的手牌的类型
+    optional int64 coin = 4; // 玩家当前显示的自己的筹码数
+    optional int32 betNum = 5; // 玩家当前的押注数
+    optional string nickName = 6; // 昵称
+    optional int32 sex = 7; // 性别: 1=男  2=女
+    optional uint32 userId = 8; // 用户id
+    optional bool isOwner = 9; // 当前用户是否房主
+    optional int32 isReady = 10; // 是否已准备
+    optional int32 isBet = 11; //是否已押注
+    optional WeixinInfo wxInfo = 12; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
+    optional int32 GameStatus = 13; //玩家的游戏状态
+    optional string ip = 14; //玩家的ip地址
+}
+
+message pez_base_DeskGameInfo {
+    optional int32 GameStatus = 1; //游戏所处状态: 0:INIT 1:FAPAI 2:BET 3:OPENPAI 4:PLAYING 5:FINISH
+    optional pez_base_RoomTypeInfo roomTypeInfo = 2; //房间类型信息，包括：房间类型、局数、封顶、玩法、牌张、结算、底
+    optional int32 playerNum = 3; //玩家数量
+    optional int32 actionTime = 4; // 玩家当前押注操作时间
+    optional int32 delayTime = 5; //当前延时时间
+    optional int32 nInitActionTime = 6; // 初始操作时间
+    optional int32 nInitDelayTime = 7; // 初始延时时间
+    optional int64 initRoomCoin = 8; // 房间的初始带入筹码
+    optional int32 currPlayCount = 9; // 朋友桌: 当前第几局
+    optional int32 totalPlayCount = 10; // 朋友桌: 总共几局
+    optional string roomNumber = 11; // 房间号
+    optional int32 remainCards = 12; // 还剩几张麻将牌
+    optional uint32 banker = 13; //庄家
+}

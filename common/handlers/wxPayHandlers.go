@@ -5,7 +5,11 @@ import (
 	"github.com/name5566/leaf/gate"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/agentUtils"
-	"casino_hall/wxpay"
+)
+
+const (
+	DEFAULT_DEVICEINFO string = "WEB" //默认web
+
 )
 
 //处理统一下单
@@ -13,7 +17,7 @@ func HandlerWxpayUnifiedOrder(args []interface{}) {
 	m := args[0].(*ddproto.WxpayReqUnifiedorder)
 	a := args[1].(gate.Agent)
 	//通过meal知道 充值的数目等
-	ack, _ := service.GetAppWxpayReqParams(m.GetPayModelId(), m.GetProductId(), m.GetHeader().GetUserId(), agentUtils.GetIP(a), wxpay.DEFAULT_DEVICEINFO)
+	ack, _ := service.GetAppWxpayReqParams(m.GetPayModelId(), m.GetProductId(), m.GetHeader().GetUserId(), agentUtils.GetIP(a), DEFAULT_DEVICEINFO)
 	a.WriteMsg(ack)
 }
 

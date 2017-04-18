@@ -1,0 +1,98 @@
+syntax = "proto2";
+import public "common_client.proto";
+import public "pez_base.proto";
+import public "common_enum.proto";
+
+package ddproto;
+option optimize_for = LITE_RUNTIME;
+
+////////////////////////////////////////////////////////////////////
+// 通信协议
+
+//积分
+message pez_user_coin_bean {
+    optional uint32 userId = 1; //玩家id
+    optional int64 coin = 2; //本场的积分
+}
+
+// 开局（接收服务端消息）
+message pez_Opening {
+    optional ProtoHeader header = 1;
+    optional int32 CurrPlayCount = 2; //当前玩到第几局
+    optional int32 dice1 = 3; //骰子的数目
+    optional int32 dice2 = 4; //骰子的数目
+    repeated pez_user_coin_bean userCoinBeans = 5; //玩家的详细信息
+
+
+}
+
+// 发牌
+message pez_DealCards {
+    optional ProtoHeader header = 1;
+    repeated pez_base_PlayerCard playerCard = 2; //发给我的牌
+    optional int32 paiCount = 3; //剩余多少牌还没有发
+    optional uint32 dealerUserId = 4; //庄家的userId
+}
+
+// 押注
+message pez_Bet {
+    optional uint32 userId = 1; // 押注的人
+    optional int32 betNum = 2; // 押注的数量
+    optional int32 time = 3; // 押注剩余时间
+}
+
+message pez_AckBet {
+    optional uint32 userId = 1; // 押注的人
+    optional int32 betCount = 2; // 押注的数量
+    optional int32 time = 3; // 押注剩余时间
+}
+
+// 开牌
+message pez_OpenCard {
+    optional ProtoHeader header = 1;
+    optional int32 cardId = 2; //要开的牌id
+}
+
+message pez_AckOpenCard {
+    optional ProtoHeader header = 1;
+    optional int32 result = 2; // 0:开牌成功 1:不成功
+    optional int32 paiType = 3; //牌型 癞子、对子、对鸡
+    optional uint32 userId = 4; //开牌的人(广播)
+    optional pez_base_PaiInfo card = 5; // 开的牌(广播)
+    optional pez_base_PaiInfo card2 = 6; // 开的第二张牌(广播)
+    repeated pez_user_coin_bean userCoinBeans = 7; //玩家的详细信息
+
+
+}
+
+message pez_ActCompare {
+    optional ProtoHeader header = 1;    // header 中传 userId , 操作人(发起比牌的用户)
+    optional uint32 comparedUserId = 2; // 被比牌的用户
+}
+
+message pez_AckActCompare {
+    optional ProtoHeader header = 1;    //header中传userId， 操作人(广播给其它用户)(发起比牌的用户)
+    optional uint32 comparedUserId = 2;
+    optional bool isCpareWin = 3;
+    optional pez_base_PlayerInfo playerInfo= 4;
+    optional pez_enum_DeskGameStatus deskstate = 5;
+}
+
+
+//链接类型
+enum PEZ_RECONNECT_TYPE {
+    PEZ_NORMAL = 1;
+    PEZ_RECONNECT = 2;
+}
+// 发送游戏信息(广播)
+message pez_SendGameInfo {
+    optional ProtoHeader header = 1;
+    // 1. 首先是牌桌的玩家数据（玩家数据包括其id昵称筹码头像等基本信息，其手牌数据，以及自己打开牌的数据，还有状态是否已经押注了，玩家在整局的总输赢）
+    repeated pez_base_PlayerInfo playerInfo = 2;
+    // 2. 桌面信息（包括：游戏是否结束，当前哪个玩家未押注，倒计时剩余时间）
+    optional pez_base_DeskGameInfo deskGameInfo = 3;
+    //
+    optional uint32 senderUserId = 4; // 发起请求的人
+
+    optional PEZ_RECONNECT_TYPE isReconnect = 5; // 1=正常连接（默认） 2=断线重连
+}
