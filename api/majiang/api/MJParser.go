@@ -11,6 +11,7 @@ type MJParser interface {
 	CanGang(...interface{}) (interface{}, error)
 	CanChi(interface{}, interface{}) (interface{}, error)
 	CanBu(...interface{}) (interface{}, error)
+	CanTing(...interface{}) (interface{}, error)
 	GetJiaoInfos(...interface{}) (interface{}, error) //判断是否有叫
 	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
 	XiPai() interface{}                               //洗牌
@@ -91,8 +92,8 @@ func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (i
 
 var (
 	GANGTYPE_MING int32 = 1
-	GANGTYPE_BA   int32 = 2
-	GANGTYPE_AN   int32 = 3
+	GANGTYPE_BA int32 = 2
+	GANGTYPE_AN int32 = 3
 )
 
 type CanGangInfo struct {
@@ -123,6 +124,15 @@ type CanHuInfo struct {
 	Pai      *majiang.MJPAI //胡的牌
 	PaiType  []int32
 }
+
+type CanChiInfo struct {
+	OutUserId uint32 //打牌的人
+	ChiUserId uint32 //吃牌的人
+	CanChi    bool   //是否能吃
+	ChiBeans  []ChiBean
+}
+
+type ChiBean []*majiang.MJPAI
 
 type CanBuInfo struct {
 	CanBu   bool
@@ -193,7 +203,11 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 //是否可以吃牌
 func (p *MJParserCore) CanChi(interface{}, interface{}) (interface{}, error) {
 	return nil, nil
+}
 
+//是否可以报听
+func (p *MJParserCore) CanTing(...interface{}) (interface{}, error) {
+	return nil, nil
 }
 
 //得到叫牌的信息
@@ -261,7 +275,7 @@ func (p *MJParserCore) is19(val int) bool {
 }
 
 func (p *MJParserCore) GettPaiValueByCountPos(countPos int) int32 {
-	return int32(countPos%9 + 1)
+	return int32(countPos % 9 + 1)
 }
 
 func (p *MJParserCore) IsMengQing(g MJUserGameData) bool {
@@ -297,14 +311,14 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		return true, isAll19, jiang
 	}
 
-	if (len%3 == 2) {
+	if (len % 3 == 2) {
 		//log.T("if %v 取模 3 == 2", len)
 		// 说明对牌出现
 		for i := 0; i < 27; i++ {
 			if (count[i] >= 2) {
 				count[i] -= 2
 
-				result, isAll19, jiang = p.TryHU(count, len-2)
+				result, isAll19, jiang = p.TryHU(count, len - 2)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if ! p.is19(i) {
@@ -321,11 +335,11 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		//log.T("else %v", len)
 		// 是否是顺子，这里应该分开判断
 		for i := 0; i < 7; i++ {
-			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
 				count[i] -= 1;
-				count[i+1] -= 1;
-				count[i+2] -= 1;
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				count[i + 1] -= 1;
+				count[i + 2] -= 1;
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -336,17 +350,17 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1
-				count[i+1] += 1
-				count[i+2] += 1
+				count[i + 1] += 1
+				count[i + 2] += 1
 			}
 		}
 
 		for i := 9; i < 16; i++ {
-			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
 				count[i] -= 1
-				count[i+1] -= 1
-				count[i+2] -= 1
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				count[i + 1] -= 1
+				count[i + 2] -= 1
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -357,17 +371,17 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1
-				count[i+1] += 1
-				count[i+2] += 1
+				count[i + 1] += 1
+				count[i + 2] += 1
 			}
 		}
 
 		for i := 18; i < 25; i++ {
-			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
 				count[i] -= 1;
-				count[i+1] -= 1;
-				count[i+2] -= 1;
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				count[i + 1] -= 1;
+				count[i + 2] -= 1;
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -378,8 +392,8 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1;
-				count[i+1] += 1;
-				count[i+2] += 1;
+				count[i + 1] += 1;
+				count[i + 2] += 1;
 			}
 		}
 
@@ -387,7 +401,7 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		for i := 0; i < 27; i++ {
 			if (count[i] >= 3) {
 				count[i] -= 3
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) {

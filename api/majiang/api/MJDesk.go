@@ -20,7 +20,9 @@ type MJDesk interface {
 	ActGuo(...interface{}) error    //过
 	ActGang(...interface{}) error   //杠
 	ActBu(...interface{}) error     //补
+	ActChi(...interface{}) error    //吃
 	ActHu(...interface{}) error     //胡
+	ActBaoTing(...interface{}) error//报听
 
 	ActReady(userId uint32) error               //准备
 	Dissolve(...interface{}) error              //解散
