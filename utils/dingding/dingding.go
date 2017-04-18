@@ -31,7 +31,8 @@ func init() {
 		msgtype: "text",
 		msgbody: make(chan *sendBody, 100),
 	}
-	go DingMsger.start()
+	DingMsger.refrehToken() //刷新tocker
+	go DingMsger.start()    //开始等待消息
 }
 
 type dingRet struct {
