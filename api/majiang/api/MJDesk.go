@@ -14,16 +14,16 @@ import (
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error  //玩家进入desk，不定参数
-	ActOut(...interface{}) error     //出牌的user和牌型
-	ActPeng(...interface{}) error    //碰
-	ActGuo(...interface{}) error     //过
-	ActGang(...interface{}) error    //杠
-	ActBu(...interface{}) error      //补
-	ActChi(...interface{}) error     //吃
-	ActHu(...interface{}) error      //胡
-	ActBaoTing(...interface{}) error //报听
-
+	EnterUser(...interface{}) error             //玩家进入desk，不定参数
+	ActOut(...interface{}) error                //出牌的user和牌型
+	ActPeng(...interface{}) error               //碰
+	ActGuo(...interface{}) error                //过
+	ActGang(...interface{}) error               //杠
+	ActBu(...interface{}) error                 //补
+	ActChi(...interface{}) error                //吃
+	ActHu(...interface{}) error                 //胡
+	ActBaoTing(...interface{}) error            //报听
+	ActLeave(...interface{}) error              //离开房间
 	ActReady(userId uint32) error               //准备
 	Dissolve(...interface{}) error              //解散
 	ApplyDissolve(...interface{}) error         //申请解散
@@ -58,6 +58,11 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	//main key
 	desk.deskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
 	return desk
+}
+
+//离开房间
+func (d *MJDeskCore) ActLeave(...interface{}) error {
+	return nil
 }
 
 func (d *MJDeskCore) ActChi(...interface{}) error {
