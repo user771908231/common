@@ -55,22 +55,24 @@ func NewRecord(userId uint32, goods_type ddproto.HallEnumTradeType, amount float
 	if user.GetRealName() == "" || user.GetPhoneNumber() == "" || user.GetWxNumber() == "" {
 		return nil, errors.New("信息填写不完整，兑换申请失败！")
 	}
-	if goods_type > 300 && goods_type < 400 && user.GetRealAddress() == "" {
-		return nil, errors.New("请填写收货地址！")
+	if goods_type > 300 && goods_type < 400 {
+		//实物兑换
+		if user.GetRealAddress() == "" {
+			return nil, errors.New("请填写收货地址！")
+		}
+		_, err_dec := userService.DECUserTicket(userId, int32(amount))
+		if err_dec != nil {
+			return nil, errors.New("您的奖券余额不足，兑换失败！")
+		}
+
+	}else if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS{
+		//扣除红包
+		_, err_dec := userService.DECUserBonus(userId, amount)
+		if err_dec != nil {
+			return nil, errors.New("您的红包余额不足，兑换失败！")
+		}
 	}
-	//if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS {
-	//	amount = userService.GetUserBonus(userId)
-	//	if amount < 10 {
-	//		return nil, errors.New("满10个红包才能兑换！")
-	//	}
-	//	//扣除红包数
-	//	userService.DECUserBonus(userId, amount)
-	//}
-	//扣除红包
-	_, err_dec := userService.DECUserBonus(userId, amount)
-	if err_dec != nil {
-		return nil, errors.New("您的红包余额不足，兑换失败！")
-	}
+
 	new_record := &ExchangeRecord{
 		Type: goods_type,
 		Money: amount,
