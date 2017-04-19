@@ -3,6 +3,8 @@ syntax = "proto2";
 import public "common_server_poker.proto";
 package ddproto;
 
+
+//=================================公共================================
 //牛牛牌的类型
 enum niuniu_enum_PokerType {
     NO_NIU = 1;  //没牛
@@ -47,25 +49,12 @@ enum niuniu_enum_desk_state {
 }
 
 //对局账单信息
-message niuniu_srv_user_bill {
+message niuniu_user_bill {
     optional int32 score = 1;  //低分
     optional int32 count_has_niu = 2;  //有牛
     optional int32 count_no_niu = 3;  //没牛
     optional int32 count_win = 4;  //赢的局数
     optional int32 count_lost = 5;  //输的局数
-}
-
-//用户属性
-message niuniu_srv_user {
-    optional uint32 userId = 1;
-    optional int32 roomId = 3;
-    optional int32 deskId = 4;
-    optional int32 gameNumber = 5; //游戏编号，每一句游戏都有一个游戏编号
-    optional niuniu_srv_user_bill bill = 6; //玩家这一句的账单数据
-    optional niuniu_enum_user_state status = 7;
-    optional bool isOnline = 10; //是否在线
-    optional int32 index = 12;  //所在牌桌的索引
-    optional niuniu_srv_poker pokers = 13; //发的牌
 }
 
 //坐庄规则
@@ -82,8 +71,37 @@ message niuniu_srv_desk_option {
     optional int32 maxCircle = 3; //最大圈数 10、20
     optional bool hasFlower = 4;  //是否有花牌 J、Q、K
     optional niuniu_enum_banker_rule bankRule = 5;  //坐庄规则 轮流坐庄、随机坐庄、看牌抢庄
-
 }
+
+//=======================================客户端====================================
+
+//desk 的信息
+message niuniu_client_desk {
+    optional int32 deskId = 1;  //牌桌id
+    optional string deskNumber = 2; //朋友桌房号
+    optional int32 gameNumber = 3; //游戏编号，每一句游戏都有一个游戏编号
+    optional int32 roomId = 4; //房间id
+    optional niuniu_enum_desk_state status = 5; //房间游戏状态
+    optional uint32 lastWiner = 6; //上一位赢牌的玩家
+    optional int32 circleNo = 8; //当前是第几圈
+    optional uint32 owner = 10;  //房主
+    optional uint32 currBanker = 11;  //当前庄家
+    optional niuniu_srv_desk_option deskOption = 12;  //房间配置
+    repeated niuniu_client_user users = 13;  //玩家列表
+}
+
+//用户属性
+message niuniu_client_user {
+    optional uint32 userId = 1;
+    optional niuniu_user_bill bill = 6; //玩家这一句的账单数据
+    optional niuniu_enum_user_state status = 7;
+    optional bool isOnline = 10; //是否在线
+    optional int32 index = 12;  //所在牌桌的索引
+    optional niuniu_srv_poker pokers = 13; //发的牌
+}
+
+
+//=======================================服务器=====================================
 
 //desk 的信息
 message niuniu_srv_desk {
@@ -98,6 +116,17 @@ message niuniu_srv_desk {
     optional uint32 currBanker = 11;  //当前庄家
     optional niuniu_srv_desk_option deskOption = 12;  //房间配置
 }
+
+//用户属性
+message niuniu_srv_user {
+    optional uint32 userId = 1;
+    optional niuniu_user_bill bill = 6; //玩家这一句的账单数据
+    optional niuniu_enum_user_state status = 7;
+    optional bool isOnline = 10; //是否在线
+    optional int32 index = 12;  //所在牌桌的索引
+    optional niuniu_srv_poker pokers = 13; //发的牌
+}
+
 
 //room 的信息
 message niuniu_srv_room {

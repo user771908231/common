@@ -357,25 +357,28 @@ It has these top-level messages:
 	GameAckBuxiazi
 	CardInfo
 	NiuCreateDeskReq
-	NiuCreateDeskAck
 	NiuEnterDeskReq
+	NiuEnterDeskAck
 	NiuEnterDeskBc
 	NiuSwitchReadyOt
 	NiuSwitchReadyReq
 	NiuSwitchReadyBc
-	NiuStartGameReq
-	NiuFapaiBc
-	NiuJiabeiOt
-	NiuJiabeiReq
-	NiuJiabeiBc
 	NiuQiangzhuangOt
 	NiuQiangzhuangReq
 	NiuQiangzhuangBc
+	NiuJiabeiOt
+	NiuJiabeiReq
+	NiuJiabeiBc
+	NiuBipaiResultItem
+	NiuBipaiResultBc
+	NiuGameEnd
 	NiuniuSrvPoker
-	NiuniuSrvUserBill
-	NiuniuSrvUser
+	NiuniuUserBill
 	NiuniuSrvDeskOption
+	NiuniuClientDesk
+	NiuniuClientUser
 	NiuniuSrvDesk
+	NiuniuSrvUser
 	NiuniuSrvRoom
 	PdkBaseRoomTypeInfo
 	PdkBasePlayerInfo
