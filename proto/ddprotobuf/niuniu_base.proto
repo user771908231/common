@@ -14,17 +14,26 @@ enum niuniu_enum_protoid {
     NIU_PID_GAME_LOGIN_ACK = 4; //
 
     NIU_PID_CREATE_DESK_REQ = 5; //创建房间
-    NIU_PID_CREATE_DESK_ACK = 6; //创建房间ack
 
-    NIU_PID_ENTER_DESK_REQ = 7; //进入房间
-    NIU_PID_ENTER_DESK_BC = 8; //进入房间广播
+    NIU_PID_ENTER_DESK_REQ = 6; //进入房间req
+    NIU_PID_ENTER_DESK_ACK = 7; //进入房间ack
+    NIU_PID_ENTER_DESK_BC = 8; //进入房间bc
 
-    NIU_PID_READY_REQ = 9; //  准备
-    NIU_PID_READY_BC = 10; //  准备广播
+    NIU_PID_READY_OT = 9;  //
+    NIU_PID_READY_REQ = 10; //  准备
+    NIU_PID_READY_BC = 11; //  准备广播
 
-    NIU_PID_START_REQ = 11; //开始比赛（发牌请求）
-    NIU_PID_FAPAI_BC = 12; //发牌广播
+    NIU_PID_QIANGZHUANG_OT = 12; //抢庄
+    NIU_PID_QIANGZHUANG_REQ = 13; //抢庄
+    NIU_PID_QIANGZHUANG_BC = 14; //抢庄
 
+    NIU_PID_JIABEI_OT = 15; //加倍
+    NIU_PID_JIABEI_REQ = 16; //加倍
+    NIU_PID_JIABEI_BC = 17; //加倍
+
+    NIU_PID_BIPAI_RESULT_BC = 18;  //比牌结果
+
+    NIU_PID_GAME_END_BC = 19;  //游戏结束，统计数据
 
 }
 
@@ -34,28 +43,27 @@ message niu_create_desk_req {
     optional niuniu_srv_desk_option option = 2;  //房间选项
 }
 
-message niu_create_desk_ack {
-    optional ProtoHeader header = 1; //错误码及错误信息
-    optional string deskNumber = 2;  //房间号
-}
-
-
 //==============================进入房间===============================
 message niu_enter_desk_req {
     optional ProtoHeader header = 1;    // header 中传 userId
     optional string deskNumber = 2;  //房间号
 }
 
+message niu_enter_desk_ack {
+    optional ProtoHeader header = 1; //错误码及错误信息
+    optional niuniu_client_desk deskState = 2;  //房间状态
+}
+
 message niu_enter_desk_bc {
     optional ProtoHeader header = 1;
-    optional niuniu_srv_desk deskState = 2;  //房间状态
-    repeated niuniu_srv_user userState = 3;  //用户状态
-    optional uint32 newUser = 4; //新增的用户
+    optional niuniu_client_user user = 2; //新增的用户
 }
 
 //=============================准备===================================
 message niu_switch_ready_ot {
     optional ProtoHeader header = 1;
+    optional int32 currCircle = 2;  //当前是第几圈
+    optional int32 cuurBanker = 3;  //当前的庄家
 }
 
 message niu_switch_ready_req {
@@ -69,48 +77,54 @@ message niu_switch_ready_bc {
     optional bool isReady = 3;  //准备状态
 }
 
-//=============================开始游戏================================
-message niu_start_game_req {
-    optional ProtoHeader header = 1;
-}
-
-//=============================发牌===================================
-message niu_fapai_bc {
-    optional ProtoHeader header = 1;
-    optional niuniu_srv_poker pai = 2;  //牌
-}
-
-//=============================加倍===================================
-message niu_jiabei_ot {
-    optional ProtoHeader header = 1;
-}
-
-message niu_jiabei_req {
-    optional ProtoHeader header = 1;
-    optional int32 addNum = 2;  //加倍数量 1 2 3
-}
-
-message niu_jiabei_bc {
-    optional ProtoHeader header = 1;
-    optional int32 addNum = 2;  //加倍数量 1 2 3
-}
-
-//=============================抢庄===================================
-//抢庄over turn
+//=============================抢庄(发牌)===================================
 message niu_qiangzhuang_ot {
     optional ProtoHeader header = 1;
+    optional niuniu_srv_poker pokers = 2; //发的牌
 }
 
 message niu_qiangzhuang_req {
     optional ProtoHeader header = 1;
-    optional int32 addNum = 2;  //抢庄分数 1 2 3
+    optional int32 score = 2;  //抢庄分数 1 2 3倍
 }
 
 message niu_qiangzhuang_bc {
     optional ProtoHeader header = 1;
-    optional uint32 addUser = 2; //抢庄的人
-    optional int32 addNum = 3;  //抢庄分数 1 2 3
+    optional uint32 user = 2; //抢庄的人id
+    optional int32 score = 3;  //抢庄分数 1 2 3倍
 }
 
-//============================与庄家比牌================================
+//=============================加倍（发牌）===================================
+message niu_jiabei_ot {
+    optional ProtoHeader header = 1;
+    optional int32 cuurBanker = 2;  //如果是抢庄模式，则加倍这一步才知道谁是庄家
+    optional niuniu_srv_poker pokers = 3; //发的牌
+}
+
+message niu_jiabei_req {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //加倍分数 1 2 3倍
+}
+
+message niu_jiabei_bc {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //加倍分数 1 2 3倍
+}
+
+//==============================跟庄家比牌结果============================
+message niu_bipai_result_item {
+    optional niuniu_srv_poker poker = 1;  //牌型
+    optional int32 score = 2;  //得分 -2分
+}
+
+message niu_bipai_result_bc {
+    repeated niu_bipai_result_item userState = 1;  //比牌结果
+}
+
+//============================10局结束统计================================
+
+message niu_game_end {
+    optional ProtoHeader header = 1;
+    repeated niuniu_user_bill data = 2;  //统计数据
+}
 

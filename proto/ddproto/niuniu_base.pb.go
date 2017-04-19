@@ -111,13 +111,17 @@ var _ = math.Inf
 
 // Ignoring public import of niuniu_srv_poker from niuniu_server.proto
 
-// Ignoring public import of niuniu_srv_user_bill from niuniu_server.proto
-
-// Ignoring public import of niuniu_srv_user from niuniu_server.proto
+// Ignoring public import of niuniu_user_bill from niuniu_server.proto
 
 // Ignoring public import of niuniu_srv_desk_option from niuniu_server.proto
 
+// Ignoring public import of niuniu_client_desk from niuniu_server.proto
+
+// Ignoring public import of niuniu_client_user from niuniu_server.proto
+
 // Ignoring public import of niuniu_srv_desk from niuniu_server.proto
+
+// Ignoring public import of niuniu_srv_user from niuniu_server.proto
 
 // Ignoring public import of niuniu_srv_room from niuniu_server.proto
 
@@ -139,13 +143,20 @@ const (
 	NiuniuEnumProtoid_NIU_PID_GAME_LOGIN      NiuniuEnumProtoid = 3
 	NiuniuEnumProtoid_NIU_PID_GAME_LOGIN_ACK  NiuniuEnumProtoid = 4
 	NiuniuEnumProtoid_NIU_PID_CREATE_DESK_REQ NiuniuEnumProtoid = 5
-	NiuniuEnumProtoid_NIU_PID_CREATE_DESK_ACK NiuniuEnumProtoid = 6
-	NiuniuEnumProtoid_NIU_PID_ENTER_DESK_REQ  NiuniuEnumProtoid = 7
+	NiuniuEnumProtoid_NIU_PID_ENTER_DESK_REQ  NiuniuEnumProtoid = 6
+	NiuniuEnumProtoid_NIU_PID_ENTER_DESK_ACK  NiuniuEnumProtoid = 7
 	NiuniuEnumProtoid_NIU_PID_ENTER_DESK_BC   NiuniuEnumProtoid = 8
-	NiuniuEnumProtoid_NIU_PID_READY_REQ       NiuniuEnumProtoid = 9
-	NiuniuEnumProtoid_NIU_PID_READY_BC        NiuniuEnumProtoid = 10
-	NiuniuEnumProtoid_NIU_PID_START_REQ       NiuniuEnumProtoid = 11
-	NiuniuEnumProtoid_NIU_PID_FAPAI_BC        NiuniuEnumProtoid = 12
+	NiuniuEnumProtoid_NIU_PID_READY_OT        NiuniuEnumProtoid = 9
+	NiuniuEnumProtoid_NIU_PID_READY_REQ       NiuniuEnumProtoid = 10
+	NiuniuEnumProtoid_NIU_PID_READY_BC        NiuniuEnumProtoid = 11
+	NiuniuEnumProtoid_NIU_PID_QIANGZHUANG_OT  NiuniuEnumProtoid = 12
+	NiuniuEnumProtoid_NIU_PID_QIANGZHUANG_REQ NiuniuEnumProtoid = 13
+	NiuniuEnumProtoid_NIU_PID_QIANGZHUANG_BC  NiuniuEnumProtoid = 14
+	NiuniuEnumProtoid_NIU_PID_JIABEI_OT       NiuniuEnumProtoid = 15
+	NiuniuEnumProtoid_NIU_PID_JIABEI_REQ      NiuniuEnumProtoid = 16
+	NiuniuEnumProtoid_NIU_PID_JIABEI_BC       NiuniuEnumProtoid = 17
+	NiuniuEnumProtoid_NIU_PID_BIPAI_RESULT_BC NiuniuEnumProtoid = 18
+	NiuniuEnumProtoid_NIU_PID_GAME_END_BC     NiuniuEnumProtoid = 19
 )
 
 var NiuniuEnumProtoid_name = map[int32]string{
@@ -155,13 +166,20 @@ var NiuniuEnumProtoid_name = map[int32]string{
 	3:  "NIU_PID_GAME_LOGIN",
 	4:  "NIU_PID_GAME_LOGIN_ACK",
 	5:  "NIU_PID_CREATE_DESK_REQ",
-	6:  "NIU_PID_CREATE_DESK_ACK",
-	7:  "NIU_PID_ENTER_DESK_REQ",
+	6:  "NIU_PID_ENTER_DESK_REQ",
+	7:  "NIU_PID_ENTER_DESK_ACK",
 	8:  "NIU_PID_ENTER_DESK_BC",
-	9:  "NIU_PID_READY_REQ",
-	10: "NIU_PID_READY_BC",
-	11: "NIU_PID_START_REQ",
-	12: "NIU_PID_FAPAI_BC",
+	9:  "NIU_PID_READY_OT",
+	10: "NIU_PID_READY_REQ",
+	11: "NIU_PID_READY_BC",
+	12: "NIU_PID_QIANGZHUANG_OT",
+	13: "NIU_PID_QIANGZHUANG_REQ",
+	14: "NIU_PID_QIANGZHUANG_BC",
+	15: "NIU_PID_JIABEI_OT",
+	16: "NIU_PID_JIABEI_REQ",
+	17: "NIU_PID_JIABEI_BC",
+	18: "NIU_PID_BIPAI_RESULT_BC",
+	19: "NIU_PID_GAME_END_BC",
 }
 var NiuniuEnumProtoid_value = map[string]int32{
 	"NIU_PID_HEARTBEAT":       0,
@@ -170,13 +188,20 @@ var NiuniuEnumProtoid_value = map[string]int32{
 	"NIU_PID_GAME_LOGIN":      3,
 	"NIU_PID_GAME_LOGIN_ACK":  4,
 	"NIU_PID_CREATE_DESK_REQ": 5,
-	"NIU_PID_CREATE_DESK_ACK": 6,
-	"NIU_PID_ENTER_DESK_REQ":  7,
+	"NIU_PID_ENTER_DESK_REQ":  6,
+	"NIU_PID_ENTER_DESK_ACK":  7,
 	"NIU_PID_ENTER_DESK_BC":   8,
-	"NIU_PID_READY_REQ":       9,
-	"NIU_PID_READY_BC":        10,
-	"NIU_PID_START_REQ":       11,
-	"NIU_PID_FAPAI_BC":        12,
+	"NIU_PID_READY_OT":        9,
+	"NIU_PID_READY_REQ":       10,
+	"NIU_PID_READY_BC":        11,
+	"NIU_PID_QIANGZHUANG_OT":  12,
+	"NIU_PID_QIANGZHUANG_REQ": 13,
+	"NIU_PID_QIANGZHUANG_BC":  14,
+	"NIU_PID_JIABEI_OT":       15,
+	"NIU_PID_JIABEI_REQ":      16,
+	"NIU_PID_JIABEI_BC":       17,
+	"NIU_PID_BIPAI_RESULT_BC": 18,
+	"NIU_PID_GAME_END_BC":     19,
 }
 
 func (x NiuniuEnumProtoid) Enum() *NiuniuEnumProtoid {
@@ -223,31 +248,6 @@ func (m *NiuCreateDeskReq) GetOption() *NiuniuSrvDeskOption {
 	return nil
 }
 
-type NiuCreateDeskAck struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	DeskNumber       *string      `protobuf:"bytes,2,opt,name=deskNumber" json:"deskNumber,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *NiuCreateDeskAck) Reset()                    { *m = NiuCreateDeskAck{} }
-func (m *NiuCreateDeskAck) String() string            { return proto.CompactTextString(m) }
-func (*NiuCreateDeskAck) ProtoMessage()               {}
-func (*NiuCreateDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
-
-func (m *NiuCreateDeskAck) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *NiuCreateDeskAck) GetDeskNumber() string {
-	if m != nil && m.DeskNumber != nil {
-		return *m.DeskNumber
-	}
-	return ""
-}
-
 // ==============================进入房间===============================
 type NiuEnterDeskReq struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -258,7 +258,7 @@ type NiuEnterDeskReq struct {
 func (m *NiuEnterDeskReq) Reset()                    { *m = NiuEnterDeskReq{} }
 func (m *NiuEnterDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuEnterDeskReq) ProtoMessage()               {}
-func (*NiuEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{2} }
+func (*NiuEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
 
 func (m *NiuEnterDeskReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -274,12 +274,35 @@ func (m *NiuEnterDeskReq) GetDeskNumber() string {
 	return ""
 }
 
+type NiuEnterDeskAck struct {
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	DeskState        *NiuniuClientDesk `protobuf:"bytes,2,opt,name=deskState" json:"deskState,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *NiuEnterDeskAck) Reset()                    { *m = NiuEnterDeskAck{} }
+func (m *NiuEnterDeskAck) String() string            { return proto.CompactTextString(m) }
+func (*NiuEnterDeskAck) ProtoMessage()               {}
+func (*NiuEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{2} }
+
+func (m *NiuEnterDeskAck) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *NiuEnterDeskAck) GetDeskState() *NiuniuClientDesk {
+	if m != nil {
+		return m.DeskState
+	}
+	return nil
+}
+
 type NiuEnterDeskBc struct {
-	Header           *ProtoHeader     `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	DeskState        *NiuniuSrvDesk   `protobuf:"bytes,2,opt,name=deskState" json:"deskState,omitempty"`
-	UserState        []*NiuniuSrvUser `protobuf:"bytes,3,rep,name=userState" json:"userState,omitempty"`
-	NewUser          *uint32          `protobuf:"varint,4,opt,name=newUser" json:"newUser,omitempty"`
-	XXX_unrecognized []byte           `json:"-"`
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	User             *NiuniuClientUser `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
 }
 
 func (m *NiuEnterDeskBc) Reset()                    { *m = NiuEnterDeskBc{} }
@@ -294,30 +317,18 @@ func (m *NiuEnterDeskBc) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *NiuEnterDeskBc) GetDeskState() *NiuniuSrvDesk {
+func (m *NiuEnterDeskBc) GetUser() *NiuniuClientUser {
 	if m != nil {
-		return m.DeskState
+		return m.User
 	}
 	return nil
-}
-
-func (m *NiuEnterDeskBc) GetUserState() []*NiuniuSrvUser {
-	if m != nil {
-		return m.UserState
-	}
-	return nil
-}
-
-func (m *NiuEnterDeskBc) GetNewUser() uint32 {
-	if m != nil && m.NewUser != nil {
-		return *m.NewUser
-	}
-	return 0
 }
 
 // =============================准备===================================
 type NiuSwitchReadyOt struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CurrCircle       *int32       `protobuf:"varint,2,opt,name=currCircle" json:"currCircle,omitempty"`
+	CuurBanker       *int32       `protobuf:"varint,3,opt,name=cuurBanker" json:"cuurBanker,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -331,6 +342,20 @@ func (m *NiuSwitchReadyOt) GetHeader() *ProtoHeader {
 		return m.Header
 	}
 	return nil
+}
+
+func (m *NiuSwitchReadyOt) GetCurrCircle() int32 {
+	if m != nil && m.CurrCircle != nil {
+		return *m.CurrCircle
+	}
+	return 0
+}
+
+func (m *NiuSwitchReadyOt) GetCuurBanker() int32 {
+	if m != nil && m.CuurBanker != nil {
+		return *m.CuurBanker
+	}
+	return 0
 }
 
 type NiuSwitchReadyReq struct {
@@ -391,129 +416,17 @@ func (m *NiuSwitchReadyBc) GetIsReady() bool {
 	return false
 }
 
-// =============================开始游戏================================
-type NiuStartGameReq struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *NiuStartGameReq) Reset()                    { *m = NiuStartGameReq{} }
-func (m *NiuStartGameReq) String() string            { return proto.CompactTextString(m) }
-func (*NiuStartGameReq) ProtoMessage()               {}
-func (*NiuStartGameReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{7} }
-
-func (m *NiuStartGameReq) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-// =============================发牌===================================
-type NiuFapaiBc struct {
-	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	Pai              *NiuniuSrvPoker `protobuf:"bytes,2,opt,name=pai" json:"pai,omitempty"`
-	XXX_unrecognized []byte          `json:"-"`
-}
-
-func (m *NiuFapaiBc) Reset()                    { *m = NiuFapaiBc{} }
-func (m *NiuFapaiBc) String() string            { return proto.CompactTextString(m) }
-func (*NiuFapaiBc) ProtoMessage()               {}
-func (*NiuFapaiBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{8} }
-
-func (m *NiuFapaiBc) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *NiuFapaiBc) GetPai() *NiuniuSrvPoker {
-	if m != nil {
-		return m.Pai
-	}
-	return nil
-}
-
-// =============================加倍===================================
-type NiuJiabeiOt struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *NiuJiabeiOt) Reset()                    { *m = NiuJiabeiOt{} }
-func (m *NiuJiabeiOt) String() string            { return proto.CompactTextString(m) }
-func (*NiuJiabeiOt) ProtoMessage()               {}
-func (*NiuJiabeiOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{9} }
-
-func (m *NiuJiabeiOt) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-type NiuJiabeiReq struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	AddNum           *int32       `protobuf:"varint,2,opt,name=addNum" json:"addNum,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *NiuJiabeiReq) Reset()                    { *m = NiuJiabeiReq{} }
-func (m *NiuJiabeiReq) String() string            { return proto.CompactTextString(m) }
-func (*NiuJiabeiReq) ProtoMessage()               {}
-func (*NiuJiabeiReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{10} }
-
-func (m *NiuJiabeiReq) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *NiuJiabeiReq) GetAddNum() int32 {
-	if m != nil && m.AddNum != nil {
-		return *m.AddNum
-	}
-	return 0
-}
-
-type NiuJiabeiBc struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	AddNum           *int32       `protobuf:"varint,2,opt,name=addNum" json:"addNum,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *NiuJiabeiBc) Reset()                    { *m = NiuJiabeiBc{} }
-func (m *NiuJiabeiBc) String() string            { return proto.CompactTextString(m) }
-func (*NiuJiabeiBc) ProtoMessage()               {}
-func (*NiuJiabeiBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{11} }
-
-func (m *NiuJiabeiBc) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *NiuJiabeiBc) GetAddNum() int32 {
-	if m != nil && m.AddNum != nil {
-		return *m.AddNum
-	}
-	return 0
-}
-
-// =============================抢庄===================================
-// 抢庄over turn
+// =============================抢庄(发牌)===================================
 type NiuQiangzhuangOt struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Pokers           *NiuniuSrvPoker `protobuf:"bytes,2,opt,name=pokers" json:"pokers,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
 }
 
 func (m *NiuQiangzhuangOt) Reset()                    { *m = NiuQiangzhuangOt{} }
 func (m *NiuQiangzhuangOt) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangOt) ProtoMessage()               {}
-func (*NiuQiangzhuangOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{12} }
+func (*NiuQiangzhuangOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{7} }
 
 func (m *NiuQiangzhuangOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -522,16 +435,23 @@ func (m *NiuQiangzhuangOt) GetHeader() *ProtoHeader {
 	return nil
 }
 
+func (m *NiuQiangzhuangOt) GetPokers() *NiuniuSrvPoker {
+	if m != nil {
+		return m.Pokers
+	}
+	return nil
+}
+
 type NiuQiangzhuangReq struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	AddNum           *int32       `protobuf:"varint,2,opt,name=addNum" json:"addNum,omitempty"`
+	Score            *int32       `protobuf:"varint,2,opt,name=score" json:"score,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *NiuQiangzhuangReq) Reset()                    { *m = NiuQiangzhuangReq{} }
 func (m *NiuQiangzhuangReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangReq) ProtoMessage()               {}
-func (*NiuQiangzhuangReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{13} }
+func (*NiuQiangzhuangReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{8} }
 
 func (m *NiuQiangzhuangReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -540,24 +460,24 @@ func (m *NiuQiangzhuangReq) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *NiuQiangzhuangReq) GetAddNum() int32 {
-	if m != nil && m.AddNum != nil {
-		return *m.AddNum
+func (m *NiuQiangzhuangReq) GetScore() int32 {
+	if m != nil && m.Score != nil {
+		return *m.Score
 	}
 	return 0
 }
 
 type NiuQiangzhuangBc struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	AddUser          *uint32      `protobuf:"varint,2,opt,name=addUser" json:"addUser,omitempty"`
-	AddNum           *int32       `protobuf:"varint,3,opt,name=addNum" json:"addNum,omitempty"`
+	User             *uint32      `protobuf:"varint,2,opt,name=user" json:"user,omitempty"`
+	Score            *int32       `protobuf:"varint,3,opt,name=score" json:"score,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *NiuQiangzhuangBc) Reset()                    { *m = NiuQiangzhuangBc{} }
 func (m *NiuQiangzhuangBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangBc) ProtoMessage()               {}
-func (*NiuQiangzhuangBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{14} }
+func (*NiuQiangzhuangBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{9} }
 
 func (m *NiuQiangzhuangBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -566,78 +486,239 @@ func (m *NiuQiangzhuangBc) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *NiuQiangzhuangBc) GetAddUser() uint32 {
-	if m != nil && m.AddUser != nil {
-		return *m.AddUser
+func (m *NiuQiangzhuangBc) GetUser() uint32 {
+	if m != nil && m.User != nil {
+		return *m.User
 	}
 	return 0
 }
 
-func (m *NiuQiangzhuangBc) GetAddNum() int32 {
-	if m != nil && m.AddNum != nil {
-		return *m.AddNum
+func (m *NiuQiangzhuangBc) GetScore() int32 {
+	if m != nil && m.Score != nil {
+		return *m.Score
 	}
 	return 0
+}
+
+// =============================加倍（发牌）===================================
+type NiuJiabeiOt struct {
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CuurBanker       *int32          `protobuf:"varint,2,opt,name=cuurBanker" json:"cuurBanker,omitempty"`
+	Pokers           *NiuniuSrvPoker `protobuf:"bytes,3,opt,name=pokers" json:"pokers,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *NiuJiabeiOt) Reset()                    { *m = NiuJiabeiOt{} }
+func (m *NiuJiabeiOt) String() string            { return proto.CompactTextString(m) }
+func (*NiuJiabeiOt) ProtoMessage()               {}
+func (*NiuJiabeiOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{10} }
+
+func (m *NiuJiabeiOt) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *NiuJiabeiOt) GetCuurBanker() int32 {
+	if m != nil && m.CuurBanker != nil {
+		return *m.CuurBanker
+	}
+	return 0
+}
+
+func (m *NiuJiabeiOt) GetPokers() *NiuniuSrvPoker {
+	if m != nil {
+		return m.Pokers
+	}
+	return nil
+}
+
+type NiuJiabeiReq struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Score            *int32       `protobuf:"varint,2,opt,name=score" json:"score,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *NiuJiabeiReq) Reset()                    { *m = NiuJiabeiReq{} }
+func (m *NiuJiabeiReq) String() string            { return proto.CompactTextString(m) }
+func (*NiuJiabeiReq) ProtoMessage()               {}
+func (*NiuJiabeiReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{11} }
+
+func (m *NiuJiabeiReq) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *NiuJiabeiReq) GetScore() int32 {
+	if m != nil && m.Score != nil {
+		return *m.Score
+	}
+	return 0
+}
+
+type NiuJiabeiBc struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Score            *int32       `protobuf:"varint,2,opt,name=score" json:"score,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *NiuJiabeiBc) Reset()                    { *m = NiuJiabeiBc{} }
+func (m *NiuJiabeiBc) String() string            { return proto.CompactTextString(m) }
+func (*NiuJiabeiBc) ProtoMessage()               {}
+func (*NiuJiabeiBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{12} }
+
+func (m *NiuJiabeiBc) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *NiuJiabeiBc) GetScore() int32 {
+	if m != nil && m.Score != nil {
+		return *m.Score
+	}
+	return 0
+}
+
+// ==============================跟庄家比牌结果============================
+type NiuBipaiResultItem struct {
+	Poker            *NiuniuSrvPoker `protobuf:"bytes,1,opt,name=poker" json:"poker,omitempty"`
+	Score            *int32          `protobuf:"varint,2,opt,name=score" json:"score,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *NiuBipaiResultItem) Reset()                    { *m = NiuBipaiResultItem{} }
+func (m *NiuBipaiResultItem) String() string            { return proto.CompactTextString(m) }
+func (*NiuBipaiResultItem) ProtoMessage()               {}
+func (*NiuBipaiResultItem) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{13} }
+
+func (m *NiuBipaiResultItem) GetPoker() *NiuniuSrvPoker {
+	if m != nil {
+		return m.Poker
+	}
+	return nil
+}
+
+func (m *NiuBipaiResultItem) GetScore() int32 {
+	if m != nil && m.Score != nil {
+		return *m.Score
+	}
+	return 0
+}
+
+type NiuBipaiResultBc struct {
+	UserState        []*NiuBipaiResultItem `protobuf:"bytes,1,rep,name=userState" json:"userState,omitempty"`
+	XXX_unrecognized []byte                `json:"-"`
+}
+
+func (m *NiuBipaiResultBc) Reset()                    { *m = NiuBipaiResultBc{} }
+func (m *NiuBipaiResultBc) String() string            { return proto.CompactTextString(m) }
+func (*NiuBipaiResultBc) ProtoMessage()               {}
+func (*NiuBipaiResultBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{14} }
+
+func (m *NiuBipaiResultBc) GetUserState() []*NiuBipaiResultItem {
+	if m != nil {
+		return m.UserState
+	}
+	return nil
+}
+
+type NiuGameEnd struct {
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Data             []*NiuniuUserBill `protobuf:"bytes,2,rep,name=data" json:"data,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *NiuGameEnd) Reset()                    { *m = NiuGameEnd{} }
+func (m *NiuGameEnd) String() string            { return proto.CompactTextString(m) }
+func (*NiuGameEnd) ProtoMessage()               {}
+func (*NiuGameEnd) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{15} }
+
+func (m *NiuGameEnd) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *NiuGameEnd) GetData() []*NiuniuUserBill {
+	if m != nil {
+		return m.Data
+	}
+	return nil
 }
 
 func init() {
 	proto.RegisterType((*NiuCreateDeskReq)(nil), "ddproto.niu_create_desk_req")
-	proto.RegisterType((*NiuCreateDeskAck)(nil), "ddproto.niu_create_desk_ack")
 	proto.RegisterType((*NiuEnterDeskReq)(nil), "ddproto.niu_enter_desk_req")
+	proto.RegisterType((*NiuEnterDeskAck)(nil), "ddproto.niu_enter_desk_ack")
 	proto.RegisterType((*NiuEnterDeskBc)(nil), "ddproto.niu_enter_desk_bc")
 	proto.RegisterType((*NiuSwitchReadyOt)(nil), "ddproto.niu_switch_ready_ot")
 	proto.RegisterType((*NiuSwitchReadyReq)(nil), "ddproto.niu_switch_ready_req")
 	proto.RegisterType((*NiuSwitchReadyBc)(nil), "ddproto.niu_switch_ready_bc")
-	proto.RegisterType((*NiuStartGameReq)(nil), "ddproto.niu_start_game_req")
-	proto.RegisterType((*NiuFapaiBc)(nil), "ddproto.niu_fapai_bc")
-	proto.RegisterType((*NiuJiabeiOt)(nil), "ddproto.niu_jiabei_ot")
-	proto.RegisterType((*NiuJiabeiReq)(nil), "ddproto.niu_jiabei_req")
-	proto.RegisterType((*NiuJiabeiBc)(nil), "ddproto.niu_jiabei_bc")
 	proto.RegisterType((*NiuQiangzhuangOt)(nil), "ddproto.niu_qiangzhuang_ot")
 	proto.RegisterType((*NiuQiangzhuangReq)(nil), "ddproto.niu_qiangzhuang_req")
 	proto.RegisterType((*NiuQiangzhuangBc)(nil), "ddproto.niu_qiangzhuang_bc")
+	proto.RegisterType((*NiuJiabeiOt)(nil), "ddproto.niu_jiabei_ot")
+	proto.RegisterType((*NiuJiabeiReq)(nil), "ddproto.niu_jiabei_req")
+	proto.RegisterType((*NiuJiabeiBc)(nil), "ddproto.niu_jiabei_bc")
+	proto.RegisterType((*NiuBipaiResultItem)(nil), "ddproto.niu_bipai_result_item")
+	proto.RegisterType((*NiuBipaiResultBc)(nil), "ddproto.niu_bipai_result_bc")
+	proto.RegisterType((*NiuGameEnd)(nil), "ddproto.niu_game_end")
 	proto.RegisterEnum("ddproto.NiuniuEnumProtoid", NiuniuEnumProtoid_name, NiuniuEnumProtoid_value)
 }
 
 var fileDescriptor28 = []byte{
-	// 614 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xdd, 0x4e, 0xdb, 0x3c,
-	0x18, 0xa6, 0x14, 0x5a, 0x78, 0x81, 0x4f, 0xc1, 0x1f, 0xb0, 0xc0, 0xa4, 0x0d, 0xe5, 0x08, 0x6d,
-	0x53, 0x0f, 0x76, 0xb0, 0x1d, 0xed, 0x20, 0x0d, 0x19, 0x54, 0x6c, 0xa1, 0x98, 0x76, 0xd2, 0x34,
-	0x69, 0x96, 0x9b, 0x78, 0xe0, 0xb1, 0x26, 0xc5, 0x71, 0x40, 0x9b, 0x76, 0x87, 0xbb, 0x88, 0xdd,
-	0xca, 0x64, 0x27, 0x59, 0x8d, 0x4a, 0x35, 0x79, 0xda, 0x49, 0x15, 0x3f, 0x7e, 0x7e, 0xde, 0x1f,
-	0xab, 0xb0, 0x99, 0xf2, 0x22, 0xe5, 0x05, 0x19, 0xd1, 0x9c, 0x75, 0x26, 0x22, 0x93, 0x19, 0x6a,
-	0x27, 0x89, 0xfe, 0xd8, 0xfb, 0x3f, 0xce, 0xc6, 0xe3, 0x2c, 0x25, 0xf1, 0x17, 0xce, 0x52, 0xd9,
-	0xa9, 0xc0, 0x4a, 0x90, 0x33, 0x71, 0xc3, 0x44, 0x09, 0x7a, 0xdf, 0x41, 0xc1, 0x24, 0x16, 0x8c,
-	0x4a, 0x46, 0x12, 0x96, 0x5f, 0x11, 0xc1, 0xae, 0xd1, 0x33, 0x68, 0x5d, 0x32, 0x9a, 0x30, 0xe1,
-	0x36, 0xf6, 0x1b, 0x07, 0x6b, 0xcf, 0xb7, 0x3a, 0x95, 0x75, 0xa7, 0xaf, 0x7e, 0x8f, 0xf5, 0x1d,
-	0xae, 0x38, 0xe8, 0x25, 0xb4, 0xb2, 0x89, 0xe4, 0x59, 0xea, 0x2e, 0x6a, 0xf6, 0xe3, 0xdf, 0xec,
-	0x3a, 0x52, 0xdc, 0x94, 0xde, 0x25, 0x0d, 0x57, 0x74, 0x2f, 0x9e, 0x4d, 0xa7, 0xf1, 0x95, 0x65,
-	0xfa, 0x23, 0x00, 0xa5, 0x8c, 0x8a, 0xf1, 0x88, 0x09, 0x5d, 0xc1, 0x2a, 0x36, 0x10, 0x6f, 0x04,
-	0x48, 0x85, 0xb0, 0x54, 0x32, 0xf1, 0xb7, 0x1d, 0xfe, 0x29, 0xe3, 0x47, 0x43, 0xef, 0xc3, 0x0c,
-	0x19, 0xc5, 0x96, 0x19, 0x2f, 0x60, 0x55, 0x09, 0xcf, 0x25, 0x95, 0xac, 0x1a, 0xa4, 0x3b, 0x6f,
-	0x90, 0x78, 0x4a, 0x55, 0xba, 0x22, 0x67, 0xa2, 0xd4, 0x35, 0xf7, 0x9b, 0xf3, 0x74, 0x8a, 0x84,
-	0xa7, 0x54, 0xe4, 0x42, 0x3b, 0x65, 0xb7, 0xc3, 0x9c, 0x09, 0x77, 0x69, 0xbf, 0x71, 0xb0, 0x81,
-	0xeb, 0xa3, 0x17, 0x94, 0x6b, 0xc9, 0x6f, 0xb9, 0x8c, 0x2f, 0x89, 0x60, 0x34, 0xf9, 0x4a, 0x32,
-	0x69, 0xd7, 0x8e, 0xf7, 0x11, 0xb6, 0x66, 0x4c, 0xec, 0x07, 0xef, 0x42, 0x9b, 0xe7, 0x58, 0x89,
-	0xf5, 0x48, 0x56, 0x70, 0x7d, 0xf4, 0xae, 0xef, 0x29, 0xd2, 0x7a, 0xe6, 0x08, 0x96, 0xd4, 0x40,
-	0xb4, 0xf7, 0x06, 0xd6, 0xdf, 0x66, 0x64, 0xf3, 0x6e, 0x64, 0xb7, 0x7c, 0x49, 0xb9, 0xa4, 0x42,
-	0x92, 0x0b, 0x3a, 0x66, 0xf6, 0x0d, 0x79, 0x1c, 0xd6, 0x95, 0xc7, 0x27, 0x3a, 0xa1, 0xdc, 0xbe,
-	0xde, 0xa7, 0xd0, 0x9c, 0x50, 0x5e, 0xbd, 0x8e, 0xdd, 0xfb, 0xb6, 0x3c, 0xc9, 0xae, 0x98, 0xc0,
-	0x8a, 0xe5, 0xbd, 0x82, 0x0d, 0x85, 0x7e, 0xe6, 0x74, 0xc4, 0xb8, 0xfd, 0x02, 0xdf, 0xc1, 0x7f,
-	0x86, 0xdc, 0x7e, 0x75, 0x3b, 0xd0, 0xa2, 0x49, 0x12, 0x15, 0x63, 0x5d, 0xee, 0x32, 0xae, 0x4e,
-	0xde, 0xf0, 0x4e, 0x59, 0xd6, 0x23, 0x98, 0x67, 0x5b, 0x2d, 0xe7, 0x9a, 0xd3, 0xf4, 0xe2, 0xdb,
-	0x65, 0x41, 0xd3, 0x0b, 0xfb, 0x96, 0x3f, 0x94, 0x6f, 0xca, 0xf4, 0xf8, 0x77, 0x7d, 0xcb, 0xd9,
-	0x02, 0xad, 0x9b, 0x77, 0xa1, 0x4d, 0x93, 0x64, 0x38, 0x7d, 0xb2, 0xf5, 0xd1, 0x48, 0x6d, 0x9a,
-	0xa9, 0x4f, 0x7e, 0x2e, 0x42, 0xfd, 0xc7, 0xcf, 0xd2, 0x62, 0x4c, 0xb4, 0x37, 0x4f, 0xd0, 0x36,
-	0x6c, 0x46, 0xbd, 0x21, 0xe9, 0xf7, 0x0e, 0xc9, 0x71, 0xe8, 0xe3, 0x41, 0x37, 0xf4, 0x07, 0xce,
-	0x02, 0xda, 0x01, 0x54, 0xc3, 0x67, 0xc3, 0x5e, 0x70, 0x42, 0x82, 0xd3, 0x28, 0x72, 0x1a, 0x68,
-	0x0f, 0x76, 0x66, 0x71, 0xe2, 0x07, 0x27, 0xce, 0xa2, 0xa9, 0x39, 0xf2, 0xdf, 0x86, 0xe4, 0xcd,
-	0xe9, 0x51, 0x2f, 0x72, 0x9a, 0xa6, 0x66, 0x8a, 0x6b, 0xcd, 0x12, 0x7a, 0x08, 0x0f, 0xea, 0xbb,
-	0x00, 0x87, 0xfe, 0x20, 0x24, 0x87, 0xe1, 0xf9, 0x09, 0xc1, 0xe1, 0x99, 0xb3, 0x3c, 0xef, 0x52,
-	0x29, 0x5b, 0xa6, 0x6b, 0x18, 0x0d, 0x42, 0x3c, 0x15, 0xb6, 0xd1, 0x2e, 0x6c, 0xdf, 0x73, 0xd7,
-	0x0d, 0x9c, 0x15, 0xb3, 0x5f, 0x1c, 0xfa, 0x87, 0xef, 0xb5, 0x62, 0x15, 0x6d, 0x81, 0x73, 0x17,
-	0xee, 0x06, 0x0e, 0x98, 0xe4, 0xf3, 0x81, 0x8f, 0x07, 0x9a, 0xbc, 0x66, 0x92, 0x5f, 0xfb, 0x7d,
-	0xbf, 0xa7, 0xc8, 0xeb, 0xfd, 0x85, 0x7e, 0xe3, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0xcf, 0xd8,
-	0x85, 0xf9, 0x8d, 0x07, 0x00, 0x00,
+	// 750 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x55, 0xcf, 0x4f, 0xdb, 0x48,
+	0x18, 0x25, 0x3f, 0x21, 0xc3, 0x8f, 0x35, 0x93, 0x00, 0x01, 0x24, 0x16, 0xf9, 0x84, 0x56, 0xbb,
+	0x41, 0xcb, 0x65, 0xb5, 0x52, 0x2f, 0xb6, 0x63, 0x05, 0x17, 0x6a, 0xc2, 0x24, 0x39, 0xd0, 0x03,
+	0x23, 0xc7, 0x1e, 0x81, 0x9b, 0xc4, 0x0e, 0x63, 0x9b, 0xaa, 0x55, 0x7b, 0xea, 0x3f, 0xd0, 0x63,
+	0xff, 0xdc, 0x6a, 0xc6, 0x36, 0x99, 0xe0, 0xa4, 0xaa, 0x11, 0x97, 0x28, 0xfe, 0xde, 0xfb, 0xbe,
+	0xf7, 0xbd, 0x37, 0x13, 0x07, 0x6c, 0x7b, 0x6e, 0xe4, 0xb9, 0x11, 0x1e, 0x5a, 0x01, 0x69, 0x4d,
+	0xa9, 0x1f, 0xfa, 0x70, 0xd5, 0x71, 0xf8, 0x97, 0x83, 0xba, 0xed, 0x4f, 0x26, 0xbe, 0x87, 0xed,
+	0xb1, 0x4b, 0xbc, 0xb0, 0x95, 0x14, 0x93, 0x86, 0x80, 0xd0, 0x47, 0x42, 0xe3, 0xa2, 0xfc, 0x05,
+	0xb0, 0x32, 0xb6, 0x29, 0xb1, 0x42, 0x82, 0x1d, 0x12, 0x8c, 0x30, 0x25, 0x0f, 0xf0, 0x6f, 0x50,
+	0xbd, 0x27, 0x96, 0x43, 0x68, 0xb3, 0x70, 0x5c, 0x38, 0x59, 0x3f, 0x6b, 0xb4, 0x92, 0xd1, 0xad,
+	0x2e, 0xfb, 0x3c, 0xe7, 0x18, 0x4a, 0x38, 0xf0, 0x3f, 0x50, 0xf5, 0xa7, 0xa1, 0xeb, 0x7b, 0xcd,
+	0x22, 0x67, 0xff, 0xf9, 0xc4, 0x4e, 0x25, 0xe9, 0x63, 0x3c, 0x3b, 0xa6, 0xa1, 0x84, 0x2e, 0x0f,
+	0x01, 0x64, 0x30, 0xf1, 0x42, 0x42, 0x5f, 0x2a, 0x7e, 0x04, 0x00, 0xeb, 0x34, 0xa3, 0xc9, 0x90,
+	0x50, 0xbe, 0x40, 0x0d, 0x09, 0x15, 0xf9, 0x6b, 0x46, 0xc3, 0xb2, 0x47, 0x39, 0x35, 0xfe, 0x07,
+	0x35, 0xd6, 0xd9, 0x0b, 0xad, 0x90, 0x24, 0x1e, 0x0f, 0x9f, 0x7b, 0x8c, 0xb3, 0xe6, 0x0a, 0x68,
+	0xc6, 0x96, 0x29, 0x3f, 0x28, 0x51, 0x7e, 0x68, 0xe7, 0x54, 0x3f, 0x05, 0xe5, 0x28, 0x48, 0xbc,
+	0x2d, 0x17, 0x66, 0x14, 0xc4, 0x89, 0xf2, 0xb7, 0x42, 0x7c, 0xaa, 0xc1, 0x47, 0x37, 0xb4, 0xef,
+	0x31, 0x25, 0x96, 0xf3, 0x09, 0xfb, 0x61, 0xfe, 0x60, 0xed, 0x88, 0x52, 0xcd, 0xa5, 0xf6, 0x38,
+	0x76, 0x5d, 0x41, 0x42, 0x25, 0xc6, 0x23, 0xaa, 0x5a, 0xde, 0x88, 0xd0, 0x66, 0x29, 0xc5, 0xd3,
+	0x8a, 0x7c, 0x0b, 0x1a, 0x99, 0x25, 0xf2, 0x1f, 0x6f, 0x13, 0xac, 0xba, 0x01, 0x62, 0xcd, 0x7c,
+	0x85, 0x35, 0x94, 0x3e, 0xca, 0x0f, 0x0b, 0x4c, 0xe6, 0xce, 0x16, 0x0a, 0xd9, 0x6e, 0xc6, 0xf1,
+	0x89, 0x92, 0xa5, 0x79, 0xc9, 0x28, 0xbe, 0x4b, 0x0f, 0xae, 0xe5, 0xdd, 0x7d, 0xbe, 0x8f, 0x2c,
+	0xef, 0x2e, 0x7f, 0xac, 0xff, 0x82, 0xea, 0xd4, 0x1f, 0x11, 0x1a, 0x24, 0xe7, 0xb9, 0xbf, 0xe8,
+	0xc7, 0xc2, 0x19, 0x28, 0x21, 0xca, 0x37, 0xb1, 0x53, 0x51, 0x36, 0x7f, 0x90, 0x0d, 0x50, 0x09,
+	0x6c, 0x9f, 0xa6, 0x27, 0x19, 0x3f, 0xc8, 0xe3, 0xac, 0xa3, 0x57, 0xc9, 0xf0, 0x49, 0xad, 0x24,
+	0xaa, 0x7d, 0x2f, 0x80, 0x4d, 0x26, 0xf7, 0xc1, 0xb5, 0x86, 0xc4, 0x7d, 0xe1, 0x95, 0x7c, 0xba,
+	0x72, 0xc5, 0xe7, 0x57, 0x4e, 0xc8, 0xb6, 0xf4, 0xbb, 0xd9, 0xf6, 0xc1, 0x96, 0xb0, 0xd1, 0x6b,
+	0xc5, 0xda, 0x9b, 0xf3, 0x99, 0x3b, 0xd1, 0xc5, 0x43, 0x6f, 0xc1, 0x0e, 0x7f, 0xe1, 0xbb, 0x53,
+	0x8b, 0x6d, 0x1a, 0x44, 0xe3, 0x10, 0xbb, 0x21, 0x99, 0xc0, 0x53, 0x50, 0xe1, 0x6e, 0x92, 0xd9,
+	0xbf, 0x70, 0x1d, 0xf3, 0x96, 0x2e, 0x5d, 0xcf, 0xcc, 0x1f, 0xda, 0xf0, 0x0d, 0xa8, 0xb1, 0x23,
+	0x8d, 0x5f, 0x7e, 0x85, 0xe3, 0xd2, 0xc9, 0xfa, 0xd9, 0x91, 0xa8, 0x90, 0x5d, 0x08, 0xcd, 0x1a,
+	0xe4, 0x11, 0xd8, 0x60, 0x9c, 0x3b, 0x6b, 0x42, 0x30, 0xf1, 0x9c, 0x9c, 0x41, 0xfc, 0x03, 0xca,
+	0x8e, 0x15, 0x5a, 0xcd, 0x22, 0x97, 0xcd, 0x18, 0x63, 0x32, 0x78, 0xe8, 0x8e, 0xc7, 0x88, 0xd3,
+	0xfe, 0xfa, 0x51, 0x06, 0xe9, 0xbf, 0x1c, 0xf1, 0xa2, 0x09, 0xe6, 0x64, 0xd7, 0x81, 0x3b, 0x60,
+	0xdb, 0x34, 0x06, 0xb8, 0x6b, 0xb4, 0xf1, 0xb9, 0xae, 0xa0, 0xbe, 0xaa, 0x2b, 0x7d, 0x69, 0x05,
+	0xee, 0x02, 0x98, 0x96, 0xaf, 0x07, 0x86, 0x76, 0x81, 0xb5, 0x2b, 0xd3, 0x94, 0x0a, 0xf0, 0x00,
+	0xec, 0x66, 0xeb, 0x58, 0xd1, 0x2e, 0xa4, 0xa2, 0xd8, 0xd3, 0x51, 0xde, 0xe9, 0xf8, 0xf2, 0xaa,
+	0x63, 0x98, 0x52, 0x49, 0xec, 0x99, 0xd5, 0x79, 0x4f, 0x19, 0x1e, 0x82, 0xbd, 0x14, 0xd3, 0x90,
+	0xae, 0xf4, 0x75, 0xdc, 0xd6, 0x7b, 0x17, 0x18, 0xe9, 0xd7, 0x52, 0x45, 0x6c, 0xd4, 0xcd, 0xbe,
+	0x8e, 0x66, 0x58, 0x75, 0x09, 0xc6, 0x86, 0xae, 0xc2, 0x7d, 0xb0, 0xb3, 0x00, 0x53, 0x35, 0x69,
+	0x0d, 0x36, 0x80, 0x94, 0x42, 0x48, 0x57, 0xda, 0x37, 0xf8, 0xaa, 0x2f, 0xd5, 0xc4, 0x10, 0xe2,
+	0x2a, 0xd3, 0x00, 0x59, 0xb2, 0xaa, 0x49, 0xeb, 0x73, 0x11, 0x18, 0x8a, 0xd9, 0x79, 0x7f, 0x3e,
+	0x50, 0xcc, 0x0e, 0x1b, 0xb4, 0x21, 0xda, 0x11, 0x31, 0x36, 0x6e, 0x73, 0x59, 0xa3, 0xaa, 0x49,
+	0x5b, 0xe2, 0x06, 0x6f, 0x0d, 0x45, 0xd5, 0x0d, 0x36, 0xef, 0x0f, 0x31, 0xd2, 0xa4, 0xcc, 0x46,
+	0x49, 0x0b, 0xe8, 0xaa, 0x26, 0x6d, 0x8b, 0xf2, 0xaa, 0xd1, 0x55, 0x18, 0xbb, 0x37, 0xb8, 0xec,
+	0x33, 0x10, 0xc2, 0x3d, 0x50, 0x9f, 0x3b, 0x06, 0xdd, 0x6c, 0x33, 0xa0, 0xde, 0x5d, 0xe9, 0x16,
+	0x7e, 0x06, 0x00, 0x00, 0xff, 0xff, 0xcd, 0x39, 0x47, 0x4b, 0x33, 0x09, 0x00, 0x00,
 }
