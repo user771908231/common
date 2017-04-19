@@ -1,4 +1,5 @@
 var loginIp = "182.92.225.121";
+loginIp = "192.168.2.188";
 var tableName = "t_game_config_login_list";
 var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 
@@ -69,7 +70,7 @@ db.getCollection(tableName).insert({
 });
 
 db.getCollection(tableName).insert({
-    "GameId": 8.0,
+    "GameId": 7.0,
     "name": "跑得快",
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
