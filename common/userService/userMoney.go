@@ -69,7 +69,7 @@ func GetUserTicket(userId uint32) int32 {
 func GetUserBonus(userId uint32) float64 {
 	user := new(ddproto.User)
 	db.C(tableName.DBT_T_USER).Find(bson.M{"id": userId}, user)
-	return float64(int64(user.GetBonus()*100))/100
+	return float64(int64(user.GetBonus()*100)) / 100
 }
 
 //craete钻石交易记录
@@ -135,7 +135,7 @@ func INCRUserDiamond(userid uint32, d int64) (int64, error) {
 //减少用户的砖石
 func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 	count := GetUserDiamond(userid)
-	if count - d < 0 {
+	if count-d < 0 {
 		return count, errors.New("余额不足，减少钻石失败！")
 	}
 	return decrUser(userid, cfg.RKEY_USER_DIAMOND, d)
@@ -149,7 +149,7 @@ func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
 //减少用户的房卡
 func DECRUserRoomcard(userId uint32, d int64) (int64, error) {
 	count := GetUserRoomCard(userId)
-	if count - d < 0 {
+	if count-d < 0 {
 		return count, errors.New("余额不足，减少房卡失败！")
 	}
 	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
@@ -163,7 +163,7 @@ func INCRUserDiamond2(userid uint32, d int64) (int64, error) {
 //减少用户的朋友桌钻石
 func DECRUserDiamond2(userid uint32, d int64) (int64, error) {
 	count := GetUserDiamond2(userid)
-	if count - d < 0 {
+	if count-d < 0 {
 		return count, errors.New("余额不足，减少朋友桌钻石失败！")
 	}
 	return decrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
@@ -177,10 +177,16 @@ func INCRUserCOIN(userid uint32, d int64) (int64, error) {
 //减少用户的金币
 func DECRUserCOIN(userid uint32, d int64) (int64, error) {
 	count := GetUserCoin(userid)
-	if count - d < 0 {
+	if count-d < 0 {
 		return count, errors.New("余额不足，减少用户金币失败！")
 	}
 	return decrUser(userid, cfg.RKEY_USER_COIN, d)
+}
+
+//减少用户的金币,当玩家金币不足的时候，设置玩家的金币为0
+func DECRUserCOINv2(userId uint32, d int64) (int64, error) {
+	//todo
+	return 0, nil
 }
 
 //增加用户奖券
@@ -213,7 +219,7 @@ func INCRUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus + d
 	//保留有效小数
-	bonus_new = float64(int64(bonus_new*100))/100
+	bonus_new = float64(int64(bonus_new*100)) / 100
 
 	user := GetUserById(userid)
 	user.Bonus = proto.Float64(bonus_new)
@@ -227,7 +233,7 @@ func DECUserBonus(userid uint32, d float64) (float64, error) {
 	bonus := GetUserBonus(userid)
 	bonus_new := bonus - d
 	//保留有效小数
-	bonus_new = float64(int64(bonus_new*100))/100
+	bonus_new = float64(int64(bonus_new*100)) / 100
 
 	if bonus_new < 0 {
 		return bonus, errors.New("红包余额不足")
