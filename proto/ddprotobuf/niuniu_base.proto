@@ -14,10 +14,10 @@ enum niuniu_enum_protoid {
     NIU_PID_GAME_LOGIN_ACK = 4; //
 
     NIU_PID_CREATE_DESK_REQ = 5; //创建房间
-    NIU_PID_CREATE_DESK_ACK = 6; //创建房间ack
 
-    NIU_PID_ENTER_DESK_REQ = 7; //进入房间
-    NIU_PID_ENTER_DESK_BC = 8; //进入房间广播
+    NIU_PID_ENTER_DESK_REQ = 6; //进入房间req
+    NIU_PID_ENTER_DESK_ACK = 7; //进入房间ack
+    NIU_PID_ENTER_DESK_BC = 8; //进入房间bc
 
     NIU_PID_READY_OT = 9;  //
     NIU_PID_READY_REQ = 10; //  准备
