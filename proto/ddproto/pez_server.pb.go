@@ -165,13 +165,13 @@ func (x *PezEnum_PEZTYPE) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_PEZTYPE(value)
 	return nil
 }
-func (PezEnum_PEZTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{0} }
+func (PezEnum_PEZTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor40, []int{0} }
 
 func init() {
 	proto.RegisterEnum("ddproto.PezEnum_PEZTYPE", PezEnum_PEZTYPE_name, PezEnum_PEZTYPE_value)
 }
 
-var fileDescriptor39 = []byte{
+var fileDescriptor40 = []byte{
 	// 128 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x48, 0xad, 0x8a,
 	0x2f, 0x4e, 0x2d, 0x2a, 0x4b, 0x2d, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0x49,

@@ -35,6 +35,7 @@ It is generated from these files:
 	mj_baishan_play.proto
 	mj_common.proto
 	niuniu_base.proto
+	niuniu_play.proto
 	niuniu_server.proto
 	pdk_base.proto
 	pdk_desk.proto
@@ -356,6 +357,11 @@ It has these top-level messages:
 	GameReqBuxiazi
 	GameAckBuxiazi
 	CardInfo
+	NiuniuSrvPoker
+	NiuniuUserBill
+	NiuniuSrvDeskOption
+	NiuniuClientDesk
+	NiuniuClientUser
 	NiuCreateDeskReq
 	NiuEnterDeskReq
 	NiuEnterDeskAck
@@ -375,11 +381,6 @@ It has these top-level messages:
 	NiuBipaiResultItem
 	NiuBipaiResultBc
 	NiuGameEnd
-	NiuniuSrvPoker
-	NiuniuUserBill
-	NiuniuSrvDeskOption
-	NiuniuClientDesk
-	NiuniuClientUser
 	NiuniuSrvDesk
 	NiuniuSrvUser
 	NiuniuSrvRoom
