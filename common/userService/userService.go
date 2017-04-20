@@ -152,10 +152,10 @@ func InitUserMoney2Redis(user *ddproto.User) {
 	SetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD, user.GetRoomCard())
 }
 
-func GetUserByUnionId(openId string) *ddproto.User {
-	log.T("通过UnionIdd[%v]查询用户是否存在...", openId)
+func GetUserByUnionId(unionid string) *ddproto.User {
+	log.T("通过UnionIdd[%v]查询用户是否存在...", unionid)
 	//2,从数据库中查询
-	user := userDao.FindUserByUnionId(openId)
+	user := userDao.FindUserByUnionId(unionid)
 	if user != nil {
 		log.T("在mongo中查询到了user.UnionId[%v],现在开始缓存", user.GetUnionId())
 		//把从数据获得的结果填充到redis的model中

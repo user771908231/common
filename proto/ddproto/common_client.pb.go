@@ -369,6 +369,7 @@ It has these top-level messages:
 	NiuSwitchReadyReq
 	NiuSwitchReadyAck
 	NiuSwitchReadyBc
+	NiuStartGameOt
 	NiuQiangzhuangOt
 	NiuQiangzhuangReq
 	NiuQiangzhuangAck

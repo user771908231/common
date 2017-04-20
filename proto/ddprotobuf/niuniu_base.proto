@@ -64,13 +64,6 @@ message niuniu_client_poker {
     optional niuniu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
 }
 
-//用户游戏状态
-enum niuniu_enum_user_state {
-    NIU_USER_STATUS_NO_READY = 1;  //未准备
-    NIU_USER_STATUS_IS_READY = 2;  //已准备
-    NIU_USER_STATUS_IS_GAMMING = 3;  //正在游戏中
-}
-
 //房间状态
 enum niuniu_enum_desk_state {
     NIU_DESK_STATUS_WAIT_ENTER = 1; //等待玩家进入
