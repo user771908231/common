@@ -98,6 +98,8 @@ message niuniu_client_user {
     optional bool isOnline = 10; //是否在线
     optional int32 index = 12;  //所在牌桌的索引
     optional niuniu_srv_poker pokers = 13; //发的牌
+    optional int32 bankerScore = 14; //抢庄分数
+    optional int32 doubleScore = 15; //加倍分数
 }
 
 
@@ -125,6 +127,8 @@ message niuniu_srv_user {
     optional bool isOnline = 10; //是否在线
     optional int32 index = 12;  //所在牌桌的索引
     optional niuniu_srv_poker pokers = 13; //发的牌
+    optional int32 bankerScore = 14; //抢庄分数
+    optional int32 doubleScore = 15; //加倍分数
 }
 
 
