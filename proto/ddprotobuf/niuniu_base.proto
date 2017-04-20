@@ -64,6 +64,10 @@ message niu_switch_ready_req {
     optional bool isReady = 2;  //准备状态：true准备 false取消准备
 }
 
+message niu_switch_ready_ack {
+    optional ProtoHeader header = 1;
+}
+
 message niu_switch_ready_bc {
     optional ProtoHeader header = 1;
     optional uint32 user = 2;  //切换状态的用户
@@ -80,6 +84,10 @@ message niu_qiangzhuang_ot {
 message niu_qiangzhuang_req {
     optional ProtoHeader header = 1;
     optional int32 score = 2;  //抢庄分数 1 2 3倍
+}
+
+message niu_qiangzhuang_ack {
+    optional ProtoHeader header = 1;
 }
 
 message niu_qiangzhuang_res_item {
@@ -105,6 +113,10 @@ message niu_jiabei_req {
     optional int32 score = 2;  //加倍分数 1 2 3倍
     optional int32 currCircle = 3;  //当前是第几圈
     optional int32 cuurBanker = 4;  //当前的庄家
+}
+
+message niu_jiabei_ack {
+    optional ProtoHeader header = 1;
 }
 
 message niu_jiabei_bc {

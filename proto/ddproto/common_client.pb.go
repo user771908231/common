@@ -361,13 +361,16 @@ It has these top-level messages:
 	NiuEnterDeskAck
 	NiuEnterDeskBc
 	NiuSwitchReadyReq
+	NiuSwitchReadyAck
 	NiuSwitchReadyBc
 	NiuQiangzhuangOt
 	NiuQiangzhuangReq
+	NiuQiangzhuangAck
 	NiuQiangzhuangResItem
 	NiuQiangzhuangResBc
 	NiuJiabeiOt
 	NiuJiabeiReq
+	NiuJiabeiAck
 	NiuJiabeiBc
 	NiuBipaiResultItem
 	NiuBipaiResultBc
