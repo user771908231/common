@@ -1,6 +1,5 @@
 syntax = "proto2";
 
-import public "common_client.proto";
 import public "niuniu_base.proto";
 
 package ddproto;
@@ -18,7 +17,7 @@ message niuniu_client_desk {
     optional int32 circleNo = 8; //当前是第几圈
     optional uint32 owner = 10;  //房主
     optional uint32 currBanker = 11;  //当前庄家
-    optional niuniu_srv_desk_option deskOption = 12;  //房间配置
+    optional niuniu_desk_option deskOption = 12;  //房间配置
     repeated niuniu_client_user users = 13;  //玩家列表
 }
 
@@ -29,7 +28,7 @@ message niuniu_client_user {
     optional niuniu_enum_user_state status = 7;
     optional bool isOnline = 10; //是否在线
     optional int32 index = 12;  //所在牌桌的索引
-    optional niuniu_srv_poker pokers = 13; //发的牌
+    optional niuniu_client_poker pokers = 13; //发的牌
     optional int32 bankerScore = 14; //抢庄分数
     optional int32 doubleScore = 15; //加倍分数
 }
@@ -39,7 +38,7 @@ message niuniu_client_user {
 //==============================创建房间===============================
 message niu_create_desk_req {
     optional ProtoHeader header = 1;    // header 中传 userId
-    optional niuniu_srv_desk_option option = 2;  //房间选项
+    optional niuniu_desk_option option = 2;  //房间选项
 }
 
 //==============================进入房间===============================
@@ -77,7 +76,7 @@ message niu_switch_ready_bc {
 //=============================抢庄(发牌)===================================
 message niu_qiangzhuang_ot {
     optional ProtoHeader header = 1;
-    optional niuniu_srv_poker pokers = 2; //发的牌
+    optional niuniu_client_poker pokers = 2; //发的牌
     optional int32 currCircle = 3;  //当前是第几圈
 }
 
@@ -105,7 +104,7 @@ message niu_qiangzhuang_res_bc {
 message niu_jiabei_ot {
     optional ProtoHeader header = 1;
     optional int32 cuurBanker = 2;  //如果是抢庄模式，则加倍这一步才知道谁是庄家
-    optional niuniu_srv_poker pokers = 3; //发的牌
+    optional niuniu_client_poker pokers = 3; //发的牌
 }
 
 message niu_jiabei_req {
@@ -126,7 +125,7 @@ message niu_jiabei_bc {
 
 //==============================跟庄家比牌结果============================
 message niu_bipai_result_item {
-    optional niuniu_srv_poker poker = 1;  //牌型
+    optional niuniu_client_poker poker = 1;  //牌型
     optional int32 score = 2;  //得分 -2分
 }
 
