@@ -135,7 +135,7 @@ type Pez_DissolveDesk struct {
 func (m *Pez_DissolveDesk) Reset()                    { *m = Pez_DissolveDesk{} }
 func (m *Pez_DissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*Pez_DissolveDesk) ProtoMessage()               {}
-func (*Pez_DissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{0} }
+func (*Pez_DissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{0} }
 
 func (m *Pez_DissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -163,7 +163,7 @@ type Pez_AckDissolveDesk struct {
 func (m *Pez_AckDissolveDesk) Reset()                    { *m = Pez_AckDissolveDesk{} }
 func (m *Pez_AckDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckDissolveDesk) ProtoMessage()               {}
-func (*Pez_AckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{1} }
+func (*Pez_AckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{1} }
 
 func (m *Pez_AckDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -203,7 +203,7 @@ type Pez_ApplyDissolveDesk struct {
 func (m *Pez_ApplyDissolveDesk) Reset()                    { *m = Pez_ApplyDissolveDesk{} }
 func (m *Pez_ApplyDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*Pez_ApplyDissolveDesk) ProtoMessage()               {}
-func (*Pez_ApplyDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{2} }
+func (*Pez_ApplyDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{2} }
 
 func (m *Pez_ApplyDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -230,7 +230,7 @@ type Pez_AckApplyDissolveDesk struct {
 func (m *Pez_AckApplyDissolveDesk) Reset()                    { *m = Pez_AckApplyDissolveDesk{} }
 func (m *Pez_AckApplyDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckApplyDissolveDesk) ProtoMessage()               {}
-func (*Pez_AckApplyDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{3} }
+func (*Pez_AckApplyDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{3} }
 
 func (m *Pez_AckApplyDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -270,7 +270,7 @@ type Pez_Ready struct {
 func (m *Pez_Ready) Reset()                    { *m = Pez_Ready{} }
 func (m *Pez_Ready) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Ready) ProtoMessage()               {}
-func (*Pez_Ready) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{4} }
+func (*Pez_Ready) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{4} }
 
 func (m *Pez_Ready) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -297,7 +297,7 @@ type Pez_AckReady struct {
 func (m *Pez_AckReady) Reset()                    { *m = Pez_AckReady{} }
 func (m *Pez_AckReady) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckReady) ProtoMessage()               {}
-func (*Pez_AckReady) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{5} }
+func (*Pez_AckReady) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{5} }
 
 func (m *Pez_AckReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -330,7 +330,7 @@ type BetInfo struct {
 func (m *BetInfo) Reset()                    { *m = BetInfo{} }
 func (m *BetInfo) String() string            { return proto.CompactTextString(m) }
 func (*BetInfo) ProtoMessage()               {}
-func (*BetInfo) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{6} }
+func (*BetInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{6} }
 
 func (m *BetInfo) GetBetCount() int32 {
 	if m != nil && m.BetCount != nil {
@@ -360,7 +360,7 @@ type Pez_WinScoreInfo struct {
 func (m *Pez_WinScoreInfo) Reset()                    { *m = Pez_WinScoreInfo{} }
 func (m *Pez_WinScoreInfo) String() string            { return proto.CompactTextString(m) }
 func (*Pez_WinScoreInfo) ProtoMessage()               {}
-func (*Pez_WinScoreInfo) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{7} }
+func (*Pez_WinScoreInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{7} }
 
 func (m *Pez_WinScoreInfo) GetNickName() string {
 	if m != nil && m.NickName != nil {
@@ -417,7 +417,7 @@ type Pez_EndLotteryInfo struct {
 func (m *Pez_EndLotteryInfo) Reset()                    { *m = Pez_EndLotteryInfo{} }
 func (m *Pez_EndLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*Pez_EndLotteryInfo) ProtoMessage()               {}
-func (*Pez_EndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{8} }
+func (*Pez_EndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{8} }
 
 func (m *Pez_EndLotteryInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -474,7 +474,7 @@ type Pez_SendCurrentResult struct {
 func (m *Pez_SendCurrentResult) Reset()                    { *m = Pez_SendCurrentResult{} }
 func (m *Pez_SendCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*Pez_SendCurrentResult) ProtoMessage()               {}
-func (*Pez_SendCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{9} }
+func (*Pez_SendCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{9} }
 
 func (m *Pez_SendCurrentResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -521,7 +521,7 @@ type Pez_SendEndLottery struct {
 func (m *Pez_SendEndLottery) Reset()                    { *m = Pez_SendEndLottery{} }
 func (m *Pez_SendEndLottery) String() string            { return proto.CompactTextString(m) }
 func (*Pez_SendEndLottery) ProtoMessage()               {}
-func (*Pez_SendEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{10} }
+func (*Pez_SendEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{10} }
 
 func (m *Pez_SendEndLottery) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -551,7 +551,7 @@ func init() {
 	proto.RegisterType((*Pez_SendEndLottery)(nil), "ddproto.pez_SendEndLottery")
 }
 
-var fileDescriptor36 = []byte{
+var fileDescriptor37 = []byte{
 	// 558 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0x4d, 0x6f, 0xd3, 0x40,
 	0x10, 0x65, 0xe3, 0x3a, 0x89, 0x27, 0xb4, 0x2a, 0x2e, 0x20, 0x2b, 0x20, 0x64, 0xf9, 0x80, 0x72,
