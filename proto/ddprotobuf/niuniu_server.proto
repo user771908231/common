@@ -37,6 +37,7 @@ message niuniu_srv_user {
     optional niuniu_srv_poker pokers = 13; //发的牌
     optional int32 bankerScore = 14; //抢庄分数
     optional int32 doubleScore = 15; //加倍分数
+
 }
 
 
