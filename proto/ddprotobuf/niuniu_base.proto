@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-import public "common_server_poker.proto";
+import public "common_client.proto";
 
 package ddproto;
 
@@ -59,8 +59,8 @@ enum niuniu_enum_PokerType {
 }
 
 //打出去的牌
-message niuniu_srv_poker {
-    repeated common_srv_pokerPai pais = 2; //出的牌
+message niuniu_client_poker {
+    repeated client_base_poker pais = 2; //出的牌
     optional niuniu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
 }
 
@@ -97,7 +97,7 @@ enum niuniu_enum_banker_rule {
 }
 
 //desk 配置选项
-message niuniu_srv_desk_option {
+message niuniu_desk_option {
     optional int32 minUser = 1; //最小开局人数 2
     optional int32 maxUser = 2; //最大开局人数 6
     optional int32 maxCircle = 3; //最大圈数 10、20

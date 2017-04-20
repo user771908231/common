@@ -357,9 +357,9 @@ It has these top-level messages:
 	GameReqBuxiazi
 	GameAckBuxiazi
 	CardInfo
-	NiuniuSrvPoker
+	NiuniuClientPoker
 	NiuniuUserBill
-	NiuniuSrvDeskOption
+	NiuniuDeskOption
 	NiuniuClientDesk
 	NiuniuClientUser
 	NiuCreateDeskReq
@@ -381,6 +381,7 @@ It has these top-level messages:
 	NiuBipaiResultItem
 	NiuBipaiResultBc
 	NiuGameEnd
+	NiuniuSrvPoker
 	NiuniuSrvDesk
 	NiuniuSrvUser
 	NiuniuSrvRoom

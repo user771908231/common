@@ -1,10 +1,17 @@
 syntax = "proto2";
 
+import public "common_server_poker.proto";
 import public "niuniu_base.proto";
 
 package ddproto;
 
 //=======================================服务器=====================================
+
+//打出去的牌
+message niuniu_srv_poker {
+    repeated common_srv_pokerPai pais = 2; //出的牌
+    optional niuniu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
+}
 
 //desk 的信息
 message niuniu_srv_desk {
@@ -17,7 +24,7 @@ message niuniu_srv_desk {
     optional int32 circleNo = 8; //当前是第几圈
     optional uint32 owner = 10;  //房主
     optional uint32 currBanker = 11;  //当前庄家
-    optional niuniu_srv_desk_option deskOption = 12;  //房间配置
+    optional niuniu_desk_option deskOption = 12;  //房间配置
 }
 
 //用户属性
