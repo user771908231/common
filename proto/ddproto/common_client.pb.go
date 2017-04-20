@@ -360,12 +360,12 @@ It has these top-level messages:
 	NiuEnterDeskReq
 	NiuEnterDeskAck
 	NiuEnterDeskBc
-	NiuSwitchReadyOt
 	NiuSwitchReadyReq
 	NiuSwitchReadyBc
 	NiuQiangzhuangOt
 	NiuQiangzhuangReq
-	NiuQiangzhuangBc
+	NiuQiangzhuangResItem
+	NiuQiangzhuangResBc
 	NiuJiabeiOt
 	NiuJiabeiReq
 	NiuJiabeiBc

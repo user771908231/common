@@ -19,21 +19,20 @@ enum niuniu_enum_protoid {
     NIU_PID_ENTER_DESK_ACK = 7; //进入房间ack
     NIU_PID_ENTER_DESK_BC = 8; //进入房间bc
 
-    NIU_PID_READY_OT = 9;  //
-    NIU_PID_READY_REQ = 10; //  准备
-    NIU_PID_READY_BC = 11; //  准备广播
+    NIU_PID_READY_REQ = 9; //  准备
+    NIU_PID_READY_BC = 10; //  准备广播
 
-    NIU_PID_QIANGZHUANG_OT = 12; //抢庄
-    NIU_PID_QIANGZHUANG_REQ = 13; //抢庄
-    NIU_PID_QIANGZHUANG_BC = 14; //抢庄
+    NIU_PID_QIANGZHUANG_OT = 11; //抢庄
+    NIU_PID_QIANGZHUANG_REQ = 12; //抢庄
+    NIU_PID_QIANGZHUANG_BC = 13; //抢庄
 
-    NIU_PID_JIABEI_OT = 15; //加倍
-    NIU_PID_JIABEI_REQ = 16; //加倍
-    NIU_PID_JIABEI_BC = 17; //加倍
+    NIU_PID_JIABEI_OT = 14; //加倍
+    NIU_PID_JIABEI_REQ = 15; //加倍
+    NIU_PID_JIABEI_BC = 16; //加倍
 
-    NIU_PID_BIPAI_RESULT_BC = 18;  //比牌结果
+    NIU_PID_BIPAI_RESULT_BC = 17;  //比牌结果
 
-    NIU_PID_GAME_END_BC = 19;  //游戏结束，统计数据
+    NIU_PID_GAME_END_BC = 18;  //游戏结束，统计数据
 
 }
 
@@ -60,12 +59,6 @@ message niu_enter_desk_bc {
 }
 
 //=============================准备===================================
-message niu_switch_ready_ot {
-    optional ProtoHeader header = 1;
-    optional int32 currCircle = 2;  //当前是第几圈
-    optional int32 cuurBanker = 3;  //当前的庄家
-}
-
 message niu_switch_ready_req {
     optional ProtoHeader header = 1;
     optional bool isReady = 2;  //准备状态：true准备 false取消准备
@@ -81,6 +74,7 @@ message niu_switch_ready_bc {
 message niu_qiangzhuang_ot {
     optional ProtoHeader header = 1;
     optional niuniu_srv_poker pokers = 2; //发的牌
+    optional int32 currCircle = 3;  //当前是第几圈
 }
 
 message niu_qiangzhuang_req {
@@ -88,10 +82,15 @@ message niu_qiangzhuang_req {
     optional int32 score = 2;  //抢庄分数 1 2 3倍
 }
 
-message niu_qiangzhuang_bc {
+message niu_qiangzhuang_res_item {
+    optional uint32 user = 1;  //抢庄用户
+    optional int32 score = 2;  //抢庄分数 默认为1
+    optional bool isBanker = 3;  //是否成为庄家
+}
+//抢庄结果广播
+message niu_qiangzhuang_res_bc {
     optional ProtoHeader header = 1;
-    optional uint32 user = 2; //抢庄的人id
-    optional int32 score = 3;  //抢庄分数 1 2 3倍
+    repeated niu_qiangzhuang_res_item result = 2;  //抢庄结果
 }
 
 //=============================加倍（发牌）===================================
@@ -104,6 +103,8 @@ message niu_jiabei_ot {
 message niu_jiabei_req {
     optional ProtoHeader header = 1;
     optional int32 score = 2;  //加倍分数 1 2 3倍
+    optional int32 currCircle = 3;  //当前是第几圈
+    optional int32 cuurBanker = 4;  //当前的庄家
 }
 
 message niu_jiabei_bc {
