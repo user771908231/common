@@ -2,7 +2,7 @@ package api
 
 import (
 	"casino_common/api/majiang"
-	"casino_majiang/msg/protogo"
+	"casino_common/proto/ddproto"
 )
 
 //跑得快解析器
@@ -92,8 +92,8 @@ func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (i
 
 var (
 	GANGTYPE_MING int32 = 1
-	GANGTYPE_BA int32 = 2
-	GANGTYPE_AN int32 = 3
+	GANGTYPE_BA   int32 = 2
+	GANGTYPE_AN   int32 = 3
 )
 
 type CanGangInfo struct {
@@ -109,7 +109,7 @@ type CanGangInfoBean struct {
 }
 
 var (
-	PAI_TYPE_MENQING int32 = int32(mjproto.PaiType_H_MenQing) //门清
+	PAI_TYPE_MENQING int32 = int32(ddproto.MjEnumPaiType_H_MenQing) //门清
 )
 //胡牌之后的信息
 type CanHuInfo struct {
@@ -275,7 +275,7 @@ func (p *MJParserCore) is19(val int) bool {
 }
 
 func (p *MJParserCore) GettPaiValueByCountPos(countPos int) int32 {
-	return int32(countPos % 9 + 1)
+	return int32(countPos%9 + 1)
 }
 
 func (p *MJParserCore) IsMengQing(g MJUserGameData) bool {
@@ -311,14 +311,14 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		return true, isAll19, jiang
 	}
 
-	if (len % 3 == 2) {
+	if (len%3 == 2) {
 		//log.T("if %v 取模 3 == 2", len)
 		// 说明对牌出现
 		for i := 0; i < 27; i++ {
 			if (count[i] >= 2) {
 				count[i] -= 2
 
-				result, isAll19, jiang = p.TryHU(count, len - 2)
+				result, isAll19, jiang = p.TryHU(count, len-2)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if ! p.is19(i) {
@@ -335,11 +335,11 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		//log.T("else %v", len)
 		// 是否是顺子，这里应该分开判断
 		for i := 0; i < 7; i++ {
-			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
+			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
 				count[i] -= 1;
-				count[i + 1] -= 1;
-				count[i + 2] -= 1;
-				result, isAll19, jiang = p.TryHU(count, len - 3)
+				count[i+1] -= 1;
+				count[i+2] -= 1;
+				result, isAll19, jiang = p.TryHU(count, len-3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -350,17 +350,17 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1
-				count[i + 1] += 1
-				count[i + 2] += 1
+				count[i+1] += 1
+				count[i+2] += 1
 			}
 		}
 
 		for i := 9; i < 16; i++ {
-			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
+			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
 				count[i] -= 1
-				count[i + 1] -= 1
-				count[i + 2] -= 1
-				result, isAll19, jiang = p.TryHU(count, len - 3)
+				count[i+1] -= 1
+				count[i+2] -= 1
+				result, isAll19, jiang = p.TryHU(count, len-3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -371,17 +371,17 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1
-				count[i + 1] += 1
-				count[i + 2] += 1
+				count[i+1] += 1
+				count[i+2] += 1
 			}
 		}
 
 		for i := 18; i < 25; i++ {
-			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
+			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
 				count[i] -= 1;
-				count[i + 1] -= 1;
-				count[i + 2] -= 1;
-				result, isAll19, jiang = p.TryHU(count, len - 3)
+				count[i+1] -= 1;
+				count[i+2] -= 1;
+				result, isAll19, jiang = p.TryHU(count, len-3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -392,8 +392,8 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1;
-				count[i + 1] += 1;
-				count[i + 2] += 1;
+				count[i+1] += 1;
+				count[i+2] += 1;
 			}
 		}
 
@@ -401,7 +401,7 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		for i := 0; i < 27; i++ {
 			if (count[i] >= 3) {
 				count[i] -= 3
-				result, isAll19, jiang = p.TryHU(count, len - 3)
+				result, isAll19, jiang = p.TryHU(count, len-3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) {
