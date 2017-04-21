@@ -73,6 +73,10 @@ func (d *MJDeskCore) ActBaoTing(...interface{}) error {
 	return nil
 }
 
+func (d *MJDeskCore) ActBu(...interface{}) error {
+	return nil
+}
+
 //断线
 func (d *MJDeskCore) Break(...interface{}) error {
 	return nil
