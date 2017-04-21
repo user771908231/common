@@ -64,20 +64,17 @@ message niuniu_client_poker {
     optional niuniu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
 }
 
-//用户游戏状态
-enum niuniu_enum_user_state {
-    NIU_USER_STATUS_NO_READY = 1;  //未准备
-    NIU_USER_STATUS_IS_READY = 2;  //已准备
-    NIU_USER_STATUS_IS_GAMMING = 3;  //正在游戏中
-}
-
 //房间状态
 enum niuniu_enum_desk_state {
     NIU_DESK_STATUS_WAIT_ENTER = 1; //等待玩家进入
 
-    NIU_DESK_STATUS_NO_READY = 2;  //未准备-有一个或多人未准备
-    NIU_DESK_STATUS_IS_READY = 3;  //已准备-所有人都已准备，但是庄家还没有点开始比赛
-    NIU_DESK_STATUS_IS_GAMMING = 4;  //正在游戏中-已经开始比赛
+    NIU_DESK_STATUS_WAIT_READY = 2;  //未准备-有一个或多人未准备
+    NIU_DESK_STATUS_WAIT_START = 3;  //已准备-所有人都已准备，但是庄家还没有点开始比赛
+    NIU_DESK_STATUS_WAIT_QIANGZHUANG = 4;  //正在抢庄阶段
+    NIU_DESK_STATUS_WAIT_JIABEI = 5;  //正在加倍阶段
+    NIU_DESK_STATUS_WAIT_BIPAI = 6;  //正在查看比牌结果阶段
+
+    NIU_DESK_STATUS_WAIT_RESULT = 7;  //查看最终战绩阶段
 }
 
 //对局账单信息

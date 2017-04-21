@@ -143,7 +143,7 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 	}
 
 	//首先判断该微信是否已经注册过;如果注册过则直接返回该微信对应的user_id
-	user := userService.GetUserByUnionId(weixin.GetOpenId())
+	user := userService.GetUserByUnionId(weixin.GetUnionId())
 	if user != nil {
 		ack.UserId = proto.Uint32(user.GetId())
 		return ack
