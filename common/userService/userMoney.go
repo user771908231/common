@@ -102,28 +102,33 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 //---------------------------------------增加用户货币的通用方法-----------------------------------------
 //增加用户的货币
 func incrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]增加[%v][%v]", userid, key, d)
+	log.T("金币操作-为用户[%v]增加[%v][%v]", userid, key, d)
 	//1,增加余额
 	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	//2,更新redis和数据库中的数据
 	err := UpdateRedisUserMoney(userid) //增加用户货币之后
 	//3,返回值
+	log.T("金币操作-为用户[%v]增加[%v][%v],增加之后redis的值:%v", userid, key, d, remain)
 	return remain, err
 }
 
 //减少用户的货币
 func decrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]减少[%v][%v]", userid, key, d)
+	log.T("金币操作-为用户[%v]减少[%v][%v]", userid, key, d)
 	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if remain < 0 {
 		old, _ := incrUser(userid, key, d)
 		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足[%v],减少的时候失败", userid, key, old, d)
 		log.E(errMsg)
 		log.E(errMsg)
+		log.T("金币操作-为用户[%v]减少[%v][%v],减少之后redis的值:%v,备注:不够的情况", userid, key, d, GetUserCoin(userid))
+
 		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
 		UpdateRedisUserMoney(userid)
+		log.T("金币操作-为用户[%v]减少[%v][%v],减少之后redis的值:%v", userid, key, d, GetUserCoin(userid))
+
 		return remain, nil
 	}
 }
