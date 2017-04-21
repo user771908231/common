@@ -19,19 +19,24 @@ enum niuniu_enum_protoid {
     NIU_PID_ENTER_DESK_BC = 8; //进入房间bc
 
     NIU_PID_READY_REQ = 9; //  准备
-    NIU_PID_READY_BC = 10; //  准备广播
+    NIU_PID_READY_ACK = 10; //  准备
+    NIU_PID_READY_BC = 11; //  准备广播
 
-    NIU_PID_QIANGZHUANG_OT = 11; //抢庄
-    NIU_PID_QIANGZHUANG_REQ = 12; //抢庄
-    NIU_PID_QIANGZHUANG_BC = 13; //抢庄
+    NIU_PID_START_GAME_OT = 12; //通知房主开局
 
-    NIU_PID_JIABEI_OT = 14; //加倍
-    NIU_PID_JIABEI_REQ = 15; //加倍
-    NIU_PID_JIABEI_BC = 16; //加倍
+    NIU_PID_QIANGZHUANG_OT = 13; //抢庄
+    NIU_PID_QIANGZHUANG_REQ = 14; //抢庄
+    NIU_PID_QIANGZHUANG_ACK = 15; //抢庄
+    NIU_PID_QIANGZHUANG_BC = 16; //抢庄
 
-    NIU_PID_BIPAI_RESULT_BC = 17;  //比牌结果
+    NIU_PID_JIABEI_OT = 17; //加倍
+    NIU_PID_JIABEI_REQ = 18; //加倍
+    NIU_PID_JIABEI_ACK = 19; //加倍
+    NIU_PID_JIABEI_BC = 20; //加倍
 
-    NIU_PID_GAME_END_BC = 18;  //游戏结束，统计数据
+    NIU_PID_BIPAI_RESULT_BC = 21;  //比牌结果
+
+    NIU_PID_GAME_END_BC = 22;  //游戏结束，统计数据
 
 }
 
