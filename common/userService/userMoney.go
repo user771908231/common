@@ -25,7 +25,6 @@ func UpdateRedisUserMoney(userId uint32) error {
 		log.E("更新用户的diamond失败,用户[%v]为空", userId)
 		return errors.New("增加money失败,没有找到用户")
 	}
-
 	//修改并且更新用户数据
 	SyncReidsUserMoney(user)
 	return nil
@@ -114,10 +113,12 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 
 //减少用户的货币
 func decrUser(userid uint32, key string, d int64) (int64, error) {
+	log.T("为用户[%v]减少[%v][%v]", userid, key, d)
 	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if remain < 0 {
 		old, _ := incrUser(userid, key, d)
-		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足,减少的时候失败", userid, key, old)
+		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足[%v],减少的时候失败", userid, key, old, d)
+		log.E(errMsg)
 		log.E(errMsg)
 		return remain, errors.New(errMsg)
 	} else {
