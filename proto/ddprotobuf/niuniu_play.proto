@@ -1,5 +1,6 @@
 syntax = "proto2";
 
+import public "common_client.proto";
 import public "niuniu_base.proto";
 
 package ddproto;
