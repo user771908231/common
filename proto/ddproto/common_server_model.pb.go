@@ -54,7 +54,7 @@ type User struct {
 func (m *User) Reset()                    { *m = User{} }
 func (m *User) String() string            { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()               {}
-func (*User) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (*User) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
 
 func (m *User) GetRoomCard() int64 {
 	if m != nil && m.RoomCard != nil {
@@ -294,7 +294,7 @@ type TNotice struct {
 func (m *TNotice) Reset()                    { *m = TNotice{} }
 func (m *TNotice) String() string            { return proto.CompactTextString(m) }
 func (*TNotice) ProtoMessage()               {}
-func (*TNotice) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (*TNotice) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{1} }
 
 func (m *TNotice) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -356,7 +356,7 @@ type TGameCounts struct {
 func (m *TGameCounts) Reset()                    { *m = TGameCounts{} }
 func (m *TGameCounts) String() string            { return proto.CompactTextString(m) }
 func (*TGameCounts) ProtoMessage()               {}
-func (*TGameCounts) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
+func (*TGameCounts) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{2} }
 
 func (m *TGameCounts) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -440,7 +440,7 @@ type TUserTask struct {
 func (m *TUserTask) Reset()                    { *m = TUserTask{} }
 func (m *TUserTask) String() string            { return proto.CompactTextString(m) }
 func (*TUserTask) ProtoMessage()               {}
-func (*TUserTask) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{3} }
+func (*TUserTask) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{3} }
 
 func (m *TUserTask) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -480,7 +480,7 @@ type Push struct {
 func (m *Push) Reset()                    { *m = Push{} }
 func (m *Push) String() string            { return proto.CompactTextString(m) }
 func (*Push) ProtoMessage()               {}
-func (*Push) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{4} }
+func (*Push) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{4} }
 
 func (m *Push) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -504,7 +504,7 @@ func init() {
 	proto.RegisterType((*Push)(nil), "ddproto.Push")
 }
 
-var fileDescriptor8 = []byte{
+var fileDescriptor9 = []byte{
 	// 603 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x7c, 0x93, 0xcd, 0x8e, 0xd3, 0x30,
 	0x10, 0xc7, 0xd5, 0x36, 0xfd, 0x88, 0xdb, 0xee, 0x47, 0xba, 0x0b, 0xde, 0x5d, 0x3e, 0xaa, 0x9e,

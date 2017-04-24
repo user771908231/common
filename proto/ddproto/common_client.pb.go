@@ -11,6 +11,7 @@ It is generated from these files:
 	common_client_pay.proto
 	common_enum.proto
 	common_mj.proto
+	common_mj_play.proto
 	common_server.proto
 	common_server_award.proto
 	common_server_config.proto
@@ -115,6 +116,8 @@ It has these top-level messages:
 	RoomTypeInfo
 	ComposeCard
 	PlayerCard
+	GameReqBuxiazi
+	GameAckBuxiazi
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk

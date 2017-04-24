@@ -64,7 +64,7 @@ type PdkSrvOutPokerPais struct {
 func (m *PdkSrvOutPokerPais) Reset()                    { *m = PdkSrvOutPokerPais{} }
 func (m *PdkSrvOutPokerPais) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvOutPokerPais) ProtoMessage()               {}
-func (*PdkSrvOutPokerPais) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{0} }
+func (*PdkSrvOutPokerPais) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{0} }
 
 func (m *PdkSrvOutPokerPais) GetKeyValue() int32 {
 	if m != nil && m.KeyValue != nil {
@@ -139,7 +139,7 @@ type PdkSrvDeskTongJi struct {
 func (m *PdkSrvDeskTongJi) Reset()                    { *m = PdkSrvDeskTongJi{} }
 func (m *PdkSrvDeskTongJi) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvDeskTongJi) ProtoMessage()               {}
-func (*PdkSrvDeskTongJi) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{1} }
+func (*PdkSrvDeskTongJi) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{1} }
 
 func (m *PdkSrvDeskTongJi) GetBombs() []*PdkSrvOutPokerPais {
 	if m != nil {
@@ -187,7 +187,7 @@ type PdkSrvDesk struct {
 func (m *PdkSrvDesk) Reset()                    { *m = PdkSrvDesk{} }
 func (m *PdkSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvDesk) ProtoMessage()               {}
-func (*PdkSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{2} }
+func (*PdkSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{2} }
 
 func (m *PdkSrvDesk) GetAllPokerPai() []*CommonSrvPokerPai {
 	if m != nil {
@@ -368,7 +368,7 @@ type PdkSrvGameData struct {
 func (m *PdkSrvGameData) Reset()                    { *m = PdkSrvGameData{} }
 func (m *PdkSrvGameData) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvGameData) ProtoMessage()               {}
-func (*PdkSrvGameData) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{3} }
+func (*PdkSrvGameData) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{3} }
 
 func (m *PdkSrvGameData) GetHandPokers() []*CommonSrvPokerPai {
 	if m != nil {
@@ -404,7 +404,7 @@ type PdkSrvBillBean struct {
 func (m *PdkSrvBillBean) Reset()                    { *m = PdkSrvBillBean{} }
 func (m *PdkSrvBillBean) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvBillBean) ProtoMessage()               {}
-func (*PdkSrvBillBean) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{4} }
+func (*PdkSrvBillBean) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{4} }
 
 func (m *PdkSrvBillBean) GetCoin() int64 {
 	if m != nil && m.Coin != nil {
@@ -451,7 +451,7 @@ type PdkSrvBill struct {
 func (m *PdkSrvBill) Reset()                    { *m = PdkSrvBill{} }
 func (m *PdkSrvBill) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvBill) ProtoMessage()               {}
-func (*PdkSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{5} }
+func (*PdkSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{5} }
 
 func (m *PdkSrvBill) GetWinCoin() int64 {
 	if m != nil && m.WinCoin != nil {
@@ -483,7 +483,7 @@ type PdkSrvUserStatisticsRound struct {
 func (m *PdkSrvUserStatisticsRound) Reset()                    { *m = PdkSrvUserStatisticsRound{} }
 func (m *PdkSrvUserStatisticsRound) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvUserStatisticsRound) ProtoMessage()               {}
-func (*PdkSrvUserStatisticsRound) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{6} }
+func (*PdkSrvUserStatisticsRound) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{6} }
 
 func (m *PdkSrvUserStatisticsRound) GetRound() int32 {
 	if m != nil && m.Round != nil {
@@ -556,7 +556,7 @@ type PdkSrvUserStatistics struct {
 func (m *PdkSrvUserStatistics) Reset()                    { *m = PdkSrvUserStatistics{} }
 func (m *PdkSrvUserStatistics) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvUserStatistics) ProtoMessage()               {}
-func (*PdkSrvUserStatistics) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{7} }
+func (*PdkSrvUserStatistics) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{7} }
 
 func (m *PdkSrvUserStatistics) GetRoundBean() []*PdkSrvUserStatisticsRound {
 	if m != nil {
@@ -639,7 +639,7 @@ type PdkSrvUser struct {
 func (m *PdkSrvUser) Reset()                    { *m = PdkSrvUser{} }
 func (m *PdkSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvUser) ProtoMessage()               {}
-func (*PdkSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{8} }
+func (*PdkSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{8} }
 
 func (m *PdkSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -818,7 +818,7 @@ type PdkSrvRoom struct {
 func (m *PdkSrvRoom) Reset()                    { *m = PdkSrvRoom{} }
 func (m *PdkSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvRoom) ProtoMessage()               {}
-func (*PdkSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{9} }
+func (*PdkSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{9} }
 
 func (m *PdkSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -837,7 +837,7 @@ type PdkSrvBak struct {
 func (m *PdkSrvBak) Reset()                    { *m = PdkSrvBak{} }
 func (m *PdkSrvBak) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvBak) ProtoMessage()               {}
-func (*PdkSrvBak) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{10} }
+func (*PdkSrvBak) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{10} }
 
 func (m *PdkSrvBak) GetDesk() *PdkSrvDesk {
 	if m != nil {
@@ -867,7 +867,7 @@ func init() {
 	proto.RegisterType((*PdkSrvBak)(nil), "ddproto.pdk_srv_bak")
 }
 
-var fileDescriptor32 = []byte{
+var fileDescriptor33 = []byte{
 	// 1106 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x94, 0x56, 0xcd, 0x52, 0x23, 0x37,
 	0x10, 0x8e, 0xd7, 0x1e, 0x63, 0x6b, 0xb0, 0x81, 0xe1, 0x4f, 0xbb, 0xe4, 0x87, 0x72, 0xf6, 0xb0,

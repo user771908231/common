@@ -148,7 +148,7 @@ type PlaybackReqPage struct {
 func (m *PlaybackReqPage) Reset()                    { *m = PlaybackReqPage{} }
 func (m *PlaybackReqPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackReqPage) ProtoMessage()               {}
-func (*PlaybackReqPage) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{0} }
+func (*PlaybackReqPage) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{0} }
 
 func (m *PlaybackReqPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -192,7 +192,7 @@ type PlaybackAckPage struct {
 func (m *PlaybackAckPage) Reset()                    { *m = PlaybackAckPage{} }
 func (m *PlaybackAckPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackAckPage) ProtoMessage()               {}
-func (*PlaybackAckPage) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{1} }
+func (*PlaybackAckPage) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{1} }
 
 func (m *PlaybackAckPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -255,7 +255,7 @@ type PlayerInfo struct {
 func (m *PlayerInfo) Reset()                    { *m = PlayerInfo{} }
 func (m *PlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PlayerInfo) ProtoMessage()               {}
-func (*PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{2} }
+func (*PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{2} }
 
 func (m *PlayerInfo) GetIsBanker() bool {
 	if m != nil && m.IsBanker != nil {
@@ -400,7 +400,7 @@ type PlaybackSnapshot struct {
 func (m *PlaybackSnapshot) Reset()                    { *m = PlaybackSnapshot{} }
 func (m *PlaybackSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackSnapshot) ProtoMessage()               {}
-func (*PlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{3} }
+func (*PlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{3} }
 
 func (m *PlaybackSnapshot) GetPlayerInfo() []*PlayerInfo {
 	if m != nil {
@@ -483,7 +483,7 @@ type PlaybackDeskInfo struct {
 func (m *PlaybackDeskInfo) Reset()                    { *m = PlaybackDeskInfo{} }
 func (m *PlaybackDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackDeskInfo) ProtoMessage()               {}
-func (*PlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{4} }
+func (*PlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{4} }
 
 func (m *PlaybackDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -567,7 +567,7 @@ type PlaybackItem struct {
 func (m *PlaybackItem) Reset()                    { *m = PlaybackItem{} }
 func (m *PlaybackItem) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackItem) ProtoMessage()               {}
-func (*PlaybackItem) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{5} }
+func (*PlaybackItem) Descriptor() ([]byte, []int) { return fileDescriptor24, []int{5} }
 
 func (m *PlaybackItem) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -599,7 +599,7 @@ func init() {
 	proto.RegisterType((*PlaybackItem)(nil), "ddproto.PlaybackItem")
 }
 
-var fileDescriptor23 = []byte{
+var fileDescriptor24 = []byte{
 	// 648 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x54, 0x4f, 0x53, 0x13, 0x31,
 	0x14, 0x77, 0x5b, 0x28, 0xed, 0x6b, 0x17, 0xda, 0x2d, 0x38, 0x91, 0x13, 0x53, 0x9d, 0xd1, 0x19,
