@@ -269,6 +269,10 @@ It has these top-level messages:
 	HallReqStrongboxInfo
 	HallReqStrongboxAccess
 	HallAckStrongboxAccess
+	Game_GameRecord
+	BeanUserRecord
+	BeanGameRecord
+	Game_AckGameRecord
 	HallItemEvent
 	HallMailItem
 	HallBagItem
