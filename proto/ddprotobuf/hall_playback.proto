@@ -46,13 +46,13 @@ message PlayerInfo {
 
 // 回放快照信息（包含玩家信息、桌面信息、房间信息、右上角时间信息等），另外包含协议信息（PID 和 二进制数据）
 message PlaybackSnapshot {
-    optional PlayerInfo playerInfo = 1; // 玩家信息（昵称、筹码、微信信息（头像））
+    repeated PlayerInfo playerInfo = 1; // 玩家信息（昵称、筹码、微信信息（头像））
     optional PlaybackDeskInfo playBackDeskInfo = 2; // 桌面信息， 例如：来一圈* 四川麻将
     optional RoomTypeInfo RoomTypeInfo = 3; // 房间信息（当前局数、总局数、房间类型等）(霄霄看下这些信息是否已包含在 DeskGameInfo 中)
     optional string time = 4; // 右上角时间信息
     optional int32 overturnType = 5; //peng gang chi hu bu mo out
-    optional int32 userid = 6;
-    optional int32 useridOut = 7; // 被操作的人，没有的话 返回 0
+    optional uint32 userid = 6;
+    optional uint32 useridOut = 7; // 被操作的人，没有的话 返回 0
     repeated CardInfo cardinfo = 8; //碰。杠，吃，胡，等操作的牌。
     optional string humsg = 9; //胡牌 的时候显示内容。
 }
