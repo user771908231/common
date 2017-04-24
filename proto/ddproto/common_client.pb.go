@@ -10,6 +10,7 @@ It is generated from these files:
 	common_client_award.proto
 	common_client_pay.proto
 	common_enum.proto
+	common_mj.proto
 	common_server.proto
 	common_server_award.proto
 	common_server_config.proto
@@ -30,7 +31,6 @@ It is generated from these files:
 	hall_data.proto
 	hall_playback.proto
 	hot_update.proto
-	mj_common.proto
 	niuniu_base.proto
 	niuniu_play.proto
 	niuniu_server.proto
@@ -111,6 +111,10 @@ It has these top-level messages:
 	WxpayAckSyncChecker
 	ApplepayReqRechargecb
 	ApplepayAcksRechargecb
+	CardInfo
+	RoomTypeInfo
+	ComposeCard
+	PlayerCard
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
@@ -291,10 +295,6 @@ It has these top-level messages:
 	HotupdateAckAssetsInfo
 	HotupdateReqGameAssetsInfo
 	HotupdateAckGameAssetsInfo
-	CardInfo
-	RoomTypeInfo
-	ComposeCard
-	PlayerCard
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption
