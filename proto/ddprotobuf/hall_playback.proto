@@ -10,6 +10,7 @@ message playback_req_page {
     optional ProtoHeader header = 1;
     optional int32 length = 2; // 当前分页的长度，如：3，则一页三条快照
     optional int32 page = 3; // 当前页码，从 0 开始。
+    optional int32 gameNumber = 4; //回放场次编号
 }
 
 message playback_ack_page {
