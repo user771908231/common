@@ -28,11 +28,8 @@ It is generated from these files:
 	erddz_play.proto
 	hall.proto
 	hall_data.proto
+	hall_playback.proto
 	hot_update.proto
-	mj_baishan_base.proto
-	mj_baishan_desk.proto
-	mj_baishan_hall.proto
-	mj_baishan_play.proto
 	mj_common.proto
 	niuniu_base.proto
 	niuniu_play.proto
@@ -280,6 +277,12 @@ It has these top-level messages:
 	BuyZone
 	GoodsItem
 	HallStrongboxInfo
+	PlaybackReqPage
+	PlaybackAckPage
+	PlayerInfo
+	PlaybackSnapshot
+	PlaybackDeskInfo
+	PlaybackItem
 	VersionInfo
 	AssetInfo
 	HotupdateReqVersionInfo
@@ -288,75 +291,10 @@ It has these top-level messages:
 	HotupdateAckAssetsInfo
 	HotupdateReqGameAssetsInfo
 	HotupdateAckGameAssetsInfo
-	PlayOptions
-	ChangShaPlayOptions
+	CardInfo
 	RoomTypeInfo
 	ComposeCard
 	PlayerCard
-	PlayerInfo
-	DeskGameInfo
-	MjBasePlayOptions
-	MjBaseCardInfo
-	MjBaseRoomTypeInfo
-	MjBaseComposeCard
-	MjBasePlayerCard
-	MjBasePlayerInfo
-	MjBaseDeskGameInfo
-	MjReqDissolveDesk
-	MjAckDissolveDesk
-	Game_Notice
-	Game_AckNotice
-	Game_GameRecord
-	BeanUserRecord
-	BeanGameRecord
-	Game_AckGameRecord
-	Game_Feedback
-	Game_CreateRoom
-	Game_AckCreateRoom
-	Game_EnterRoom
-	Game_AckEnterRoom
-	UserCoinBean
-	Game_Opening
-	Game_DealCards
-	Game_ExchangeCards
-	Game_DealHaiDiCards
-	Game_ReqDealHaiDiCards
-	Game_AckDealHaiDiCards
-	Game_AckExchangeCards
-	Game_ExchangeCardsEnd
-	Game_DingQue
-	DingQueEndBean
-	Game_DingQueEnd
-	Game_BroadcastBeginDingQue
-	Game_BroadcastBeginExchange
-	Game_GetInCard
-	Game_SendOutCard
-	Game_AckSendOutCard
-	Game_ActPeng
-	Game_AckActPeng
-	Game_ActChi
-	Game_AckActChi
-	Game_ActGang
-	Game_AckActGang
-	Game_ChangShaActGang
-	Game_ChangShaAckActGang
-	Game_ActHu
-	Game_AckActHu
-	Game_ActChangShaQiShouHu
-	Game_AckActChangShaQiShouHu
-	Game_AckActHuChangSha
-	Game_ActGuo
-	Game_AckActGuo
-	Game_ChangShaOverTurnAfterGang
-	Game_ChangshQiShouHuOverTurn
-	Game_OverTurn
-	ChiOverTurn
-	JiaoInfo
-	JiaoPaiInfo
-	Game_SendGameInfo
-	GameReqBuxiazi
-	GameAckBuxiazi
-	CardInfo
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption
