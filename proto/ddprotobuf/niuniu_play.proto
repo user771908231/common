@@ -52,6 +52,7 @@ message niu_enter_desk_req {
 message niu_enter_desk_ack {
     optional ProtoHeader header = 1; //错误码及错误信息
     optional niuniu_client_desk deskState = 2;  //房间状态
+    optional bool isReconnect = 3; //是否是断线重连
 }
 
 message niu_enter_desk_bc {
