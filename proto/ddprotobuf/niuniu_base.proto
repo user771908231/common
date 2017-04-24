@@ -89,6 +89,7 @@ message niuniu_user_bill {
     optional int32 count_no_niu = 3;  //没牛
     optional int32 count_win = 4;  //赢的局数
     optional int32 count_lost = 5;  //输的局数
+    optional uint32 userId = 6;  //用户id
 }
 
 //坐庄规则
