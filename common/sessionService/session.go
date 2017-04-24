@@ -108,8 +108,13 @@ func delSession(s *ddproto.GameSession) {
 }
 
 //检测是否能够进入游戏房间
-
-//具体实在什么游戏中?
+/**
+	1,如果是进入朋友桌
+		检测是否正在朋友桌玩，如果gid一样，roomType一样，则返回对应的session
+	2,如果是进入金币本
+		检测是否正在朋友桌玩，如果在朋友桌完，那么不能进入金币场
+		检测是否正在金币场玩，如果在金币场完，那么检测gid,roomLevel是否一致，如果一致，那么可以玩，否则不可以玩
+ */
 func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error, *ddproto.GameSession) {
 	var getError = func(gid int32, roomType int32) error {
 		msg := fmt.Sprintf("已经在游戏%v中了，结束之后再来吧!", utils.GetGameName(gid, roomType))
@@ -147,11 +152,11 @@ func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error,
 		}
 
 		//如果gid 不一样，或者level不一样，返回进入失败
-		if s.GetGameId() == gid || s.GetRoomLevel() == roomLevel {
+		if s.GetGameId() != gid || s.GetRoomLevel() != roomLevel {
 			return getError(s.GetGameId(), s.GetRoomType()), nil
 		}
 	}
-	
+
 	//其他条件可以进入房间
 	return nil, s
 }
