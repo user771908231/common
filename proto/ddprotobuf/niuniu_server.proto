@@ -26,6 +26,7 @@ message niuniu_srv_desk {
     optional uint32 currBanker = 11;  //当前庄家
     optional niuniu_desk_option deskOption = 12;  //房间配置
     optional bool isStart = 13;  //房主是否已点开始
+    optional bool isOnDissolve = 14; //是否正处于解散投票状态
 }
 
 //用户属性
@@ -39,6 +40,7 @@ message niuniu_srv_user {
     optional int32 doubleScore = 15; //加倍分数
     optional bool isReady = 16;  //是否已准备
     optional int32 lastScore = 17;  //上局得分
+    optional int32 dissolveState = 18; //解散房间状态
 }
 
 
