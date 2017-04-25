@@ -20,6 +20,6 @@ enum mj_baishan_hutype {
     BAOTING = 1; //报听
     ZIMO = 2; //自摸
     BANKER = 3; //坐庄
-    GNAGHOUKAI_HU = 4; //杠后开 胡
-    GNAGHOUKAI_DIANPAO = 5; //杠后开 点炮
+    GANGHOUKAI_HU = 4; //杠后开 胡
+    GANGHOUKAI_DIANPAO = 5; //杠后开 点炮
 }
