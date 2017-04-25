@@ -1,0 +1,25 @@
+syntax = "proto2";
+package ddproto;
+
+enum mj_baishan_paitype {
+    PENGPENGHU = 1; //碰碰胡
+    MENQING_FOUR = 2; //四家清
+    MENQING_THREE = 3; //三家清
+    MENQING = 4; //门清
+    HUNYISE = 5; //混一色
+    SHOUBAYI = 6; //手把一
+    YIBANGAO = 7; //一般高
+    SIGUIYI = 8; //四归一
+    QINGYISE = 9; //清一色
+    SANHUATONGSHUN = 10; //三花同顺
+    QIDUI = 11; //七小对
+    SHISANYAO = 12; //十三幺
+}
+
+enum mj_baishan_hutype {
+    BAOTING = 1; //报听
+    ZIMO = 2; //自摸
+    BANKER = 3; //坐庄
+    GNAGHOUKAI_HU = 4; //杠后开 胡
+    GNAGHOUKAI_DIANPAO = 5; //杠后开 点炮
+}
