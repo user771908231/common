@@ -138,3 +138,22 @@ enum MJRoomType {
 }
 
 
+message RoomTypeInfo {
+
+}
+
+
+message ComposeCard {
+    optional int32 value = 1; // 麻将牌值: 0~27
+    optional int32 type = 2; // 类型（碰，明杠，暗杠）
+    repeated int32 chiValue = 3; //吃牌的value
+}
+
+message PlayerCard {
+    repeated CardInfo handCard = 1; // 手牌数组（自己是明的，其他玩家服务器返回暗值，避免外挂获取别的玩家手牌）
+    repeated ComposeCard composeCard = 2; // 摆牌数组（碰、明杠、暗杠）
+    repeated CardInfo outCard = 3; // 已出牌数组
+    repeated CardInfo huCard = 4; // 胡的牌
+    optional uint32 UserId = 5; //
+    optional int32 handCardCount = 6; //手牌的长度,当不用显示手牌的时候，只显示长度就行了
+}

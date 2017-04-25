@@ -39,7 +39,7 @@ type NiuniuSrvPoker struct {
 func (m *NiuniuSrvPoker) Reset()                    { *m = NiuniuSrvPoker{} }
 func (m *NiuniuSrvPoker) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvPoker) ProtoMessage()               {}
-func (*NiuniuSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{0} }
+func (*NiuniuSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{0} }
 
 func (m *NiuniuSrvPoker) GetPais() []*CommonSrvPokerPai {
 	if m != nil {
@@ -74,7 +74,7 @@ type NiuniuSrvDesk struct {
 func (m *NiuniuSrvDesk) Reset()                    { *m = NiuniuSrvDesk{} }
 func (m *NiuniuSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvDesk) ProtoMessage()               {}
-func (*NiuniuSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{1} }
+func (*NiuniuSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
 
 func (m *NiuniuSrvDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -170,7 +170,7 @@ type NiuniuSrvUser struct {
 func (m *NiuniuSrvUser) Reset()                    { *m = NiuniuSrvUser{} }
 func (m *NiuniuSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvUser) ProtoMessage()               {}
-func (*NiuniuSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{2} }
+func (*NiuniuSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{2} }
 
 func (m *NiuniuSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -247,7 +247,7 @@ type NiuniuSrvRoom struct {
 func (m *NiuniuSrvRoom) Reset()                    { *m = NiuniuSrvRoom{} }
 func (m *NiuniuSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuSrvRoom) ProtoMessage()               {}
-func (*NiuniuSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{3} }
+func (*NiuniuSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{3} }
 
 func (m *NiuniuSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -284,7 +284,7 @@ func init() {
 	proto.RegisterType((*NiuniuSrvRoom)(nil), "ddproto.niuniu_srv_room")
 }
 
-var fileDescriptor30 = []byte{
+var fileDescriptor28 = []byte{
 	// 517 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x52, 0x4b, 0x6f, 0xdb, 0x3c,
 	0x10, 0xfc, 0xe4, 0x57, 0x6c, 0xfa, 0x73, 0x1e, 0x6c, 0x51, 0x30, 0x6e, 0x90, 0x0a, 0x3e, 0xe9,

@@ -1,6 +1,6 @@
 syntax = "proto2";
 import public "common_client.proto";
-import public "mj_common.proto";
+import public "common_mj.proto";
 
 package ddproto;
 

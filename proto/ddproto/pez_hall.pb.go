@@ -151,7 +151,7 @@ type PezReq_CreateRoom struct {
 func (m *PezReq_CreateRoom) Reset()                    { *m = PezReq_CreateRoom{} }
 func (m *PezReq_CreateRoom) String() string            { return proto.CompactTextString(m) }
 func (*PezReq_CreateRoom) ProtoMessage()               {}
-func (*PezReq_CreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
+func (*PezReq_CreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{0} }
 
 func (m *PezReq_CreateRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -181,7 +181,7 @@ type PezReq_AckCreateRoom struct {
 func (m *PezReq_AckCreateRoom) Reset()                    { *m = PezReq_AckCreateRoom{} }
 func (m *PezReq_AckCreateRoom) String() string            { return proto.CompactTextString(m) }
 func (*PezReq_AckCreateRoom) ProtoMessage()               {}
-func (*PezReq_AckCreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{1} }
+func (*PezReq_AckCreateRoom) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{1} }
 
 func (m *PezReq_AckCreateRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -240,7 +240,7 @@ type PezReq_EnterRoom struct {
 func (m *PezReq_EnterRoom) Reset()                    { *m = PezReq_EnterRoom{} }
 func (m *PezReq_EnterRoom) String() string            { return proto.CompactTextString(m) }
 func (*PezReq_EnterRoom) ProtoMessage()               {}
-func (*PezReq_EnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{2} }
+func (*PezReq_EnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{2} }
 
 func (m *PezReq_EnterRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -299,7 +299,7 @@ type PezReq_AckEnterRoom struct {
 func (m *PezReq_AckEnterRoom) Reset()                    { *m = PezReq_AckEnterRoom{} }
 func (m *PezReq_AckEnterRoom) String() string            { return proto.CompactTextString(m) }
 func (*PezReq_AckEnterRoom) ProtoMessage()               {}
-func (*PezReq_AckEnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{3} }
+func (*PezReq_AckEnterRoom) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{3} }
 
 func (m *PezReq_AckEnterRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -319,7 +319,7 @@ type Pez_Notice struct {
 func (m *Pez_Notice) Reset()                    { *m = Pez_Notice{} }
 func (m *Pez_Notice) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Notice) ProtoMessage()               {}
-func (*Pez_Notice) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{4} }
+func (*Pez_Notice) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{4} }
 
 func (m *Pez_Notice) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -357,7 +357,7 @@ type Pez_AckNotice struct {
 func (m *Pez_AckNotice) Reset()                    { *m = Pez_AckNotice{} }
 func (m *Pez_AckNotice) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckNotice) ProtoMessage()               {}
-func (*Pez_AckNotice) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{5} }
+func (*Pez_AckNotice) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{5} }
 
 func (m *Pez_AckNotice) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -420,7 +420,7 @@ type Pez_GameRecord struct {
 func (m *Pez_GameRecord) Reset()                    { *m = Pez_GameRecord{} }
 func (m *Pez_GameRecord) String() string            { return proto.CompactTextString(m) }
 func (*Pez_GameRecord) ProtoMessage()               {}
-func (*Pez_GameRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{6} }
+func (*Pez_GameRecord) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{6} }
 
 func (m *Pez_GameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -462,7 +462,7 @@ type PezBeanUserRecord struct {
 func (m *PezBeanUserRecord) Reset()                    { *m = PezBeanUserRecord{} }
 func (m *PezBeanUserRecord) String() string            { return proto.CompactTextString(m) }
 func (*PezBeanUserRecord) ProtoMessage()               {}
-func (*PezBeanUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{7} }
+func (*PezBeanUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{7} }
 
 func (m *PezBeanUserRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -505,7 +505,7 @@ type PezBeanGameRecord struct {
 func (m *PezBeanGameRecord) Reset()                    { *m = PezBeanGameRecord{} }
 func (m *PezBeanGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*PezBeanGameRecord) ProtoMessage()               {}
-func (*PezBeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{8} }
+func (*PezBeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{8} }
 
 func (m *PezBeanGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -554,7 +554,7 @@ type Pez_AckGameRecord struct {
 func (m *Pez_AckGameRecord) Reset()                    { *m = Pez_AckGameRecord{} }
 func (m *Pez_AckGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckGameRecord) ProtoMessage()               {}
-func (*Pez_AckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{9} }
+func (*Pez_AckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{9} }
 
 func (m *Pez_AckGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -594,7 +594,7 @@ type Pez_Feedback struct {
 func (m *Pez_Feedback) Reset()                    { *m = Pez_Feedback{} }
 func (m *Pez_Feedback) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Feedback) ProtoMessage()               {}
-func (*Pez_Feedback) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{10} }
+func (*Pez_Feedback) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{10} }
 
 func (m *Pez_Feedback) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -624,7 +624,7 @@ func init() {
 	proto.RegisterType((*Pez_Feedback)(nil), "ddproto.pez_Feedback")
 }
 
-var fileDescriptor38 = []byte{
+var fileDescriptor36 = []byte{
 	// 635 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xcb, 0x6e, 0xd3, 0x4c,
 	0x14, 0xfe, 0x6d, 0xe7, 0xf2, 0xe7, 0xa4, 0xad, 0x84, 0x29, 0x95, 0x15, 0x55, 0x95, 0x65, 0xb1,

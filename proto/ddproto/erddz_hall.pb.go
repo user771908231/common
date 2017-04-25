@@ -147,7 +147,7 @@ type ErddzReqCreateDesk struct {
 func (m *ErddzReqCreateDesk) Reset()                    { *m = ErddzReqCreateDesk{} }
 func (m *ErddzReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*ErddzReqCreateDesk) ProtoMessage()               {}
-func (*ErddzReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor18, []int{0} }
+func (*ErddzReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{0} }
 
 func (m *ErddzReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -176,7 +176,7 @@ type ErddzAckCreateDesk struct {
 func (m *ErddzAckCreateDesk) Reset()                    { *m = ErddzAckCreateDesk{} }
 func (m *ErddzAckCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*ErddzAckCreateDesk) ProtoMessage()               {}
-func (*ErddzAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor18, []int{1} }
+func (*ErddzAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{1} }
 
 func (m *ErddzAckCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -226,7 +226,7 @@ type ErddzReqEnterDesk struct {
 func (m *ErddzReqEnterDesk) Reset()                    { *m = ErddzReqEnterDesk{} }
 func (m *ErddzReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*ErddzReqEnterDesk) ProtoMessage()               {}
-func (*ErddzReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor18, []int{2} }
+func (*ErddzReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{2} }
 
 func (m *ErddzReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -271,7 +271,7 @@ type ErddzAckEnterDesk struct {
 func (m *ErddzAckEnterDesk) Reset()                    { *m = ErddzAckEnterDesk{} }
 func (m *ErddzAckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*ErddzAckEnterDesk) ProtoMessage()               {}
-func (*ErddzAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor18, []int{3} }
+func (*ErddzAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor20, []int{3} }
 
 func (m *ErddzAckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -287,7 +287,7 @@ func init() {
 	proto.RegisterType((*ErddzAckEnterDesk)(nil), "ddproto.erddz_ack_enterDesk")
 }
 
-var fileDescriptor18 = []byte{
+var fileDescriptor20 = []byte{
 	// 331 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x91, 0xbd, 0x4e, 0xc3, 0x30,
 	0x14, 0x85, 0x71, 0x4b, 0x4b, 0x6b, 0x68, 0x85, 0xdc, 0x0a, 0x45, 0x51, 0x87, 0xd0, 0x29, 0x03,

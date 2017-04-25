@@ -69,25 +69,25 @@ message hall_ack_checkTask {
 //已完成，但未领取奖励的任务数
 message hall_req_task_sum {
     optional ProtoHeader header = 1;
-    optional hall_enum_taskType task_type = 3;  //任务所属游戏
+    optional hall_enum_taskType task_type = 3; //任务所属游戏
 }
 
 message hall_ack_task_sum {
     optional ProtoHeader header = 1;
-    optional int32 task_sum = 2;  //已完成普通任务数
-    optional int32 bonus_sum = 3;  //已完成红包任务数
+    optional int32 task_sum = 2; //已完成普通任务数
+    optional int32 bonus_sum = 3; //已完成红包任务数
     optional int32 bonus_next = 4; //距离领取下个红包的局数
 }
 
 //领取红包任务奖励
 message hall_req_checkBonus {
     optional ProtoHeader header = 1;
-    optional hall_enum_taskType task_type = 2;  //红包所属游戏
+    optional hall_enum_taskType task_type = 2; //红包所属游戏
 }
 
 message hall_ack_checkBonus {
     optional ProtoHeader header = 1;
-    optional double give_bonus = 2;  //获得的红包数
+    optional double give_bonus = 2; //获得的红包数
 }
 
 // 背包道具列表
@@ -103,7 +103,7 @@ message hall_ack_bag_items {
 //个人信息
 message hall_req_userData {
     optional ProtoHeader header = 1;
-    optional uint32 user_id = 2;  //查询的用户user_id
+    optional uint32 user_id = 2; //查询的用户user_id
 }
 
 message hall_ack_userData {
@@ -113,12 +113,12 @@ message hall_ack_userData {
 
 //完善个人信息
 message hall_req_updateRealData {
-    optional ProtoHeader header = 1;  //user_id
+    optional ProtoHeader header = 1; //user_id
 
-    optional string realName = 2;  //真实姓名
-    optional string phoneNumber = 3;  //联系电话
-    optional string wxNumber = 4;  //微信号码
-    optional string realAddress = 5;  //真实地址
+    optional string realName = 2; //真实姓名
+    optional string phoneNumber = 3; //联系电话
+    optional string wxNumber = 4; //微信号码
+    optional string realAddress = 5; //真实地址
 }
 
 message hall_ack_updateRealData {
@@ -139,7 +139,7 @@ enum hall_enum_goods_type {
 message hall_req_goods_list {
     optional ProtoHeader header = 1;
     optional hall_enum_goods_type goods_type = 2;
-    optional string channelId = 3;  //渠道id
+    optional string channelId = 3; //渠道id
 }
 //商品列表Ack
 message hall_ack_goods_list {
@@ -299,4 +299,34 @@ message hall_req_strongbox_access {
 message hall_ack_strongbox_access {
     optional ProtoHeader header = 1;
     optional hall_strongbox_info strongboxInfo = 2; //保险箱数据
+}
+
+//游戏战绩
+message game_GameRecord {
+    optional ProtoHeader header = 1;
+    optional int32 id = 2; //战绩id
+    optional int32 gameId = 3; //游戏类别
+    optional uint32 userId = 4; //用户id
+}
+//
+message BeanUserRecord {
+    optional ProtoHeader header = 1;
+    optional uint32 UserId = 2; //用户id
+    optional string NickName = 3; //用户昵称
+    optional int64 WinAmount = 4; //用户输赢金额
+}
+//
+message BeanGameRecord {
+    optional ProtoHeader header = 1;
+    optional int32 id = 2; //战绩id
+    optional int32 deskId = 3; //关联的桌子的Id
+    optional string beginTime = 4; //游戏开始的时间
+    repeated BeanUserRecord users = 5; //用户
+}
+//
+message game_AckGameRecord {
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; //用户id
+    optional int32 gameId = 3; //游戏类别
+    repeated BeanGameRecord records = 4; //结果
 }
