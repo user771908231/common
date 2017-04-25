@@ -38,7 +38,7 @@ message niuniu_srv_user {
     optional int32 bankerScore = 14; //抢庄分数
     optional int32 doubleScore = 15; //加倍分数
     optional bool isReady = 16;  //是否已准备
-
+    optional int32 lastScore = 17;  //上局得分
 }
 
 
