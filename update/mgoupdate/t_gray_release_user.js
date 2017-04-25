@@ -1,5 +1,3 @@
-var tableName = "t_gray_release_user";
-
 //得到db
 conn = new Mongo();
 db = conn.getDB("test");
@@ -38,7 +36,27 @@ db.t_gray_release_user.insert({
     "status": 1,
 });
 
-//  11977 QWERTY 邓艳梅
-//  11564 小药丸  钟春燕
-//  10356 kory  杨荣华
-//  11533 一根藤上七个娃娃 iPhone6
+db.t_gray_release_user.insert({
+    "id": 6,
+    "userid": 11754,
+    "status": 1,
+});
+
+db.t_gray_release_user.insert({
+    "id": 7,
+    "userid": 11317,
+    "status": 1,
+});
+
+db.t_gray_release_user.insert({
+    "id": 8,
+    "userid": 12074,
+    "status": 1,
+});
+
+db.t_gray_release_user.insert({
+    "id": 9,
+    "userid": 12039,
+    "status": 1,
+});
+
