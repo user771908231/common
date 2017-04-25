@@ -16,3 +16,8 @@ const (
 	RKEY_MJSESSION_KEY_PRE      string = "redis_game_session"      //session redis key
 	RKEY_QR_CODE                string = "redis_qr_code_key"       //二维码登陆成功后存储的key
 )
+
+const (
+	//大厅相关
+	RKEY_CONF_HALL_GRAY_RELEASE_SWITH string = "rkey_conf_hall_gray_release_swith" //大厅的灰度测试开关
+)
