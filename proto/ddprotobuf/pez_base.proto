@@ -19,26 +19,28 @@ enum pez_enum_protoId {
 //    PEZ_PID_CONTINUEBET_ACK = 13; //续押ACK
 //    PEZ_PID_BETOVER = 14;    //压注完毕
 //    PEZ_PID_OPENPAI = 15;   //开牌
-//    PEZ_PID_CURRENTRESULT = 16; //本局结果
-//    PEZ_PID_SENDENDLOTTERY = 17; //牌局结束
-//    PEZ_PID_DISSOLVE_DESK = 18; //房主解散房间
-//    PEZ_PID_DISSOLVE_DESK_ACK = 19; //
-//    PEZ_PID_LEAVE_DESK = 20; //离开房间
-//    PEZ_PID_LEAVE_DESK_ACK = 21; //
-//    PEZ_PID_MESSAGE = 22;                                       //聊天信息
-//    PEZ_PID_SEND_MESSAGE = 23;                                  //广播聊天
-//    PEZ_PID_GAMESTATE_REQ = 24;                                 //查询游戏状态
-//    PEZ_PID_GAMESTATE_ACK = 25;                                 //查询游戏状态回复
-//    PEZ_PID_APPLYDISSOLVE_REQ = 26;                             // 申请解散房间
-//    PEZ_PID_APPLYDISSOLVE_ACK = 27;                             // 申请解散房间回复
-//    PEZ_PID_APPLYDISSOLVEBACK_REQ = 28;                         // 同意或拒绝解散房间回复
-//    PEZ_PID_APPLYDISSOLVEBACK_ACK = 29;                         // 同意或拒绝解散房间回复
-//    PEZ_PID_COMMONBCKICKOUT = 30;                               //强制退出 连接超时把人踢掉
-//    PEZ_PID_COMMONBCUSERBREAK = 31;                             //断线的pid
-//    PEZ_PID_COMMONREQRECONNECT = 32;                            //断线重连的pid
-//    PEZ_PID_OFFLINE_REQ = 33;                                   // 请求: 离线
-//    PEZ_PID_RECONNECT_REQ = 34;                                 // 请求: reqReconnect 断线重连
-//    PEZ_PID_RECONNECT_ACK = 35;                                 // 回复: reqReconnect 断线重连
+//    PEZ_PID_OPENPAI_ACK = 16;     //开牌ACK，返回手牌数组
+//    PEZ_PID_CURRENTRESULT = 17; //本局结果
+
+//    PEZ_PID_SENDENDLOTTERY = 18; //牌局结束
+//    PEZ_PID_DISSOLVE_DESK = 19; //房主解散房间
+//    PEZ_PID_DISSOLVE_DESK_ACK = 20; //
+//    PEZ_PID_LEAVE_DESK = 21; //离开房间
+//    PEZ_PID_LEAVE_DESK_ACK = 22; //
+//    PEZ_PID_MESSAGE = 23;                                       //聊天信息
+//    PEZ_PID_SEND_MESSAGE = 24;                                  //广播聊天
+//    PEZ_PID_GAMESTATE_REQ = 25;                                 //查询游戏状态
+//    PEZ_PID_GAMESTATE_ACK = 26;                                 //查询游戏状态回复
+//    PEZ_PID_APPLYDISSOLVE_REQ = 27;                             // 申请解散房间
+//    PEZ_PID_APPLYDISSOLVE_ACK = 28;                             // 申请解散房间回复
+//    PEZ_PID_APPLYDISSOLVEBACK_REQ = 29;                         // 同意或拒绝解散房间回复
+//    PEZ_PID_APPLYDISSOLVEBACK_ACK = 30;                         // 同意或拒绝解散房间回复
+//    PEZ_PID_COMMONBCKICKOUT = 31;                               //强制退出 连接超时把人踢掉
+//    PEZ_PID_COMMONBCUSERBREAK = 32;                             //断线的pid
+//    PEZ_PID_COMMONREQRECONNECT = 33;                            //断线重连的pid
+//    PEZ_PID_OFFLINE_REQ = 34;                                   // 请求: 离线
+//    PEZ_PID_RECONNECT_REQ = 35;                                 // 请求: reqReconnect 断线重连
+//    PEZ_PID_RECONNECT_ACK = 36;                                 // 回复: reqReconnect 断线重连
 }
 
 enum pez_enum_ErrorCode {
@@ -57,9 +59,12 @@ enum pez_enum_ErrorCode {
 
 enum pez_enum_Option {
 
-    LUN_BANK = 1; // 轮庄
-    DING_BANK = 2; // 定庄
-    TONG_BI = 3; // 通比
+    DING_BANK = 0; // 定庄
+    TONG_BI = 1; // 通比
+    LUN_BANK = 2; // 轮庄
+    RANDOM_BANK = 3; //随机庄
+
+
 }
 
 // 房间类型信息：包含房间类型和对应的局数、封顶、玩法等信息
@@ -82,6 +87,13 @@ enum pez_enum_PaiType {
 enum pez_enum_Base {
     PEZ_LOW = 0;    //低倍 1-2-3
     PEZ_HIGH = 1;   //高倍 5-10-20
+}
+
+//押注按钮代表的值
+enum pez_enum_Bet {
+    PEZ_BETBUTTON1 = 1;
+    PEZ_BETBUTTON2 = 2;
+    PEZ_BETBUTTON3 = 3;
 }
 
 enum pez_enum_UserGameStatus {
@@ -143,8 +155,8 @@ message pez_base_PlayerInfo {
     optional int32 sex = 7; // 性别: 1=男  2=女
     optional uint32 userId = 8; // 用户id
     optional bool isOwner = 9; // 当前用户是否房主
-    optional int32 isReady = 10; // 是否已准备
-    optional int32 isBet = 11; //是否已押注
+    optional bool isReady = 10; // 是否已准备
+    optional bool isBet = 11; //是否已押注
     optional WeixinInfo wxInfo = 12; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
     optional int32 GameStatus = 13; //玩家的游戏状态
     optional string ip = 14; //玩家的ip地址
