@@ -4,6 +4,12 @@ import public "common_mj.proto";
 
 package ddproto;
 
+//麻将的操作类型
+enum playback_mj_act_type {
+    pmat_mo = 1;
+
+}
+
 // Start： 201704142049 下面是麻将回放的 Proto
 // 当前页显示记录：第（length * page）条 到 第（length * (page + 1) - 1）条
 message playback_req_page {
