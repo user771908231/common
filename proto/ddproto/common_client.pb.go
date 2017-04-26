@@ -407,6 +407,8 @@ It has these top-level messages:
 	Pez_EndLotteryInfo
 	Pez_SendCurrentResult
 	Pez_SendEndLottery
+	Pez_UserBean
+	Pez_Bill
 	PezReq_CreateRoom
 	PezReq_AckCreateRoom
 	PezReq_EnterRoom
@@ -423,6 +425,7 @@ It has these top-level messages:
 	Pez_DealCards
 	Pez_Bet
 	Pez_AckBet
+	Pez_BCOpenPai
 	Pez_OpenCard
 	Pez_AckOpenCard
 	Pez_ActCompare

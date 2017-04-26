@@ -128,7 +128,7 @@ message pez_base_PlayConf {
 
 message pez_base_RoomTypeInfo {
     optional uint32 ownerID = 1;     //房间的房主ID
-    optional int64 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
+    optional int32 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
     optional pez_enum_Option playOption = 3;  //玩法：轮庄、定庄、通比
     optional pez_enum_Base baseValue = 4;    //底
 }
@@ -150,7 +150,7 @@ message pez_base_PlayerInfo {
     optional pez_base_PlayerCard playerCard = 2; // 玩家的手牌。客户端需根据服务端的返回进行排序动画。
     optional pez_enum_PaiType HandPaiType = 3;  //玩家的手牌的类型
     optional int64 coin = 4; // 玩家当前显示的自己的筹码数
-    optional int32 betNum = 5; // 玩家当前的押注数
+    optional int64 betNum = 5; // 玩家当前的押注数
     optional string nickName = 6; // 昵称
     optional int32 sex = 7; // 性别: 1=男  2=女
     optional uint32 userId = 8; // 用户id

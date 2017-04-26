@@ -2,6 +2,7 @@ syntax = "proto2";
 import public "common_client.proto";
 import public "pez_base.proto";
 import public "common_enum.proto";
+import public "pez_desk.proto";
 
 package ddproto;
 option optimize_for = LITE_RUNTIME;
@@ -32,19 +33,26 @@ message pez_DealCards {
     repeated pez_base_PlayerCard playerCard = 2; //发给我的牌
     optional int32 paiCount = 3; //剩余多少牌还没有发
     optional uint32 dealerUserId = 4; //庄家的userId
+    repeated pez_WinScoreInfo ScoreInfo = 5;
+
 }
 
 // 押注
 message pez_Bet {
     optional uint32 userId = 1; // 押注的人
-    optional int32 betNum = 2; // 押注的数量
+    optional int64 betNum = 2; // 押注的数量
     optional int32 time = 3; // 押注剩余时间
 }
 
 message pez_AckBet {
-    optional uint32 userId = 1; // 押注的人
-    optional int32 betCount = 2; // 押注的数量
-    optional int32 time = 3; // 押注剩余时间
+    optional ProtoHeader header = 1;
+    optional uint32 userId = 2; // 押注的人
+    optional int64 betCount = 3; // 押注的数量
+    optional int32 time = 4; // 押注剩余时间
+}
+
+message pez_BCOpenPai {
+    repeated pez_WinScoreInfo ScoreInfo = 1;
 }
 
 // 开牌

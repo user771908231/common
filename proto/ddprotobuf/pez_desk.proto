@@ -46,7 +46,7 @@ message pez_AckReady {
 
 //押注信息
 message BetInfo {
-    optional int32 betCount = 1; //押注数目
+    optional int64 betCount = 1; //押注数目
     optional bool continueBet = 2; //是否续押
 }
 
@@ -72,16 +72,19 @@ message pez_EndLotteryInfo {
 
 // 本局结果(广播)
 message pez_SendCurrentResult {
-    optional ProtoHeader header = 1;
-    optional string nickName = 2;
-    optional uint32 userId = 3;
-    repeated int32 winScore = 4; // 本局输赢多少
-    optional int64 coin = 5; // 输赢以后，当前筹码是多少
+    repeated pez_UserBean CurrBill = 1;
 }
 
 // 牌局结束(广播)
 message pez_SendEndLottery {
-    optional ProtoHeader header = 1;
-    repeated pez_EndLotteryInfo ScoreInfo = 2; //4人的汇总输赢明细
+    repeated pez_Bill allBill = 1;
 }
 
+message pez_UserBean {
+    optional uint32 userId = 1;
+    optional int64 score = 2;
+}
+
+message pez_Bill {
+    repeated pez_UserBean BeanList = 1;
+}
