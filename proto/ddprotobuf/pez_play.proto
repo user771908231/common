@@ -20,16 +20,23 @@ message pez_user_coin_bean {
 message pez_Opening {
     optional ProtoHeader header = 1;
     optional int32 CurrPlayCount = 2; //当前玩到第几局
-    optional int32 dice1 = 3; //骰子的数目
-    optional int32 dice2 = 4; //骰子的数目
-    optional int64 lastScore = 5;
-    repeated pez_user_coin_bean userCoinBeans = 6; //玩家的详细信息
+    repeated pez_user_coin_bean userCoinBeans = 3; //玩家的详细信息
 }
 
 // 发牌
 message pez_DealCards {
     optional ProtoHeader header = 1;
+    optional uint32 banker = 2;
+    optional int32 dice1 = 3; //骰子的数目
+    optional int32 dice2 = 4; //骰子的数目
+    repeated pez_lastScore lastScore = 5;
 }
+
+message pez_lastScore {
+    optional uint32 userId = 1;
+    optional int64 score = 2;
+}
+
 
 // 押注
 message pez_Bet {

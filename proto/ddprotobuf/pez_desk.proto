@@ -60,15 +60,19 @@ message pez_SendCurrentResult {
 
 }
 
+message EndLottery {
+    optional uint32 userId = 1;
+    optional bool isbigWin = 2; //是否为大赢家
+    optional bool isOwner = 3; //是否房主
+    optional int64 winScore = 4; //总输赢筹码数
+    optional WeixinInfo wxInfo = 5; //微信信息
+}
+
 // 牌局结束(广播)
 message pez_SendEndLottery {
-    optional uint32 userId = 1;
-    optional string nickName = 2; //玩家姓名
-    optional bool isbigWin = 3; //是否为大赢家
-    optional bool isOwner = 4; //是否房主
-    optional int64 winScore = 5; //总输赢筹码数
-
+    repeated EndLottery endLotteryInfo = 1;
 }
+
 
 message pez_UserBean {
     optional uint32 userId = 1;
