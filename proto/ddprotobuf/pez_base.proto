@@ -15,32 +15,27 @@ enum pez_enum_protoId {
     PEZ_PID_DEALCARDS = 9; //发牌
     PEZ_PID_BET = 10; //押注
     PEZ_PID_BET_ACK = 11; //押注ACK
-//    PEZ_PID_CONTINUEBET = 12; //续押
-//    PEZ_PID_CONTINUEBET_ACK = 13; //续押ACK
-//    PEZ_PID_BETOVER = 14;    //压注完毕
-//    PEZ_PID_OPENPAI = 15;   //开牌
-//    PEZ_PID_OPENPAI_ACK = 16;     //开牌ACK，返回手牌数组
-//    PEZ_PID_CURRENTRESULT = 17; //本局结果
-
-//    PEZ_PID_SENDENDLOTTERY = 18; //牌局结束
-//    PEZ_PID_DISSOLVE_DESK = 19; //房主解散房间
-//    PEZ_PID_DISSOLVE_DESK_ACK = 20; //
-//    PEZ_PID_LEAVE_DESK = 21; //离开房间
-//    PEZ_PID_LEAVE_DESK_ACK = 22; //
-//    PEZ_PID_MESSAGE = 23;                                       //聊天信息
-//    PEZ_PID_SEND_MESSAGE = 24;                                  //广播聊天
-//    PEZ_PID_GAMESTATE_REQ = 25;                                 //查询游戏状态
-//    PEZ_PID_GAMESTATE_ACK = 26;                                 //查询游戏状态回复
-//    PEZ_PID_APPLYDISSOLVE_REQ = 27;                             // 申请解散房间
-//    PEZ_PID_APPLYDISSOLVE_ACK = 28;                             // 申请解散房间回复
-//    PEZ_PID_APPLYDISSOLVEBACK_REQ = 29;                         // 同意或拒绝解散房间回复
-//    PEZ_PID_APPLYDISSOLVEBACK_ACK = 30;                         // 同意或拒绝解散房间回复
-//    PEZ_PID_COMMONBCKICKOUT = 31;                               //强制退出 连接超时把人踢掉
-//    PEZ_PID_COMMONBCUSERBREAK = 32;                             //断线的pid
-//    PEZ_PID_COMMONREQRECONNECT = 33;                            //断线重连的pid
-//    PEZ_PID_OFFLINE_REQ = 34;                                   // 请求: 离线
-//    PEZ_PID_RECONNECT_REQ = 35;                                 // 请求: reqReconnect 断线重连
-//    PEZ_PID_RECONNECT_ACK = 36;                                 // 回复: reqReconnect 断线重连
+    PEZ_PID_BCOPENPAI = 12;   //开牌
+    PEZ_PID_CURRENTRESULT = 13; //本局结果
+    PEZ_PID_SENDENDLOTTERY = 14; //牌局结束
+    PEZ_PID_DISSOLVE_DESK = 15; //房主解散房间
+    PEZ_PID_DISSOLVE_DESK_ACK = 16; //
+    PEZ_PID_LEAVE_DESK = 17; //离开房间
+    PEZ_PID_LEAVE_DESK_ACK = 18; //
+    PEZ_PID_MESSAGE = 19;                                       //聊天信息
+    PEZ_PID_SEND_MESSAGE = 20;                                  //广播聊天
+    PEZ_PID_GAMESTATE_REQ = 21;                                 //查询游戏状态
+    PEZ_PID_GAMESTATE_ACK = 22;                                 //查询游戏状态回复
+    PEZ_PID_APPLYDISSOLVE_REQ = 23;                             // 申请解散房间
+    PEZ_PID_APPLYDISSOLVE_ACK = 24;                             // 申请解散房间回复
+    PEZ_PID_APPLYDISSOLVEBACK_REQ = 25;                         // 同意或拒绝解散房间回复
+    PEZ_PID_APPLYDISSOLVEBACK_ACK = 26;                         // 同意或拒绝解散房间回复
+    PEZ_PID_COMMONBCKICKOUT = 27;                               //强制退出 连接超时把人踢掉
+    PEZ_PID_COMMONBCUSERBREAK = 28;                             //断线的pid
+    PEZ_PID_COMMONREQRECONNECT = 29;                            //断线重连的pid
+    PEZ_PID_OFFLINE_REQ = 30;                                   // 请求: 离线
+    PEZ_PID_RECONNECT_REQ = 31;                                 // 请求: reqReconnect 断线重连
+    PEZ_PID_RECONNECT_ACK = 32;                                 // 回复: reqReconnect 断线重连
 }
 
 enum pez_enum_ErrorCode {
@@ -128,7 +123,7 @@ message pez_base_PlayConf {
 
 message pez_base_RoomTypeInfo {
     optional uint32 ownerID = 1;     //房间的房主ID
-    optional int64 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
+    optional int32 boardsCout = 2; // 局数，如：10局（房卡 × 3）、25局（房卡 × 6）
     optional pez_enum_Option playOption = 3;  //玩法：轮庄、定庄、通比
     optional pez_enum_Base baseValue = 4;    //底
 }
@@ -150,7 +145,7 @@ message pez_base_PlayerInfo {
     optional pez_base_PlayerCard playerCard = 2; // 玩家的手牌。客户端需根据服务端的返回进行排序动画。
     optional pez_enum_PaiType HandPaiType = 3;  //玩家的手牌的类型
     optional int64 coin = 4; // 玩家当前显示的自己的筹码数
-    optional int32 betNum = 5; // 玩家当前的押注数
+    optional int64 betNum = 5; // 玩家当前的押注数
     optional string nickName = 6; // 昵称
     optional int32 sex = 7; // 性别: 1=男  2=女
     optional uint32 userId = 8; // 用户id

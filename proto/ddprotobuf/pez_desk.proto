@@ -44,22 +44,6 @@ message pez_AckReady {
     optional uint32 userId = 3; //广播推送时：表示谁已准备
 }
 
-//押注信息
-message BetInfo {
-    optional int32 betCount = 1; //押注数目
-    optional bool continueBet = 2; //是否续押
-}
-
-// 赢牌信息：谁赢了多少
-message pez_WinScoreInfo {
-    optional string nickName = 1;
-    optional uint32 userId = 2;
-    optional int64 winScore = 3; // 本次输赢多少(负数表示输了)
-    optional int64 coin = 4; // 输赢以后，当前筹码是多少
-    optional string cardTitle = 5; // 赢牌牌型信息( 如:癞子、对子、对鸡 )
-    optional bool isBanker = 7; //是否庄家
-}
-
 message pez_EndLotteryInfo {
     optional uint32 userId = 1;
     optional string nickName = 2; //玩家姓名
@@ -72,16 +56,26 @@ message pez_EndLotteryInfo {
 
 // 本局结果(广播)
 message pez_SendCurrentResult {
-    optional ProtoHeader header = 1;
-    optional string nickName = 2;
-    optional uint32 userId = 3;
-    repeated int32 winScore = 4; // 本局输赢多少
-    optional int64 coin = 5; // 输赢以后，当前筹码是多少
+    repeated pez_UserBean CurrBill = 2;
+
 }
 
 // 牌局结束(广播)
 message pez_SendEndLottery {
-    optional ProtoHeader header = 1;
-    repeated pez_EndLotteryInfo ScoreInfo = 2; //4人的汇总输赢明细
+    optional uint32 userId = 1;
+    optional string nickName = 2; //玩家姓名
+    optional bool isbigWin = 3; //是否为大赢家
+    optional bool isOwner = 4; //是否房主
+    optional int64 winScore = 5; //总输赢筹码数
+
 }
 
+message pez_UserBean {
+    optional uint32 userId = 1;
+    optional int64 score = 2;   //当局输赢分数
+    optional int64  coin = 3;   //筹码
+}
+
+message pez_Bill {
+    repeated pez_UserBean BeanList = 1;
+}
