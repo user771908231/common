@@ -402,8 +402,6 @@ It has these top-level messages:
 	Pez_AckApplyDissolveDesk
 	Pez_Ready
 	Pez_AckReady
-	BetInfo
-	Pez_WinScoreInfo
 	Pez_EndLotteryInfo
 	Pez_SendCurrentResult
 	Pez_SendEndLottery
@@ -426,10 +424,6 @@ It has these top-level messages:
 	Pez_Bet
 	Pez_AckBet
 	Pez_BCOpenPai
-	Pez_OpenCard
-	Pez_AckOpenCard
-	Pez_ActCompare
-	Pez_AckActCompare
 	Pez_SendGameInfo
 	RpcHallUpdateConfig
 	ZjhReqGetRoomList
