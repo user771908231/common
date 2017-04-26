@@ -116,6 +116,7 @@ message niu_jiabei_ot {
     optional ProtoHeader header = 1;
     optional int32 cuurBanker = 2;  //如果是抢庄模式，则加倍这一步才知道谁是庄家
     optional niuniu_client_poker pokers = 3; //发的牌
+    optional int32 cuurCircle = 4;  //当前圈数
 }
 
 message niu_jiabei_req {
