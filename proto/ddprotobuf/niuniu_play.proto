@@ -34,6 +34,7 @@ message niuniu_client_user {
     optional int32 doubleScore = 15; //加倍分数
     optional bool isReady = 16;  //是否已准备
     optional int32 lastScore = 17;  //上一局分数
+    optional WeixinInfo wxInfo = 18;  //微信信息
 }
 
 
@@ -96,6 +97,7 @@ message niu_qiangzhuang_req {
 
 message niu_qiangzhuang_ack {
     optional ProtoHeader header = 1;
+    optional int32 score = 2;  //抢庄分数
 }
 
 message niu_qiangzhuang_res_item {
@@ -123,17 +125,20 @@ message niu_jiabei_req {
 
 message niu_jiabei_ack {
     optional ProtoHeader header = 1;
+    optional int32 score = 2;  //加倍分数
 }
 
 message niu_jiabei_bc {
     optional ProtoHeader header = 1;
     optional int32 score = 2;  //加倍分数 1 2 3倍
+    optional uint32 userId = 3; //所属玩家
 }
 
 //==============================跟庄家比牌结果============================
 message niu_bipai_result_item {
     optional niuniu_client_poker poker = 1;  //牌型
     optional int32 score = 2;  //得分 -2分
+    optional uint32 userId = 3;  //所属玩家id
 }
 
 message niu_bipai_result_bc {
@@ -145,4 +150,10 @@ message niu_bipai_result_bc {
 message niu_game_end {
     optional ProtoHeader header = 1;
     repeated niuniu_user_bill data = 2;  //统计数据
+}
+
+//============================解散房间广播================================
+message niu_desk_dissolve_done_bc {
+    optional ProtoHeader header = 1;
+    optional bool isDissolve = 2; //是否解散
 }
