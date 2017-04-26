@@ -19,29 +19,28 @@ type BaseModeu32 interface {
 	GetId() uint32
 }
 
-
 var mongoConfig struct {
 	ip                   string
 	port                 int
 	dbname               string
 	DB_ENSURECOUNTER_KEY string
 	dialc                *mongodb.DialContext
+	SessionNum           int
 }
 
-func Oninit(ip string, port int, dbname string, key string) {
-	log.Debug("初始化mongoDb的地址  ip[%v],port[%v]", ip, port)
+func Oninit(ip string, dbname string, key string) {
+	log.Debug("初始化mongoDb的地址  ip[%v]", ip)
 	mongoConfig.ip = ip
-	mongoConfig.port = port
 	mongoConfig.dbname = dbname
 	mongoConfig.DB_ENSURECOUNTER_KEY = key
 	mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.port)
+	mongoConfig.SessionNum = 20
 }
 
 //活的链接
 func GetMongoConn() (*mongodb.DialContext, error) {
-	//return mongodb.Dial(mongoConfig.ip, mongoConfig.port)
 	if mongoConfig.dialc == nil {
-		mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.port)
+		mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
 	}
 	return mongoConfig.dialc, nil
 }
@@ -245,7 +244,7 @@ func (c C) InsertAll(doc_slice interface{}) (error, int) {
 	val := reflect.ValueOf(doc_slice)
 	doc_arr := []interface{}{}
 	doc_len := val.Len()
-	for i:=0; i<doc_len; i++ {
+	for i := 0; i < doc_len; i++ {
 		doc_arr = append(doc_arr, val.Index(i).Interface())
 	}
 	return c.Insert(doc_arr...), doc_len
@@ -277,15 +276,16 @@ func (c C) Count(query interface{}) (count int, err error) {
 }
 
 //管道
-func (c C)PipeAll(query interface{}, result interface{}) (err error) {
+func (c C) PipeAll(query interface{}, result interface{}) (err error) {
 	Query(func(mgo *mgo.Database) {
 		pipe := mgo.C(string(c)).Pipe(query)
 		err = pipe.All(result)
 	})
 	return
 }
+
 //管道
-func (c C)Pipe(query interface{}, result interface{}) (err error) {
+func (c C) Pipe(query interface{}, result interface{}) (err error) {
 	Query(func(mgo *mgo.Database) {
 		pipe := mgo.C(string(c)).Pipe(query)
 		err = pipe.One(result)
