@@ -41,6 +41,8 @@ var _ = math.Inf
 
 // Ignoring public import of pez_enum_Base from pez_base.proto
 
+// Ignoring public import of pez_enum_Bet from pez_base.proto
+
 // Ignoring public import of pez_enum_UserGameStatus from pez_base.proto
 
 // Ignoring public import of pez_enum_DeskGameStatus from pez_base.proto

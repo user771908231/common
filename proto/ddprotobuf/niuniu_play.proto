@@ -34,6 +34,7 @@ message niuniu_client_user {
     optional int32 doubleScore = 15; //加倍分数
     optional bool isReady = 16;  //是否已准备
     optional int32 lastScore = 17;  //上一局分数
+    optional WeixinInfo wxInfo = 18;  //微信信息
 }
 
 
@@ -130,6 +131,7 @@ message niu_jiabei_ack {
 message niu_jiabei_bc {
     optional ProtoHeader header = 1;
     optional int32 score = 2;  //加倍分数 1 2 3倍
+    optional uint32 userId = 3; //所属玩家
 }
 
 //==============================跟庄家比牌结果============================
