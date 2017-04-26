@@ -9,10 +9,12 @@ enum playback_mj_act_type {
     PMAT_MO = 1;
     PMAT_MO_OUT = 2;
     PMAT_MO_PENG = 3;
-    PMAT_MO_GANG_MING = 4;
+    PMAT_MO_GANG_BA = 4;
     PMAT_MO_GANG_AN = 5;
     PMAT_MO_GANG_DIAN = 6;
     PMAT_MO_GANG_CHI = 7;
+    PMAT_MO_GANG_HU = 8;
+
 }
 
 // Start： 201704142049 下面是麻将回放的 Proto
