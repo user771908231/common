@@ -45,6 +45,7 @@ It is generated from these files:
 	pez_hall.proto
 	pez_play.proto
 	pez_server.proto
+	rpc_hall.proto
 	zjh_base.proto
 	zjh_desk.proto
 	zjh_hall.proto
@@ -427,6 +428,7 @@ It has these top-level messages:
 	Pez_ActCompare
 	Pez_AckActCompare
 	Pez_SendGameInfo
+	RpcHallUpdateConfig
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
