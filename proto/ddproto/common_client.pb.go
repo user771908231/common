@@ -45,7 +45,6 @@ It is generated from these files:
 	pez_desk.proto
 	pez_hall.proto
 	pez_play.proto
-	pez_server.proto
 	rpc_hall.proto
 	zjh_base.proto
 	zjh_desk.proto
@@ -399,6 +398,7 @@ It has these top-level messages:
 	PezBase_PlayerCard
 	PezBase_PlayerInfo
 	PezBase_DeskGameInfo
+	PezTuozi
 	Pez_DissolveDesk
 	Pez_AckDissolveDesk
 	Pez_Ready
@@ -407,7 +407,6 @@ It has these top-level messages:
 	Pez_SendCurrentResult
 	EndLottery
 	Pez_SendEndLottery
-	PezTuozi
 	Pez_UserBean
 	Pez_Bill
 	PezReq_CreateRoom
