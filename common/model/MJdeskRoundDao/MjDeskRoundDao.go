@@ -7,8 +7,8 @@ import (
 	"casino_common/utils/db"
 	"casino_common/common/log"
 	"casino_common/common/consts/tableName"
-	"casino_hall/data/model"
 	"casino_common/proto/ddproto"
+	"casino_common/common/model"
 )
 
 //更具userId查询战绩

@@ -10,7 +10,6 @@ import (
 var clienMap map[int]int32
 
 func init() {
-
 	clienMap = make(map[int]int32, 136) //108
 	clienMap[0] = 19
 	clienMap[1] = 19
@@ -271,7 +270,7 @@ func (p *MJPAI) InitByDes() error {
 
 //这里得到牌的计数index
 func (p *MJPAI) GetCountIndex() int32 {
-	return p.Value - 1 + (int32(p.Flower - 1)) * 9 //todo 此方法是否合适...
+	return p.Value - 1 + (int32(p.Flower - 1))*9 //todo 此方法是否合适...
 }
 
 //todo

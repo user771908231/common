@@ -29,3 +29,18 @@ func (t T_ddz_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	}
 	return result
 }
+
+type DdzRecordBean struct {
+	UserId    uint32
+	NickName  string
+	WinAmount int64
+}
+
+func (b DdzRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
+	result := &ddproto.BeanUserRecord{
+		NickName:  proto.String(b.NickName),
+		UserId:    proto.Uint32(b.UserId),
+		WinAmount: proto.Int64(b.WinAmount),
+	}
+	return result
+}
