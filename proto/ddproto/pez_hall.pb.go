@@ -27,7 +27,11 @@ var _ = math.Inf
 
 // Ignoring public import of pez_base_DeskGameInfo from pez_base.proto
 
+// Ignoring public import of pez_tuozi from pez_base.proto
+
 // Ignoring public import of pez_enum_protoId from pez_base.proto
+
+// Ignoring public import of pez_enum_PEZTYPE from pez_base.proto
 
 // Ignoring public import of pez_enum_ErrorCode from pez_base.proto
 
