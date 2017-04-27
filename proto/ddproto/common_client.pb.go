@@ -330,6 +330,8 @@ It has these top-level messages:
 	NiuBipaiResultBc
 	NiuGameEnd
 	NiuDeskDissolveDoneBc
+	NiuOwnerDissolveReq
+	NiuOwnerDissolveAck
 	NiuniuSrvPoker
 	NiuniuSrvDesk
 	NiuniuSrvUser
