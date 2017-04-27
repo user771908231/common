@@ -1,3 +1,4 @@
+syntax = "proto2";
 package ddproto;
 
 //用户的seesion 主要是游戏的

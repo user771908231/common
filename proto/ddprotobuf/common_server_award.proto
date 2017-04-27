@@ -1,3 +1,4 @@
+syntax = "proto2";
 package ddproto;
 
 //todo 等待增加

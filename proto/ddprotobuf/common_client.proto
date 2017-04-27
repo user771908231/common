@@ -1,3 +1,4 @@
+syntax = "proto2";
 import public "common_enum.proto";
 package ddproto;
 // ProtoHeader 需要在每个 Message 中作为第一个字段
