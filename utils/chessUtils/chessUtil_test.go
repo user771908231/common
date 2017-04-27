@@ -12,3 +12,18 @@ func TestGetRoomPass(t *testing.T) {
 	d := GetRoomPass(9)
 	t.Logf("d :%v-%v", d)
 }
+
+func TestGetRoomPassV2(t *testing.T) {
+	t.Log(GetRoomPassV2(11))
+	t.Log(GetRoomPassV2(11))
+	t.Log(GetRoomPassV2(11))
+	t.Log(GetRoomPassV2(11))
+	t.Log(GetRoomPassV2(12))
+	t.Log(GetRoomPassV2(12))
+	t.Log(GetRoomPassV2(11))
+	t.Log(GetRoomPassV2(39))
+	t.Log(GetRoomPassV2(99))
+	t.Log(GetRoomPassV2(1))
+	t.Log(GetRoomPassV2(2))
+	t.Log(GetRoomPassV2(3))
+}

@@ -3,6 +3,7 @@ package chessUtils
 import (
 	"casino_common/utils/rand"
 	"casino_common/utils/numUtils"
+	"fmt"
 )
 
 //随机一副扑克牌的index
@@ -16,15 +17,15 @@ func Xipai(indexStart int, paiCount int) []int32 {
 	//打乱牌的集合
 	pResult := make([]int32, paiCount)
 	for i := 0; i < paiCount; i++ {
-		rand := rand.Rand(int32(0), int32(paiCount - i))
+		rand := rand.Rand(int32(0), int32(paiCount-i))
 		pResult[i] = pmap[rand]
-		pmap = append(pmap[:rand], pmap[rand + 1:]...)
+		pmap = append(pmap[:rand], pmap[rand+1:]...)
 	}
 	return pResult
 }
 
 //生成房间号
-func GetRoomPass(gameId int32) string {
+func GetRoomPassV2(gameId int32) string {
 	pre1 := rand.Rand(1, 10)
 	pre2 := rand.Rand(1, 10)
 	pre3 := rand.Rand(1, 10)
@@ -33,7 +34,7 @@ func GetRoomPass(gameId int32) string {
 	var pre6 int32 = 0
 
 	sum := pre1 + pre2 + pre3 + pre4 + pre5
-	a := gameId - sum % 10
+	a := gameId - sum%10
 	if a >= 0 {
 		pre6 = a
 	} else {
@@ -41,8 +42,21 @@ func GetRoomPass(gameId int32) string {
 	}
 	//log.T("pre1[%v], pre2[%v], pre3[%v], pre4[%v], pre5[%v]", pre1, pre2, pre3, pre4, pre5)
 	//log.T("gameId[%v] sum[%v] a[%v] pre6[%v]", gameId, sum, a, pre6)
-	ret := pre1 * 100000 + pre2 * 10000 + pre3 * 1000 + pre4 * 100 + pre5 * 10 + pre6
+	ret := pre1*100000 + pre2*10000 + pre3*1000 + pre4*100 + pre5*10 + pre6
 	retSrt, _ := numUtils.Int2String(ret)
 	//log.T("ret[%v] retSrt[%v]", ret, retSrt)
 	return retSrt
+}
+
+func GetRoomPass(gameId int32) string {
+	r := rand.Rand(1000, 10000)
+	rs, _ := numUtils.Int2String(r)
+	gids, _ := numUtils.Int2String(gameId)
+	if gameId < 10 {
+		gids = "0" + gids
+	}
+	s1 := string([]rune(rs)[:2])
+	s2 := string([]rune(rs)[2:])
+	ret := s1 + gids + s2
+	return ret
 }
