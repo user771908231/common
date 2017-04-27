@@ -158,3 +158,13 @@ message niu_desk_dissolve_done_bc {
     optional ProtoHeader header = 1;
     optional bool isDissolve = 2; //是否解散
 }
+
+//房主解散房间（未开局时不扣除房卡）
+message niu_owner_dissolve_req {
+    optional ProtoHeader header = 1;
+}
+
+//房主解散房间ack
+message niu_owner_dissolve_ack {
+    optional ProtoHeader header = 1;
+}
