@@ -2,7 +2,7 @@ package api
 
 import (
 	"casino_common/api/majiang"
-	"casino_majiang/msg/protogo"
+	"casino_common/proto/ddproto"
 )
 
 //跑得快解析器
@@ -11,6 +11,7 @@ type MJParser interface {
 	CanGang(...interface{}) (interface{}, error)
 	CanChi(interface{}, interface{}) (interface{}, error)
 	CanBu(...interface{}) (interface{}, error)
+	CanTing(...interface{}) (interface{}, error)
 	GetJiaoInfos(...interface{}) (interface{}, error) //判断是否有叫
 	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
 	XiPai() interface{}                               //洗牌
@@ -108,7 +109,7 @@ type CanGangInfoBean struct {
 }
 
 var (
-	PAI_TYPE_MENQING int32 = int32(mjproto.PaiType_H_MenQing) //门清
+	PAI_TYPE_MENQING int32 = int32(ddproto.MjEnumPaiType_H_MenQing) //门清
 )
 //胡牌之后的信息
 type CanHuInfo struct {
@@ -123,6 +124,15 @@ type CanHuInfo struct {
 	Pai      *majiang.MJPAI //胡的牌
 	PaiType  []int32
 }
+
+type CanChiInfo struct {
+	OutUserId uint32 //打牌的人
+	ChiUserId uint32 //吃牌的人
+	CanChi    bool   //是否能吃
+	ChiBeans  []ChiBean
+}
+
+type ChiBean []*majiang.MJPAI
 
 type CanBuInfo struct {
 	CanBu   bool
@@ -193,7 +203,11 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 //是否可以吃牌
 func (p *MJParserCore) CanChi(interface{}, interface{}) (interface{}, error) {
 	return nil, nil
+}
 
+//是否可以报听
+func (p *MJParserCore) CanTing(...interface{}) (interface{}, error) {
+	return nil, nil
 }
 
 //得到叫牌的信息

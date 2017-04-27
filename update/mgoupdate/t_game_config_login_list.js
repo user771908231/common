@@ -69,7 +69,7 @@ db.getCollection(tableName).insert({
 });
 
 db.getCollection(tableName).insert({
-    "GameId": 8.0,
+    "GameId": 7.0,
     "name": "跑得快",
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
@@ -98,3 +98,17 @@ db.getCollection(tableName).insert({
     "STATUS": 1.0
 });
 
+db.getCollection(tableName).insert({
+    "GameId": 9.0,
+    "name": "白山麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "白山麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": defaultDownloadUrl,
+    "LatestClientVersion": 1.0,
+    "IP": loginIp,
+    "PORT": 3804,
+    "STATUS": 1.0
+});

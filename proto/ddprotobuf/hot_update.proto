@@ -57,7 +57,7 @@ message hotupdate_ack_assetsInfo {
     repeated AssetInfo assets = 3; //
     optional int32 lastestAssetsVersion = 4; //全局的版本号
     optional int32 clientResolution = 5; //客户端分辨率: 0=720x1280 1=1080x1920
-
+    optional int32 clientAppId = 6; //客户端App标识（=渠道Id）
 }
 
 ///////////////////////////////////////////////////////////////////////////

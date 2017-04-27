@@ -1,5 +1,6 @@
 syntax = "proto2";
 import public "pez_base.proto";
+import public "common_client.proto";
 
 package ddproto;
 option optimize_for = LITE_RUNTIME;

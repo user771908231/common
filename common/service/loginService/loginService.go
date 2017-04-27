@@ -136,10 +136,21 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 		log.E("玩家注册的时候失败，因为微信的信息[%v]不够...", weixin)
 		return nil
 	}
+	ack := new(ddproto.CommonAckReg)
+	ack.Header = &ddproto.ProtoHeader{
+		Code:  proto.Int32(consts.ACK_RESULT_SUCC),
+		Error: proto.String("注册成功"),
+	}
 
+	//首先判断该微信是否已经注册过;如果注册过则直接返回该微信对应的user_id
+	user := userService.GetUserByUnionId(weixin.GetUnionId())
+	if user != nil {
+		ack.UserId = proto.Uint32(user.GetId())
+		return ack
+	}
 	//需要判断是否是转账号
 	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
-	user := userService.GetUserById(userId)
+	user = userService.GetUserById(userId)
 	if user != nil {
 		user.NickName = proto.String(weixin.GetNickName())
 		user.HeadUrl = proto.String(weixin.GetHeadUrl())
@@ -153,11 +164,6 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 	}
 
 	//返回结果
-	ack := new(ddproto.CommonAckReg)
-	ack.Header = &ddproto.ProtoHeader{
-		Code:  proto.Int32(consts.ACK_RESULT_SUCC),
-		Error: proto.String("注册成功"),
-	}
 	ack.UserId = proto.Uint32(user.GetId())
 	return ack
 }

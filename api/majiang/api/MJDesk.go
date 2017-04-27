@@ -14,19 +14,22 @@ import (
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error //玩家进入desk，不定参数
-	ActOut(...interface{}) error    //出牌的user和牌型
-	ActPeng(...interface{}) error   //碰
-	ActGuo(...interface{}) error    //过
-	ActGang(...interface{}) error   //杠
-	ActBu(...interface{}) error     //补
-	ActHu(...interface{}) error     //胡
-
+	EnterUser(...interface{}) error             //玩家进入desk，不定参数
+	ActOut(...interface{}) error                //出牌的user和牌型
+	ActPeng(...interface{}) error               //碰
+	ActGuo(...interface{}) error                //过
+	ActGang(...interface{}) error               //杠
+	ActBu(...interface{}) error                 //补
+	ActChi(...interface{}) error                //吃
+	ActHu(...interface{}) error                 //胡
+	ActBaoTing(...interface{}) error            //报听
+	ActLeave(...interface{}) error              //离开房间
 	ActReady(userId uint32) error               //准备
 	Dissolve(...interface{}) error              //解散
 	ApplyDissolve(...interface{}) error         //申请解散
 	ApplyDissolveBack(...interface{}) error     //申请解散回复
 	SendMessage(interface{}) error              //聊天
+	Break(...interface{}) error                 //断线的处理
 	GetDeskId() int32                           //得到desk id
 	GetRoom() MJRoom                            //得到一个room
 	GetPassword() string                        //得到房间号
@@ -55,6 +58,28 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	//main key
 	desk.deskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
 	return desk
+}
+
+//离开房间
+func (d *MJDeskCore) ActLeave(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActChi(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActBaoTing(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActBu(...interface{}) error {
+	return nil
+}
+
+//断线
+func (d *MJDeskCore) Break(...interface{}) error {
+	return nil
 }
 
 func (d *MJDeskCore) LeafS() *module.Skeleton {

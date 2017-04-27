@@ -26,6 +26,7 @@ type MJUser interface {
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
 	DoPeng(...interface{}) (interface{}, error) //碰牌
+	DoChi(...interface{}) (interface{}, error)  //吃牌
 	DoBu(...interface{}) (interface{}, error)   //补牌
 	DoHu(interface{}) (interface{}, error)      //胡牌
 	DoGang(...interface{}) (interface{}, error) //杠牌
@@ -50,6 +51,10 @@ func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
 		uRedis: userService.U_REDIS(userId),
 		Agent:  a,
 	}
+}
+
+func (u *MJUserCore) DoChi(...interface{}) (interface{}, error) {
+	return nil, nil
 }
 
 func (u *MJUserCore) GetUserId() uint32 {
