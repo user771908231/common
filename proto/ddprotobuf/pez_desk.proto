@@ -19,18 +19,7 @@ message pez_AckDissolveDesk {
     optional string passWord = 4; //房间密钥
 }
 
-// 申请解散房间(游戏中)
-message pez_ApplyDissolveDesk {
-    optional ProtoHeader header = 1;
-    optional uint32 userId = 2; // 申请解散房间的人
-}
 
-message pez_AckApplyDissolveDesk {
-    optional ProtoHeader header = 1;
-    repeated uint32 userIdAgree = 2; //已同意解散的人
-    repeated uint32 userIdWait = 3; //等待答复的人
-    repeated uint32 userIdDisagree = 4; //不同意解散的人
-}
 
 //准备游戏
 message pez_Ready {

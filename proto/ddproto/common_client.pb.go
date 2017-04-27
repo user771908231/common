@@ -398,8 +398,6 @@ It has these top-level messages:
 	PezBase_DeskGameInfo
 	Pez_DissolveDesk
 	Pez_AckDissolveDesk
-	Pez_ApplyDissolveDesk
-	Pez_AckApplyDissolveDesk
 	Pez_Ready
 	Pez_AckReady
 	Pez_EndLotteryInfo

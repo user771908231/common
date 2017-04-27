@@ -47,6 +47,8 @@ var _ = math.Inf
 
 // Ignoring public import of pez_enum_DeskGameStatus from pez_base.proto
 
+// Ignoring public import of pez_enum_TuoziType from pez_base.proto
+
 // Ignoring public import of ProtoHeader from common_client.proto
 
 // Ignoring public import of Heartbeat from common_client.proto

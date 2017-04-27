@@ -143,6 +143,8 @@ var _ = math.Inf
 
 // Ignoring public import of pez_enum_DeskGameStatus from pez_base.proto
 
+// Ignoring public import of pez_enum_TuoziType from pez_base.proto
+
 // Ignoring public import of common_enum_game from common_enum.proto
 
 // Ignoring public import of COMMON_ENUM_ROOMTYPE from common_enum.proto
@@ -162,10 +164,6 @@ var _ = math.Inf
 // Ignoring public import of pez_DissolveDesk from pez_desk.proto
 
 // Ignoring public import of pez_AckDissolveDesk from pez_desk.proto
-
-// Ignoring public import of pez_ApplyDissolveDesk from pez_desk.proto
-
-// Ignoring public import of pez_AckApplyDissolveDesk from pez_desk.proto
 
 // Ignoring public import of pez_Ready from pez_desk.proto
 
