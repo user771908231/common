@@ -55,4 +55,10 @@ const (
 	DBT_GAME_CONFIG_LOGIN = "t_game_config_login"  //登陆服配置
 	//登陆服游戏列表
 	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置
+
+
+	//数据分析
+	ADMIN_USER_ATHOME = "t_user_athome"
+	ADMIN_USER_ONLINEHOUR = "t_data_onlinehour"
+	ADMIN_USER_ONLINEDAY = "t_data_onlineday"
 )
