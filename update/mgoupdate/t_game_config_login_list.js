@@ -5,8 +5,7 @@ var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 conn = new Mongo();
 db = conn.getDB("test");
 
-db.getCollection('t_game_config_login_list').remove({});
-
+db.getCollection(tableName).remove({});
 
 db.getCollection(tableName).insert({
     "GameId": 2.0,
@@ -110,5 +109,51 @@ db.getCollection(tableName).insert({
     "LatestClientVersion": 1.0,
     "IP": loginIp,
     "PORT": 3804,
+    "STATUS": 1.0
+});
+
+
+db.getCollection(tableName).insert({
+    "GameId": 10,
+    "name": "长春麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "长春麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": defaultDownloadUrl,
+    "LatestClientVersion": 1.0,
+    "IP": loginIp,
+    "PORT": 3805,
+    "STATUS": 1.0
+});
+
+db.getCollection(tableName).insert({
+    "GameId": 11,
+    "name": "牛牛",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "牛牛",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": defaultDownloadUrl,
+    "LatestClientVersion": 1.0,
+    "IP": loginIp,
+    "PORT": 3807,
+    "STATUS": 1.0
+});
+
+db.getCollection(tableName).insert({
+    "GameId": 12,
+    "name": "搬坨子",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "搬坨子",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": defaultDownloadUrl,
+    "LatestClientVersion": 1.0,
+    "IP": loginIp,
+    "PORT": 3806,
     "STATUS": 1.0
 });
