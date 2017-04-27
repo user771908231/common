@@ -33,7 +33,7 @@ func Oninit(ip string, dbname string, key string) {
 	mongoConfig.ip = ip
 	mongoConfig.dbname = dbname
 	mongoConfig.DB_ENSURECOUNTER_KEY = key
-	mongoConfig.SessionNum = 20
+	mongoConfig.SessionNum = 100
 	mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
 }
 
