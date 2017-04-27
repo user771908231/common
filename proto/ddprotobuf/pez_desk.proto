@@ -85,7 +85,7 @@ message pez_UserBean {
     optional uint32 userId = 1;
     optional int64 score = 2; //当局输赢分数
     optional int64 coin = 3; //筹码
-    repeated pez_tuozi tuozi = 4; //玩家的手牌
+    optional pez_tuozi tuozi = 4; //玩家的手牌
 }
 
 message pez_Bill {
