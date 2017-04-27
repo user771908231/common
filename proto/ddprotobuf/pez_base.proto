@@ -108,6 +108,20 @@ enum pez_enum_DeskGameStatus {
     PEZ_FINISH = 5; //已经结束
 }
 
+enum pez_enum_TuoziType {
+    PEZ_ZERO = 0;
+    PEZ_ONE = 1;
+    PEZ_TWO = 2;
+    PEZ_THREE = 3;
+    PEZ_FOUR = 4;
+    PEZ_FIVE = 5;
+    PEZ_SIX = 6;
+    PEZ_SEVEN = 7;
+    PEZ_EIGHT = 8;
+    PEZ_NINE = 9;
+    PEZ_DOUBLE = 10;
+}
+
 // 麻将牌
 message pez_base_PaiInfo {
     optional int32 type = 1;   //麻将牌的类型：条和筒

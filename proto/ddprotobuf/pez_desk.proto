@@ -1,6 +1,7 @@
 syntax = "proto2";
 import public "common_client.proto";
 import public "common_enum.proto";
+import public "pez_base.proto";
 
 package ddproto;
 option optimize_for = LITE_RUNTIME;
@@ -18,18 +19,7 @@ message pez_AckDissolveDesk {
     optional string passWord = 4; //房间密钥
 }
 
-// 申请解散房间(游戏中)
-message pez_ApplyDissolveDesk {
-    optional ProtoHeader header = 1;
-    optional uint32 userId = 2; // 申请解散房间的人
-}
 
-message pez_AckApplyDissolveDesk {
-    optional ProtoHeader header = 1;
-    repeated uint32 userIdAgree = 2; //已同意解散的人
-    repeated uint32 userIdWait = 3; //等待答复的人
-    repeated uint32 userIdDisagree = 4; //不同意解散的人
-}
 
 //准备游戏
 message pez_Ready {
@@ -73,11 +63,18 @@ message pez_SendEndLottery {
     repeated EndLottery endLotteryInfo = 1;
 }
 
+//坨子
+message pez_tuozi {
+    repeated int32 pais = 1;
+    optional int32 keyValue = 2;
+    optional int32 tuoziType = 3; //1,代表单张，2代表对子
+}
 
 message pez_UserBean {
     optional uint32 userId = 1;
-    optional int64 score = 2;   //当局输赢分数
-    optional int64  coin = 3;   //筹码
+    optional int64 score = 2; //当局输赢分数
+    optional int64 coin = 3; //筹码
+    optional pez_tuozi tuozi = 4; //玩家的手牌
 }
 
 message pez_Bill {
