@@ -177,8 +177,6 @@ func init() {
 	proto.RegisterEnum("ddproto.PezEnum_PEZTYPE", PezEnum_PEZTYPE_name, PezEnum_PEZTYPE_value)
 }
 
-func init() { proto.RegisterFile("pez_server.proto", fileDescriptor39) }
-
 var fileDescriptor39 = []byte{
 	// 127 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x48, 0xad, 0x8a,
