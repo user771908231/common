@@ -32,6 +32,7 @@ It is generated from these files:
 	hall_data.proto
 	hall_playback.proto
 	hot_update.proto
+	mj_baishan_base.proto
 	niuniu_base.proto
 	niuniu_play.proto
 	niuniu_server.proto

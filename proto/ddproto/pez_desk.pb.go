@@ -171,7 +171,7 @@ type Pez_DissolveDesk struct {
 func (m *Pez_DissolveDesk) Reset()                    { *m = Pez_DissolveDesk{} }
 func (m *Pez_DissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*Pez_DissolveDesk) ProtoMessage()               {}
-func (*Pez_DissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{0} }
+func (*Pez_DissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{0} }
 
 func (m *Pez_DissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -199,7 +199,7 @@ type Pez_AckDissolveDesk struct {
 func (m *Pez_AckDissolveDesk) Reset()                    { *m = Pez_AckDissolveDesk{} }
 func (m *Pez_AckDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckDissolveDesk) ProtoMessage()               {}
-func (*Pez_AckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{1} }
+func (*Pez_AckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{1} }
 
 func (m *Pez_AckDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -239,7 +239,7 @@ type Pez_Ready struct {
 func (m *Pez_Ready) Reset()                    { *m = Pez_Ready{} }
 func (m *Pez_Ready) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Ready) ProtoMessage()               {}
-func (*Pez_Ready) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{2} }
+func (*Pez_Ready) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{2} }
 
 func (m *Pez_Ready) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -266,7 +266,7 @@ type Pez_AckReady struct {
 func (m *Pez_AckReady) Reset()                    { *m = Pez_AckReady{} }
 func (m *Pez_AckReady) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckReady) ProtoMessage()               {}
-func (*Pez_AckReady) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{3} }
+func (*Pez_AckReady) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{3} }
 
 func (m *Pez_AckReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -302,7 +302,7 @@ type Pez_EndLotteryInfo struct {
 func (m *Pez_EndLotteryInfo) Reset()                    { *m = Pez_EndLotteryInfo{} }
 func (m *Pez_EndLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*Pez_EndLotteryInfo) ProtoMessage()               {}
-func (*Pez_EndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{4} }
+func (*Pez_EndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{4} }
 
 func (m *Pez_EndLotteryInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -355,7 +355,7 @@ type Pez_SendCurrentResult struct {
 func (m *Pez_SendCurrentResult) Reset()                    { *m = Pez_SendCurrentResult{} }
 func (m *Pez_SendCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*Pez_SendCurrentResult) ProtoMessage()               {}
-func (*Pez_SendCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{5} }
+func (*Pez_SendCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{5} }
 
 func (m *Pez_SendCurrentResult) GetCurrBill() []*Pez_UserBean {
 	if m != nil {
@@ -376,7 +376,7 @@ type EndLottery struct {
 func (m *EndLottery) Reset()                    { *m = EndLottery{} }
 func (m *EndLottery) String() string            { return proto.CompactTextString(m) }
 func (*EndLottery) ProtoMessage()               {}
-func (*EndLottery) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{6} }
+func (*EndLottery) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{6} }
 
 func (m *EndLottery) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -422,7 +422,7 @@ type Pez_SendEndLottery struct {
 func (m *Pez_SendEndLottery) Reset()                    { *m = Pez_SendEndLottery{} }
 func (m *Pez_SendEndLottery) String() string            { return proto.CompactTextString(m) }
 func (*Pez_SendEndLottery) ProtoMessage()               {}
-func (*Pez_SendEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{7} }
+func (*Pez_SendEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{7} }
 
 func (m *Pez_SendEndLottery) GetEndLotteryInfo() []*EndLottery {
 	if m != nil {
@@ -442,7 +442,7 @@ type PezTuozi struct {
 func (m *PezTuozi) Reset()                    { *m = PezTuozi{} }
 func (m *PezTuozi) String() string            { return proto.CompactTextString(m) }
 func (*PezTuozi) ProtoMessage()               {}
-func (*PezTuozi) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{8} }
+func (*PezTuozi) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{8} }
 
 func (m *PezTuozi) GetPais() []int32 {
 	if m != nil {
@@ -476,7 +476,7 @@ type Pez_UserBean struct {
 func (m *Pez_UserBean) Reset()                    { *m = Pez_UserBean{} }
 func (m *Pez_UserBean) String() string            { return proto.CompactTextString(m) }
 func (*Pez_UserBean) ProtoMessage()               {}
-func (*Pez_UserBean) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{9} }
+func (*Pez_UserBean) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{9} }
 
 func (m *Pez_UserBean) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -514,7 +514,7 @@ type Pez_Bill struct {
 func (m *Pez_Bill) Reset()                    { *m = Pez_Bill{} }
 func (m *Pez_Bill) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Bill) ProtoMessage()               {}
-func (*Pez_Bill) Descriptor() ([]byte, []int) { return fileDescriptor35, []int{10} }
+func (*Pez_Bill) Descriptor() ([]byte, []int) { return fileDescriptor36, []int{10} }
 
 func (m *Pez_Bill) GetBeanList() []*Pez_UserBean {
 	if m != nil {
@@ -537,7 +537,7 @@ func init() {
 	proto.RegisterType((*Pez_Bill)(nil), "ddproto.pez_Bill")
 }
 
-var fileDescriptor35 = []byte{
+var fileDescriptor36 = []byte{
 	// 563 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x53, 0xc1, 0x6e, 0xd3, 0x4c,
 	0x10, 0xfe, 0xd7, 0x6e, 0x52, 0x67, 0xf2, 0x53, 0x95, 0x6d, 0x8b, 0xac, 0x88, 0x83, 0xe5, 0x93,

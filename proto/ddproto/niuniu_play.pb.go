@@ -143,7 +143,7 @@ type NiuniuClientDesk struct {
 func (m *NiuniuClientDesk) Reset()                    { *m = NiuniuClientDesk{} }
 func (m *NiuniuClientDesk) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuClientDesk) ProtoMessage()               {}
-func (*NiuniuClientDesk) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{0} }
+func (*NiuniuClientDesk) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{0} }
 
 func (m *NiuniuClientDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -247,7 +247,7 @@ type NiuniuClientUser struct {
 func (m *NiuniuClientUser) Reset()                    { *m = NiuniuClientUser{} }
 func (m *NiuniuClientUser) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuClientUser) ProtoMessage()               {}
-func (*NiuniuClientUser) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{1} }
+func (*NiuniuClientUser) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
 
 func (m *NiuniuClientUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -329,7 +329,7 @@ type NiuCreateDeskReq struct {
 func (m *NiuCreateDeskReq) Reset()                    { *m = NiuCreateDeskReq{} }
 func (m *NiuCreateDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuCreateDeskReq) ProtoMessage()               {}
-func (*NiuCreateDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{2} }
+func (*NiuCreateDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{2} }
 
 func (m *NiuCreateDeskReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -355,7 +355,7 @@ type NiuEnterDeskReq struct {
 func (m *NiuEnterDeskReq) Reset()                    { *m = NiuEnterDeskReq{} }
 func (m *NiuEnterDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuEnterDeskReq) ProtoMessage()               {}
-func (*NiuEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{3} }
+func (*NiuEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{3} }
 
 func (m *NiuEnterDeskReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -381,7 +381,7 @@ type NiuEnterDeskAck struct {
 func (m *NiuEnterDeskAck) Reset()                    { *m = NiuEnterDeskAck{} }
 func (m *NiuEnterDeskAck) String() string            { return proto.CompactTextString(m) }
 func (*NiuEnterDeskAck) ProtoMessage()               {}
-func (*NiuEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{4} }
+func (*NiuEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{4} }
 
 func (m *NiuEnterDeskAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -413,7 +413,7 @@ type NiuEnterDeskBc struct {
 func (m *NiuEnterDeskBc) Reset()                    { *m = NiuEnterDeskBc{} }
 func (m *NiuEnterDeskBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuEnterDeskBc) ProtoMessage()               {}
-func (*NiuEnterDeskBc) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{5} }
+func (*NiuEnterDeskBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{5} }
 
 func (m *NiuEnterDeskBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -439,7 +439,7 @@ type NiuSwitchReadyReq struct {
 func (m *NiuSwitchReadyReq) Reset()                    { *m = NiuSwitchReadyReq{} }
 func (m *NiuSwitchReadyReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuSwitchReadyReq) ProtoMessage()               {}
-func (*NiuSwitchReadyReq) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{6} }
+func (*NiuSwitchReadyReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{6} }
 
 func (m *NiuSwitchReadyReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -463,7 +463,7 @@ type NiuSwitchReadyAck struct {
 func (m *NiuSwitchReadyAck) Reset()                    { *m = NiuSwitchReadyAck{} }
 func (m *NiuSwitchReadyAck) String() string            { return proto.CompactTextString(m) }
 func (*NiuSwitchReadyAck) ProtoMessage()               {}
-func (*NiuSwitchReadyAck) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{7} }
+func (*NiuSwitchReadyAck) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{7} }
 
 func (m *NiuSwitchReadyAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -482,7 +482,7 @@ type NiuSwitchReadyBc struct {
 func (m *NiuSwitchReadyBc) Reset()                    { *m = NiuSwitchReadyBc{} }
 func (m *NiuSwitchReadyBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuSwitchReadyBc) ProtoMessage()               {}
-func (*NiuSwitchReadyBc) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{8} }
+func (*NiuSwitchReadyBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{8} }
 
 func (m *NiuSwitchReadyBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -514,7 +514,7 @@ type NiuStartGameOt struct {
 func (m *NiuStartGameOt) Reset()                    { *m = NiuStartGameOt{} }
 func (m *NiuStartGameOt) String() string            { return proto.CompactTextString(m) }
 func (*NiuStartGameOt) ProtoMessage()               {}
-func (*NiuStartGameOt) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{9} }
+func (*NiuStartGameOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{9} }
 
 func (m *NiuStartGameOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -534,7 +534,7 @@ type NiuQiangzhuangOt struct {
 func (m *NiuQiangzhuangOt) Reset()                    { *m = NiuQiangzhuangOt{} }
 func (m *NiuQiangzhuangOt) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangOt) ProtoMessage()               {}
-func (*NiuQiangzhuangOt) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{10} }
+func (*NiuQiangzhuangOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{10} }
 
 func (m *NiuQiangzhuangOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -566,7 +566,7 @@ type NiuQiangzhuangReq struct {
 func (m *NiuQiangzhuangReq) Reset()                    { *m = NiuQiangzhuangReq{} }
 func (m *NiuQiangzhuangReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangReq) ProtoMessage()               {}
-func (*NiuQiangzhuangReq) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{11} }
+func (*NiuQiangzhuangReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{11} }
 
 func (m *NiuQiangzhuangReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -591,7 +591,7 @@ type NiuQiangzhuangAck struct {
 func (m *NiuQiangzhuangAck) Reset()                    { *m = NiuQiangzhuangAck{} }
 func (m *NiuQiangzhuangAck) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangAck) ProtoMessage()               {}
-func (*NiuQiangzhuangAck) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{12} }
+func (*NiuQiangzhuangAck) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{12} }
 
 func (m *NiuQiangzhuangAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -617,7 +617,7 @@ type NiuQiangzhuangResItem struct {
 func (m *NiuQiangzhuangResItem) Reset()                    { *m = NiuQiangzhuangResItem{} }
 func (m *NiuQiangzhuangResItem) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangResItem) ProtoMessage()               {}
-func (*NiuQiangzhuangResItem) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{13} }
+func (*NiuQiangzhuangResItem) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{13} }
 
 func (m *NiuQiangzhuangResItem) GetUser() uint32 {
 	if m != nil && m.User != nil {
@@ -650,7 +650,7 @@ type NiuQiangzhuangResBc struct {
 func (m *NiuQiangzhuangResBc) Reset()                    { *m = NiuQiangzhuangResBc{} }
 func (m *NiuQiangzhuangResBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuQiangzhuangResBc) ProtoMessage()               {}
-func (*NiuQiangzhuangResBc) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{14} }
+func (*NiuQiangzhuangResBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{14} }
 
 func (m *NiuQiangzhuangResBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -678,7 +678,7 @@ type NiuJiabeiOt struct {
 func (m *NiuJiabeiOt) Reset()                    { *m = NiuJiabeiOt{} }
 func (m *NiuJiabeiOt) String() string            { return proto.CompactTextString(m) }
 func (*NiuJiabeiOt) ProtoMessage()               {}
-func (*NiuJiabeiOt) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{15} }
+func (*NiuJiabeiOt) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{15} }
 
 func (m *NiuJiabeiOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -717,7 +717,7 @@ type NiuJiabeiReq struct {
 func (m *NiuJiabeiReq) Reset()                    { *m = NiuJiabeiReq{} }
 func (m *NiuJiabeiReq) String() string            { return proto.CompactTextString(m) }
 func (*NiuJiabeiReq) ProtoMessage()               {}
-func (*NiuJiabeiReq) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{16} }
+func (*NiuJiabeiReq) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{16} }
 
 func (m *NiuJiabeiReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -742,7 +742,7 @@ type NiuJiabeiAck struct {
 func (m *NiuJiabeiAck) Reset()                    { *m = NiuJiabeiAck{} }
 func (m *NiuJiabeiAck) String() string            { return proto.CompactTextString(m) }
 func (*NiuJiabeiAck) ProtoMessage()               {}
-func (*NiuJiabeiAck) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{17} }
+func (*NiuJiabeiAck) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{17} }
 
 func (m *NiuJiabeiAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -768,7 +768,7 @@ type NiuJiabeiBc struct {
 func (m *NiuJiabeiBc) Reset()                    { *m = NiuJiabeiBc{} }
 func (m *NiuJiabeiBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuJiabeiBc) ProtoMessage()               {}
-func (*NiuJiabeiBc) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{18} }
+func (*NiuJiabeiBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{18} }
 
 func (m *NiuJiabeiBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -802,7 +802,7 @@ type NiuBipaiResultItem struct {
 func (m *NiuBipaiResultItem) Reset()                    { *m = NiuBipaiResultItem{} }
 func (m *NiuBipaiResultItem) String() string            { return proto.CompactTextString(m) }
 func (*NiuBipaiResultItem) ProtoMessage()               {}
-func (*NiuBipaiResultItem) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{19} }
+func (*NiuBipaiResultItem) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{19} }
 
 func (m *NiuBipaiResultItem) GetPoker() *NiuniuClientPoker {
 	if m != nil {
@@ -833,7 +833,7 @@ type NiuBipaiResultBc struct {
 func (m *NiuBipaiResultBc) Reset()                    { *m = NiuBipaiResultBc{} }
 func (m *NiuBipaiResultBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuBipaiResultBc) ProtoMessage()               {}
-func (*NiuBipaiResultBc) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{20} }
+func (*NiuBipaiResultBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{20} }
 
 func (m *NiuBipaiResultBc) GetUserState() []*NiuBipaiResultItem {
 	if m != nil {
@@ -851,7 +851,7 @@ type NiuGameEnd struct {
 func (m *NiuGameEnd) Reset()                    { *m = NiuGameEnd{} }
 func (m *NiuGameEnd) String() string            { return proto.CompactTextString(m) }
 func (*NiuGameEnd) ProtoMessage()               {}
-func (*NiuGameEnd) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{21} }
+func (*NiuGameEnd) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{21} }
 
 func (m *NiuGameEnd) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -877,7 +877,7 @@ type NiuDeskDissolveDoneBc struct {
 func (m *NiuDeskDissolveDoneBc) Reset()                    { *m = NiuDeskDissolveDoneBc{} }
 func (m *NiuDeskDissolveDoneBc) String() string            { return proto.CompactTextString(m) }
 func (*NiuDeskDissolveDoneBc) ProtoMessage()               {}
-func (*NiuDeskDissolveDoneBc) Descriptor() ([]byte, []int) { return fileDescriptor27, []int{22} }
+func (*NiuDeskDissolveDoneBc) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{22} }
 
 func (m *NiuDeskDissolveDoneBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -919,7 +919,7 @@ func init() {
 	proto.RegisterType((*NiuDeskDissolveDoneBc)(nil), "ddproto.niu_desk_dissolve_done_bc")
 }
 
-var fileDescriptor27 = []byte{
+var fileDescriptor28 = []byte{
 	// 943 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xcd, 0x6e, 0x1c, 0x45,
 	0x10, 0x66, 0xf6, 0x2f, 0xeb, 0xda, 0xac, 0x21, 0x6d, 0x13, 0x4d, 0x4c, 0x64, 0x96, 0x39, 0xad,

@@ -15,6 +15,7 @@ enum playback_mj_act_type {
     PMAT_CHI = 7;
     PMAT_HU = 8;
     PMAT_BU = 9;
+    PMAT_BU_XIA = 10; //补虾子
 }
 
 // Start： 201704142049 下面是麻将回放的 Proto
