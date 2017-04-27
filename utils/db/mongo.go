@@ -33,8 +33,8 @@ func Oninit(ip string, dbname string, key string) {
 	mongoConfig.ip = ip
 	mongoConfig.dbname = dbname
 	mongoConfig.DB_ENSURECOUNTER_KEY = key
-	mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.port)
 	mongoConfig.SessionNum = 20
+	mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
 }
 
 //活的链接
