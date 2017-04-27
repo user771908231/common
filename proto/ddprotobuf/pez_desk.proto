@@ -1,6 +1,7 @@
 syntax = "proto2";
 import public "common_client.proto";
 import public "common_enum.proto";
+import public "pez_base.proto";
 
 package ddproto;
 option optimize_for = LITE_RUNTIME;
@@ -73,11 +74,18 @@ message pez_SendEndLottery {
     repeated EndLottery endLotteryInfo = 1;
 }
 
+//坨子
+message pez_tuozi {
+    repeated int32 pais = 1;
+    optional int32 keyValue = 2;
+    optional int32 tuoziType = 3; //1,代表单张，2代表对子
+}
 
 message pez_UserBean {
     optional uint32 userId = 1;
-    optional int64 score = 2;   //当局输赢分数
-    optional int64  coin = 3;   //筹码
+    optional int64 score = 2; //当局输赢分数
+    optional int64 coin = 3; //筹码
+    repeated pez_tuozi tuozi = 4; //玩家的手牌
 }
 
 message pez_Bill {
