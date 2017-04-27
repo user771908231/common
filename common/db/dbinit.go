@@ -5,10 +5,10 @@ import (
 	"casino_common/utils/db"
 )
 
-func InitMongoDb(mongoIp string, mongoPort int, DBNAME string, DB_ENSURECOUNTER_KEY string, seqTableName []string) error {
+func InitMongoDb(mongoIp string, DBNAME string, DB_ENSURECOUNTER_KEY string, seqTableName []string) error {
 	fmt.Println("4，初始化mongo...")
 	//初始化地址...
-	db.Oninit(mongoIp, mongoPort, DBNAME, DB_ENSURECOUNTER_KEY)
+	db.Oninit(mongoIp, DBNAME, DB_ENSURECOUNTER_KEY)
 	//0,活的数据库连接
 	c, err := db.GetMongoConn()
 	if err != nil {

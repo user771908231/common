@@ -44,6 +44,11 @@ enum niuniu_enum_protoid {
     NIU_PID_DISSOLVE_BACK_ACK = 26;  //同意、拒绝解散房间广播
     NIU_PID_DISSOLVE_DONE_BC = 27;  //确定解散房间广播
 
+    NIU_PID_SEND_MESSAGE_REQ = 31;  //发送聊天、道具消息
+    NIU_PID_MESSAGE_BC = 32;  //聊天、道具消息广播
+
+    NIU_PID_LEAVE_DESK_REQ = 33;  //离开房间请求   使用公共协议
+    NIU_PID_LEAVE_DESK_ACK = 34;  //离开房间ack、bc    使用公共协议
 }
 
 

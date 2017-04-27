@@ -137,6 +137,8 @@ var _ = math.Inf
 
 // Ignoring public import of pez_enum_Base from pez_base.proto
 
+// Ignoring public import of pez_enum_Bet from pez_base.proto
+
 // Ignoring public import of pez_enum_UserGameStatus from pez_base.proto
 
 // Ignoring public import of pez_enum_DeskGameStatus from pez_base.proto
@@ -156,6 +158,30 @@ var _ = math.Inf
 // Ignoring public import of BTN_TYPE from common_enum.proto
 
 // Ignoring public import of COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM from common_enum.proto
+
+// Ignoring public import of pez_DissolveDesk from pez_desk.proto
+
+// Ignoring public import of pez_AckDissolveDesk from pez_desk.proto
+
+// Ignoring public import of pez_ApplyDissolveDesk from pez_desk.proto
+
+// Ignoring public import of pez_AckApplyDissolveDesk from pez_desk.proto
+
+// Ignoring public import of pez_Ready from pez_desk.proto
+
+// Ignoring public import of pez_AckReady from pez_desk.proto
+
+// Ignoring public import of pez_EndLotteryInfo from pez_desk.proto
+
+// Ignoring public import of pez_SendCurrentResult from pez_desk.proto
+
+// Ignoring public import of EndLottery from pez_desk.proto
+
+// Ignoring public import of pez_SendEndLottery from pez_desk.proto
+
+// Ignoring public import of pez_UserBean from pez_desk.proto
+
+// Ignoring public import of pez_Bill from pez_desk.proto
 
 // 链接类型
 type PEZ_RECONNECT_TYPE int32
@@ -190,7 +216,7 @@ func (x *PEZ_RECONNECT_TYPE) UnmarshalJSON(data []byte) error {
 	*x = PEZ_RECONNECT_TYPE(value)
 	return nil
 }
-func (PEZ_RECONNECT_TYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
+func (PEZ_RECONNECT_TYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor37, []int{0} }
 
 // 积分
 type PezUserCoinBean struct {
@@ -202,7 +228,7 @@ type PezUserCoinBean struct {
 func (m *PezUserCoinBean) Reset()                    { *m = PezUserCoinBean{} }
 func (m *PezUserCoinBean) String() string            { return proto.CompactTextString(m) }
 func (*PezUserCoinBean) ProtoMessage()               {}
-func (*PezUserCoinBean) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
+func (*PezUserCoinBean) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{0} }
 
 func (m *PezUserCoinBean) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -222,16 +248,14 @@ func (m *PezUserCoinBean) GetCoin() int64 {
 type Pez_Opening struct {
 	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	CurrPlayCount    *int32             `protobuf:"varint,2,opt,name=CurrPlayCount" json:"CurrPlayCount,omitempty"`
-	Dice1            *int32             `protobuf:"varint,3,opt,name=dice1" json:"dice1,omitempty"`
-	Dice2            *int32             `protobuf:"varint,4,opt,name=dice2" json:"dice2,omitempty"`
-	UserCoinBeans    []*PezUserCoinBean `protobuf:"bytes,5,rep,name=userCoinBeans" json:"userCoinBeans,omitempty"`
+	UserCoinBeans    []*PezUserCoinBean `protobuf:"bytes,3,rep,name=userCoinBeans" json:"userCoinBeans,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
 
 func (m *Pez_Opening) Reset()                    { *m = Pez_Opening{} }
 func (m *Pez_Opening) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Opening) ProtoMessage()               {}
-func (*Pez_Opening) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{1} }
+func (*Pez_Opening) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{1} }
 
 func (m *Pez_Opening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -247,20 +271,6 @@ func (m *Pez_Opening) GetCurrPlayCount() int32 {
 	return 0
 }
 
-func (m *Pez_Opening) GetDice1() int32 {
-	if m != nil && m.Dice1 != nil {
-		return *m.Dice1
-	}
-	return 0
-}
-
-func (m *Pez_Opening) GetDice2() int32 {
-	if m != nil && m.Dice2 != nil {
-		return *m.Dice2
-	}
-	return 0
-}
-
 func (m *Pez_Opening) GetUserCoinBeans() []*PezUserCoinBean {
 	if m != nil {
 		return m.UserCoinBeans
@@ -270,17 +280,18 @@ func (m *Pez_Opening) GetUserCoinBeans() []*PezUserCoinBean {
 
 // 发牌
 type Pez_DealCards struct {
-	Header           *ProtoHeader          `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PlayerCard       []*PezBase_PlayerCard `protobuf:"bytes,2,rep,name=playerCard" json:"playerCard,omitempty"`
-	PaiCount         *int32                `protobuf:"varint,3,opt,name=paiCount" json:"paiCount,omitempty"`
-	DealerUserId     *uint32               `protobuf:"varint,4,opt,name=dealerUserId" json:"dealerUserId,omitempty"`
-	XXX_unrecognized []byte                `json:"-"`
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Banker           *uint32         `protobuf:"varint,2,opt,name=banker" json:"banker,omitempty"`
+	Dice1            *int32          `protobuf:"varint,3,opt,name=dice1" json:"dice1,omitempty"`
+	Dice2            *int32          `protobuf:"varint,4,opt,name=dice2" json:"dice2,omitempty"`
+	LastScore        []*PezLastScore `protobuf:"bytes,5,rep,name=lastScore" json:"lastScore,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
 }
 
 func (m *Pez_DealCards) Reset()                    { *m = Pez_DealCards{} }
 func (m *Pez_DealCards) String() string            { return proto.CompactTextString(m) }
 func (*Pez_DealCards) ProtoMessage()               {}
-func (*Pez_DealCards) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{2} }
+func (*Pez_DealCards) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{2} }
 
 func (m *Pez_DealCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -289,23 +300,55 @@ func (m *Pez_DealCards) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *Pez_DealCards) GetPlayerCard() []*PezBase_PlayerCard {
-	if m != nil {
-		return m.PlayerCard
-	}
-	return nil
-}
-
-func (m *Pez_DealCards) GetPaiCount() int32 {
-	if m != nil && m.PaiCount != nil {
-		return *m.PaiCount
+func (m *Pez_DealCards) GetBanker() uint32 {
+	if m != nil && m.Banker != nil {
+		return *m.Banker
 	}
 	return 0
 }
 
-func (m *Pez_DealCards) GetDealerUserId() uint32 {
-	if m != nil && m.DealerUserId != nil {
-		return *m.DealerUserId
+func (m *Pez_DealCards) GetDice1() int32 {
+	if m != nil && m.Dice1 != nil {
+		return *m.Dice1
+	}
+	return 0
+}
+
+func (m *Pez_DealCards) GetDice2() int32 {
+	if m != nil && m.Dice2 != nil {
+		return *m.Dice2
+	}
+	return 0
+}
+
+func (m *Pez_DealCards) GetLastScore() []*PezLastScore {
+	if m != nil {
+		return m.LastScore
+	}
+	return nil
+}
+
+type PezLastScore struct {
+	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	Score            *int64  `protobuf:"varint,2,opt,name=score" json:"score,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *PezLastScore) Reset()                    { *m = PezLastScore{} }
+func (m *PezLastScore) String() string            { return proto.CompactTextString(m) }
+func (*PezLastScore) ProtoMessage()               {}
+func (*PezLastScore) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{3} }
+
+func (m *PezLastScore) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PezLastScore) GetScore() int64 {
+	if m != nil && m.Score != nil {
+		return *m.Score
 	}
 	return 0
 }
@@ -313,7 +356,7 @@ func (m *Pez_DealCards) GetDealerUserId() uint32 {
 // 押注
 type Pez_Bet struct {
 	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
-	BetNum           *int32  `protobuf:"varint,2,opt,name=betNum" json:"betNum,omitempty"`
+	BetNum           *int64  `protobuf:"varint,2,opt,name=betNum" json:"betNum,omitempty"`
 	Time             *int32  `protobuf:"varint,3,opt,name=time" json:"time,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
@@ -321,7 +364,7 @@ type Pez_Bet struct {
 func (m *Pez_Bet) Reset()                    { *m = Pez_Bet{} }
 func (m *Pez_Bet) String() string            { return proto.CompactTextString(m) }
 func (*Pez_Bet) ProtoMessage()               {}
-func (*Pez_Bet) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{3} }
+func (*Pez_Bet) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{4} }
 
 func (m *Pez_Bet) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -330,7 +373,7 @@ func (m *Pez_Bet) GetUserId() uint32 {
 	return 0
 }
 
-func (m *Pez_Bet) GetBetNum() int32 {
+func (m *Pez_Bet) GetBetNum() int64 {
 	if m != nil && m.BetNum != nil {
 		return *m.BetNum
 	}
@@ -345,16 +388,24 @@ func (m *Pez_Bet) GetTime() int32 {
 }
 
 type Pez_AckBet struct {
-	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
-	BetCount         *int32  `protobuf:"varint,2,opt,name=betCount" json:"betCount,omitempty"`
-	Time             *int32  `protobuf:"varint,3,opt,name=time" json:"time,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	BetCount         *int64       `protobuf:"varint,3,opt,name=betCount" json:"betCount,omitempty"`
+	Time             *int32       `protobuf:"varint,4,opt,name=time" json:"time,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *Pez_AckBet) Reset()                    { *m = Pez_AckBet{} }
 func (m *Pez_AckBet) String() string            { return proto.CompactTextString(m) }
 func (*Pez_AckBet) ProtoMessage()               {}
-func (*Pez_AckBet) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{4} }
+func (*Pez_AckBet) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{5} }
+
+func (m *Pez_AckBet) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
 
 func (m *Pez_AckBet) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -363,7 +414,7 @@ func (m *Pez_AckBet) GetUserId() uint32 {
 	return 0
 }
 
-func (m *Pez_AckBet) GetBetCount() int32 {
+func (m *Pez_AckBet) GetBetCount() int64 {
 	if m != nil && m.BetCount != nil {
 		return *m.BetCount
 	}
@@ -377,169 +428,37 @@ func (m *Pez_AckBet) GetTime() int32 {
 	return 0
 }
 
-// 开牌
-type Pez_OpenCard struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	CardId           *int32       `protobuf:"varint,2,opt,name=cardId" json:"cardId,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *Pez_OpenCard) Reset()                    { *m = Pez_OpenCard{} }
-func (m *Pez_OpenCard) String() string            { return proto.CompactTextString(m) }
-func (*Pez_OpenCard) ProtoMessage()               {}
-func (*Pez_OpenCard) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{5} }
-
-func (m *Pez_OpenCard) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *Pez_OpenCard) GetCardId() int32 {
-	if m != nil && m.CardId != nil {
-		return *m.CardId
-	}
-	return 0
-}
-
-type Pez_AckOpenCard struct {
-	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	Result           *int32             `protobuf:"varint,2,opt,name=result" json:"result,omitempty"`
-	PaiType          *int32             `protobuf:"varint,3,opt,name=paiType" json:"paiType,omitempty"`
-	UserId           *uint32            `protobuf:"varint,4,opt,name=userId" json:"userId,omitempty"`
-	Card             *PezBase_PaiInfo   `protobuf:"bytes,5,opt,name=card" json:"card,omitempty"`
-	Card2            *PezBase_PaiInfo   `protobuf:"bytes,6,opt,name=card2" json:"card2,omitempty"`
-	UserCoinBeans    []*PezUserCoinBean `protobuf:"bytes,7,rep,name=userCoinBeans" json:"userCoinBeans,omitempty"`
+type Pez_BCOpenPai struct {
+	UserId           *uint32            `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	HandPai          []*PezBase_PaiInfo `protobuf:"bytes,2,rep,name=handPai" json:"handPai,omitempty"`
+	KeyValue         *int32             `protobuf:"varint,3,opt,name=keyValue" json:"keyValue,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
 
-func (m *Pez_AckOpenCard) Reset()                    { *m = Pez_AckOpenCard{} }
-func (m *Pez_AckOpenCard) String() string            { return proto.CompactTextString(m) }
-func (*Pez_AckOpenCard) ProtoMessage()               {}
-func (*Pez_AckOpenCard) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{6} }
+func (m *Pez_BCOpenPai) Reset()                    { *m = Pez_BCOpenPai{} }
+func (m *Pez_BCOpenPai) String() string            { return proto.CompactTextString(m) }
+func (*Pez_BCOpenPai) ProtoMessage()               {}
+func (*Pez_BCOpenPai) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{6} }
 
-func (m *Pez_AckOpenCard) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *Pez_AckOpenCard) GetResult() int32 {
-	if m != nil && m.Result != nil {
-		return *m.Result
-	}
-	return 0
-}
-
-func (m *Pez_AckOpenCard) GetPaiType() int32 {
-	if m != nil && m.PaiType != nil {
-		return *m.PaiType
-	}
-	return 0
-}
-
-func (m *Pez_AckOpenCard) GetUserId() uint32 {
+func (m *Pez_BCOpenPai) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
 		return *m.UserId
 	}
 	return 0
 }
 
-func (m *Pez_AckOpenCard) GetCard() *PezBase_PaiInfo {
+func (m *Pez_BCOpenPai) GetHandPai() []*PezBase_PaiInfo {
 	if m != nil {
-		return m.Card
+		return m.HandPai
 	}
 	return nil
 }
 
-func (m *Pez_AckOpenCard) GetCard2() *PezBase_PaiInfo {
-	if m != nil {
-		return m.Card2
-	}
-	return nil
-}
-
-func (m *Pez_AckOpenCard) GetUserCoinBeans() []*PezUserCoinBean {
-	if m != nil {
-		return m.UserCoinBeans
-	}
-	return nil
-}
-
-type Pez_ActCompare struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	ComparedUserId   *uint32      `protobuf:"varint,2,opt,name=comparedUserId" json:"comparedUserId,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *Pez_ActCompare) Reset()                    { *m = Pez_ActCompare{} }
-func (m *Pez_ActCompare) String() string            { return proto.CompactTextString(m) }
-func (*Pez_ActCompare) ProtoMessage()               {}
-func (*Pez_ActCompare) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{7} }
-
-func (m *Pez_ActCompare) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *Pez_ActCompare) GetComparedUserId() uint32 {
-	if m != nil && m.ComparedUserId != nil {
-		return *m.ComparedUserId
+func (m *Pez_BCOpenPai) GetKeyValue() int32 {
+	if m != nil && m.KeyValue != nil {
+		return *m.KeyValue
 	}
 	return 0
-}
-
-type Pez_AckActCompare struct {
-	Header           *ProtoHeader            `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	ComparedUserId   *uint32                 `protobuf:"varint,2,opt,name=comparedUserId" json:"comparedUserId,omitempty"`
-	IsCpareWin       *bool                   `protobuf:"varint,3,opt,name=isCpareWin" json:"isCpareWin,omitempty"`
-	PlayerInfo       *PezBase_PlayerInfo     `protobuf:"bytes,4,opt,name=playerInfo" json:"playerInfo,omitempty"`
-	Deskstate        *PezEnum_DeskGameStatus `protobuf:"varint,5,opt,name=deskstate,enum=ddproto.PezEnum_DeskGameStatus" json:"deskstate,omitempty"`
-	XXX_unrecognized []byte                  `json:"-"`
-}
-
-func (m *Pez_AckActCompare) Reset()                    { *m = Pez_AckActCompare{} }
-func (m *Pez_AckActCompare) String() string            { return proto.CompactTextString(m) }
-func (*Pez_AckActCompare) ProtoMessage()               {}
-func (*Pez_AckActCompare) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{8} }
-
-func (m *Pez_AckActCompare) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-func (m *Pez_AckActCompare) GetComparedUserId() uint32 {
-	if m != nil && m.ComparedUserId != nil {
-		return *m.ComparedUserId
-	}
-	return 0
-}
-
-func (m *Pez_AckActCompare) GetIsCpareWin() bool {
-	if m != nil && m.IsCpareWin != nil {
-		return *m.IsCpareWin
-	}
-	return false
-}
-
-func (m *Pez_AckActCompare) GetPlayerInfo() *PezBase_PlayerInfo {
-	if m != nil {
-		return m.PlayerInfo
-	}
-	return nil
-}
-
-func (m *Pez_AckActCompare) GetDeskstate() PezEnum_DeskGameStatus {
-	if m != nil && m.Deskstate != nil {
-		return *m.Deskstate
-	}
-	return PezEnum_DeskGameStatus_PEZ_INIT
 }
 
 // 发送游戏信息(广播)
@@ -550,15 +469,15 @@ type Pez_SendGameInfo struct {
 	// 2. 桌面信息（包括：游戏是否结束，当前哪个玩家未押注，倒计时剩余时间）
 	DeskGameInfo *PezBase_DeskGameInfo `protobuf:"bytes,3,opt,name=deskGameInfo" json:"deskGameInfo,omitempty"`
 	//
-	SenderUserId     *uint32             `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
-	IsReconnect      *PEZ_RECONNECT_TYPE `protobuf:"varint,5,opt,name=isReconnect,enum=ddproto.PEZ_RECONNECT_TYPE" json:"isReconnect,omitempty"`
-	XXX_unrecognized []byte              `json:"-"`
+	SenderUserId     *uint32 `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
+	IsReconnect      *bool   `protobuf:"varint,5,opt,name=isReconnect" json:"isReconnect,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
 func (m *Pez_SendGameInfo) Reset()                    { *m = Pez_SendGameInfo{} }
 func (m *Pez_SendGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*Pez_SendGameInfo) ProtoMessage()               {}
-func (*Pez_SendGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{9} }
+func (*Pez_SendGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{7} }
 
 func (m *Pez_SendGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -588,68 +507,58 @@ func (m *Pez_SendGameInfo) GetSenderUserId() uint32 {
 	return 0
 }
 
-func (m *Pez_SendGameInfo) GetIsReconnect() PEZ_RECONNECT_TYPE {
+func (m *Pez_SendGameInfo) GetIsReconnect() bool {
 	if m != nil && m.IsReconnect != nil {
 		return *m.IsReconnect
 	}
-	return PEZ_RECONNECT_TYPE_PEZ_NORMAL
+	return false
 }
 
 func init() {
 	proto.RegisterType((*PezUserCoinBean)(nil), "ddproto.pez_user_coin_bean")
 	proto.RegisterType((*Pez_Opening)(nil), "ddproto.pez_Opening")
 	proto.RegisterType((*Pez_DealCards)(nil), "ddproto.pez_DealCards")
+	proto.RegisterType((*PezLastScore)(nil), "ddproto.pez_lastScore")
 	proto.RegisterType((*Pez_Bet)(nil), "ddproto.pez_Bet")
 	proto.RegisterType((*Pez_AckBet)(nil), "ddproto.pez_AckBet")
-	proto.RegisterType((*Pez_OpenCard)(nil), "ddproto.pez_OpenCard")
-	proto.RegisterType((*Pez_AckOpenCard)(nil), "ddproto.pez_AckOpenCard")
-	proto.RegisterType((*Pez_ActCompare)(nil), "ddproto.pez_ActCompare")
-	proto.RegisterType((*Pez_AckActCompare)(nil), "ddproto.pez_AckActCompare")
+	proto.RegisterType((*Pez_BCOpenPai)(nil), "ddproto.pez_BCOpenPai")
 	proto.RegisterType((*Pez_SendGameInfo)(nil), "ddproto.pez_SendGameInfo")
 	proto.RegisterEnum("ddproto.PEZ_RECONNECT_TYPE", PEZ_RECONNECT_TYPE_name, PEZ_RECONNECT_TYPE_value)
 }
 
-func init() { proto.RegisterFile("pez_play.proto", fileDescriptor38) }
-
-var fileDescriptor38 = []byte{
-	// 618 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x54, 0xcf, 0x6e, 0xd3, 0x4e,
-	0x10, 0xfe, 0xd9, 0xf9, 0xd7, 0xdf, 0x24, 0x76, 0xd3, 0xa5, 0x20, 0x53, 0x10, 0x8a, 0x2c, 0x24,
-	0x22, 0x0e, 0x55, 0x31, 0x48, 0xbd, 0x70, 0x69, 0x9d, 0x88, 0x56, 0x82, 0xd4, 0x6a, 0x8b, 0x10,
-	0x5c, 0xac, 0x8d, 0x77, 0x80, 0x55, 0xed, 0xb5, 0xe5, 0x5d, 0x1f, 0xca, 0x4b, 0xf0, 0x02, 0x3c,
-	0x12, 0x0f, 0xc2, 0x8d, 0x57, 0x40, 0xbb, 0x76, 0xdb, 0x44, 0xa9, 0x68, 0x2b, 0x71, 0x89, 0xb2,
-	0xb3, 0xf3, 0x7d, 0xf3, 0xcd, 0xb7, 0x33, 0x06, 0xb7, 0xc0, 0x6f, 0x71, 0x91, 0xd2, 0xf3, 0xed,
-	0xa2, 0xcc, 0x55, 0x4e, 0x7a, 0x8c, 0x99, 0x3f, 0x5b, 0xf7, 0x92, 0x3c, 0xcb, 0x72, 0x11, 0x27,
-	0x29, 0x47, 0xa1, 0xea, 0xdb, 0x2d, 0x93, 0x3d, 0xa7, 0x12, 0x9b, 0xf3, 0x46, 0x93, 0x84, 0xa2,
-	0xca, 0xea, 0x90, 0x1f, 0x00, 0xd1, 0x49, 0x95, 0xc4, 0x32, 0x4e, 0x72, 0x2e, 0xe2, 0x39, 0x52,
-	0x41, 0x5c, 0xe8, 0xea, 0xc8, 0x21, 0xf3, 0xac, 0x91, 0x35, 0x76, 0xc8, 0x00, 0xda, 0xfa, 0xd2,
-	0xb3, 0x47, 0xd6, 0xb8, 0xe5, 0xff, 0xb0, 0xa0, 0xaf, 0x41, 0x47, 0x05, 0x0a, 0x2e, 0xbe, 0x90,
-	0xa7, 0xd0, 0xfd, 0x8a, 0x94, 0x61, 0x69, 0xb2, 0xfb, 0xc1, 0xe6, 0x76, 0xa3, 0x6a, 0x3b, 0xd2,
-	0xbf, 0x07, 0xe6, 0x8e, 0xdc, 0x07, 0x27, 0xac, 0xca, 0x32, 0x4a, 0xe9, 0x79, 0x98, 0x57, 0x42,
-	0x19, 0xb2, 0x0e, 0x71, 0xa0, 0xc3, 0x78, 0x82, 0x2f, 0xbc, 0xd6, 0xe2, 0x31, 0xf0, 0xda, 0xe6,
-	0x18, 0x80, 0xa3, 0x85, 0x84, 0x39, 0x17, 0xfb, 0x48, 0x85, 0xf4, 0x3a, 0xa3, 0xd6, 0xb8, 0x1f,
-	0x3c, 0xba, 0xac, 0xb0, 0x2a, 0xde, 0xff, 0x6e, 0x81, 0xa3, 0xc3, 0x13, 0xa4, 0x69, 0x48, 0x4b,
-	0x26, 0x6f, 0x29, 0x70, 0x07, 0x40, 0x3b, 0x8b, 0xa5, 0x06, 0x79, 0xb6, 0x29, 0xf4, 0x78, 0xa9,
-	0x90, 0xb6, 0x32, 0x8e, 0x2e, 0x73, 0xc8, 0x10, 0xd6, 0x0a, 0xca, 0xeb, 0x6e, 0x6a, 0xf9, 0x9b,
-	0x30, 0x60, 0x48, 0x53, 0x2c, 0xdf, 0xd7, 0xf6, 0xe9, 0x2e, 0x1c, 0x7f, 0x17, 0x7a, 0x1a, 0xbe,
-	0x8f, 0x6a, 0xc5, 0x59, 0x17, 0xba, 0x73, 0x54, 0xb3, 0x2a, 0x6b, 0xec, 0x18, 0x40, 0x5b, 0xf1,
-	0x0c, 0x6b, 0x3a, 0xff, 0x35, 0x80, 0x06, 0xee, 0x25, 0x67, 0xd7, 0x61, 0x87, 0xb0, 0x36, 0x47,
-	0xb5, 0x68, 0xe6, 0x32, 0x7a, 0x02, 0x83, 0x8b, 0x67, 0x32, 0x72, 0x6f, 0x67, 0x83, 0x0b, 0xdd,
-	0x84, 0x96, 0xec, 0x90, 0xd5, 0x9c, 0xfe, 0x6f, 0x0b, 0xd6, 0x1b, 0x11, 0x77, 0x67, 0x2a, 0x51,
-	0x56, 0xe9, 0x85, 0xba, 0x75, 0xe8, 0x15, 0x94, 0x9f, 0x9e, 0x17, 0x8d, 0xc0, 0x85, 0x86, 0x8c,
-	0x4f, 0xe4, 0x19, 0xb4, 0x75, 0x69, 0xaf, 0x63, 0x48, 0x1f, 0x5e, 0xe3, 0x3d, 0xe5, 0x87, 0xe2,
-	0x73, 0x4e, 0xc6, 0xd0, 0xd1, 0x89, 0x81, 0xd7, 0xbd, 0x29, 0x73, 0x65, 0x80, 0x7a, 0x37, 0x0f,
-	0xd0, 0xac, 0x5e, 0xb3, 0xbd, 0x44, 0x85, 0x79, 0x56, 0xd0, 0x12, 0x6f, 0xd9, 0xef, 0x03, 0x70,
-	0x93, 0x1a, 0xc0, 0x9a, 0xe7, 0xb7, 0xcd, 0xf3, 0xff, 0xb4, 0x60, 0xa3, 0x71, 0xf0, 0x5f, 0x71,
-	0x12, 0x02, 0xc0, 0x65, 0xa8, 0xe3, 0x1f, 0xb8, 0x30, 0x76, 0xae, 0x5d, 0x0d, 0xb0, 0xee, 0xdc,
-	0x58, 0xfa, 0x97, 0x01, 0x36, 0xee, 0xbc, 0x84, 0xff, 0x19, 0xca, 0x33, 0xa9, 0xa8, 0x42, 0xe3,
-	0xba, 0x1b, 0x8c, 0x96, 0x00, 0xfa, 0x4b, 0x11, 0x4f, 0x50, 0x9e, 0xbd, 0xa1, 0x19, 0x9e, 0x28,
-	0xaa, 0x2a, 0xe9, 0xff, 0xb2, 0x60, 0xa8, 0xef, 0x4e, 0x50, 0x30, 0x1d, 0x36, 0x4c, 0x77, 0x5c,
-	0x31, 0xa3, 0xf0, 0x86, 0x15, 0x33, 0xbc, 0xaf, 0xf4, 0x42, 0xd5, 0xe5, 0x0d, 0xa6, 0x65, 0xd8,
-	0x9f, 0xac, 0x62, 0x26, 0x0b, 0x59, 0x7a, 0x0d, 0x25, 0x0a, 0xb6, 0xbc, 0x86, 0x64, 0x07, 0xfa,
-	0x5c, 0x1e, 0x63, 0x92, 0x0b, 0x81, 0x89, 0x6a, 0xfa, 0xbd, 0x9a, 0x84, 0x68, 0xfa, 0x29, 0x3e,
-	0x9e, 0x86, 0x47, 0xb3, 0xd9, 0x34, 0x3c, 0x8d, 0x4f, 0x3f, 0x46, 0xd3, 0xe7, 0xbb, 0x40, 0x56,
-	0xa3, 0xc4, 0x05, 0xd0, 0xd1, 0xd9, 0xd1, 0xf1, 0xbb, 0xbd, 0xb7, 0x43, 0x8b, 0x6c, 0x80, 0xb3,
-	0x94, 0x35, 0xb4, 0xf7, 0xed, 0x83, 0x56, 0xf4, 0x5f, 0x64, 0x45, 0xf6, 0x9f, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0x87, 0x91, 0x28, 0xd0, 0xb2, 0x05, 0x00, 0x00,
+var fileDescriptor37 = []byte{
+	// 516 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x8c, 0x52, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0xc5, 0x71, 0xd2, 0x94, 0x49, 0x5c, 0xa5, 0xdb, 0x82, 0x42, 0x41, 0xa8, 0xb2, 0x38, 0x94,
+	0x1e, 0x22, 0x88, 0x90, 0x7a, 0x6e, 0xdc, 0x88, 0x56, 0x82, 0xc4, 0x4a, 0x0b, 0x12, 0x48, 0xc8,
+	0xda, 0xd8, 0x03, 0xb5, 0x12, 0xaf, 0x23, 0x7f, 0x1c, 0xca, 0x81, 0x9f, 0xc0, 0x1f, 0xe3, 0x4f,
+	0x31, 0xb3, 0xeb, 0x46, 0x8d, 0xdc, 0x43, 0x2e, 0x96, 0x67, 0xe6, 0xcd, 0xbc, 0xf7, 0x66, 0x07,
+	0xf6, 0x56, 0xf8, 0x3b, 0x58, 0x2d, 0xe5, 0xdd, 0x60, 0x95, 0xa5, 0x45, 0x2a, 0xda, 0x51, 0xa4,
+	0x7f, 0x8e, 0x0e, 0xc2, 0x34, 0x49, 0x52, 0x15, 0x84, 0xcb, 0x18, 0x55, 0x61, 0xaa, 0x47, 0x1a,
+	0x3d, 0x97, 0x39, 0x56, 0xf1, 0x7e, 0x05, 0x42, 0x55, 0x26, 0x0f, 0x21, 0x11, 0xe6, 0x0b, 0x13,
+	0xbb, 0x43, 0x10, 0x9c, 0x29, 0x73, 0xcc, 0x82, 0x30, 0x8d, 0x55, 0x30, 0x47, 0xa9, 0xc4, 0x1e,
+	0xec, 0x70, 0xe6, 0x2a, 0xea, 0x5b, 0xc7, 0xd6, 0x89, 0x23, 0xba, 0xd0, 0xe4, 0x62, 0xbf, 0x41,
+	0x91, 0xed, 0xfe, 0x81, 0x0e, 0xf7, 0x4c, 0x57, 0xa8, 0x62, 0xf5, 0x4b, 0xbc, 0x81, 0x9d, 0x5b,
+	0x94, 0x11, 0x66, 0x1a, 0xdc, 0x19, 0x1e, 0x0e, 0x2a, 0x91, 0x03, 0x9f, 0xbf, 0x97, 0xba, 0x26,
+	0x9e, 0x81, 0xe3, 0x95, 0x59, 0xe6, 0x93, 0x17, 0x2f, 0x2d, 0x55, 0xa1, 0x67, 0xb5, 0xc4, 0x10,
+	0x1c, 0x66, 0xf2, 0x68, 0xfa, 0x88, 0x98, 0xf3, 0xbe, 0x7d, 0x6c, 0xd3, 0x8c, 0x97, 0xeb, 0x19,
+	0x75, 0x75, 0xee, 0x5f, 0x0b, 0x1c, 0x4e, 0x5f, 0xa0, 0x5c, 0x7a, 0x32, 0x8b, 0xf2, 0x2d, 0x25,
+	0x90, 0xab, 0xb9, 0x54, 0x0b, 0x42, 0x35, 0xb4, 0x2b, 0x07, 0x5a, 0x51, 0x1c, 0xe2, 0x7b, 0xe2,
+	0x64, 0x29, 0x55, 0x38, 0xec, 0x37, 0x75, 0xf8, 0x16, 0x9e, 0x2e, 0x65, 0x5e, 0x5c, 0x87, 0x69,
+	0x86, 0xfd, 0x96, 0x56, 0xf5, 0x7c, 0x43, 0xd5, 0xba, 0xea, 0x0e, 0x8c, 0x9e, 0x75, 0xa2, 0xb6,
+	0x3f, 0x1a, 0x9d, 0xeb, 0x39, 0x66, 0x81, 0x67, 0xd0, 0x66, 0xfc, 0x08, 0x8b, 0x1a, 0x92, 0x35,
+	0x62, 0x31, 0x29, 0x13, 0x03, 0xe5, 0xcd, 0x17, 0x71, 0x82, 0x46, 0xa2, 0x3b, 0x07, 0xe0, 0xc6,
+	0xf3, 0x70, 0xc1, 0xbd, 0x5b, 0xbb, 0xae, 0x18, 0x8c, 0xeb, 0x1e, 0xec, 0x12, 0x83, 0x79, 0x03,
+	0x7b, 0x83, 0x43, 0xfb, 0x76, 0x7f, 0x18, 0x33, 0x23, 0x8f, 0xdf, 0xd7, 0x97, 0x71, 0x4d, 0xe2,
+	0x29, 0xb4, 0x6f, 0xa5, 0x8a, 0xa8, 0x44, 0x13, 0x79, 0x2d, 0x2f, 0x36, 0xd6, 0xc2, 0xf7, 0x17,
+	0x50, 0xf1, 0x4a, 0xfd, 0x4c, 0x99, 0x6c, 0x81, 0x77, 0x5f, 0xe5, 0xb2, 0xbc, 0xb7, 0xf0, 0xcf,
+	0x82, 0x1e, 0xc3, 0xae, 0x51, 0x45, 0x1f, 0x65, 0x82, 0x1a, 0xb6, 0x9d, 0x93, 0x77, 0xe4, 0x9e,
+	0xce, 0x87, 0xa4, 0x50, 0x4f, 0xc5, 0xfd, 0xea, 0x11, 0xee, 0x35, 0x46, 0x7c, 0x80, 0x2e, 0xdf,
+	0xfa, 0x3d, 0x8f, 0x96, 0xd0, 0x19, 0xbe, 0xae, 0xf7, 0x5c, 0x3c, 0x40, 0x89, 0x43, 0xe8, 0xe6,
+	0xa4, 0x0e, 0xb3, 0x2f, 0xc6, 0x76, 0x53, 0xdb, 0x3e, 0x80, 0x4e, 0x9c, 0xcf, 0x30, 0x4c, 0x95,
+	0xc2, 0xb0, 0xa0, 0x8b, 0xb0, 0x4e, 0x76, 0x4f, 0xcf, 0x40, 0xf8, 0xe3, 0xef, 0xc1, 0x6c, 0xec,
+	0x4d, 0x27, 0x93, 0xb1, 0x77, 0x13, 0xdc, 0x7c, 0xf3, 0xc7, 0xb4, 0x31, 0xe0, 0xec, 0x64, 0x3a,
+	0xfb, 0x7c, 0xfe, 0xa9, 0x67, 0x89, 0x7d, 0x70, 0x36, 0x50, 0xbd, 0xc6, 0xa8, 0x71, 0x69, 0xfb,
+	0x4f, 0x7c, 0xcb, 0x6f, 0xf8, 0xf6, 0xff, 0x00, 0x00, 0x00, 0xff, 0xff, 0xf4, 0xc3, 0x0f, 0x0f,
+	0xe5, 0x03, 0x00, 0x00,
 }

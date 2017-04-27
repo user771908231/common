@@ -60,3 +60,24 @@ db.t_gray_release_user.insert({
     "status": 1,
 });
 
+db.t_gray_release_user.insert({
+    "id": 10,
+    "userid": 10106,
+    "status": 1,
+});
+
+db.t_gray_release_user.insert({
+    "id": 11,
+    "userid": 10978,
+    "status": 1,
+});
+
+db.t_gray_release_user.insert({
+    "id": 12,
+    "userid": 11912,
+    "status": 1,
+});
+
+
+
+
