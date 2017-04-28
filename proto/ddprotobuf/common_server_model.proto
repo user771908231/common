@@ -1,3 +1,4 @@
+syntax = "proto2";
 package ddproto;
 
 //对应mgo 中的表单

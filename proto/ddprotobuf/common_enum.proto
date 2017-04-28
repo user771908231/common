@@ -1,3 +1,4 @@
+syntax = "proto2";
 package ddproto;
 
 //游戏的id
