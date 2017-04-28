@@ -53,6 +53,7 @@ enum niuniu_enum_protoid {
     NIU_PID_OWNER_DISSOLVE_REQ = 32;  //房主解散不扣房卡
     NIU_PID_OWNER_DISSOLVE_ACK = 33;  //房主解散不扣房卡
 
+    NIU_OFFLINE_BC = 34;  //用户离线、上线广播
 }
 
 

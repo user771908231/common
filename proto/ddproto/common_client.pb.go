@@ -331,6 +331,7 @@ It has these top-level messages:
 	NiuDeskDissolveDoneBc
 	NiuOwnerDissolveReq
 	NiuOwnerDissolveAck
+	NiuOfflineBc
 	NiuniuSrvPoker
 	NiuniuSrvDesk
 	NiuniuSrvUser

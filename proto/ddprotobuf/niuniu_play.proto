@@ -168,3 +168,9 @@ message niu_owner_dissolve_req {
 message niu_owner_dissolve_ack {
     optional ProtoHeader header = 1;
 }
+
+//==============================离线广播================================
+message niu_offline_bc {
+    optional uint32 userId = 1;
+    optional bool isOffline = 2;  //为true则离线，为false则上线
+}
