@@ -78,6 +78,10 @@ db.t_gray_release_user.insert({
     "status": 1,
 });
 
-
+db.t_gray_release_user.insert({
+    "id": 13,
+    "userid": 10984,
+    "status": 1,
+});
 
 
