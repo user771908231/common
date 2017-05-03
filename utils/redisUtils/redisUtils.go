@@ -33,6 +33,19 @@ func GetObj(key string, p proto.Message) proto.Message {
 	return conn.GetObjv2(key, p)
 }
 
+func Get(key string) string {
+	conn := GetConn()
+	defer conn.Close()
+	result, _ := conn.Get(key)
+	return result
+}
+
+func Set(key string, value string) {
+	conn := GetConn()
+	defer conn.Close()
+	conn.Set(key, []byte(value))
+}
+
 //得到int64的值
 func GetInt64(key string) int64 {
 	conn := GetConn()
@@ -135,6 +148,11 @@ func SETNX(key string, v int64) int64 {
 func K(pre string, userId uint32) string {
 	userIdStr, _ := numUtils.Uint2String(userId)
 	result := strings.Join([]string{pre, userIdStr}, "_")
+	return result
+}
+
+func K_STRING(pre string, end string) string {
+	result := strings.Join([]string{pre, end}, "_")
 	return result
 }
 

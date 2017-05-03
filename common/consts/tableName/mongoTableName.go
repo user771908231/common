@@ -29,6 +29,25 @@ const (
 	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config" //红包任务计算配置表
 	DBT_T_TRADE_LOG                 string = "t_game_trade_log"            //游戏货币流水记录表
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"         //灰度发布的数据库表
+	DBT_STATISTIC_BTN_CLICK         string = "T_statistic_btn_click"       //统计相关的数据库表名字
+	DBT_ADMIN_EXCHANGE_RECORD       string = "t_admin_exchange_record"     //红包、实物兑换记录表
+	DBT_IP_ADDRESS                  string = "dbt_ip_address"              //存储Ip对应的地址
+	//代理充值系统
+	DBT_AGENT_GOODS        = "t_agent_goods"        //商品信息表
+	DBT_AGENT_RECHARGE_LOG = "t_agent_recharge_log" //代理商充值记录表
+	DBT_AGENT_SALES_LOG    = "t_agent_sales_log"    //代理商销售记录表
+	DBT_AGENT_APPLY_LOG    = "t_agent_apply_log"    //代理商申请记录表
+	DBT_AGENT_REBATE_LOG   = "t_agent_rebate_log"   //代理商领取返利记录表
+	DBT_AGENT_INFO         = "t_agent_info"         //代理关系表
+
+	//数据分析
+	ADMIN_USER_ATHOME     = "t_user_athome"
+	ADMIN_USER_ONLINEHOUR = "t_data_onlinehour"
+	ADMIN_USER_ONLINEDAY  = "t_data_onlineday"
+
+	//接入服务器
+	DBT_GAME_CONFIG_LOGIN      = "t_game_config_login"      //登陆服配置	//游戏配置表
+	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置	//登陆服游戏列表
 
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
@@ -38,29 +57,4 @@ const (
 	//斗地主
 	DBT_DDZ_DESK_ROUND = "t_ddz_desk_round" //一把斗地主结束
 
-	//扎金花
-
-	//代理充值系统
-	DBT_AGENT_GOODS        = "t_agent_goods"        //商品信息表
-	DBT_AGENT_RECHARGE_LOG = "t_agent_recharge_log" //代理商充值记录表
-	DBT_AGENT_SALES_LOG    = "t_agent_sales_log"    //代理商销售记录表
-	DBT_AGENT_APPLY_LOG    = "t_agent_apply_log"    //代理商申请记录表
-	DBT_AGENT_REBATE_LOG   = "t_agent_rebate_log"   //代理商领取返利记录表
-	DBT_AGENT_INFO         = "t_agent_info"         //代理关系表
-
-	DBT_ADMIN_EXCHANGE_RECORD = "t_admin_exchange_record" //红包、实物兑换记录表
-
-	//统计相关的数据库表名字
-	DBT_STATISTIC_BTN_CLICK = "T_statistic_btn_click" //数据库的表名字
-
-	//游戏配置表
-	DBT_GAME_CONFIG_LOGIN = "t_game_config_login" //登陆服配置
-	//登陆服游戏列表
-	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置
-
-
-	//数据分析
-	ADMIN_USER_ATHOME = "t_user_athome"
-	ADMIN_USER_ONLINEHOUR = "t_data_onlinehour"
-	ADMIN_USER_ONLINEDAY = "t_data_onlineday"
 )
