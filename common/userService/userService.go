@@ -9,7 +9,6 @@ import (
 	"casino_common/common/sys"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/model/userDao"
-	"casino_common/common/cfg"
 	"time"
 	"casino_common/common/consts"
 )
