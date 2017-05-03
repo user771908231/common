@@ -21,6 +21,8 @@ message niuniu_client_desk {
     optional niuniu_desk_option deskOption = 12;  //房间配置
     repeated niuniu_client_user users = 13;  //玩家列表
     optional bool isStart = 14;  //房主是否已点开始
+    optional bool isOnDissolve = 15;  //是否正处于解散投票阶段
+    optional int32 dissolveTime = 16;  //投票剩余时间 单位：秒
 }
 
 //用户属性
@@ -35,6 +37,7 @@ message niuniu_client_user {
     optional bool isReady = 16;  //是否已准备
     optional int32 lastScore = 17;  //上一局分数
     optional WeixinInfo wxInfo = 18;  //微信信息
+    optional int32 dissolveState = 19;  //解散投票状态 0：未投票   -1：拒绝解散   1：同意解散
 }
 
 
