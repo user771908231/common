@@ -38,6 +38,10 @@ const (
 	//斗地主
 	DBT_DDZ_DESK_ROUND = "t_ddz_desk_round" //一把斗地主结束
 
+	//跑得快
+	DBT_PDK_DESK_ROUND          = "t_pdk_desk_round"          //一把跑得快结束战绩
+	DBT_PDK_DESK_ROUND_PLAYBACK = "t_pdk_desk_round_playback" //一把跑得快回放
+
 	//扎金花
 
 	//代理充值系统
@@ -58,9 +62,8 @@ const (
 	//登陆服游戏列表
 	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置
 
-
 	//数据分析
-	ADMIN_USER_ATHOME = "t_user_athome"
+	ADMIN_USER_ATHOME     = "t_user_athome"
 	ADMIN_USER_ONLINEHOUR = "t_data_onlinehour"
-	ADMIN_USER_ONLINEDAY = "t_data_onlineday"
+	ADMIN_USER_ONLINEDAY  = "t_data_onlineday"
 )
