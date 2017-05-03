@@ -152,6 +152,8 @@ message niu_bipai_result_bc {
 message niu_game_end {
     optional ProtoHeader header = 1;
     repeated niuniu_user_bill data = 2;  //统计数据
+    optional int64 endTime = 3;  //结束时间
+    optional uint32 bigWiner = 4;  //大赢家user_id
 }
 
 //============================解散房间广播================================
