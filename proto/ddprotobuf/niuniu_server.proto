@@ -27,7 +27,7 @@ message niuniu_srv_desk {
     optional niuniu_desk_option deskOption = 12;  //房间配置
     optional bool isStart = 13;  //房主是否已点开始
     optional bool isOnDissolve = 14; //是否正处于解散投票状态
-    optional bool dissolveTime = 15;  //投票开始的时间
+    optional int64 dissolveTime = 15;  //投票开始的时间
 }
 
 //用户属性
