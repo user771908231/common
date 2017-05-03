@@ -11,6 +11,7 @@ import (
 	"casino_common/common/model/userDao"
 	"casino_common/common/cfg"
 	"time"
+	"casino_common/common/consts"
 )
 
 /**
@@ -64,7 +65,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 }
 
 func GetRedisUserKey(id uint32) string {
-	return redisUtils.K(cfg.RKEY_PRE_USER, id)
+	return redisUtils.K(consts.RKEY_PRE_USER, id)
 }
 
 /**
@@ -146,10 +147,10 @@ func UpdateUser2Mgo(u *ddproto.User) {
 
 //初始化redis中用户的金额的值
 func InitUserMoney2Redis(user *ddproto.User) {
-	SetUserMoney(user.GetId(), cfg.RKEY_USER_COIN, user.GetCoin())
-	SetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND, user.GetDiamond())
-	SetUserMoney(user.GetId(), cfg.RKEY_USER_DIAMOND2, user.GetDiamond2())
-	SetUserMoney(user.GetId(), cfg.RKEY_USER_ROOMCARD, user.GetRoomCard())
+	SetUserMoney(user.GetId(), consts.RKEY_USER_COIN, user.GetCoin())
+	SetUserMoney(user.GetId(), consts.RKEY_USER_DIAMOND, user.GetDiamond())
+	SetUserMoney(user.GetId(), consts.RKEY_USER_DIAMOND2, user.GetDiamond2())
+	SetUserMoney(user.GetId(), consts.RKEY_USER_ROOMCARD, user.GetRoomCard())
 }
 
 func GetUserByUnionId(unionid string) *ddproto.User {

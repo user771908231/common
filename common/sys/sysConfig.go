@@ -4,9 +4,9 @@ import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/model/configDao"
 	"casino_common/utils/redisUtils"
-	"casino_common/common/cfg"
 	"errors"
 	"fmt"
+	"casino_common/common/consts"
 )
 
 var GAMEENV struct {
@@ -21,7 +21,7 @@ func initSysConfig() error {
 	fmt.Println("开始初始化 sysConfig")
 	CONFIG_SYS = configDao.GetConfigSys()
 	if CONFIG_SYS != nil {
-		redisUtils.SetObj(cfg.RKEY_CONFIG_SYS, CONFIG_SYS) //把系统配置存放在sysconfig中
+		redisUtils.SetObj(consts.RKEY_CONFIG_SYS, CONFIG_SYS) //把系统配置存放在sysconfig中
 		return nil
 	} else {
 		//为空表示异常

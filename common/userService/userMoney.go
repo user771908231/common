@@ -14,6 +14,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
+	"casino_common/common/consts"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -41,20 +42,20 @@ func SetUserMoney(userId uint32, money string, diamond int64) {
 
 //获取用户的钻石
 func GetUserDiamond(userId uint32) int64 {
-	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND)
+	return GetUserMoney(userId, consts.RKEY_USER_DIAMOND)
 }
 
 //获取用户的钻石
 func GetUserDiamond2(userId uint32) int64 {
-	return GetUserMoney(userId, cfg.RKEY_USER_DIAMOND2)
+	return GetUserMoney(userId, consts.RKEY_USER_DIAMOND2)
 }
 
 func GetUserRoomCard(userId uint32) int64 {
-	return GetUserMoney(userId, cfg.RKEY_USER_ROOMCARD)
+	return GetUserMoney(userId, consts.RKEY_USER_ROOMCARD)
 }
 
 func GetUserCoin(userId uint32) int64 {
-	return GetUserMoney(userId, cfg.RKEY_USER_COIN)
+	return GetUserMoney(userId, consts.RKEY_USER_COIN)
 }
 
 //获取用户奖券
@@ -135,7 +136,7 @@ func decrUser(userid uint32, key string, d int64) (int64, error) {
 
 //增加用户的钻石
 func INCRUserDiamond(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, cfg.RKEY_USER_DIAMOND, d)
+	return incrUser(userid, consts.RKEY_USER_DIAMOND, d)
 }
 
 //减少用户的砖石
@@ -144,12 +145,12 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少钻石失败！")
 	}
-	return decrUser(userid, cfg.RKEY_USER_DIAMOND, d)
+	return decrUser(userid, consts.RKEY_USER_DIAMOND, d)
 }
 
 //增加用户的房卡
 func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
-	return incrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
+	return incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
 //减少用户的房卡
@@ -158,12 +159,12 @@ func DECRUserRoomcard(userId uint32, d int64) (int64, error) {
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少房卡失败！")
 	}
-	return decrUser(userId, cfg.RKEY_USER_ROOMCARD, d)
+	return decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
 //增加用户的朋友桌钻石
 func INCRUserDiamond2(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
+	return incrUser(userid, consts.RKEY_USER_DIAMOND2, d)
 }
 
 //减少用户的朋友桌钻石
@@ -172,12 +173,12 @@ func DECRUserDiamond2(userid uint32, d int64) (int64, error) {
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少朋友桌钻石失败！")
 	}
-	return decrUser(userid, cfg.RKEY_USER_DIAMOND2, d)
+	return decrUser(userid, consts.RKEY_USER_DIAMOND2, d)
 }
 
 //增加用户的金币
 func INCRUserCOIN(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, cfg.RKEY_USER_COIN, d)
+	return incrUser(userid, consts.RKEY_USER_COIN, d)
 }
 
 //减少用户的金币
@@ -186,7 +187,7 @@ func DECRUserCOIN(userid uint32, d int64) (int64, error) {
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少用户金币失败！")
 	}
-	return decrUser(userid, cfg.RKEY_USER_COIN, d)
+	return decrUser(userid, consts.RKEY_USER_COIN, d)
 }
 
 //减少用户的金币,当玩家金币不足的时候，设置玩家的金币为0
