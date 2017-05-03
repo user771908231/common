@@ -8,7 +8,6 @@ import (
 	"casino_common/proto/funcsInit"
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
-	"casino_common/common/cfg"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"casino_common/utils"
@@ -24,7 +23,7 @@ import (
 func getSessionKey(userId uint32, gameId int32) string {
 	idstr, _ := numUtils.Uint2String(userId)
 	gameIdSrt, _ := numUtils.Int2String(gameId)
-	ret := strings.Join([]string{cfg.RKEY_MJSESSION_KEY_PRE, idstr, gameIdSrt}, "_")
+	ret := strings.Join([]string{consts.RKEY_MJSESSION_KEY_PRE, idstr, gameIdSrt}, "_")
 	return ret
 }
 

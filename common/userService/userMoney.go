@@ -9,7 +9,6 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/model"
 	"casino_common/common/consts/tableName"
-	"casino_common/common/cfg"
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/proto/ddproto"

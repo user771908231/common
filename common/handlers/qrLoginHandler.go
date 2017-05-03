@@ -7,8 +7,8 @@ import (
 	"github.com/golang/protobuf/proto"
 	"casino_common/proto/funcsInit"
 	"casino_common/utils/redisUtils"
-	"casino_common/common/cfg"
 	"time"
+	"casino_common/common/consts"
 )
 
 //获取二维码
@@ -32,7 +32,7 @@ func HandlerQrLoginGetWxInfo(args []interface{}) {
 	}
 	code := m.GetCode()
 
-	key := cfg.RKEY_QR_CODE+ "_" +code
+	key := consts.RKEY_QR_CODE+ "_" +code
 
 	redis_wxinfo := redisUtils.GetObj(key, &ddproto.WeixinInfo{})
 	if redis_wxinfo == nil {
