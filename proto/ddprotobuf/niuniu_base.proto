@@ -100,7 +100,7 @@ enum niuniu_enum_desk_state {
 
 //对局账单信息
 message niuniu_user_bill {
-    optional int32 score = 1;  //低分
+    optional int32 score = 1;  //总分
     optional int32 count_has_niu = 2;  //有牛
     optional int32 count_no_niu = 3;  //没牛
     optional int32 count_win = 4;  //赢的局数
