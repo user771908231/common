@@ -10,7 +10,7 @@ import (
 	"casino_common/utils/numUtils"
 	"sync/atomic"
 	"casino_common/utils/rand"
-	"casino_common/common/cfg"
+	"casino_common/common/consts"
 )
 
 type RobotsMgrApi interface {
@@ -121,7 +121,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot {
 		c2 = 10000000
 	}
 	rand := rand.RandInt64(c1, c2)
-	userService.SetUserMoney(robot.GetId(), cfg.RKEY_USER_COIN, rand) //设置机器人玩家的金币
+	userService.SetUserMoney(robot.GetId(), consts.RKEY_USER_COIN, rand) //设置机器人玩家的金币
 	robot.Coin = proto.Int64(rand)                                    //设置机器人的金额
 	return robot
 }
