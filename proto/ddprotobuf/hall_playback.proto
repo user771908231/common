@@ -93,3 +93,14 @@ message PlaybackItem {
     optional string time = 3; // 回放记录 时间
 }
 // End  ： 201704142049 下面是麻将回放的 Proto
+
+
+//为了不修改原有的协议 这里新增一个通用的请求协议
+// 请求各个游戏回放的协议
+message playback_req_page_by_gameid {
+    optional ProtoHeader header = 1;
+    optional int32 length = 2; // 当前分页的长度，如：3，则一页三条快照
+    optional int32 page = 3; // 当前页码，从 0 开始。
+    optional int32 gameNumber = 4; //回放场次编号
+    optional int32 gameId = 5; //各个游戏id
+}

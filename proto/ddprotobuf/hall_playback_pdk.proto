@@ -1,0 +1,72 @@
+syntax = "proto2";
+import public "common_client.proto";
+import public "pdk_base.proto";
+
+package ddproto;
+
+//下面是跑得快回放的 Proto
+
+//跑得快的操作类型
+enum playback_pdk_act_type {
+    PPAT_GUO = 1;
+    PPAT_DAPAI = 2;
+}
+
+message playback_pdk_ack_page {
+    optional ProtoHeader header = 1;
+    // 分页信息
+    optional int32 length = 2; // 当前分页的长度，如：3，则一页三条快照
+    optional int32 page = 3; // 当前页码，从 0 开始。
+    optional int32 total = 4; // 快照总共数量
+    // 快照信息
+    repeated PdkPlaybackSnapshot playbackSnapshots = 5; // 快照具体信息（包含协议信息）
+}
+
+//玩家的信息
+message PdkPlayerInfo {
+    repeated client_base_poker playerPokers = 1; // 玩家的手牌
+    optional int64 coin = 2; // 玩家当前显示的自己的筹码数
+    optional string nickName = 3; // 昵称
+    optional int32 sex = 4; // 性别: 1=男  2=女
+    optional uint32 userId = 5; // 用户id
+    optional bool isOwner = 6; // 当前用户是否房主
+    optional int32 bReady = 7; // 是否已准备
+    optional pdk_enum_playerStatus status = 8; // 玩家当前状态
+    optional WeixinInfo wxInfo = 9; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
+    optional int32 onlineStatus = 10; //玩家在线状态: 1=在线  2=离线 3=在线托管 4=离线托管
+    optional int32 remainPaiCount = 11; //玩家当前牌数
+    repeated client_base_poker outPais = 12; //玩家出的牌
+    optional pdk_enum_paiType outPaiType = 13; //玩家出的牌类型
+    optional int64 roomCard = 14; //玩家房卡数
+    optional bool isBanker= 15; // 是否庄家
+}
+
+// 回放快照信息（包含玩家信息、桌面信息、房间信息、右上角时间信息等），另外包含协议信息（PID 和 二进制数据）
+message PdkPlaybackSnapshot {
+    repeated PdkPlayerInfo PlayerInfo = 1; // 玩家信息（昵称、筹码、微信信息（头像））
+    optional PdkPlaybackDeskInfo PlayBackDeskInfo = 2; // 桌面信息， 例如：来一圈* 四川麻将
+    optional pdk_base_roomTypeInfo RoomTypeInfo = 3; // 房间信息（当前局数、总局数、房间类型等）(霄霄看下这些信息是否已包含在 DeskGameInfo 中)
+    optional string time = 4; // 右上角时间信息
+    optional playback_pdk_act_type actType = 5; //peng gang chi hu bu mo out
+    optional uint32 userid = 6;
+    repeated client_base_poker outPais = 7; //玩家出的牌 打牌用的
+    optional pdk_enum_paiType outPaiType = 8; //玩家出的牌类型 打牌用的
+}
+//回放桌面信息
+message PdkPlaybackDeskInfo {
+    optional int32 GameStatus = 1; //游戏所处状态: 0:INIT 1:DINGQUE 2;EXCHANGE 3:PLAYING 4:FINISH
+    optional int32 playerNum = 3; //玩家数量
+    optional uint32 activeUserId = 4; //当前谁操作，决定：中间的指针应该指向谁，哪个玩家当前是可操作状态
+
+    optional int32 currPlayCount = 10; // 朋友桌: 当前第几局
+    optional int32 totalPlayCount = 11; // 朋友桌: 总共几局
+    optional string roomNumber = 12; // 房间号
+
+    optional uint32 bankerId = 14; //庄家id
+
+    optional pdk_enum_enterType enterType = 18; // 进入的类型  金币场/朋友桌
+
+    optional int64 coinTicket = 19; //房费 金币场使用
+
+    optional pdk_base_timerInfo timerInfo = 20; //定时信息
+}
