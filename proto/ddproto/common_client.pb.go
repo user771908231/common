@@ -397,6 +397,7 @@ It has these top-level messages:
 	PezBase_RoomTypeInfo
 	PezBase_PaiValue
 	PezBase_PlayerCard
+	PezLastScore
 	PezBase_PlayerInfo
 	PezBase_DeskGameInfo
 	PezTuozi
@@ -424,7 +425,6 @@ It has these top-level messages:
 	PezUserCoinBean
 	Pez_Opening
 	Pez_DealCards
-	PezLastScore
 	Pez_Bet
 	Pez_AckBet
 	Pez_BCOpenPai

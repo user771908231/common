@@ -23,6 +23,8 @@ var _ = math.Inf
 
 // Ignoring public import of pez_base_PlayerCard from pez_base.proto
 
+// Ignoring public import of pez_lastScore from pez_base.proto
+
 // Ignoring public import of pez_base_PlayerInfo from pez_base.proto
 
 // Ignoring public import of pez_base_DeskGameInfo from pez_base.proto
