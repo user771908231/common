@@ -1,10 +1,16 @@
-package model
+package doudizhu
 
 import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"time"
 	"casino_common/utils/timeUtils"
+	"casino_common/utils/numUtils"
+	"gopkg.in/mgo.v2"
+	"casino_common/common/consts/tableName"
+	"gopkg.in/mgo.v2/bson"
+	"casino_common/utils/db"
+	"casino_common/common/log"
 )
 
 //一把结束,战绩可以通过这个表来查询
@@ -43,4 +49,21 @@ func (b DdzRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 		WinAmount: proto.Int64(b.WinAmount),
 	}
 	return result
+}
+
+
+//DAO
+func GetDdzDeskRoundByUserId(userId uint32) []T_ddz_desk_round {
+	var deskRecords []T_ddz_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_DDZ_DESK_ROUND).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
+	})
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]斗地主相关的战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
 }
