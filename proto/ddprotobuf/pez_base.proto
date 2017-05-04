@@ -30,11 +30,11 @@ enum pez_enum_protoId {
     PEZ_PID_APPLYDISSOLVE_ACK = 24;                             // 申请解散房间回复
     PEZ_PID_APPLYDISSOLVEBACK_REQ = 25;                         // 同意或拒绝解散房间回复
     PEZ_PID_APPLYDISSOLVEBACK_ACK = 26;                         // 同意或拒绝解散房间回复
-
-
     PEZ_PID_COMMONBCKICKOUT = 27;                               //强制退出 连接超时把人踢掉
     PEZ_PID_COMMONBCUSERBREAK = 28;                             //断线的pid
+
     PEZ_PID_COMMONREQRECONNECT = 29;                            //断线重连的pid
+
     PEZ_PID_OFFLINE_REQ = 30;                                   // 请求: 离线
     PEZ_PID_RECONNECT_REQ = 31;                                 // 请求: reqReconnect 断线重连
     PEZ_PID_RECONNECT_ACK = 32;                                 // 回复: reqReconnect 断线重连
@@ -162,6 +162,12 @@ message pez_base_PlayerCard {
     optional int32 handCardCount = 3; //手牌的长度,当不用显示手牌的时候，只显示长度就行了
 }
 
+//上一把的得分
+message pez_lastScore {
+    optional uint32 userId = 1;
+    optional int64 score = 2;
+}
+
 message pez_base_PlayerInfo {
     optional bool isBanker = 1; // 是否庄家
     optional pez_tuozi playerCard = 2; // 玩家的手牌。客户端需根据服务端的返回进行排序动画。
@@ -177,6 +183,8 @@ message pez_base_PlayerInfo {
     optional WeixinInfo wxInfo = 12; // 微信用户信息( 进入房间时、广播新进用户时，才需返回WeixinInfo；其它广播不需要。)
     optional int32 GameStatus = 13; //玩家的游戏状态
     optional string ip = 14; //玩家的ip地址
+    optional bool isBreak = 15;     //是否掉线
+    optional string ipSite = 16;    //ip对应的地理信息
 }
 
 message pez_base_DeskGameInfo {
@@ -193,6 +201,9 @@ message pez_base_DeskGameInfo {
     optional string roomNumber = 11; // 房间号
     optional int32 remainCards = 12; // 还剩几张麻将牌
     optional uint32 banker = 13; //庄家
+    repeated pez_lastScore lastScore = 14;  //上一把得分
+
+
 }
 
 //坨子

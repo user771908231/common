@@ -46,8 +46,9 @@ message pez_EndLotteryInfo {
 
 // 本局结果(广播)
 message pez_SendCurrentResult {
+    optional int32 currentRound = 1;
     repeated pez_UserBean CurrBill = 2;
-
+    optional int32 boardsCout = 3;
 }
 
 message EndLottery {

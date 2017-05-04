@@ -32,12 +32,6 @@ message pez_DealCards {
     repeated pez_lastScore lastScore = 5;
 }
 
-message pez_lastScore {
-    optional uint32 userId = 1;
-    optional int64 score = 2;
-}
-
-
 // 押注
 message pez_Bet {
     optional uint32 userId = 1; // 押注的人
