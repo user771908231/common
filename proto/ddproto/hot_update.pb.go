@@ -134,7 +134,7 @@ type VersionInfo struct {
 func (m *VersionInfo) Reset()                    { *m = VersionInfo{} }
 func (m *VersionInfo) String() string            { return proto.CompactTextString(m) }
 func (*VersionInfo) ProtoMessage()               {}
-func (*VersionInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{0} }
+func (*VersionInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{0} }
 
 func (m *VersionInfo) GetFileId() int32 {
 	if m != nil && m.FileId != nil {
@@ -165,7 +165,7 @@ type AssetInfo struct {
 func (m *AssetInfo) Reset()                    { *m = AssetInfo{} }
 func (m *AssetInfo) String() string            { return proto.CompactTextString(m) }
 func (*AssetInfo) ProtoMessage()               {}
-func (*AssetInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{1} }
+func (*AssetInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{1} }
 
 func (m *AssetInfo) GetFileId() int32 {
 	if m != nil && m.FileId != nil {
@@ -239,7 +239,7 @@ type HotupdateReqVersionInfo struct {
 func (m *HotupdateReqVersionInfo) Reset()                    { *m = HotupdateReqVersionInfo{} }
 func (m *HotupdateReqVersionInfo) String() string            { return proto.CompactTextString(m) }
 func (*HotupdateReqVersionInfo) ProtoMessage()               {}
-func (*HotupdateReqVersionInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{2} }
+func (*HotupdateReqVersionInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{2} }
 
 func (m *HotupdateReqVersionInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -310,7 +310,7 @@ type HotupdateAckVersionInfo struct {
 func (m *HotupdateAckVersionInfo) Reset()                    { *m = HotupdateAckVersionInfo{} }
 func (m *HotupdateAckVersionInfo) String() string            { return proto.CompactTextString(m) }
 func (*HotupdateAckVersionInfo) ProtoMessage()               {}
-func (*HotupdateAckVersionInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{3} }
+func (*HotupdateAckVersionInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{3} }
 
 func (m *HotupdateAckVersionInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -365,7 +365,7 @@ type HotupdateReqAssetsInfo struct {
 func (m *HotupdateReqAssetsInfo) Reset()                    { *m = HotupdateReqAssetsInfo{} }
 func (m *HotupdateReqAssetsInfo) String() string            { return proto.CompactTextString(m) }
 func (*HotupdateReqAssetsInfo) ProtoMessage()               {}
-func (*HotupdateReqAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{4} }
+func (*HotupdateReqAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{4} }
 
 func (m *HotupdateReqAssetsInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -401,7 +401,7 @@ type HotupdateAckAssetsInfo struct {
 func (m *HotupdateAckAssetsInfo) Reset()                    { *m = HotupdateAckAssetsInfo{} }
 func (m *HotupdateAckAssetsInfo) String() string            { return proto.CompactTextString(m) }
 func (*HotupdateAckAssetsInfo) ProtoMessage()               {}
-func (*HotupdateAckAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{5} }
+func (*HotupdateAckAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{5} }
 
 func (m *HotupdateAckAssetsInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -457,7 +457,7 @@ type HotupdateReqGameAssetsInfo struct {
 func (m *HotupdateReqGameAssetsInfo) Reset()                    { *m = HotupdateReqGameAssetsInfo{} }
 func (m *HotupdateReqGameAssetsInfo) String() string            { return proto.CompactTextString(m) }
 func (*HotupdateReqGameAssetsInfo) ProtoMessage()               {}
-func (*HotupdateReqGameAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{6} }
+func (*HotupdateReqGameAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{6} }
 
 func (m *HotupdateReqGameAssetsInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -497,7 +497,7 @@ type HotupdateAckGameAssetsInfo struct {
 func (m *HotupdateAckGameAssetsInfo) Reset()                    { *m = HotupdateAckGameAssetsInfo{} }
 func (m *HotupdateAckGameAssetsInfo) String() string            { return proto.CompactTextString(m) }
 func (*HotupdateAckGameAssetsInfo) ProtoMessage()               {}
-func (*HotupdateAckGameAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor25, []int{7} }
+func (*HotupdateAckGameAssetsInfo) Descriptor() ([]byte, []int) { return fileDescriptor26, []int{7} }
 
 func (m *HotupdateAckGameAssetsInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -531,7 +531,7 @@ func init() {
 	proto.RegisterType((*HotupdateAckGameAssetsInfo)(nil), "ddproto.hotupdate_ack_gameAssetsInfo")
 }
 
-var fileDescriptor25 = []byte{
+var fileDescriptor26 = []byte{
 	// 592 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xdf, 0x8a, 0xd3, 0x4e,
 	0x14, 0xfe, 0xa5, 0x69, 0xd3, 0xf6, 0xf4, 0xe7, 0x52, 0x67, 0x97, 0x25, 0x5b, 0x16, 0x09, 0x41,

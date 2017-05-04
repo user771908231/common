@@ -62,4 +62,9 @@ const (
 	//跑得快
 	DBT_PDK_DESK_ROUND          = "t_pdk_desk_round"          //一把跑得快结束战绩
 	DBT_PDK_DESK_ROUND_PLAYBACK = "t_pdk_desk_round_playback" //一把跑得快回放
+
+	//牛牛
+	DBT_NIU_DESK_ROUND_ONE          = "t_niuniu_desk_round_one"       //牛牛1局结束战绩
+	DBT_NIU_DESK_ROUND_ALL          = "t_niuniu_desk_round_all"       //牛牛10局结束战绩
+
 )

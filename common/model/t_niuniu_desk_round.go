@@ -8,16 +8,16 @@ import (
 )
 
 //一把结束,战绩可以通过这个表来查询
-type T_ddz_desk_round struct {
-	DeskId     int32
-	GameNumber int32
+type T_niuniu_desk_round struct {
+	DeskId     int32  //房间号
+	GameNumber int32  //一局游戏编号
 	UserIds    string
 	BeginTime  time.Time
 	EndTime    time.Time
-	Records    []DdzRecordBean
+	Records    []NiuRecordBean
 }
 
-func (t T_ddz_desk_round) TransRecord() *ddproto.BeanGameRecord {
+func (t T_niuniu_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
 		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
 		DeskId:    proto.Int32(t.DeskId),
@@ -30,13 +30,13 @@ func (t T_ddz_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	return result
 }
 
-type DdzRecordBean struct {
+type NiuRecordBean struct {
 	UserId    uint32
 	NickName  string
 	WinAmount int64
 }
 
-func (b DdzRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
+func (b NiuRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 	result := &ddproto.BeanUserRecord{
 		NickName:  proto.String(b.NickName),
 		UserId:    proto.Uint32(b.UserId),

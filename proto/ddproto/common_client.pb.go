@@ -31,6 +31,7 @@ It is generated from these files:
 	hall.proto
 	hall_data.proto
 	hall_playback.proto
+	hall_playback_pdk.proto
 	hot_update.proto
 	mj_baishan_base.proto
 	niuniu_base.proto
@@ -295,6 +296,11 @@ It has these top-level messages:
 	PlaybackSnapshot
 	PlaybackDeskInfo
 	PlaybackItem
+	PlaybackReqPageByGameid
+	PlaybackPdkAckPage
+	PdkPlayerInfo
+	PdkPlaybackSnapshot
+	PdkPlaybackDeskInfo
 	VersionInfo
 	AssetInfo
 	HotupdateReqVersionInfo
