@@ -10,6 +10,7 @@ import (
 	"casino_common/common/log"
 )
 
+//查询总战绩
 func GetNiuDeskRoundByUserId(userId uint32) []model.T_niuniu_desk_round {
 	var deskRecords []model.T_niuniu_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
@@ -25,3 +26,21 @@ func GetNiuDeskRoundByUserId(userId uint32) []model.T_niuniu_desk_round {
 	}
 }
 
+//查询牌桌内战绩
+func GetNiuDeskRoundByDeskId(userId uint32, deskId int32) []model.T_niuniu_desk_round {
+	var deskRecords []model.T_niuniu_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_NIU_DESK_ROUND_ALL).Find(bson.M{
+			"userids": bson.RegEx{querKey, "."},
+			"deskid": deskId,
+		}).Sort("-deskid").Limit(20).All(&deskRecords)
+	})
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]牛牛相关的牌桌内战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
