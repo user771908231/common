@@ -30,6 +30,7 @@ message pez_DealCards {
     optional int32 dice1 = 3; //骰子的数目
     optional int32 dice2 = 4; //骰子的数目
     repeated pez_lastScore lastScore = 5;
+    optional pez_base_timerInfo timerInfo = 6; //定时器信息
 }
 
 // 押注

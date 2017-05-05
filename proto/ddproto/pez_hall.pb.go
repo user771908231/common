@@ -19,6 +19,8 @@ var _ = math.Inf
 
 // Ignoring public import of pez_base_RoomTypeInfo from pez_base.proto
 
+// Ignoring public import of pez_base_timerInfo from pez_base.proto
+
 // Ignoring public import of pez_base_PaiValue from pez_base.proto
 
 // Ignoring public import of pez_base_PlayerCard from pez_base.proto
