@@ -124,5 +124,5 @@ message niuniu_desk_option {
     optional niuniu_enum_banker_rule bankRule = 5;  //坐庄规则 轮流坐庄、随机坐庄、看牌抢庄
     optional bool isFlowerPlay = 6;  //是否花样玩法
     optional bool isJiaoFenJiaBei = 7;  //是否为叫分加倍
-
+    optional bool hasAnimation = 8; //是否有动画
 }
