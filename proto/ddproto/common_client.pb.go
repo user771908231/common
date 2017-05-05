@@ -401,6 +401,7 @@ It has these top-level messages:
 	PezBase_PaiInfo
 	PezBase_PlayConf
 	PezBase_RoomTypeInfo
+	PezBaseTimerInfo
 	PezBase_PaiValue
 	PezBase_PlayerCard
 	PezLastScore
