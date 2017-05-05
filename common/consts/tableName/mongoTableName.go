@@ -67,4 +67,6 @@ const (
 	DBT_NIU_DESK_ROUND_ONE          = "t_niuniu_desk_round_one"       //牛牛1局结束战绩
 	DBT_NIU_DESK_ROUND_ALL          = "t_niuniu_desk_round_all"       //牛牛10局结束战绩
 
+	//拼二章
+	DBT_PEZ_DESK_ROUND  = "dbt_pez_desk_round"	//
 )
