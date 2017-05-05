@@ -49,6 +49,7 @@ message pez_SendCurrentResult {
     optional int32 currentRound = 1;
     repeated pez_UserBean CurrBill = 2;
     optional int32 boardsCout = 3;
+    repeated int32 cardsID = 4;     //已发牌的ID数组
 }
 
 message EndLottery {

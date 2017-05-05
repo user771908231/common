@@ -150,6 +150,11 @@ message pez_base_RoomTypeInfo {
     optional pez_enum_Base baseValue = 4;    //底
 }
 
+//定时信息
+message pez_base_timerInfo {
+    optional uint32 userId = 1; //谁在定时
+    optional int32 remainTime = 2; //剩余时间
+}
 
 message pez_base_PaiValue {
     optional int32 value = 1; //牌值 1~10
@@ -202,8 +207,8 @@ message pez_base_DeskGameInfo {
     optional int32 remainCards = 12; // 还剩几张麻将牌
     optional uint32 banker = 13; //庄家
     repeated pez_lastScore lastScore = 14;  //上一把得分
-
-
+    optional pez_base_timerInfo timerInfo = 15; //定时器信息
+    repeated int32 cardsID = 16;     //已发牌的ID数组
 }
 
 //坨子
