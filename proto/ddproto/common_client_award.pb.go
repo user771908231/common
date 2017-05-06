@@ -240,8 +240,6 @@ func init() {
 	proto.RegisterType((*AwardAckGetNewUser)(nil), "ddproto.award_ack_getNewUser")
 }
 
-func init() { proto.RegisterFile("common_client_award.proto", fileDescriptor1) }
-
 var fileDescriptor1 = []byte{
 	// 219 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xce, 0xcf, 0xcd,

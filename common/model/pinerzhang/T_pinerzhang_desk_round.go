@@ -60,16 +60,38 @@ func (t T_pinerzhang_desk_round) Insert() {
 	}(&t)
 }
 
-func ListTPEZDeskRound(userId uint32) []T_pinerzhang_desk_round {
+//查询总战绩
+func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
-	querKey, _ := numUtils.Int2String(userId)
+	querKey, _ := numUtils.Uint2String(userId)
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PEZ_DESK_ROUND).Find(bson.M{"UserIds": bson.RegEx{querKey, "."}}).Sort("-DeskId").Limit(20).All(&deskRecords)
+		d.C(tableName.DBT_NIU_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
+
 	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]的拼二张战绩...", userId)
+		log.T("没有找到玩家[%v]拼二张相关的战绩...", userId)
 		return nil
 	} else {
 		return deskRecords
 	}
 }
+
+//查询牌桌内战绩
+func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_round {
+	var deskRecords []T_pinerzhang_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_NIU_DESK_ROUND_ALL).Find(bson.M{
+			"userids": bson.RegEx{querKey, "."},
+			"deskid": deskId,
+		}).Sort("-deskid").Limit(20).All(&deskRecords)
+	})
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]拼二张相关的牌桌内战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
