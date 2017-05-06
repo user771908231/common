@@ -263,6 +263,9 @@ message hall_userData {
     optional string phoneNumber = 19; //联系电话
     optional string wxNumber = 20; //微信号码
     optional string realAddress = 21; //真实地址
+
+    optional string address = 23; //玩家当前地址 根据lastIp计算出来
+    optional string distance = 24; //玩家距离自己多远
 }
 
 //排行信息
