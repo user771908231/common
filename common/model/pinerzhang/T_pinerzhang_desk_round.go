@@ -5,6 +5,13 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/utils/db"
 	"casino_common/common/Error"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"casino_common/utils/numUtils"
+	"casino_common/common/log"
+	"casino_common/proto/ddproto"
+	"github.com/golang/protobuf/proto"
+	"casino_common/utils/timeUtils"
 )
 
 type PEZRecordBean struct {
@@ -22,6 +29,28 @@ type T_pinerzhang_desk_round struct {
 	Records    []PEZRecordBean
 }
 
+func (b PEZRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
+	result := &ddproto.BeanUserRecord{
+		NickName:  proto.String(b.NickName),
+		UserId:    proto.Uint32(b.UserId),
+		WinAmount: proto.Int64(b.WinAmount),
+	}
+	return result
+}
+
+func (t T_pinerzhang_desk_round) TransRecord() *ddproto.BeanGameRecord {
+	result := &ddproto.BeanGameRecord{
+		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
+		DeskId:    proto.Int32(t.DeskId),
+		Id:        proto.Int32(t.GameNumber),
+	}
+	for _, bean := range t.Records {
+		b := bean.TransBeanUserRecord()
+		result.Users = append(result.Users, b)
+	}
+	return result
+}
+
 //insert
 func (t T_pinerzhang_desk_round) Insert() {
 	//插入到数据库
@@ -31,7 +60,16 @@ func (t T_pinerzhang_desk_round) Insert() {
 	}(&t)
 }
 
-//todo 找到拼二张的战绩列表
-func ListTPEZDeskRound() []T_pinerzhang_desk_round {
-	panic("实现超着拼二张")
+func ListTPEZDeskRound(userId uint32) []T_pinerzhang_desk_round {
+	var deskRecords []T_pinerzhang_desk_round
+	querKey, _ := numUtils.Int2String(userId)
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_PEZ_DESK_ROUND).Find(bson.M{"UserIds": bson.RegEx{querKey, "."}}).Sort("-DeskId").Limit(20).All(&deskRecords)
+	})
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]的拼二张战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
 }
