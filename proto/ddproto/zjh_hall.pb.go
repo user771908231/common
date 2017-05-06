@@ -13,6 +13,8 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+func init() { proto.RegisterFile("zjh_hall.proto", fileDescriptor43) }
+
 var fileDescriptor43 = []byte{
 	// 46 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xab, 0xca, 0xca, 0x88,
