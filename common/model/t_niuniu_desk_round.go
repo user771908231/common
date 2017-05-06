@@ -9,7 +9,7 @@ import (
 
 //一把结束,战绩可以通过这个表来查询
 type T_niuniu_desk_round struct {
-	DeskId     int32  //房间号
+	DeskId     int32  //房间Id
 	GameNumber int32  //一局游戏编号
 	UserIds    string
 	BeginTime  time.Time
