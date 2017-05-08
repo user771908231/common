@@ -68,5 +68,6 @@ const (
 	DBT_NIU_DESK_ROUND_ALL          = "t_niuniu_desk_round_all"       //牛牛10局结束战绩
 
 	//拼二章
-	DBT_PEZ_DESK_ROUND  = "dbt_pez_desk_round"	//
+	DBT_PEZ_DESK_ROUND  = "dbt_pez_desk_round"	//拼二张一局游戏战绩
+	DBT_PEZ_DESK_ROUND_ALL = "dbt_pez_desk_round_all"  //拼二张全局游戏结束的战绩，包含每一局的战绩
 )
