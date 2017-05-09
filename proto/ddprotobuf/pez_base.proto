@@ -212,6 +212,7 @@ message pez_base_DeskGameInfo {
     repeated pez_lastScore lastScore = 14; //上一把得分
     optional pez_base_timerInfo timerInfo = 15; //定时器信息
     repeated int32 cardsID = 16; //已发牌的ID数组
+    optional int64 lanDiScore = 17; //烂底的得分
 }
 
 //坨子
