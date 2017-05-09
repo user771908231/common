@@ -124,9 +124,28 @@ type SCMJParser struct {
 	*api.MJParserCore //麻将的骨架
 }
 
-//自定义的胡牌方式
-func (p *SCMJParser) hu() {
+func (*SCMJParser) CanChi(interface{}, interface{}) (interface{}, error) {
+	panic("implement me")
+}
 
+func (*SCMJParser) CanTing(...interface{}) (interface{}, error) {
+	panic("implement me")
+}
+
+func (*SCMJParser) GetJiaoInfos(...interface{}) (interface{}, error) {
+	panic("implement me")
+}
+
+func (*SCMJParser) Parse(pids []int32) (interface{}, error) {
+	panic("implement me")
+}
+
+func (*SCMJParser) XiPai() interface{} {
+	panic("implement me")
+}
+
+func (*SCMJParser) Hu(...interface{}) (interface{}, error) {
+	panic("implement me")
 }
 
 //是否能补牌

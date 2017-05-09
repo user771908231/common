@@ -37,11 +37,18 @@ type MJUser interface {
 
 //核心User
 type MJUserCore struct {
-	UserId uint32
-	uRedis userService.U_REDIS //这里可以使用redis的方法
-	Desk   MJDesk
-	coin   int64
-	gate.Agent
+	UserId  uint32
+	uRedis  userService.U_REDIS //这里可以使用redis的方法
+	Desk    MJDesk              //关联的desk
+	coin    int64               //金币
+	Break   bool                //是否断线
+	Ready   bool                //是否已经准备
+	Banker  bool                //是否是庄
+	IsOwner bool                //是否是房主
+	CanOut  bool                //是否可以打牌
+	S       int32               //状态
+	Leave   bool                //是否离开
+	gate.Agent                  //agent
 }
 
 //New一个CoreUser
@@ -87,4 +94,12 @@ func (u *MJUserCore) GetCoin() int64 {
 
 func (u *MJUserCore) AddCoin(c int64) int64 {
 	return atomic.AddInt64(&u.coin, c)
+}
+
+func (u *MJUserCore) GetBreak() bool {
+	return u.Break
+}
+
+func (u *MJUserCore) GetLeave() bool {
+	return u.Leave
 }
