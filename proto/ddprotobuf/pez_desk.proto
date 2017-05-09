@@ -49,6 +49,7 @@ message pez_SendCurrentResult {
     optional int32 boardsCout = 3;
     repeated int32 cardsID = 4; //已发牌的ID数组
     optional int64 lanDiScore = 5; //烂底的得分
+    optional int32 openResult = 6; //通杀或者通赔 0：都不是 1：通杀 2：通赔
 }
 
 message EndLottery {
