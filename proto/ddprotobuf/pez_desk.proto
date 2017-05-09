@@ -19,8 +19,6 @@ message pez_AckDissolveDesk {
     optional string passWord = 4; //房间密钥
 }
 
-
-
 //准备游戏
 message pez_Ready {
     optional ProtoHeader header = 1;
@@ -49,7 +47,8 @@ message pez_SendCurrentResult {
     optional int32 currentRound = 1;
     repeated pez_UserBean CurrBill = 2;
     optional int32 boardsCout = 3;
-    repeated int32 cardsID = 4;     //已发牌的ID数组
+    repeated int32 cardsID = 4; //已发牌的ID数组
+    optional int64 lanDiScore = 5; //烂底的得分
 }
 
 message EndLottery {
