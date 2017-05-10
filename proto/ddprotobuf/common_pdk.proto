@@ -1,0 +1,117 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+package ddproto;
+
+///////////////////////////////////////////////////
+
+//牌型
+enum pdk_enum_paiType {
+    PDK_ERRORCARD = 0; //错误牌型 跑得快
+    PDK_SINGLECARD = 1; //单牌 跑得快
+    PDK_DOUBLECARD = 2; //对子 跑得快
+    PDK_THREECARD = 3; //三不带 跑得快最后一手三带
+    PDK_BOMBCARD = 4; //炸弹 跑得快
+    PDK_THREEONECARD = 5; //三带1 跑得快最后一手三带
+    PDK_THREETWOCARD = 6; //三带二 跑得快
+    PDK_CONNECTCARD = 9; //链子  跑得快
+    PDK_COMPANYCARD = 10; //连队  跑得快
+    PDK_AIRCRAFTCARD = 11; //飞机不带牌 跑得快最后一手飞机
+    PDK_AIRCRAFTSINGLECARD = 12; //飞机带单牌  跑得快最后一手飞机
+    PDK_AIRCRAFTFOURSIG = 16; //跑得快飞机带四张单牌
+    PDK_AIRCRAFTLASTCARD = 17;  //跑得快最后一手飞机带单牌
+    PDK_AIRCRAFTLASTDOU = 18;  //跑得快最后一手飞机带对子
+}
+
+
+// 玩家当前状态
+enum pdk_enum_playerStatus {
+    PDK_NORMAL_DEFAULT = 0; //默认
+    PDK_NORMAL_ENTERDESK = 1; //已进入桌子
+    PDK_NORMAL_READY = 2; //已准备
+    PDK_NORMAL_DAPAI = 3; //已开始打牌
+    PDK_NORMAL_LOTTERY = 4; //已开奖
+    PDK_NORMAL_END = 5; //已全局结束
+
+    PDK_HLJIAO_NOACT = 6; //欢乐叫地主阶段没操作
+    PDK_HLJIAO_JIAO = 7; //欢乐叫地主阶段已叫地主
+    PDK_HLJIAO_BUJIAO = 8; //欢乐叫地主阶段已不叫地主
+
+    PDK_HLQIANG_NOACT = 9; //欢乐抢地主阶段没操作
+    PDK_HLQIANG_QIANG = 10; //欢乐抢地主阶段已抢地主
+    PDK_HLQIANG_BUQIANG = 11; //欢乐抢地主阶段已不抢地主
+
+    PDK_HLJB_NOACT = 12; //欢乐加倍阶段没操作
+    PDK_HLJB_JIA = 13; //欢乐加倍阶段已加倍
+    PDK_HLJB_BUJIA = 14; //欢乐加倍阶段已不加倍
+
+    PDK_SCMZ_NOACT = 15; //四川闷抓阶段没操作
+    PDK_SCMZ_MENZHUA = 16; //四川闷抓阶段已闷抓
+    PDK_SCMZ_SEECARDS = 17; //四川闷抓阶段已看牌
+
+    PDK_SCZP_NOACT = 18; //四川抓牌阶段没操作
+    PDK_SCZP_ZHUA = 19; //四川抓牌阶段已抓牌
+    PDK_SCZP_BUZHUA = 20; //四川抓牌阶段已不抓
+
+    PDK_SCLD_NOACT = 21; //四川拉倒阶段没操作
+    PDK_SCLD_LA = 22; //四川拉倒阶段已拉
+    PDK_SCLD_DAO = 23; //四川拉倒阶段已倒
+    PDK_SCLD_BULD = 24; //四川拉倒阶段已不拉/倒
+
+    PDK_JDJIAO_NOACT = 25; //经典叫分阶段没操作
+    PDK_JDJIAO_JIAO = 26; //经典叫分阶段已叫
+    PDK_JDJIAO_BUJIAO = 27; //经典叫分阶段不叫
+
+    PDK_SHOWPOKER_READY = 28; //明牌准备
+    PDK_SHOWPOKER_ENTERDESK = 29; //明牌进入房间
+}
+
+enum pdk_enum_roomType {
+    PDK_T_NORMAL_PDK = 1; // 经典斗地主
+    PDK_T_HAPPY_PDK = 2; // 欢乐斗地主
+    PDK_T_SICHUAN_PDK = 3; // 四川斗地主
+}
+
+enum pdk_enum_enterType {
+    PDK_FRIEND = 1; //朋友桌
+    PDK_COIN = 2; //金币场
+}
+
+enum pdk_enum_coinRoomLevel {
+    PDK_LV1 = 1; //1000~100000 准入1千到10万 底分10
+    PDK_LV2 = 2; //5000~500000 准入5千到50万 底分50
+    PDK_LV3 = 3; //10000~600000 准入1万到60万 底分100
+    PDK_LV4 = 4; //100000+ 准入10万以上 底分1000
+}
+
+
+message pdk_base_roomTypeInfo {
+    optional pdk_enum_roomType roomType = 1; // 房间类型：经典斗地主/欢乐斗地主/四川斗地主
+    optional int32 boardsCount = 2; // 局数，如：4局（房卡 × 2）、8局（房卡 × 3）
+    optional int64 capMax = 3; // 封顶，如：2炸、3炸、4炸、5炸
+    optional int64 baseValue = 4; // 底分
+    optional bool isJiaoFen = 5; // 是否叫分（1分、2分、3分）
+    optional int32 UserCountLimit = 6; //创建房间时的人数选项
+
+    optional int64 userMinCoin = 7; //玩家进入房间的下限金额 金币场用
+    optional int64 userMaxCoin = 8; //玩家进入房间的上限金额 金币场用
+    optional int64 coinTicket = 9; //房费 金币场用
+
+    optional pdk_enum_coinRoomLevel roomLv = 10; //房间级别
+}
+
+
+enum pdk_enum_deskGameStatus {
+    PDK_INIT = 0; //初始化
+    PDK_DEAL_CARDS = 1; //发牌阶段
+    PDK_JIAO_DIZHU = 2; //叫地主(抢地主、拉/倒)
+    PDK_PLAYING = 3; //游戏中
+    PDK_FINISH = 4; //已经结束
+}
+
+//定时信息
+message pdk_base_timerInfo {
+    optional uint32 userId = 1; //谁在定时
+    optional int32 remainSec = 2; //剩余时间
+}
+

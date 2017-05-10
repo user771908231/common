@@ -20,6 +20,7 @@ type T_pdk_desk_round struct {
 	UserIds    string
 	BeginTime  time.Time
 	EndTime    time.Time
+	RoundStr   string //局数信息
 	Records    []PdkRecordBean
 }
 
@@ -28,6 +29,7 @@ func (t T_pdk_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
 		DeskId:    proto.Int32(t.DeskId),
 		Id:        proto.Int32(t.GameNumber),
+		RoundStr:  proto.String(t.RoundStr), //局数信息
 	}
 	for _, bean := range t.Records {
 		b := bean.TransBeanUserRecord()
@@ -51,18 +53,36 @@ func (b PdkRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 	return result
 }
 
-
 //DAO
 
 func GetPdkDeskRoundByUserId(userId uint32) []T_pdk_desk_round {
 	var deskRecords []T_pdk_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PDK_DESK_ROUND).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
+		d.C(tableName.DBT_PDK_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]斗地主相关的战绩...", userId)
+		log.T("没有找到玩家[%v]跑得快相关的战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+//查询牌桌内战绩
+func GetPdkDeskRoundByDeskId(userId uint32, deskId int32) []T_pdk_desk_round {
+	var deskRecords []T_pdk_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_PDK_DESK_ROUND).Find(bson.M{
+			"userids": bson.RegEx{querKey, "."},
+			"deskid": deskId,
+		}).Sort("-deskid").Limit(20).All(&deskRecords)
+	})
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]跑得快相关的牌桌内战绩...", userId)
 		return nil
 	} else {
 		return deskRecords

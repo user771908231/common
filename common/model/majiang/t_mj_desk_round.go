@@ -1,16 +1,16 @@
 package majiang
 
 import (
-	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
-	"time"
-	"casino_common/utils/timeUtils"
-	"casino_common/utils/numUtils"
-	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/db"
 	"casino_common/common/log"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/timeUtils"
+	"github.com/golang/protobuf/proto"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 type MjRecordBean struct {
@@ -39,6 +39,7 @@ type T_mj_desk_round struct {
 	FriendPlay   bool   //是否是朋友桌
 	PassWord     string //朋友桌的房间号
 	PlayBackData []*ddproto.PlaybackSnapshot
+	RoundStr     string //局数信息
 }
 
 func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
@@ -46,6 +47,7 @@ func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
 		DeskId:    proto.Int32(int32(numUtils.String2Int(t.PassWord))),
 		Id:        proto.Int32(t.GameNumber), //战绩id就是 游戏编号
+		RoundStr:  proto.String(t.RoundStr), //局数信息
 	}
 
 	for _, bean := range t.Records {
@@ -67,6 +69,26 @@ func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]麻将相关的战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+//查询牌桌内战绩
+func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_MJ_DESK_ROUND_ALL).Find(bson.M{
+			"userids": bson.RegEx{querKey, "."},
+			"friendplay": true,
+			"deskid": deskId,
+		}).Sort("-deskid").Limit(20).All(&deskRecords)
+	})
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]麻将相关的牌桌[%v]内战绩...", userId, deskId)
 		return nil
 	} else {
 		return deskRecords

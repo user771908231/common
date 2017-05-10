@@ -30,9 +30,9 @@ const (
 	DBT_T_TRADE_LOG                 string = "t_game_trade_log"            //游戏货币流水记录表
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"         //灰度发布的数据库表
 
-	DBT_STATISTIC_BTN_CLICK         string = "T_statistic_btn_click"       //统计相关的数据库表名字
-	DBT_ADMIN_EXCHANGE_RECORD       string = "t_admin_exchange_record"     //红包、实物兑换记录表
-	DBT_IP_ADDRESS                  string = "dbt_ip_address"              //存储Ip对应的地址
+	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
+	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
+	DBT_IP_ADDRESS            string = "dbt_ip_address"          //存储Ip对应的地址
 
 	//代理充值系统
 	DBT_AGENT_GOODS        = "t_agent_goods"        //商品信息表
@@ -54,20 +54,27 @@ const (
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
 	DBT_MJ_DESK_ROUND       = "t_mj_desk_round"     //一把麻将结束
+	DBT_MJ_DESK_ROUND_ALL   = "t_mj_desk_round_all" //全局麻将结束
 	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
 
+	//捉虾子
+	DBT_MJ_ZXZ_DESK_ROUND     = "t_mj_zxz_desk_round"     //一把麻将结束
+	DBT_MJ_ZXZ_DESK_ROUND_ALL = "t_mj_zxz_desk_round_all" //全局麻将结束
+
 	//斗地主
-	DBT_DDZ_DESK_ROUND = "t_ddz_desk_round" //一把斗地主结束
+	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
+	DBT_DDZ_DESK_ROUND_ALL = "t_ddz_desk_round_all" //全局斗地主结束
 
 	//跑得快
 	DBT_PDK_DESK_ROUND          = "t_pdk_desk_round"          //一把跑得快结束战绩
+	DBT_PDK_DESK_ROUND_ALL      = "t_pdk_desk_round_all"      //全局跑得快结束战绩
 	DBT_PDK_DESK_ROUND_PLAYBACK = "t_pdk_desk_round_playback" //一把跑得快回放
 
 	//牛牛
-	DBT_NIU_DESK_ROUND_ONE          = "t_niuniu_desk_round_one"       //牛牛1局结束战绩
-	DBT_NIU_DESK_ROUND_ALL          = "t_niuniu_desk_round_all"       //牛牛10局结束战绩
+	DBT_NIU_DESK_ROUND_ONE = "t_niuniu_desk_round_one" //牛牛1局结束战绩
+	DBT_NIU_DESK_ROUND_ALL = "t_niuniu_desk_round_all" //牛牛10局结束战绩
 
 	//拼二章
-	DBT_PEZ_DESK_ROUND  = "t_pinerzhang_desk_round"	//拼二张一局游戏战绩
-	DBT_PEZ_DESK_ROUND_ALL = "t_pinerzhang_desk_round_all"  //拼二张全局游戏结束的战绩，包含每一局的战绩
+	DBT_PEZ_DESK_ROUND     = "t_pinerzhang_desk_round"     //拼二张一局游戏战绩
+	DBT_PEZ_DESK_ROUND_ALL = "t_pinerzhang_desk_round_all" //拼二张全局游戏结束的战绩，包含每一局的战绩
 )
