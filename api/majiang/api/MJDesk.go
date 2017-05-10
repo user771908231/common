@@ -135,7 +135,7 @@ func (d *MJDeskCore) GetUsers() []MJUser {
 func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
 	for _, u := range d.Users {
 		if u != nil {
-			u.WriteMsg2(p)
+			u.WriteMsg(p)
 		}
 	}
 	return nil
@@ -145,7 +145,7 @@ func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
 func (d *MJDeskCore) BroadCastProtoExclusive(p proto.Message, userId uint32) {
 	for _, u := range d.Users {
 		if u.GetUserId() != userId {
-			u.WriteMsg2(p)
+			u.WriteMsg(p)
 		}
 	}
 }

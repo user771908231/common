@@ -80,7 +80,7 @@ func (u *SCMJUser) UpdateSession(gid, gameNumber int32) error {
 }
 
 //发送信息
-func (u *SCMJUser) WriteMsg2(p proto.Message) error {
+func (u *SCMJUser) WriteMsg(p proto.Message) error {
 	if u == nil {
 		return nil
 	}
@@ -214,7 +214,7 @@ func (u *SCMJUser) GetPlayerInfo(showHand bool, reconnect mjproto.RECONNECT_TYPE
 
 //发送OverTurn
 func (u *SCMJUser) SendOverTurn(p proto.Message) error {
-	u.WriteMsg2(p)
+	u.WriteMsg(p)
 	return nil
 }
 
