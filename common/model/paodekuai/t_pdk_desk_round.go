@@ -20,6 +20,7 @@ type T_pdk_desk_round struct {
 	UserIds    string
 	BeginTime  time.Time
 	EndTime    time.Time
+	RoundStr   string //局数信息
 	Records    []PdkRecordBean
 }
 
@@ -50,7 +51,6 @@ func (b PdkRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 	}
 	return result
 }
-
 
 //DAO
 

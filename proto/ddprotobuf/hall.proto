@@ -322,7 +322,7 @@ message BeanGameRecord {
     optional int32 deskId = 3; //关联的桌子的Id
     optional string beginTime = 4; //游戏开始的时间
     repeated BeanUserRecord users = 5; //用户
-    optional string roundMsg = 6; //局数信息 已玩局数/建房总局数
+    optional string roundStr = 6; //局数信息 已玩局数/建房总局数
 }
 //
 message game_AckGameRecord {
