@@ -136,7 +136,6 @@ enum pdk_enum_gameStatus {
     PDK_U_FINISH = 4; //已经结束
 }
 
-
 message pdk_base_playerInfo {
     optional bool isDiZhu = 1; // 是否地主
     repeated client_base_poker playerPokers = 2; // 玩家的手牌
