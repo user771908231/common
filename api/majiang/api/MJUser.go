@@ -22,7 +22,7 @@ type MJUser interface {
 
 	//基本功能
 	SendOverTurn(p proto.Message) error         //发送overTurn
-	WriteMsg(p proto.Message) error             //发送信息
+	WriteMsg2(p proto.Message) error             //发送信息
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
 	DoPeng(...interface{}) (interface{}, error) //碰牌
@@ -102,4 +102,8 @@ func (u *MJUserCore) GetBreak() bool {
 
 func (u *MJUserCore) GetLeave() bool {
 	return u.Leave
+}
+
+func (u *MJUserCore) WriteMsg2(p proto.Message) error {
+	return nil
 }
