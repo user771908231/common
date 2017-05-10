@@ -103,3 +103,7 @@ func (u *MJUserCore) GetBreak() bool {
 func (u *MJUserCore) GetLeave() bool {
 	return u.Leave
 }
+
+func (u *MJUserCore) WriteMsg(p proto.Message) error {
+	return nil
+}
