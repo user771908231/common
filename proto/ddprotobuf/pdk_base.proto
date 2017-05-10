@@ -220,12 +220,13 @@ message pdk_base_roomTypeInfo {
     optional int64 capMax = 3; // 封顶，如：2炸、3炸、4炸、5炸
     optional int64 baseValue = 4; // 底分
     optional bool isJiaoFen = 5; // 是否叫分（1分、2分、3分）
+    optional int32 UserCountLimit = 6; //创建房间时的人数选项
 
-    optional int64 userMinCoin = 6; //玩家进入房间的下限金额 金币场用
-    optional int64 userMaxCoin = 7; //玩家进入房间的上限金额 金币场用
-    optional int64 coinTicket = 8; //房费 金币场用
+    optional int64 userMinCoin = 7; //玩家进入房间的下限金额 金币场用
+    optional int64 userMaxCoin = 8; //玩家进入房间的上限金额 金币场用
+    optional int64 coinTicket = 9; //房费 金币场用
 
-    optional pdk_enum_coinRoomLevel roomLv = 9; //房间级别
+    optional pdk_enum_coinRoomLevel roomLv = 10; //房间级别
 }
 
 message pdk_base_playerInfo {
