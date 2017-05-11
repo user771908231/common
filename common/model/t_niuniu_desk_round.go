@@ -2,18 +2,20 @@ package model
 
 import (
 	"casino_common/proto/ddproto"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"time"
-	"casino_common/utils/timeUtils"
 )
 
 //一把结束,战绩可以通过这个表来查询
 type T_niuniu_desk_round struct {
-	DeskId     int32  //房间Id
-	GameNumber int32  //一局游戏编号
+	DeskId     int32 //房间Id
+	GameNumber int32 //一局游戏编号
 	UserIds    string
 	BeginTime  time.Time
 	EndTime    time.Time
+	TotalRound int32
 	Records    []NiuRecordBean
 }
 
@@ -23,9 +25,11 @@ func (t T_niuniu_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		DeskId:    proto.Int32(t.DeskId),
 		Id:        proto.Int32(t.GameNumber),
 	}
-	for _, bean := range t.Records {
+
+	for i, bean := range t.Records {
 		b := bean.TransBeanUserRecord()
 		result.Users = append(result.Users, b)
+		result.RoundStr = proto.String(numUtils.Int2String2(int32(i + 1)))
 	}
 	return result
 }
@@ -34,6 +38,7 @@ type NiuRecordBean struct {
 	UserId    uint32
 	NickName  string
 	WinAmount int64
+	RoundStr  int32
 }
 
 func (b NiuRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
