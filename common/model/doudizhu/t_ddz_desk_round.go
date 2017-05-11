@@ -58,7 +58,7 @@ func GetDdzDeskRoundByUserId(userId uint32) []T_ddz_desk_round {
 	var deskRecords []T_ddz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_DDZ_DESK_ROUND).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
+		d.C(tableName.DBT_DDZ_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
@@ -74,10 +74,10 @@ func GetDdzDeskRoundByDeskId(userId uint32, deskId int32) []T_ddz_desk_round {
 	var deskRecords []T_ddz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_DDZ_DESK_ROUND_ALL).Find(bson.M{
+		d.C(tableName.DBT_DDZ_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
 			"deskid": deskId,
-		}).Sort("-deskid").Limit(20).All(&deskRecords)
+		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
