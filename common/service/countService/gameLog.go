@@ -5,6 +5,7 @@ import (
 	"casino_common/common/service/taskService"
 	"casino_common/common/service/countService/countType"
 	"casino_common/common/service/pushService"
+	"casino_common/common/Error"
 	"github.com/golang/protobuf/proto"
 	"casino_common/common/service/countService/gameCounter"
 	"fmt"
@@ -40,7 +41,11 @@ func (t *T_game_log)Insert() error {
 		CoinFee: proto.Int32(t.CoinFee),
 	})
 	//推送到大厅服务器处理
-	return pushService.Push(data)
+	go func(d []byte) {
+		Error.ErrorRecovery("pushService.Push(d)")
+		pushService.Push(d)
+	}(data)
+	return nil
 }
 
 //触发统计
