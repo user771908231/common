@@ -78,7 +78,7 @@ func GetPdkDeskRoundByDeskId(userId uint32, deskId int32) []T_pdk_desk_round {
 		d.C(tableName.DBT_PDK_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
 			"deskid": deskId,
-		}).Sort("-deskid").Limit(20).All(&deskRecords)
+		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {

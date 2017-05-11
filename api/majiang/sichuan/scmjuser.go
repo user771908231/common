@@ -1,19 +1,19 @@
 package sichuan
 
 import (
+	"casino_common/api/majiang"
 	"casino_common/api/majiang/api"
-	"github.com/name5566/leaf/gate"
+	"casino_common/api/majiang/utils"
+	"casino_common/common/log"
 	"casino_common/common/sessionService"
 	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
-	"reflect"
-	"casino_common/common/log"
-	"casino_common/api/majiang"
-	"errors"
-	"casino_majiang/msg/protogo"
 	"casino_common/utils/iputils"
-	"casino_common/api/majiang/utils"
 	"casino_majiang/msg/funcsInit"
+	"casino_majiang/msg/protogo"
+	"errors"
+	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/gate"
+	"reflect"
 )
 
 //玩家的游戏状态
