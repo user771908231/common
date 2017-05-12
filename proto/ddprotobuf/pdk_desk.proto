@@ -31,7 +31,6 @@ message pdk_ack_ready {
     optional uint32 userId = 3; //广播推送时：表示谁已准备
 }
 
-
 // 赢牌信息：谁赢了多少
 message pdk_base_winCoinInfo {
     optional string nickName = 1;
@@ -52,6 +51,7 @@ message pdk_base_winCoinInfo {
 message pdk_ba_currentResult {
     optional ProtoHeader header = 1;
     repeated pdk_base_winCoinInfo winCoinInfo = 2; // 本局玩家的输赢明细
+    repeated int32 RemainPais = 3; //第三个人的牌
 }
 
 message pdk_base_endLotteryInfo {
