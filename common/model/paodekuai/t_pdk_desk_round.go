@@ -1,16 +1,16 @@
 package paodekuai
 
 import (
-	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
-	"time"
-	"casino_common/utils/timeUtils"
-	"casino_common/utils/numUtils"
-	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/db"
 	"casino_common/common/log"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/timeUtils"
+	"github.com/golang/protobuf/proto"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 //一把结束,战绩可以通过这个表来查询
@@ -59,7 +59,7 @@ func GetPdkDeskRoundByUserId(userId uint32) []T_pdk_desk_round {
 	var deskRecords []T_pdk_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PDK_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
+		d.C(tableName.DBT_PDK_DESK_ROUND).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
@@ -77,7 +77,7 @@ func GetPdkDeskRoundByDeskId(userId uint32, deskId int32) []T_pdk_desk_round {
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_PDK_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
-			"deskid": deskId,
+			"deskid":  deskId,
 		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
 	})
 
