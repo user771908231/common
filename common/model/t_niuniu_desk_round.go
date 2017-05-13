@@ -2,7 +2,6 @@ package model
 
 import (
 	"casino_common/proto/ddproto"
-	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"time"
