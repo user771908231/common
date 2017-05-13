@@ -2,7 +2,6 @@ package model
 
 import (
 	"casino_common/proto/ddproto"
-	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"time"
@@ -26,10 +25,9 @@ func (t T_niuniu_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		Id:        proto.Int32(t.GameNumber),
 	}
 
-	for i, bean := range t.Records {
+	for _, bean := range t.Records {
 		b := bean.TransBeanUserRecord()
 		result.Users = append(result.Users, b)
-		result.RoundStr = proto.String(numUtils.Int2String2(int32(i + 1)))
 	}
 	return result
 }
