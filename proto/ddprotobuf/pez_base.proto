@@ -90,9 +90,10 @@ enum pez_enum_PaiType {
     PEZ_DUIZI = 1; // 对子 点数相同
     PEZ_DUIJI = 2; // 对鸡 两张1条
 }
-enum pez_enum_Base {
-    PEZ_LOW = 0; //低倍 1-2-3
-    PEZ_HIGH = 1; //高倍 5-10-20
+enum pez_enum_Base {    //创建房间时的倍数选择，根据这个在gameinfo里返回游戏中具体可以选择的押注分数
+    PEZ_BETNUM_ONETIME = 0;     //1倍
+    PEZ_BETNUM_DOUBLE = 1;      //2倍
+    PEZ_BETNUM_FIVETIMES = 2;      //5倍
 }
 
 //押注按钮代表的值
@@ -213,6 +214,7 @@ message pez_base_DeskGameInfo {
     optional pez_base_timerInfo timerInfo = 15; //定时器信息
     repeated int32 cardsID = 16; //已发牌的ID数组
     optional int64 lanDiScore = 17; //烂底的得分
+    repeated int32 optionalScore = 18; //每局游戏可以选择下注的分数，根据roominfo里的basevalue来
 }
 
 //坨子

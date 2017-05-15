@@ -1,17 +1,17 @@
 package pinerzhang
 
 import (
-	"time"
-	"casino_common/common/consts/tableName"
-	"casino_common/utils/db"
 	"casino_common/common/Error"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/numUtils"
+	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
+	"casino_common/utils/db"
+	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
+	"github.com/golang/protobuf/proto"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 type PEZRecordBean struct {
@@ -83,7 +83,7 @@ func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_ro
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_PEZ_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
-			"deskid": deskId,
+			"deskid":  deskId,
 		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
 	})
 
@@ -94,4 +94,3 @@ func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_ro
 		return deskRecords
 	}
 }
-
