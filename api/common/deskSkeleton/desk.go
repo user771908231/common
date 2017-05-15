@@ -1,9 +1,9 @@
 package deskSkeleton
 
 import (
+	"casino_common/api/common/roomSkeleton"
 	"casino_common/api/common/userSkeleton"
 	"github.com/golang/protobuf/proto"
-	"casino_common/api/common/roomSkeleton"
 )
 
 //这个是骨架的desk，所有的游戏都可以组合这个骨架
