@@ -35,6 +35,8 @@ It is generated from these files:
 	hall_playback_pdk.proto
 	hot_update.proto
 	mj_baishan_base.proto
+	mj_changchun_base.proto
+	mj_changchun_play.proto
 	niuniu_base.proto
 	niuniu_play.proto
 	niuniu_server.proto
@@ -312,6 +314,23 @@ It has these top-level messages:
 	HotupdateAckAssetsInfo
 	HotupdateReqGameAssetsInfo
 	HotupdateAckGameAssetsInfo
+	P16ReqCreateDesk
+	P16AckCreateDesk
+	P16ReqEnterDesk
+	P16AckEnterDesk
+	P16ReqReady
+	P16AckReady
+	P16ReqOpening
+	P16AckOpening
+	P16BcOverTurn
+	P16ReqPeng
+	P16AckPeng
+	P16ReqGang
+	P16AckGang
+	P16ReqChi
+	P16AckChi
+	P16ReqHu
+	P16AckHu
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption

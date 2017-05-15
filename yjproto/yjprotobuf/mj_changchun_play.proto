@@ -1,0 +1,81 @@
+syntax = "proto2";
+import public "common_client.proto";
+package yjprotogo;
+
+//长春麻将的gameId = 16
+//长春麻将 创建房间
+message p16_req_createDesk {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_createDesk {
+    optional ProtoHeader header = 1;
+}
+
+//进入房间
+message p16_req_enterDesk {
+    optional ProtoHeader header = 1;
+}
+message p16_ack_enterDesk {
+    optional ProtoHeader header = 1;
+}
+
+//准备
+message p16_req_ready {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_ready {
+    optional ProtoHeader header = 1;
+}
+
+//开始
+message p16_req_opening {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_opening {
+    optional ProtoHeader header = 1;
+}
+
+//动作广播
+message p16_bc_overTurn {
+    optional ProtoHeader header = 1;
+    //actType canPeng canGang canhu canChi
+}
+
+//碰
+message p16_req_peng {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_peng {
+    optional ProtoHeader header = 1;
+}
+//缸
+message p16_req_gang {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_gang {
+    optional ProtoHeader header = 1;
+}
+
+//吃
+message p16_req_chi {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_chi {
+    optional ProtoHeader header = 1;
+}
+
+//胡
+message p16_req_hu {
+    optional ProtoHeader header = 1;
+}
+
+message p16_ack_hu {
+    optional ProtoHeader header = 1;
+}
+

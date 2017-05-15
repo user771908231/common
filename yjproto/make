@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ./yjprotogo
+rm -rf *.pb.go
+cd ../yjprotobuf
+protoc --proto_path=.  --go_out=../yjprotogo *.proto
