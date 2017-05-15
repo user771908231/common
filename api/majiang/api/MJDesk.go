@@ -1,15 +1,15 @@
 package api
 
 import (
-	"github.com/name5566/leaf/module"
-	"casino_common/common/consts/tableName"
-	"casino_common/utils/db"
-	"sync"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
-	"github.com/golang/protobuf/proto"
-	"casino_common/proto/funcsInit"
+	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
+	"casino_common/utils/db"
+	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/module"
+	"sync"
 )
 
 //麻将桌子的定义
@@ -23,6 +23,7 @@ type MJDesk interface {
 	ActChi(...interface{}) error                //吃
 	ActHu(...interface{}) error                 //胡
 	ActBaoTing(...interface{}) error            //报听
+	ActPiao(...interface{}) error               //飘
 	ActLeave(...interface{}) error              //离开房间
 	ActReady(userId uint32) error               //准备
 	Dissolve(...interface{}) error              //解散
@@ -74,6 +75,10 @@ func (d *MJDeskCore) ActBaoTing(...interface{}) error {
 }
 
 func (d *MJDeskCore) ActBu(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActPiao(...interface{}) error {
 	return nil
 }
 
