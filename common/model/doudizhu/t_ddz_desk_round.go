@@ -26,7 +26,7 @@ type T_ddz_desk_round struct {
 
 func (t T_ddz_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
-		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
+		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
 		DeskId:    proto.Int32(t.DeskId),
 		Id:        proto.Int32(t.GameNumber),
 		RoundStr:  proto.String(t.RoundStr), //局数信息
