@@ -23,6 +23,14 @@ var _ = math.Inf
 // 长春麻将 创建房间
 type P16ReqCreateDesk struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserCountLimit   *int32       `protobuf:"varint,2,opt,name=userCountLimit" json:"userCountLimit,omitempty"`
+	BoardsCout       *int32       `protobuf:"varint,3,opt,name=boardsCout" json:"boardsCout,omitempty"`
+	BaseValue        *int64       `protobuf:"varint,4,opt,name=baseValue" json:"baseValue,omitempty"`
+	DianPaoBaoSanJia *bool        `protobuf:"varint,5,opt,name=dianPaoBaoSanJia" json:"dianPaoBaoSanJia,omitempty"`
+	XiaoJiFeiDan     *bool        `protobuf:"varint,6,opt,name=xiaoJiFeiDan" json:"xiaoJiFeiDan,omitempty"`
+	SanFengDan       *bool        `protobuf:"varint,7,opt,name=sanFengDan" json:"sanFengDan,omitempty"`
+	XiaDanSuanZhanLi *bool        `protobuf:"varint,8,opt,name=xiaDanSuanZhanLi" json:"xiaDanSuanZhanLi,omitempty"`
+	DaiQueMen        *bool        `protobuf:"varint,9,opt,name=daiQueMen" json:"daiQueMen,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -38,6 +46,63 @@ func (m *P16ReqCreateDesk) GetHeader() *ProtoHeader {
 	return nil
 }
 
+func (m *P16ReqCreateDesk) GetUserCountLimit() int32 {
+	if m != nil && m.UserCountLimit != nil {
+		return *m.UserCountLimit
+	}
+	return 0
+}
+
+func (m *P16ReqCreateDesk) GetBoardsCout() int32 {
+	if m != nil && m.BoardsCout != nil {
+		return *m.BoardsCout
+	}
+	return 0
+}
+
+func (m *P16ReqCreateDesk) GetBaseValue() int64 {
+	if m != nil && m.BaseValue != nil {
+		return *m.BaseValue
+	}
+	return 0
+}
+
+func (m *P16ReqCreateDesk) GetDianPaoBaoSanJia() bool {
+	if m != nil && m.DianPaoBaoSanJia != nil {
+		return *m.DianPaoBaoSanJia
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetXiaoJiFeiDan() bool {
+	if m != nil && m.XiaoJiFeiDan != nil {
+		return *m.XiaoJiFeiDan
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetSanFengDan() bool {
+	if m != nil && m.SanFengDan != nil {
+		return *m.SanFengDan
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetXiaDanSuanZhanLi() bool {
+	if m != nil && m.XiaDanSuanZhanLi != nil {
+		return *m.XiaDanSuanZhanLi
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetDaiQueMen() bool {
+	if m != nil && m.DaiQueMen != nil {
+		return *m.DaiQueMen
+	}
+	return false
+}
+
+// 进入房间
 type P16AckCreateDesk struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
@@ -58,6 +123,9 @@ func (m *P16AckCreateDesk) GetHeader() *ProtoHeader {
 // 进入房间
 type P16ReqEnterDesk struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	RoomType         *int32       `protobuf:"varint,2,opt,name=roomType" json:"roomType,omitempty"`
+	Password         *string      `protobuf:"bytes,3,opt,name=password" json:"password,omitempty"`
+	RoomLevel        *int32       `protobuf:"varint,4,opt,name=roomLevel" json:"roomLevel,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -71,6 +139,27 @@ func (m *P16ReqEnterDesk) GetHeader() *ProtoHeader {
 		return m.Header
 	}
 	return nil
+}
+
+func (m *P16ReqEnterDesk) GetRoomType() int32 {
+	if m != nil && m.RoomType != nil {
+		return *m.RoomType
+	}
+	return 0
+}
+
+func (m *P16ReqEnterDesk) GetPassword() string {
+	if m != nil && m.Password != nil {
+		return *m.Password
+	}
+	return ""
+}
+
+func (m *P16ReqEnterDesk) GetRoomLevel() int32 {
+	if m != nil && m.RoomLevel != nil {
+		return *m.RoomLevel
+	}
+	return 0
 }
 
 type P16AckEnterDesk struct {
@@ -126,23 +215,6 @@ func (m *P16AckReady) GetHeader() *ProtoHeader {
 }
 
 // 开始
-type P16ReqOpening struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *P16ReqOpening) Reset()                    { *m = P16ReqOpening{} }
-func (m *P16ReqOpening) String() string            { return proto.CompactTextString(m) }
-func (*P16ReqOpening) ProtoMessage()               {}
-func (*P16ReqOpening) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{6} }
-
-func (m *P16ReqOpening) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
 type P16AckOpening struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
@@ -151,7 +223,7 @@ type P16AckOpening struct {
 func (m *P16AckOpening) Reset()                    { *m = P16AckOpening{} }
 func (m *P16AckOpening) String() string            { return proto.CompactTextString(m) }
 func (*P16AckOpening) ProtoMessage()               {}
-func (*P16AckOpening) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{7} }
+func (*P16AckOpening) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{6} }
 
 func (m *P16AckOpening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -160,20 +232,113 @@ func (m *P16AckOpening) GetHeader() *ProtoHeader {
 	return nil
 }
 
+type P16BBeanCanPeng struct {
+	XXX_unrecognized []byte `json:"-"`
+}
+
+func (m *P16BBeanCanPeng) Reset()                    { *m = P16BBeanCanPeng{} }
+func (m *P16BBeanCanPeng) String() string            { return proto.CompactTextString(m) }
+func (*P16BBeanCanPeng) ProtoMessage()               {}
+func (*P16BBeanCanPeng) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{7} }
+
+type P16BBeanCanChi struct {
+	XXX_unrecognized []byte `json:"-"`
+}
+
+func (m *P16BBeanCanChi) Reset()                    { *m = P16BBeanCanChi{} }
+func (m *P16BBeanCanChi) String() string            { return proto.CompactTextString(m) }
+func (*P16BBeanCanChi) ProtoMessage()               {}
+func (*P16BBeanCanChi) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{8} }
+
+type P16BBeanCanGang struct {
+	XXX_unrecognized []byte `json:"-"`
+}
+
+func (m *P16BBeanCanGang) Reset()                    { *m = P16BBeanCanGang{} }
+func (m *P16BBeanCanGang) String() string            { return proto.CompactTextString(m) }
+func (*P16BBeanCanGang) ProtoMessage()               {}
+func (*P16BBeanCanGang) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{9} }
+
 // 动作广播
-type P16BcOverTurn struct {
+type P16BcMoPai struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	ActType          *int32       `protobuf:"varint,2,opt,name=actType" json:"actType,omitempty"`
+	ActUser          *uint32      `protobuf:"varint,3,opt,name=actUser" json:"actUser,omitempty"`
+	Pai              *int32       `protobuf:"varint,4,opt,name=pai" json:"pai,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
-func (m *P16BcOverTurn) Reset()                    { *m = P16BcOverTurn{} }
-func (m *P16BcOverTurn) String() string            { return proto.CompactTextString(m) }
-func (*P16BcOverTurn) ProtoMessage()               {}
-func (*P16BcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{8} }
+func (m *P16BcMoPai) Reset()                    { *m = P16BcMoPai{} }
+func (m *P16BcMoPai) String() string            { return proto.CompactTextString(m) }
+func (*P16BcMoPai) ProtoMessage()               {}
+func (*P16BcMoPai) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{10} }
 
-func (m *P16BcOverTurn) GetHeader() *ProtoHeader {
+func (m *P16BcMoPai) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
+	}
+	return nil
+}
+
+func (m *P16BcMoPai) GetActType() int32 {
+	if m != nil && m.ActType != nil {
+		return *m.ActType
+	}
+	return 0
+}
+
+func (m *P16BcMoPai) GetActUser() uint32 {
+	if m != nil && m.ActUser != nil {
+		return *m.ActUser
+	}
+	return 0
+}
+
+func (m *P16BcMoPai) GetPai() int32 {
+	if m != nil && m.Pai != nil {
+		return *m.Pai
+	}
+	return 0
+}
+
+// 碰 杠 胡 吃 的判断
+type P16Bc_Check struct {
+	Header           *ProtoHeader     `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CanPeng          *P16BBeanCanPeng `protobuf:"bytes,4,opt,name=canPeng" json:"canPeng,omitempty"`
+	CanChi           *P16BBeanCanChi  `protobuf:"bytes,5,opt,name=canChi" json:"canChi,omitempty"`
+	CanGang          *P16BBeanCanGang `protobuf:"bytes,6,opt,name=canGang" json:"canGang,omitempty"`
+	XXX_unrecognized []byte           `json:"-"`
+}
+
+func (m *P16Bc_Check) Reset()                    { *m = P16Bc_Check{} }
+func (m *P16Bc_Check) String() string            { return proto.CompactTextString(m) }
+func (*P16Bc_Check) ProtoMessage()               {}
+func (*P16Bc_Check) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{11} }
+
+func (m *P16Bc_Check) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16Bc_Check) GetCanPeng() *P16BBeanCanPeng {
+	if m != nil {
+		return m.CanPeng
+	}
+	return nil
+}
+
+func (m *P16Bc_Check) GetCanChi() *P16BBeanCanChi {
+	if m != nil {
+		return m.CanChi
+	}
+	return nil
+}
+
+func (m *P16Bc_Check) GetCanGang() *P16BBeanCanGang {
+	if m != nil {
+		return m.CanGang
 	}
 	return nil
 }
@@ -187,7 +352,7 @@ type P16ReqPeng struct {
 func (m *P16ReqPeng) Reset()                    { *m = P16ReqPeng{} }
 func (m *P16ReqPeng) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqPeng) ProtoMessage()               {}
-func (*P16ReqPeng) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{9} }
+func (*P16ReqPeng) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{12} }
 
 func (m *P16ReqPeng) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -204,7 +369,7 @@ type P16AckPeng struct {
 func (m *P16AckPeng) Reset()                    { *m = P16AckPeng{} }
 func (m *P16AckPeng) String() string            { return proto.CompactTextString(m) }
 func (*P16AckPeng) ProtoMessage()               {}
-func (*P16AckPeng) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{10} }
+func (*P16AckPeng) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{13} }
 
 func (m *P16AckPeng) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -222,7 +387,7 @@ type P16ReqGang struct {
 func (m *P16ReqGang) Reset()                    { *m = P16ReqGang{} }
 func (m *P16ReqGang) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqGang) ProtoMessage()               {}
-func (*P16ReqGang) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{11} }
+func (*P16ReqGang) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{14} }
 
 func (m *P16ReqGang) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -239,7 +404,7 @@ type P16AckGang struct {
 func (m *P16AckGang) Reset()                    { *m = P16AckGang{} }
 func (m *P16AckGang) String() string            { return proto.CompactTextString(m) }
 func (*P16AckGang) ProtoMessage()               {}
-func (*P16AckGang) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{12} }
+func (*P16AckGang) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{15} }
 
 func (m *P16AckGang) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -257,7 +422,7 @@ type P16ReqChi struct {
 func (m *P16ReqChi) Reset()                    { *m = P16ReqChi{} }
 func (m *P16ReqChi) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqChi) ProtoMessage()               {}
-func (*P16ReqChi) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{13} }
+func (*P16ReqChi) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{16} }
 
 func (m *P16ReqChi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -274,7 +439,7 @@ type P16AckChi struct {
 func (m *P16AckChi) Reset()                    { *m = P16AckChi{} }
 func (m *P16AckChi) String() string            { return proto.CompactTextString(m) }
 func (*P16AckChi) ProtoMessage()               {}
-func (*P16AckChi) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{14} }
+func (*P16AckChi) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{17} }
 
 func (m *P16AckChi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -292,7 +457,7 @@ type P16ReqHu struct {
 func (m *P16ReqHu) Reset()                    { *m = P16ReqHu{} }
 func (m *P16ReqHu) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqHu) ProtoMessage()               {}
-func (*P16ReqHu) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{15} }
+func (*P16ReqHu) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{18} }
 
 func (m *P16ReqHu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -309,7 +474,7 @@ type P16AckHu struct {
 func (m *P16AckHu) Reset()                    { *m = P16AckHu{} }
 func (m *P16AckHu) String() string            { return proto.CompactTextString(m) }
 func (*P16AckHu) ProtoMessage()               {}
-func (*P16AckHu) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{16} }
+func (*P16AckHu) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{19} }
 
 func (m *P16AckHu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -325,9 +490,12 @@ func init() {
 	proto.RegisterType((*P16AckEnterDesk)(nil), "yjprotogo.p16_ack_enterDesk")
 	proto.RegisterType((*P16ReqReady)(nil), "yjprotogo.p16_req_ready")
 	proto.RegisterType((*P16AckReady)(nil), "yjprotogo.p16_ack_ready")
-	proto.RegisterType((*P16ReqOpening)(nil), "yjprotogo.p16_req_opening")
 	proto.RegisterType((*P16AckOpening)(nil), "yjprotogo.p16_ack_opening")
-	proto.RegisterType((*P16BcOverTurn)(nil), "yjprotogo.p16_bc_overTurn")
+	proto.RegisterType((*P16BBeanCanPeng)(nil), "yjprotogo.p16b_bean_canPeng")
+	proto.RegisterType((*P16BBeanCanChi)(nil), "yjprotogo.p16b_bean_canChi")
+	proto.RegisterType((*P16BBeanCanGang)(nil), "yjprotogo.p16b_bean_canGang")
+	proto.RegisterType((*P16BcMoPai)(nil), "yjprotogo.p16_bc_moPai")
+	proto.RegisterType((*P16Bc_Check)(nil), "yjprotogo.p16_bc_Check")
 	proto.RegisterType((*P16ReqPeng)(nil), "yjprotogo.p16_req_peng")
 	proto.RegisterType((*P16AckPeng)(nil), "yjprotogo.p16_ack_peng")
 	proto.RegisterType((*P16ReqGang)(nil), "yjprotogo.p16_req_gang")
@@ -339,20 +507,38 @@ func init() {
 }
 
 var fileDescriptor2 = []byte{
-	// 240 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x9c, 0xd2, 0x3d, 0x4b, 0xc5, 0x30,
-	0x14, 0xc6, 0x71, 0xbb, 0x08, 0x9e, 0x2a, 0x62, 0x05, 0x15, 0x27, 0x71, 0x10, 0xa7, 0x82, 0xa2,
-	0x15, 0xd1, 0xd1, 0xc1, 0xb1, 0x83, 0x7b, 0x88, 0xe9, 0x21, 0xe9, 0x5b, 0x12, 0x63, 0x7b, 0xa1,
-	0xdf, 0xfe, 0x36, 0xbd, 0xa4, 0x73, 0x4f, 0xa6, 0x16, 0xc2, 0x2f, 0xff, 0x67, 0x08, 0x5c, 0xf7,
-	0x0d, 0x13, 0x8a, 0x6b, 0x29, 0xd4, 0xa8, 0x99, 0xed, 0xf8, 0x94, 0x5b, 0x67, 0x06, 0x93, 0x9d,
-	0x4c, 0xcd, 0xf2, 0x23, 0xcd, 0xed, 0xa5, 0x30, 0x7d, 0x6f, 0x34, 0x13, 0x5d, 0x8d, 0x7a, 0x38,
-	0x9c, 0xdf, 0x7f, 0x42, 0x66, 0x9f, 0x0a, 0xe6, 0xf0, 0x8f, 0x09, 0x87, 0x7c, 0xc0, 0x2f, 0xfc,
-	0x6f, 0xb3, 0x07, 0x38, 0x56, 0xc8, 0x2b, 0x74, 0x37, 0xc9, 0x5d, 0xf2, 0x98, 0x3e, 0x5f, 0xe5,
-	0xeb, 0x35, 0x79, 0xe9, 0xbf, 0xdf, 0xcb, 0x69, 0xd0, 0x5c, 0xb4, 0x31, 0xfa, 0x03, 0x2e, 0x42,
-	0x7b, 0x1e, 0x84, 0x2e, 0x06, 0xfb, 0x34, 0x1d, 0xbf, 0xc1, 0x59, 0x28, 0xcf, 0xb3, 0xab, 0x89,
-	0x0a, 0x7d, 0x95, 0x06, 0xdf, 0xe1, 0x3c, 0x14, 0x8d, 0x45, 0x5d, 0x6b, 0x49, 0xa5, 0xbe, 0x19,
-	0x49, 0x7f, 0x05, 0x33, 0x3b, 0x74, 0x3f, 0xa3, 0xd3, 0x9b, 0x69, 0x01, 0xa7, 0x61, 0xf0, 0x1c,
-	0x95, 0x54, 0xe7, 0xd7, 0xc6, 0x38, 0xdf, 0x93, 0x3c, 0xae, 0x47, 0x72, 0xaf, 0x90, 0xae, 0x0f,
-	0x5f, 0xd5, 0x54, 0xb6, 0xbc, 0x78, 0x02, 0x7b, 0x01, 0x08, 0x35, 0x35, 0x52, 0x95, 0x8f, 0x6d,
-	0x57, 0xe5, 0xd1, 0x3e, 0x00, 0x00, 0xff, 0xff, 0xfb, 0xa3, 0x0b, 0x97, 0x0e, 0x04, 0x00, 0x00,
+	// 518 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x9c, 0x54, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0x25, 0x94, 0x7c, 0x4d, 0x5a, 0x9a, 0x6e, 0x51, 0xb1, 0x80, 0x03, 0xf2, 0x01, 0x21, 0x21,
+	0x22, 0x11, 0x41, 0x11, 0x82, 0x13, 0xa9, 0x0a, 0xaa, 0x82, 0x14, 0x54, 0xe0, 0xc0, 0xc5, 0x9a,
+	0xd8, 0x23, 0x7b, 0xdb, 0x78, 0xd7, 0xac, 0x6d, 0x20, 0x3f, 0x8f, 0xff, 0xc3, 0x8f, 0x60, 0x76,
+	0xed, 0x44, 0x45, 0x15, 0x28, 0xce, 0x29, 0xf1, 0x9b, 0x79, 0xf3, 0x76, 0xde, 0xcc, 0x2e, 0xdc,
+	0x4d, 0x2f, 0x82, 0x30, 0x41, 0x15, 0x87, 0x49, 0xa9, 0x82, 0x6c, 0x81, 0xcb, 0x51, 0x66, 0x74,
+	0xa1, 0x45, 0x7f, 0x79, 0xe1, 0xfe, 0xc4, 0xfa, 0xde, 0x61, 0xa8, 0xd3, 0x54, 0xab, 0x20, 0x5c,
+	0x48, 0x52, 0x45, 0x15, 0xf7, 0x7f, 0xb7, 0x40, 0x64, 0xcf, 0x8e, 0x03, 0x43, 0xdf, 0x82, 0xd0,
+	0x10, 0x16, 0x74, 0x42, 0xf9, 0xa5, 0x78, 0x04, 0x9d, 0x84, 0x30, 0x22, 0xe3, 0xb5, 0x1e, 0xb6,
+	0x1e, 0x0f, 0xc6, 0x47, 0xa3, 0x75, 0x9d, 0xd1, 0xcc, 0xfe, 0xbe, 0x77, 0x51, 0x71, 0x04, 0xb7,
+	0xcb, 0x9c, 0xcc, 0x44, 0x97, 0xaa, 0x98, 0xca, 0x54, 0x16, 0xde, 0x4d, 0xce, 0x6f, 0x0b, 0x01,
+	0x30, 0xd7, 0x68, 0xa2, 0x9c, 0x23, 0x85, 0xb7, 0xe3, 0xb0, 0x03, 0xe8, 0xcf, 0x31, 0xa7, 0x2f,
+	0xb8, 0x28, 0xc9, 0xbb, 0xc5, 0xd0, 0x8e, 0xf0, 0x60, 0x18, 0x49, 0x54, 0x33, 0xd4, 0x6f, 0x51,
+	0x9f, 0xa3, 0x3a, 0x93, 0xe8, 0xb5, 0x39, 0xd2, 0x13, 0x77, 0x60, 0xf7, 0xa7, 0x44, 0x7d, 0x26,
+	0x4f, 0x49, 0x9e, 0xa0, 0xf2, 0x3a, 0x0e, 0xe5, 0xb2, 0x39, 0xaa, 0x53, 0x52, 0xb1, 0xc5, 0xba,
+	0x0e, 0xe3, 0x1a, 0x9c, 0xc9, 0xdf, 0xe7, 0x25, 0xaa, 0xaf, 0xec, 0xc1, 0x54, 0x7a, 0x3d, 0x17,
+	0x61, 0xc1, 0x08, 0xe5, 0xc7, 0x92, 0x3e, 0x90, 0xf2, 0xfa, 0x16, 0xf2, 0xdf, 0x54, 0xdd, 0x62,
+	0x78, 0xb9, 0x45, 0xb7, 0xbe, 0x81, 0x83, 0x95, 0x57, 0xec, 0x20, 0x99, 0x46, 0x56, 0x0d, 0xa1,
+	0x67, 0xb4, 0x4e, 0x3f, 0x2d, 0x33, 0xaa, 0x4d, 0x62, 0x24, 0xc3, 0x3c, 0xff, 0xa1, 0x4d, 0xe4,
+	0x2c, 0xea, 0xdb, 0x13, 0xdb, 0x9c, 0x29, 0x7d, 0xa7, 0x85, 0xb3, 0xa8, 0xed, 0xbf, 0xae, 0x34,
+	0xed, 0x89, 0x1b, 0x6b, 0xfa, 0x2f, 0x61, 0x6f, 0x75, 0x60, 0xee, 0x36, 0x5a, 0x36, 0x25, 0x5a,
+	0xd5, 0x66, 0xc4, 0x57, 0xb0, 0xbf, 0x22, 0xea, 0x8c, 0x94, 0x54, 0xf1, 0xc6, 0xd4, 0x43, 0xd7,
+	0xe9, 0x3c, 0x98, 0x13, 0xf2, 0x92, 0xf2, 0x56, 0xf0, 0x98, 0x7d, 0x01, 0xc3, 0xbf, 0xc0, 0x49,
+	0x22, 0xaf, 0x25, 0xbe, 0xe3, 0xbd, 0xf7, 0x09, 0x76, 0xad, 0xf0, 0x3c, 0x0c, 0x52, 0x3d, 0x43,
+	0xb9, 0xf1, 0x58, 0xf6, 0xa1, 0x8b, 0x61, 0x71, 0x65, 0x2a, 0x15, 0xf0, 0x99, 0xb7, 0xda, 0x0d,
+	0x65, 0x4f, 0x0c, 0x60, 0x27, 0x43, 0x59, 0x8f, 0xe3, 0x57, 0x6b, 0xad, 0x33, 0x49, 0x28, 0xdc,
+	0x7c, 0xfc, 0x4f, 0xa1, 0x5b, 0xf7, 0xe4, 0x2a, 0x0d, 0xc6, 0x0f, 0xae, 0x24, 0x5e, 0xeb, 0x5b,
+	0x3c, 0x81, 0x4e, 0xd5, 0xad, 0xbb, 0x0f, 0x83, 0xf1, 0xfd, 0x7f, 0x65, 0x73, 0x4a, 0x5d, 0xdb,
+	0xda, 0xe0, 0xee, 0xc9, 0x7f, 0x6a, 0x3b, 0xab, 0x8e, 0xab, 0x16, 0xec, 0x56, 0x64, 0xd4, 0x60,
+	0x40, 0x35, 0xcf, 0xce, 0x76, 0x1b, 0x9e, 0xd5, 0x8b, 0x71, 0x3b, 0xbd, 0x46, 0xbc, 0x17, 0x30,
+	0x58, 0x3f, 0x69, 0x89, 0x6c, 0x4a, 0x73, 0x6f, 0x43, 0x03, 0xda, 0x73, 0x80, 0x95, 0x5a, 0x52,
+	0x36, 0x65, 0x59, 0xb1, 0xcd, 0x59, 0xb3, 0x1b, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff, 0xc0, 0x12,
+	0xbb, 0x69, 0xe9, 0x05, 0x00, 0x00,
 }

@@ -20,9 +20,12 @@ It has these top-level messages:
 	P16AckEnterDesk
 	P16ReqReady
 	P16AckReady
-	P16ReqOpening
 	P16AckOpening
-	P16BcOverTurn
+	P16BBeanCanPeng
+	P16BBeanCanChi
+	P16BBeanCanGang
+	P16BcMoPai
+	P16Bc_Check
 	P16ReqPeng
 	P16AckPeng
 	P16ReqGang
