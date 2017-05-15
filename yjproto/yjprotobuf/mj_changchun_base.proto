@@ -1,3 +1,11 @@
 syntax = "proto2";
 package yjprotogo;
 
+enum ddz_enum_protoId {
+    P16ID_HEARTBEAT = 0; //心跳
+    P16ID_REQCREATEDESK = 1; //创建房间请求
+    P16ID_ACKCREATEDESK = 2; //创建房间回复
+    P16ID_REQREADY = 3; //准备 请求
+    P16ID_ACKREADY = 4; //准备 回复
+}
+
