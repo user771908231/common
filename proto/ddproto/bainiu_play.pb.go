@@ -20,6 +20,7 @@ It is generated from these files:
 	common_server_model.proto
 	common_server_msg.proto
 	common_server_poker.proto
+	common_server_redis.proto
 	common_server_task.proto
 	ddz_base.proto
 	ddz_desk.proto
@@ -150,6 +151,7 @@ It has these top-level messages:
 	Push
 	CommonSrvMsgGameCount
 	CommonSrvPokerPai
+	RedisGameServerStatus
 	TTask
 	DdzBaseRoomTypeInfo
 	DdzBasePlayerInfo
