@@ -23,6 +23,7 @@ func (t T_niuniu_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
 		DeskId:    proto.Int32(t.DeskId),
 		Id:        proto.Int32(t.GameNumber),
+		RoundStr:  proto.String(numUtils.Int2String2(t.TotalRound)),
 	}
 
 	for _, bean := range t.Records {
@@ -36,7 +37,6 @@ type NiuRecordBean struct {
 	UserId    uint32
 	NickName  string
 	WinAmount int64
-	RoundStr  int32
 }
 
 func (b NiuRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
