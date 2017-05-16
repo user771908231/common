@@ -46,7 +46,7 @@ func (x *Award) UnmarshalJSON(data []byte) error {
 	*x = Award(value)
 	return nil
 }
-func (Award) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (Award) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
 
 // 用户奖励，保存到数据库的结构
 type Taward struct {
@@ -61,7 +61,7 @@ type Taward struct {
 func (m *Taward) Reset()                    { *m = Taward{} }
 func (m *Taward) String() string            { return proto.CompactTextString(m) }
 func (*Taward) ProtoMessage()               {}
-func (*Taward) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (*Taward) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
 
 func (m *Taward) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -112,7 +112,7 @@ type AwardMOnline struct {
 func (m *AwardMOnline) Reset()                    { *m = AwardMOnline{} }
 func (m *AwardMOnline) String() string            { return proto.CompactTextString(m) }
 func (*AwardMOnline) ProtoMessage()               {}
-func (*AwardMOnline) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (*AwardMOnline) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{1} }
 
 func (m *AwardMOnline) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -162,7 +162,7 @@ func init() {
 	proto.RegisterEnum("ddproto.Award", Award_name, Award_value)
 }
 
-var fileDescriptor8 = []byte{
+var fileDescriptor9 = []byte{
 	// 225 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x4c, 0x8f, 0x3f, 0x4f, 0xc3, 0x30,
 	0x10, 0xc5, 0xe5, 0xb8, 0x4e, 0xc9, 0x41, 0x4a, 0x6a, 0x16, 0xb3, 0xa1, 0x4e, 0xa8, 0x03, 0x03,

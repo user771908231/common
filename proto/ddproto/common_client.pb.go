@@ -2,482 +2,6 @@
 // source: common_client.proto
 // DO NOT EDIT!
 
-/*
-Package ddproto is a generated protocol buffer package.
-
-It is generated from these files:
-	common_client.proto
-	common_client_award.proto
-	common_client_pay.proto
-	common_enum.proto
-	common_mj.proto
-	common_mj_play.proto
-	common_pdk.proto
-	common_server.proto
-	common_server_award.proto
-	common_server_config.proto
-	common_server_model.proto
-	common_server_msg.proto
-	common_server_poker.proto
-	common_server_task.proto
-	ddz_base.proto
-	ddz_desk.proto
-	ddz_hall.proto
-	ddz_play.proto
-	ddz_server.proto
-	erddz_base.proto
-	erddz_desk.proto
-	erddz_hall.proto
-	erddz_play.proto
-	hall.proto
-	hall_data.proto
-	hall_playback.proto
-	hall_playback_pdk.proto
-	hot_update.proto
-	mj_baishan_base.proto
-	niuniu_base.proto
-	niuniu_play.proto
-	niuniu_server.proto
-	pdk_base.proto
-	pdk_desk.proto
-	pdk_hall.proto
-	pdk_play.proto
-	pdk_server.proto
-	pez_base.proto
-	pez_desk.proto
-	pez_hall.proto
-	pez_play.proto
-	rpc_hall.proto
-	zjh_base.proto
-	zjh_desk.proto
-	zjh_hall.proto
-	zjh_play.proto
-	zjh_serever.proto
-
-It has these top-level messages:
-	ProtoHeader
-	Heartbeat
-	ServerInfo
-	QuickConn
-	AckQuickConn
-	WeixinInfo
-	CommonReqReg
-	CommonReqRegViaInput
-	CommonAckReg
-	CommonReqGameLogin
-	CommonReqGameLoginViaInput
-	CommonAckGameLogin
-	CommonReqQrLogin
-	CommonAckQrLogin
-	CommonReqQrWxInfo
-	CommonAckQrWxInfo
-	CommonAckReconnect
-	CommonReqReconnect
-	CommonReqGameState
-	CommonAckGameState
-	CommonReqLogout
-	CommonAckLogout
-	CommonReqFeedback
-	ClientBasePoker
-	CommonReqMessage
-	CommonBcMessage
-	CommonReqNotice
-	CommonAckNotice
-	CommonReqEnterAgentMode
-	CommonAckEnterAgentMode
-	CommonReqQuitAgentMode
-	CommonAckQuitAgentMode
-	CommonReqLeaveDesk
-	CommonAckLeaveDesk
-	CommonBcKickout
-	CommonReqAllowance
-	CommonAckAllowance
-	CommonReqApplyDissolve
-	CommonBcApplyDissolve
-	CommonReqApplyDissolveBack
-	CommonAckApplyDissolveBack
-	CommonAckTimeout
-	CommonBcUserBreak
-	CommonReqClickStatistic
-	CommonReqOffline
-	AwardReqOnline
-	WardAckOnline
-	AwardReqOnlineInfo
-	AwardAckOnlineInfo
-	AwardReqGetNewUser
-	AwardAckGetNewUser
-	PayBaseProduct
-	PayBasePaymodel
-	PayBaseDetails
-	WxpayReqUnifiedorder
-	WxpayAckUnifiedorder
-	WxpayReqSyncChecker
-	WxpayAckSyncChecker
-	ApplepayReqRechargecb
-	ApplepayAcksRechargecb
-	CardInfo
-	RoomTypeInfo
-	ComposeCard
-	PlayerCard
-	GameReqBuxiazi
-	GameAckBuxiazi
-	PdkBaseRoomTypeInfo
-	PdkBaseTimerInfo
-	GameSession
-	CommonSrvGameUser
-	CommonSrvGameDesk
-	Taward
-	AwardMOnline
-	TConfigSys
-	TConfigDrawLottery
-	User
-	TNotice
-	TGameCounts
-	TUserTask
-	Push
-	CommonSrvMsgGameCount
-	CommonSrvPokerPai
-	TTask
-	DdzBaseRoomTypeInfo
-	DdzBasePlayerInfo
-	DdzBasePlayerRateInfo
-	DdzBaseCommonRateInfo
-	DdzBaseTimerInfo
-	DdzBaseDeskInfo
-	DdzReqDissolveDesk
-	DdzAckDissolveDesk
-	DdzReqReady
-	DdzAckReady
-	DdzBaseWinCoinInfo
-	DdzBaCurrentResult
-	DdzBaseEndLotteryInfo
-	DdzBcEndLottery
-	DdzReqCreateDesk
-	DdzAckCreateDesk
-	DdzReqGameRecord
-	DdzBaseUserRecord
-	DdzBaseGameRecord
-	DdzAckGameRecord
-	DdzReqEnterDesk
-	DdzAckEnterDesk
-	DdzBcOpening
-	DdzBcDealCards
-	DdzReqShowHandPokers
-	DdzAckShowHandPokers
-	DdzReqJiaoDiZhu
-	DdzAckJiaoDiZhu
-	DdzReqRobDiZhu
-	DdzAckRobDiZhu
-	DdzReqDouble
-	DdzAckDouble
-	DdzBcStartPlay
-	DdzReqMenuZhua
-	DdzAckMenuZhua
-	DdzReqSeeCards
-	DdzAckSeeCards
-	DdzReqPull
-	DdzAckPull
-	DdzReqOutCards
-	DdzAckOutCards
-	DdzReqActGuo
-	DdzAckGuoAck
-	DdzBcOverTurn
-	DdzBcGameInfo
-	DdzSrvOutPokerPais
-	DdzSrvDeskTongJi
-	DdzSrvDesk
-	DdzSrvGameData
-	DdzSrvBillBean
-	DdzSrvBill
-	DdzSrvUserStatisticsRound
-	DdzSrvUserStatistics
-	DdzSrvUser
-	DdzSrvRoom
-	DdzSrvBak
-	ErddzBaseRoomTypeInfo
-	ErddzBasePlayerInfo
-	ErddzBasePlayerRateInfo
-	ErddzBaseCommonRateInfo
-	ErddzBaseTimerInfo
-	ErddzBaseDeskInfo
-	ErddzReqDissolveDesk
-	ErddzAckDissolveDesk
-	ErddzReqReady
-	ErddzAckReady
-	ErddzBaseWinCoinInfo
-	ErddzBcCurrentResult
-	ErddzBaseEndLotteryInfo
-	ErddzBcEndLottery
-	ErddzReqCreateDesk
-	ErddzAckCreateDesk
-	ErddzReqEnterDesk
-	ErddzAckEnterDesk
-	ErddzBcOpening
-	ErddzBcDealCards
-	ErddzReqJiaoDiZhu
-	ErddzAckJiaoDiZhu
-	ErddzReqRobDiZhu
-	ErddzAckRobDiZhu
-	ErddzReqRangcards
-	ErddzAckRangcards
-	ErddzReqDouble
-	ErddzAckDouble
-	ErddzBcStartPlay
-	ErddzReqOutCards
-	ErddzAckOutCards
-	ErddzReqActGuo
-	ErddzAckActGuo
-	ErddzBcOverTurn
-	ErddzBcGameInfo
-	HallReqEvent
-	HallAckEvent
-	HallLotteryItem
-	HallSignLotteryInfo
-	HallDrawLotteryInfo
-	HallReqMailList
-	HallAckMailList
-	HallReqTask
-	HallAckTask
-	HallReqCheckTask
-	HallAckCheckTask
-	HallReqTaskSum
-	HallAckTaskSum
-	HallReqCheckBonus
-	HallAckCheckBonus
-	HallReqBagItems
-	HallAckBagItems
-	HallReqUserData
-	HallAckUserData
-	HallReqUpdateRealData
-	HallAckUpdateRealData
-	HallReqGoodsList
-	HallAckGoodsList
-	HallReqGoodsBuy
-	HallAckGoodsBuy
-	HallGoodsItemMsg
-	HallReqRank
-	HallAckRank
-	HallReqDrawLottery
-	HallAckDrawLottery
-	HallReqDsLotteryInfo
-	HallAckDsLotteryInfo
-	HallReqFriendsList
-	HallAckFriendsList
-	HallReqRecommendUserList
-	HallAckRecommendUserList
-	HallReqFriendsSearch
-	HallAckFriendsSearch
-	HallReqAddFriend
-	HallAckAddFriend
-	HallReqDelFriend
-	HallAckDelFriend
-	HallFriendState
-	HallUserInfo
-	HallAckStrongboxInfo
-	HallReqStrongboxInfo
-	HallReqStrongboxAccess
-	HallAckStrongboxAccess
-	Game_GameRecord
-	BeanUserRecord
-	BeanGameRecord
-	Game_AckGameRecord
-	HallItemEvent
-	HallMailItem
-	HallBagItem
-	HallItemTask
-	HallUserData
-	HallRankItem
-	CoinZone
-	DiamondZone
-	ExchangeZone
-	BuyZone
-	GoodsItem
-	HallStrongboxInfo
-	PlaybackReqPage
-	PlaybackAckPage
-	PlayerInfo
-	PlaybackSnapshot
-	PlaybackDeskInfo
-	PlaybackItem
-	PlaybackReqPageByGameid
-	PlaybackPdkAckPage
-	PdkPlayerInfo
-	PdkPlaybackSnapshot
-	PdkPlaybackDeskInfo
-	VersionInfo
-	AssetInfo
-	HotupdateReqVersionInfo
-	HotupdateAckVersionInfo
-	HotupdateReqAssetsInfo
-	HotupdateAckAssetsInfo
-	HotupdateReqGameAssetsInfo
-	HotupdateAckGameAssetsInfo
-	NiuniuClientPoker
-	NiuniuUserBill
-	NiuniuDeskOption
-	NiuniuClientDesk
-	NiuniuClientUser
-	NiuCreateDeskReq
-	NiuEnterDeskReq
-	NiuEnterDeskAck
-	NiuEnterDeskBc
-	NiuSwitchReadyReq
-	NiuSwitchReadyAck
-	NiuSwitchReadyBc
-	NiuStartGameOt
-	NiuQiangzhuangOt
-	NiuQiangzhuangReq
-	NiuQiangzhuangAck
-	NiuQiangzhuangResItem
-	NiuQiangzhuangResBc
-	NiuJiabeiOt
-	NiuJiabeiReq
-	NiuJiabeiAck
-	NiuJiabeiBc
-	NiuBipaiResultItem
-	NiuBipaiResultBc
-	NiuGameEnd
-	NiuDeskDissolveDoneBc
-	NiuOwnerDissolveReq
-	NiuOwnerDissolveAck
-	NiuOfflineBc
-	NiuniuSrvPoker
-	NiuniuSrvDesk
-	NiuniuSrvUser
-	NiuniuSrvRoom
-	PdkBasePlayerInfo
-	PdkBasePlayerRateInfo
-	PdkBaseCommonRateInfo
-	PdkBaseDeskInfo
-	PdkReqDissolveDesk
-	PdkAckDissolveDesk
-	PdkReqReady
-	PdkAckReady
-	PdkBaseWinCoinInfo
-	PdkBaCurrentResult
-	PdkBaseEndLotteryInfo
-	PdkBcEndLottery
-	PdkReqCreateDesk
-	PdkAckCreateDesk
-	PdkReqGameRecord
-	PdkBaseUserRecord
-	PdkBaseGameRecord
-	PdkAckGameRecord
-	PdkReqEnterDesk
-	PdkAckEnterDesk
-	PdkBcOpening
-	PdkBcDealCards
-	PdkReqShowHandPokers
-	PdkAckShowHandPokers
-	PdkReqJiaoDiZhu
-	PdkAckJiaoDiZhu
-	PdkReqRobDiZhu
-	PdkAckRobDiZhu
-	PdkReqDouble
-	PdkAckDouble
-	PdkBcStartPlay
-	PdkReqMenuZhua
-	PdkAckMenuZhua
-	PdkReqSeeCards
-	PdkAckSeeCards
-	PdkReqPull
-	PdkAckPull
-	PdkReqOutCards
-	PdkAckOutCards
-	PdkReqActGuo
-	PdkAckGuoAck
-	PdkBcOverTurn
-	PdkBcGameInfo
-	PdkSrvOutPokerPais
-	PdkSrvDeskTongJi
-	PdkSrvDesk
-	PdkSrvGameData
-	PdkSrvBillBean
-	PdkSrvBill
-	PdkSrvUserStatisticsRound
-	PdkSrvUserStatistics
-	PdkSrvUser
-	PdkSrvRoom
-	PdkSrvBak
-	PezBase_PaiInfo
-	PezBase_PlayConf
-	PezBase_RoomTypeInfo
-	PezBaseTimerInfo
-	PezBase_PaiValue
-	PezBase_PlayerCard
-	PezLastScore
-	PezBase_PlayerInfo
-	PezBase_DeskGameInfo
-	PezTuozi
-	Pez_DissolveDesk
-	Pez_AckDissolveDesk
-	Pez_Ready
-	Pez_AckReady
-	Pez_EndLotteryInfo
-	Pez_SendCurrentResult
-	EndLottery
-	Pez_SendEndLottery
-	Pez_UserBean
-	Pez_Bill
-	PezReq_CreateRoom
-	PezReq_AckCreateRoom
-	PezReq_EnterRoom
-	PezReq_AckEnterRoom
-	Pez_Notice
-	Pez_AckNotice
-	Pez_GameRecord
-	PezBeanUserRecord
-	PezBeanGameRecord
-	Pez_AckGameRecord
-	Pez_Feedback
-	PezUserCoinBean
-	Pez_Opening
-	Pez_DealCards
-	Pez_Bet
-	Pez_AckBet
-	Pez_BCOpenPai
-	Pez_SendGameInfo
-	RpcHallUpdateConfig
-	ZjhReqGetRoomList
-	ZjhBaseRoomInfo
-	ZjhAckRoomList
-	ZjhReqEnterDesk
-	ZjhBaseUserInfo
-	ZjhDeskStateAck
-	ZjhBcGameInfo
-	ZjhBaseDeskInfo
-	ZjhBcNewPlayerEnter
-	ZjhReqLeave
-	ZjhBcLeave
-	ZjhBasePlayerInfo
-	ZjhBcOpening
-	ZjhReqReady
-	ZjhBcReady
-	ZjhBcOverTurn
-	ZjhReqCheckCards
-	ZjhBcCheckCards
-	ZjhReqFold
-	ZjhBcFold
-	ZjhReqCall
-	ZjhBcCall
-	ZjhReqBloodFight
-	ZjhBcBloodFight
-	ZjhBcBloodEnd
-	ZjhReqRaiseFight
-	ZjhBcRaiseAck
-	ZjhReqCompare
-	ZjhBcCompare
-	ZjhBcGameEnd
-	ZjhBcDeskState
-	ZjhReqDaShang
-	ZjhBcDaShang
-	ZjhSrvPoker
-	ZjhSrvBill
-	ZjhSrv_GameData
-	ZjhSrvUser
-	ZjhSrvDesk
-	ZjhSrvRoom
-*/
 package ddproto
 
 import proto "github.com/golang/protobuf/proto"
@@ -488,12 +12,6 @@ import math "math"
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 // Ignoring public import of common_enum_game from common_enum.proto
 
@@ -544,7 +62,7 @@ func (x *CommonEnumReg) UnmarshalJSON(data []byte) error {
 	*x = CommonEnumReg(value)
 	return nil
 }
-func (CommonEnumReg) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (CommonEnumReg) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 // 客户端系统类型
 type CommonEnumOsType int32
@@ -582,7 +100,7 @@ func (x *CommonEnumOsType) UnmarshalJSON(data []byte) error {
 	*x = CommonEnumOsType(value)
 	return nil
 }
-func (CommonEnumOsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (CommonEnumOsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 // -------------------------------------------扑克牌相关的------------------------------------
 // 房间类型枚举
@@ -631,7 +149,7 @@ func (x *CommonEnumPokerColor) UnmarshalJSON(data []byte) error {
 	*x = CommonEnumPokerColor(value)
 	return nil
 }
-func (CommonEnumPokerColor) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (CommonEnumPokerColor) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
 // ProtoHeader 需要在每个 Message 中作为第一个字段
 type ProtoHeader struct {
@@ -645,7 +163,7 @@ type ProtoHeader struct {
 func (m *ProtoHeader) Reset()                    { *m = ProtoHeader{} }
 func (m *ProtoHeader) String() string            { return proto.CompactTextString(m) }
 func (*ProtoHeader) ProtoMessage()               {}
-func (*ProtoHeader) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*ProtoHeader) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 func (m *ProtoHeader) GetVersion() string {
 	if m != nil && m.Version != nil {
@@ -684,7 +202,7 @@ type Heartbeat struct {
 func (m *Heartbeat) Reset()                    { *m = Heartbeat{} }
 func (m *Heartbeat) String() string            { return proto.CompactTextString(m) }
 func (*Heartbeat) ProtoMessage()               {}
-func (*Heartbeat) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*Heartbeat) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 func (m *Heartbeat) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -712,7 +230,7 @@ type ServerInfo struct {
 func (m *ServerInfo) Reset()                    { *m = ServerInfo{} }
 func (m *ServerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ServerInfo) ProtoMessage()               {}
-func (*ServerInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*ServerInfo) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
 func (m *ServerInfo) GetIp() string {
 	if m != nil && m.Ip != nil {
@@ -805,7 +323,7 @@ type QuickConn struct {
 func (m *QuickConn) Reset()                    { *m = QuickConn{} }
 func (m *QuickConn) String() string            { return proto.CompactTextString(m) }
 func (*QuickConn) ProtoMessage()               {}
-func (*QuickConn) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*QuickConn) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{3} }
 
 func (m *QuickConn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -859,7 +377,7 @@ type AckQuickConn struct {
 func (m *AckQuickConn) Reset()                    { *m = AckQuickConn{} }
 func (m *AckQuickConn) String() string            { return proto.CompactTextString(m) }
 func (*AckQuickConn) ProtoMessage()               {}
-func (*AckQuickConn) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*AckQuickConn) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{4} }
 
 func (m *AckQuickConn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -896,7 +414,7 @@ type WeixinInfo struct {
 func (m *WeixinInfo) Reset()                    { *m = WeixinInfo{} }
 func (m *WeixinInfo) String() string            { return proto.CompactTextString(m) }
 func (*WeixinInfo) ProtoMessage()               {}
-func (*WeixinInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (*WeixinInfo) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{5} }
 
 func (m *WeixinInfo) GetOpenId() string {
 	if m != nil && m.OpenId != nil {
@@ -953,7 +471,7 @@ type CommonReqReg struct {
 func (m *CommonReqReg) Reset()                    { *m = CommonReqReg{} }
 func (m *CommonReqReg) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqReg) ProtoMessage()               {}
-func (*CommonReqReg) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (*CommonReqReg) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{6} }
 
 func (m *CommonReqReg) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1003,7 +521,7 @@ type CommonReqRegViaInput struct {
 func (m *CommonReqRegViaInput) Reset()                    { *m = CommonReqRegViaInput{} }
 func (m *CommonReqRegViaInput) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqRegViaInput) ProtoMessage()               {}
-func (*CommonReqRegViaInput) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+func (*CommonReqRegViaInput) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{7} }
 
 func (m *CommonReqRegViaInput) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1050,7 +568,7 @@ type CommonAckReg struct {
 func (m *CommonAckReg) Reset()                    { *m = CommonAckReg{} }
 func (m *CommonAckReg) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckReg) ProtoMessage()               {}
-func (*CommonAckReg) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (*CommonAckReg) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{8} }
 
 func (m *CommonAckReg) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1079,7 +597,7 @@ type CommonReqGameLogin struct {
 func (m *CommonReqGameLogin) Reset()                    { *m = CommonReqGameLogin{} }
 func (m *CommonReqGameLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameLogin) ProtoMessage()               {}
-func (*CommonReqGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (*CommonReqGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{9} }
 
 func (m *CommonReqGameLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1130,7 +648,7 @@ type CommonReqGameLoginViaInput struct {
 func (m *CommonReqGameLoginViaInput) Reset()                    { *m = CommonReqGameLoginViaInput{} }
 func (m *CommonReqGameLoginViaInput) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameLoginViaInput) ProtoMessage()               {}
-func (*CommonReqGameLoginViaInput) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (*CommonReqGameLoginViaInput) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{10} }
 
 func (m *CommonReqGameLoginViaInput) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1189,7 +707,7 @@ type CommonAckGameLogin struct {
 func (m *CommonAckGameLogin) Reset()                    { *m = CommonAckGameLogin{} }
 func (m *CommonAckGameLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckGameLogin) ProtoMessage()               {}
-func (*CommonAckGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+func (*CommonAckGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{11} }
 
 func (m *CommonAckGameLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1249,7 +767,7 @@ type CommonReqQrLogin struct {
 func (m *CommonReqQrLogin) Reset()                    { *m = CommonReqQrLogin{} }
 func (m *CommonReqQrLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqQrLogin) ProtoMessage()               {}
-func (*CommonReqQrLogin) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+func (*CommonReqQrLogin) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{12} }
 
 func (m *CommonReqQrLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1268,7 +786,7 @@ type CommonAckQrLogin struct {
 func (m *CommonAckQrLogin) Reset()                    { *m = CommonAckQrLogin{} }
 func (m *CommonAckQrLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckQrLogin) ProtoMessage()               {}
-func (*CommonAckQrLogin) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
+func (*CommonAckQrLogin) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{13} }
 
 func (m *CommonAckQrLogin) GetCode() string {
 	if m != nil && m.Code != nil {
@@ -1293,7 +811,7 @@ type CommonReqQrWxInfo struct {
 func (m *CommonReqQrWxInfo) Reset()                    { *m = CommonReqQrWxInfo{} }
 func (m *CommonReqQrWxInfo) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqQrWxInfo) ProtoMessage()               {}
-func (*CommonReqQrWxInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{14} }
+func (*CommonReqQrWxInfo) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{14} }
 
 func (m *CommonReqQrWxInfo) GetCode() string {
 	if m != nil && m.Code != nil {
@@ -1312,7 +830,7 @@ type CommonAckQrWxInfo struct {
 func (m *CommonAckQrWxInfo) Reset()                    { *m = CommonAckQrWxInfo{} }
 func (m *CommonAckQrWxInfo) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckQrWxInfo) ProtoMessage()               {}
-func (*CommonAckQrWxInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{15} }
+func (*CommonAckQrWxInfo) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{15} }
 
 func (m *CommonAckQrWxInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1338,7 +856,7 @@ type CommonAckReconnect struct {
 func (m *CommonAckReconnect) Reset()                    { *m = CommonAckReconnect{} }
 func (m *CommonAckReconnect) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckReconnect) ProtoMessage()               {}
-func (*CommonAckReconnect) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{16} }
+func (*CommonAckReconnect) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{16} }
 
 func (m *CommonAckReconnect) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1364,7 +882,7 @@ type CommonReqReconnect struct {
 func (m *CommonReqReconnect) Reset()                    { *m = CommonReqReconnect{} }
 func (m *CommonReqReconnect) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqReconnect) ProtoMessage()               {}
-func (*CommonReqReconnect) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{17} }
+func (*CommonReqReconnect) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{17} }
 
 func (m *CommonReqReconnect) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1390,7 +908,7 @@ type CommonReqGameState struct {
 func (m *CommonReqGameState) Reset()                    { *m = CommonReqGameState{} }
 func (m *CommonReqGameState) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameState) ProtoMessage()               {}
-func (*CommonReqGameState) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{18} }
+func (*CommonReqGameState) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{18} }
 
 func (m *CommonReqGameState) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1419,7 +937,7 @@ type CommonAckGameState struct {
 func (m *CommonAckGameState) Reset()                    { *m = CommonAckGameState{} }
 func (m *CommonAckGameState) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckGameState) ProtoMessage()               {}
-func (*CommonAckGameState) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{19} }
+func (*CommonAckGameState) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{19} }
 
 func (m *CommonAckGameState) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -1466,7 +984,7 @@ type CommonReqLogout struct {
 func (m *CommonReqLogout) Reset()                    { *m = CommonReqLogout{} }
 func (m *CommonReqLogout) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqLogout) ProtoMessage()               {}
-func (*CommonReqLogout) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{20} }
+func (*CommonReqLogout) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{20} }
 
 func (m *CommonReqLogout) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1492,7 +1010,7 @@ type CommonAckLogout struct {
 func (m *CommonAckLogout) Reset()                    { *m = CommonAckLogout{} }
 func (m *CommonAckLogout) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckLogout) ProtoMessage()               {}
-func (*CommonAckLogout) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{21} }
+func (*CommonAckLogout) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{21} }
 
 func (m *CommonAckLogout) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1518,7 +1036,7 @@ type CommonReqFeedback struct {
 func (m *CommonReqFeedback) Reset()                    { *m = CommonReqFeedback{} }
 func (m *CommonReqFeedback) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqFeedback) ProtoMessage()               {}
-func (*CommonReqFeedback) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{22} }
+func (*CommonReqFeedback) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{22} }
 
 func (m *CommonReqFeedback) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1544,7 +1062,7 @@ type ClientBasePoker struct {
 func (m *ClientBasePoker) Reset()                    { *m = ClientBasePoker{} }
 func (m *ClientBasePoker) String() string            { return proto.CompactTextString(m) }
 func (*ClientBasePoker) ProtoMessage()               {}
-func (*ClientBasePoker) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{23} }
+func (*ClientBasePoker) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{23} }
 
 func (m *ClientBasePoker) GetSuit() CommonEnumPokerColor {
 	if m != nil && m.Suit != nil {
@@ -1583,7 +1101,7 @@ type CommonReqMessage struct {
 func (m *CommonReqMessage) Reset()                    { *m = CommonReqMessage{} }
 func (m *CommonReqMessage) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqMessage) ProtoMessage()               {}
-func (*CommonReqMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{24} }
+func (*CommonReqMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{24} }
 
 func (m *CommonReqMessage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1648,7 +1166,7 @@ type CommonBcMessage struct {
 func (m *CommonBcMessage) Reset()                    { *m = CommonBcMessage{} }
 func (m *CommonBcMessage) String() string            { return proto.CompactTextString(m) }
 func (*CommonBcMessage) ProtoMessage()               {}
-func (*CommonBcMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{25} }
+func (*CommonBcMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{25} }
 
 func (m *CommonBcMessage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1704,7 +1222,7 @@ type CommonReqNotice struct {
 func (m *CommonReqNotice) Reset()                    { *m = CommonReqNotice{} }
 func (m *CommonReqNotice) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqNotice) ProtoMessage()               {}
-func (*CommonReqNotice) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{26} }
+func (*CommonReqNotice) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{26} }
 
 func (m *CommonReqNotice) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1742,7 +1260,7 @@ type CommonAckNotice struct {
 func (m *CommonAckNotice) Reset()                    { *m = CommonAckNotice{} }
 func (m *CommonAckNotice) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckNotice) ProtoMessage()               {}
-func (*CommonAckNotice) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{27} }
+func (*CommonAckNotice) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{27} }
 
 func (m *CommonAckNotice) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1804,7 +1322,7 @@ type CommonReqEnterAgentMode struct {
 func (m *CommonReqEnterAgentMode) Reset()                    { *m = CommonReqEnterAgentMode{} }
 func (m *CommonReqEnterAgentMode) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqEnterAgentMode) ProtoMessage()               {}
-func (*CommonReqEnterAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{28} }
+func (*CommonReqEnterAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{28} }
 
 func (m *CommonReqEnterAgentMode) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1830,7 +1348,7 @@ type CommonAckEnterAgentMode struct {
 func (m *CommonAckEnterAgentMode) Reset()                    { *m = CommonAckEnterAgentMode{} }
 func (m *CommonAckEnterAgentMode) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckEnterAgentMode) ProtoMessage()               {}
-func (*CommonAckEnterAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{29} }
+func (*CommonAckEnterAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{29} }
 
 func (m *CommonAckEnterAgentMode) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1856,7 +1374,7 @@ type CommonReqQuitAgentMode struct {
 func (m *CommonReqQuitAgentMode) Reset()                    { *m = CommonReqQuitAgentMode{} }
 func (m *CommonReqQuitAgentMode) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqQuitAgentMode) ProtoMessage()               {}
-func (*CommonReqQuitAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{30} }
+func (*CommonReqQuitAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{30} }
 
 func (m *CommonReqQuitAgentMode) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1882,7 +1400,7 @@ type CommonAckQuitAgentMode struct {
 func (m *CommonAckQuitAgentMode) Reset()                    { *m = CommonAckQuitAgentMode{} }
 func (m *CommonAckQuitAgentMode) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckQuitAgentMode) ProtoMessage()               {}
-func (*CommonAckQuitAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{31} }
+func (*CommonAckQuitAgentMode) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{31} }
 
 func (m *CommonAckQuitAgentMode) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1909,7 +1427,7 @@ type CommonReqLeaveDesk struct {
 func (m *CommonReqLeaveDesk) Reset()                    { *m = CommonReqLeaveDesk{} }
 func (m *CommonReqLeaveDesk) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqLeaveDesk) ProtoMessage()               {}
-func (*CommonReqLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{32} }
+func (*CommonReqLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{32} }
 
 func (m *CommonReqLeaveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1936,7 +1454,7 @@ type CommonAckLeaveDesk struct {
 func (m *CommonAckLeaveDesk) Reset()                    { *m = CommonAckLeaveDesk{} }
 func (m *CommonAckLeaveDesk) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckLeaveDesk) ProtoMessage()               {}
-func (*CommonAckLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{33} }
+func (*CommonAckLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{33} }
 
 func (m *CommonAckLeaveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1972,7 +1490,7 @@ type CommonBcKickout struct {
 func (m *CommonBcKickout) Reset()                    { *m = CommonBcKickout{} }
 func (m *CommonBcKickout) String() string            { return proto.CompactTextString(m) }
 func (*CommonBcKickout) ProtoMessage()               {}
-func (*CommonBcKickout) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{34} }
+func (*CommonBcKickout) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{34} }
 
 func (m *CommonBcKickout) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2013,7 +1531,7 @@ type CommonReqAllowance struct {
 func (m *CommonReqAllowance) Reset()                    { *m = CommonReqAllowance{} }
 func (m *CommonReqAllowance) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqAllowance) ProtoMessage()               {}
-func (*CommonReqAllowance) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{35} }
+func (*CommonReqAllowance) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{35} }
 
 func (m *CommonReqAllowance) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2043,7 +1561,7 @@ type CommonAckAllowance struct {
 func (m *CommonAckAllowance) Reset()                    { *m = CommonAckAllowance{} }
 func (m *CommonAckAllowance) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckAllowance) ProtoMessage()               {}
-func (*CommonAckAllowance) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{36} }
+func (*CommonAckAllowance) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{36} }
 
 func (m *CommonAckAllowance) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2098,7 +1616,7 @@ type CommonReqApplyDissolve struct {
 func (m *CommonReqApplyDissolve) Reset()                    { *m = CommonReqApplyDissolve{} }
 func (m *CommonReqApplyDissolve) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqApplyDissolve) ProtoMessage()               {}
-func (*CommonReqApplyDissolve) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{37} }
+func (*CommonReqApplyDissolve) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{37} }
 
 func (m *CommonReqApplyDissolve) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2125,7 +1643,7 @@ type CommonBcApplyDissolve struct {
 func (m *CommonBcApplyDissolve) Reset()                    { *m = CommonBcApplyDissolve{} }
 func (m *CommonBcApplyDissolve) String() string            { return proto.CompactTextString(m) }
 func (*CommonBcApplyDissolve) ProtoMessage()               {}
-func (*CommonBcApplyDissolve) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{38} }
+func (*CommonBcApplyDissolve) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{38} }
 
 func (m *CommonBcApplyDissolve) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2159,7 +1677,7 @@ type CommonReqApplyDissolveBack struct {
 func (m *CommonReqApplyDissolveBack) Reset()                    { *m = CommonReqApplyDissolveBack{} }
 func (m *CommonReqApplyDissolveBack) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqApplyDissolveBack) ProtoMessage()               {}
-func (*CommonReqApplyDissolveBack) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{39} }
+func (*CommonReqApplyDissolveBack) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{39} }
 
 func (m *CommonReqApplyDissolveBack) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2192,7 +1710,7 @@ type CommonAckApplyDissolveBack struct {
 func (m *CommonAckApplyDissolveBack) Reset()                    { *m = CommonAckApplyDissolveBack{} }
 func (m *CommonAckApplyDissolveBack) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckApplyDissolveBack) ProtoMessage()               {}
-func (*CommonAckApplyDissolveBack) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{40} }
+func (*CommonAckApplyDissolveBack) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{40} }
 
 func (m *CommonAckApplyDissolveBack) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2224,7 +1742,7 @@ type CommonAckTimeout struct {
 func (m *CommonAckTimeout) Reset()                    { *m = CommonAckTimeout{} }
 func (m *CommonAckTimeout) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckTimeout) ProtoMessage()               {}
-func (*CommonAckTimeout) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{41} }
+func (*CommonAckTimeout) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{41} }
 
 func (m *CommonAckTimeout) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2243,7 +1761,7 @@ type CommonBcUserBreak struct {
 func (m *CommonBcUserBreak) Reset()                    { *m = CommonBcUserBreak{} }
 func (m *CommonBcUserBreak) String() string            { return proto.CompactTextString(m) }
 func (*CommonBcUserBreak) ProtoMessage()               {}
-func (*CommonBcUserBreak) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{42} }
+func (*CommonBcUserBreak) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{42} }
 
 func (m *CommonBcUserBreak) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2269,7 +1787,7 @@ type CommonReqClickStatistic struct {
 func (m *CommonReqClickStatistic) Reset()                    { *m = CommonReqClickStatistic{} }
 func (m *CommonReqClickStatistic) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqClickStatistic) ProtoMessage()               {}
-func (*CommonReqClickStatistic) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{43} }
+func (*CommonReqClickStatistic) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{43} }
 
 func (m *CommonReqClickStatistic) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2294,7 +1812,7 @@ type CommonReqOffline struct {
 func (m *CommonReqOffline) Reset()                    { *m = CommonReqOffline{} }
 func (m *CommonReqOffline) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqOffline) ProtoMessage()               {}
-func (*CommonReqOffline) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{44} }
+func (*CommonReqOffline) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{44} }
 
 func (m *CommonReqOffline) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2354,7 +1872,7 @@ func init() {
 	proto.RegisterEnum("ddproto.CommonEnumPokerColor", CommonEnumPokerColor_name, CommonEnumPokerColor_value)
 }
 
-var fileDescriptor0 = []byte{
+var fileDescriptor1 = []byte{
 	// 1433 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xbc, 0x57, 0xcf, 0x6f, 0xe3, 0xc4,
 	0x17, 0xff, 0xba, 0x4e, 0xd2, 0x66, 0xfa, 0x63, 0xd3, 0x6c, 0xbf, 0x90, 0x45, 0x2b, 0x58, 0x79,

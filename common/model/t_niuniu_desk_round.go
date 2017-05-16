@@ -2,10 +2,10 @@ package model
 
 import (
 	"casino_common/proto/ddproto"
-	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"time"
+	"casino_common/utils/numUtils"
 )
 
 //一把结束,战绩可以通过这个表来查询
@@ -24,12 +24,12 @@ func (t T_niuniu_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
 		DeskId:    proto.Int32(t.DeskId),
 		Id:        proto.Int32(t.GameNumber),
+		RoundStr:  proto.String(numUtils.Int2String2(t.TotalRound)),
 	}
 
-	for i, bean := range t.Records {
+	for _, bean := range t.Records {
 		b := bean.TransBeanUserRecord()
 		result.Users = append(result.Users, b)
-		result.RoundStr = proto.String(numUtils.Int2String2(int32(i + 1)))
 	}
 	return result
 }
@@ -38,7 +38,6 @@ type NiuRecordBean struct {
 	UserId    uint32
 	NickName  string
 	WinAmount int64
-	RoundStr  int32
 }
 
 func (b NiuRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {

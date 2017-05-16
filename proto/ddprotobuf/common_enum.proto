@@ -18,6 +18,7 @@ enum common_enum_game {
     GID_DOUDIZHUERREN = 13; //二人斗地主
     GIDDOUDIZHUJINGDIANDONGBEI = 14; //斗地主经典版东北版
     GID_TIANDAKENG = 15; //填大坑
+    GID_MJ_CHANGCHUN = 16; //长春麻将 16
 }
 
 //房间的类型

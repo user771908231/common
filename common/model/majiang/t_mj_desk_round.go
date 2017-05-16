@@ -79,11 +79,12 @@ func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 func GetMjDeskRoundByDeskId(userId uint32, passWord int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
+	pwd := numUtils.Int2String2(passWord)
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
 			"friendplay": true,
-			"password": passWord,
+			"password": pwd,
 		}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 

@@ -33,7 +33,7 @@ type GameSession struct {
 func (m *GameSession) Reset()                    { *m = GameSession{} }
 func (m *GameSession) String() string            { return proto.CompactTextString(m) }
 func (*GameSession) ProtoMessage()               {}
-func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
+func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
 
 func (m *GameSession) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -140,7 +140,7 @@ type CommonSrvGameUser struct {
 func (m *CommonSrvGameUser) Reset()                    { *m = CommonSrvGameUser{} }
 func (m *CommonSrvGameUser) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvGameUser) ProtoMessage()               {}
-func (*CommonSrvGameUser) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
+func (*CommonSrvGameUser) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
 
 func (m *CommonSrvGameUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -256,7 +256,7 @@ type CommonSrvGameDesk struct {
 func (m *CommonSrvGameDesk) Reset()                    { *m = CommonSrvGameDesk{} }
 func (m *CommonSrvGameDesk) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvGameDesk) ProtoMessage()               {}
-func (*CommonSrvGameDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
+func (*CommonSrvGameDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
 
 func (m *CommonSrvGameDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -369,7 +369,7 @@ func init() {
 	proto.RegisterType((*CommonSrvGameDesk)(nil), "ddproto.common_srv_game_desk")
 }
 
-var fileDescriptor7 = []byte{
+var fileDescriptor8 = []byte{
 	// 440 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x6c, 0x92, 0xcf, 0x6e, 0xd3, 0x40,
 	0x10, 0xc6, 0xe5, 0xba, 0xa9, 0xe3, 0xc9, 0xbf, 0x62, 0x2a, 0xd8, 0x23, 0xca, 0x89, 0x13, 0xef,
