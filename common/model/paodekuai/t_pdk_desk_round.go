@@ -16,6 +16,7 @@ import (
 //一把结束,战绩可以通过这个表来查询
 type T_pdk_desk_round struct {
 	DeskId     int32
+	Password   string //房间号
 	GameNumber int32
 	UserIds    string
 	BeginTime  time.Time
@@ -27,7 +28,7 @@ type T_pdk_desk_round struct {
 func (t T_pdk_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
 		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
-		DeskId:    proto.Int32(t.DeskId),
+		DeskId:    proto.Int32(int32(numUtils.String2Int(t.Password))), //这里实际返回的是房间号
 		Id:        proto.Int32(t.GameNumber),
 		RoundStr:  proto.String(t.RoundStr), //局数信息
 	}
