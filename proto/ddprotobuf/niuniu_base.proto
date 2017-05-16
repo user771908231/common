@@ -55,19 +55,6 @@ enum niuniu_enum_protoid {
 
     NIU_OFFLINE_BC = 34;  //用户离线、上线广播
 
-    //========================百人牛牛===========================
-    BAINIU_ENTER_DESK_REQ = 35;  //进入房间请求
-    BAINIU_ENTER_DESK_ACK = 36;  //进入房间回复
-
-    BAINIU_YAZHU_OT = 37;  //押注overturn
-    BAINIU_YAZHU_REQ = 38;  //押注请求
-    BAINIU_YAZHU_ACK = 39;  //押注回复
-    BAINIU_YAZHU_BC = 40;  //押注广播
-
-    BAINIU_FAPAI_BC = 41;  //发牌广播
-
-    BAINIU_BIPAI_BC = 42;  //比牌广播
-
 }
 
 
