@@ -243,7 +243,7 @@ func (x *NiuniuEnumProtoid) UnmarshalJSON(data []byte) error {
 	*x = NiuniuEnumProtoid(value)
 	return nil
 }
-func (NiuniuEnumProtoid) EnumDescriptor() ([]byte, []int) { return fileDescriptor32, []int{0} }
+func (NiuniuEnumProtoid) EnumDescriptor() ([]byte, []int) { return fileDescriptor33, []int{0} }
 
 // =================================公共================================
 // 牛牛牌的类型
@@ -321,7 +321,7 @@ func (x *NiuniuEnum_PokerType) UnmarshalJSON(data []byte) error {
 	*x = NiuniuEnum_PokerType(value)
 	return nil
 }
-func (NiuniuEnum_PokerType) EnumDescriptor() ([]byte, []int) { return fileDescriptor32, []int{1} }
+func (NiuniuEnum_PokerType) EnumDescriptor() ([]byte, []int) { return fileDescriptor33, []int{1} }
 
 // 房间状态
 type NiuniuEnumDeskState int32
@@ -371,7 +371,7 @@ func (x *NiuniuEnumDeskState) UnmarshalJSON(data []byte) error {
 	*x = NiuniuEnumDeskState(value)
 	return nil
 }
-func (NiuniuEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor32, []int{2} }
+func (NiuniuEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor33, []int{2} }
 
 // 坐庄规则
 type NiuniuEnumBankerRule int32
@@ -409,7 +409,7 @@ func (x *NiuniuEnumBankerRule) UnmarshalJSON(data []byte) error {
 	*x = NiuniuEnumBankerRule(value)
 	return nil
 }
-func (NiuniuEnumBankerRule) EnumDescriptor() ([]byte, []int) { return fileDescriptor32, []int{3} }
+func (NiuniuEnumBankerRule) EnumDescriptor() ([]byte, []int) { return fileDescriptor33, []int{3} }
 
 // 打出去的牌
 type NiuniuClientPoker struct {
@@ -421,7 +421,7 @@ type NiuniuClientPoker struct {
 func (m *NiuniuClientPoker) Reset()                    { *m = NiuniuClientPoker{} }
 func (m *NiuniuClientPoker) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuClientPoker) ProtoMessage()               {}
-func (*NiuniuClientPoker) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{0} }
+func (*NiuniuClientPoker) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{0} }
 
 func (m *NiuniuClientPoker) GetPais() []*ClientBasePoker {
 	if m != nil {
@@ -451,7 +451,7 @@ type NiuniuUserBill struct {
 func (m *NiuniuUserBill) Reset()                    { *m = NiuniuUserBill{} }
 func (m *NiuniuUserBill) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuUserBill) ProtoMessage()               {}
-func (*NiuniuUserBill) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{1} }
+func (*NiuniuUserBill) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{1} }
 
 func (m *NiuniuUserBill) GetScore() int32 {
 	if m != nil && m.Score != nil {
@@ -511,7 +511,7 @@ type NiuniuDeskOption struct {
 func (m *NiuniuDeskOption) Reset()                    { *m = NiuniuDeskOption{} }
 func (m *NiuniuDeskOption) String() string            { return proto.CompactTextString(m) }
 func (*NiuniuDeskOption) ProtoMessage()               {}
-func (*NiuniuDeskOption) Descriptor() ([]byte, []int) { return fileDescriptor32, []int{2} }
+func (*NiuniuDeskOption) Descriptor() ([]byte, []int) { return fileDescriptor33, []int{2} }
 
 func (m *NiuniuDeskOption) GetMinUser() int32 {
 	if m != nil && m.MinUser != nil {
@@ -579,7 +579,7 @@ func init() {
 	proto.RegisterEnum("ddproto.NiuniuEnumBankerRule", NiuniuEnumBankerRule_name, NiuniuEnumBankerRule_value)
 }
 
-var fileDescriptor32 = []byte{
+var fileDescriptor33 = []byte{
 	// 981 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x55, 0xcb, 0x4e, 0xe3, 0x48,
 	0x14, 0x6d, 0xe7, 0xcd, 0x0d, 0x8f, 0xa2, 0x80, 0x60, 0xc2, 0xa3, 0x33, 0xd1, 0x2c, 0x22, 0x16,

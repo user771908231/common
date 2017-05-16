@@ -26,7 +26,7 @@ type CommonSrvPokerPai struct {
 func (m *CommonSrvPokerPai) Reset()                    { *m = CommonSrvPokerPai{} }
 func (m *CommonSrvPokerPai) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvPokerPai) ProtoMessage()               {}
-func (*CommonSrvPokerPai) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*CommonSrvPokerPai) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *CommonSrvPokerPai) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -67,7 +67,7 @@ func init() {
 	proto.RegisterType((*CommonSrvPokerPai)(nil), "ddproto.common_srv_pokerPai")
 }
 
-var fileDescriptor14 = []byte{
+var fileDescriptor15 = []byte{
 	// 146 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xce, 0xcf, 0xcd,
 	0xcd, 0xcf, 0x8b, 0x2f, 0x4e, 0x2d, 0x2a, 0x4b, 0x2d, 0x8a, 0x2f, 0xc8, 0xcf, 0x4e, 0x2d, 0xd2,
