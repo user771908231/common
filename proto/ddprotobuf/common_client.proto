@@ -122,7 +122,6 @@ message common_ack_gameLogin {
     optional bool newUserAward = 7; //新用户的奖励
 }
 
-
 // 获取二维码链接req
 message common_req_qrLogin {
     optional ProtoHeader header = 1;
@@ -363,4 +362,13 @@ message common_req_clickStatistic {
 // 请求离线协议信息
 message common_req_offline {
     optional ProtoHeader header = 1;
+}
+
+//---提交地理位置信息
+
+//更新玩家的经纬度信息
+message common_req_gi {
+    optional ProtoHeader header = 1;
+    optional float longitude = 2; //精度
+    optional float latitude = 3; //纬度
 }

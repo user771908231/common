@@ -122,6 +122,7 @@ enum hall_enum_protoId {
 
     HALL_PID_PLAYBACKREQPAGEBYGID = 84; //84 查询回放分页 通过gameid查各个游戏
     HALL_PID_PLAYBACKPDKACKPAGE = 85; //85 回复查询分页 跑得快
+    HALL_PID_REQ_GI = 86; //更新玩家的经纬度信息
 
 }
 
