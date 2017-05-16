@@ -107,6 +107,12 @@ func GetDistanceByGi(userId1, userId2 uint32) string {
 	lng1 := float64(user1.GetLongitude() * rad)
 	lat2 := float64(user2.GetLatitude() * rad)
 	lng2 := float64(user2.GetLongitude() * rad)
+
+	//如果有人的经纬度没有获取到直接返回空
+	if lat1 == 0 || lng1 == 0 || lat2 == 0 || lng2 == 0 {
+		return ""
+	}
+
 	theta := lng2 - lng1
 	dist := math.Acos(math.Sin(lat1)*math.Sin(lat2) + math.Cos(lat1)*math.Cos(lat2)*math.Cos(theta))
 	return fmt.Sprintf("%v", radius*dist)
