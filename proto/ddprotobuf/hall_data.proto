@@ -1,0 +1,310 @@
+syntax = "proto2";
+
+
+package ddproto;
+
+enum hall_enum_protoId {
+    HALL_PID_HEARTBEAT = 0; //心跳
+    HALL_PID_QUICK_CONN = 1; //连接服务器
+    HALL_PID_QUICK_CONN_ACK = 2; //
+    HALL_PID_GAME_LOGIN = 3; //登录游戏
+    HALL_PID_GAME_LOGIN_ACK = 4; //
+    HALL_PID_WXPAYUNIFIEDORDER_REQ = 5; // 请求统一下单
+    HALL_PID_WXPAYUNIFIEDORDER_ACK = 6; //6 统一下单回复
+    HALL_PID_WXPAYSYNCCHECKER_REQ = 7; // APP收到同步回调之后，请求服务器检测异步回调
+    HALL_PID_WXPAYSYNCCHECKER_ACK = 8; //8 回复APP 充值之后的金额
+    HALL_PID_USER_DATA = 9; //请求个人信息
+    HALL_PID_USER_DATA_ACK = 10; //回复个人信息
+
+    HALL_PID_DRAW_LOTTERY = 11; //请求转盘抽奖
+    HALL_PID_DRAW_LOTTERY_ACK = 12; //回复转盘抽奖
+
+    HALL_PID_DS_LOTTERY_INFO_ACK = 13; //回复转盘签到奖励物品信息
+
+    HALL_PID_ONLINEWARD_REQ = 14; //在线奖励
+    HALL_PID_ONLINEWARD_ACK = 15; //在线奖励 回复
+
+    HALL_PID_EVENT_REQ = 16; //活动列表请求
+    HALL_PID_EVENT_ACK = 17; //活动列表ACK
+
+    HALL_PID_GOODS_LIST_REQ = 18; //商品列表请求
+    HALL_PID_GOODS_LIST_ACK = 19; //商品列表ACK
+
+    HALL_PID_HOTUPDATEVERSIONINFO_REQ = 20; //请求版本信息
+    HALL_PID_HOTUPDATEVERSIONINFO_ACK = 21; //回复版本信息
+
+    HALL_PID_BAG_ITEMS_REQ = 22; //背包道具列表REQ
+    HALL_PID_BAG_ITEMS_ACK = 23; //背包道具列表ACK
+
+    HALL_PID_HOTUPDATEGAMEASSETSINFO_REQ = 24; //请求下载独立游戏
+    HALL_PID_HOTUPDATEGAMEASSETSINFO_ACK = 25; //请求下载独立游戏ack
+    HALL_PID_APPLE_PAY_CB_REQ = 26; //苹果支付回调
+    HALL_PID_HOTUPDATEASSETSINFO_REQ = 27; //请求资源的信息
+    HALL_PID_HOTUPDATEASSETSINFO_ACK = 28; //请求资源的信息回复
+
+
+    HALL_PID_MAIL_LIST_REQ = 29; //邮件列表REQ
+    HALL_PID_MAIL_LIST_ACK = 30; //邮件列表ACK
+
+    HALL_PID_HALL_DSLOTTERYINFO_REQ = 31; //31
+
+    HALL_PID_FRIENDS_LIST_REQ = 32; //好友列表REQ
+    HALL_PID_FRIENDS_LIST_ACK = 33; //好友列表ACK
+
+    HALL_PID_RANK_REQ = 34; //排行榜REQ
+    HALL_PID_RANK_ACK = 35; //排行榜ACK
+
+    HALL_PID_STRONGBOX_INFO_REQ = 36; //请求保险箱
+    HALL_PID_STRONGBOX_INFO_ACK = 37; //回复保险箱
+
+    HALL_PID_STRONGBOX_ACCESS_REQ = 38; //请求存取保险箱
+    HALL_PID_STRONGBOX_ACCESS_ACK = 39; //回复存取保险箱
+
+    HALL_PID_FRIEND_ADD_REQ = 40; //添加好友REQ
+    HALL_PID_FRIEND_ADD_ACK = 41; //添加好友ACK
+
+    HALL_PID_FRIEND_DEL_REQ = 42; //删除好友REQ
+    HALL_PID_FRIEND_DEL_ACK = 43; //删除好友ACK
+
+    HALL_PID_FRIENDS_SEARCH_REQ = 44; //搜索好友REQ
+    HALL_PID_FRIENDS_SEARCH_ACK = 45; //搜索好友ACK
+    HALL_PID_REG_REQ = 46; //注册请求
+    HALL_PID_REG_ACK = 47; //注册回复
+
+    HALL_PID_TASK_LIST_REQ = 48; //任务列表REQ
+    HALL_PID_TASK_LIST_ACK = 49; //任务列表ACK
+    HALL_PID_APPLE_PAY_CB_ACK = 50; //苹果充值回复
+    HALL_PID_ONLINEWARD_INFO_REQ = 51; //51 请求在线奖励的时间
+    HALL_PID_ONLINEWARD_INFO_ACK = 52; //52 请求在线奖励的时间回复
+
+    HALL_PID_GOODS_BUY_REQ = 53; //53 商店购买商品请求
+    HALL_PID_GOODS_BUY_ACK = 54; //54 商店购买商品回复
+
+    HALL_PID_ALLOWANCE_REQ = 55; //55 补助请求
+    HALL_PID_ALLOWANCE_ACK = 56; //56 补助回复
+
+    HALL_PID_CHECK_TASK_REQ = 57; //57 领取任务奖励请求
+    HALL_PID_CHECK_TASK_ACK = 58; //58 领取任务奖励回复
+
+    HALL_PID_RECOMMEND_USER_LIST_REQ = 59; //59 推荐好友列表请求
+    HALL_PID_RECOMMEND_USER_LIST_ACK = 60; //59 推荐好友列表回复
+    HALL_PID_GAME_STATE_REQ = 61; //61 获取游戏状态
+    HALL_PID_GAME_STATE_ACK = 62; //62 获取游戏状态
+
+    HALL_PID_TASK_SUM_REQ = 63; //63 未领取奖励的任务数请求
+    HALL_PID_TASK_SUM_ACK = 64; //64 未领取奖励的任务数回复
+
+    HALL_PID_CHECK_BONUS_REQ = 65; //65 领取红包请求
+    HALL_PID_CHECK_BONUS_ACK = 66; //66 领取红包回复
+
+    HALL_PID_UPDATE_REAL_DATA_REQ = 67; //67 更新用户兑换信息请求
+    HALL_PID_UPDATE_REAL_DATA_ACK = 68; //67 更新用户兑换信息回复
+
+    HALL_PID_PUSH_REQ = 69; //推送协议（服务器间通信用）
+    HALL_PID_REQ_COMMONCLICKSTATISTIC = 70; //统计按钮点击
+    HALL_PID_REQ_AWARDGETNEWUSER = 71; //获取新手奖励红包
+    HALL_PID_ACK_AWARDGETNEWUSER = 72; //返回获取新手奖励红包的ack
+
+    HALL_PID_PUSH_GAME_COUNT = 73; //游戏结束后的数据统计协议（服务器间通信用）
+
+    HALL_PID_QRLOGIN_GETCODE_REQ = 74; //微信扫码登陆获取code
+    HALL_PID_QRLOGIN_GETCODE_ACK = 75;
+
+    HALL_PID_QRLOGIN_WXINFO_REQ = 76; //微信扫码通过code获取wx_info
+    HALL_PID_QRLOGIN_WXINFO_ACK = 77;
+
+    HALL_PID_GAME_LOGIN_VIA_INPUT = 78; //通过用户名密码登录游戏
+    HALL_PID_REG_REQ_VIA_INPUT = 79; //请求通过用户名密码注册
+    HALL_PID_GAME_GAMERECORD = 80; //80 请求查询战绩
+    HALL_PID_GAME_ACKGAMERECORD = 81; //81 回复查询战绩
+    HALL_PID_PLAYBACKREQPAGE = 82; //82 查询回放分页 限麻将
+    HALL_PID_PLAYBACKACKPAGE = 83; //83 回复查询分页 限麻将
+
+    HALL_PID_PLAYBACKREQPAGEBYGID = 84; //84 查询回放分页 通过gameid查各个游戏
+    HALL_PID_PLAYBACKPDKACKPAGE = 85; //85 回复查询分页 跑得快
+    HALL_PID_COMMON_REQ_UPLOAD_LOCATION = 86; //更新玩家的经纬度信息
+
+}
+
+//货币与商品类型
+enum hall_enum_trade_type {
+    //0-50 货币类型与增值服务
+    TRADE_COIN = 1; //金币
+    TRADE_DIAMOND = 2; //钻石
+    TRADE_BONUS = 3; //红包
+    TRADE_RMB = 5; //人民币
+    TRADE_TICKET = 7; //奖券
+
+    //50-100  增值服务
+    SERVER_VIP = 51; //会员
+
+    //100-200 虚拟道具
+    PROPS_FANGKA = 101; //房卡
+    PROPS_DALABA = 102; //大喇叭
+    PROPS_BUQIANKA = 103; //补签卡
+
+    //300-400 实物礼品
+    REAL_PHONE_CARD_10 = 301; //10元充值卡
+    REAL_PHONE_CARD_50 = 302; //50元充值卡
+    REAL_SHOP_CARD_100 = 303; //100元购物卡
+    REAL_PHONE_IPHONE7 = 304; //苹果7
+    REAL_PC_MACBOOK = 305; //苹果电脑
+}
+
+//单个活动
+message hall_item_event {
+    optional int32 id = 1; // 活动的Id
+    optional hall_enum_event type = 2; //活动类型
+    optional hall_enum_Reward reward = 3; //活动奖品
+    repeated string richText = 5; //活动内容(其中会穿插富文本的超链接内容)
+    optional string title = 6; //活动名称
+}
+
+//活动类型
+enum hall_enum_event {
+    TYPE_TIME = 1; //限时
+    TYPE_NEW = 2; //最新
+    TYPE_NULL = 3; //无
+}
+
+//活动奖品
+enum hall_enum_Reward {
+    RE_EXP = 1; //经验,道具
+    RE_GIFT = 2; //礼品
+}
+
+//================================================邮件=====================================================
+
+//单个邮件
+message hall_mail_item {
+    optional string id = 1;
+    optional hall_enum_mail_type type = 2; //邮件类型
+    optional string title = 3; //邮件标题
+    optional string content = 4; //邮件内容
+    optional bool isWatch = 5; //是否已查看
+    optional bool isCheck = 6; //是否已领取奖励
+    repeated hall_bag_item attach = 7; //附件:奖励
+    optional int64 date = 8; //邮件的时间
+}
+
+//邮件类型
+enum hall_enum_mail_type {
+    SYSTEM = 1; //系统邮件
+    FRIEND_ADD = 2; //好友申请邮件
+}
+
+//背包单个道具
+message hall_bag_item {
+    optional hall_enum_trade_type type = 1; //道具类型
+    optional double amount = 2; //数量
+}
+
+//奖励物品类型
+enum hall_lottery_item_type {
+    L_COIN = 1; //金币
+    L_DIAMOND = 2; //钻石
+    L_RED_PACKET = 3; //红包
+    L_COUPON = 7; //奖券
+
+    L_ROOM_TICKET = 101; //房卡
+    L_FILL_SIGN = 103; //补签卡
+}
+
+//单个任务
+message hall_item_task {
+    optional int32 task_id = 1;
+    optional string title = 2; //任务内容
+    optional string description = 3; //详情
+    repeated hall_bag_item addion = 4; //附件
+    optional int32 task_sum = 5; //需要完成的次数
+    optional int32 sum_no = 6; //当前完成的次数
+    optional bool is_done = 7; //是否已完成
+    optional bool is_check = 8; //是否已领取奖励
+}
+
+//任务类型
+enum hall_enum_taskType {
+    TYPE_HALL = 0; //大厅
+    TYPE_MJ = 1; //麻将
+    TYPE_DDZ = 2; //斗地主
+    TYPE_ZJH = 3; //炸金花
+}
+
+//vip等级
+enum hall_user_VIP {
+    LV_1 = 1; //vip lv1
+    LV_2 = 2; //vip lv2
+    LV_3 = 3; //vip lv3
+    LV_4 = 4; //vip lv4
+    LV_5 = 5; //vip lv5
+    LV_6 = 6; //vip lv6
+}
+
+//个人信息
+message hall_userData {
+    optional string userName = 1; //用户昵称
+    optional int32 userId = 2; //用户ID
+    optional int64 niceValue = 3; //魅力值
+    optional int64 evilValue = 4; //恶人值
+    optional int32 userLevel = 5; //用户等级
+    optional bool userVIP = 6; //是否是会员
+    optional hall_user_VIP userVIPLv = 7; //会员等级
+    optional int64 userMoney = 8; //用户金币
+    optional int64 userDiamond = 9; //用户钻石
+    optional double userRedBag = 10; //用户红包金额
+    optional int64 userLotteryTicket = 11; //用户奖券
+    optional bool sex = 12; //性别
+    optional string headUrl = 13; //头像
+    optional bool isFriend = 14; //是否为好友
+    optional int64 roomCard = 15; //用户房卡数
+    optional string lastIp = 16; //上次登录的ip
+    optional int64 lastTime = 17; //上次登录时间
+    //用户兑换信息
+    optional string realName = 18; //真实姓名
+    optional string phoneNumber = 19; //联系电话
+    optional string wxNumber = 20; //微信号码
+    optional string realAddress = 21; //真实地址
+
+    optional string address = 23; //玩家当前地址 根据lastIp计算出来
+    optional string distance = 24; //玩家距离自己多远
+}
+
+//排行信息
+message hall_rank_item {
+    optional int32 placing = 1; //名次
+    optional uint32 userId = 2; //用户id
+    optional string nickName = 3; //用户昵称
+    optional string rankInfo = 4; //排行项目
+}
+
+//金币专区
+message CoinZone {
+    repeated GoodsItem pay = 1; //充值金额
+}
+
+//钻石专区
+message DiamondZone {
+    repeated GoodsItem pay = 1; //充值金额
+}
+//兑换专区
+message ExchangeZone {
+    repeated GoodsItem money = 1; //兑换金额
+}
+
+//购买专区
+message BuyZone {
+    repeated GoodsItem pay = 1; //花费金额
+}
+
+//商品类型
+message GoodsItem {
+    optional int32 id = 1;
+    optional int32 money = 2; //金额
+    optional string img = 3; //商品图片
+}
+
+//保险箱数据
+message hall_strongbox_info {
+    optional int64 boxCoin = 2; //用户保险箱里的金币
+    optional int64 userCoin = 3; //用户身上的金币
+}

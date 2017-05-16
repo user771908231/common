@@ -1,0 +1,7 @@
+syntax = "proto2";
+package ddproto;
+
+//游戏服务器所处状态
+message redis_game_server_status {
+    optional bool isOnMaintain = 1;  //是否正在维护
+}

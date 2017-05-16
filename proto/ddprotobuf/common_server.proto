@@ -1,0 +1,54 @@
+syntax = "proto2";
+package ddproto;
+
+//用户的seesion 主要是游戏的
+message GameSession {
+    optional uint32 UserId = 1; //玩家Id
+    optional int32 RoomId = 2; //roomId
+    optional int32 DeskId = 3; //DeskId
+    optional int32 GameStatus = 4; //游戏的状态
+    optional int32 GameId = 5; //游戏的状态，
+    optional int32 GameNumber = 6; //游戏编号
+    optional int32 GameCustomStatus = 7; //自定义状态，麻将自己的，斗地主自己的，炸金花自己的
+    optional bool isBreak = 8; //断线
+    optional bool isLeave = 9; //离开
+    optional int32 roomType = 10; //1,朋友桌，2，金币场
+    optional string roomPassword = 11; //房间号码
+    optional int32 RoomLevel = 12; //房间等级
+}
+
+//服务器游戏玩家通过的协议
+message common_srv_game_user {
+    optional uint32 userId = 1; //玩家id
+    optional string nickName = 2; //玩家昵称
+    optional int64 coin = 3; //游戏中的带入金额
+    optional int32 roomId = 4;
+    optional int32 deskId = 5; //
+    optional int32 gameNumber = 6; //游戏编号
+    optional bool isBreak = 7; //断线
+    optional bool isLeave = 8; //离开
+    optional int32 status = 9; //玩家当前的状态
+    optional int64 waitTime = 10; //用户等待的时间
+    optional int32 roomType = 11; //玩的是金币场还是朋友桌
+    optional string roomPassword = 12; //房间号码
+    optional bool isRobot = 13; //是否是机器人
+}
+
+//通用的desk 的协议
+message common_srv_game_desk {
+    optional int32 deskId = 1; //
+    optional int32 gameNumber = 2; //游戏编号
+    optional int32 roomId = 3;
+    optional int32 round = 4; //玩到第几圈
+    optional string password = 5;
+    optional uint32 owner = 6; //房主
+    optional uint32 banker = 7; //庄
+    optional int64 createFee = 8;
+    optional int32 status = 9;
+    optional int32 boardsCout = 10; // 局数，如：4局（房卡 × 2）、8局（房卡 × 3）
+    optional int64 baseValue = 11; // 低分
+    optional string beginTime = 12; //游戏开始时间
+    optional string endTime = 13; //游戏结束时间
+    optional int32 nInitActionTime = 14; //
+    optional int32 userCountLimit = 15; //房间人数的限制
+}

@@ -32,7 +32,7 @@ message bainiu_area_info {
 //房间状态
 message bainiu_client_desk {
     optional bainiu_desk_status status = 1;  //牌桌状态
-    repeated bainiu_area_info areas = 2;  //押注区域状态
+    optional bainiu_area_info areas = 2;  //押注区域状态
     optional int64 surplus_time = 3;  //牌桌剩余时间
     optional bainiu_client_user users = 4;  //用户列表
 }
