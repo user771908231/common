@@ -48,7 +48,7 @@ type CommonSrvMsgGameCount struct {
 func (m *CommonSrvMsgGameCount) Reset()                    { *m = CommonSrvMsgGameCount{} }
 func (m *CommonSrvMsgGameCount) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvMsgGameCount) ProtoMessage()               {}
-func (*CommonSrvMsgGameCount) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*CommonSrvMsgGameCount) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
 
 func (m *CommonSrvMsgGameCount) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -131,7 +131,7 @@ func init() {
 	proto.RegisterType((*CommonSrvMsgGameCount)(nil), "ddproto.common_srv_msg_game_count")
 }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor14 = []byte{
 	// 316 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x4c, 0x8f, 0xcf, 0x6b, 0xc2, 0x30,
 	0x14, 0xc7, 0x17, 0x7f, 0xf4, 0x47, 0x64, 0x83, 0xe5, 0x62, 0x1c, 0xc8, 0xca, 0x4e, 0x3d, 0x79,

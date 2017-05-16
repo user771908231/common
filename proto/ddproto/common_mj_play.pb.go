@@ -146,7 +146,7 @@ type GameReqBuxiazi struct {
 func (m *GameReqBuxiazi) Reset()                    { *m = GameReqBuxiazi{} }
 func (m *GameReqBuxiazi) String() string            { return proto.CompactTextString(m) }
 func (*GameReqBuxiazi) ProtoMessage()               {}
-func (*GameReqBuxiazi) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
+func (*GameReqBuxiazi) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
 
 func (m *GameReqBuxiazi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -175,7 +175,7 @@ type GameAckBuxiazi struct {
 func (m *GameAckBuxiazi) Reset()                    { *m = GameAckBuxiazi{} }
 func (m *GameAckBuxiazi) String() string            { return proto.CompactTextString(m) }
 func (*GameAckBuxiazi) ProtoMessage()               {}
-func (*GameAckBuxiazi) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
+func (*GameAckBuxiazi) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
 
 func (m *GameAckBuxiazi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -224,7 +224,7 @@ func init() {
 	proto.RegisterType((*GameAckBuxiazi)(nil), "ddproto.game_ack_buxiazi")
 }
 
-var fileDescriptor7 = []byte{
+var fileDescriptor8 = []byte{
 	// 246 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x49, 0xce, 0xcf, 0xcd,
 	0xcd, 0xcf, 0x8b, 0xcf, 0xcd, 0x8a, 0x2f, 0xc8, 0x49, 0xac, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9,

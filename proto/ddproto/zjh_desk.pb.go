@@ -131,7 +131,7 @@ type ZjhReqGetRoomList struct {
 func (m *ZjhReqGetRoomList) Reset()                    { *m = ZjhReqGetRoomList{} }
 func (m *ZjhReqGetRoomList) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqGetRoomList) ProtoMessage()               {}
-func (*ZjhReqGetRoomList) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{0} }
+func (*ZjhReqGetRoomList) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{0} }
 
 func (m *ZjhReqGetRoomList) GetUserId() int32 {
 	if m != nil && m.UserId != nil {
@@ -162,7 +162,7 @@ type ZjhBaseRoomInfo struct {
 func (m *ZjhBaseRoomInfo) Reset()                    { *m = ZjhBaseRoomInfo{} }
 func (m *ZjhBaseRoomInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseRoomInfo) ProtoMessage()               {}
-func (*ZjhBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{1} }
+func (*ZjhBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{1} }
 
 func (m *ZjhBaseRoomInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -223,7 +223,7 @@ type ZjhAckRoomList struct {
 func (m *ZjhAckRoomList) Reset()                    { *m = ZjhAckRoomList{} }
 func (m *ZjhAckRoomList) String() string            { return proto.CompactTextString(m) }
 func (*ZjhAckRoomList) ProtoMessage()               {}
-func (*ZjhAckRoomList) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{2} }
+func (*ZjhAckRoomList) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{2} }
 
 func (m *ZjhAckRoomList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -251,7 +251,7 @@ type ZjhReqEnterDesk struct {
 func (m *ZjhReqEnterDesk) Reset()                    { *m = ZjhReqEnterDesk{} }
 func (m *ZjhReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqEnterDesk) ProtoMessage()               {}
-func (*ZjhReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{3} }
+func (*ZjhReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{3} }
 
 func (m *ZjhReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -287,7 +287,7 @@ type ZjhBaseUserInfo struct {
 func (m *ZjhBaseUserInfo) Reset()                    { *m = ZjhBaseUserInfo{} }
 func (m *ZjhBaseUserInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseUserInfo) ProtoMessage()               {}
-func (*ZjhBaseUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{4} }
+func (*ZjhBaseUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{4} }
 
 func (m *ZjhBaseUserInfo) GetUid() int32 {
 	if m != nil && m.Uid != nil {
@@ -336,7 +336,7 @@ type ZjhDeskStateAck struct {
 func (m *ZjhDeskStateAck) Reset()                    { *m = ZjhDeskStateAck{} }
 func (m *ZjhDeskStateAck) String() string            { return proto.CompactTextString(m) }
 func (*ZjhDeskStateAck) ProtoMessage()               {}
-func (*ZjhDeskStateAck) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{5} }
+func (*ZjhDeskStateAck) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{5} }
 
 func (m *ZjhDeskStateAck) GetState() ZjhEnumDeskState {
 	if m != nil && m.State != nil {
@@ -375,7 +375,7 @@ func init() {
 	proto.RegisterType((*ZjhDeskStateAck)(nil), "ddproto.ZjhDeskStateAck")
 }
 
-var fileDescriptor46 = []byte{
+var fileDescriptor47 = []byte{
 	// 452 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x52, 0xcd, 0x6e, 0xd3, 0x40,
 	0x10, 0x66, 0xe3, 0x3a, 0x6d, 0xb6, 0x22, 0x94, 0x2d, 0x42, 0x56, 0xe0, 0x60, 0xf9, 0xe4, 0x03,

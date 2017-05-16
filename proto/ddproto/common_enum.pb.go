@@ -94,7 +94,7 @@ func (x *CommonEnumGame) UnmarshalJSON(data []byte) error {
 	*x = CommonEnumGame(value)
 	return nil
 }
-func (CommonEnumGame) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
+func (CommonEnumGame) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
 
 // 房间的类型
 type COMMON_ENUM_ROOMTYPE int32
@@ -129,7 +129,7 @@ func (x *COMMON_ENUM_ROOMTYPE) UnmarshalJSON(data []byte) error {
 	*x = COMMON_ENUM_ROOMTYPE(value)
 	return nil
 }
-func (COMMON_ENUM_ROOMTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
+func (COMMON_ENUM_ROOMTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
 
 // 游戏的状态
 type COMMON_ENUM_GAMESTATUS int32
@@ -164,7 +164,7 @@ func (x *COMMON_ENUM_GAMESTATUS) UnmarshalJSON(data []byte) error {
 	*x = COMMON_ENUM_GAMESTATUS(value)
 	return nil
 }
-func (COMMON_ENUM_GAMESTATUS) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
+func (COMMON_ENUM_GAMESTATUS) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
 
 // 发布版本
 type COMMON_ENUM_RELEASETAG int32
@@ -199,7 +199,7 @@ func (x *COMMON_ENUM_RELEASETAG) UnmarshalJSON(data []byte) error {
 	*x = COMMON_ENUM_RELEASETAG(value)
 	return nil
 }
-func (COMMON_ENUM_RELEASETAG) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
+func (COMMON_ENUM_RELEASETAG) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
 
 // 踢人的踢出类型
 type COMMON_ENUM_KICKOUT int32
@@ -246,7 +246,7 @@ func (x *COMMON_ENUM_KICKOUT) UnmarshalJSON(data []byte) error {
 	*x = COMMON_ENUM_KICKOUT(value)
 	return nil
 }
-func (COMMON_ENUM_KICKOUT) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
+func (COMMON_ENUM_KICKOUT) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{4} }
 
 // 玩家申请解散房间的操作类型
 type COMMON_ENUM_APPLYDISSOLVE int32
@@ -284,7 +284,7 @@ func (x *COMMON_ENUM_APPLYDISSOLVE) UnmarshalJSON(data []byte) error {
 	*x = COMMON_ENUM_APPLYDISSOLVE(value)
 	return nil
 }
-func (COMMON_ENUM_APPLYDISSOLVE) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
+func (COMMON_ENUM_APPLYDISSOLVE) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{5} }
 
 // 按钮的类型
 type BTN_TYPE int32
@@ -322,7 +322,7 @@ func (x *BTN_TYPE) UnmarshalJSON(data []byte) error {
 	*x = BTN_TYPE(value)
 	return nil
 }
-func (BTN_TYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{6} }
+func (BTN_TYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor6, []int{6} }
 
 // 进入金币场房间的错误类型
 type COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM int32
@@ -370,7 +370,7 @@ func (x *COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM) UnmarshalJSON(data []byte) error 
 	return nil
 }
 func (COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor5, []int{7}
+	return fileDescriptor6, []int{7}
 }
 
 func init() {
@@ -384,7 +384,7 @@ func init() {
 	proto.RegisterEnum("ddproto.COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM", COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_name, COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_value)
 }
 
-var fileDescriptor5 = []byte{
+var fileDescriptor6 = []byte{
 	// 644 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x92, 0x4f, 0x73, 0xf3, 0x34,
 	0x10, 0xc6, 0x89, 0xd3, 0xb4, 0xe9, 0x36, 0x6d, 0x37, 0x7a, 0xff, 0x40, 0xe1, 0x2d, 0x03, 0x33,
