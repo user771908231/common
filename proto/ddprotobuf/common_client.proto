@@ -367,7 +367,7 @@ message common_req_offline {
 //---提交地理位置信息
 
 //更新玩家的经纬度信息
-message common_req_gi {
+message common_req_upload_location {
     optional ProtoHeader header = 1;
     optional float longitude = 2; //精度
     optional float latitude = 3; //纬度
