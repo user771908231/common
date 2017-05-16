@@ -15,6 +15,8 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	P16ReqCreateDesk
+	P16BeanDeskInfo
+	P16BeanUserinfo
 	P16AckCreateDesk
 	P16ReqEnterDesk
 	P16AckEnterDesk
