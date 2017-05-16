@@ -1,16 +1,18 @@
 package iputils
 
 import (
-	"io/ioutil"
-	"net/http"
-	"encoding/json"
-	"casino_common/common/log"
 	"casino_common/common/consts"
-	"casino_common/utils/redisUtils"
+	"casino_common/common/log"
 	"casino_common/common/model/utils"
-	"strings"
+	"casino_common/common/userService"
 	"casino_common/utils/rand"
+	"casino_common/utils/redisUtils"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"math"
+	"net/http"
+	"strings"
 )
 
 type BackJson struct {
@@ -94,4 +96,18 @@ func GetDistance(ip1, ip2 string) string {
 	}
 	//不同省份
 	return fmt.Sprintf("%v", rand.Rand(500, 1000))
+}
+
+func GetDistanceByGi(userId1, userId2 uint32) string {
+	user1 := userService.GetUserById(userId1)
+	user2 := userService.GetUserById(userId2)
+	radius := float64(6378137) // 6378137
+	rad := float32(math.Pi / 180.0)
+	lat1 := float64(user1.GetLatitude() * rad)
+	lng1 := float64(user1.GetLongitude() * rad)
+	lat2 := float64(user2.GetLatitude() * rad)
+	lng2 := float64(user2.GetLongitude() * rad)
+	theta := lng2 - lng1
+	dist := math.Acos(math.Sin(lat1)*math.Sin(lat2) + math.Cos(lat1)*math.Cos(lat2)*math.Cos(theta))
+	return fmt.Sprintf("%v", radius*dist)
 }
