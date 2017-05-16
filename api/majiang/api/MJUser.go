@@ -1,10 +1,10 @@
 package api
 
 import (
-	"github.com/golang/protobuf/proto"
 	"casino_common/common/userService"
-	"github.com/name5566/leaf/gate"
 	"casino_common/utils/agentUtils"
+	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/gate"
 	"sync/atomic"
 )
 
@@ -30,6 +30,8 @@ type MJUser interface {
 	DoBu(...interface{}) (interface{}, error)   //补牌
 	DoHu(interface{}) (interface{}, error)      //胡牌
 	DoGang(...interface{}) (interface{}, error) //杠牌
+	DoFly(...interface{}) (interface{}, error)  //飞牌
+	DoTi(...interface{}) (interface{}, error)   //提牌
 
 	//业务
 	AddBillBean(interface{}) error //增加账单
@@ -61,6 +63,14 @@ func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
 }
 
 func (u *MJUserCore) DoChi(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+func (u *MJUserCore) DoFly(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+func (u *MJUserCore) DoTi(...interface{}) (interface{}, error) {
 	return nil, nil
 }
 

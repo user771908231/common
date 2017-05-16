@@ -198,6 +198,12 @@ type PengPai struct {
 	Pais      []*MJPAI
 }
 
+type FlyPai struct {
+	OutUserId uint32
+	InUserId  uint32
+	Pais      []*MJPAI
+}
+
 type GangPai struct {
 	GangType   int32
 	Pais       []*MJPAI

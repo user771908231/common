@@ -148,8 +148,18 @@ func (*SCMJParser) Hu(...interface{}) (interface{}, error) {
 	panic("implement me")
 }
 
-//是否能补牌
-func (p *SCMJParser) CanBu(interface{}, interface{}) (bool, error) {
+//是否能补虾子
+func (p *SCMJParser) CanBu(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+//是否可以提
+func (p *SCMJParser) CanTi(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+//是否可以飞
+func (p *SCMJParser) CanFly(...interface{}) (bool, error) {
 	return false, nil
 }
 
