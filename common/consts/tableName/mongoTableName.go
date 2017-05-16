@@ -57,10 +57,6 @@ const (
 	DBT_MJ_DESK_ROUND_ALL   = "t_mj_desk_round_all" //全局麻将结束
 	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
 
-	//捉虾子
-	DBT_MJ_ZXZ_DESK_ROUND     = "t_mj_zxz_desk_round"     //一把麻将结束
-	DBT_MJ_ZXZ_DESK_ROUND_ALL = "t_mj_zxz_desk_round_all" //全局麻将结束
-
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
 	DBT_DDZ_DESK_ROUND_ALL = "t_ddz_desk_round_all" //全局斗地主结束
