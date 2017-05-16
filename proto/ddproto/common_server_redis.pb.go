@@ -22,7 +22,7 @@ type RedisGameServerStatus struct {
 func (m *RedisGameServerStatus) Reset()                    { *m = RedisGameServerStatus{} }
 func (m *RedisGameServerStatus) String() string            { return proto.CompactTextString(m) }
 func (*RedisGameServerStatus) ProtoMessage()               {}
-func (*RedisGameServerStatus) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*RedisGameServerStatus) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *RedisGameServerStatus) GetIsOnMaintain() bool {
 	if m != nil && m.IsOnMaintain != nil {
@@ -35,7 +35,7 @@ func init() {
 	proto.RegisterType((*RedisGameServerStatus)(nil), "ddproto.redis_game_server_status")
 }
 
-var fileDescriptor14 = []byte{
+var fileDescriptor15 = []byte{
 	// 101 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xce, 0xcf, 0xcd,
 	0xcd, 0xcf, 0x8b, 0x2f, 0x4e, 0x2d, 0x2a, 0x4b, 0x2d, 0x8a, 0x2f, 0x4a, 0x4d, 0xc9, 0x2c, 0xd6,

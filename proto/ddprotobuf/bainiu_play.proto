@@ -1,7 +1,7 @@
 syntax = "proto2";
 
 import public "common_client.proto";
-import public "niuniu_base.proto";
+import public "bainiu_base.proto";
 
 package ddproto;
 
@@ -24,7 +24,7 @@ enum bainiu_area_name {
 //押注区域
 message bainiu_area_info {
     optional bainiu_area_name name = 1;  //押注区域名称
-    optional niuniu_client_poker poker = 2;  //牌型
+    optional bainiu_client_poker poker = 2;  //牌型
     optional int64 all_chips = 3;  //所有押注筹码总和
     optional int64 my_chips = 4;  //我的押注
 }
@@ -92,7 +92,7 @@ message bainiu_yazhu_bc {
 //===============================发牌=================================
 //发牌广播
 message bainiu_fapai_bc {
-    optional niuniu_client_poker poker = 1;  //牌型
+    optional bainiu_client_poker poker = 1;  //牌型
     optional int64 desk_time = 2;  //牌桌剩余时间
 }
 

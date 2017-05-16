@@ -23,7 +23,7 @@ type RpcHallUpdateConfig struct {
 func (m *RpcHallUpdateConfig) Reset()                    { *m = RpcHallUpdateConfig{} }
 func (m *RpcHallUpdateConfig) String() string            { return proto.CompactTextString(m) }
 func (*RpcHallUpdateConfig) ProtoMessage()               {}
-func (*RpcHallUpdateConfig) Descriptor() ([]byte, []int) { return fileDescriptor43, []int{0} }
+func (*RpcHallUpdateConfig) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{0} }
 
 func (m *RpcHallUpdateConfig) GetConfigId() int32 {
 	if m != nil && m.ConfigId != nil {
@@ -36,7 +36,7 @@ func init() {
 	proto.RegisterType((*RpcHallUpdateConfig)(nil), "ddproto.rpc_hall_update_config")
 }
 
-var fileDescriptor43 = []byte{
+var fileDescriptor44 = []byte{
 	// 82 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2b, 0x2a, 0x48, 0x8e,
 	0xcf, 0x48, 0xcc, 0xc9, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0x49, 0x01, 0x33,

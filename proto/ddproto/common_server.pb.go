@@ -33,7 +33,7 @@ type GameSession struct {
 func (m *GameSession) Reset()                    { *m = GameSession{} }
 func (m *GameSession) String() string            { return proto.CompactTextString(m) }
 func (*GameSession) ProtoMessage()               {}
-func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
 
 func (m *GameSession) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -140,7 +140,7 @@ type CommonSrvGameUser struct {
 func (m *CommonSrvGameUser) Reset()                    { *m = CommonSrvGameUser{} }
 func (m *CommonSrvGameUser) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvGameUser) ProtoMessage()               {}
-func (*CommonSrvGameUser) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (*CommonSrvGameUser) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{1} }
 
 func (m *CommonSrvGameUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -256,7 +256,7 @@ type CommonSrvGameDesk struct {
 func (m *CommonSrvGameDesk) Reset()                    { *m = CommonSrvGameDesk{} }
 func (m *CommonSrvGameDesk) String() string            { return proto.CompactTextString(m) }
 func (*CommonSrvGameDesk) ProtoMessage()               {}
-func (*CommonSrvGameDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
+func (*CommonSrvGameDesk) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{2} }
 
 func (m *CommonSrvGameDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -369,7 +369,7 @@ func init() {
 	proto.RegisterType((*CommonSrvGameDesk)(nil), "ddproto.common_srv_game_desk")
 }
 
-var fileDescriptor8 = []byte{
+var fileDescriptor9 = []byte{
 	// 530 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x92, 0xd1, 0x8a, 0x13, 0x31,
 	0x14, 0x86, 0x99, 0xce, 0x76, 0xdb, 0xa6, 0xed, 0xae, 0xc4, 0x65, 0x09, 0x22, 0x4b, 0xe9, 0x85,
