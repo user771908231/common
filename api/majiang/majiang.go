@@ -1,10 +1,10 @@
 package majiang
 
 import (
-	"casino_majiang/msg/protogo"
-	"strings"
 	"casino_common/utils/numUtils"
 	"casino_majiang/msg/funcsInit"
+	"casino_majiang/msg/protogo"
+	"strings"
 )
 
 var clienMap map[int]int32
@@ -201,7 +201,8 @@ type PengPai struct {
 type FlyPai struct {
 	OutUserId uint32
 	InUserId  uint32
-	Pais      []*MJPAI
+	Pais      []*MJPAI //三张牌 含听用
+	Pai       *MJPAI //飞的是什么牌
 }
 
 type GangPai struct {
