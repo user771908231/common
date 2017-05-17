@@ -147,8 +147,8 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 	return decrUser(userid, consts.RKEY_USER_DIAMOND, d)
 }
 
-//增加用户的房卡
-func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
+//增加用户的房卡 参数:gid:游戏id，memo :说明
+func INCRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
 	return incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
