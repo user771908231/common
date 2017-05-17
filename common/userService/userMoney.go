@@ -1,19 +1,19 @@
 package userService
 
 import (
-	"time"
-	"errors"
-	"casino_common/utils/db"
-	"casino_common/common/log"
-	"casino_common/utils/redisUtils"
 	"casino_common/common/Error"
-	"casino_common/common/model"
-	"casino_common/common/consts/tableName"
-	"fmt"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
 	"casino_common/common/consts"
+	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/model"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/redisUtils"
+	"errors"
+	"fmt"
+	"github.com/golang/protobuf/proto"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -147,17 +147,20 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 	return decrUser(userid, consts.RKEY_USER_DIAMOND, d)
 }
 
-//增加用户的房卡
-func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
+//增加用户的房卡 参数:gid:游戏id，memo :说明
+func INCRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
 	return incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
 //减少用户的房卡
-func DECRUserRoomcard(userId uint32, d int64) (int64, error) {
+//参数说明:gid:游戏id, memo:说明
+func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
 	count := GetUserRoomCard(userId)
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少房卡失败！")
 	}
+	//增加扣除房卡的记录
+
 	return decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
