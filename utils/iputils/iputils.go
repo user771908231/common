@@ -62,7 +62,7 @@ func GetIPSite(ip string) string {
 	return ret
 }
 
-func GetLocationByLatitudeAndLongitude(Latitude float32, Longitude float32) string {
+func GetLocationByLatitudeAndLongitude(Latitude float64, Longitude float64) string {
 	type Person struct {
 		Result struct {
 			Formatted_address string
@@ -71,7 +71,7 @@ func GetLocationByLatitudeAndLongitude(Latitude float32, Longitude float32) stri
 	//todo 这里是随便找的一个key
 	ak := "DD279b2a90afdf0ae7a3796787a0742e"
 	p := &Person{}
-	r, err := http.Get("http://api.map.baidu.com/geocoder/v2/?ak" + ak + "=&location=" + fmt.Sprintf("%v", Latitude) + "," + fmt.Sprintf("%v", Longitude) + "&output=json&pois=0")
+	r, err := http.Get("http://api.map.baidu.com/geocoder/v2/?ak=" + ak + "&location=" + fmt.Sprintf("%v", Longitude) + "," + fmt.Sprintf("%v", Latitude) + "&output=json&pois=0")
 	if err != nil {
 		return ""
 	}
