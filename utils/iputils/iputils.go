@@ -69,9 +69,11 @@ func GetLocationByLatitudeAndLongitude(Latitude float64, Longitude float64) stri
 		}
 	}
 	//todo 这里是随便找的一个key
-	ak := "DD279b2a90afdf0ae7a3796787a0742e"
+	ak := "IBeISijoITQMKkuK9Dlp56ELYP2a8Nek"
 	p := &Person{}
-	r, err := http.Get("http://api.map.baidu.com/geocoder/v2/?ak=" + ak + "&location=" + fmt.Sprintf("%v", Longitude) + "," + fmt.Sprintf("%v", Latitude) + "&output=json&pois=0")
+	url := "http://api.map.baidu.com/geocoder/v2/?ak=" + ak + "&location=" + fmt.Sprintf("%v", Latitude) + "," + fmt.Sprintf("%v", Longitude) + "&output=json&pois=0"
+	log.T("开始查找玩家的地址%v", url)
+	r, err := http.Get(url)
 	if err != nil {
 		return ""
 	}
@@ -80,8 +82,8 @@ func GetLocationByLatitudeAndLongitude(Latitude float64, Longitude float64) stri
 	body, _ := ioutil.ReadAll(r.Body)
 	err = json.Unmarshal([]byte(body), &p)
 	if err != nil {
-		log.Printf("解析json的时候err:%v", err)
+		log.T("解析json的时候err:%v", err)
 	}
-	log.Printf("得到的ret :%v", p)
+	log.T("得到的ret :%v", p)
 	return p.Result.Formatted_address
 }
