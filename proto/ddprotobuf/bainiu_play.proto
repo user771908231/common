@@ -13,15 +13,6 @@ enum bainiu_desk_status {
 }
 
 //押注区域
-enum bainiu_area_name {
-    BAINIU_AREA_BANKER = 0;  //庄家
-    BAINIU_AREA_TIAN = 1;  //天
-    BAINIU_AREA_DI = 2;  //地
-    BAINIU_AREA_XUAN = 3;  //玄
-    BAINIU_AREA_HUANG = 4;  //黄
-}
-
-//押注区域
 message bainiu_area_info {
     optional bainiu_area_name name = 1;  //押注区域名称
     optional bainiu_client_poker poker = 2;  //牌型
@@ -92,7 +83,7 @@ message bainiu_yazhu_bc {
 //===============================发牌=================================
 //发牌广播
 message bainiu_fapai_bc {
-    optional bainiu_client_poker poker = 1;  //牌型
+    repeated bainiu_client_poker poker = 1;  //牌型
     optional int64 desk_time = 2;  //牌桌剩余时间
 }
 

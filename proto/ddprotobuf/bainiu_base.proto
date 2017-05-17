@@ -25,6 +25,15 @@ enum bainiu_enum_protoid {
 
 }
 
+//押注区域
+enum bainiu_area_name {
+    BAINIU_AREA_BANKER = 0;  //庄家
+    BAINIU_AREA_TIAN = 1;  //天
+    BAINIU_AREA_DI = 2;  //地
+    BAINIU_AREA_XUAN = 3;  //玄
+    BAINIU_AREA_HUANG = 4;  //黄
+}
+
 
 //=================================百人牛牛牌型================================
 //牛牛牌的类型
@@ -50,6 +59,7 @@ enum bainiu_enum_PokerType {
 
 //打出去的牌
 message bainiu_client_poker {
-    repeated client_base_poker pais = 2; //出的牌
-    optional bainiu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
+    repeated client_base_poker pais = 1; //出的牌
+    optional bainiu_enum_PokerType type = 2; //牌类型 牛1 牛2。。。牛牛等
+    optional bainiu_area_name area = 3;  //所属押注区域
 }
