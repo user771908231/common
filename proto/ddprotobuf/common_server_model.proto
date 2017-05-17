@@ -40,6 +40,9 @@ message User {
 
     optional bool newUserAward = 31; //是否有新用户奖励:没有领取的时候是true,领取之后是false
     optional string regIp = 32; //注册ip
+    optional float longitude = 33; //经度
+    optional float latitude = 34; //纬度
+    optional string location = 35; //根据经纬度计算出来的地理位置
 }
 
 //通知公告
