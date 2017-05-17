@@ -8,6 +8,7 @@ Package ddproto is a generated protocol buffer package.
 It is generated from these files:
 	bainiu_base.proto
 	bainiu_play.proto
+	bainiu_server.proto
 	common_client.proto
 	common_client_award.proto
 	common_client_pay.proto
@@ -71,6 +72,7 @@ It has these top-level messages:
 	BainiuFapaiBc
 	BainiuWinUserItem
 	BainiuBipaiBc
+	BainiuSrvPoker
 	ProtoHeader
 	Heartbeat
 	ServerInfo

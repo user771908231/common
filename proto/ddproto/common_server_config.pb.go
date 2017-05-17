@@ -24,7 +24,7 @@ type TConfigSys struct {
 func (m *TConfigSys) Reset()                    { *m = TConfigSys{} }
 func (m *TConfigSys) String() string            { return proto.CompactTextString(m) }
 func (*TConfigSys) ProtoMessage()               {}
-func (*TConfigSys) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0} }
+func (*TConfigSys) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
 
 func (m *TConfigSys) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -58,7 +58,7 @@ type TConfigDrawLottery struct {
 func (m *TConfigDrawLottery) Reset()                    { *m = TConfigDrawLottery{} }
 func (m *TConfigDrawLottery) String() string            { return proto.CompactTextString(m) }
 func (*TConfigDrawLottery) ProtoMessage()               {}
-func (*TConfigDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{1} }
+func (*TConfigDrawLottery) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{1} }
 
 func (m *TConfigDrawLottery) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -86,7 +86,7 @@ func init() {
 	proto.RegisterType((*TConfigDrawLottery)(nil), "ddproto.TConfigDrawLottery")
 }
 
-var fileDescriptor11 = []byte{
+var fileDescriptor12 = []byte{
 	// 156 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x4a, 0xce, 0xcf, 0xcd,
 	0xcd, 0xcf, 0x8b, 0x2f, 0x4e, 0x2d, 0x2a, 0x4b, 0x2d, 0x8a, 0x4f, 0xce, 0xcf, 0x4b, 0xcb, 0x4c,

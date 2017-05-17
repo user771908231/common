@@ -21,8 +21,9 @@ type PEZRecordBean struct {
 }
 
 type T_pinerzhang_desk_round struct {
-	DeskId     int32 //房间号
-	GameNumber int32 //一局游戏编号
+	DeskId     int32  //桌子ID
+	Password   string //房间号
+	GameNumber int32  //一局游戏编号
 	UserIds    string
 	BeginTime  time.Time
 	EndTime    time.Time
@@ -42,6 +43,7 @@ func (t T_pinerzhang_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
 		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
 		DeskId:    proto.Int32(t.DeskId),
+		Password:  proto.String(t.Password),
 		Id:        proto.Int32(t.GameNumber),
 	}
 	for _, bean := range t.Records {

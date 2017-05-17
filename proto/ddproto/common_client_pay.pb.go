@@ -147,7 +147,7 @@ func (x *PayEnumTradeStatus) UnmarshalJSON(data []byte) error {
 	*x = PayEnumTradeStatus(value)
 	return nil
 }
-func (PayEnumTradeStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (PayEnumTradeStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 // app收到同步回调之后，请求服务器检测接收异步回调，得到充值之后的信息
 type PayReturn int32
@@ -179,7 +179,7 @@ func (x *PayReturn) UnmarshalJSON(data []byte) error {
 	*x = PayReturn(value)
 	return nil
 }
-func (PayReturn) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (PayReturn) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 // 充值套餐
 type PayBaseProduct struct {
@@ -193,7 +193,7 @@ type PayBaseProduct struct {
 func (m *PayBaseProduct) Reset()                    { *m = PayBaseProduct{} }
 func (m *PayBaseProduct) String() string            { return proto.CompactTextString(m) }
 func (*PayBaseProduct) ProtoMessage()               {}
-func (*PayBaseProduct) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*PayBaseProduct) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *PayBaseProduct) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -235,7 +235,7 @@ type PayBasePaymodel struct {
 func (m *PayBasePaymodel) Reset()                    { *m = PayBasePaymodel{} }
 func (m *PayBasePaymodel) String() string            { return proto.CompactTextString(m) }
 func (*PayBasePaymodel) ProtoMessage()               {}
-func (*PayBasePaymodel) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*PayBasePaymodel) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 func (m *PayBasePaymodel) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -283,7 +283,7 @@ type PayBaseDetails struct {
 func (m *PayBaseDetails) Reset()                    { *m = PayBaseDetails{} }
 func (m *PayBaseDetails) String() string            { return proto.CompactTextString(m) }
 func (*PayBaseDetails) ProtoMessage()               {}
-func (*PayBaseDetails) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*PayBaseDetails) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
 
 func (m *PayBaseDetails) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -367,7 +367,7 @@ type WxpayReqUnifiedorder struct {
 func (m *WxpayReqUnifiedorder) Reset()                    { *m = WxpayReqUnifiedorder{} }
 func (m *WxpayReqUnifiedorder) String() string            { return proto.CompactTextString(m) }
 func (*WxpayReqUnifiedorder) ProtoMessage()               {}
-func (*WxpayReqUnifiedorder) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (*WxpayReqUnifiedorder) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
 
 func (m *WxpayReqUnifiedorder) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -406,7 +406,7 @@ type WxpayAckUnifiedorder struct {
 func (m *WxpayAckUnifiedorder) Reset()                    { *m = WxpayAckUnifiedorder{} }
 func (m *WxpayAckUnifiedorder) String() string            { return proto.CompactTextString(m) }
 func (*WxpayAckUnifiedorder) ProtoMessage()               {}
-func (*WxpayAckUnifiedorder) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+func (*WxpayAckUnifiedorder) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
 
 func (m *WxpayAckUnifiedorder) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -473,7 +473,7 @@ type WxpayReqSyncChecker struct {
 func (m *WxpayReqSyncChecker) Reset()                    { *m = WxpayReqSyncChecker{} }
 func (m *WxpayReqSyncChecker) String() string            { return proto.CompactTextString(m) }
 func (*WxpayReqSyncChecker) ProtoMessage()               {}
-func (*WxpayReqSyncChecker) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
+func (*WxpayReqSyncChecker) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
 
 func (m *WxpayReqSyncChecker) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -503,7 +503,7 @@ type WxpayAckSyncChecker struct {
 func (m *WxpayAckSyncChecker) Reset()                    { *m = WxpayAckSyncChecker{} }
 func (m *WxpayAckSyncChecker) String() string            { return proto.CompactTextString(m) }
 func (*WxpayAckSyncChecker) ProtoMessage()               {}
-func (*WxpayAckSyncChecker) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
+func (*WxpayAckSyncChecker) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{6} }
 
 func (m *WxpayAckSyncChecker) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -557,7 +557,7 @@ type ApplepayReqRechargecb struct {
 func (m *ApplepayReqRechargecb) Reset()                    { *m = ApplepayReqRechargecb{} }
 func (m *ApplepayReqRechargecb) String() string            { return proto.CompactTextString(m) }
 func (*ApplepayReqRechargecb) ProtoMessage()               {}
-func (*ApplepayReqRechargecb) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{7} }
+func (*ApplepayReqRechargecb) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{7} }
 
 func (m *ApplepayReqRechargecb) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -583,7 +583,7 @@ type ApplepayAcksRechargecb struct {
 func (m *ApplepayAcksRechargecb) Reset()                    { *m = ApplepayAcksRechargecb{} }
 func (m *ApplepayAcksRechargecb) String() string            { return proto.CompactTextString(m) }
 func (*ApplepayAcksRechargecb) ProtoMessage()               {}
-func (*ApplepayAcksRechargecb) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{8} }
+func (*ApplepayAcksRechargecb) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{8} }
 
 func (m *ApplepayAcksRechargecb) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -620,7 +620,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PayReturn", PayReturn_name, PayReturn_value)
 }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor5 = []byte{
 	// 592 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x9c, 0x54, 0xdd, 0x8e, 0xd3, 0x3c,
 	0x10, 0xfd, 0xd2, 0x6d, 0xbb, 0x9b, 0xf9, 0xe8, 0xcf, 0x66, 0x7f, 0x1a, 0x81, 0x90, 0x50, 0xc4,

@@ -160,7 +160,7 @@ func (x *PlaybackPdkActType) UnmarshalJSON(data []byte) error {
 	*x = PlaybackPdkActType(value)
 	return nil
 }
-func (PlaybackPdkActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor29, []int{0} }
+func (PlaybackPdkActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor30, []int{0} }
 
 type PlaybackPdkAckPage struct {
 	Header *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -176,7 +176,7 @@ type PlaybackPdkAckPage struct {
 func (m *PlaybackPdkAckPage) Reset()                    { *m = PlaybackPdkAckPage{} }
 func (m *PlaybackPdkAckPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackPdkAckPage) ProtoMessage()               {}
-func (*PlaybackPdkAckPage) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{0} }
+func (*PlaybackPdkAckPage) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{0} }
 
 func (m *PlaybackPdkAckPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -236,7 +236,7 @@ type PdkPlayerInfo struct {
 func (m *PdkPlayerInfo) Reset()                    { *m = PdkPlayerInfo{} }
 func (m *PdkPlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkPlayerInfo) ProtoMessage()               {}
-func (*PdkPlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{1} }
+func (*PdkPlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{1} }
 
 func (m *PdkPlayerInfo) GetPlayerPokers() []*ClientBasePoker {
 	if m != nil {
@@ -359,7 +359,7 @@ type PdkPlaybackSnapshot struct {
 func (m *PdkPlaybackSnapshot) Reset()                    { *m = PdkPlaybackSnapshot{} }
 func (m *PdkPlaybackSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*PdkPlaybackSnapshot) ProtoMessage()               {}
-func (*PdkPlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{2} }
+func (*PdkPlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{2} }
 
 func (m *PdkPlaybackSnapshot) GetPlayerInfo() []*PdkPlayerInfo {
 	if m != nil {
@@ -435,7 +435,7 @@ type PdkPlaybackDeskInfo struct {
 func (m *PdkPlaybackDeskInfo) Reset()                    { *m = PdkPlaybackDeskInfo{} }
 func (m *PdkPlaybackDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkPlaybackDeskInfo) ProtoMessage()               {}
-func (*PdkPlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{3} }
+func (*PdkPlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor30, []int{3} }
 
 func (m *PdkPlaybackDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -515,7 +515,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PlaybackPdkActType", PlaybackPdkActType_name, PlaybackPdkActType_value)
 }
 
-var fileDescriptor29 = []byte{
+var fileDescriptor30 = []byte{
 	// 667 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x94, 0x54, 0x49, 0x4f, 0xdc, 0x4c,
 	0x10, 0xfd, 0x3c, 0xfb, 0x14, 0xf6, 0x30, 0x78, 0x80, 0xaf, 0x03, 0x51, 0x84, 0x26, 0x39, 0x20,

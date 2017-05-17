@@ -75,7 +75,7 @@ func (x *MjBaishanPaitype) UnmarshalJSON(data []byte) error {
 	*x = MjBaishanPaitype(value)
 	return nil
 }
-func (MjBaishanPaitype) EnumDescriptor() ([]byte, []int) { return fileDescriptor31, []int{0} }
+func (MjBaishanPaitype) EnumDescriptor() ([]byte, []int) { return fileDescriptor32, []int{0} }
 
 type MjBaishanHutype int32
 
@@ -118,14 +118,14 @@ func (x *MjBaishanHutype) UnmarshalJSON(data []byte) error {
 	*x = MjBaishanHutype(value)
 	return nil
 }
-func (MjBaishanHutype) EnumDescriptor() ([]byte, []int) { return fileDescriptor31, []int{1} }
+func (MjBaishanHutype) EnumDescriptor() ([]byte, []int) { return fileDescriptor32, []int{1} }
 
 func init() {
 	proto.RegisterEnum("ddproto.MjBaishanPaitype", MjBaishanPaitype_name, MjBaishanPaitype_value)
 	proto.RegisterEnum("ddproto.MjBaishanHutype", MjBaishanHutype_name, MjBaishanHutype_value)
 }
 
-var fileDescriptor31 = []byte{
+var fileDescriptor32 = []byte{
 	// 264 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x4c, 0x8f, 0xc1, 0x6e, 0xc2, 0x30,
 	0x0c, 0x86, 0xc5, 0x06, 0xb4, 0x35, 0x05, 0x05, 0x4b, 0xdb, 0x43, 0x70, 0xd8, 0x3b, 0xa4, 0x22,

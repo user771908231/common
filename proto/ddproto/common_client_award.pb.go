@@ -120,7 +120,7 @@ type AwardReqOnline struct {
 func (m *AwardReqOnline) Reset()                    { *m = AwardReqOnline{} }
 func (m *AwardReqOnline) String() string            { return proto.CompactTextString(m) }
 func (*AwardReqOnline) ProtoMessage()               {}
-func (*AwardReqOnline) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
+func (*AwardReqOnline) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
 
 func (m *AwardReqOnline) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -139,7 +139,7 @@ type WardAckOnline struct {
 func (m *WardAckOnline) Reset()                    { *m = WardAckOnline{} }
 func (m *WardAckOnline) String() string            { return proto.CompactTextString(m) }
 func (*WardAckOnline) ProtoMessage()               {}
-func (*WardAckOnline) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{1} }
+func (*WardAckOnline) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
 
 func (m *WardAckOnline) GetCoin() int64 {
 	if m != nil && m.Coin != nil {
@@ -171,7 +171,7 @@ type AwardReqOnlineInfo struct {
 func (m *AwardReqOnlineInfo) Reset()                    { *m = AwardReqOnlineInfo{} }
 func (m *AwardReqOnlineInfo) String() string            { return proto.CompactTextString(m) }
 func (*AwardReqOnlineInfo) ProtoMessage()               {}
-func (*AwardReqOnlineInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{2} }
+func (*AwardReqOnlineInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
 
 func (m *AwardReqOnlineInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -188,7 +188,7 @@ type AwardAckOnlineInfo struct {
 func (m *AwardAckOnlineInfo) Reset()                    { *m = AwardAckOnlineInfo{} }
 func (m *AwardAckOnlineInfo) String() string            { return proto.CompactTextString(m) }
 func (*AwardAckOnlineInfo) ProtoMessage()               {}
-func (*AwardAckOnlineInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{3} }
+func (*AwardAckOnlineInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
 
 func (m *AwardAckOnlineInfo) GetDuration() int64 {
 	if m != nil && m.Duration != nil {
@@ -206,7 +206,7 @@ type AwardReqGetNewUser struct {
 func (m *AwardReqGetNewUser) Reset()                    { *m = AwardReqGetNewUser{} }
 func (m *AwardReqGetNewUser) String() string            { return proto.CompactTextString(m) }
 func (*AwardReqGetNewUser) ProtoMessage()               {}
-func (*AwardReqGetNewUser) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{4} }
+func (*AwardReqGetNewUser) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
 
 func (m *AwardReqGetNewUser) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -224,7 +224,7 @@ type AwardAckGetNewUser struct {
 func (m *AwardAckGetNewUser) Reset()                    { *m = AwardAckGetNewUser{} }
 func (m *AwardAckGetNewUser) String() string            { return proto.CompactTextString(m) }
 func (*AwardAckGetNewUser) ProtoMessage()               {}
-func (*AwardAckGetNewUser) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{5} }
+func (*AwardAckGetNewUser) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
 
 func (m *AwardAckGetNewUser) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -242,7 +242,7 @@ func init() {
 	proto.RegisterType((*AwardAckGetNewUser)(nil), "ddproto.award_ack_getNewUser")
 }
 
-var fileDescriptor3 = []byte{
+var fileDescriptor4 = []byte{
 	// 205 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xce, 0xcf, 0xcd,
 	0xcd, 0xcf, 0x8b, 0x4f, 0xce, 0xc9, 0x4c, 0xcd, 0x2b, 0x89, 0x4f, 0x2c, 0x4f, 0x2c, 0x4a, 0xd1,

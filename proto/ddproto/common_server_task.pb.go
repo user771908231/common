@@ -20,13 +20,13 @@ type TTask struct {
 func (m *TTask) Reset()                    { *m = TTask{} }
 func (m *TTask) String() string            { return proto.CompactTextString(m) }
 func (*TTask) ProtoMessage()               {}
-func (*TTask) Descriptor() ([]byte, []int) { return fileDescriptor16, []int{0} }
+func (*TTask) Descriptor() ([]byte, []int) { return fileDescriptor17, []int{0} }
 
 func init() {
 	proto.RegisterType((*TTask)(nil), "ddproto.TTask")
 }
 
-var fileDescriptor16 = []byte{
+var fileDescriptor17 = []byte{
 	// 64 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x48, 0xce, 0xcf, 0xcd,
 	0xcd, 0xcf, 0x8b, 0x2f, 0x4e, 0x2d, 0x2a, 0x4b, 0x2d, 0x8a, 0x2f, 0x49, 0x2c, 0xce, 0xd6, 0x2b,

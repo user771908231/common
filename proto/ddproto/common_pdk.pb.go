@@ -180,7 +180,7 @@ func (x *PdkEnumPaiType) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumPaiType(value)
 	return nil
 }
-func (PdkEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (PdkEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
 
 // 玩家当前状态
 type PdkEnumPlayerStatus int32
@@ -299,7 +299,7 @@ func (x *PdkEnumPlayerStatus) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumPlayerStatus(value)
 	return nil
 }
-func (PdkEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (PdkEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{1} }
 
 type PdkEnumRoomType int32
 
@@ -336,7 +336,7 @@ func (x *PdkEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumRoomType(value)
 	return nil
 }
-func (PdkEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
+func (PdkEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{2} }
 
 type PdkEnumEnterType int32
 
@@ -370,7 +370,7 @@ func (x *PdkEnumEnterType) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumEnterType(value)
 	return nil
 }
-func (PdkEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{3} }
+func (PdkEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{3} }
 
 type PdkEnumCoinRoomLevel int32
 
@@ -410,7 +410,7 @@ func (x *PdkEnumCoinRoomLevel) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumCoinRoomLevel(value)
 	return nil
 }
-func (PdkEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{4} }
+func (PdkEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{4} }
 
 type PdkEnumDeskGameStatus int32
 
@@ -453,7 +453,7 @@ func (x *PdkEnumDeskGameStatus) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumDeskGameStatus(value)
 	return nil
 }
-func (PdkEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor8, []int{5} }
+func (PdkEnumDeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor9, []int{5} }
 
 type PdkBaseRoomTypeInfo struct {
 	RoomType         *PdkEnumRoomType      `protobuf:"varint,1,opt,name=roomType,enum=ddproto.PdkEnumRoomType" json:"roomType,omitempty"`
@@ -472,7 +472,7 @@ type PdkBaseRoomTypeInfo struct {
 func (m *PdkBaseRoomTypeInfo) Reset()                    { *m = PdkBaseRoomTypeInfo{} }
 func (m *PdkBaseRoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseRoomTypeInfo) ProtoMessage()               {}
-func (*PdkBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (*PdkBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
 
 func (m *PdkBaseRoomTypeInfo) GetRoomType() PdkEnumRoomType {
 	if m != nil && m.RoomType != nil {
@@ -554,7 +554,7 @@ type PdkBaseTimerInfo struct {
 func (m *PdkBaseTimerInfo) Reset()                    { *m = PdkBaseTimerInfo{} }
 func (m *PdkBaseTimerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseTimerInfo) ProtoMessage()               {}
-func (*PdkBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (*PdkBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{1} }
 
 func (m *PdkBaseTimerInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -581,7 +581,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PdkEnumDeskGameStatus", PdkEnumDeskGameStatus_name, PdkEnumDeskGameStatus_value)
 }
 
-var fileDescriptor8 = []byte{
+var fileDescriptor9 = []byte{
 	// 855 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x6c, 0x94, 0xdb, 0x6e, 0xe3, 0x36,
 	0x10, 0x86, 0x37, 0xce, 0xc9, 0xa1, 0x13, 0x87, 0x66, 0x4e, 0x6a, 0xb6, 0x45, 0x8b, 0xbd, 0x2a,
