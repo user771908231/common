@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import public "common_server_poker.proto";
+import public "bainiu_base.proto";
+
+package ddproto;
+
+//=======================================服务器=====================================
+
+//打出去的牌
+message bainiu_srv_poker {
+    repeated common_srv_pokerPai pais = 2; //出的牌
+    optional bainiu_enum_PokerType type = 3; //牌类型 牛1 牛2。。。牛牛等
+}
