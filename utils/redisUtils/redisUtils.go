@@ -1,11 +1,11 @@
 package redisUtils
 
 import (
-	"github.com/golang/protobuf/proto"
-	"casino_common/utils/redis"
 	"casino_common/common/log"
-	"strings"
 	"casino_common/utils/numUtils"
+	"casino_common/utils/redis"
+	"github.com/golang/protobuf/proto"
+	"strings"
 )
 
 //在需要的地方,需要自己关闭连接
@@ -141,6 +141,49 @@ func SETNX(key string, v int64) int64 {
 		return 0
 	} else {
 		return value.(int64)
+	}
+}
+
+func SADD(key string, value string) {
+	conn := GetConn()
+	defer conn.Close()
+	_, err := conn.SADD(key, value)
+	if err != nil {
+
+	}
+}
+
+func SREM(key string, value string) {
+	conn := GetConn()
+	defer conn.Close()
+	conn.SREM(key, value)
+
+}
+
+//返回uint32的集合
+func SMEMBERS(key string) []string {
+	conn := GetConn()
+	defer conn.Close()
+	ret, err := conn.SMEMBERS(key)
+	if err != nil {
+		return nil
+	} else {
+		ret2 := make([]string, 0)
+		for _, s := range ret {
+			ret2 = append(ret2, string(s.([]uint8)))
+		}
+		return ret2
+	}
+}
+
+func SCARD(key string) int64 {
+	conn := GetConn()
+	defer conn.Close()
+	ret, err := conn.SCARD(key)
+	if err != nil {
+		return 0
+	} else {
+		return ret
 	}
 }
 

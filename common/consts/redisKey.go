@@ -22,3 +22,9 @@ const (
 	RKEY_CONF_HALL_GRAY_RELEASE_SWITH string = "rkey_conf_hall_gray_release_swith" //大厅的灰度测试开关
 	RKEY_PRE_IP_ADDR                  string = "rkey_pre_ip_addr"                  //ip对应的实际地址
 )
+
+const (
+	//admin需要使用的
+	RKEY_ALL_ONLINE_USERS      string = "rkey_all_online_users"      //记录所有在线的玩家
+	RKEY_PRE_ONLINE_SINGE_GAME string = "rkey_pre_online_singe_game" //记录单个在线的游戏玩家
+)

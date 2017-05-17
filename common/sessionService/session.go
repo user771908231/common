@@ -1,17 +1,18 @@
 package sessionService
 
 import (
-	"strings"
-	"casino_common/utils/numUtils"
-	"casino_common/utils/redisUtils"
-	"casino_common/common/log"
-	"casino_common/proto/funcsInit"
-	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
+	"casino_common/common/log"
+	"casino_common/common/service/statisticsService"
+	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
 	"casino_common/utils"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/redisUtils"
 	"fmt"
+	"github.com/golang/protobuf/proto"
+	"strings"
 )
 
 // session相关的...
@@ -93,6 +94,9 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 	//保存session
 	log.T("保存到redis的session【%v】", session)
 	redisUtils.SetObj(getSessionKey(userId, roomType), session)
+
+	//这里需要在redis-set中保存在线用户的数据
+	statisticsService.IncrOnline(userId, gameId)
 	return session, nil
 }
 
@@ -103,6 +107,7 @@ func delSession(s *ddproto.GameSession) {
 	} else {
 		log.T("开始删除玩家[%v]的roomType[%v] session[%v] ", s.GetUserId(), s.GetRoomType(), s)
 		redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
+		statisticsService.DecrOnline(s.GetUserId(), s.GetGameId())
 	}
 }
 

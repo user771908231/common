@@ -39,6 +39,10 @@ func String2Int(s string) (int) {
 	return i
 }
 
+func String2Uint32(s string) uint32 {
+	return uint32(String2Int(s))
+}
+
 /**
  字符转转float64类型
  */

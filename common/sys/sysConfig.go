@@ -1,12 +1,12 @@
 package sys
 
 import (
-	"casino_common/proto/ddproto"
+	"casino_common/common/consts"
 	"casino_common/common/model/configDao"
+	"casino_common/proto/ddproto"
 	"casino_common/utils/redisUtils"
 	"errors"
 	"fmt"
-	"casino_common/common/consts"
 )
 
 var GAMEENV struct {

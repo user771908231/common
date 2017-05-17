@@ -1,11 +1,11 @@
 package data
 
 import (
-	"github.com/garyburd/redigo/redis"
-	"time"
-	"github.com/golang/protobuf/proto"
 	"casino_common/common/cfg"
 	"casino_common/common/log"
+	"github.com/garyburd/redigo/redis"
+	"github.com/golang/protobuf/proto"
+	"time"
 )
 
 var (
@@ -406,4 +406,25 @@ func (t *Data) DECRBY(key string, i int64) (interface{}, error) {
 func (t *Data) SETNX(k string, i int64) (interface{}, error) {
 	v, err := t.conn.Do("DECRBY", k, i)
 	return v, err
+}
+
+//==================操作集合
+func (t *Data) SADD(k string, kv string) (interface{}, error) {
+	v, err := t.conn.Do("SADD", k, kv)
+	return v, err
+}
+
+func (t *Data) SREM(k string, kv string) (interface{}, error) {
+	v, err := t.conn.Do("SREM", k, kv)
+	return v, err
+}
+
+func (t *Data) SCARD(k string) (int64, error) {
+	v, err := t.conn.Do("SCARD", k)
+	return v.(int64), err
+}
+
+func (d *Data) SMEMBERS(k string) ([]interface{}, error) {
+	v, err := d.conn.Do("SMEMBERS", k)
+	return v.([]interface{}), err
 }
