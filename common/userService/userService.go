@@ -1,16 +1,16 @@
 package userService
 
 import (
-	"casino_common/utils/db"
-	"casino_common/common/log"
-	"casino_common/utils/redisUtils"
-	"casino_common/common/consts/tableName"
-	"casino_common/proto/ddproto"
-	"casino_common/common/sys"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/model/userDao"
-	"time"
 	"casino_common/common/consts"
+	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/model/userDao"
+	"casino_common/common/sys"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/redisUtils"
+	"github.com/golang/protobuf/proto"
+	"time"
 )
 
 /**
@@ -58,7 +58,7 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 
 	//3,保存到redis
 	SaveUser2Redis(user)
-	INCRUserRoomcard(uint32(id), sys.CONFIG_SYS.GetNewUserRoomcard()) //新用户注册的时候,默认的房卡数量
+	INCRUserRoomcard(uint32(id), sys.CONFIG_SYS.GetNewUserRoomcard(),0,"新用户注册") //新用户注册的时候,默认的房卡数量
 	INCRUserCOIN(uint32(id), sys.CONFIG_SYS.GetNewUserCoin())         //新用户注册的时候，默认的金币数量
 	return user, nil
 }
@@ -87,6 +87,7 @@ func GetUserById(id uint32) *ddproto.User {
 		//下三行代码 可以暂时不用，这里很印象性能
 		buser.Coin = proto.Int64(GetUserCoin(id))
 		buser.Diamond = proto.Int64(GetUserDiamond(id))
+		buser.Diamond2 = proto.Int64(GetUserDiamond2(id))
 		buser.RoomCard = proto.Int64(GetUserRoomCard(id))
 		return buser
 	}

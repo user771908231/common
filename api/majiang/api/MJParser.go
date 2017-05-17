@@ -11,12 +11,15 @@ type MJParser interface {
 	CanGang(...interface{}) (interface{}, error)
 	CanChi(interface{}, interface{}) (interface{}, error)
 	CanBu(...interface{}) (interface{}, error)
-	CanTing(...interface{}) (interface{}, error)
+	CanTing(...interface{}) (interface{}, error)      //是否可以报听 白山麻将
+	CanFly(interface{}, interface{}) (bool, error)    //是否可以飞 宜宾麻将
+	CanTi(interface{}) (interface{}, error)        //是否可以提 宜宾麻将
 	GetJiaoInfos(...interface{}) (interface{}, error) //判断是否有叫
 	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
 	XiPai() interface{}                               //洗牌
 	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
 	InitMjPaiByIndex(index int32) *majiang.MJPAI      //通过id得到一张麻将牌
+	IsTingYongPai(pai majiang.MJPAI) bool     //是否是听用牌 宜宾麻将
 }
 
 //麻将的骨架，通用的方法都在这里
@@ -139,6 +142,12 @@ type CanBuInfo struct {
 	BuCards []*majiang.MJPAI
 }
 
+//提
+type CanTiInfo struct {
+	CanTi   bool
+	TiCards []*majiang.MJPAI
+}
+
 func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, error) {
 	gameData := userGameData.(MJUserGameData) //玩家数据
 	handPais := gameData.GetHandPais()        //判断的手牌
@@ -207,6 +216,21 @@ func (p *MJParserCore) CanChi(interface{}, interface{}) (interface{}, error) {
 
 //是否可以报听
 func (p *MJParserCore) CanTing(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+//是否可以飞
+func (p *MJParserCore) CanFly(interface{}, interface{}) (bool, error) {
+	return false, nil
+}
+
+//是否可以提
+func (p *MJParserCore) CanTi(interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+//是否能补虾子
+func (p *MJParserCore) CanBu(...interface{}) (interface{}, error) {
 	return nil, nil
 }
 
@@ -289,6 +313,11 @@ func (p *MJParserCore) IsMengQing(g MJUserGameData) bool {
 		return false
 	}
 	return true
+}
+
+//是否是听用牌的空实现 宜宾麻将
+func (p *MJParserCore) IsTingYongPai(pai majiang.MJPAI) bool {
+	return false
 }
 
 /**

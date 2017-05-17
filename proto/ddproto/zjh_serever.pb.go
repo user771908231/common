@@ -60,7 +60,7 @@ func (x *ZjhEnum_ZJHTYPE) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnum_ZJHTYPE(value)
 	return nil
 }
-func (ZjhEnum_ZJHTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{0} }
+func (ZjhEnum_ZJHTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor50, []int{0} }
 
 // 用户游戏状态
 type ZjhEnumUserStatus int32
@@ -104,7 +104,7 @@ func (x *ZjhEnumUserStatus) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumUserStatus(value)
 	return nil
 }
-func (ZjhEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{1} }
+func (ZjhEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor50, []int{1} }
 
 // 打出去的牌
 type ZjhSrvPoker struct {
@@ -118,7 +118,7 @@ type ZjhSrvPoker struct {
 func (m *ZjhSrvPoker) Reset()                    { *m = ZjhSrvPoker{} }
 func (m *ZjhSrvPoker) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvPoker) ProtoMessage()               {}
-func (*ZjhSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{0} }
+func (*ZjhSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{0} }
 
 func (m *ZjhSrvPoker) GetKeyValue() []int32 {
 	if m != nil {
@@ -156,7 +156,7 @@ type ZjhSrvBill struct {
 func (m *ZjhSrvBill) Reset()                    { *m = ZjhSrvBill{} }
 func (m *ZjhSrvBill) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvBill) ProtoMessage()               {}
-func (*ZjhSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{1} }
+func (*ZjhSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{1} }
 
 // 用户的游戏数据
 type ZjhSrv_GameData struct {
@@ -168,7 +168,7 @@ type ZjhSrv_GameData struct {
 func (m *ZjhSrv_GameData) Reset()                    { *m = ZjhSrv_GameData{} }
 func (m *ZjhSrv_GameData) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrv_GameData) ProtoMessage()               {}
-func (*ZjhSrv_GameData) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{2} }
+func (*ZjhSrv_GameData) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{2} }
 
 func (m *ZjhSrv_GameData) GetPai() *ZjhSrvPoker {
 	if m != nil {
@@ -205,7 +205,7 @@ type ZjhSrvUser struct {
 func (m *ZjhSrvUser) Reset()                    { *m = ZjhSrvUser{} }
 func (m *ZjhSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvUser) ProtoMessage()               {}
-func (*ZjhSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{3} }
+func (*ZjhSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{3} }
 
 func (m *ZjhSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -326,7 +326,7 @@ type ZjhSrvDesk struct {
 func (m *ZjhSrvDesk) Reset()                    { *m = ZjhSrvDesk{} }
 func (m *ZjhSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvDesk) ProtoMessage()               {}
-func (*ZjhSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{4} }
+func (*ZjhSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{4} }
 
 func (m *ZjhSrvDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -485,7 +485,7 @@ type ZjhSrvRoom struct {
 func (m *ZjhSrvRoom) Reset()                    { *m = ZjhSrvRoom{} }
 func (m *ZjhSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*ZjhSrvRoom) ProtoMessage()               {}
-func (*ZjhSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{5} }
+func (*ZjhSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{5} }
 
 func (m *ZjhSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -561,7 +561,7 @@ func init() {
 	proto.RegisterEnum("ddproto.ZjhEnumUserStatus", ZjhEnumUserStatus_name, ZjhEnumUserStatus_value)
 }
 
-var fileDescriptor48 = []byte{
+var fileDescriptor50 = []byte{
 	// 741 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x54, 0xdd, 0x4e, 0xdb, 0x4a,
 	0x10, 0x3e, 0xce, 0x7f, 0x36, 0x71, 0x70, 0x0c, 0xe7, 0x9c, 0xa5, 0xe2, 0x02, 0xa5, 0x17, 0x45,

@@ -2,16 +2,17 @@ package model
 
 import (
 	"casino_common/proto/ddproto"
+	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"time"
-	"casino_common/utils/numUtils"
 )
 
 //一把结束,战绩可以通过这个表来查询
 type T_niuniu_desk_round struct {
-	DeskId     int32 //房间Id
-	GameNumber int32 //一局游戏编号
+	DeskId     int32  //房间Id
+	Password   string //房间号
+	GameNumber int32  //一局游戏编号
 	UserIds    string
 	BeginTime  time.Time
 	EndTime    time.Time
@@ -23,6 +24,7 @@ func (t T_niuniu_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
 		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
 		DeskId:    proto.Int32(t.DeskId),
+		Password:  proto.String(t.Password),
 		Id:        proto.Int32(t.GameNumber),
 		RoundStr:  proto.String(numUtils.Int2String2(t.TotalRound)),
 	}

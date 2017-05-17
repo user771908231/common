@@ -2,497 +2,6 @@
 // source: bainiu_play.proto
 // DO NOT EDIT!
 
-/*
-Package ddproto is a generated protocol buffer package.
-
-It is generated from these files:
-	bainiu_play.proto
-	common_client.proto
-	common_client_award.proto
-	common_client_pay.proto
-	common_enum.proto
-	common_mj.proto
-	common_mj_play.proto
-	common_pdk.proto
-	common_server.proto
-	common_server_award.proto
-	common_server_config.proto
-	common_server_model.proto
-	common_server_msg.proto
-	common_server_poker.proto
-	common_server_redis.proto
-	common_server_task.proto
-	ddz_base.proto
-	ddz_desk.proto
-	ddz_hall.proto
-	ddz_play.proto
-	ddz_server.proto
-	erddz_base.proto
-	erddz_desk.proto
-	erddz_hall.proto
-	erddz_play.proto
-	hall.proto
-	hall_data.proto
-	hall_playback.proto
-	hall_playback_pdk.proto
-	hot_update.proto
-	mj_baishan_base.proto
-	niuniu_base.proto
-	niuniu_play.proto
-	niuniu_server.proto
-	pdk_base.proto
-	pdk_desk.proto
-	pdk_hall.proto
-	pdk_play.proto
-	pdk_server.proto
-	pez_base.proto
-	pez_desk.proto
-	pez_hall.proto
-	pez_play.proto
-	rpc_hall.proto
-	zjh_base.proto
-	zjh_desk.proto
-	zjh_hall.proto
-	zjh_play.proto
-	zjh_serever.proto
-
-It has these top-level messages:
-	BainiuAreaInfo
-	BainiuClientDesk
-	BainiuClientUser
-	BainiuEnterDeskReq
-	BainiuEnterDeskAck
-	BainiuYazhuOt
-	BainiuYazhuReq
-	BainiuYazhuAck
-	BainiuYazhuBc
-	BainiuFapaiBc
-	BainiuWinUserItem
-	BainiuBipaiBc
-	ProtoHeader
-	Heartbeat
-	ServerInfo
-	QuickConn
-	AckQuickConn
-	WeixinInfo
-	CommonReqReg
-	CommonReqRegViaInput
-	CommonAckReg
-	CommonReqGameLogin
-	CommonReqGameLoginViaInput
-	CommonAckGameLogin
-	CommonReqQrLogin
-	CommonAckQrLogin
-	CommonReqQrWxInfo
-	CommonAckQrWxInfo
-	CommonAckReconnect
-	CommonReqReconnect
-	CommonReqGameState
-	CommonAckGameState
-	CommonReqLogout
-	CommonAckLogout
-	CommonReqFeedback
-	ClientBasePoker
-	CommonReqMessage
-	CommonBcMessage
-	CommonReqNotice
-	CommonAckNotice
-	CommonReqEnterAgentMode
-	CommonAckEnterAgentMode
-	CommonReqQuitAgentMode
-	CommonAckQuitAgentMode
-	CommonReqLeaveDesk
-	CommonAckLeaveDesk
-	CommonBcKickout
-	CommonReqAllowance
-	CommonAckAllowance
-	CommonReqApplyDissolve
-	CommonBcApplyDissolve
-	CommonReqApplyDissolveBack
-	CommonAckApplyDissolveBack
-	CommonAckTimeout
-	CommonBcUserBreak
-	CommonReqClickStatistic
-	CommonReqOffline
-	AwardReqOnline
-	WardAckOnline
-	AwardReqOnlineInfo
-	AwardAckOnlineInfo
-	AwardReqGetNewUser
-	AwardAckGetNewUser
-	PayBaseProduct
-	PayBasePaymodel
-	PayBaseDetails
-	WxpayReqUnifiedorder
-	WxpayAckUnifiedorder
-	WxpayReqSyncChecker
-	WxpayAckSyncChecker
-	ApplepayReqRechargecb
-	ApplepayAcksRechargecb
-	CardInfo
-	RoomTypeInfo
-	ComposeCard
-	PlayerCard
-	GameReqBuxiazi
-	GameAckBuxiazi
-	PdkBaseRoomTypeInfo
-	PdkBaseTimerInfo
-	GameSession
-	CommonSrvGameUser
-	CommonSrvGameDesk
-	Taward
-	AwardMOnline
-	TConfigSys
-	TConfigDrawLottery
-	User
-	TNotice
-	TGameCounts
-	TUserTask
-	Push
-	CommonSrvMsgGameCount
-	CommonSrvPokerPai
-	RedisGameServerStatus
-	TTask
-	DdzBaseRoomTypeInfo
-	DdzBasePlayerInfo
-	DdzBasePlayerRateInfo
-	DdzBaseCommonRateInfo
-	DdzBaseTimerInfo
-	DdzBaseDeskInfo
-	DdzReqDissolveDesk
-	DdzAckDissolveDesk
-	DdzReqReady
-	DdzAckReady
-	DdzBaseWinCoinInfo
-	DdzBaCurrentResult
-	DdzBaseEndLotteryInfo
-	DdzBcEndLottery
-	DdzReqCreateDesk
-	DdzAckCreateDesk
-	DdzReqGameRecord
-	DdzBaseUserRecord
-	DdzBaseGameRecord
-	DdzAckGameRecord
-	DdzReqEnterDesk
-	DdzAckEnterDesk
-	DdzBcOpening
-	DdzBcDealCards
-	DdzReqShowHandPokers
-	DdzAckShowHandPokers
-	DdzReqJiaoDiZhu
-	DdzAckJiaoDiZhu
-	DdzReqRobDiZhu
-	DdzAckRobDiZhu
-	DdzReqDouble
-	DdzAckDouble
-	DdzBcStartPlay
-	DdzReqMenuZhua
-	DdzAckMenuZhua
-	DdzReqSeeCards
-	DdzAckSeeCards
-	DdzReqPull
-	DdzAckPull
-	DdzReqOutCards
-	DdzAckOutCards
-	DdzReqActGuo
-	DdzAckGuoAck
-	DdzBcOverTurn
-	DdzBcGameInfo
-	DdzSrvOutPokerPais
-	DdzSrvDeskTongJi
-	DdzSrvDesk
-	DdzSrvGameData
-	DdzSrvBillBean
-	DdzSrvBill
-	DdzSrvUserStatisticsRound
-	DdzSrvUserStatistics
-	DdzSrvUser
-	DdzSrvRoom
-	DdzSrvBak
-	ErddzBaseRoomTypeInfo
-	ErddzBasePlayerInfo
-	ErddzBasePlayerRateInfo
-	ErddzBaseCommonRateInfo
-	ErddzBaseTimerInfo
-	ErddzBaseDeskInfo
-	ErddzReqDissolveDesk
-	ErddzAckDissolveDesk
-	ErddzReqReady
-	ErddzAckReady
-	ErddzBaseWinCoinInfo
-	ErddzBcCurrentResult
-	ErddzBaseEndLotteryInfo
-	ErddzBcEndLottery
-	ErddzReqCreateDesk
-	ErddzAckCreateDesk
-	ErddzReqEnterDesk
-	ErddzAckEnterDesk
-	ErddzBcOpening
-	ErddzBcDealCards
-	ErddzReqJiaoDiZhu
-	ErddzAckJiaoDiZhu
-	ErddzReqRobDiZhu
-	ErddzAckRobDiZhu
-	ErddzReqRangcards
-	ErddzAckRangcards
-	ErddzReqDouble
-	ErddzAckDouble
-	ErddzBcStartPlay
-	ErddzReqOutCards
-	ErddzAckOutCards
-	ErddzReqActGuo
-	ErddzAckActGuo
-	ErddzBcOverTurn
-	ErddzBcGameInfo
-	HallReqEvent
-	HallAckEvent
-	HallLotteryItem
-	HallSignLotteryInfo
-	HallDrawLotteryInfo
-	HallReqMailList
-	HallAckMailList
-	HallReqTask
-	HallAckTask
-	HallReqCheckTask
-	HallAckCheckTask
-	HallReqTaskSum
-	HallAckTaskSum
-	HallReqCheckBonus
-	HallAckCheckBonus
-	HallReqBagItems
-	HallAckBagItems
-	HallReqUserData
-	HallAckUserData
-	HallReqUpdateRealData
-	HallAckUpdateRealData
-	HallReqGoodsList
-	HallAckGoodsList
-	HallReqGoodsBuy
-	HallAckGoodsBuy
-	HallGoodsItemMsg
-	HallReqRank
-	HallAckRank
-	HallReqDrawLottery
-	HallAckDrawLottery
-	HallReqDsLotteryInfo
-	HallAckDsLotteryInfo
-	HallReqFriendsList
-	HallAckFriendsList
-	HallReqRecommendUserList
-	HallAckRecommendUserList
-	HallReqFriendsSearch
-	HallAckFriendsSearch
-	HallReqAddFriend
-	HallAckAddFriend
-	HallReqDelFriend
-	HallAckDelFriend
-	HallFriendState
-	HallUserInfo
-	HallAckStrongboxInfo
-	HallReqStrongboxInfo
-	HallReqStrongboxAccess
-	HallAckStrongboxAccess
-	Game_GameRecord
-	BeanUserRecord
-	BeanGameRecord
-	Game_AckGameRecord
-	HallItemEvent
-	HallMailItem
-	HallBagItem
-	HallItemTask
-	HallUserData
-	HallRankItem
-	CoinZone
-	DiamondZone
-	ExchangeZone
-	BuyZone
-	GoodsItem
-	HallStrongboxInfo
-	PlaybackReqPage
-	PlaybackAckPage
-	PlayerInfo
-	PlaybackSnapshot
-	PlaybackDeskInfo
-	PlaybackItem
-	PlaybackReqPageByGameid
-	PlaybackPdkAckPage
-	PdkPlayerInfo
-	PdkPlaybackSnapshot
-	PdkPlaybackDeskInfo
-	VersionInfo
-	AssetInfo
-	HotupdateReqVersionInfo
-	HotupdateAckVersionInfo
-	HotupdateReqAssetsInfo
-	HotupdateAckAssetsInfo
-	HotupdateReqGameAssetsInfo
-	HotupdateAckGameAssetsInfo
-	NiuniuClientPoker
-	NiuniuUserBill
-	NiuniuDeskOption
-	NiuniuClientDesk
-	NiuniuClientUser
-	NiuCreateDeskReq
-	NiuEnterDeskReq
-	NiuEnterDeskAck
-	NiuEnterDeskBc
-	NiuSwitchReadyReq
-	NiuSwitchReadyAck
-	NiuSwitchReadyBc
-	NiuStartGameOt
-	NiuQiangzhuangOt
-	NiuQiangzhuangReq
-	NiuQiangzhuangAck
-	NiuQiangzhuangResItem
-	NiuQiangzhuangResBc
-	NiuJiabeiOt
-	NiuJiabeiReq
-	NiuJiabeiAck
-	NiuJiabeiBc
-	NiuBipaiResultItem
-	NiuBipaiResultBc
-	NiuGameEnd
-	NiuDeskDissolveDoneBc
-	NiuOwnerDissolveReq
-	NiuOwnerDissolveAck
-	NiuOfflineBc
-	NiuniuSrvPoker
-	NiuniuSrvDesk
-	NiuniuSrvUser
-	NiuniuSrvRoom
-	PdkBasePlayerInfo
-	PdkBasePlayerRateInfo
-	PdkBaseCommonRateInfo
-	PdkBaseDeskInfo
-	PdkReqDissolveDesk
-	PdkAckDissolveDesk
-	PdkReqReady
-	PdkAckReady
-	PdkBaseWinCoinInfo
-	PdkBaCurrentResult
-	PdkBaseEndLotteryInfo
-	PdkBcEndLottery
-	PdkReqCreateDesk
-	PdkAckCreateDesk
-	PdkReqGameRecord
-	PdkBaseUserRecord
-	PdkBaseGameRecord
-	PdkAckGameRecord
-	PdkReqEnterDesk
-	PdkAckEnterDesk
-	PdkBcOpening
-	PdkBcDealCards
-	PdkReqShowHandPokers
-	PdkAckShowHandPokers
-	PdkReqJiaoDiZhu
-	PdkAckJiaoDiZhu
-	PdkReqRobDiZhu
-	PdkAckRobDiZhu
-	PdkReqDouble
-	PdkAckDouble
-	PdkBcStartPlay
-	PdkReqMenuZhua
-	PdkAckMenuZhua
-	PdkReqSeeCards
-	PdkAckSeeCards
-	PdkReqPull
-	PdkAckPull
-	PdkReqOutCards
-	PdkAckOutCards
-	PdkReqActGuo
-	PdkAckGuoAck
-	PdkBcOverTurn
-	PdkBcGameInfo
-	PdkSrvOutPokerPais
-	PdkSrvDeskTongJi
-	PdkSrvDesk
-	PdkSrvGameData
-	PdkSrvBillBean
-	PdkSrvBill
-	PdkSrvUserStatisticsRound
-	PdkSrvUserStatistics
-	PdkSrvUser
-	PdkSrvRoom
-	PdkSrvBak
-	PezBase_PaiInfo
-	PezBase_PlayConf
-	PezBase_RoomTypeInfo
-	PezBaseTimerInfo
-	PezBase_PaiValue
-	PezBase_PlayerCard
-	PezLastScore
-	PezBase_PlayerInfo
-	PezBase_DeskGameInfo
-	PezTuozi
-	Pez_DissolveDesk
-	Pez_AckDissolveDesk
-	Pez_Ready
-	Pez_AckReady
-	Pez_EndLotteryInfo
-	Pez_SendCurrentResult
-	EndLottery
-	Pez_SendEndLottery
-	Pez_UserBean
-	Pez_Bill
-	PezReq_CreateRoom
-	PezReq_AckCreateRoom
-	PezReq_EnterRoom
-	PezReq_AckEnterRoom
-	Pez_Notice
-	Pez_AckNotice
-	Pez_GameRecord
-	PezBeanUserRecord
-	PezBeanGameRecord
-	Pez_AckGameRecord
-	Pez_Feedback
-	PezUserCoinBean
-	Pez_Opening
-	Pez_DealCards
-	Pez_Bet
-	Pez_AckBet
-	Pez_BCOpenPai
-	Pez_SendGameInfo
-	RpcHallUpdateConfig
-	ZjhReqGetRoomList
-	ZjhBaseRoomInfo
-	ZjhAckRoomList
-	ZjhReqEnterDesk
-	ZjhBaseUserInfo
-	ZjhDeskStateAck
-	ZjhBcGameInfo
-	ZjhBaseDeskInfo
-	ZjhBcNewPlayerEnter
-	ZjhReqLeave
-	ZjhBcLeave
-	ZjhBasePlayerInfo
-	ZjhBcOpening
-	ZjhReqReady
-	ZjhBcReady
-	ZjhBcOverTurn
-	ZjhReqCheckCards
-	ZjhBcCheckCards
-	ZjhReqFold
-	ZjhBcFold
-	ZjhReqCall
-	ZjhBcCall
-	ZjhReqBloodFight
-	ZjhBcBloodFight
-	ZjhBcBloodEnd
-	ZjhReqRaiseFight
-	ZjhBcRaiseAck
-	ZjhReqCompare
-	ZjhBcCompare
-	ZjhBcGameEnd
-	ZjhBcDeskState
-	ZjhReqDaShang
-	ZjhBcDaShang
-	ZjhSrvPoker
-	ZjhSrvBill
-	ZjhSrv_GameData
-	ZjhSrvUser
-	ZjhSrvDesk
-	ZjhSrvRoom
-*/
 package ddproto
 
 import proto "github.com/golang/protobuf/proto"
@@ -503,12 +12,6 @@ import math "math"
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 // Ignoring public import of ProtoHeader from common_client.proto
 
@@ -600,25 +103,19 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 // Ignoring public import of common_req_offline from common_client.proto
 
+// Ignoring public import of common_req_upload_location from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
 
 // Ignoring public import of common_enum_pokerColor from common_client.proto
 
-// Ignoring public import of niuniu_client_poker from niuniu_base.proto
+// Ignoring public import of bainiu_client_poker from bainiu_base.proto
 
-// Ignoring public import of niuniu_user_bill from niuniu_base.proto
+// Ignoring public import of bainiu_enum_protoid from bainiu_base.proto
 
-// Ignoring public import of niuniu_desk_option from niuniu_base.proto
-
-// Ignoring public import of niuniu_enum_protoid from niuniu_base.proto
-
-// Ignoring public import of niuniu_enum_PokerType from niuniu_base.proto
-
-// Ignoring public import of niuniu_enum_desk_state from niuniu_base.proto
-
-// Ignoring public import of niuniu_enum_banker_rule from niuniu_base.proto
+// Ignoring public import of bainiu_enum_PokerType from bainiu_base.proto
 
 // ==============================百人牛牛==================================
 type BainiuDeskStatus int32
@@ -656,7 +153,7 @@ func (x *BainiuDeskStatus) UnmarshalJSON(data []byte) error {
 	*x = BainiuDeskStatus(value)
 	return nil
 }
-func (BainiuDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (BainiuDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 // 押注区域
 type BainiuAreaName int32
@@ -700,7 +197,7 @@ func (x *BainiuAreaName) UnmarshalJSON(data []byte) error {
 	*x = BainiuAreaName(value)
 	return nil
 }
-func (BainiuAreaName) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (BainiuAreaName) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 // ===============================比牌结果================================
 // 比牌类型
@@ -745,12 +242,12 @@ func (x *BainiuWinType) UnmarshalJSON(data []byte) error {
 	*x = BainiuWinType(value)
 	return nil
 }
-func (BainiuWinType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (BainiuWinType) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
 // 押注区域
 type BainiuAreaInfo struct {
 	Name             *BainiuAreaName    `protobuf:"varint,1,opt,name=name,enum=ddproto.BainiuAreaName" json:"name,omitempty"`
-	Poker            *NiuniuClientPoker `protobuf:"bytes,2,opt,name=poker" json:"poker,omitempty"`
+	Poker            *BainiuClientPoker `protobuf:"bytes,2,opt,name=poker" json:"poker,omitempty"`
 	AllChips         *int64             `protobuf:"varint,3,opt,name=all_chips" json:"all_chips,omitempty"`
 	MyChips          *int64             `protobuf:"varint,4,opt,name=my_chips" json:"my_chips,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
@@ -759,7 +256,7 @@ type BainiuAreaInfo struct {
 func (m *BainiuAreaInfo) Reset()                    { *m = BainiuAreaInfo{} }
 func (m *BainiuAreaInfo) String() string            { return proto.CompactTextString(m) }
 func (*BainiuAreaInfo) ProtoMessage()               {}
-func (*BainiuAreaInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*BainiuAreaInfo) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 func (m *BainiuAreaInfo) GetName() BainiuAreaName {
 	if m != nil && m.Name != nil {
@@ -768,7 +265,7 @@ func (m *BainiuAreaInfo) GetName() BainiuAreaName {
 	return BainiuAreaName_BAINIU_AREA_BANKER
 }
 
-func (m *BainiuAreaInfo) GetPoker() *NiuniuClientPoker {
+func (m *BainiuAreaInfo) GetPoker() *BainiuClientPoker {
 	if m != nil {
 		return m.Poker
 	}
@@ -791,17 +288,17 @@ func (m *BainiuAreaInfo) GetMyChips() int64 {
 
 // 房间状态
 type BainiuClientDesk struct {
-	Status           *BainiuDeskStatus `protobuf:"varint,1,opt,name=status,enum=ddproto.BainiuDeskStatus" json:"status,omitempty"`
-	Areas            *BainiuAreaInfo   `protobuf:"bytes,2,opt,name=areas" json:"areas,omitempty"`
-	SurplusTime      *int64            `protobuf:"varint,3,opt,name=surplus_time" json:"surplus_time,omitempty"`
-	Users            *BainiuClientUser `protobuf:"bytes,4,opt,name=users" json:"users,omitempty"`
-	XXX_unrecognized []byte            `json:"-"`
+	Status           *BainiuDeskStatus   `protobuf:"varint,1,opt,name=status,enum=ddproto.BainiuDeskStatus" json:"status,omitempty"`
+	Areas            []*BainiuAreaInfo   `protobuf:"bytes,2,rep,name=areas" json:"areas,omitempty"`
+	SurplusTime      *int64              `protobuf:"varint,3,opt,name=surplus_time" json:"surplus_time,omitempty"`
+	Users            []*BainiuClientUser `protobuf:"bytes,4,rep,name=users" json:"users,omitempty"`
+	XXX_unrecognized []byte              `json:"-"`
 }
 
 func (m *BainiuClientDesk) Reset()                    { *m = BainiuClientDesk{} }
 func (m *BainiuClientDesk) String() string            { return proto.CompactTextString(m) }
 func (*BainiuClientDesk) ProtoMessage()               {}
-func (*BainiuClientDesk) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*BainiuClientDesk) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
 
 func (m *BainiuClientDesk) GetStatus() BainiuDeskStatus {
 	if m != nil && m.Status != nil {
@@ -810,7 +307,7 @@ func (m *BainiuClientDesk) GetStatus() BainiuDeskStatus {
 	return BainiuDeskStatus_BAINIU_WAIT_YAZHU
 }
 
-func (m *BainiuClientDesk) GetAreas() *BainiuAreaInfo {
+func (m *BainiuClientDesk) GetAreas() []*BainiuAreaInfo {
 	if m != nil {
 		return m.Areas
 	}
@@ -824,7 +321,7 @@ func (m *BainiuClientDesk) GetSurplusTime() int64 {
 	return 0
 }
 
-func (m *BainiuClientDesk) GetUsers() *BainiuClientUser {
+func (m *BainiuClientDesk) GetUsers() []*BainiuClientUser {
 	if m != nil {
 		return m.Users
 	}
@@ -843,7 +340,7 @@ type BainiuClientUser struct {
 func (m *BainiuClientUser) Reset()                    { *m = BainiuClientUser{} }
 func (m *BainiuClientUser) String() string            { return proto.CompactTextString(m) }
 func (*BainiuClientUser) ProtoMessage()               {}
-func (*BainiuClientUser) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*BainiuClientUser) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
 
 func (m *BainiuClientUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -883,7 +380,7 @@ type BainiuEnterDeskReq struct {
 func (m *BainiuEnterDeskReq) Reset()                    { *m = BainiuEnterDeskReq{} }
 func (m *BainiuEnterDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*BainiuEnterDeskReq) ProtoMessage()               {}
-func (*BainiuEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*BainiuEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{3} }
 
 func (m *BainiuEnterDeskReq) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -903,7 +400,7 @@ type BainiuEnterDeskAck struct {
 func (m *BainiuEnterDeskAck) Reset()                    { *m = BainiuEnterDeskAck{} }
 func (m *BainiuEnterDeskAck) String() string            { return proto.CompactTextString(m) }
 func (*BainiuEnterDeskAck) ProtoMessage()               {}
-func (*BainiuEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*BainiuEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{4} }
 
 func (m *BainiuEnterDeskAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -936,7 +433,7 @@ type BainiuYazhuOt struct {
 func (m *BainiuYazhuOt) Reset()                    { *m = BainiuYazhuOt{} }
 func (m *BainiuYazhuOt) String() string            { return proto.CompactTextString(m) }
 func (*BainiuYazhuOt) ProtoMessage()               {}
-func (*BainiuYazhuOt) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (*BainiuYazhuOt) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{5} }
 
 func (m *BainiuYazhuOt) GetDeskTime() int64 {
 	if m != nil && m.DeskTime != nil {
@@ -956,7 +453,7 @@ type BainiuYazhuReq struct {
 func (m *BainiuYazhuReq) Reset()                    { *m = BainiuYazhuReq{} }
 func (m *BainiuYazhuReq) String() string            { return proto.CompactTextString(m) }
 func (*BainiuYazhuReq) ProtoMessage()               {}
-func (*BainiuYazhuReq) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (*BainiuYazhuReq) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{6} }
 
 func (m *BainiuYazhuReq) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -993,7 +490,7 @@ type BainiuYazhuAck struct {
 func (m *BainiuYazhuAck) Reset()                    { *m = BainiuYazhuAck{} }
 func (m *BainiuYazhuAck) String() string            { return proto.CompactTextString(m) }
 func (*BainiuYazhuAck) ProtoMessage()               {}
-func (*BainiuYazhuAck) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+func (*BainiuYazhuAck) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{7} }
 
 func (m *BainiuYazhuAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1050,7 +547,7 @@ type BainiuYazhuBc struct {
 func (m *BainiuYazhuBc) Reset()                    { *m = BainiuYazhuBc{} }
 func (m *BainiuYazhuBc) String() string            { return proto.CompactTextString(m) }
 func (*BainiuYazhuBc) ProtoMessage()               {}
-func (*BainiuYazhuBc) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (*BainiuYazhuBc) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{8} }
 
 func (m *BainiuYazhuBc) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -1090,7 +587,7 @@ func (m *BainiuYazhuBc) GetSurplusCoin() int64 {
 // ===============================发牌=================================
 // 发牌广播
 type BainiuFapaiBc struct {
-	Poker            *NiuniuClientPoker `protobuf:"bytes,1,opt,name=poker" json:"poker,omitempty"`
+	Poker            *BainiuClientPoker `protobuf:"bytes,1,opt,name=poker" json:"poker,omitempty"`
 	DeskTime         *int64             `protobuf:"varint,2,opt,name=desk_time" json:"desk_time,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
@@ -1098,9 +595,9 @@ type BainiuFapaiBc struct {
 func (m *BainiuFapaiBc) Reset()                    { *m = BainiuFapaiBc{} }
 func (m *BainiuFapaiBc) String() string            { return proto.CompactTextString(m) }
 func (*BainiuFapaiBc) ProtoMessage()               {}
-func (*BainiuFapaiBc) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (*BainiuFapaiBc) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{9} }
 
-func (m *BainiuFapaiBc) GetPoker() *NiuniuClientPoker {
+func (m *BainiuFapaiBc) GetPoker() *BainiuClientPoker {
 	if m != nil {
 		return m.Poker
 	}
@@ -1124,7 +621,7 @@ type BainiuWinUserItem struct {
 func (m *BainiuWinUserItem) Reset()                    { *m = BainiuWinUserItem{} }
 func (m *BainiuWinUserItem) String() string            { return proto.CompactTextString(m) }
 func (*BainiuWinUserItem) ProtoMessage()               {}
-func (*BainiuWinUserItem) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (*BainiuWinUserItem) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{10} }
 
 func (m *BainiuWinUserItem) GetNickName() string {
 	if m != nil && m.NickName != nil {
@@ -1156,7 +653,7 @@ type BainiuBipaiBc struct {
 func (m *BainiuBipaiBc) Reset()                    { *m = BainiuBipaiBc{} }
 func (m *BainiuBipaiBc) String() string            { return proto.CompactTextString(m) }
 func (*BainiuBipaiBc) ProtoMessage()               {}
-func (*BainiuBipaiBc) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+func (*BainiuBipaiBc) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{11} }
 
 func (m *BainiuBipaiBc) GetDeskTime() int64 {
 	if m != nil && m.DeskTime != nil {
@@ -1232,52 +729,52 @@ func init() {
 	proto.RegisterEnum("ddproto.BainiuWinType", BainiuWinType_name, BainiuWinType_value)
 }
 
-var fileDescriptor0 = []byte{
-	// 727 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x54, 0xcd, 0x6e, 0xd3, 0x4c,
-	0x14, 0xad, 0x13, 0xbb, 0x6d, 0x6e, 0xff, 0x9c, 0x69, 0xfa, 0x7d, 0xa1, 0x80, 0x54, 0x45, 0x15,
-	0x54, 0xa1, 0x0a, 0x52, 0x37, 0xac, 0x1d, 0x28, 0x8d, 0x0b, 0x8a, 0x42, 0xdb, 0x08, 0xda, 0xcd,
-	0x30, 0x71, 0x5c, 0x3a, 0x8a, 0x63, 0x9b, 0xd8, 0x11, 0x0a, 0x3b, 0x76, 0x48, 0x88, 0x57, 0xe0,
-	0x0d, 0x10, 0x0f, 0xc3, 0x0b, 0x31, 0x73, 0x3d, 0x75, 0x5c, 0x27, 0x40, 0x17, 0x6c, 0xda, 0xe8,
-	0xcc, 0x99, 0x7b, 0xcf, 0x39, 0xf7, 0x8e, 0xa1, 0xdc, 0x63, 0xdc, 0xe7, 0x63, 0x1a, 0x7a, 0x6c,
-	0xd2, 0x08, 0x47, 0x41, 0x1c, 0x90, 0xa5, 0x7e, 0x1f, 0x7f, 0x6c, 0x6f, 0x3a, 0xc1, 0x70, 0x18,
-	0xf8, 0xd4, 0xf1, 0xb8, 0xeb, 0xc7, 0xc9, 0xe9, 0x76, 0x59, 0xb0, 0xe5, 0x85, 0x1e, 0x8b, 0xdc,
-	0x04, 0xaa, 0x7d, 0xd5, 0xc0, 0x54, 0x65, 0xd8, 0xc8, 0x65, 0x94, 0xfb, 0x97, 0x01, 0x79, 0x08,
-	0xba, 0xcf, 0x86, 0x6e, 0x55, 0xdb, 0xd1, 0xf6, 0xd6, 0x0f, 0xee, 0x34, 0x54, 0xd1, 0x46, 0x96,
-	0x28, 0x09, 0xe4, 0x11, 0x18, 0x61, 0x30, 0x70, 0x47, 0xd5, 0x82, 0x60, 0xae, 0x1c, 0xdc, 0x4b,
-	0x99, 0xaa, 0x51, 0xd2, 0x9d, 0x22, 0x87, 0x94, 0xa1, 0xc4, 0x3c, 0x8f, 0x3a, 0x57, 0x3c, 0x8c,
-	0xaa, 0x45, 0x71, 0xa1, 0x48, 0x4c, 0x58, 0x1e, 0x4e, 0x14, 0xa2, 0x4b, 0xa4, 0xf6, 0x5d, 0x03,
-	0xa2, 0xda, 0xa8, 0xcb, 0x7d, 0x37, 0x1a, 0x88, 0x46, 0x8b, 0x51, 0xcc, 0xe2, 0x71, 0xa4, 0x34,
-	0xdd, 0xcd, 0x6b, 0x92, 0x2c, 0x9a, 0x50, 0xc8, 0x1e, 0x18, 0x52, 0x62, 0xa4, 0x54, 0xcd, 0xd7,
-	0x8f, 0x46, 0x2b, 0xb0, 0x1a, 0x8d, 0x47, 0xa1, 0x37, 0x8e, 0x68, 0xcc, 0x85, 0xe1, 0x44, 0x55,
-	0x1d, 0x8c, 0x71, 0xe4, 0x8e, 0x12, 0x49, 0x2b, 0xb3, 0xbd, 0x94, 0x30, 0xc9, 0xa9, 0x75, 0xf3,
-	0x72, 0x25, 0x4a, 0x36, 0x60, 0x49, 0xfe, 0xa7, 0xbc, 0x8f, 0x7a, 0xd7, 0xc8, 0x1a, 0x18, 0x7c,
-	0xc8, 0xde, 0xb9, 0x28, 0xa9, 0x24, 0xa3, 0xf0, 0xb9, 0x33, 0xc0, 0x10, 0xb1, 0x69, 0x89, 0xac,
-	0x82, 0xee, 0x04, 0xdc, 0x57, 0x31, 0xec, 0xc1, 0x96, 0x2a, 0x2b, 0x6a, 0x8a, 0x42, 0x68, 0x6f,
-	0xe4, 0xbe, 0x9f, 0xa9, 0x5c, 0xfb, 0xa6, 0xcd, 0xa3, 0x32, 0x67, 0x40, 0x76, 0x61, 0xf1, 0xca,
-	0x65, 0x7d, 0x31, 0x1d, 0x0d, 0x7d, 0x54, 0x52, 0x1f, 0x1d, 0xf9, 0xb7, 0x85, 0x67, 0xe4, 0x31,
-	0x40, 0x9a, 0x9d, 0xab, 0x12, 0xfb, 0x9d, 0x63, 0x1c, 0x45, 0x03, 0x4a, 0x89, 0x02, 0x11, 0x20,
-	0x6a, 0xff, 0x4b, 0x42, 0xbb, 0xb0, 0xa1, 0xd0, 0x09, 0xfb, 0x78, 0x35, 0xa6, 0x41, 0x2c, 0xed,
-	0x63, 0x4f, 0xcc, 0x5c, 0x43, 0xc3, 0x6f, 0xd3, 0x35, 0x4c, 0x58, 0xf3, 0xbc, 0x92, 0x7d, 0xb1,
-	0x41, 0xd7, 0xbb, 0x87, 0x52, 0xff, 0xb8, 0x9c, 0x22, 0xf3, 0xe9, 0xae, 0xad, 0xd5, 0x7e, 0x68,
-	0xb9, 0x16, 0xb7, 0xcf, 0x28, 0x23, 0xa4, 0x30, 0x2b, 0xa4, 0x78, 0x6b, 0x21, 0x38, 0xdb, 0x9b,
-	0xef, 0xc0, 0x40, 0x28, 0xb3, 0x87, 0xb8, 0x04, 0x8b, 0x98, 0xc9, 0x67, 0x2d, 0x17, 0x5d, 0xcf,
-	0xf9, 0xa7, 0x99, 0xe4, 0xa4, 0xe8, 0x73, 0xa5, 0xa0, 0xc0, 0xda, 0xab, 0x54, 0xc9, 0x25, 0x0b,
-	0x19, 0x97, 0x4a, 0xd2, 0xb7, 0xaf, 0xdd, 0xee, 0xed, 0x4f, 0x27, 0x5e, 0xc0, 0x92, 0x4f, 0xa0,
-	0xa2, 0x4a, 0x7e, 0xe0, 0x3e, 0x4d, 0x4c, 0xc5, 0xee, 0xf0, 0xe6, 0xdb, 0xd0, 0xae, 0xdf, 0x46,
-	0x8f, 0x7b, 0x9e, 0xba, 0xf8, 0x73, 0x1a, 0x4b, 0x8f, 0x2b, 0x31, 0xb3, 0x1b, 0x95, 0x3e, 0x28,
-	0xbc, 0x44, 0x1e, 0x80, 0x1e, 0x4f, 0xc2, 0xeb, 0x61, 0x55, 0xf3, 0x09, 0x49, 0x09, 0xf2, 0x7c,
-	0xf6, 0x8b, 0x24, 0x13, 0x17, 0x08, 0xf6, 0x37, 0x66, 0x43, 0xc3, 0x49, 0x91, 0x4d, 0x58, 0xe9,
-	0x31, 0x5f, 0x18, 0x4d, 0x78, 0x4b, 0x08, 0xee, 0x83, 0x21, 0xca, 0x8a, 0x80, 0x96, 0x77, 0x8a,
-	0x22, 0xa0, 0xfb, 0xf3, 0x7a, 0xa6, 0xb6, 0xeb, 0xe7, 0xe9, 0x87, 0x24, 0xfb, 0x29, 0xdb, 0x82,
-	0x72, 0xd3, 0xb2, 0xdb, 0x76, 0x97, 0xbe, 0xb6, 0xec, 0x33, 0x7a, 0x6e, 0x5d, 0xb4, 0xba, 0xa6,
-	0x96, 0x87, 0x9f, 0x5b, 0x1d, 0xcb, 0x36, 0x0b, 0x79, 0xb8, 0x69, 0x4b, 0xb8, 0x58, 0xff, 0x94,
-	0xfb, 0xc6, 0xe3, 0x26, 0xfc, 0x07, 0x44, 0x71, 0xad, 0x93, 0x43, 0x8b, 0x36, 0xad, 0xf6, 0x8b,
-	0xc3, 0x13, 0x73, 0x41, 0xcc, 0xdf, 0xcc, 0xe2, 0x67, 0xb6, 0xd5, 0x16, 0x0d, 0x09, 0xac, 0x67,
-	0xd1, 0x67, 0xb2, 0x5b, 0x8e, 0xf9, 0xa6, 0x2b, 0x98, 0xc5, 0x8c, 0x06, 0x44, 0x5b, 0x02, 0x3d,
-	0x32, 0xf5, 0xfa, 0x97, 0xe9, 0xd0, 0xd2, 0xac, 0xff, 0x87, 0x4d, 0x45, 0x45, 0xa5, 0xb4, 0x63,
-	0xb7, 0x8f, 0x8e, 0xa5, 0xbd, 0x2a, 0x54, 0x6e, 0x1c, 0x9c, 0xb6, 0x0e, 0xdb, 0x47, 0x2f, 0x65,
-	0xcf, 0xfc, 0x95, 0xd3, 0x96, 0xdd, 0x94, 0x1e, 0x33, 0x6d, 0x93, 0x83, 0x8b, 0xe3, 0xb3, 0xa7,
-	0xa6, 0x3e, 0x0f, 0xee, 0x98, 0x46, 0x67, 0xa1, 0xa3, 0xfd, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x1a,
-	0xc1, 0xfd, 0x82, 0x3e, 0x07, 0x00, 0x00,
+var fileDescriptor1 = []byte{
+	// 722 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x54, 0x5d, 0x6f, 0xd3, 0x30,
+	0x14, 0x5d, 0xda, 0x66, 0x5b, 0xef, 0xbe, 0x32, 0xaf, 0x83, 0xb2, 0x81, 0x84, 0xaa, 0x09, 0xa6,
+	0x32, 0x15, 0x69, 0x2f, 0x3c, 0xa7, 0x30, 0xd6, 0x0c, 0x54, 0x95, 0x6d, 0x15, 0x6c, 0x2f, 0xc6,
+	0x4d, 0x33, 0x66, 0x35, 0x4d, 0x42, 0x93, 0x0a, 0x95, 0x37, 0xde, 0x90, 0x10, 0x7f, 0x81, 0x7f,
+	0x80, 0xf8, 0x31, 0xfc, 0x21, 0xec, 0x1b, 0x37, 0x4d, 0xd3, 0x0e, 0xf6, 0xc0, 0x4b, 0x1b, 0x1d,
+	0x1f, 0xfb, 0x9e, 0x73, 0xee, 0xb5, 0x61, 0xb3, 0xc3, 0xb8, 0xc7, 0x87, 0x34, 0x70, 0xd9, 0xa8,
+	0x16, 0x0c, 0xfc, 0xc8, 0x27, 0x4b, 0xdd, 0x2e, 0x7e, 0xec, 0x6c, 0xd9, 0x7e, 0xbf, 0xef, 0x7b,
+	0xd4, 0x76, 0xb9, 0xe3, 0x45, 0xf1, 0xea, 0xce, 0x78, 0x43, 0x87, 0x85, 0x4e, 0x0c, 0x55, 0xbe,
+	0x6b, 0x60, 0x28, 0x94, 0x0d, 0x1c, 0x46, 0xb9, 0x77, 0xe5, 0x93, 0xc7, 0x50, 0xf0, 0x58, 0xdf,
+	0x29, 0x6b, 0x0f, 0xb5, 0xfd, 0xf5, 0xc3, 0x7b, 0x35, 0x75, 0x68, 0x2d, 0x4d, 0x94, 0x04, 0xf2,
+	0x04, 0xf4, 0xc0, 0xef, 0x39, 0x83, 0x72, 0x4e, 0x30, 0x57, 0x0e, 0xef, 0x67, 0x99, 0x71, 0x75,
+	0x8a, 0x1c, 0xb2, 0x09, 0x45, 0xe6, 0xba, 0xd4, 0xbe, 0xe6, 0x41, 0x58, 0xce, 0x8b, 0x0d, 0x79,
+	0x62, 0xc0, 0x72, 0x7f, 0xa4, 0x90, 0x82, 0x44, 0x2a, 0x3f, 0x35, 0x20, 0xd3, 0x9b, 0xbb, 0x4e,
+	0xd8, 0x13, 0x85, 0x16, 0xc3, 0x88, 0x45, 0xc3, 0x50, 0x69, 0xda, 0xcd, 0x56, 0x92, 0x2c, 0x1a,
+	0x53, 0xc8, 0x3e, 0xe8, 0x52, 0x62, 0x28, 0x54, 0xe5, 0x85, 0xaa, 0xf9, 0xfa, 0xd1, 0x68, 0x09,
+	0x56, 0xc3, 0xe1, 0x20, 0x70, 0x87, 0x21, 0x8d, 0xb8, 0x30, 0x1c, 0xab, 0xaa, 0x82, 0x3e, 0x0c,
+	0x9d, 0x81, 0x94, 0x24, 0xf7, 0xef, 0xde, 0xe0, 0x4a, 0x72, 0x2a, 0xed, 0xac, 0x5c, 0x89, 0x92,
+	0x0d, 0x58, 0x92, 0xff, 0x94, 0x77, 0x51, 0xef, 0x1a, 0x59, 0x03, 0x9d, 0xf7, 0xd9, 0x07, 0x07,
+	0x83, 0x2a, 0xca, 0x28, 0x3c, 0x6e, 0xf7, 0x30, 0x44, 0x2c, 0x5a, 0x24, 0xab, 0x50, 0xb0, 0x7d,
+	0xee, 0xa9, 0x18, 0xf6, 0x61, 0x5b, 0x1d, 0x2b, 0xce, 0x14, 0x07, 0xa1, 0xbd, 0x81, 0xf3, 0x71,
+	0xe6, 0xe4, 0xca, 0x0f, 0x6d, 0x1e, 0x95, 0xd9, 0x3d, 0xb2, 0x07, 0x8b, 0xd7, 0x0e, 0xeb, 0x8a,
+	0xee, 0x68, 0xd8, 0x9d, 0x52, 0xe2, 0xa3, 0x25, 0x7f, 0x1b, 0xb8, 0x46, 0x9e, 0x02, 0x24, 0xd9,
+	0x39, 0xaa, 0x8f, 0x37, 0x39, 0xc6, 0x56, 0xd4, 0xa0, 0x18, 0x2b, 0x10, 0x01, 0xa2, 0xf6, 0x7f,
+	0x24, 0xb4, 0x07, 0x1b, 0x0a, 0x1d, 0xb1, 0xcf, 0xd7, 0x43, 0xea, 0x47, 0xd2, 0x3e, 0xd6, 0xc4,
+	0xcc, 0x35, 0x34, 0xfc, 0x3e, 0x19, 0xc3, 0x98, 0x35, 0xcf, 0x2b, 0x39, 0x10, 0x13, 0x34, 0x9e,
+	0x3d, 0x94, 0xfa, 0xd7, 0xe1, 0x14, 0x99, 0x4f, 0x66, 0x6d, 0xad, 0xf2, 0x4b, 0xcb, 0x94, 0xb8,
+	0x7d, 0x46, 0x29, 0x21, 0xb9, 0x59, 0x21, 0xf9, 0x5b, 0x0b, 0xc1, 0xde, 0x4e, 0xdf, 0x03, 0x1d,
+	0xa1, 0xd4, 0x1c, 0xe2, 0x10, 0x2c, 0x62, 0x26, 0x5f, 0xb5, 0x4c, 0x74, 0x1d, 0xfb, 0xbf, 0x66,
+	0x92, 0x91, 0x52, 0x98, 0x2b, 0x05, 0x05, 0x56, 0xde, 0x24, 0x4a, 0xae, 0x58, 0xc0, 0xb8, 0x54,
+	0x92, 0xdc, 0x7d, 0xed, 0x76, 0x77, 0x7f, 0xd2, 0xf1, 0x1c, 0x1e, 0xf9, 0x0c, 0x4a, 0x8a, 0xf9,
+	0x89, 0x7b, 0x34, 0x36, 0x15, 0x39, 0xfd, 0xe9, 0xbb, 0xa1, 0x8d, 0xef, 0x46, 0x87, 0xbb, 0xae,
+	0xda, 0xf8, 0x7b, 0x12, 0x4b, 0x87, 0x2b, 0x31, 0xb3, 0x13, 0x95, 0x5c, 0x28, 0xdc, 0x44, 0x1e,
+	0x41, 0x21, 0x1a, 0x05, 0xe3, 0x66, 0x95, 0xb3, 0x62, 0xa5, 0x04, 0xb9, 0x3e, 0xfb, 0x22, 0xc9,
+	0xc4, 0x05, 0x82, 0xf5, 0xf5, 0xd9, 0xd0, 0xb0, 0x53, 0x64, 0x0b, 0x56, 0x3a, 0xcc, 0x13, 0x46,
+	0x63, 0xde, 0x12, 0x82, 0x07, 0xa0, 0x8b, 0x63, 0x45, 0x40, 0xcb, 0xf8, 0x8c, 0x3c, 0x98, 0x57,
+	0x33, 0xb1, 0x5d, 0xbd, 0x48, 0x1e, 0x92, 0xf4, 0x53, 0xb6, 0x0d, 0x9b, 0x75, 0xd3, 0x6a, 0x5a,
+	0x6d, 0xfa, 0xd6, 0xb4, 0xce, 0xe9, 0x85, 0x79, 0xd9, 0x68, 0x1b, 0x5a, 0x16, 0x7e, 0x69, 0xb6,
+	0x4c, 0xcb, 0xc8, 0x65, 0xe1, 0xba, 0x25, 0xe1, 0x7c, 0xf5, 0x4b, 0xe6, 0x8d, 0xc7, 0x49, 0xb8,
+	0x03, 0x44, 0x71, 0xcd, 0xd3, 0x23, 0x93, 0xd6, 0xcd, 0xe6, 0xab, 0xa3, 0x53, 0x63, 0x41, 0xf4,
+	0xdf, 0x48, 0xe3, 0xe7, 0x96, 0xd9, 0x14, 0x05, 0x09, 0xac, 0xa7, 0xd1, 0x17, 0xb2, 0x5a, 0x86,
+	0xf9, 0xae, 0x2d, 0x98, 0xf9, 0x94, 0x06, 0x44, 0x1b, 0x02, 0x3d, 0x36, 0x0a, 0xd5, 0x6f, 0x93,
+	0xa6, 0x25, 0x59, 0xdf, 0x85, 0x2d, 0x45, 0x45, 0xa5, 0xb4, 0x65, 0x35, 0x8f, 0x4f, 0xa4, 0xbd,
+	0x32, 0x94, 0xa6, 0x16, 0xce, 0x1a, 0x47, 0xcd, 0xe3, 0xd7, 0xb2, 0x66, 0x76, 0xcb, 0x59, 0xc3,
+	0xaa, 0x4b, 0x8f, 0xa9, 0xb2, 0xf1, 0xc2, 0xe5, 0xc9, 0xf9, 0x73, 0xa3, 0x30, 0x0f, 0x6e, 0x19,
+	0x7a, 0x6b, 0xa1, 0xa5, 0xfd, 0x09, 0x00, 0x00, 0xff, 0xff, 0xe7, 0x6a, 0x66, 0xab, 0x3e, 0x07,
+	0x00, 0x00,
 }

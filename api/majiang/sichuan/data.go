@@ -42,6 +42,7 @@ type SCMJUserData struct {
 	HandPais      []*majiang.MJPAI   //所有的手牌
 	MoPai         *majiang.MJPAI     //摸的牌
 	PengPais      []*majiang.PengPai //碰的牌
+	FlyPais       []*majiang.FlyPai  //飞的牌
 	GangPais      []*majiang.GangPai //杠的牌
 	HuInfo        []*HuInfo          //胡牌信息
 	ChiPais       []*majiang.ChiPai  //吃的牌
