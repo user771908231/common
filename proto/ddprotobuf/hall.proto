@@ -323,6 +323,7 @@ message BeanGameRecord {
     optional string beginTime = 4; //游戏开始的时间
     repeated BeanUserRecord users = 5; //用户
     optional string roundStr = 6; //局数信息 已玩局数/建房总局数
+    optional string password = 7;//房间号码
 }
 //
 message game_AckGameRecord {

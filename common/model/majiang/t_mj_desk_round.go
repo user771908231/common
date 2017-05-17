@@ -45,9 +45,10 @@ type T_mj_desk_round struct {
 func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
 		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
-		DeskId:    proto.Int32(int32(numUtils.String2Int(t.PassWord))),
+		DeskId:    proto.Int32(t.DeskId),
+		Password:  proto.String(t.PassWord),
 		Id:        proto.Int32(t.GameNumber), //战绩id就是 游戏编号
-		RoundStr:  proto.String(t.RoundStr), //局数信息
+		RoundStr:  proto.String(t.RoundStr),  //局数信息
 	}
 
 	for _, bean := range t.Records {
@@ -82,9 +83,9 @@ func GetMjDeskRoundByDeskId(userId uint32, passWord int32) []T_mj_desk_round {
 	pwd := numUtils.Int2String2(passWord)
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
-			"userids": bson.RegEx{querKey, "."},
+			"userids":    bson.RegEx{querKey, "."},
 			"friendplay": true,
-			"password": pwd,
+			"password":   pwd,
 		}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
