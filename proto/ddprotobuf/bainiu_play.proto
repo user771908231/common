@@ -106,7 +106,7 @@ message bainiu_win_user_item {
 //比牌结果广播
 message bainiu_bipai_bc {
     optional int64 desk_time = 1; //剩余时间
-    optional int64 coin = 2;  //剩余金币
+    optional int64 surplus_coin = 2;  //剩余金币
     optional bainiu_win_type type = 3;  //输赢类型
     optional int64 my_chips = 4;  //我的下注
     optional int64 my_bill = 5;  //我的账单（输赢多少钱）
