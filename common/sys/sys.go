@@ -1,14 +1,14 @@
 package sys
 
 import (
-	"fmt"
-	"time"
+	"casino_common/common/consts/tableName"
+	"casino_common/common/db"
+	"casino_common/common/log"
 	"casino_common/utils/redis"
+	"fmt"
 	"math/rand"
 	"runtime"
-	"casino_common/common/log"
-	"casino_common/common/db"
-	"casino_common/common/consts/tableName"
+	"time"
 )
 
 func SysInit(releaseTag int32,
