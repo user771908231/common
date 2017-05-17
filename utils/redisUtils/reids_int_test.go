@@ -1,6 +1,7 @@
 package redisUtils
 
 import (
+	"casino_common/common/consts"
 	"casino_common/common/log"
 	"casino_common/utils/redis"
 	"fmt"
@@ -9,7 +10,7 @@ import (
 )
 
 func init() {
-	data.InitRedis("127.0.0.1:6379", "mydemo")
+	data.InitRedis("192.168.2.145:6379", "test")
 	log.InitLogger("", "") //初始化日志处理
 }
 
@@ -36,18 +37,16 @@ func TestData_Open(t *testing.T) {
 
 }
 
-var setKey string = "myonline"
-
 func TestSADD(t *testing.T) {
-	SADD(setKey, "user198")
+	SADD(consts.RKEY_ALL_ONLINE_USERS, "user198")
 }
 
 func TestSCARD(t *testing.T) {
-	ret := SCARD(setKey)
+	ret := SCARD(consts.RKEY_ALL_ONLINE_USERS)
 	t.Logf("得到的数据是:%v", ret)
 }
 
 func TestSMEMBERS(t *testing.T) {
-	ret := SMEMBERS(setKey)
+	ret := SMEMBERS(consts.RKEY_ALL_ONLINE_USERS)
 	t.Logf("得到的数据是:%v", ret)
 }

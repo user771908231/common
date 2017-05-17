@@ -421,10 +421,16 @@ func (t *Data) SREM(k string, kv string) (interface{}, error) {
 
 func (t *Data) SCARD(k string) (int64, error) {
 	v, err := t.conn.Do("SCARD", k)
-	return v.(int64), err
+	if err == nil {
+		return v.(int64), err
+	}
+	return 0, nil
 }
 
 func (d *Data) SMEMBERS(k string) ([]interface{}, error) {
 	v, err := d.conn.Do("SMEMBERS", k)
-	return v.([]interface{}), err
+	if err == nil {
+		return v.([]interface{}), err
+	}
+	return nil, nil
 }
