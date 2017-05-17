@@ -2,17 +2,17 @@ package taskService
 
 import (
 	"casino_common/common/consts/tableName"
+	"casino_common/common/service/countService/countType"
+	"casino_common/common/service/countService/gameCounter"
+	"casino_common/common/service/taskService/taskType"
+	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"errors"
+	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"casino_common/common/userService"
-	"casino_common/common/service/countService/countType"
-	"errors"
 	"time"
-	"fmt"
-	"casino_common/common/service/taskService/taskType"
-	"casino_common/common/service/countService/gameCounter"
 )
 
 //任务列表
@@ -84,10 +84,6 @@ func GetTaskListByType(userId uint32, fill_type countType.CountType) []*taskType
 	return list
 }
 
-
-
-
-
 //注册任务
 func RegistTask(task taskType.Task) {
 	//避免从数据库中查出数据出错导致异常。
@@ -124,12 +120,12 @@ func GetTaskInfoList() []*taskType.TaskInfo {
 //触发任务
 func OnTask(taskType countType.CountType, userId uint32) {
 	//触发该类型的任务
-	for _, task := range GetTaskListByType(userId,taskType) {
+	for _, task := range GetTaskListByType(userId, taskType) {
 		if task.SumNo != task.TaskSum && task.IsDone {
 			task.IsDone = false
 			task.SetUserState(userId, task.TaskState)
 		}
-		if !task.IsDone && task.ValidateFun != nil{
+		if !task.IsDone && task.ValidateFun != nil {
 			task.ValidateFun(task)
 			if task.IsDone == true {
 				//推送任务完成广播
@@ -137,8 +133,6 @@ func OnTask(taskType countType.CountType, userId uint32) {
 		}
 	}
 }
-
-
 
 //获取用户单个任务及状态
 func GetUserTask(userId uint32, taskId int32) *taskType.UserTask {
@@ -177,7 +171,7 @@ func GetActiveList() []*ddproto.HallItemEvent {
 }
 
 //领取奖励
-func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name string) {
+func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error, name string) {
 	i := 0
 	for _, reward := range rewards {
 		if i > 0 {
@@ -186,23 +180,23 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error,name 
 		switch reward.GetType() {
 		case ddproto.HallEnumTradeType_TRADE_COIN:
 			//领取金币
-			_,err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
+			_, err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
 			name += fmt.Sprintf("%.0f金币", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			//领取钻石
-			_,err = userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
+			_, err = userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
 			name += fmt.Sprintf("%.0f钻石", reward.GetAmount())
 		case ddproto.HallEnumTradeType_PROPS_FANGKA:
 			//领取房卡
-			_,err = userService.INCRUserRoomcard(userId, int64(reward.GetAmount()))
+			_, err = userService.INCRUserRoomcard(userId, int64(reward.GetAmount()), 0, "领取奖励")
 			name += fmt.Sprintf("%.0f房卡", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			_,err = userService.INCRUserBonus(userId, reward.GetAmount())
+			_, err = userService.INCRUserBonus(userId, reward.GetAmount())
 			name += fmt.Sprintf("%.2f红包", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
-			_,err = userService.INCRUserTicket(userId, int32(reward.GetAmount()))
+			_, err = userService.INCRUserTicket(userId, int32(reward.GetAmount()))
 			name += fmt.Sprintf("%.0f奖券", reward.GetAmount())
 		default:
 			switch {
@@ -247,10 +241,10 @@ func CheckTaskReward(userId uint32, taskId int32) (error, string, []*ddproto.Hal
 	reward := []*ddproto.HallBagItem{}
 	if user_task.GetRewardFun == nil {
 		reward = user_task.Reward
-	}else {
+	} else {
 		reward = user_task.GetRewardFun(user_task)
 	}
-	_,name = CheckReward(userId, reward)
+	_, name = CheckReward(userId, reward)
 
 	user_task.IsCheck = true
 
@@ -292,14 +286,14 @@ func CheckTaskReward(userId uint32, taskId int32) (error, string, []*ddproto.Hal
 func GetUserNearBonusTask(userId uint32, game ddproto.CommonEnumGame) *taskType.UserTask {
 	taskList := GetUserTaskShowList(userId, 2, "", game)
 	num_map := make(map[*taskType.UserTask]int32)
-	for _,task := range taskList {
+	for _, task := range taskList {
 		if !task.IsCheck {
-			num_map[task] = task.TaskSum-task.SumNo
+			num_map[task] = task.TaskSum - task.SumNo
 		}
 	}
 	var result *taskType.UserTask = nil
 	//选出最接近完成的一个任务
-	for task,sum := range num_map{
+	for task, sum := range num_map {
 		if result == nil {
 			result = task
 			continue
