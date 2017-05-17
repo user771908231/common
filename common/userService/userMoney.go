@@ -153,13 +153,13 @@ func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
 }
 
 //减少用户的房卡
-func DECRUserRoomcard(userId uint32, d int64, gid int32) (int64, error) {
+func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
 	count := GetUserRoomCard(userId)
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少房卡失败！")
 	}
 	//增加扣除房卡的记录
-	
+
 	return decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
