@@ -24,6 +24,8 @@ type MJDesk interface {
 	ActHu(...interface{}) error                 //胡
 	ActBaoTing(...interface{}) error            //报听
 	ActPiao(...interface{}) error               //飘
+	ActFly(...interface{}) error                //飞
+	ActTi(...interface{}) error                 //提
 	ActLeave(...interface{}) error              //离开房间
 	ActReady(userId uint32) error               //准备
 	Dissolve(...interface{}) error              //解散
@@ -79,6 +81,14 @@ func (d *MJDeskCore) ActBu(...interface{}) error {
 }
 
 func (d *MJDeskCore) ActPiao(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActFly(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActTi(...interface{}) error {
 	return nil
 }
 
