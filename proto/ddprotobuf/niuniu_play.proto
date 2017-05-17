@@ -1,0 +1,182 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+import public "niuniu_base.proto";
+
+package ddproto;
+
+//=======================================牌桌与用户状态====================================
+
+//desk 的信息
+message niuniu_client_desk {
+    optional int32 deskId = 1;  //牌桌id
+    optional string deskNumber = 2; //朋友桌房号
+    optional int32 gameNumber = 3; //游戏编号，每一句游戏都有一个游戏编号
+    optional int32 roomId = 4; //房间id
+    optional niuniu_enum_desk_state status = 5; //房间游戏状态
+    optional uint32 lastWiner = 6; //上一位赢牌的玩家
+    optional int32 circleNo = 8; //当前是第几圈
+    optional uint32 owner = 10;  //房主
+    optional uint32 currBanker = 11;  //当前庄家
+    optional niuniu_desk_option deskOption = 12;  //房间配置
+    repeated niuniu_client_user users = 13;  //玩家列表
+    optional bool isStart = 14;  //房主是否已点开始
+    optional bool isOnDissolve = 15;  //是否正处于解散投票阶段
+    optional int32 dissolveTime = 16;  //投票剩余时间 单位：秒
+}
+
+//用户属性
+message niuniu_client_user {
+    optional uint32 userId = 1;
+    optional niuniu_user_bill bill = 6; //玩家这一句的账单数据
+    optional bool isOnline = 10; //是否在线
+    optional int32 index = 12;  //所在牌桌的索引
+    optional niuniu_client_poker pokers = 13; //发的牌
+    optional int32 bankerScore = 14; //抢庄分数
+    optional int32 doubleScore = 15; //加倍分数
+    optional bool isReady = 16;  //是否已准备
+    optional int32 lastScore = 17;  //上一局分数
+    optional WeixinInfo wxInfo = 18;  //微信信息
+    optional int32 dissolveState = 19;  //解散投票状态 0：未投票   -1：拒绝解散   1：同意解散
+}
+
+
+
+//==============================创建房间===============================
+message niu_create_desk_req {
+    optional ProtoHeader header = 1;    // header 中传 userId
+    optional niuniu_desk_option option = 2;  //房间选项
+}
+
+//==============================进入房间===============================
+message niu_enter_desk_req {
+    optional ProtoHeader header = 1;    // header 中传 userId
+    optional string deskNumber = 2;  //房间号
+}
+
+message niu_enter_desk_ack {
+    optional ProtoHeader header = 1; //错误码及错误信息
+    optional niuniu_client_desk deskState = 2;  //房间状态
+    optional bool isReconnect = 3; //是否是断线重连
+}
+
+message niu_enter_desk_bc {
+    optional ProtoHeader header = 1;
+    optional niuniu_client_user user = 2; //新增的用户
+}
+
+//=============================准备===================================
+message niu_switch_ready_req {
+    optional ProtoHeader header = 1;
+    optional bool isReady = 2;  //准备状态：true准备 false取消准备
+}
+
+message niu_switch_ready_ack {
+    optional ProtoHeader header = 1;
+}
+
+message niu_switch_ready_bc {
+    optional ProtoHeader header = 1;
+    optional uint32 user = 2;  //切换状态的用户
+    optional bool isReady = 3;  //准备状态
+}
+
+//==============================房主开局===================================
+message niu_start_game_ot {
+    optional ProtoHeader header = 1;
+}
+
+//=============================抢庄(发牌)===================================
+message niu_qiangzhuang_ot {
+    optional ProtoHeader header = 1;
+    optional niuniu_client_poker pokers = 2; //发的牌
+    optional int32 currCircle = 3;  //当前是第几圈
+}
+
+message niu_qiangzhuang_req {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //抢庄分数 1 2 3倍
+}
+
+message niu_qiangzhuang_ack {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //抢庄分数
+}
+
+message niu_qiangzhuang_res_item {
+    optional uint32 user = 1;  //抢庄用户
+    optional int32 score = 2;  //抢庄分数 默认为1
+    optional bool isBanker = 3;  //是否成为庄家
+}
+//抢庄结果广播
+message niu_qiangzhuang_res_bc {
+    optional ProtoHeader header = 1;
+    repeated niu_qiangzhuang_res_item result = 2;  //抢庄结果
+}
+
+//=============================加倍（发牌）===================================
+message niu_jiabei_ot {
+    optional ProtoHeader header = 1;
+    optional int32 cuurBanker = 2;  //如果是抢庄模式，则加倍这一步才知道谁是庄家
+    optional niuniu_client_poker pokers = 3; //发的牌
+    optional int32 cuurCircle = 4;  //当前圈数
+}
+
+message niu_jiabei_req {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //加倍分数 1 2 3倍
+}
+
+message niu_jiabei_ack {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //加倍分数
+}
+
+message niu_jiabei_bc {
+    optional ProtoHeader header = 1;
+    optional int32 score = 2;  //加倍分数 1 2 3倍
+    optional uint32 userId = 3; //所属玩家
+}
+
+//==============================跟庄家比牌结果============================
+message niu_bipai_result_item {
+    optional niuniu_client_poker poker = 1;  //牌型
+    optional int32 score = 2;  //得分 -2分
+    optional uint32 userId = 3;  //所属玩家id
+    optional int32 allScore = 4; //当前总积分
+}
+
+message niu_bipai_result_bc {
+    repeated niu_bipai_result_item userState = 1;  //比牌结果
+}
+
+//============================10局结束统计================================
+
+message niu_game_end {
+    optional ProtoHeader header = 1;
+    repeated niuniu_user_bill data = 2;  //统计数据
+    optional int64 endTime = 3;  //结束时间
+    optional uint32 bigWiner = 4;  //大赢家user_id
+}
+
+//============================解散房间广播================================
+message niu_desk_dissolve_done_bc {
+    optional ProtoHeader header = 1;
+    optional bool isDissolve = 2; //是否解散
+}
+
+//房主解散房间（未开局时不扣除房卡）
+message niu_owner_dissolve_req {
+    optional ProtoHeader header = 1;
+}
+
+//房主解散房间ack
+message niu_owner_dissolve_ack {
+    optional ProtoHeader header = 1;
+}
+
+//==============================离线广播================================
+message niu_offline_bc {
+    optional uint32 userId = 1;
+    optional bool isOffline = 2;  //为true则离线，为false则上线
+}

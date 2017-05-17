@@ -1,0 +1,16 @@
+syntax = "proto2";
+package ddproto;
+
+//对应mgo 中的表单,但是这里主要是做一些配置
+message TConfigSys {
+    optional int32 id = 1; //id 默认=1
+    optional int64 newUserCoin = 2; //生成新用户的时候，默认的金币数量
+    optional int64 newUserRoomcard = 3; //生成新用户的时候，默认的房卡数量
+}
+
+//转盘抽奖的配置
+message TConfigDrawLottery {
+    optional int32 id = 1; //转盘配置的id
+    optional string name = 2; //转盘配置的id
+    optional int32 type = 3; //转盘奖品的类型
+}
