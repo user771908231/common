@@ -38,7 +38,7 @@ func TestData_Open(t *testing.T) {
 }
 
 func TestSADD(t *testing.T) {
-	SADD(consts.RKEY_ALL_ONLINE_USERS, "user198")
+	SADD(consts.RKEY_ALL_ONLINE_USERS, "88798")
 }
 
 func TestSCARD(t *testing.T) {

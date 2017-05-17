@@ -14,4 +14,6 @@ func init() {
 func TestOnlineCountAll(t *testing.T) {
 	count := OnlineCountAll()
 	t.Logf("总共的数量:%v", count)
+	ret2 := OnlineCountUsers()
+	t.Logf("总共的数量:%v", ret2)
 }
