@@ -154,12 +154,12 @@ func (p *SCMJParser) CanBu(...interface{}) (interface{}, error) {
 }
 
 //是否可以提
-func (p *SCMJParser) CanTi(...interface{}) (interface{}, error) {
+func (p *SCMJParser) CanTi(interface{}) (interface{}, error) {
 	return nil, nil
 }
 
 //是否可以飞
-func (p *SCMJParser) CanFly(...interface{}) (bool, error) {
+func (p *SCMJParser) CanFly(interface{}, interface{}) (bool, error) {
 	return false, nil
 }
 
