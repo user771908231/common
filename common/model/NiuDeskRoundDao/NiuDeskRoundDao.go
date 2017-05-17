@@ -1,13 +1,13 @@
 package NiuDeskRoundDao
 
 import (
-	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/common/model"
-	"casino_common/utils/numUtils"
-	"casino_common/utils/db"
 	"casino_common/common/log"
+	"casino_common/common/model"
+	"casino_common/utils/db"
+	"casino_common/utils/numUtils"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 //查询总战绩
@@ -33,8 +33,8 @@ func GetNiuDeskRoundByDeskId(userId uint32, deskId int32) []model.T_niuniu_desk_
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_NIU_DESK_ROUND_ONE).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
-			"deskid": deskId,
-		}).Sort("totalround").Limit(20).All(&deskRecords)
+			"deskid":  deskId,
+		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
