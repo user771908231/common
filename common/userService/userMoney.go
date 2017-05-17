@@ -153,6 +153,7 @@ func INCRUserRoomcard(userId uint32, d int64) (int64, error) {
 }
 
 //减少用户的房卡
+//参数说明:gid:游戏id, memo:说明
 func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
 	count := GetUserRoomCard(userId)
 	if count-d < 0 {
