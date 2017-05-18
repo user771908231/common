@@ -65,7 +65,7 @@ func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_DESK_ROUND_ALL).Find(bson.M{
 			"userids":    bson.RegEx{querKey, "."},
-			"friendplay": true}).Sort("-gamenumber").Limit(20).All(&deskRecords)
+			"friendplay": true}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
@@ -85,7 +85,7 @@ func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 			"userids":    bson.RegEx{querKey, "."},
 			"friendplay": true,
 			"deskid":     deskId,
-		}).Sort("-deskid").Limit(20).All(&deskRecords)
+		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
 	})
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]麻将相关的牌桌[%v]内战绩...", userId, deskId)
