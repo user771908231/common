@@ -38,7 +38,7 @@ func TestShuffle(t *testing.T) {
 	var wg sync.WaitGroup
 	for i := 0; i < 100; i++ {
 		wg.Add(1)
-		time.AfterFunc(time.Second / 10, func() {
+		time.AfterFunc(time.Second / 100, func() {
 			defer wg.Done()
 			arr := Xipai(0, 51)
 			fmt.Println(arr)
