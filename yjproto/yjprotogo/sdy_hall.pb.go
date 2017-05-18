@@ -33,7 +33,7 @@ var _ = math.Inf
 
 // Ignoring public import of sdy_enum_protoId from sdy_base.proto
 
-// Ignoring public import of pdk_enum_errorCode from sdy_base.proto
+// Ignoring public import of sdy_enum_errorCode from sdy_base.proto
 
 // Ignoring public import of sdy_enum_actType from sdy_base.proto
 
@@ -129,7 +129,7 @@ func (m *SdyAckCreateDesk) GetRoomTypeInfo() *SdyBaseRoomTypeInfo {
 	return nil
 }
 
-// 客户端请求进入 room, 服务器返回DdzSendGameInfo
+// 客户端请求进入 room, 服务器返回SendGameInfo
 type SdyReqEnterDesk struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	MatchId          *int32            `protobuf:"varint,2,opt,name=matchId" json:"matchId,omitempty"`
