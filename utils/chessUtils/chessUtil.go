@@ -3,6 +3,8 @@ package chessUtils
 import (
 	"casino_common/utils/numUtils"
 	"casino_common/utils/rand"
+	mrand "math/rand"
+	"time"
 )
 
 //随机一副扑克牌的index
@@ -14,13 +16,18 @@ func Xipai(indexStart int, paiCount int) []int32 {
 	}
 
 	//打乱牌的集合
-	pResult := make([]int32, paiCount)
-	for i := 0; i < paiCount; i++ {
-		rand := rand.Rand(int32(0), int32(paiCount-i))
-		pResult[i] = pmap[rand]
-		pmap = append(pmap[:rand], pmap[rand+1:]...)
+	return Shuffle(pmap)
+}
+
+//将一个slice数值打乱
+func Shuffle(vals []int32) []int32 {
+	r := mrand.New(mrand.NewSource(time.Now().UnixNano()))
+	ret := make([]int32, len(vals))
+	perm := r.Perm(len(vals))
+	for i, randIndex := range perm {
+		ret[i] = vals[randIndex]
 	}
-	return pResult
+	return ret
 }
 
 //生成房间号

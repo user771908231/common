@@ -1,6 +1,11 @@
 package chessUtils
 
-import "testing"
+import (
+	"testing"
+	"fmt"
+	"time"
+	"sync"
+)
 
 func TestGetRoomPass(t *testing.T) {
 	a := GetRoomPass(5)
@@ -26,4 +31,19 @@ func TestGetRoomPassV2(t *testing.T) {
 	t.Log(GetRoomPassV2(1))
 	t.Log(GetRoomPassV2(2))
 	t.Log(GetRoomPassV2(3))
+}
+
+//测试： 洗牌
+func TestShuffle(t *testing.T) {
+	var wg sync.WaitGroup
+	for i := 0; i < 100; i++ {
+		wg.Add(1)
+		time.AfterFunc(time.Second / 10, func() {
+			defer wg.Done()
+			arr := Xipai(0, 51)
+			fmt.Println(arr)
+		})
+		wg.Wait()
+	}
+
 }
