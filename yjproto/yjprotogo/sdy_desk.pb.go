@@ -15,11 +15,25 @@ var _ = math.Inf
 
 // Ignoring public import of ProtoHeader from common_client.proto
 
+// Ignoring public import of ServerInfo from common_client.proto
+
+// Ignoring public import of QuickConn from common_client.proto
+
+// Ignoring public import of AckQuickConn from common_client.proto
+
+// Ignoring public import of WeixinInfo from common_client.proto
+
+// Ignoring public import of common_req_reg from common_client.proto
+
+// Ignoring public import of common_ack_reg from common_client.proto
+
 // Ignoring public import of cm_offline from common_client.proto
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
-// Ignoring public import of WeixinInfo from common_client.proto
+// Ignoring public import of common_enum_reg from common_client.proto
+
+// Ignoring public import of common_enum_os_type from common_client.proto
 
 // 房主解散房间(未开局)
 type SdyReqDissolveDesk struct {
@@ -31,7 +45,7 @@ type SdyReqDissolveDesk struct {
 func (m *SdyReqDissolveDesk) Reset()                    { *m = SdyReqDissolveDesk{} }
 func (m *SdyReqDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqDissolveDesk) ProtoMessage()               {}
-func (*SdyReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*SdyReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *SdyReqDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -59,7 +73,7 @@ type SdyAckDissolveDesk struct {
 func (m *SdyAckDissolveDesk) Reset()                    { *m = SdyAckDissolveDesk{} }
 func (m *SdyAckDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckDissolveDesk) ProtoMessage()               {}
-func (*SdyAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*SdyAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 func (m *SdyAckDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -99,7 +113,7 @@ type SdyReqReady struct {
 func (m *SdyReqReady) Reset()                    { *m = SdyReqReady{} }
 func (m *SdyReqReady) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqReady) ProtoMessage()               {}
-func (*SdyReqReady) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*SdyReqReady) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
 
 func (m *SdyReqReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -126,7 +140,7 @@ type SdyAckReady struct {
 func (m *SdyAckReady) Reset()                    { *m = SdyAckReady{} }
 func (m *SdyAckReady) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckReady) ProtoMessage()               {}
-func (*SdyAckReady) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (*SdyAckReady) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
 
 func (m *SdyAckReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -167,7 +181,7 @@ type SdyBaseWinCoinInfo struct {
 func (m *SdyBaseWinCoinInfo) Reset()                    { *m = SdyBaseWinCoinInfo{} }
 func (m *SdyBaseWinCoinInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseWinCoinInfo) ProtoMessage()               {}
-func (*SdyBaseWinCoinInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+func (*SdyBaseWinCoinInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
 
 func (m *SdyBaseWinCoinInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -254,7 +268,7 @@ type SdyBcCurrentResult struct {
 func (m *SdyBcCurrentResult) Reset()                    { *m = SdyBcCurrentResult{} }
 func (m *SdyBcCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcCurrentResult) ProtoMessage()               {}
-func (*SdyBcCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
+func (*SdyBcCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
 
 func (m *SdyBcCurrentResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -322,7 +336,7 @@ type SdyBcEndLotteryInfo struct {
 func (m *SdyBcEndLotteryInfo) Reset()                    { *m = SdyBcEndLotteryInfo{} }
 func (m *SdyBcEndLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcEndLotteryInfo) ProtoMessage()               {}
-func (*SdyBcEndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
+func (*SdyBcEndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{6} }
 
 func (m *SdyBcEndLotteryInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -404,7 +418,7 @@ func init() {
 	proto.RegisterType((*SdyBcEndLotteryInfo)(nil), "yjprotogo.sdy_bc_endLotteryInfo")
 }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor5 = []byte{
 	// 564 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0xd1, 0x6e, 0xd3, 0x3c,
 	0x14, 0xfe, 0xd3, 0xac, 0x5d, 0xe2, 0x6a, 0xfb, 0x51, 0x80, 0xc9, 0xaa, 0xd0, 0x88, 0x7a, 0x43,
