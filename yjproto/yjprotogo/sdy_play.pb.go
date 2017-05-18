@@ -59,6 +59,8 @@ var _ = math.Inf
 
 // Ignoring public import of sdy_enum_Option from sdy_base.proto
 
+// Ignoring public import of sdy_enum_coinRoomLevel from sdy_base.proto
+
 type SdyEnumJdScore int32
 
 const (
