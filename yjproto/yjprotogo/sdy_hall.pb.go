@@ -15,11 +15,25 @@ var _ = math.Inf
 
 // Ignoring public import of ProtoHeader from common_client.proto
 
+// Ignoring public import of ServerInfo from common_client.proto
+
+// Ignoring public import of QuickConn from common_client.proto
+
+// Ignoring public import of AckQuickConn from common_client.proto
+
+// Ignoring public import of WeixinInfo from common_client.proto
+
+// Ignoring public import of common_req_reg from common_client.proto
+
+// Ignoring public import of common_ack_reg from common_client.proto
+
 // Ignoring public import of cm_offline from common_client.proto
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
-// Ignoring public import of WeixinInfo from common_client.proto
+// Ignoring public import of common_enum_reg from common_client.proto
+
+// Ignoring public import of common_enum_os_type from common_client.proto
 
 // Ignoring public import of sdy_base_roomTypeInfo from sdy_base.proto
 
@@ -33,7 +47,7 @@ var _ = math.Inf
 
 // Ignoring public import of sdy_enum_protoId from sdy_base.proto
 
-// Ignoring public import of pdk_enum_errorCode from sdy_base.proto
+// Ignoring public import of sdy_enum_errorCode from sdy_base.proto
 
 // Ignoring public import of sdy_enum_actType from sdy_base.proto
 
@@ -55,7 +69,7 @@ type SdyReqCreateDesk struct {
 func (m *SdyReqCreateDesk) Reset()                    { *m = SdyReqCreateDesk{} }
 func (m *SdyReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqCreateDesk) ProtoMessage()               {}
-func (*SdyReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
+func (*SdyReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
 
 func (m *SdyReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -85,7 +99,7 @@ type SdyAckCreateDesk struct {
 func (m *SdyAckCreateDesk) Reset()                    { *m = SdyAckCreateDesk{} }
 func (m *SdyAckCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckCreateDesk) ProtoMessage()               {}
-func (*SdyAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
+func (*SdyAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
 
 func (m *SdyAckCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -129,7 +143,7 @@ func (m *SdyAckCreateDesk) GetRoomTypeInfo() *SdyBaseRoomTypeInfo {
 	return nil
 }
 
-// 客户端请求进入 room, 服务器返回DdzSendGameInfo
+// 客户端请求进入 room, 服务器返回SendGameInfo
 type SdyReqEnterDesk struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	MatchId          *int32            `protobuf:"varint,2,opt,name=matchId" json:"matchId,omitempty"`
@@ -144,7 +158,7 @@ type SdyReqEnterDesk struct {
 func (m *SdyReqEnterDesk) Reset()                    { *m = SdyReqEnterDesk{} }
 func (m *SdyReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqEnterDesk) ProtoMessage()               {}
-func (*SdyReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
+func (*SdyReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
 
 func (m *SdyReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -204,7 +218,7 @@ type SdyAckEnterDesk struct {
 func (m *SdyAckEnterDesk) Reset()                    { *m = SdyAckEnterDesk{} }
 func (m *SdyAckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckEnterDesk) ProtoMessage()               {}
-func (*SdyAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
+func (*SdyAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
 
 func (m *SdyAckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -227,7 +241,7 @@ func init() {
 	proto.RegisterType((*SdyAckEnterDesk)(nil), "yjprotogo.sdy_ack_enterDesk")
 }
 
-var fileDescriptor5 = []byte{
+var fileDescriptor6 = []byte{
 	// 368 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0xcb, 0x6f, 0xe2, 0x30,
 	0x10, 0xc6, 0x37, 0xe1, 0xb1, 0xc4, 0xb0, 0x48, 0xeb, 0x95, 0x50, 0x84, 0xb6, 0x52, 0x94, 0x53,
