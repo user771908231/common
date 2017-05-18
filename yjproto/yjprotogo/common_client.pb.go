@@ -57,8 +57,8 @@ It has these top-level messages:
 	SdyAckCreateDesk
 	SdyReqEnterDesk
 	SdyAckEnterDesk
-	PdkBcOpening
-	PdkBcDealCards
+	SdyBcOpening
+	SdyBcDealCards
 	SdyReqJiaoFen
 	SdyAckJiaoFen
 	SdyBcStartPlay
