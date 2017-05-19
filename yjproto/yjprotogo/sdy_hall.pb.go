@@ -209,7 +209,7 @@ func (m *SdyReqEnterDesk) GetCoinRoomLevel() SdyEnumCoinRoomLevel {
 	if m != nil && m.CoinRoomLevel != nil {
 		return *m.CoinRoomLevel
 	}
-	return SdyEnumCoinRoomLevel_Level_1000
+	return SdyEnumCoinRoomLevel_LEVEL_1000
 }
 
 func (m *SdyReqEnterDesk) GetIsContinuous() bool {
