@@ -67,18 +67,22 @@ It has these top-level messages:
 	SdyReqEnterDesk
 	SdyAckEnterDesk
 	SdyBcOpening
-	SdyBcDealCards
+	SdyDealCards
+	SdyBcJiaoFen
 	SdyReqJiaoFen
 	SdyAckJiaoFen
+	SdyBcJiaoFenResult
 	SdyBcStartPlay
 	SdyReqOutCards
 	SdyAckOutCards
 	SdyBcOverTurn
 	SdyBcGameInfo
-	SdyBcHuandi
-	SdyHuandi
+	SdyBcDingZhu
+	SdyReqDingZhu
+	SdyAckDingZhu
+	SdyBcHuanDi
 	SdyReqHuanDi
-	SdyAckHuandi
+	SdyAckHuanDi
 */
 package yjprotogo
 
