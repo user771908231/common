@@ -79,6 +79,8 @@ type T_game_count struct {
 	ZJH_LOSE_LV4_COUNT int32  //炸金花房间4输
 	ZJH_LOSE_LV5_COUNT int32  //炸金花房间5输
 	ZJH_LOSE_LV6_COUNT int32  //炸金花房间6输
+
+	FRIEND_DRAW_LOTTERY_COUNT int32  //朋友桌分享转盘抽奖次数
 }
 
 
