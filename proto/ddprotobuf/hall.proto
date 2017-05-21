@@ -345,3 +345,23 @@ message hall_bean_bisai {
 message hall_req_bisai {
     optional ProtoHeader header = 1;
 }
+//=========================朋友桌分享抽奖=========================
+//朋友卓抽奖-转盘奖品列表
+message hall_req_friend_lottery_list {
+    optional uint32 userId = 1;
+}
+
+message hall_ack_friend_lottery_list {
+    optional ProtoHeader header = 1;
+    optional hall_draw_lottery_info drawLotteryInfo = 2; //转盘信息与奖励物品列表
+}
+
+//抽奖
+message hall_req_friend_lottery_draw {
+    optional uint32 userId = 1;
+}
+
+message hall_ack_friend_lottery_draw {
+    optional ProtoHeader header = 1;
+    optional int32 lotteryId = 2; //奖励物品id
+}

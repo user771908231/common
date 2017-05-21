@@ -14,20 +14,20 @@ var NOTICE_TYPE_GUNDONG int32 = 1  //滚动
 var NOTICE_TYPE_CHONGZHI int32 = 2 //充值信息
 var NOTICE_TYPE_GONGGAO int32 = 3  //公告信息
 
-func getRedisKey(id int32) string {
+func getRedisKey(id int32, channelId string) string {
 	keyPre := "public_notice_key"
 	idStr, _ := numUtils.Int2String(id)
-	return strings.Join([]string{keyPre, idStr}, "_")
+	return strings.Join([]string{keyPre, idStr, channelId}, "_")
 }
 
 //通过notice的type 来查找notice,邮件
 func GetNoticeByType(noticeType int32, channelId string) *ddproto.TNotice {
 	//1,先从redis中获取notice
-	result := redisUtils.GetObj(getRedisKey(noticeType), &ddproto.TNotice{})
+	result := redisUtils.GetObj(getRedisKey(noticeType, channelId), &ddproto.TNotice{})
 	if result != nil {
 		return result.(*ddproto.TNotice)
 	} else {
-		notice := noticeDao.FindNoticeByType(noticeType)
+		notice := noticeDao.FindNoticeByType(noticeType, channelId)
 		if notice != nil {
 			SaveNotice2Redis(notice)
 		}
@@ -54,7 +54,7 @@ func GetCommonAckNotice(noticeType int32, channelId string) *ddproto.CommonAckNo
 
 //把公告的数据保存到redis中
 func SaveNotice2Redis(notice *ddproto.TNotice) error {
-	redisUtils.SetObj(getRedisKey(notice.GetId()), notice)
+	redisUtils.SetObj(getRedisKey(notice.GetId(), notice.GetChannelId()), notice)
 	return nil
 }
 
