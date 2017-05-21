@@ -303,6 +303,10 @@ It has these top-level messages:
 	Game_AckGameRecord
 	HallBeanBisai
 	HallReqBisai
+	HallReqFriendLotteryList
+	HallAckFriendLotteryList
+	HallReqFriendLotteryDraw
+	HallAckFriendLotteryDraw
 	HallItemEvent
 	HallMailItem
 	HallBagItem
