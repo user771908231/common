@@ -1,13 +1,13 @@
 package noticeServer
 
 import (
-	"strings"
-	"casino_common/utils/numUtils"
-	"casino_common/utils/redisUtils"
+	"casino_common/common/model/noticeDao"
 	"casino_common/proto/ddproto"
 	"casino_common/proto/funcsInit"
-	"casino_common/common/model/noticeDao"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/redisUtils"
 	"github.com/golang/protobuf/proto"
+	"strings"
 )
 
 var NOTICE_TYPE_GUNDONG int32 = 1  //滚动
@@ -20,8 +20,8 @@ func getRedisKey(id int32) string {
 	return strings.Join([]string{keyPre, idStr}, "_")
 }
 
-//通过notice的type 来查找notice
-func GetNoticeByType(noticeType int32) *ddproto.TNotice {
+//通过notice的type 来查找notice,邮件
+func GetNoticeByType(noticeType int32, channelId string) *ddproto.TNotice {
 	//1,先从redis中获取notice
 	result := redisUtils.GetObj(getRedisKey(noticeType), &ddproto.TNotice{})
 	if result != nil {
@@ -35,9 +35,11 @@ func GetNoticeByType(noticeType int32) *ddproto.TNotice {
 	}
 }
 
-func GetCommonAckNotice(noticeType int32) *ddproto.CommonAckNotice {
+func GetCommonAckNotice(noticeType int32, channelId string) *ddproto.CommonAckNotice {
 	ack := commonNewPorot.NewCommonAckNotice()
-	bback := GetNoticeByType(noticeType)
+	//bback := GetNoticeByType(noticeType, channelId)
+	//todo 临时处理，直接从数据库取数据
+	bback := noticeDao.FindNoticeByType(noticeType, channelId) //手下尝试直接从数据库取出来
 	if bback != nil {
 		*ack.NoticeType = bback.GetNoticeType()
 		*ack.NoticeTitle = bback.GetNoticeTitle()
