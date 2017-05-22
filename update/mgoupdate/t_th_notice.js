@@ -94,7 +94,7 @@ db.t_th_notice.insert({
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
     "noticecontent": "如有购买房卡疑问，请联系来一圈棋牌:\n岳阳购买钻石请联系微信：ty13570 \n岳阳代理加盟请联系微信：yymj7891011\n投诉建议请电话联系总代理:0730-7891011",
     "noticememo": "",
-    "channelId": "34",
+    "channelid": "34",
     "noticefileds": []
 });
 
@@ -117,7 +117,7 @@ db.t_th_notice.insert({
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
     "noticecontent": "如有购买房卡疑问，请联系来一圈棋牌:\n客服微信号：lyqyouxi\n客服QQ号：3298896830\n关注公众号：来一圈棋牌\n宁乡地区加盟代理请联系微信：\nty819821130\n轻松加盟代理，专区丰厚利润!",
     "noticememo": "",
-    "channelId": "3",
+    "channelid": "3",
     "noticefileds": []
 });
 
