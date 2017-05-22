@@ -1,6 +1,7 @@
 package noticeServer
 
 import (
+	"casino_common/common/log"
 	"casino_common/common/model/noticeDao"
 	"casino_common/proto/ddproto"
 	"casino_common/proto/funcsInit"
@@ -40,6 +41,13 @@ func GetCommonAckNotice(noticeType int32, channelId string) *ddproto.CommonAckNo
 	//bback := GetNoticeByType(noticeType, channelId)
 	//todo 临时处理，直接从数据库取数据
 	bback := noticeDao.FindNoticeByType(noticeType, channelId) //手下尝试直接从数据库取出来
+	log.T("noticeServer开始查询notice: notietype=%v,channelid=%v,ret:%v", noticeType, channelId, bback)
+
+	if bback == nil {
+		//查找默认值
+		bback = noticeDao.FindNoticeByType(noticeType, "") //手下尝试直接从数据库取出来
+	}
+
 	if bback != nil {
 		*ack.NoticeType = bback.GetNoticeType()
 		*ack.NoticeTitle = bback.GetNoticeTitle()
@@ -48,6 +56,7 @@ func GetCommonAckNotice(noticeType int32, channelId string) *ddproto.CommonAckNo
 		ack.Fileds = bback.GetNoticefileds()
 		ack.Id = proto.Int32(bback.GetId())
 	}
+
 	//返回得到的ack notice
 	return ack
 }
