@@ -208,6 +208,8 @@ message pdk_bc_gameInfo {
 
     optional int32 isReconnect = 5; // 1=正常连接（默认） 2=断线重连
 
+    repeated int32 pdkPokersId = 6; //二人跑的快时，第三组手牌的ID
+
 }
 
 
