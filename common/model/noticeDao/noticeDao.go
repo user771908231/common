@@ -1,18 +1,18 @@
 package noticeDao
 
 import (
-	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/db"
 	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 //得到一个notice
-func FindNoticeByType(noticeType int32) *ddproto.TNotice {
+func FindNoticeByType(noticeType int32, channelId string) *ddproto.TNotice {
 	notice := new(ddproto.TNotice)
 	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_T_TH_NOTICE).Find(bson.M{"noticetype": noticeType}).One(notice)
+		d.C(tableName.DBT_T_TH_NOTICE).Find(bson.M{"noticetype": noticeType, "channelid": channelId}).One(notice)
 	})
 	if notice.GetId() > 0 {
 		return notice
