@@ -7,6 +7,13 @@ import (
 	"time"
 )
 
+func init() {
+	//洗牌随机种子初始化
+	shuffle_rand_pointer = mrand.New(mrand.NewSource(time.Now().UnixNano()))
+}
+
+var shuffle_rand_pointer *mrand.Rand
+
 //随机一副扑克牌的index
 func Xipai(indexStart int, paiCount int) []int32 {
 	//初始化一个顺序的牌的集合
@@ -16,7 +23,7 @@ func Xipai(indexStart int, paiCount int) []int32 {
 	}
 
 	//打乱牌的集合
-	return Shuffle(pmap)
+	return Shuffle2(pmap)
 }
 
 //将一个slice数值打乱
@@ -30,7 +37,18 @@ func Shuffle(vals []int32) []int32 {
 	return ret
 }
 
-//
+//新版洗牌算法
+func Shuffle2(vals []int32) []int32 {
+	ret := make([]int32, len(vals))
+
+	for i,_ := range ret {
+		rand_index := shuffle_rand_pointer.Intn(len(vals))
+		ret[i] = vals[rand_index]
+		vals = append(vals[:rand_index], vals[rand_index+1:]...)
+	}
+
+	return ret
+}
 
 //生成房间号
 func GetRoomPassV2(gameId int32) string {
