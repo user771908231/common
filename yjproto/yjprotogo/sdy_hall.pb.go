@@ -35,6 +35,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_enum_os_type from common_client.proto
 
+// Ignoring public import of sdy_base_userPaiIds from sdy_base.proto
+
 // Ignoring public import of sdy_base_roomTypeInfo from sdy_base.proto
 
 // Ignoring public import of sdy_base_timerInfo from sdy_base.proto
