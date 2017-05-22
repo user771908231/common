@@ -30,6 +30,8 @@ func Shuffle(vals []int32) []int32 {
 	return ret
 }
 
+//
+
 //生成房间号
 func GetRoomPassV2(gameId int32) string {
 	pre1 := rand.Rand(1, 10)
