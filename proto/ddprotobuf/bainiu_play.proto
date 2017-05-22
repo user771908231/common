@@ -69,6 +69,7 @@ message bainiu_yazhu_ack {
     optional int64 chips = 4;  //押注筹码值
     optional int64 all_chips = 5;  //该区域当前所有筹码总和
     optional int64 surplus_coin = 6;  //用户剩余金币数
+    optional int64 my_chips = 7;  //用户该区域总押注金币数
 }
 
 //押注广播
@@ -78,6 +79,7 @@ message bainiu_yazhu_bc {
     optional int64 chips = 3;  //押注筹码值
     optional int64 all_chips = 4;  //该区域当前所有筹码总和
     optional int64 surplus_coin = 5;  //该用户剩余金币数
+    optional int64 my_chips = 6;  //用户该区域总押注金币数
 }
 
 //===============================发牌=================================

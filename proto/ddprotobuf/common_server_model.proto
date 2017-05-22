@@ -53,6 +53,8 @@ message TNotice {
     optional string noticeContent = 4; //公告的内容
     optional string noticeMemo = 5; //公告的备注
     repeated string noticefileds = 6; //   公告内容
+    optional string channelId = 7; //公告对应的渠道id
+
 }
 
 //玩家游戏场次统计

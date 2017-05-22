@@ -301,6 +301,8 @@ It has these top-level messages:
 	BeanUserRecord
 	BeanGameRecord
 	Game_AckGameRecord
+	HallBeanBisai
+	HallReqBisai
 	HallReqFriendLotteryList
 	HallAckFriendLotteryList
 	HallReqFriendLotteryDraw

@@ -129,6 +129,9 @@ enum hall_enum_protoId {
     HALL_PID_FRIEND_LOTTERY_DRAW_REQ = 89;  //朋友桌转盘-抽奖
     HALL_PID_FRIEND_LOTTERY_DRAW_ACK = 90;
 
+    HALL_PID_NOTICE_REQ = 91;  //notice公告
+    HALL_PID_NOTICE_ACK = 92;
+    
 }
 
 //货币与商品类型

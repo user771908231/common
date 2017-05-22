@@ -323,7 +323,7 @@ message BeanGameRecord {
     optional string beginTime = 4; //游戏开始的时间
     repeated BeanUserRecord users = 5; //用户
     optional string roundStr = 6; //局数信息 已玩局数/建房总局数
-    optional string password = 7;//房间号码
+    optional string password = 7; //房间号码
 }
 //
 message game_AckGameRecord {
@@ -333,6 +333,18 @@ message game_AckGameRecord {
     repeated BeanGameRecord records = 4; //结果
 }
 
+//报名
+message hall_bean_bisai {
+    optional int32 Id = 1; //比赛的model
+    optional int32 GameId = 2; //游戏Id
+    optional string Des = 3; //说明
+    optional int32 UserLimit = 4; //最低开始人数
+    optional int32 Status = 5; //状态，0默认状态，1，报名，2，开始游戏，3，结束，4，过期，取消
+}
+
+message hall_req_bisai {
+    optional ProtoHeader header = 1;
+}
 //=========================朋友桌分享抽奖=========================
 //朋友卓抽奖-转盘奖品列表
 message hall_req_friend_lottery_list {
@@ -353,4 +365,3 @@ message hall_ack_friend_lottery_draw {
     optional ProtoHeader header = 1;
     optional int32 lotteryId = 2; //奖励物品id
 }
-
