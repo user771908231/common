@@ -14,8 +14,8 @@ db.t_th_notice.insert({
 });
 
 db.t_th_notice.insert({
-    "_id": ObjectId("57aae42b2e7eeff0be9514ab"),
-    "id": 2, "noticetype": 2,
+    "id": 2,
+    "noticetype": 2,
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
     "noticecontent": "创建房间后,点击微信邀请,发送邀请链接给好友,好友安装App后可一键点击分享的房号进入房间. 赶快去试试吧",
     "noticememo": "",
@@ -25,9 +25,10 @@ db.t_th_notice.insert({
 
 
 db.t_th_notice.insert({
-    "id": 3, "noticetype": 3,
+    "id": 3,
+    "noticetype": 3,
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
-    "noticecontent": "如有购买房卡疑,请联系来一圈棋牌:\n\n客服微信号:lyqyouxi \n客户QQ号: 3298896830 \n关注公众号 :来一圈棋牌\n\n轻松加盟代理,赚取丰厚利润!",
+    "noticecontent": "如有购买房卡疑问,请联系来一圈棋牌:\n\n客服微信号:lyqyouxi \n客户QQ号: 3298896830 \n关注公众号 :来一圈棋牌\n\n轻松加盟代理,赚取丰厚利润!",
     "noticememo": "",
     "channelid": "",
     "noticefileds": []
@@ -55,8 +56,8 @@ db.t_th_notice.insert({
 });
 
 db.t_th_notice.insert({
-    "_id": ObjectId("57aae42b2e7eeff0be9514ab"),
-    "id": 2, "noticetype": 2,
+    "id": 2,
+    "noticetype": 2,
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
     "noticecontent": "创建房间后,点击微信邀请,发送邀请链接给好友,好友安装App后可一键点击分享的房号进入房间. 赶快去试试吧",
     "noticememo": "",
@@ -66,9 +67,10 @@ db.t_th_notice.insert({
 
 
 db.t_th_notice.insert({
-    "id": 3, "noticetype": 3,
+    "id": 3,
+    "noticetype": 3,
     "noticetitle": "来一圈棋牌，你的熟人约局利器",
-    "noticecontent": "如有购买房卡疑,请联系来一圈棋牌:\n\n客服微信号:lyqyouxi \n客户QQ号: 3298896830 \n关注公众号 :来一圈棋牌\n\n轻松加盟代理,赚取丰厚利润!",
+    "noticecontent": "如有购买房卡疑问,请联系来一圈棋牌:\n\n客服微信号:lyqyouxi \n客户QQ号: 3298896830 \n关注公众号 :来一圈棋牌\n\n轻松加盟代理,赚取丰厚利润!",
     "noticememo": "",
     "channelid": "weixin",
     "noticefileds": []
@@ -104,6 +106,29 @@ db.t_th_notice.insert({
     "noticecontent": "如有购买房卡疑问，请联系来一圈棋牌:\n岳阳购买钻石请联系微信：ty13570 \n岳阳代理加盟请联系微信：yymj7891011\n投诉建议请电话联系总代理:0730-7891011",
     "noticememo": "",
     "channelid": "35",
+    "noticefileds": []
+});
+
+
+//宁乡数据
+db.t_th_notice.insert({
+    "id": 3,
+    "noticetype": 3,
+    "noticetitle": "来一圈棋牌，你的熟人约局利器",
+    "noticecontent": "如有购买房卡疑问，请联系来一圈棋牌:\n客服微信号：lyqyouxi\n客服QQ号：3298896830\n关注公众号：来一圈棋牌\n宁乡地区加盟代理请联系微信：\nty819821130\n轻松加盟代理，专区丰厚利润!",
+    "noticememo": "",
+    "channelId": "3",
+    "noticefileds": []
+});
+
+//宁乡
+db.t_th_notice.insert({
+    "id": 3,
+    "noticetype": 3,
+    "noticetitle": "来一圈棋牌，你的熟人约局利器",
+    "noticecontent": "如有购买房卡疑问，请联系来一圈棋牌:\n客服微信号：lyqyouxi\n客服QQ号：3298896830\n关注公众号：来一圈棋牌\n宁乡地区加盟代理请联系微信：\nty819821130\n轻松加盟代理，专区丰厚利润!",
+    "noticememo": "",
+    "channelid": "32",
     "noticefileds": []
 });
 
