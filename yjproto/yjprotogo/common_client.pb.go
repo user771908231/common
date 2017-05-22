@@ -81,6 +81,7 @@ It has these top-level messages:
 	SdyBcGameInfo
 	SdyBcDingZhu
 	SdyReqDingZhu
+	SdyBcDingZhuResult
 	SdyAckDingZhu
 	SdyBcHuanDi
 	SdyReqHuanDi
