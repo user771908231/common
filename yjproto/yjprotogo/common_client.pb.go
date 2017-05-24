@@ -50,6 +50,7 @@ It has these top-level messages:
 	P16AckChi
 	P16ReqHu
 	P16AckHu
+	SdyBaseUserPaiIds
 	SdyBaseRoomTypeInfo
 	SdyBaseTimerInfo
 	SdyBasePlayerInfo
@@ -68,6 +69,7 @@ It has these top-level messages:
 	SdyAckEnterDesk
 	SdyBcOpening
 	SdyDealCards
+	SdyBcPlayerPokers
 	SdyBcJiaoFen
 	SdyReqJiaoFen
 	SdyAckJiaoFen
@@ -79,6 +81,7 @@ It has these top-level messages:
 	SdyBcGameInfo
 	SdyBcDingZhu
 	SdyReqDingZhu
+	SdyBcDingZhuResult
 	SdyAckDingZhu
 	SdyBcHuanDi
 	SdyReqHuanDi
