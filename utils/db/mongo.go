@@ -300,3 +300,22 @@ func (c C) Drop() (err error) {
 	})
 	return
 }
+
+type ObjIds struct {
+	Id bson.ObjectId `bson:"_id"`
+}
+
+//查询id列表
+func (c C) FindAllId(query interface{}) (list []bson.ObjectId, err error) {
+	res := []ObjIds{}
+	Query(func(mgo *mgo.Database) {
+		err = mgo.C(string(c)).Find(query).All(&res)
+	})
+	if err != nil {
+		return list, err
+	}
+	for _,id := range res {
+		list = append(list, id.Id)
+	}
+	return list, nil
+}
