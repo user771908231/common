@@ -7,7 +7,7 @@ Package yjprotogo is a generated protocol buffer package.
 
 It is generated from these files:
 	common_client.proto
-	common_enum.proto
+	hall_base.proto
 	mj_changchun_base.proto
 	mj_changchun_play.proto
 	sdy_base.proto
@@ -25,15 +25,35 @@ It has these top-level messages:
 	CommonAckReg
 	CmOffline
 	CmHearbeat
-	P16ReqCreateDesk
+	HallReqLogin
+	HallAckLogin
+	UserCoinBean
+	RoomTypeInfo
+	EndLotteryInfo
+	PlayOptions
+	DeskGameInfo
+	PlayerInfo
+	CardInfo
+	ComposeCard
+	PlayerCard
+	WinCoinInfo
+	Game_SendGameInfo
+	Game_AckActHu
+	P16AckGameOpening
+	Game_SendCurrentResult
+	Game_AckActGang
+	P16AckRoomInit
 	P16BeanDeskInfo
-	P16BeanUserinfo
+	P16AckGameDealCards
+	P16ReqCreateDesk
 	P16AckCreateDesk
 	P16ReqEnterDesk
 	P16AckEnterDesk
 	P16ReqDissolveBeginGame
 	P16AckDissolveBeginGame
 	P16DissolveBeginGame
+	P16AckPlayerEnter
+	P16AckPlayerExit
 	P16ReqReady
 	P16AckReady
 	P16AckOpening
@@ -42,14 +62,21 @@ It has these top-level messages:
 	P16BBeanCanGang
 	P16BcMoPai
 	P16Bc_Check
-	P16ReqPeng
-	P16AckPeng
-	P16ReqGang
-	P16AckGang
 	P16ReqChi
 	P16AckChi
-	P16ReqHu
-	P16AckHu
+	P16AckGameOverturn
+	ChiOverTurn
+	JiaoInfo
+	JiaoPaiInfo
+	Game_AckActGuo
+	Game_AckSendOutCard
+	Game_SendEndLottery
+	P16ReqGameSendOutCard
+	P16ReqGameActPeng
+	P16ReqGameActGang
+	P16ReqGameActGuo
+	P16ReqGameActHu
+	Game_DissolveDesk
 	SdyBaseUserPaiIds
 	SdyBaseRoomTypeInfo
 	SdyBaseTimerInfo
