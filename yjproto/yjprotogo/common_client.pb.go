@@ -91,6 +91,7 @@ It has these top-level messages:
 	SdyAckReady
 	SdyBaseWinCoinInfo
 	SdyBcCurrentResult
+	SdyBaseBill
 	SdyBcEndLotteryInfo
 	SdyReqCreateDesk
 	SdyAckCreateDesk
