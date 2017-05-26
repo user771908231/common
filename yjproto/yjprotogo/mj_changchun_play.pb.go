@@ -31,6 +31,8 @@ var _ = math.Inf
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
+// Ignoring public import of GAME_ID from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
