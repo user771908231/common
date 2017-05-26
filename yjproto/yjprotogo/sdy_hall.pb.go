@@ -31,6 +31,8 @@ var _ = math.Inf
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
+// Ignoring public import of GAME_ID from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -62,6 +64,8 @@ var _ = math.Inf
 // Ignoring public import of sdy_enum_Option from sdy_base.proto
 
 // Ignoring public import of sdy_enum_coinRoomLevel from sdy_base.proto
+
+// Ignoring public import of sdy_enum_flowers from sdy_base.proto
 
 // 创建房间
 type SdyReqCreateDesk struct {

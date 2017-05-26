@@ -31,93 +31,330 @@ var _ = math.Inf
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
+// Ignoring public import of GAME_ID from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
 
-// 长春麻将的gameId = 16
-// 长春麻将 创建房间
-type P16ReqCreateDesk struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	UserCountLimit   *int32       `protobuf:"varint,2,opt,name=userCountLimit" json:"userCountLimit,omitempty"`
-	BoardsCout       *int32       `protobuf:"varint,3,opt,name=boardsCout" json:"boardsCout,omitempty"`
-	BaseValue        *int64       `protobuf:"varint,4,opt,name=baseValue" json:"baseValue,omitempty"`
-	DianPaoBaoSanJia *bool        `protobuf:"varint,5,opt,name=dianPaoBaoSanJia" json:"dianPaoBaoSanJia,omitempty"`
-	XiaoJiFeiDan     *bool        `protobuf:"varint,6,opt,name=xiaoJiFeiDan" json:"xiaoJiFeiDan,omitempty"`
-	SanFengDan       *bool        `protobuf:"varint,7,opt,name=sanFengDan" json:"sanFengDan,omitempty"`
-	XiaDanSuanZhanLi *bool        `protobuf:"varint,8,opt,name=xiaDanSuanZhanLi" json:"xiaDanSuanZhanLi,omitempty"`
-	DaiQueMen        *bool        `protobuf:"varint,9,opt,name=daiQueMen" json:"daiQueMen,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+// Ignoring public import of user_coin_bean from mj_changchun_base.proto
+
+// Ignoring public import of RoomTypeInfo from mj_changchun_base.proto
+
+// Ignoring public import of EndLotteryInfo from mj_changchun_base.proto
+
+// Ignoring public import of PlayOptions from mj_changchun_base.proto
+
+// Ignoring public import of DeskGameInfo from mj_changchun_base.proto
+
+// Ignoring public import of PlayerInfo from mj_changchun_base.proto
+
+// Ignoring public import of CardInfo from mj_changchun_base.proto
+
+// Ignoring public import of ComposeCard from mj_changchun_base.proto
+
+// Ignoring public import of PlayerCard from mj_changchun_base.proto
+
+// Ignoring public import of WinCoinInfo from mj_changchun_base.proto
+
+// Ignoring public import of ccmj_protoId from mj_changchun_base.proto
+
+// Ignoring public import of RECONNECT_TYPE from mj_changchun_base.proto
+
+// Ignoring public import of ComposeCardType from mj_changchun_base.proto
+
+// Ignoring public import of DeskGameStatus from mj_changchun_base.proto
+
+// Ignoring public import of PaiType from mj_changchun_base.proto
+
+// Ignoring public import of MJRoomType from mj_changchun_base.proto
+
+// 发送游戏信息(广播)
+type Game_SendGameInfo struct {
+	Header *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	// 1. 首先是牌桌的玩家数据（玩家数据包括其id昵称筹码头像等基本信息，其手牌数据，以及自己打出的牌的数据，还有状态是否已经胡牌了，玩家在整局的总输赢）
+	PlayerInfo []*PlayerInfo `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
+	// 2. 桌面信息（包括：游戏是否结束，当前轮到哪个玩家，倒计时剩余时间）
+	DeskGameInfo *DeskGameInfo `protobuf:"bytes,3,opt,name=deskGameInfo" json:"deskGameInfo,omitempty"`
+	//
+	SenderUserId     *uint32         `protobuf:"varint,4,opt,name=senderUserId" json:"senderUserId,omitempty"`
+	IsReconnect      *RECONNECT_TYPE `protobuf:"varint,5,opt,name=isReconnect,enum=yjprotogo.RECONNECT_TYPE" json:"isReconnect,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
 }
 
-func (m *P16ReqCreateDesk) Reset()                    { *m = P16ReqCreateDesk{} }
-func (m *P16ReqCreateDesk) String() string            { return proto.CompactTextString(m) }
-func (*P16ReqCreateDesk) ProtoMessage()               {}
-func (*P16ReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
+func (m *Game_SendGameInfo) Reset()                    { *m = Game_SendGameInfo{} }
+func (m *Game_SendGameInfo) String() string            { return proto.CompactTextString(m) }
+func (*Game_SendGameInfo) ProtoMessage()               {}
+func (*Game_SendGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
 
-func (m *P16ReqCreateDesk) GetHeader() *ProtoHeader {
+func (m *Game_SendGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
 }
 
-func (m *P16ReqCreateDesk) GetUserCountLimit() int32 {
-	if m != nil && m.UserCountLimit != nil {
-		return *m.UserCountLimit
+func (m *Game_SendGameInfo) GetPlayerInfo() []*PlayerInfo {
+	if m != nil {
+		return m.PlayerInfo
+	}
+	return nil
+}
+
+func (m *Game_SendGameInfo) GetDeskGameInfo() *DeskGameInfo {
+	if m != nil {
+		return m.DeskGameInfo
+	}
+	return nil
+}
+
+func (m *Game_SendGameInfo) GetSenderUserId() uint32 {
+	if m != nil && m.SenderUserId != nil {
+		return *m.SenderUserId
 	}
 	return 0
 }
 
-func (m *P16ReqCreateDesk) GetBoardsCout() int32 {
-	if m != nil && m.BoardsCout != nil {
-		return *m.BoardsCout
+func (m *Game_SendGameInfo) GetIsReconnect() RECONNECT_TYPE {
+	if m != nil && m.IsReconnect != nil {
+		return *m.IsReconnect
+	}
+	return RECONNECT_TYPE_NORMAL
+}
+
+type Game_AckActHu struct {
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	HuType           *int32          `protobuf:"varint,2,opt,name=huType" json:"huType,omitempty"`
+	HuCard           *CardInfo       `protobuf:"bytes,3,opt,name=huCard" json:"huCard,omitempty"`
+	UserIdOut        *uint32         `protobuf:"varint,4,opt,name=userIdOut" json:"userIdOut,omitempty"`
+	UserIdIn         *uint32         `protobuf:"varint,5,opt,name=userIdIn" json:"userIdIn,omitempty"`
+	IsZiMo           *bool           `protobuf:"varint,6,opt,name=isZiMo" json:"isZiMo,omitempty"`
+	PaiType          []PaiType       `protobuf:"varint,7,rep,name=paiType,enum=yjprotogo.PaiType" json:"paiType,omitempty"`
+	UserCoinBeans    []*UserCoinBean `protobuf:"bytes,8,rep,name=userCoinBeans" json:"userCoinBeans,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *Game_AckActHu) Reset()                    { *m = Game_AckActHu{} }
+func (m *Game_AckActHu) String() string            { return proto.CompactTextString(m) }
+func (*Game_AckActHu) ProtoMessage()               {}
+func (*Game_AckActHu) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{1} }
+
+func (m *Game_AckActHu) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *Game_AckActHu) GetHuType() int32 {
+	if m != nil && m.HuType != nil {
+		return *m.HuType
 	}
 	return 0
 }
 
-func (m *P16ReqCreateDesk) GetBaseValue() int64 {
-	if m != nil && m.BaseValue != nil {
-		return *m.BaseValue
+func (m *Game_AckActHu) GetHuCard() *CardInfo {
+	if m != nil {
+		return m.HuCard
+	}
+	return nil
+}
+
+func (m *Game_AckActHu) GetUserIdOut() uint32 {
+	if m != nil && m.UserIdOut != nil {
+		return *m.UserIdOut
 	}
 	return 0
 }
 
-func (m *P16ReqCreateDesk) GetDianPaoBaoSanJia() bool {
-	if m != nil && m.DianPaoBaoSanJia != nil {
-		return *m.DianPaoBaoSanJia
+func (m *Game_AckActHu) GetUserIdIn() uint32 {
+	if m != nil && m.UserIdIn != nil {
+		return *m.UserIdIn
+	}
+	return 0
+}
+
+func (m *Game_AckActHu) GetIsZiMo() bool {
+	if m != nil && m.IsZiMo != nil {
+		return *m.IsZiMo
 	}
 	return false
 }
 
-func (m *P16ReqCreateDesk) GetXiaoJiFeiDan() bool {
-	if m != nil && m.XiaoJiFeiDan != nil {
-		return *m.XiaoJiFeiDan
+func (m *Game_AckActHu) GetPaiType() []PaiType {
+	if m != nil {
+		return m.PaiType
+	}
+	return nil
+}
+
+func (m *Game_AckActHu) GetUserCoinBeans() []*UserCoinBean {
+	if m != nil {
+		return m.UserCoinBeans
+	}
+	return nil
+}
+
+// 开局（接收服务端消息）
+type P16AckGameOpening struct {
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CurrPlayCount    *int32          `protobuf:"varint,2,opt,name=CurrPlayCount" json:"CurrPlayCount,omitempty"`
+	UserCoinBeans    []*UserCoinBean `protobuf:"bytes,5,rep,name=userCoinBeans" json:"userCoinBeans,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *P16AckGameOpening) Reset()                    { *m = P16AckGameOpening{} }
+func (m *P16AckGameOpening) String() string            { return proto.CompactTextString(m) }
+func (*P16AckGameOpening) ProtoMessage()               {}
+func (*P16AckGameOpening) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{2} }
+
+func (m *P16AckGameOpening) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16AckGameOpening) GetCurrPlayCount() int32 {
+	if m != nil && m.CurrPlayCount != nil {
+		return *m.CurrPlayCount
+	}
+	return 0
+}
+
+func (m *P16AckGameOpening) GetUserCoinBeans() []*UserCoinBean {
+	if m != nil {
+		return m.UserCoinBeans
+	}
+	return nil
+}
+
+// 本局结果(广播)
+type Game_SendCurrentResult struct {
+	Header           *ProtoHeader   `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	WinCoinInfo      []*WinCoinInfo `protobuf:"bytes,2,rep,name=winCoinInfo" json:"winCoinInfo,omitempty"`
+	XXX_unrecognized []byte         `json:"-"`
+}
+
+func (m *Game_SendCurrentResult) Reset()                    { *m = Game_SendCurrentResult{} }
+func (m *Game_SendCurrentResult) String() string            { return proto.CompactTextString(m) }
+func (*Game_SendCurrentResult) ProtoMessage()               {}
+func (*Game_SendCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{3} }
+
+func (m *Game_SendCurrentResult) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *Game_SendCurrentResult) GetWinCoinInfo() []*WinCoinInfo {
+	if m != nil {
+		return m.WinCoinInfo
+	}
+	return nil
+}
+
+type Game_AckActGang struct {
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	GangType         *int32          `protobuf:"varint,2,opt,name=gangType" json:"gangType,omitempty"`
+	GangCard         []*CardInfo     `protobuf:"bytes,3,rep,name=GangCard" json:"GangCard,omitempty"`
+	UserIdOut        *uint32         `protobuf:"varint,4,opt,name=userIdOut" json:"userIdOut,omitempty"`
+	UserIdIn         *uint32         `protobuf:"varint,5,opt,name=userIdIn" json:"userIdIn,omitempty"`
+	BuGang           *bool           `protobuf:"varint,6,opt,name=buGang" json:"buGang,omitempty"`
+	UserCoinBeans    []*UserCoinBean `protobuf:"bytes,7,rep,name=userCoinBeans" json:"userCoinBeans,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
+}
+
+func (m *Game_AckActGang) Reset()                    { *m = Game_AckActGang{} }
+func (m *Game_AckActGang) String() string            { return proto.CompactTextString(m) }
+func (*Game_AckActGang) ProtoMessage()               {}
+func (*Game_AckActGang) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{4} }
+
+func (m *Game_AckActGang) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *Game_AckActGang) GetGangType() int32 {
+	if m != nil && m.GangType != nil {
+		return *m.GangType
+	}
+	return 0
+}
+
+func (m *Game_AckActGang) GetGangCard() []*CardInfo {
+	if m != nil {
+		return m.GangCard
+	}
+	return nil
+}
+
+func (m *Game_AckActGang) GetUserIdOut() uint32 {
+	if m != nil && m.UserIdOut != nil {
+		return *m.UserIdOut
+	}
+	return 0
+}
+
+func (m *Game_AckActGang) GetUserIdIn() uint32 {
+	if m != nil && m.UserIdIn != nil {
+		return *m.UserIdIn
+	}
+	return 0
+}
+
+func (m *Game_AckActGang) GetBuGang() bool {
+	if m != nil && m.BuGang != nil {
+		return *m.BuGang
 	}
 	return false
 }
 
-func (m *P16ReqCreateDesk) GetSanFengDan() bool {
-	if m != nil && m.SanFengDan != nil {
-		return *m.SanFengDan
+func (m *Game_AckActGang) GetUserCoinBeans() []*UserCoinBean {
+	if m != nil {
+		return m.UserCoinBeans
 	}
-	return false
+	return nil
 }
 
-func (m *P16ReqCreateDesk) GetXiaDanSuanZhanLi() bool {
-	if m != nil && m.XiaDanSuanZhanLi != nil {
-		return *m.XiaDanSuanZhanLi
-	}
-	return false
+// 游戏信息
+type P16AckRoomInit struct {
+	Header           *ProtoHeader     `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	DeskInfo         *P16BeanDeskInfo `protobuf:"bytes,2,opt,name=deskInfo" json:"deskInfo,omitempty"`
+	Players          []*PlayerInfo    `protobuf:"bytes,3,rep,name=players" json:"players,omitempty"`
+	XXX_unrecognized []byte           `json:"-"`
 }
 
-func (m *P16ReqCreateDesk) GetDaiQueMen() bool {
-	if m != nil && m.DaiQueMen != nil {
-		return *m.DaiQueMen
+func (m *P16AckRoomInit) Reset()                    { *m = P16AckRoomInit{} }
+func (m *P16AckRoomInit) String() string            { return proto.CompactTextString(m) }
+func (*P16AckRoomInit) ProtoMessage()               {}
+func (*P16AckRoomInit) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{5} }
+
+func (m *P16AckRoomInit) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
 	}
-	return false
+	return nil
 }
 
+func (m *P16AckRoomInit) GetDeskInfo() *P16BeanDeskInfo {
+	if m != nil {
+		return m.DeskInfo
+	}
+	return nil
+}
+
+func (m *P16AckRoomInit) GetPlayers() []*PlayerInfo {
+	if m != nil {
+		return m.Players
+	}
+	return nil
+}
+
+// 房间信息
 type P16BeanDeskInfo struct {
 	Owner            *uint32 `protobuf:"varint,1,opt,name=owner" json:"owner,omitempty"`
 	Passwrod         *string `protobuf:"bytes,2,opt,name=passwrod" json:"passwrod,omitempty"`
@@ -136,7 +373,7 @@ type P16BeanDeskInfo struct {
 func (m *P16BeanDeskInfo) Reset()                    { *m = P16BeanDeskInfo{} }
 func (m *P16BeanDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*P16BeanDeskInfo) ProtoMessage()               {}
-func (*P16BeanDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{1} }
+func (*P16BeanDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{6} }
 
 func (m *P16BeanDeskInfo) GetOwner() uint32 {
 	if m != nil && m.Owner != nil {
@@ -215,45 +452,136 @@ func (m *P16BeanDeskInfo) GetCurrBoardsCout() int32 {
 	return 0
 }
 
-type P16BeanUserinfo struct {
-	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+// 发牌
+type P16AckGameDealCards struct {
+	Header           *ProtoHeader  `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerCard       []*PlayerCard `protobuf:"bytes,2,rep,name=playerCard" json:"playerCard,omitempty"`
+	DealerUserId     *uint32       `protobuf:"varint,3,opt,name=dealerUserId" json:"dealerUserId,omitempty"`
+	XXX_unrecognized []byte        `json:"-"`
 }
 
-func (m *P16BeanUserinfo) Reset()                    { *m = P16BeanUserinfo{} }
-func (m *P16BeanUserinfo) String() string            { return proto.CompactTextString(m) }
-func (*P16BeanUserinfo) ProtoMessage()               {}
-func (*P16BeanUserinfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{2} }
+func (m *P16AckGameDealCards) Reset()                    { *m = P16AckGameDealCards{} }
+func (m *P16AckGameDealCards) String() string            { return proto.CompactTextString(m) }
+func (*P16AckGameDealCards) ProtoMessage()               {}
+func (*P16AckGameDealCards) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{7} }
 
-func (m *P16BeanUserinfo) GetUserId() uint32 {
-	if m != nil && m.UserId != nil {
-		return *m.UserId
-	}
-	return 0
-}
-
-// 进入房间
-type P16AckCreateDesk struct {
-	Header           *ProtoHeader     `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	DeskInfo         *P16BeanDeskInfo `protobuf:"bytes,2,opt,name=deskInfo" json:"deskInfo,omitempty"`
-	XXX_unrecognized []byte           `json:"-"`
-}
-
-func (m *P16AckCreateDesk) Reset()                    { *m = P16AckCreateDesk{} }
-func (m *P16AckCreateDesk) String() string            { return proto.CompactTextString(m) }
-func (*P16AckCreateDesk) ProtoMessage()               {}
-func (*P16AckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{3} }
-
-func (m *P16AckCreateDesk) GetHeader() *ProtoHeader {
+func (m *P16AckGameDealCards) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
 }
 
-func (m *P16AckCreateDesk) GetDeskInfo() *P16BeanDeskInfo {
+func (m *P16AckGameDealCards) GetPlayerCard() []*PlayerCard {
 	if m != nil {
-		return m.DeskInfo
+		return m.PlayerCard
+	}
+	return nil
+}
+
+func (m *P16AckGameDealCards) GetDealerUserId() uint32 {
+	if m != nil && m.DealerUserId != nil {
+		return *m.DealerUserId
+	}
+	return 0
+}
+
+// 创建房间
+type P16ReqCreateDesk struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserCountLimit   *int32       `protobuf:"varint,2,opt,name=userCountLimit" json:"userCountLimit,omitempty"`
+	BoardsCout       *int32       `protobuf:"varint,3,opt,name=boardsCout" json:"boardsCout,omitempty"`
+	BaseValue        *int64       `protobuf:"varint,4,opt,name=baseValue" json:"baseValue,omitempty"`
+	DianPaoBaoSanJia *bool        `protobuf:"varint,5,opt,name=dianPaoBaoSanJia" json:"dianPaoBaoSanJia,omitempty"`
+	XiaoJiFeiDan     *bool        `protobuf:"varint,6,opt,name=xiaoJiFeiDan" json:"xiaoJiFeiDan,omitempty"`
+	SanFengDan       *bool        `protobuf:"varint,7,opt,name=sanFengDan" json:"sanFengDan,omitempty"`
+	XiaDanSuanZhanLi *bool        `protobuf:"varint,8,opt,name=xiaDanSuanZhanLi" json:"xiaDanSuanZhanLi,omitempty"`
+	DaiQueMen        *bool        `protobuf:"varint,9,opt,name=daiQueMen" json:"daiQueMen,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16ReqCreateDesk) Reset()                    { *m = P16ReqCreateDesk{} }
+func (m *P16ReqCreateDesk) String() string            { return proto.CompactTextString(m) }
+func (*P16ReqCreateDesk) ProtoMessage()               {}
+func (*P16ReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{8} }
+
+func (m *P16ReqCreateDesk) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16ReqCreateDesk) GetUserCountLimit() int32 {
+	if m != nil && m.UserCountLimit != nil {
+		return *m.UserCountLimit
+	}
+	return 0
+}
+
+func (m *P16ReqCreateDesk) GetBoardsCout() int32 {
+	if m != nil && m.BoardsCout != nil {
+		return *m.BoardsCout
+	}
+	return 0
+}
+
+func (m *P16ReqCreateDesk) GetBaseValue() int64 {
+	if m != nil && m.BaseValue != nil {
+		return *m.BaseValue
+	}
+	return 0
+}
+
+func (m *P16ReqCreateDesk) GetDianPaoBaoSanJia() bool {
+	if m != nil && m.DianPaoBaoSanJia != nil {
+		return *m.DianPaoBaoSanJia
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetXiaoJiFeiDan() bool {
+	if m != nil && m.XiaoJiFeiDan != nil {
+		return *m.XiaoJiFeiDan
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetSanFengDan() bool {
+	if m != nil && m.SanFengDan != nil {
+		return *m.SanFengDan
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetXiaDanSuanZhanLi() bool {
+	if m != nil && m.XiaDanSuanZhanLi != nil {
+		return *m.XiaDanSuanZhanLi
+	}
+	return false
+}
+
+func (m *P16ReqCreateDesk) GetDaiQueMen() bool {
+	if m != nil && m.DaiQueMen != nil {
+		return *m.DaiQueMen
+	}
+	return false
+}
+
+// 进入房间
+type P16AckCreateDesk struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16AckCreateDesk) Reset()                    { *m = P16AckCreateDesk{} }
+func (m *P16AckCreateDesk) String() string            { return proto.CompactTextString(m) }
+func (*P16AckCreateDesk) ProtoMessage()               {}
+func (*P16AckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{9} }
+
+func (m *P16AckCreateDesk) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
 	}
 	return nil
 }
@@ -270,7 +598,7 @@ type P16ReqEnterDesk struct {
 func (m *P16ReqEnterDesk) Reset()                    { *m = P16ReqEnterDesk{} }
 func (m *P16ReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqEnterDesk) ProtoMessage()               {}
-func (*P16ReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{4} }
+func (*P16ReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{10} }
 
 func (m *P16ReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -308,7 +636,7 @@ type P16AckEnterDesk struct {
 func (m *P16AckEnterDesk) Reset()                    { *m = P16AckEnterDesk{} }
 func (m *P16AckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*P16AckEnterDesk) ProtoMessage()               {}
-func (*P16AckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{5} }
+func (*P16AckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{11} }
 
 func (m *P16AckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -326,7 +654,7 @@ type P16ReqDissolveBeginGame struct {
 func (m *P16ReqDissolveBeginGame) Reset()                    { *m = P16ReqDissolveBeginGame{} }
 func (m *P16ReqDissolveBeginGame) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqDissolveBeginGame) ProtoMessage()               {}
-func (*P16ReqDissolveBeginGame) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{6} }
+func (*P16ReqDissolveBeginGame) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{12} }
 
 func (m *P16ReqDissolveBeginGame) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -338,27 +666,19 @@ func (m *P16ReqDissolveBeginGame) GetHeader() *ProtoHeader {
 // 游戏未开始,回复解散房间
 type P16AckDissolveBeginGame struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	Result           *int32       `protobuf:"varint,2,opt,name=result" json:"result,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *P16AckDissolveBeginGame) Reset()                    { *m = P16AckDissolveBeginGame{} }
 func (m *P16AckDissolveBeginGame) String() string            { return proto.CompactTextString(m) }
 func (*P16AckDissolveBeginGame) ProtoMessage()               {}
-func (*P16AckDissolveBeginGame) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{7} }
+func (*P16AckDissolveBeginGame) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{13} }
 
 func (m *P16AckDissolveBeginGame) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
-}
-
-func (m *P16AckDissolveBeginGame) GetResult() int32 {
-	if m != nil && m.Result != nil {
-		return *m.Result
-	}
-	return 0
 }
 
 // 游戏未开始,解散房间
@@ -370,13 +690,65 @@ type P16DissolveBeginGame struct {
 func (m *P16DissolveBeginGame) Reset()                    { *m = P16DissolveBeginGame{} }
 func (m *P16DissolveBeginGame) String() string            { return proto.CompactTextString(m) }
 func (*P16DissolveBeginGame) ProtoMessage()               {}
-func (*P16DissolveBeginGame) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{8} }
+func (*P16DissolveBeginGame) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{14} }
 
 func (m *P16DissolveBeginGame) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
+}
+
+// 玩家进入
+type P16AckPlayerEnter struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Player           *PlayerInfo  `protobuf:"bytes,2,opt,name=player" json:"player,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16AckPlayerEnter) Reset()                    { *m = P16AckPlayerEnter{} }
+func (m *P16AckPlayerEnter) String() string            { return proto.CompactTextString(m) }
+func (*P16AckPlayerEnter) ProtoMessage()               {}
+func (*P16AckPlayerEnter) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{15} }
+
+func (m *P16AckPlayerEnter) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16AckPlayerEnter) GetPlayer() *PlayerInfo {
+	if m != nil {
+		return m.Player
+	}
+	return nil
+}
+
+// 玩家离开
+type P16AckPlayerExit struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Id               *uint32      `protobuf:"varint,2,opt,name=id" json:"id,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16AckPlayerExit) Reset()                    { *m = P16AckPlayerExit{} }
+func (m *P16AckPlayerExit) String() string            { return proto.CompactTextString(m) }
+func (*P16AckPlayerExit) ProtoMessage()               {}
+func (*P16AckPlayerExit) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{16} }
+
+func (m *P16AckPlayerExit) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16AckPlayerExit) GetId() uint32 {
+	if m != nil && m.Id != nil {
+		return *m.Id
+	}
+	return 0
 }
 
 // 准备
@@ -388,7 +760,7 @@ type P16ReqReady struct {
 func (m *P16ReqReady) Reset()                    { *m = P16ReqReady{} }
 func (m *P16ReqReady) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqReady) ProtoMessage()               {}
-func (*P16ReqReady) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{9} }
+func (*P16ReqReady) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{17} }
 
 func (m *P16ReqReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -405,7 +777,7 @@ type P16AckReady struct {
 func (m *P16AckReady) Reset()                    { *m = P16AckReady{} }
 func (m *P16AckReady) String() string            { return proto.CompactTextString(m) }
 func (*P16AckReady) ProtoMessage()               {}
-func (*P16AckReady) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{10} }
+func (*P16AckReady) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{18} }
 
 func (m *P16AckReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -423,7 +795,7 @@ type P16AckOpening struct {
 func (m *P16AckOpening) Reset()                    { *m = P16AckOpening{} }
 func (m *P16AckOpening) String() string            { return proto.CompactTextString(m) }
 func (*P16AckOpening) ProtoMessage()               {}
-func (*P16AckOpening) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{11} }
+func (*P16AckOpening) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{19} }
 
 func (m *P16AckOpening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -439,7 +811,7 @@ type P16BBeanCanPeng struct {
 func (m *P16BBeanCanPeng) Reset()                    { *m = P16BBeanCanPeng{} }
 func (m *P16BBeanCanPeng) String() string            { return proto.CompactTextString(m) }
 func (*P16BBeanCanPeng) ProtoMessage()               {}
-func (*P16BBeanCanPeng) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{12} }
+func (*P16BBeanCanPeng) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{20} }
 
 type P16BBeanCanChi struct {
 	XXX_unrecognized []byte `json:"-"`
@@ -448,7 +820,7 @@ type P16BBeanCanChi struct {
 func (m *P16BBeanCanChi) Reset()                    { *m = P16BBeanCanChi{} }
 func (m *P16BBeanCanChi) String() string            { return proto.CompactTextString(m) }
 func (*P16BBeanCanChi) ProtoMessage()               {}
-func (*P16BBeanCanChi) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{13} }
+func (*P16BBeanCanChi) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{21} }
 
 type P16BBeanCanGang struct {
 	XXX_unrecognized []byte `json:"-"`
@@ -457,7 +829,7 @@ type P16BBeanCanGang struct {
 func (m *P16BBeanCanGang) Reset()                    { *m = P16BBeanCanGang{} }
 func (m *P16BBeanCanGang) String() string            { return proto.CompactTextString(m) }
 func (*P16BBeanCanGang) ProtoMessage()               {}
-func (*P16BBeanCanGang) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{14} }
+func (*P16BBeanCanGang) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{22} }
 
 // 动作广播
 type P16BcMoPai struct {
@@ -471,7 +843,7 @@ type P16BcMoPai struct {
 func (m *P16BcMoPai) Reset()                    { *m = P16BcMoPai{} }
 func (m *P16BcMoPai) String() string            { return proto.CompactTextString(m) }
 func (*P16BcMoPai) ProtoMessage()               {}
-func (*P16BcMoPai) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{15} }
+func (*P16BcMoPai) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{23} }
 
 func (m *P16BcMoPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -504,16 +876,16 @@ func (m *P16BcMoPai) GetPai() int32 {
 // 碰 杠 胡 吃 的判断
 type P16Bc_Check struct {
 	Header           *ProtoHeader     `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	CanPeng          *P16BBeanCanPeng `protobuf:"bytes,4,opt,name=canPeng" json:"canPeng,omitempty"`
-	CanChi           *P16BBeanCanChi  `protobuf:"bytes,5,opt,name=canChi" json:"canChi,omitempty"`
-	CanGang          *P16BBeanCanGang `protobuf:"bytes,6,opt,name=canGang" json:"canGang,omitempty"`
+	CanPeng          *P16BBeanCanPeng `protobuf:"bytes,2,opt,name=canPeng" json:"canPeng,omitempty"`
+	CanChi           *P16BBeanCanChi  `protobuf:"bytes,3,opt,name=canChi" json:"canChi,omitempty"`
+	CanGang          *P16BBeanCanGang `protobuf:"bytes,4,opt,name=canGang" json:"canGang,omitempty"`
 	XXX_unrecognized []byte           `json:"-"`
 }
 
 func (m *P16Bc_Check) Reset()                    { *m = P16Bc_Check{} }
 func (m *P16Bc_Check) String() string            { return proto.CompactTextString(m) }
 func (*P16Bc_Check) ProtoMessage()               {}
-func (*P16Bc_Check) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{16} }
+func (*P16Bc_Check) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{24} }
 
 func (m *P16Bc_Check) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -543,76 +915,6 @@ func (m *P16Bc_Check) GetCanGang() *P16BBeanCanGang {
 	return nil
 }
 
-// 碰
-type P16ReqPeng struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *P16ReqPeng) Reset()                    { *m = P16ReqPeng{} }
-func (m *P16ReqPeng) String() string            { return proto.CompactTextString(m) }
-func (*P16ReqPeng) ProtoMessage()               {}
-func (*P16ReqPeng) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{17} }
-
-func (m *P16ReqPeng) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-type P16AckPeng struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *P16AckPeng) Reset()                    { *m = P16AckPeng{} }
-func (m *P16AckPeng) String() string            { return proto.CompactTextString(m) }
-func (*P16AckPeng) ProtoMessage()               {}
-func (*P16AckPeng) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{18} }
-
-func (m *P16AckPeng) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-// 缸
-type P16ReqGang struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *P16ReqGang) Reset()                    { *m = P16ReqGang{} }
-func (m *P16ReqGang) String() string            { return proto.CompactTextString(m) }
-func (*P16ReqGang) ProtoMessage()               {}
-func (*P16ReqGang) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{19} }
-
-func (m *P16ReqGang) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
-type P16AckGang struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
-}
-
-func (m *P16AckGang) Reset()                    { *m = P16AckGang{} }
-func (m *P16AckGang) String() string            { return proto.CompactTextString(m) }
-func (*P16AckGang) ProtoMessage()               {}
-func (*P16AckGang) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{20} }
-
-func (m *P16AckGang) GetHeader() *ProtoHeader {
-	if m != nil {
-		return m.Header
-	}
-	return nil
-}
-
 // 吃
 type P16ReqChi struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -622,7 +924,7 @@ type P16ReqChi struct {
 func (m *P16ReqChi) Reset()                    { *m = P16ReqChi{} }
 func (m *P16ReqChi) String() string            { return proto.CompactTextString(m) }
 func (*P16ReqChi) ProtoMessage()               {}
-func (*P16ReqChi) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{21} }
+func (*P16ReqChi) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{25} }
 
 func (m *P16ReqChi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -639,7 +941,7 @@ type P16AckChi struct {
 func (m *P16AckChi) Reset()                    { *m = P16AckChi{} }
 func (m *P16AckChi) String() string            { return proto.CompactTextString(m) }
 func (*P16AckChi) ProtoMessage()               {}
-func (*P16AckChi) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{22} }
+func (*P16AckChi) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{26} }
 
 func (m *P16AckChi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -648,51 +950,583 @@ func (m *P16AckChi) GetHeader() *ProtoHeader {
 	return nil
 }
 
-// 胡
-type P16ReqHu struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+// 轮到谁操作(摸牌、碰/杠/过/胡)
+type P16AckGameOverturn struct {
+	Header           *ProtoHeader   `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32        `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	NextUserId       *uint32        `protobuf:"varint,3,opt,name=nextUserId" json:"nextUserId,omitempty"`
+	ActType          *int32         `protobuf:"varint,4,opt,name=actType" json:"actType,omitempty"`
+	CanPeng          *bool          `protobuf:"varint,5,opt,name=canPeng" json:"canPeng,omitempty"`
+	CanGang          *bool          `protobuf:"varint,6,opt,name=canGang" json:"canGang,omitempty"`
+	CanHu            *bool          `protobuf:"varint,7,opt,name=canHu" json:"canHu,omitempty"`
+	ActCard          *CardInfo      `protobuf:"bytes,8,opt,name=actCard" json:"actCard,omitempty"`
+	GangCards        []*CardInfo    `protobuf:"bytes,9,rep,name=gangCards" json:"gangCards,omitempty"`
+	Time             *int32         `protobuf:"varint,10,opt,name=time" json:"time,omitempty"`
+	PaiCount         *int32         `protobuf:"varint,11,opt,name=paiCount" json:"paiCount,omitempty"`
+	JiaoInfos        []*JiaoInfo    `protobuf:"bytes,12,rep,name=jiaoInfos" json:"jiaoInfos,omitempty"`
+	CanChi           *bool          `protobuf:"varint,13,opt,name=canChi" json:"canChi,omitempty"`
+	ChiInfo          []*ChiOverTurn `protobuf:"bytes,14,rep,name=chiInfo" json:"chiInfo,omitempty"`
+	CanBu            *bool          `protobuf:"varint,15,opt,name=canBu" json:"canBu,omitempty"`
+	CanGuo           *bool          `protobuf:"varint,16,opt,name=canGuo" json:"canGuo,omitempty"`
+	BuCards          []*CardInfo    `protobuf:"bytes,17,rep,name=buCards" json:"buCards,omitempty"`
+	CanTing          *bool          `protobuf:"varint,18,opt,name=canTing" json:"canTing,omitempty"`
+	IsBaoTingAgent   *bool          `protobuf:"varint,19,opt,name=isBaoTingAgent" json:"isBaoTingAgent,omitempty"`
+	CanFly           *bool          `protobuf:"varint,20,opt,name=canFly" json:"canFly,omitempty"`
+	CanTi            *bool          `protobuf:"varint,21,opt,name=canTi" json:"canTi,omitempty"`
+	TiCards          []*CardInfo    `protobuf:"bytes,22,rep,name=tiCards" json:"tiCards,omitempty"`
+	XXX_unrecognized []byte         `json:"-"`
 }
 
-func (m *P16ReqHu) Reset()                    { *m = P16ReqHu{} }
-func (m *P16ReqHu) String() string            { return proto.CompactTextString(m) }
-func (*P16ReqHu) ProtoMessage()               {}
-func (*P16ReqHu) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{23} }
+func (m *P16AckGameOverturn) Reset()                    { *m = P16AckGameOverturn{} }
+func (m *P16AckGameOverturn) String() string            { return proto.CompactTextString(m) }
+func (*P16AckGameOverturn) ProtoMessage()               {}
+func (*P16AckGameOverturn) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{27} }
 
-func (m *P16ReqHu) GetHeader() *ProtoHeader {
+func (m *P16AckGameOverturn) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
 }
 
-type P16AckHu struct {
+func (m *P16AckGameOverturn) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *P16AckGameOverturn) GetNextUserId() uint32 {
+	if m != nil && m.NextUserId != nil {
+		return *m.NextUserId
+	}
+	return 0
+}
+
+func (m *P16AckGameOverturn) GetActType() int32 {
+	if m != nil && m.ActType != nil {
+		return *m.ActType
+	}
+	return 0
+}
+
+func (m *P16AckGameOverturn) GetCanPeng() bool {
+	if m != nil && m.CanPeng != nil {
+		return *m.CanPeng
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetCanGang() bool {
+	if m != nil && m.CanGang != nil {
+		return *m.CanGang
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetCanHu() bool {
+	if m != nil && m.CanHu != nil {
+		return *m.CanHu
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetActCard() *CardInfo {
+	if m != nil {
+		return m.ActCard
+	}
+	return nil
+}
+
+func (m *P16AckGameOverturn) GetGangCards() []*CardInfo {
+	if m != nil {
+		return m.GangCards
+	}
+	return nil
+}
+
+func (m *P16AckGameOverturn) GetTime() int32 {
+	if m != nil && m.Time != nil {
+		return *m.Time
+	}
+	return 0
+}
+
+func (m *P16AckGameOverturn) GetPaiCount() int32 {
+	if m != nil && m.PaiCount != nil {
+		return *m.PaiCount
+	}
+	return 0
+}
+
+func (m *P16AckGameOverturn) GetJiaoInfos() []*JiaoInfo {
+	if m != nil {
+		return m.JiaoInfos
+	}
+	return nil
+}
+
+func (m *P16AckGameOverturn) GetCanChi() bool {
+	if m != nil && m.CanChi != nil {
+		return *m.CanChi
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetChiInfo() []*ChiOverTurn {
+	if m != nil {
+		return m.ChiInfo
+	}
+	return nil
+}
+
+func (m *P16AckGameOverturn) GetCanBu() bool {
+	if m != nil && m.CanBu != nil {
+		return *m.CanBu
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetCanGuo() bool {
+	if m != nil && m.CanGuo != nil {
+		return *m.CanGuo
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetBuCards() []*CardInfo {
+	if m != nil {
+		return m.BuCards
+	}
+	return nil
+}
+
+func (m *P16AckGameOverturn) GetCanTing() bool {
+	if m != nil && m.CanTing != nil {
+		return *m.CanTing
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetIsBaoTingAgent() bool {
+	if m != nil && m.IsBaoTingAgent != nil {
+		return *m.IsBaoTingAgent
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetCanFly() bool {
+	if m != nil && m.CanFly != nil {
+		return *m.CanFly
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetCanTi() bool {
+	if m != nil && m.CanTi != nil {
+		return *m.CanTi
+	}
+	return false
+}
+
+func (m *P16AckGameOverturn) GetTiCards() []*CardInfo {
+	if m != nil {
+		return m.TiCards
+	}
+	return nil
+}
+
+// 吃牌的结构
+type ChiOverTurn struct {
+	ChiCard          []*CardInfo `protobuf:"bytes,14,rep,name=chiCard" json:"chiCard,omitempty"`
+	XXX_unrecognized []byte      `json:"-"`
+}
+
+func (m *ChiOverTurn) Reset()                    { *m = ChiOverTurn{} }
+func (m *ChiOverTurn) String() string            { return proto.CompactTextString(m) }
+func (*ChiOverTurn) ProtoMessage()               {}
+func (*ChiOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{28} }
+
+func (m *ChiOverTurn) GetChiCard() []*CardInfo {
+	if m != nil {
+		return m.ChiCard
+	}
+	return nil
+}
+
+type JiaoInfo struct {
+	OutCard          *CardInfo      `protobuf:"bytes,1,opt,name=outCard" json:"outCard,omitempty"`
+	PaiInfos         []*JiaoPaiInfo `protobuf:"bytes,2,rep,name=paiInfos" json:"paiInfos,omitempty"`
+	XXX_unrecognized []byte         `json:"-"`
+}
+
+func (m *JiaoInfo) Reset()                    { *m = JiaoInfo{} }
+func (m *JiaoInfo) String() string            { return proto.CompactTextString(m) }
+func (*JiaoInfo) ProtoMessage()               {}
+func (*JiaoInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{29} }
+
+func (m *JiaoInfo) GetOutCard() *CardInfo {
+	if m != nil {
+		return m.OutCard
+	}
+	return nil
+}
+
+func (m *JiaoInfo) GetPaiInfos() []*JiaoPaiInfo {
+	if m != nil {
+		return m.PaiInfos
+	}
+	return nil
+}
+
+type JiaoPaiInfo struct {
+	HuCard           *CardInfo `protobuf:"bytes,1,opt,name=huCard" json:"huCard,omitempty"`
+	Fan              *int32    `protobuf:"varint,2,opt,name=fan" json:"fan,omitempty"`
+	Count            *int32    `protobuf:"varint,3,opt,name=count" json:"count,omitempty"`
+	XXX_unrecognized []byte    `json:"-"`
+}
+
+func (m *JiaoPaiInfo) Reset()                    { *m = JiaoPaiInfo{} }
+func (m *JiaoPaiInfo) String() string            { return proto.CompactTextString(m) }
+func (*JiaoPaiInfo) ProtoMessage()               {}
+func (*JiaoPaiInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{30} }
+
+func (m *JiaoPaiInfo) GetHuCard() *CardInfo {
+	if m != nil {
+		return m.HuCard
+	}
+	return nil
+}
+
+func (m *JiaoPaiInfo) GetFan() int32 {
+	if m != nil && m.Fan != nil {
+		return *m.Fan
+	}
+	return 0
+}
+
+func (m *JiaoPaiInfo) GetCount() int32 {
+	if m != nil && m.Count != nil {
+		return *m.Count
+	}
+	return 0
+}
+
+// 过牌收到服务器确认后，还是要协议 【PID_game_SENDOVERTURN ：game_SendOverTurn】 后结束此轮
+type Game_AckActGuo struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
-func (m *P16AckHu) Reset()                    { *m = P16AckHu{} }
-func (m *P16AckHu) String() string            { return proto.CompactTextString(m) }
-func (*P16AckHu) ProtoMessage()               {}
-func (*P16AckHu) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{24} }
+func (m *Game_AckActGuo) Reset()                    { *m = Game_AckActGuo{} }
+func (m *Game_AckActGuo) String() string            { return proto.CompactTextString(m) }
+func (*Game_AckActGuo) ProtoMessage()               {}
+func (*Game_AckActGuo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{31} }
 
-func (m *P16AckHu) GetHeader() *ProtoHeader {
+func (m *Game_AckActGuo) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
+}
+
+func (m *Game_AckActGuo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+type Game_AckSendOutCard struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Result           *int32       `protobuf:"varint,2,opt,name=result" json:"result,omitempty"`
+	UserId           *uint32      `protobuf:"varint,3,opt,name=userId" json:"userId,omitempty"`
+	Card             *CardInfo    `protobuf:"bytes,4,opt,name=card" json:"card,omitempty"`
+	Card2            *CardInfo    `protobuf:"bytes,5,opt,name=card2" json:"card2,omitempty"`
+	IsAuto           *bool        `protobuf:"varint,6,opt,name=isAuto" json:"isAuto,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *Game_AckSendOutCard) Reset()                    { *m = Game_AckSendOutCard{} }
+func (m *Game_AckSendOutCard) String() string            { return proto.CompactTextString(m) }
+func (*Game_AckSendOutCard) ProtoMessage()               {}
+func (*Game_AckSendOutCard) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{32} }
+
+func (m *Game_AckSendOutCard) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *Game_AckSendOutCard) GetResult() int32 {
+	if m != nil && m.Result != nil {
+		return *m.Result
+	}
+	return 0
+}
+
+func (m *Game_AckSendOutCard) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *Game_AckSendOutCard) GetCard() *CardInfo {
+	if m != nil {
+		return m.Card
+	}
+	return nil
+}
+
+func (m *Game_AckSendOutCard) GetCard2() *CardInfo {
+	if m != nil {
+		return m.Card2
+	}
+	return nil
+}
+
+func (m *Game_AckSendOutCard) GetIsAuto() bool {
+	if m != nil && m.IsAuto != nil {
+		return *m.IsAuto
+	}
+	return false
+}
+
+// 牌局结束(广播)
+type Game_SendEndLottery struct {
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CoinInfo         []*EndLotteryInfo `protobuf:"bytes,2,rep,name=coinInfo" json:"coinInfo,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *Game_SendEndLottery) Reset()                    { *m = Game_SendEndLottery{} }
+func (m *Game_SendEndLottery) String() string            { return proto.CompactTextString(m) }
+func (*Game_SendEndLottery) ProtoMessage()               {}
+func (*Game_SendEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{33} }
+
+func (m *Game_SendEndLottery) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *Game_SendEndLottery) GetCoinInfo() []*EndLotteryInfo {
+	if m != nil {
+		return m.CoinInfo
+	}
+	return nil
+}
+
+// 出牌
+type P16ReqGameSendOutCard struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CardId           *int32       `protobuf:"varint,2,opt,name=cardId" json:"cardId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16ReqGameSendOutCard) Reset()                    { *m = P16ReqGameSendOutCard{} }
+func (m *P16ReqGameSendOutCard) String() string            { return proto.CompactTextString(m) }
+func (*P16ReqGameSendOutCard) ProtoMessage()               {}
+func (*P16ReqGameSendOutCard) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{34} }
+
+func (m *P16ReqGameSendOutCard) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16ReqGameSendOutCard) GetCardId() int32 {
+	if m != nil && m.CardId != nil {
+		return *m.CardId
+	}
+	return 0
+}
+
+// 碰牌
+type P16ReqGameActPeng struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	PengCard         *CardInfo    `protobuf:"bytes,3,opt,name=pengCard" json:"pengCard,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16ReqGameActPeng) Reset()                    { *m = P16ReqGameActPeng{} }
+func (m *P16ReqGameActPeng) String() string            { return proto.CompactTextString(m) }
+func (*P16ReqGameActPeng) ProtoMessage()               {}
+func (*P16ReqGameActPeng) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{35} }
+
+func (m *P16ReqGameActPeng) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16ReqGameActPeng) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *P16ReqGameActPeng) GetPengCard() *CardInfo {
+	if m != nil {
+		return m.PengCard
+	}
+	return nil
+}
+
+// 杠牌
+type P16ReqGameActGang struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	GangCard         *CardInfo    `protobuf:"bytes,3,opt,name=gangCard" json:"gangCard,omitempty"`
+	Bu               *bool        `protobuf:"varint,4,opt,name=bu" json:"bu,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16ReqGameActGang) Reset()                    { *m = P16ReqGameActGang{} }
+func (m *P16ReqGameActGang) String() string            { return proto.CompactTextString(m) }
+func (*P16ReqGameActGang) ProtoMessage()               {}
+func (*P16ReqGameActGang) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{36} }
+
+func (m *P16ReqGameActGang) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16ReqGameActGang) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *P16ReqGameActGang) GetGangCard() *CardInfo {
+	if m != nil {
+		return m.GangCard
+	}
+	return nil
+}
+
+func (m *P16ReqGameActGang) GetBu() bool {
+	if m != nil && m.Bu != nil {
+		return *m.Bu
+	}
+	return false
+}
+
+// 过牌
+type P16ReqGameActGuo struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16ReqGameActGuo) Reset()                    { *m = P16ReqGameActGuo{} }
+func (m *P16ReqGameActGuo) String() string            { return proto.CompactTextString(m) }
+func (*P16ReqGameActGuo) ProtoMessage()               {}
+func (*P16ReqGameActGuo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{37} }
+
+func (m *P16ReqGameActGuo) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16ReqGameActGuo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+// 胡牌
+type P16ReqGameActHu struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	HuCard           *CardInfo    `protobuf:"bytes,3,opt,name=huCard" json:"huCard,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *P16ReqGameActHu) Reset()                    { *m = P16ReqGameActHu{} }
+func (m *P16ReqGameActHu) String() string            { return proto.CompactTextString(m) }
+func (*P16ReqGameActHu) ProtoMessage()               {}
+func (*P16ReqGameActHu) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{38} }
+
+func (m *P16ReqGameActHu) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *P16ReqGameActHu) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *P16ReqGameActHu) GetHuCard() *CardInfo {
+	if m != nil {
+		return m.HuCard
+	}
+	return nil
+}
+
+// 房主解散房间(未开局)
+type Game_DissolveDesk struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *Game_DissolveDesk) Reset()                    { *m = Game_DissolveDesk{} }
+func (m *Game_DissolveDesk) String() string            { return proto.CompactTextString(m) }
+func (*Game_DissolveDesk) ProtoMessage()               {}
+func (*Game_DissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{39} }
+
+func (m *Game_DissolveDesk) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *Game_DissolveDesk) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
 }
 
 func init() {
-	proto.RegisterType((*P16ReqCreateDesk)(nil), "yjprotogo.p16_req_createDesk")
+	proto.RegisterType((*Game_SendGameInfo)(nil), "yjprotogo.game_SendGameInfo")
+	proto.RegisterType((*Game_AckActHu)(nil), "yjprotogo.game_AckActHu")
+	proto.RegisterType((*P16AckGameOpening)(nil), "yjprotogo.p16_ack_game_opening")
+	proto.RegisterType((*Game_SendCurrentResult)(nil), "yjprotogo.game_SendCurrentResult")
+	proto.RegisterType((*Game_AckActGang)(nil), "yjprotogo.game_AckActGang")
+	proto.RegisterType((*P16AckRoomInit)(nil), "yjprotogo.p16_ack_roomInit")
 	proto.RegisterType((*P16BeanDeskInfo)(nil), "yjprotogo.p16_bean_deskInfo")
-	proto.RegisterType((*P16BeanUserinfo)(nil), "yjprotogo.p16_bean_userinfo")
+	proto.RegisterType((*P16AckGameDealCards)(nil), "yjprotogo.p16_ack_game_deal_cards")
+	proto.RegisterType((*P16ReqCreateDesk)(nil), "yjprotogo.p16_req_createDesk")
 	proto.RegisterType((*P16AckCreateDesk)(nil), "yjprotogo.p16_ack_createDesk")
 	proto.RegisterType((*P16ReqEnterDesk)(nil), "yjprotogo.p16_req_enterDesk")
 	proto.RegisterType((*P16AckEnterDesk)(nil), "yjprotogo.p16_ack_enterDesk")
 	proto.RegisterType((*P16ReqDissolveBeginGame)(nil), "yjprotogo.p16_req_dissolve_beginGame")
 	proto.RegisterType((*P16AckDissolveBeginGame)(nil), "yjprotogo.p16_ack_dissolve_beginGame")
 	proto.RegisterType((*P16DissolveBeginGame)(nil), "yjprotogo.p16_dissolve_beginGame")
+	proto.RegisterType((*P16AckPlayerEnter)(nil), "yjprotogo.p16_ack_playerEnter")
+	proto.RegisterType((*P16AckPlayerExit)(nil), "yjprotogo.p16_ack_playerExit")
 	proto.RegisterType((*P16ReqReady)(nil), "yjprotogo.p16_req_ready")
 	proto.RegisterType((*P16AckReady)(nil), "yjprotogo.p16_ack_ready")
 	proto.RegisterType((*P16AckOpening)(nil), "yjprotogo.p16_ack_opening")
@@ -701,62 +1535,127 @@ func init() {
 	proto.RegisterType((*P16BBeanCanGang)(nil), "yjprotogo.p16b_bean_canGang")
 	proto.RegisterType((*P16BcMoPai)(nil), "yjprotogo.p16_bc_moPai")
 	proto.RegisterType((*P16Bc_Check)(nil), "yjprotogo.p16_bc_Check")
-	proto.RegisterType((*P16ReqPeng)(nil), "yjprotogo.p16_req_peng")
-	proto.RegisterType((*P16AckPeng)(nil), "yjprotogo.p16_ack_peng")
-	proto.RegisterType((*P16ReqGang)(nil), "yjprotogo.p16_req_gang")
-	proto.RegisterType((*P16AckGang)(nil), "yjprotogo.p16_ack_gang")
 	proto.RegisterType((*P16ReqChi)(nil), "yjprotogo.p16_req_chi")
 	proto.RegisterType((*P16AckChi)(nil), "yjprotogo.p16_ack_chi")
-	proto.RegisterType((*P16ReqHu)(nil), "yjprotogo.p16_req_hu")
-	proto.RegisterType((*P16AckHu)(nil), "yjprotogo.p16_ack_hu")
+	proto.RegisterType((*P16AckGameOverturn)(nil), "yjprotogo.p16_ack_game_overturn")
+	proto.RegisterType((*ChiOverTurn)(nil), "yjprotogo.ChiOverTurn")
+	proto.RegisterType((*JiaoInfo)(nil), "yjprotogo.JiaoInfo")
+	proto.RegisterType((*JiaoPaiInfo)(nil), "yjprotogo.JiaoPaiInfo")
+	proto.RegisterType((*Game_AckActGuo)(nil), "yjprotogo.game_AckActGuo")
+	proto.RegisterType((*Game_AckSendOutCard)(nil), "yjprotogo.game_AckSendOutCard")
+	proto.RegisterType((*Game_SendEndLottery)(nil), "yjprotogo.game_SendEndLottery")
+	proto.RegisterType((*P16ReqGameSendOutCard)(nil), "yjprotogo.p16_req_game_send_out_card")
+	proto.RegisterType((*P16ReqGameActPeng)(nil), "yjprotogo.p16_req_game_act_peng")
+	proto.RegisterType((*P16ReqGameActGang)(nil), "yjprotogo.p16_req_game_act_gang")
+	proto.RegisterType((*P16ReqGameActGuo)(nil), "yjprotogo.p16_req_game_act_guo")
+	proto.RegisterType((*P16ReqGameActHu)(nil), "yjprotogo.p16_req_game_act_hu")
+	proto.RegisterType((*Game_DissolveDesk)(nil), "yjprotogo.game_DissolveDesk")
 }
 
 var fileDescriptor3 = []byte{
-	// 722 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x56, 0xcd, 0x6e, 0xdb, 0x46,
-	0x10, 0xae, 0xac, 0x4a, 0x96, 0x46, 0xb6, 0xeb, 0xd2, 0x85, 0x4b, 0xa8, 0x46, 0x21, 0xf0, 0x60,
-	0x08, 0x2d, 0x20, 0xa0, 0x2e, 0x60, 0xf4, 0xd0, 0x24, 0x88, 0x65, 0xf8, 0x0f, 0x0a, 0xa0, 0xd0,
-	0x49, 0x0e, 0xb9, 0x10, 0x23, 0x72, 0x42, 0xae, 0x2d, 0xed, 0x32, 0x4b, 0xd2, 0xb6, 0x2e, 0x39,
-	0xe5, 0x9a, 0x07, 0xc8, 0xf3, 0x25, 0x0f, 0x12, 0xec, 0x92, 0xd4, 0x8f, 0xe5, 0x04, 0x10, 0x95,
-	0x5b, 0x4e, 0xe6, 0x7c, 0xfb, 0xcd, 0xcf, 0xce, 0x7c, 0xb3, 0x16, 0xfc, 0x3e, 0xba, 0x72, 0xdc,
-	0x00, 0xb9, 0xef, 0x06, 0x09, 0x77, 0xc2, 0x21, 0x8e, 0x3b, 0xa1, 0x14, 0xb1, 0x30, 0xea, 0xe3,
-	0x2b, 0xfd, 0xe1, 0x8b, 0xe6, 0x8e, 0x2b, 0x46, 0x23, 0xc1, 0x1d, 0x77, 0xc8, 0x88, 0xc7, 0xe9,
-	0xb9, 0xf5, 0x79, 0x0d, 0x8c, 0xf0, 0x9f, 0x43, 0x47, 0xd2, 0x5b, 0xc7, 0x95, 0x84, 0x31, 0x1d,
-	0x53, 0x74, 0x6d, 0x74, 0xa0, 0x1a, 0x10, 0x7a, 0x24, 0xcd, 0x52, 0xab, 0xd4, 0x6e, 0x1c, 0xec,
-	0x76, 0x26, 0x71, 0x3a, 0x7d, 0xf5, 0xf7, 0x4c, 0x9f, 0xda, 0x19, 0xcb, 0xd8, 0x87, 0xad, 0x24,
-	0x22, 0xd9, 0x15, 0x09, 0x8f, 0x7b, 0x6c, 0xc4, 0x62, 0x73, 0xad, 0x55, 0x6a, 0x57, 0xec, 0x7b,
-	0xa8, 0xf1, 0x27, 0xc0, 0x40, 0xa0, 0xf4, 0xa2, 0xae, 0x48, 0x62, 0xb3, 0xac, 0x39, 0x33, 0x88,
-	0xb1, 0x07, 0xf5, 0x01, 0x46, 0xf4, 0x0a, 0x87, 0x09, 0x99, 0x3f, 0xb7, 0x4a, 0xed, 0xb2, 0x3d,
-	0x05, 0x8c, 0xbf, 0x60, 0xdb, 0x63, 0xc8, 0xfb, 0x28, 0x8e, 0x50, 0x5c, 0x22, 0xbf, 0x60, 0x68,
-	0x56, 0x5a, 0xa5, 0x76, 0xcd, 0x5e, 0xc0, 0x0d, 0x0b, 0x36, 0xee, 0x18, 0x8a, 0x0b, 0x76, 0x42,
-	0xec, 0x18, 0xb9, 0x59, 0xd5, 0xbc, 0x39, 0x4c, 0x55, 0x13, 0x21, 0x3f, 0x21, 0xee, 0x2b, 0xc6,
-	0xba, 0x66, 0xcc, 0x20, 0x2a, 0xdf, 0x1d, 0xc3, 0x63, 0xe4, 0x97, 0x09, 0xf2, 0xd7, 0x01, 0xf2,
-	0x1e, 0x33, 0x6b, 0x69, 0xbe, 0xfb, 0xb8, 0xaa, 0xdc, 0x43, 0xf6, 0x3c, 0xa1, 0x67, 0xc4, 0xcd,
-	0xba, 0x26, 0x4d, 0x01, 0xeb, 0x43, 0x19, 0x7e, 0x55, 0x6d, 0x1e, 0x10, 0x72, 0xc7, 0xa3, 0xe8,
-	0xfa, 0x9c, 0xbf, 0x11, 0xc6, 0x6f, 0x50, 0x11, 0xb7, 0x3c, 0x6b, 0xf2, 0xa6, 0x9d, 0x1a, 0x46,
-	0x13, 0x6a, 0x21, 0x46, 0xd1, 0xad, 0x14, 0x9e, 0xee, 0x62, 0xdd, 0x9e, 0xd8, 0x3f, 0x6a, 0xff,
-	0x1e, 0xd0, 0x17, 0x3c, 0xa8, 0xaf, 0x7d, 0xd8, 0x72, 0x13, 0x29, 0x8f, 0xa6, 0x3d, 0x6a, 0xa4,
-	0xbc, 0x79, 0xd4, 0xfa, 0x7b, 0x66, 0x1c, 0x2a, 0x04, 0x53, 0xe3, 0xd8, 0x85, 0xaa, 0xfa, 0x3e,
-	0xf7, 0xb2, 0x79, 0x64, 0x96, 0xf5, 0x2e, 0x5d, 0x11, 0x74, 0xaf, 0x57, 0x59, 0x91, 0xff, 0xa0,
-	0x96, 0x0f, 0x5e, 0x8f, 0xb5, 0x71, 0xb0, 0x37, 0xe3, 0xb1, 0x20, 0x0e, 0x7b, 0xc2, 0xb6, 0x3e,
-	0x96, 0xd2, 0x6a, 0xd5, 0x8e, 0x12, 0x8f, 0x49, 0x16, 0xca, 0xdf, 0x84, 0x9a, 0x14, 0x62, 0xf4,
-	0x62, 0x1c, 0x52, 0xb6, 0x9c, 0x13, 0x7b, 0x22, 0x39, 0x21, 0x3d, 0x2d, 0xaa, 0x5c, 0x72, 0x42,
-	0x7a, 0x6a, 0x30, 0x8a, 0xd7, 0xa3, 0x1b, 0x1a, 0x6a, 0x49, 0x55, 0xec, 0x29, 0x60, 0x75, 0xd3,
-	0xd2, 0x54, 0x6f, 0x0a, 0x97, 0x66, 0xf5, 0xa0, 0x99, 0xdf, 0xcf, 0x63, 0x51, 0x24, 0x86, 0x37,
-	0xe4, 0x0c, 0xc8, 0x67, 0xfc, 0x14, 0x47, 0xb4, 0x74, 0x34, 0x2f, 0x8d, 0xa6, 0x4a, 0x5a, 0x3d,
-	0x9a, 0x12, 0x85, 0xa4, 0x28, 0x19, 0xe6, 0x2f, 0x5a, 0x66, 0x59, 0x67, 0xb0, 0xab, 0xb2, 0x7c,
-	0x87, 0x7a, 0x9f, 0xc0, 0x66, 0x7e, 0x7b, 0x49, 0xe8, 0x8d, 0x8b, 0x06, 0x50, 0x17, 0x2e, 0x16,
-	0xe0, 0x29, 0xfc, 0x92, 0x07, 0x10, 0x21, 0x71, 0xc6, 0xfd, 0xa5, 0x43, 0xec, 0x68, 0x1d, 0x0c,
-	0x52, 0x0d, 0xbb, 0xc8, 0xfb, 0xc4, 0x7d, 0xcb, 0x80, 0xed, 0x39, 0xb0, 0x1b, 0xb0, 0x05, 0xe2,
-	0x29, 0x72, 0xdf, 0x7a, 0x5f, 0x82, 0x0d, 0xbd, 0x01, 0xae, 0x33, 0x12, 0x7d, 0x64, 0x4b, 0x4f,
-	0xc9, 0x84, 0x75, 0x74, 0xe3, 0x19, 0x6d, 0xe7, 0x66, 0x76, 0xf2, 0x32, 0x22, 0xa9, 0x95, 0xbd,
-	0x69, 0xe7, 0xa6, 0xb1, 0x0d, 0xe5, 0x10, 0x59, 0x26, 0x69, 0xf5, 0x69, 0x7d, 0x9a, 0x96, 0xd1,
-	0x0d, 0xc8, 0x5d, 0x7e, 0xc7, 0x0e, 0x61, 0x3d, 0xbb, 0xbb, 0x0e, 0xbb, 0xb0, 0xe2, 0xf3, 0xfd,
-	0xb1, 0x73, 0xb2, 0xf1, 0x2f, 0x54, 0xd3, 0xf6, 0xe8, 0xe7, 0xb8, 0x71, 0xf0, 0xc7, 0xd7, 0xdc,
-	0xba, 0x01, 0xb3, 0x33, 0x6a, 0x96, 0x4c, 0xf5, 0x4f, 0x3f, 0xce, 0xdf, 0x48, 0xa6, 0x38, 0x76,
-	0x4e, 0xb6, 0x1e, 0xa7, 0x97, 0x54, 0x7a, 0x0b, 0xa9, 0xc0, 0xa8, 0x33, 0x7f, 0xa5, 0x96, 0x55,
-	0xfc, 0x55, 0x7e, 0x1f, 0x57, 0xcb, 0x5f, 0xc8, 0xff, 0x11, 0x34, 0x26, 0xbf, 0x78, 0x02, 0x56,
-	0xd4, 0x5d, 0xff, 0x37, 0x28, 0xe0, 0xfe, 0x3f, 0x40, 0x9e, 0x3d, 0x48, 0x8a, 0x7a, 0xab, 0xe4,
-	0xcb, 0x7b, 0xf7, 0x7f, 0xfa, 0x12, 0x00, 0x00, 0xff, 0xff, 0x07, 0x04, 0x10, 0xb9, 0x28, 0x0a,
-	0x00, 0x00,
+	// 1654 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x58, 0x5b, 0x6f, 0x1b, 0xc5,
+	0x17, 0xff, 0xaf, 0x1d, 0xc7, 0xce, 0x38, 0x4e, 0xd3, 0x4d, 0x9a, 0xee, 0x3f, 0x54, 0x28, 0x5a,
+	0x21, 0x08, 0x97, 0xa6, 0x34, 0x88, 0x0a, 0xa9, 0xa0, 0x2a, 0x71, 0xae, 0x55, 0xda, 0x9a, 0x89,
+	0xb9, 0x15, 0x89, 0xd5, 0x78, 0x77, 0x6a, 0x4f, 0x6b, 0xcf, 0x98, 0xbd, 0xa4, 0x89, 0xc4, 0x13,
+	0xe2, 0x09, 0x09, 0x89, 0x47, 0x78, 0x03, 0x89, 0x57, 0x3e, 0x06, 0x1f, 0x04, 0xc1, 0x33, 0x9f,
+	0x01, 0x9d, 0x99, 0xd9, 0xf5, 0x6c, 0x1d, 0xb7, 0x78, 0xc9, 0x1b, 0x4f, 0xf6, 0x39, 0xf3, 0x9b,
+	0x33, 0x67, 0xce, 0x39, 0x7b, 0x2e, 0x83, 0xae, 0x0e, 0x1e, 0x7b, 0x7e, 0x8f, 0xf0, 0xae, 0xdf,
+	0x4b, 0xb8, 0x37, 0xec, 0x93, 0xb3, 0x8d, 0x61, 0x28, 0x62, 0x61, 0xcf, 0x9d, 0x3d, 0x96, 0x7f,
+	0xba, 0x62, 0x75, 0xc9, 0x17, 0x83, 0x81, 0xe0, 0x9e, 0xdf, 0x67, 0x94, 0xc7, 0x6a, 0x7d, 0x35,
+	0xbf, 0xb1, 0x43, 0x22, 0xaa, 0x16, 0xdc, 0x1f, 0x4a, 0xe8, 0x72, 0x97, 0x0c, 0xa8, 0x77, 0x4c,
+	0x79, 0xb0, 0x4f, 0x06, 0xf4, 0x90, 0x3f, 0x12, 0xf6, 0x06, 0x9a, 0xed, 0x51, 0x12, 0xd0, 0xd0,
+	0xb1, 0xd6, 0xac, 0xf5, 0xfa, 0xe6, 0xca, 0x46, 0x26, 0x7f, 0xa3, 0x05, 0xbf, 0x07, 0x72, 0x15,
+	0x6b, 0x94, 0xfd, 0x2e, 0x42, 0xa0, 0x0c, 0x0d, 0x61, 0xb7, 0x53, 0x5a, 0x2b, 0xaf, 0xd7, 0x37,
+	0xaf, 0x98, 0x7b, 0xb2, 0x45, 0x6c, 0x00, 0xed, 0xdb, 0x68, 0x3e, 0xa0, 0xd1, 0x93, 0xf4, 0x58,
+	0xa7, 0x2c, 0x0f, 0xbb, 0x6a, 0x6c, 0xdc, 0x31, 0x96, 0x71, 0x0e, 0x6c, 0xbb, 0x68, 0x3e, 0xa2,
+	0x3c, 0xa0, 0xe1, 0x47, 0x11, 0x0d, 0x0f, 0x03, 0x67, 0x66, 0xcd, 0x5a, 0x6f, 0xe0, 0x1c, 0xcf,
+	0xbe, 0x8d, 0xea, 0x2c, 0xc2, 0xd4, 0x17, 0x9c, 0x53, 0x3f, 0x76, 0x2a, 0x6b, 0xd6, 0xfa, 0xc2,
+	0xe6, 0xff, 0x0d, 0xf9, 0x78, 0xb7, 0xf9, 0xe0, 0xfe, 0xfd, 0xdd, 0x66, 0xdb, 0x6b, 0x7f, 0xd6,
+	0xda, 0xc5, 0x26, 0xda, 0xfd, 0xad, 0x84, 0x1a, 0xd2, 0x34, 0x5b, 0xfe, 0x93, 0x2d, 0x3f, 0x3e,
+	0x48, 0xa6, 0x36, 0xcb, 0x0a, 0x9a, 0xed, 0x25, 0xed, 0xb3, 0x21, 0x75, 0x4a, 0x6b, 0xd6, 0x7a,
+	0x05, 0x6b, 0xca, 0x7e, 0x13, 0xf8, 0x4d, 0x12, 0x06, 0xfa, 0xc6, 0x4b, 0x86, 0x1c, 0x60, 0xcb,
+	0xdb, 0x6a, 0x88, 0x7d, 0x0d, 0xcd, 0x25, 0xf2, 0x36, 0x0f, 0x92, 0x58, 0x5f, 0x72, 0xc4, 0xb0,
+	0x57, 0x51, 0x4d, 0x11, 0x87, 0x5c, 0x5e, 0xaf, 0x81, 0x33, 0x1a, 0x8e, 0x67, 0xd1, 0x43, 0x76,
+	0x4f, 0x38, 0xb3, 0x6b, 0xd6, 0x7a, 0x0d, 0x6b, 0xca, 0x7e, 0x0b, 0x55, 0x87, 0x84, 0x49, 0xbd,
+	0xaa, 0x6b, 0xe5, 0xf5, 0x85, 0x4d, 0xdb, 0xbc, 0x87, 0x5a, 0xc1, 0x29, 0xc4, 0xbe, 0x83, 0x1a,
+	0x20, 0xb1, 0x29, 0x18, 0xdf, 0xa6, 0x84, 0x47, 0x4e, 0x4d, 0xba, 0xd7, 0xb4, 0x22, 0xac, 0x7b,
+	0xbe, 0x60, 0xdc, 0xeb, 0x50, 0xc2, 0x71, 0x1e, 0xef, 0xfe, 0x6a, 0xa1, 0xe5, 0xe1, 0xcd, 0x5b,
+	0x1e, 0xf1, 0x9f, 0x78, 0xd2, 0x9e, 0x62, 0x48, 0x39, 0xe3, 0xdd, 0xa9, 0xcd, 0xf9, 0x0a, 0x6a,
+	0x34, 0x93, 0x30, 0x84, 0x60, 0x6a, 0x8a, 0x84, 0xc7, 0xda, 0xaa, 0x79, 0xe6, 0xb8, 0xbe, 0x95,
+	0x29, 0xf5, 0xfd, 0xda, 0x42, 0x2b, 0xd9, 0x27, 0x01, 0xb2, 0x29, 0x8f, 0x31, 0x8d, 0x92, 0x7e,
+	0x3c, 0xb5, 0xc6, 0xef, 0xa1, 0xfa, 0x53, 0xc6, 0x41, 0xb4, 0xf1, 0x61, 0x98, 0x9b, 0x3e, 0x19,
+	0xad, 0x62, 0x13, 0xea, 0xfe, 0x5c, 0x42, 0x97, 0x8c, 0xe0, 0xdb, 0x27, 0x05, 0xec, 0xb5, 0x8a,
+	0x6a, 0x5d, 0xc2, 0xbb, 0x46, 0x00, 0x66, 0xb4, 0x7d, 0x03, 0xd5, 0x40, 0xa6, 0x0e, 0xc2, 0xf2,
+	0xa4, 0x20, 0xcc, 0x40, 0xff, 0x2e, 0x0c, 0x3b, 0x09, 0xc8, 0x49, 0xc3, 0x50, 0x51, 0xe3, 0x8e,
+	0xaa, 0x4e, 0x1f, 0x58, 0x8b, 0x69, 0x60, 0x85, 0x42, 0x0c, 0x0e, 0x39, 0x2b, 0xe2, 0xa2, 0x1a,
+	0xa4, 0x15, 0xed, 0x1f, 0xd8, 0x71, 0xcd, 0xd8, 0x01, 0xe2, 0xe1, 0x68, 0x2f, 0xc5, 0xe0, 0x0c,
+	0x6d, 0xdf, 0x40, 0x55, 0x95, 0xcb, 0x22, 0x6d, 0xc1, 0x09, 0x19, 0x2f, 0x45, 0xb9, 0xdf, 0x95,
+	0xd1, 0xe5, 0x31, 0x81, 0xf6, 0x32, 0xaa, 0x88, 0xa7, 0x5c, 0xeb, 0xdb, 0xc0, 0x8a, 0x00, 0x83,
+	0x0e, 0x49, 0x14, 0x3d, 0x0d, 0x45, 0x20, 0xd5, 0x9a, 0xc3, 0x19, 0x6d, 0xbf, 0x8c, 0x50, 0x47,
+	0x90, 0x30, 0x88, 0x9a, 0x22, 0x89, 0x65, 0x0a, 0xa9, 0x60, 0x83, 0x03, 0xae, 0x82, 0x0c, 0xff,
+	0x31, 0xe9, 0x27, 0x54, 0xba, 0xaa, 0x8c, 0x47, 0x0c, 0xfb, 0x0d, 0xb4, 0x18, 0x30, 0xc2, 0x5b,
+	0x44, 0x6c, 0x13, 0x71, 0x4c, 0xf8, 0x5d, 0x46, 0xa4, 0xcb, 0x6a, 0x78, 0x8c, 0x0f, 0x39, 0xf6,
+	0x94, 0x11, 0x71, 0x97, 0xed, 0x51, 0xb6, 0x43, 0xb8, 0x76, 0x60, 0x8e, 0x07, 0xda, 0x44, 0x84,
+	0xef, 0x51, 0xde, 0x05, 0x44, 0x55, 0x22, 0x0c, 0x0e, 0x9c, 0x77, 0xca, 0xc8, 0x0e, 0xe1, 0xc7,
+	0x09, 0xe1, 0x0f, 0x7b, 0x84, 0x1f, 0x31, 0xa7, 0xa6, 0xce, 0x7b, 0x96, 0x0f, 0x9a, 0x07, 0x84,
+	0x7d, 0x98, 0xd0, 0x7b, 0x94, 0x3b, 0x73, 0x12, 0x34, 0x62, 0xd8, 0xaf, 0xa2, 0x05, 0x15, 0x00,
+	0x09, 0x8f, 0x8f, 0xd8, 0x80, 0xc5, 0x0e, 0x92, 0x77, 0x7f, 0x86, 0x0b, 0x38, 0x3f, 0x09, 0xc3,
+	0xed, 0x91, 0x8d, 0xea, 0x0a, 0x97, 0xe7, 0xba, 0xbf, 0x58, 0xe8, 0x6a, 0x2e, 0x31, 0x05, 0x94,
+	0xf4, 0x3d, 0x1f, 0xd6, 0x8b, 0x57, 0x40, 0xf9, 0x45, 0x4d, 0xaa, 0x80, 0xb0, 0x88, 0x0d, 0x20,
+	0x18, 0x18, 0x0e, 0xcd, 0x8a, 0x58, 0x59, 0x15, 0x31, 0x93, 0xe7, 0xfe, 0x59, 0x42, 0x36, 0xa8,
+	0x19, 0xd2, 0x2f, 0x3d, 0x3f, 0xa4, 0x24, 0xa6, 0x50, 0x15, 0xa7, 0xd6, 0x70, 0xdc, 0x7a, 0xa5,
+	0x73, 0xad, 0xf7, 0x1f, 0x8d, 0x2e, 0x77, 0x47, 0x59, 0x19, 0x82, 0xa1, 0xb8, 0x95, 0xdd, 0x1f,
+	0x2d, 0xf5, 0x8d, 0x83, 0xb3, 0x28, 0x8f, 0x69, 0x58, 0xc8, 0x57, 0xab, 0xa8, 0x06, 0x09, 0xcd,
+	0xcc, 0xdc, 0x29, 0x9d, 0x65, 0x06, 0xa1, 0xdb, 0x87, 0x34, 0x33, 0x08, 0x95, 0xa4, 0x01, 0x77,
+	0x44, 0x4f, 0x68, 0x5f, 0xfa, 0xa6, 0x82, 0x47, 0x0c, 0xb7, 0xa9, 0x54, 0x83, 0x1b, 0x16, 0x56,
+	0xcd, 0x3d, 0x42, 0xab, 0xe9, 0xfd, 0x02, 0x16, 0x45, 0xa2, 0x7f, 0x42, 0xbd, 0x0e, 0xed, 0x32,
+	0x0e, 0x8d, 0x59, 0x51, 0x69, 0xa0, 0xd2, 0x05, 0x48, 0x3b, 0x40, 0x2b, 0x20, 0xed, 0x02, 0x24,
+	0xc5, 0x68, 0x29, 0xd5, 0x4b, 0x7d, 0xad, 0xbb, 0x60, 0xb0, 0xa9, 0xfd, 0x78, 0x1d, 0xcd, 0xaa,
+	0xed, 0xba, 0xb4, 0x4c, 0xa8, 0x10, 0x1a, 0xe4, 0xb6, 0x47, 0x21, 0xa8, 0x4f, 0x3d, 0x2d, 0x50,
+	0xd1, 0x16, 0x50, 0x89, 0xa9, 0xa2, 0xd1, 0xc0, 0x25, 0x16, 0xb8, 0x77, 0x50, 0x23, 0xf5, 0x58,
+	0x48, 0x49, 0x70, 0x36, 0xb5, 0x31, 0xb4, 0x00, 0x59, 0x66, 0x0b, 0x09, 0xd8, 0x42, 0x97, 0x52,
+	0x01, 0x05, 0x7b, 0x3f, 0x77, 0x49, 0xc6, 0x6e, 0x47, 0xd5, 0x4e, 0x9f, 0xf0, 0x16, 0xe5, 0x5d,
+	0xd7, 0x96, 0xf5, 0x7f, 0xc4, 0x6c, 0xf6, 0xd8, 0x18, 0x10, 0x5a, 0x0d, 0xf7, 0x1b, 0x0b, 0xcd,
+	0xcb, 0xca, 0xeb, 0x7b, 0x03, 0xd1, 0x22, 0x6c, 0x6a, 0x9b, 0x3a, 0xa8, 0x4a, 0xfc, 0xd8, 0xf8,
+	0x1e, 0x53, 0x52, 0xaf, 0x40, 0xaa, 0xd6, 0xc9, 0x3b, 0x25, 0xed, 0x45, 0x54, 0x1e, 0x12, 0xa6,
+	0x3f, 0x43, 0xf8, 0xeb, 0xfe, 0x31, 0x52, 0xa3, 0xd9, 0xa3, 0xfe, 0xf4, 0x79, 0xe1, 0x16, 0xaa,
+	0xea, 0xbb, 0x9f, 0xdf, 0xab, 0xe4, 0xed, 0x83, 0x53, 0xb0, 0xfd, 0x0e, 0x9a, 0x55, 0xe6, 0xd1,
+	0x03, 0xc7, 0x4b, 0x93, 0xb6, 0x35, 0x7b, 0x0c, 0x6b, 0xa8, 0x3e, 0x4c, 0x36, 0x6e, 0x33, 0xcf,
+	0x3f, 0x0c, 0x30, 0x38, 0x05, 0xbb, 0x1f, 0xa0, 0x7a, 0x56, 0xae, 0x7a, 0x53, 0x9b, 0x3a, 0xdd,
+	0x2e, 0xf3, 0x70, 0x81, 0xed, 0x7f, 0x55, 0xd0, 0x95, 0xfc, 0xb4, 0x71, 0x42, 0xc3, 0x38, 0x09,
+	0x79, 0x91, 0xe9, 0x4d, 0xf5, 0xb0, 0xfa, 0x5b, 0xd2, 0x14, 0x94, 0x24, 0x4e, 0x4f, 0xe3, 0x5c,
+	0xc5, 0x36, 0x38, 0x66, 0xac, 0xcc, 0x8c, 0xc5, 0x4a, 0xea, 0x3e, 0x55, 0x13, 0x33, 0x07, 0x39,
+	0x23, 0x5b, 0xcf, 0x66, 0x2b, 0xb2, 0x4b, 0x5e, 0x46, 0x15, 0x9f, 0xf0, 0x83, 0x44, 0xd7, 0x3e,
+	0x45, 0xd8, 0xd7, 0xe5, 0x19, 0xb2, 0xd7, 0xa8, 0x4d, 0x1e, 0x21, 0x53, 0x8c, 0x7d, 0x13, 0xcd,
+	0x75, 0x75, 0x23, 0x1f, 0x39, 0x73, 0x93, 0xdb, 0xfd, 0x11, 0xca, 0xb6, 0xd1, 0x4c, 0xcc, 0x06,
+	0x54, 0xb7, 0x58, 0xf2, 0xbf, 0x2a, 0x3d, 0x4c, 0xcd, 0x5e, 0xaa, 0xa5, 0xca, 0x68, 0x38, 0xe2,
+	0x31, 0x23, 0x02, 0xc4, 0x44, 0xce, 0xfc, 0xd8, 0x11, 0x77, 0xf5, 0x1a, 0x1e, 0xa1, 0xc0, 0xc0,
+	0x3a, 0x2a, 0x1b, 0x6a, 0x30, 0xd0, 0x81, 0xf7, 0x36, 0xaa, 0xfa, 0x3d, 0x26, 0x3b, 0xf2, 0x85,
+	0xb1, 0x89, 0xa9, 0xd9, 0x63, 0x0f, 0x4e, 0x68, 0xd8, 0x4e, 0x42, 0x8e, 0x53, 0x98, 0x36, 0xd2,
+	0x76, 0xe2, 0x5c, 0xca, 0x8c, 0xb4, 0x9d, 0x68, 0xf9, 0xfb, 0x89, 0x70, 0x16, 0x33, 0xf9, 0xfb,
+	0x89, 0x00, 0xe3, 0x75, 0x12, 0x65, 0x8b, 0xcb, 0x93, 0x6d, 0x91, 0x62, 0xb4, 0x6f, 0xda, 0x8c,
+	0x77, 0x1d, 0x3b, 0xf3, 0x0d, 0x90, 0xd0, 0x52, 0xb1, 0x68, 0x9b, 0x08, 0x20, 0xb6, 0xba, 0x94,
+	0xc7, 0xce, 0x92, 0x04, 0x3c, 0xc3, 0xd5, 0x8a, 0xec, 0xf5, 0xcf, 0x9c, 0xe5, 0x4c, 0x91, 0xbd,
+	0xfe, 0x99, 0x56, 0xbb, 0xcd, 0x9c, 0x2b, 0x99, 0xda, 0x6d, 0x06, 0xea, 0xc5, 0x4c, 0xa9, 0xb7,
+	0xf2, 0x1c, 0xf5, 0x34, 0xc6, 0x7d, 0x1f, 0xd5, 0x0d, 0x9b, 0xc0, 0x6e, 0xbf, 0x27, 0x97, 0xb4,
+	0xf1, 0xce, 0xdf, 0xad, 0x31, 0xee, 0x00, 0xd5, 0x52, 0xd7, 0xc0, 0x56, 0x91, 0xa8, 0xa0, 0xb2,
+	0x9e, 0x13, 0x54, 0x1a, 0x63, 0x6f, 0xca, 0x68, 0x50, 0x0e, 0x1f, 0x9f, 0x6c, 0x41, 0x6a, 0x4b,
+	0x2d, 0xe3, 0x0c, 0xe7, 0x76, 0x50, 0xdd, 0x58, 0x30, 0x1e, 0x42, 0xac, 0x17, 0x3f, 0x84, 0x2c,
+	0xa2, 0xf2, 0x23, 0xc2, 0x75, 0xfe, 0x85, 0xbf, 0xd2, 0x7e, 0x32, 0x18, 0x55, 0x97, 0xaa, 0x08,
+	0xf7, 0x53, 0xb4, 0x60, 0x4e, 0xce, 0x89, 0xb8, 0xa8, 0x2f, 0xdf, 0xfd, 0xdd, 0x42, 0x4b, 0xa9,
+	0xe8, 0x63, 0xca, 0x61, 0xf2, 0x95, 0x9a, 0x15, 0x90, 0x1f, 0xca, 0x07, 0x85, 0xf4, 0x5d, 0x48,
+	0x51, 0xc6, 0xb9, 0xe5, 0x5c, 0xc6, 0x79, 0x0d, 0xcd, 0xc0, 0x54, 0xa2, 0xd3, 0xf0, 0xb9, 0x46,
+	0x92, 0x00, 0xfb, 0x75, 0x08, 0xa8, 0x30, 0xd8, 0x94, 0xe9, 0x65, 0x02, 0x52, 0x21, 0xd4, 0xe3,
+	0xd0, 0x56, 0x12, 0x1b, 0x8f, 0x43, 0x40, 0xb9, 0x5f, 0xe9, 0x2b, 0xc2, 0xfd, 0x76, 0x79, 0x70,
+	0x24, 0xe2, 0x98, 0x86, 0x67, 0x05, 0xe6, 0xa1, 0x9a, 0x9f, 0x7f, 0xf6, 0x30, 0xe7, 0xfa, 0x91,
+	0x60, 0x15, 0x1f, 0x29, 0xd4, 0x0d, 0x46, 0xdd, 0xa5, 0xd4, 0x22, 0xa2, 0x3c, 0xf0, 0x44, 0x12,
+	0xcb, 0xa9, 0xac, 0x88, 0x9d, 0x61, 0x9f, 0xf6, 0x63, 0x05, 0x6b, 0xca, 0xfd, 0xde, 0x52, 0x35,
+	0x22, 0x3b, 0x86, 0xf8, 0xb1, 0x37, 0xa4, 0x05, 0x9e, 0x58, 0x26, 0xd5, 0x88, 0x1b, 0xa8, 0x06,
+	0xf2, 0x5e, 0xf4, 0xc6, 0x97, 0x81, 0xdc, 0x9f, 0xce, 0x53, 0xa9, 0x4b, 0x2e, 0x56, 0xa5, 0x2e,
+	0xf9, 0x07, 0x2a, 0xa5, 0x20, 0xe8, 0x23, 0x3b, 0x89, 0x8c, 0xb9, 0x1a, 0x2e, 0x75, 0x12, 0xf7,
+	0x0b, 0xf5, 0x8c, 0x97, 0xd7, 0xf0, 0x02, 0xbf, 0xae, 0x6f, 0x2d, 0xd5, 0x74, 0xe7, 0x0e, 0xe8,
+	0x25, 0x17, 0x66, 0x80, 0x69, 0x5e, 0x5d, 0xdd, 0xcf, 0xf5, 0xb3, 0xf8, 0x8e, 0x9e, 0x25, 0x0a,
+	0x8d, 0x71, 0x13, 0x34, 0x69, 0xfd, 0xaf, 0x65, 0xfd, 0x1d, 0x00, 0x00, 0xff, 0xff, 0x88, 0x80,
+	0xf5, 0xc7, 0xcb, 0x17, 0x00, 0x00,
 }
