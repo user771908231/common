@@ -99,10 +99,20 @@ enum bainiu_win_type {
     BAINIU_BIPAI_ZJTP = 5; //庄家通赔
 }
 
-//赢家列表
+//输赢列表
 message bainiu_win_user_item {
     optional string nick_name = 1; //昵称
     optional int64 bill = 2;  //账单（输赢多少钱）
+    optional uint32 userId = 3;  //user_id
+    optional int64 surplus_coin = 4;  //剩余金币
+}
+
+//每个区域输赢多少钱
+message bainiu_area_bill_item {
+    optional bainiu_area_name area_name = 1;  //押注的区域
+    optional int64 all_chips = 2;  //该区域押注金额
+    optional int64 bill = 3;  //该区域账单，结算输赢多少钱
+    repeated bainiu_win_user_item win_users = 4;  //在该区域中押注的排行榜中玩家输赢列表
 }
 
 //比牌结果广播
@@ -115,4 +125,5 @@ message bainiu_bipai_bc {
     optional int64 all_chips = 6;  //总下注
     optional int64 banker_bill = 7;  //庄家账单（输赢多少钱）
     repeated bainiu_win_user_item winer = 8;  //赢家列表
+    repeated bainiu_area_bill_item area_bill = 9;  //区域输赢
 }
