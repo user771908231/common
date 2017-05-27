@@ -34,6 +34,7 @@ message bainiu_client_user {
     optional string image = 2;  //头像
     optional string nick_name = 3;  //昵称
     optional int64 coin = 4;  //拥有金币数
+    optional WeixinInfo wx_info = 5;  //微信信息
 }
 
 //===============================进房===================================
@@ -126,4 +127,24 @@ message bainiu_bipai_bc {
     optional int64 banker_bill = 7;  //庄家账单（输赢多少钱）
     repeated bainiu_win_user_item winer = 8;  //赢家列表
     repeated bainiu_area_bill_item area_bill = 9;  //区域输赢
+}
+
+
+//=============================胜负走势==============================
+message bainiu_wincount_req {
+    optional uint32 userId = 1;
+}
+
+message bainiu_wincount_item {
+    optional int64 banker_bill = 1; //0
+    optional int64 tian_bill = 2; //1
+    optional int64 di_bill = 3; //2
+    optional int64 xuan_bill = 4; //3
+    optional int64 huang_bill = 5; //4
+    optional int64 time = 6;  //结束时间
+}
+
+message bainiu_wincount_ack {
+    optional ProtoHeader header = 1;
+    repeated bainiu_wincount_item rows = 2; //数据
 }
