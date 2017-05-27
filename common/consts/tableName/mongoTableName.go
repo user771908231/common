@@ -78,4 +78,8 @@ const (
 	//拼二章
 	DBT_PEZ_DESK_ROUND     = "t_pinerzhang_desk_round"     //拼二张一局游戏战绩
 	DBT_PEZ_DESK_ROUND_ALL = "t_pinerzhang_desk_round_all" //拼二张全局游戏结束的战绩，包含每一局的战绩
+
+	//百人牛牛
+	DBT_BAINIU_AREA_BILL_COUNT = "t_bainiu_area_bill_count" //百人牛牛区域胜负统计
+
 )
