@@ -34,6 +34,7 @@ message bainiu_client_user {
     optional string image = 2;  //头像
     optional string nick_name = 3;  //昵称
     optional int64 coin = 4;  //拥有金币数
+    optional WeixinInfo wx_info = 5;  //微信信息
 }
 
 //===============================进房===================================
