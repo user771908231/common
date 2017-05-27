@@ -23,6 +23,9 @@ enum bainiu_enum_protoid {
 
     BAINIU_BIPAI_BC = 10;  //比牌广播
 
+    BAINIU_PID_WINCOUNT_REQ = 11;  //胜负趋势
+    BAINIU_PID_WINCOUNT_ACK = 12;  //胜负趋势
+    
 }
 
 //押注区域
