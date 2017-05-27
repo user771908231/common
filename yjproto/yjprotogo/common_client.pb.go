@@ -85,8 +85,6 @@ It has these top-level messages:
 	SdyBasePlayerInfo
 	SdyBaseCommonRateInfo
 	SdyBaseDeskInfo
-	SdyReqDissolveDesk
-	SdyAckDissolveDesk
 	SdyReqReady
 	SdyAckReady
 	SdyBaseWinCoinInfo
@@ -104,6 +102,10 @@ It has these top-level messages:
 	SdyBcApplyDissolveDeskApplyer
 	SdyReqApplyDissolveDeskUser
 	SdyAckApplyDissolveDeskUser
+	SdyReqLeaveDesk
+	SdyAckLeaveDesk
+	SdyReqSendMessage
+	SdyAckSendMessage
 	SdyBcOpening
 	SdyDealCards
 	SdyBcPlayerPokers
