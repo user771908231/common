@@ -19,6 +19,8 @@ var _ = math.Inf
 
 // Ignoring public import of bainiu_enum_protoid from bainiu_base.proto
 
+// Ignoring public import of bainiu_area_name from bainiu_base.proto
+
 // Ignoring public import of bainiu_enum_PokerType from bainiu_base.proto
 
 // 打出去的牌

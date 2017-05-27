@@ -1,0 +1,86 @@
+syntax = "proto2";
+package ddproto;
+
+//对应mgo 中的表单
+
+//用户的资
+message User {
+    optional int64 RoomCard = 1;
+    optional string pwd = 2; //密码
+    optional int64 coin = 3; //用户的金币
+    optional uint32 id = 4;
+    optional string nickName = 5; //用户的昵称
+    optional int32 scores = 6; //积分
+    optional string lastDrawLotteryTime = 7; //上一次转盘奖励领取时间
+    optional string lastSignTime = 8; //上一次签到的时间
+    optional int32 signTotalDays = 9; //总共签到天数
+    optional int32 signContinuousDays = 10; //连续签到天数
+    optional int64 Diamond = 11; //通过钻石开房间
+    optional int64 Diamond2 = 12; //通过钻石开房间
+    optional string openId = 13; //微信openId
+    optional string UnionId = 14; //微信openId
+    optional string headUrl = 15; //头像
+    optional string city = 16; //
+    optional int32 sex = 17;
+    optional int32 robotType = 18; //机器人类型
+    optional int32 ticket = 19; //奖券
+    optional double bonus = 20; //红包
+    optional int64 regTime = 21; //注册时间
+    optional string regChannel = 22; //注册渠道
+    optional uint32 agentId = 23; //所属代理商
+    optional string lastIp = 24; //上次登录的ip
+    optional int64 lastTime = 25; //上次登录时间
+
+    //用户兑换信息
+    optional string realName = 26; //真实姓名
+    optional string phoneNumber = 27; //联系电话
+    optional string wxNumber = 28; //微信号码
+    optional string realAddress = 29; //真实地址
+    optional int32 channelId = 30; //渠道id和渠道string 配置使用
+
+    optional bool newUserAward = 31; //是否有新用户奖励:没有领取的时候是true,领取之后是false
+    optional string regIp = 32; //注册ip
+    optional float longitude = 33; //经度
+    optional float latitude = 34; //纬度
+    optional string location = 35; //根据经纬度计算出来的地理位置
+}
+
+//通知公告
+message TNotice {
+    optional int32 id = 1; //公告的id
+    optional int32 noticeType = 2; //公告的类型
+    optional string noticeTitle = 3; //公告的标题
+    optional string noticeContent = 4; //公告的内容
+    optional string noticeMemo = 5; //公告的备注
+    repeated string noticefileds = 6; //   公告内容
+    optional string channelId = 7; //公告对应的渠道id
+
+}
+
+//玩家游戏场次统计
+message TGameCounts {
+    optional int32 id = 1; //
+    optional uint32 userId = 2; //
+    optional int32 ddzCount = 3;
+    optional int32 ddzWinCount = 4;
+    optional int32 mjCount = 5;
+    optional int32 mjWinCount = 6;
+    optional int32 thCount = 7;
+    optional int32 thWinWinCount = 8;
+    optional int32 zjhCount = 9;
+    optional int32 zjhWinCount = 10;
+}
+
+//玩家的任务
+message TUserTask {
+    optional int32 id = 1; //
+    optional uint32 userId = 2; //
+    optional int32 taskId = 3; //
+    optional int32 awardId = 4; //奖励的记录id，如果奖励的记录id <1000 表示没有领取奖励
+}
+
+//推送协议
+message Push {
+    optional uint32 id = 1; //转发的用户
+    optional bytes data = 2; //转发的数据
+}

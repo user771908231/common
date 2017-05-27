@@ -1,17 +1,17 @@
 package paodekuai
 
 import (
-	"casino_common/proto/ddproto"
-	"gopkg.in/mgo.v2"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
+	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 //回放可以通过这个表来查询
 type T_pdk_desk_round_playback struct {
-	DeskId     int32
-	GameNumber int32
+	DeskId       int32
+	GameNumber   int32
 	PlayBackData []*ddproto.PdkPlaybackSnapshot
 }
 
@@ -26,4 +26,3 @@ func GetPdkPlayBack(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 		return nil
 	}
 }
-

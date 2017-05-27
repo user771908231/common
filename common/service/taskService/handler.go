@@ -93,7 +93,7 @@ func HandlerTaskSumReq(req *ddproto.HallReqTaskSum, agent gate.Agent) {
 		BonusSum: &j,
 	}
 	msg.BonusNext = proto.Int32(-1)
-	if bonus_task != nil {
+	if bonus_task != nil && bonus_task.RepeatSum - bonus_task.RepeatNo > 0 {
 		*msg.BonusNext = bonus_task.TaskSum - bonus_task.SumNo
 	}
 	if *msg.BonusNext == 0 {

@@ -7,19 +7,55 @@ Package yjprotogo is a generated protocol buffer package.
 
 It is generated from these files:
 	common_client.proto
+	hall_base.proto
 	mj_changchun_base.proto
 	mj_changchun_play.proto
+	sdy_base.proto
+	sdy_desk.proto
+	sdy_hall.proto
+	sdy_play.proto
 
 It has these top-level messages:
 	ProtoHeader
+	ServerInfo
+	QuickConn
+	AckQuickConn
+	WeixinInfo
+	CommonReqReg
+	CommonAckReg
 	CmOffline
 	CmHearbeat
-	P16ReqCreateDesk
+	HallReqLogin
+	HallAckLogin
+	HallReqReg
+	HallAckReg
+	UserCoinBean
+	RoomTypeInfo
+	EndLotteryInfo
+	PlayOptions
+	DeskGameInfo
+	PlayerInfo
+	CardInfo
+	ComposeCard
+	PlayerCard
+	WinCoinInfo
+	Game_SendGameInfo
+	Game_AckActHu
+	P16AckGameOpening
+	Game_SendCurrentResult
+	Game_AckActGang
+	P16AckRoomInit
 	P16BeanDeskInfo
-	P16BeanUserinfo
+	P16AckGameDealCards
+	P16ReqCreateDesk
 	P16AckCreateDesk
 	P16ReqEnterDesk
 	P16AckEnterDesk
+	P16ReqDissolveBeginGame
+	P16AckDissolveBeginGame
+	P16DissolveBeginGame
+	P16AckPlayerEnter
+	P16AckPlayerExit
 	P16ReqReady
 	P16AckReady
 	P16AckOpening
@@ -28,14 +64,60 @@ It has these top-level messages:
 	P16BBeanCanGang
 	P16BcMoPai
 	P16Bc_Check
-	P16ReqPeng
-	P16AckPeng
-	P16ReqGang
-	P16AckGang
 	P16ReqChi
 	P16AckChi
-	P16ReqHu
-	P16AckHu
+	P16AckGameOverturn
+	ChiOverTurn
+	JiaoInfo
+	JiaoPaiInfo
+	Game_AckActGuo
+	Game_AckSendOutCard
+	Game_SendEndLottery
+	P16ReqGameSendOutCard
+	P16ReqGameActPeng
+	P16ReqGameActGang
+	P16ReqGameActGuo
+	P16ReqGameActHu
+	Game_DissolveDesk
+	SdyBaseUserPaiIds
+	SdyBaseRoomTypeInfo
+	SdyBaseTimerInfo
+	SdyBasePlayerInfo
+	SdyBaseCommonRateInfo
+	SdyBaseDeskInfo
+	SdyReqDissolveDesk
+	SdyAckDissolveDesk
+	SdyReqReady
+	SdyAckReady
+	SdyBaseWinCoinInfo
+	SdyBcCurrentResult
+	SdyBaseBill
+	SdyBcEndLotteryInfo
+	SdyReqCreateDesk
+	SdyAckCreateDesk
+	SdyReqEnterDesk
+	SdyAckEnterDesk
+	SdyBcOpening
+	SdyDealCards
+	SdyBcPlayerPokers
+	SdyBcJiaoFen
+	SdyReqJiaoFen
+	SdyAckJiaoFen
+	SdyBcJiaoFenResult
+	SdyBcStartPlay
+	SdyReqOutCards
+	SdyAckOutCards
+	SdyBcOverTurn
+	SdyBcWhatPai
+	SdyBcScorePai
+	SdyBcGameInfo
+	SdyBcDingZhu
+	SdyReqDingZhu
+	SdyBcDingZhuResult
+	SdyAckDingZhu
+	SdyBcHuanDi
+	SdyReqHuanDi
+	SdyAckHuanDi
 */
 package yjprotogo
 
@@ -53,6 +135,111 @@ var _ = math.Inf
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
+// 勿删！！！！
+type GAME_ID int32
+
+const (
+	GAME_ID_GID_SANDAYI GAME_ID = 21
+)
+
+var GAME_ID_name = map[int32]string{
+	21: "GID_SANDAYI",
+}
+var GAME_ID_value = map[string]int32{
+	"GID_SANDAYI": 21,
+}
+
+func (x GAME_ID) Enum() *GAME_ID {
+	p := new(GAME_ID)
+	*p = x
+	return p
+}
+func (x GAME_ID) String() string {
+	return proto.EnumName(GAME_ID_name, int32(x))
+}
+func (x *GAME_ID) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(GAME_ID_value, data, "GAME_ID")
+	if err != nil {
+		return err
+	}
+	*x = GAME_ID(value)
+	return nil
+}
+func (GAME_ID) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+// 注册类型
+type CommonEnumReg int32
+
+const (
+	CommonEnumReg_RET_TYPE_TOURIST CommonEnumReg = 1
+	CommonEnumReg_RET_TYPE_WEIXIN  CommonEnumReg = 2
+)
+
+var CommonEnumReg_name = map[int32]string{
+	1: "RET_TYPE_TOURIST",
+	2: "RET_TYPE_WEIXIN",
+}
+var CommonEnumReg_value = map[string]int32{
+	"RET_TYPE_TOURIST": 1,
+	"RET_TYPE_WEIXIN":  2,
+}
+
+func (x CommonEnumReg) Enum() *CommonEnumReg {
+	p := new(CommonEnumReg)
+	*p = x
+	return p
+}
+func (x CommonEnumReg) String() string {
+	return proto.EnumName(CommonEnumReg_name, int32(x))
+}
+func (x *CommonEnumReg) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(CommonEnumReg_value, data, "CommonEnumReg")
+	if err != nil {
+		return err
+	}
+	*x = CommonEnumReg(value)
+	return nil
+}
+func (CommonEnumReg) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+// 客户端系统类型
+type CommonEnumOsType int32
+
+const (
+	CommonEnumOsType_OS_IOS     CommonEnumOsType = 1
+	CommonEnumOsType_OS_ANDROID CommonEnumOsType = 2
+	CommonEnumOsType_OS_WEB     CommonEnumOsType = 3
+)
+
+var CommonEnumOsType_name = map[int32]string{
+	1: "OS_IOS",
+	2: "OS_ANDROID",
+	3: "OS_WEB",
+}
+var CommonEnumOsType_value = map[string]int32{
+	"OS_IOS":     1,
+	"OS_ANDROID": 2,
+	"OS_WEB":     3,
+}
+
+func (x CommonEnumOsType) Enum() *CommonEnumOsType {
+	p := new(CommonEnumOsType)
+	*p = x
+	return p
+}
+func (x CommonEnumOsType) String() string {
+	return proto.EnumName(CommonEnumOsType_name, int32(x))
+}
+func (x *CommonEnumOsType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(CommonEnumOsType_value, data, "CommonEnumOsType")
+	if err != nil {
+		return err
+	}
+	*x = CommonEnumOsType(value)
+	return nil
+}
+func (CommonEnumOsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
 // ProtoHeader 需要在每个 Message 中作为第一个字段
 type ProtoHeader struct {
@@ -96,6 +283,329 @@ func (m *ProtoHeader) GetError() string {
 	return ""
 }
 
+// 服务器信息
+type ServerInfo struct {
+	Ip               *string `protobuf:"bytes,1,opt,name=ip" json:"ip,omitempty"`
+	Port             *int32  `protobuf:"varint,2,opt,name=port" json:"port,omitempty"`
+	ReleaseTag       *int32  `protobuf:"varint,3,opt,name=releaseTag" json:"releaseTag,omitempty"`
+	CurrVersion      *int32  `protobuf:"varint,4,opt,name=currVersion" json:"currVersion,omitempty"`
+	IsUpdate         *int32  `protobuf:"varint,5,opt,name=isUpdate" json:"isUpdate,omitempty"`
+	DownloadUrl      *string `protobuf:"bytes,6,opt,name=downloadUrl" json:"downloadUrl,omitempty"`
+	VersionInfo      *string `protobuf:"bytes,7,opt,name=versionInfo" json:"versionInfo,omitempty"`
+	IsMaintain       *int32  `protobuf:"varint,8,opt,name=isMaintain" json:"isMaintain,omitempty"`
+	MaintainMsg      *string `protobuf:"bytes,9,opt,name=maintainMsg" json:"maintainMsg,omitempty"`
+	Status           *int32  `protobuf:"varint,10,opt,name=status" json:"status,omitempty"`
+	GameId           *int32  `protobuf:"varint,11,opt,name=gameId" json:"gameId,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *ServerInfo) Reset()                    { *m = ServerInfo{} }
+func (m *ServerInfo) String() string            { return proto.CompactTextString(m) }
+func (*ServerInfo) ProtoMessage()               {}
+func (*ServerInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+func (m *ServerInfo) GetIp() string {
+	if m != nil && m.Ip != nil {
+		return *m.Ip
+	}
+	return ""
+}
+
+func (m *ServerInfo) GetPort() int32 {
+	if m != nil && m.Port != nil {
+		return *m.Port
+	}
+	return 0
+}
+
+func (m *ServerInfo) GetReleaseTag() int32 {
+	if m != nil && m.ReleaseTag != nil {
+		return *m.ReleaseTag
+	}
+	return 0
+}
+
+func (m *ServerInfo) GetCurrVersion() int32 {
+	if m != nil && m.CurrVersion != nil {
+		return *m.CurrVersion
+	}
+	return 0
+}
+
+func (m *ServerInfo) GetIsUpdate() int32 {
+	if m != nil && m.IsUpdate != nil {
+		return *m.IsUpdate
+	}
+	return 0
+}
+
+func (m *ServerInfo) GetDownloadUrl() string {
+	if m != nil && m.DownloadUrl != nil {
+		return *m.DownloadUrl
+	}
+	return ""
+}
+
+func (m *ServerInfo) GetVersionInfo() string {
+	if m != nil && m.VersionInfo != nil {
+		return *m.VersionInfo
+	}
+	return ""
+}
+
+func (m *ServerInfo) GetIsMaintain() int32 {
+	if m != nil && m.IsMaintain != nil {
+		return *m.IsMaintain
+	}
+	return 0
+}
+
+func (m *ServerInfo) GetMaintainMsg() string {
+	if m != nil && m.MaintainMsg != nil {
+		return *m.MaintainMsg
+	}
+	return ""
+}
+
+func (m *ServerInfo) GetStatus() int32 {
+	if m != nil && m.Status != nil {
+		return *m.Status
+	}
+	return 0
+}
+
+func (m *ServerInfo) GetGameId() int32 {
+	if m != nil && m.GameId != nil {
+		return *m.GameId
+	}
+	return 0
+}
+
+// 接入服务器
+type QuickConn struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	ChannelId        *string      `protobuf:"bytes,2,opt,name=channelId" json:"channelId,omitempty"`
+	GameId           *int32       `protobuf:"varint,3,opt,name=gameId" json:"gameId,omitempty"`
+	CurrVersion      *int32       `protobuf:"varint,4,opt,name=currVersion" json:"currVersion,omitempty"`
+	LanguageId       *int32       `protobuf:"varint,5,opt,name=languageId" json:"languageId,omitempty"`
+	UserId           *uint32      `protobuf:"varint,6,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *QuickConn) Reset()                    { *m = QuickConn{} }
+func (m *QuickConn) String() string            { return proto.CompactTextString(m) }
+func (*QuickConn) ProtoMessage()               {}
+func (*QuickConn) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+func (m *QuickConn) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *QuickConn) GetChannelId() string {
+	if m != nil && m.ChannelId != nil {
+		return *m.ChannelId
+	}
+	return ""
+}
+
+func (m *QuickConn) GetGameId() int32 {
+	if m != nil && m.GameId != nil {
+		return *m.GameId
+	}
+	return 0
+}
+
+func (m *QuickConn) GetCurrVersion() int32 {
+	if m != nil && m.CurrVersion != nil {
+		return *m.CurrVersion
+	}
+	return 0
+}
+
+func (m *QuickConn) GetLanguageId() int32 {
+	if m != nil && m.LanguageId != nil {
+		return *m.LanguageId
+	}
+	return 0
+}
+
+func (m *QuickConn) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+type AckQuickConn struct {
+	Header            *ProtoHeader  `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	GameServer        []*ServerInfo `protobuf:"bytes,2,rep,name=gameServer" json:"gameServer,omitempty"`
+	ServerListVersion *int32        `protobuf:"varint,3,opt,name=serverListVersion" json:"serverListVersion,omitempty"`
+	XXX_unrecognized  []byte        `json:"-"`
+}
+
+func (m *AckQuickConn) Reset()                    { *m = AckQuickConn{} }
+func (m *AckQuickConn) String() string            { return proto.CompactTextString(m) }
+func (*AckQuickConn) ProtoMessage()               {}
+func (*AckQuickConn) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func (m *AckQuickConn) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *AckQuickConn) GetGameServer() []*ServerInfo {
+	if m != nil {
+		return m.GameServer
+	}
+	return nil
+}
+
+func (m *AckQuickConn) GetServerListVersion() int32 {
+	if m != nil && m.ServerListVersion != nil {
+		return *m.ServerListVersion
+	}
+	return 0
+}
+
+// 微信信息
+type WeixinInfo struct {
+	OpenId           *string `protobuf:"bytes,1,opt,name=openId" json:"openId,omitempty"`
+	NickName         *string `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
+	HeadUrl          *string `protobuf:"bytes,3,opt,name=headUrl" json:"headUrl,omitempty"`
+	Sex              *int32  `protobuf:"varint,4,opt,name=sex" json:"sex,omitempty"`
+	City             *string `protobuf:"bytes,5,opt,name=city" json:"city,omitempty"`
+	UnionId          *string `protobuf:"bytes,6,opt,name=unionId" json:"unionId,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *WeixinInfo) Reset()                    { *m = WeixinInfo{} }
+func (m *WeixinInfo) String() string            { return proto.CompactTextString(m) }
+func (*WeixinInfo) ProtoMessage()               {}
+func (*WeixinInfo) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+
+func (m *WeixinInfo) GetOpenId() string {
+	if m != nil && m.OpenId != nil {
+		return *m.OpenId
+	}
+	return ""
+}
+
+func (m *WeixinInfo) GetNickName() string {
+	if m != nil && m.NickName != nil {
+		return *m.NickName
+	}
+	return ""
+}
+
+func (m *WeixinInfo) GetHeadUrl() string {
+	if m != nil && m.HeadUrl != nil {
+		return *m.HeadUrl
+	}
+	return ""
+}
+
+func (m *WeixinInfo) GetSex() int32 {
+	if m != nil && m.Sex != nil {
+		return *m.Sex
+	}
+	return 0
+}
+
+func (m *WeixinInfo) GetCity() string {
+	if m != nil && m.City != nil {
+		return *m.City
+	}
+	return ""
+}
+
+func (m *WeixinInfo) GetUnionId() string {
+	if m != nil && m.UnionId != nil {
+		return *m.UnionId
+	}
+	return ""
+}
+
+// 请求
+type CommonReqReg struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	RegType          *int32       `protobuf:"varint,2,opt,name=regType" json:"regType,omitempty"`
+	WxInfo           *WeixinInfo  `protobuf:"bytes,3,opt,name=wxInfo" json:"wxInfo,omitempty"`
+	ClientOSType     *int32       `protobuf:"varint,4,opt,name=clientOSType" json:"clientOSType,omitempty"`
+	ChannelId        *string      `protobuf:"bytes,5,opt,name=channelId" json:"channelId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *CommonReqReg) Reset()                    { *m = CommonReqReg{} }
+func (m *CommonReqReg) String() string            { return proto.CompactTextString(m) }
+func (*CommonReqReg) ProtoMessage()               {}
+func (*CommonReqReg) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+func (m *CommonReqReg) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *CommonReqReg) GetRegType() int32 {
+	if m != nil && m.RegType != nil {
+		return *m.RegType
+	}
+	return 0
+}
+
+func (m *CommonReqReg) GetWxInfo() *WeixinInfo {
+	if m != nil {
+		return m.WxInfo
+	}
+	return nil
+}
+
+func (m *CommonReqReg) GetClientOSType() int32 {
+	if m != nil && m.ClientOSType != nil {
+		return *m.ClientOSType
+	}
+	return 0
+}
+
+func (m *CommonReqReg) GetChannelId() string {
+	if m != nil && m.ChannelId != nil {
+		return *m.ChannelId
+	}
+	return ""
+}
+
+// 回复
+type CommonAckReg struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *CommonAckReg) Reset()                    { *m = CommonAckReg{} }
+func (m *CommonAckReg) String() string            { return proto.CompactTextString(m) }
+func (*CommonAckReg) ProtoMessage()               {}
+func (*CommonAckReg) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+
+func (m *CommonAckReg) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *CommonAckReg) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
 // 表示玩家掉线
 type CmOffline struct {
 	XXX_unrecognized []byte `json:"-"`
@@ -104,7 +614,7 @@ type CmOffline struct {
 func (m *CmOffline) Reset()                    { *m = CmOffline{} }
 func (m *CmOffline) String() string            { return proto.CompactTextString(m) }
 func (*CmOffline) ProtoMessage()               {}
-func (*CmOffline) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*CmOffline) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
 
 // 表示心跳
 type CmHearbeat struct {
@@ -115,7 +625,7 @@ type CmHearbeat struct {
 func (m *CmHearbeat) Reset()                    { *m = CmHearbeat{} }
 func (m *CmHearbeat) String() string            { return proto.CompactTextString(m) }
 func (*CmHearbeat) ProtoMessage()               {}
-func (*CmHearbeat) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*CmHearbeat) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
 
 func (m *CmHearbeat) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -126,21 +636,63 @@ func (m *CmHearbeat) GetHeader() *ProtoHeader {
 
 func init() {
 	proto.RegisterType((*ProtoHeader)(nil), "yjprotogo.ProtoHeader")
+	proto.RegisterType((*ServerInfo)(nil), "yjprotogo.ServerInfo")
+	proto.RegisterType((*QuickConn)(nil), "yjprotogo.QuickConn")
+	proto.RegisterType((*AckQuickConn)(nil), "yjprotogo.AckQuickConn")
+	proto.RegisterType((*WeixinInfo)(nil), "yjprotogo.WeixinInfo")
+	proto.RegisterType((*CommonReqReg)(nil), "yjprotogo.common_req_reg")
+	proto.RegisterType((*CommonAckReg)(nil), "yjprotogo.common_ack_reg")
 	proto.RegisterType((*CmOffline)(nil), "yjprotogo.cm_offline")
 	proto.RegisterType((*CmHearbeat)(nil), "yjprotogo.cm_hearbeat")
+	proto.RegisterEnum("yjprotogo.GAME_ID", GAME_ID_name, GAME_ID_value)
+	proto.RegisterEnum("yjprotogo.CommonEnumReg", CommonEnumReg_name, CommonEnumReg_value)
+	proto.RegisterEnum("yjprotogo.CommonEnumOsType", CommonEnumOsType_name, CommonEnumOsType_value)
 }
 
 var fileDescriptor0 = []byte{
-	// 168 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x4c, 0x8e, 0xc1, 0x0a, 0x82, 0x40,
-	0x10, 0x86, 0xb1, 0xd4, 0x70, 0xd4, 0x82, 0x09, 0x62, 0x8f, 0xe1, 0x21, 0x3a, 0x79, 0x08, 0x7a,
-	0x87, 0xa2, 0x4b, 0x6f, 0x20, 0xb6, 0x8e, 0x69, 0xe8, 0x4e, 0x8c, 0x16, 0xf4, 0xf6, 0xad, 0x7b,
-	0x88, 0x6e, 0xdf, 0x07, 0xc3, 0xfc, 0x1f, 0xac, 0x35, 0xf7, 0x3d, 0x9b, 0x42, 0x77, 0x2d, 0x99,
-	0x31, 0x7f, 0x0a, 0x8f, 0x8c, 0xd1, 0xe7, 0xe1, 0xe0, 0xce, 0xd9, 0x05, 0xe2, 0xeb, 0x84, 0x27,
-	0x2a, 0x2b, 0x12, 0x5c, 0xc1, 0xe2, 0x4d, 0x32, 0xb4, 0x6c, 0x94, 0xb7, 0xf5, 0xf6, 0x11, 0x2e,
-	0x21, 0x7c, 0x0d, 0x24, 0xe7, 0x4a, 0xcd, 0xac, 0xa7, 0x98, 0x80, 0xaf, 0xb9, 0x22, 0x35, 0xb7,
-	0x16, 0x60, 0x0a, 0x01, 0x89, 0xb0, 0x28, 0x7f, 0x3a, 0xce, 0x12, 0x00, 0xdd, 0x17, 0x5c, 0xd7,
-	0x5d, 0x6b, 0x28, 0x3b, 0x42, 0x6c, 0xad, 0xa1, 0x52, 0x6e, 0x54, 0x8e, 0xb8, 0x83, 0xb0, 0x71,
-	0x23, 0xee, 0x73, 0x7c, 0xd8, 0xe4, 0xbf, 0x8a, 0xfc, 0x2f, 0xe1, 0x1b, 0x00, 0x00, 0xff, 0xff,
-	0x22, 0x47, 0xb1, 0x47, 0xb2, 0x00, 0x00, 0x00,
+	// 698 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x54, 0xcd, 0x6e, 0xdb, 0x3c,
+	0x10, 0x84, 0xec, 0xd8, 0x8e, 0xd7, 0xf9, 0x12, 0x7d, 0xcc, 0x0f, 0x88, 0xa0, 0x08, 0x0c, 0x9d,
+	0x8c, 0xa0, 0xf5, 0x21, 0x40, 0x6f, 0xcd, 0xc1, 0xad, 0x8d, 0x54, 0x40, 0x63, 0xa7, 0xb2, 0xd3,
+	0x24, 0x27, 0x81, 0x95, 0x18, 0x85, 0xb5, 0x45, 0xba, 0x94, 0x94, 0x9f, 0x57, 0xe9, 0xb5, 0xaf,
+	0xd2, 0x5b, 0x5f, 0xaa, 0x20, 0x45, 0xdb, 0x4c, 0x8b, 0x02, 0x4d, 0x6e, 0x3b, 0xa3, 0xdd, 0xe5,
+	0xee, 0x70, 0x28, 0xd8, 0x8e, 0x44, 0x9a, 0x0a, 0x1e, 0x46, 0x33, 0x46, 0x79, 0xde, 0x9d, 0x4b,
+	0x91, 0x0b, 0xd4, 0x7c, 0xf8, 0xa2, 0x83, 0x44, 0x78, 0x0c, 0x5a, 0x67, 0x2a, 0x7c, 0x4f, 0x49,
+	0x4c, 0x25, 0xc2, 0xd0, 0xb8, 0xa5, 0x32, 0x63, 0x82, 0x63, 0xa7, 0xed, 0x74, 0x9a, 0xc1, 0x02,
+	0xa2, 0x3d, 0xa8, 0x17, 0x19, 0x95, 0x7e, 0x8c, 0x2b, 0x6d, 0xa7, 0xf3, 0x5f, 0x60, 0x10, 0x42,
+	0xb0, 0x16, 0x89, 0x98, 0xe2, 0x6a, 0xdb, 0xe9, 0xd4, 0x02, 0x1d, 0xa3, 0x1d, 0xa8, 0x51, 0x29,
+	0x85, 0xc4, 0x6b, 0xba, 0x47, 0x09, 0xbc, 0x1f, 0x15, 0x80, 0x31, 0x95, 0xb7, 0x54, 0xfa, 0xfc,
+	0x5a, 0xa0, 0x4d, 0xa8, 0xb0, 0xb9, 0x39, 0xa5, 0xc2, 0xe6, 0xaa, 0xd1, 0x5c, 0xc8, 0x5c, 0xb7,
+	0xaf, 0x05, 0x3a, 0x46, 0x07, 0x00, 0x92, 0xce, 0x28, 0xc9, 0xe8, 0x84, 0x24, 0xe6, 0x08, 0x8b,
+	0x41, 0x6d, 0x68, 0x45, 0x85, 0x94, 0x9f, 0xcc, 0xc8, 0x6b, 0x3a, 0xc1, 0xa6, 0xd0, 0x3e, 0xac,
+	0xb3, 0xec, 0x7c, 0x1e, 0x93, 0x9c, 0xe2, 0x9a, 0xfe, 0xbc, 0xc4, 0xaa, 0x3a, 0x16, 0x77, 0x7c,
+	0x26, 0x48, 0x7c, 0x2e, 0x67, 0xb8, 0xae, 0x47, 0xb1, 0x29, 0x95, 0x61, 0xf6, 0x57, 0x23, 0xe3,
+	0x46, 0x99, 0x61, 0x51, 0x6a, 0x42, 0x96, 0x9d, 0x12, 0xc6, 0x73, 0xc2, 0x38, 0x5e, 0x2f, 0x27,
+	0x5c, 0x31, 0xaa, 0x43, 0x6a, 0xe2, 0xd3, 0x2c, 0xc1, 0xcd, 0xb2, 0x83, 0x45, 0x29, 0x61, 0xb3,
+	0x9c, 0xe4, 0x45, 0x86, 0x41, 0x57, 0x1b, 0xa4, 0xf8, 0x84, 0xa4, 0xd4, 0x8f, 0x71, 0xab, 0xe4,
+	0x4b, 0xe4, 0xfd, 0x74, 0xa0, 0xf9, 0xb1, 0x60, 0xd1, 0xf4, 0x9d, 0xe0, 0x1c, 0x75, 0xa1, 0x7e,
+	0xa3, 0xaf, 0x4e, 0x2b, 0xd9, 0x3a, 0xda, 0xeb, 0x2e, 0xef, 0xb6, 0x6b, 0x5d, 0x6c, 0x60, 0xb2,
+	0xd0, 0x0b, 0x68, 0x46, 0x37, 0x84, 0x73, 0x3a, 0x33, 0x37, 0xd9, 0x0c, 0x56, 0x84, 0x75, 0x66,
+	0xd5, 0x3e, 0xf3, 0x1f, 0x74, 0x3e, 0x00, 0x98, 0x11, 0x9e, 0x14, 0x24, 0x51, 0xd5, 0xa5, 0xd2,
+	0x16, 0x63, 0xd9, 0xa7, 0x6e, 0xdb, 0xc7, 0xfb, 0xee, 0xc0, 0x46, 0x2f, 0x9a, 0x3e, 0x7f, 0xa1,
+	0xd7, 0x00, 0x6a, 0xc8, 0xd2, 0x58, 0xb8, 0xd2, 0xae, 0x76, 0x5a, 0x47, 0xbb, 0x56, 0xcd, 0xca,
+	0x71, 0x81, 0x95, 0x88, 0x5e, 0xc2, 0xff, 0x99, 0x8e, 0x3e, 0xb0, 0x2c, 0x5f, 0xec, 0x55, 0x2e,
+	0xfd, 0xe7, 0x07, 0xef, 0x9b, 0x03, 0x70, 0x41, 0xd9, 0x3d, 0x2b, 0x2f, 0x7d, 0x0f, 0xea, 0x62,
+	0x4e, 0xb9, 0x1f, 0x1b, 0xfb, 0x1a, 0xa4, 0xcc, 0xc6, 0x59, 0x34, 0x1d, 0x92, 0x94, 0x1a, 0x6d,
+	0x97, 0x58, 0xbd, 0x2c, 0x35, 0xb1, 0x32, 0x5a, 0xb5, 0x7c, 0x59, 0x06, 0x22, 0x17, 0xaa, 0x19,
+	0xbd, 0x37, 0xa2, 0xaa, 0x50, 0xbf, 0x29, 0x96, 0x3f, 0x68, 0x19, 0x9b, 0x81, 0x8e, 0x55, 0x7d,
+	0xc1, 0x95, 0xeb, 0x62, 0x63, 0xd4, 0x05, 0x54, 0x86, 0xd8, 0x34, 0xaf, 0x5c, 0xd2, 0xaf, 0xa1,
+	0xa4, 0xc9, 0x93, 0x45, 0xc4, 0xd0, 0x90, 0x34, 0x99, 0x3c, 0xcc, 0xa9, 0x79, 0x7e, 0x0b, 0x88,
+	0x5e, 0x41, 0xfd, 0xee, 0x5e, 0x9b, 0xbf, 0xaa, 0x3b, 0xd9, 0xd2, 0xae, 0x14, 0x09, 0x4c, 0x12,
+	0xf2, 0x60, 0xa3, 0xfc, 0xd3, 0x8c, 0xc6, 0xba, 0x5b, 0xb9, 0xd4, 0x23, 0xee, 0xb1, 0x05, 0x6b,
+	0xbf, 0x59, 0xd0, 0xbb, 0x5c, 0x2e, 0x43, 0xa2, 0xe9, 0xb3, 0x96, 0xf9, 0xcb, 0x9f, 0xca, 0xdb,
+	0x00, 0x88, 0xd2, 0x50, 0x5c, 0x5f, 0xcf, 0x18, 0xa7, 0xde, 0x31, 0xb4, 0xa2, 0x34, 0xbc, 0xa1,
+	0x44, 0x7e, 0xa6, 0x24, 0x7f, 0xea, 0x21, 0x87, 0xfb, 0xd0, 0x38, 0xe9, 0x9d, 0x0e, 0x42, 0xbf,
+	0x8f, 0xb6, 0xa0, 0x75, 0xe2, 0xf7, 0xc3, 0x71, 0x6f, 0xd8, 0xef, 0x5d, 0xf9, 0xee, 0xee, 0xe1,
+	0x1b, 0xd8, 0x32, 0x2b, 0x50, 0x5e, 0xa4, 0x7a, 0x87, 0x1d, 0x70, 0x83, 0xc1, 0x24, 0x9c, 0x5c,
+	0x9d, 0x0d, 0xc2, 0xc9, 0xe8, 0x3c, 0xf0, 0xc7, 0x13, 0xd7, 0x41, 0xdb, 0xb0, 0xb5, 0x64, 0x2f,
+	0x06, 0xfe, 0xa5, 0x3f, 0x74, 0x2b, 0x87, 0xc7, 0xcb, 0x7f, 0xb6, 0xae, 0x16, 0x59, 0x98, 0x2b,
+	0xd5, 0x00, 0xea, 0xa3, 0x71, 0xe8, 0x8f, 0xc6, 0xae, 0x83, 0x36, 0x01, 0x46, 0xe3, 0xb0, 0x37,
+	0xec, 0x07, 0x23, 0xbf, 0xef, 0x56, 0xcc, 0xb7, 0x8b, 0xc1, 0x5b, 0xb7, 0xfa, 0x2b, 0x00, 0x00,
+	0xff, 0xff, 0x40, 0x96, 0xf5, 0xf7, 0xf1, 0x05, 0x00, 0x00,
 }

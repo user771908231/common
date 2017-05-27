@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+import public "common_client.proto";
+import public "zjh_base.proto";
+package ddproto;
+
+//================================第一步：大厅房间列表====================================
+
+//1.请求：房间列表
+message zjh_req_getRoomList {
+    optional int32 userId = 1;
+    optional zjh_enum_roomType roomType = 2;
+}
+
+
+// 服务器返回的经典模式场次
+message zjh_base_roomInfo {
+    optional ProtoHeader header = 1;
+    optional int32 roomId = 2; //房间Id
+    optional zjh_enum_roomType roomType = 3; //房间的类型
+    optional int32 roomLevel = 4; //金币限制
+    optional string roomTitle = 5; //房间名
+    optional int64 baseValue = 6; //底注
+    optional int64 maxValue = 7; //押注上限
+}
+
+//2返回：大厅列表
+message zjh_ack_roomList {
+    optional ProtoHeader header = 1;
+    repeated zjh_base_roomInfo rooms = 2; // 有哪些场次, 如: 平民场、小资场、老板场、土豪场、贵族场、皇家场。按场景布局最多 6 场
+}
+
+//===============================第二步：加入该房间下系统分配的一个牌桌==============================
+// 请求：进入选择的场景房间，自动进入一个有空位的房间，如果没有空位则新建一个空房间进入。
+message zjh_req_enterDesk {
+    optional ProtoHeader header = 1;
+    optional int32 roomId = 2;
+    optional uint32 userId = 3;
+}
+
+//用户信息
+message zjh_base_userInfo {
+    optional int32 uid = 1; //用户id
+    optional string nickName = 2; //昵称
+    optional int64 coin = 3; //金币数
+    optional int32 chip = 4; //钻石数
+    optional zjh_enum_userState state = 5; //玩家状态
+}
+
+//返回：该桌面的用户和游戏状态
+message ZjhDeskStateAck {
+    optional zjh_enum_deskState state = 1; //游戏状态
+    repeated zjh_base_userInfo userList = 2; //用户列表
+    optional int32 deskId = 4; //桌面id
+    optional zjh_base_roomInfo roomInfo = 5; //房间信息
+}

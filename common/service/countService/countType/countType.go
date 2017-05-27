@@ -79,4 +79,5 @@ const (
 	ZJH_LOSE_LV5_COUNT CountType = "zjh_lose_lv5_count"  //炸金花房间5输
 	ZJH_LOSE_LV6_COUNT CountType = "zjh_lose_lv6_count"  //炸金花房间6输
 
+	FRIEND_DRAW_LOTTERY_COUNT CountType = "friend_draw_lottery_count"  //朋友桌分享转盘抽奖次数
 )
