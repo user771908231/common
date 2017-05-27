@@ -97,6 +97,13 @@ It has these top-level messages:
 	SdyAckCreateDesk
 	SdyReqEnterDesk
 	SdyAckEnterDesk
+	SdyBcUserBreak
+	SdyReqDissolveDeskOwner
+	SdyAckDissolveDeskOwner
+	SdyReqApplyDissolveDeskApllyer
+	SdyBcApplyDissolveDeskApplyer
+	SdyReqApplyDissolveDeskUser
+	SdyAckApplyDissolveDeskUser
 	SdyBcOpening
 	SdyDealCards
 	SdyBcPlayerPokers
