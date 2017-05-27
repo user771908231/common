@@ -136,7 +136,7 @@ func (m *HallAckLogin) GetUserid() uint32 {
 	return 0
 }
 
-// 请求
+// 注册请求
 type HallReqReg struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	RegType          *int32       `protobuf:"varint,2,opt,name=regType" json:"regType,omitempty"`
