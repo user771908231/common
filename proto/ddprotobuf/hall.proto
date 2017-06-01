@@ -369,7 +369,7 @@ message hall_ack_friend_lottery_draw {
 //请求玩家间距离是否小于distance
 message hall_req_distance_matched {
     optional ProtoHeader header = 1;
-    optional int32 distance = 2; //U.km 距离
+    optional string distance = 2; //U.km 距离
     repeated uint32 userIds = 3; //需要判断距离的玩家列表
 }
 
