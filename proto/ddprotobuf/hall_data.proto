@@ -131,7 +131,9 @@ enum hall_enum_protoId {
 
     HALL_PID_NOTICE_REQ = 91;  //notice公告
     HALL_PID_NOTICE_ACK = 92;
-    
+
+    HALL_REQ_DISTANCE_MATCHED = 93; //请求玩家间距离是否小于distance
+    HALL_ACK_DISTANCE_MATCHED = 94; //回复玩家间距离小于distance的玩家列表
 }
 
 //货币与商品类型
