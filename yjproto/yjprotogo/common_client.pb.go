@@ -97,7 +97,7 @@ It has these top-level messages:
 	SdyAckEnterDesk
 	SdyBcUserBreak
 	SdyReqDissolveDeskOwner
-	SdyAckDissolveDeskOwner
+	SdyBcDissolveDeskOwner
 	SdyReqApplyDissolveDeskApllyer
 	SdyBcApplyDissolveDeskApplyer
 	SdyReqApplyDissolveDeskUser
