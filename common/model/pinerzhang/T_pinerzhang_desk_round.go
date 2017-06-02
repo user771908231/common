@@ -28,6 +28,7 @@ type T_pinerzhang_desk_round struct {
 	BeginTime  time.Time
 	EndTime    time.Time
 	Records    []PEZRecordBean
+	RoundStr   string //局数信息
 }
 
 func (b PEZRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
@@ -45,6 +46,7 @@ func (t T_pinerzhang_desk_round) TransRecord() *ddproto.BeanGameRecord {
 		DeskId:    proto.Int32(t.DeskId),
 		Password:  proto.String(t.Password),
 		Id:        proto.Int32(t.GameNumber),
+		RoundStr:  proto.String(t.RoundStr),
 	}
 	for _, bean := range t.Records {
 		b := bean.TransBeanUserRecord()
