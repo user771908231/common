@@ -365,3 +365,16 @@ message hall_ack_friend_lottery_draw {
     optional ProtoHeader header = 1;
     optional int32 lotteryId = 2; //奖励物品id
 }
+
+//请求玩家间距离是否小于distance
+message hall_req_distance_matched {
+    optional ProtoHeader header = 1;
+    optional string distance = 2; //U.km 距离
+    repeated uint32 userIds = 3; //需要判断距离的玩家列表
+}
+
+//回复玩家间距离小于distance的玩家列表
+message hall_ack_distance_matched {
+    optional ProtoHeader header = 1;
+    repeated string userNickNames = 2; //玩家间距离小于distance的昵称列表
+}

@@ -53,6 +53,7 @@ message bainiu_enter_desk_ack {
 //押注overturn
 message bainiu_yazhu_ot {
     optional int64 desk_time = 1;  //牌桌剩余时间
+    repeated bainiu_client_user users = 2;  //用户列表
 }
 
 //押注请求
@@ -141,7 +142,14 @@ message bainiu_wincount_item {
     optional int64 di_bill = 3; //2
     optional int64 xuan_bill = 4; //3
     optional int64 huang_bill = 5; //4
+
     optional int64 time = 6;  //结束时间
+
+    optional bool tian_iswin = 7;
+    optional bool di_iswin = 8;
+    optional bool xuan_iswin = 9;
+    optional bool huang_iswin = 10;
+
 }
 
 message bainiu_wincount_ack {
