@@ -37,6 +37,14 @@ It has these top-level messages:
 	BuyZone
 	GoodsItem
 	HallStrongboxInfo
+	CommonReqGameLogin
+	CommonReqGameLoginViaInput
+	CommonAckGameLogin
+	HallGoodsItemMsg
+	HallReqGoodsList
+	HallAckGoodsList
+	HallReqNewRoomList
+	HallAckNewRoomList
 	UserCoinBean
 	RoomTypeInfo
 	EndLotteryInfo
