@@ -25,10 +25,18 @@ It has these top-level messages:
 	CommonAckReg
 	CmOffline
 	CmHearbeat
-	HallReqLogin
-	HallAckLogin
-	HallReqReg
-	HallAckReg
+	HallItemEvent
+	HallMailItem
+	HallBagItem
+	HallItemTask
+	HallUserData
+	HallRankItem
+	CoinZone
+	DiamondZone
+	ExchangeZone
+	BuyZone
+	GoodsItem
+	HallStrongboxInfo
 	UserCoinBean
 	RoomTypeInfo
 	EndLotteryInfo
@@ -91,6 +99,14 @@ It has these top-level messages:
 	SdyBcCurrentResult
 	SdyBaseBill
 	SdyBcEndLotteryInfo
+	SdyReUserOutPai
+	SdyReReady
+	SdyReHuanDi
+	SdyRePlay
+	SdyReJiaoFen
+	SdyReLenHandPokers
+	SdyBcReconnectInfo
+	SdyBcIsOnLine
 	SdyReqCreateDesk
 	SdyAckCreateDesk
 	SdyReqEnterDesk
