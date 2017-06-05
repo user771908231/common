@@ -7,6 +7,7 @@ Package yjprotogo is a generated protocol buffer package.
 
 It is generated from these files:
 	common_client.proto
+	common_server.proto
 	hall_base.proto
 	mj_changchun_base.proto
 	mj_changchun_play.proto
@@ -25,6 +26,7 @@ It has these top-level messages:
 	CommonAckReg
 	CmOffline
 	CmHearbeat
+	GameSession
 	HallItemEvent
 	HallMailItem
 	HallBagItem
