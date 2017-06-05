@@ -196,7 +196,7 @@ func (x *SdyEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumProtoId(value)
 	return nil
 }
-func (SdyEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (SdyEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 type SdyEnumErrorCode int32
 
@@ -246,7 +246,7 @@ func (x *SdyEnumErrorCode) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumErrorCode(value)
 	return nil
 }
-func (SdyEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (SdyEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 // 轮到玩家操作时：可执行何种操作
 type SdyEnumActType int32
@@ -284,7 +284,7 @@ func (x *SdyEnumActType) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumActType(value)
 	return nil
 }
-func (SdyEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (SdyEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
 
 type SdyEnumDeskStatus int32
 
@@ -333,7 +333,7 @@ func (x *SdyEnumDeskStatus) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumDeskStatus(value)
 	return nil
 }
-func (SdyEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (SdyEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
 
 type SdyEnumUserStatus int32
 
@@ -376,7 +376,7 @@ func (x *SdyEnumUserStatus) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumUserStatus(value)
 	return nil
 }
-func (SdyEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+func (SdyEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
 
 type SdyEnumEnterType int32
 
@@ -410,7 +410,7 @@ func (x *SdyEnumEnterType) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumEnterType(value)
 	return nil
 }
-func (SdyEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
+func (SdyEnumEnterType) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
 
 type SdyEnum_Option int32
 
@@ -447,7 +447,7 @@ func (x *SdyEnum_Option) UnmarshalJSON(data []byte) error {
 	*x = SdyEnum_Option(value)
 	return nil
 }
-func (SdyEnum_Option) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
+func (SdyEnum_Option) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{6} }
 
 type SdyEnumCoinRoomLevel int32
 
@@ -478,7 +478,7 @@ func (x *SdyEnumCoinRoomLevel) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumCoinRoomLevel(value)
 	return nil
 }
-func (SdyEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{7} }
+func (SdyEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{7} }
 
 // poker花色
 type SdyEnumFlowers int32
@@ -525,7 +525,7 @@ func (x *SdyEnumFlowers) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumFlowers(value)
 	return nil
 }
-func (SdyEnumFlowers) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{8} }
+func (SdyEnumFlowers) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{8} }
 
 // 用于流局时每个玩家的ID和手牌ID数组
 type SdyBaseUserPaiIds struct {
@@ -538,7 +538,7 @@ type SdyBaseUserPaiIds struct {
 func (m *SdyBaseUserPaiIds) Reset()                    { *m = SdyBaseUserPaiIds{} }
 func (m *SdyBaseUserPaiIds) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseUserPaiIds) ProtoMessage()               {}
-func (*SdyBaseUserPaiIds) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*SdyBaseUserPaiIds) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *SdyBaseUserPaiIds) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -572,7 +572,7 @@ type SdyBaseRoomTypeInfo struct {
 func (m *SdyBaseRoomTypeInfo) Reset()                    { *m = SdyBaseRoomTypeInfo{} }
 func (m *SdyBaseRoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseRoomTypeInfo) ProtoMessage()               {}
-func (*SdyBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*SdyBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 func (m *SdyBaseRoomTypeInfo) GetOwnerID() uint32 {
 	if m != nil && m.OwnerID != nil {
@@ -612,7 +612,7 @@ type SdyBaseTimerInfo struct {
 func (m *SdyBaseTimerInfo) Reset()                    { *m = SdyBaseTimerInfo{} }
 func (m *SdyBaseTimerInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseTimerInfo) ProtoMessage()               {}
-func (*SdyBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*SdyBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
 
 func (m *SdyBaseTimerInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -658,7 +658,7 @@ type SdyBasePlayerInfo struct {
 func (m *SdyBasePlayerInfo) Reset()                    { *m = SdyBasePlayerInfo{} }
 func (m *SdyBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBasePlayerInfo) ProtoMessage()               {}
-func (*SdyBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (*SdyBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
 
 func (m *SdyBasePlayerInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -786,7 +786,7 @@ type SdyBaseCommonRateInfo struct {
 func (m *SdyBaseCommonRateInfo) Reset()                    { *m = SdyBaseCommonRateInfo{} }
 func (m *SdyBaseCommonRateInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseCommonRateInfo) ProtoMessage()               {}
-func (*SdyBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+func (*SdyBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
 
 func (m *SdyBaseCommonRateInfo) GetInitPlayRate() int32 {
 	if m != nil && m.InitPlayRate != nil {
@@ -860,7 +860,7 @@ type SdyBaseDeskInfo struct {
 func (m *SdyBaseDeskInfo) Reset()                    { *m = SdyBaseDeskInfo{} }
 func (m *SdyBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseDeskInfo) ProtoMessage()               {}
-func (*SdyBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
+func (*SdyBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
 
 func (m *SdyBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -992,7 +992,7 @@ func init() {
 	proto.RegisterEnum("yjprotogo.SdyEnumFlowers", SdyEnumFlowers_name, SdyEnumFlowers_value)
 }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor5 = []byte{
 	// 1723 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x57, 0x4b, 0x73, 0xdb, 0xc8,
 	0x11, 0x36, 0x44, 0x51, 0x8f, 0xd1, 0x6b, 0x34, 0xb2, 0x64, 0x58, 0xb1, 0x15, 0x2e, 0xe3, 0x75,
