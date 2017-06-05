@@ -29,7 +29,9 @@ It has these top-level messages:
 	HallMailItem
 	HallBagItem
 	HallItemTask
+	HallReqUserData
 	HallUserData
+	HallAckUserData
 	HallRankItem
 	CoinZone
 	DiamondZone
@@ -45,6 +47,7 @@ It has these top-level messages:
 	HallAckGoodsList
 	HallReqNewRoomList
 	HallAckNewRoomList
+	HallNewRoom_List
 	UserCoinBean
 	RoomTypeInfo
 	EndLotteryInfo
@@ -59,10 +62,8 @@ It has these top-level messages:
 	Game_AckActHu
 	P16AckGameOpening
 	Game_SendCurrentResult
-	Game_AckActGang
 	P16AckRoomInit
 	P16BeanDeskInfo
-	P16AckGameDealCards
 	P16ReqCreateDesk
 	P16AckCreateDesk
 	P16ReqEnterDesk
@@ -75,26 +76,32 @@ It has these top-level messages:
 	P16ReqReady
 	P16AckReady
 	P16AckOpening
-	P16BBeanCanPeng
-	P16BBeanCanChi
-	P16BBeanCanGang
 	P16BcMoPai
-	P16Bc_Check
-	P16ReqChi
-	P16AckChi
 	P16AckGameOverturn
+	P16AckGameDealCards
+	GangOverTurn
+	BuGangOverTurn
 	ChiOverTurn
 	JiaoInfo
 	JiaoPaiInfo
-	Game_AckActGuo
-	Game_AckSendOutCard
+	P16AckGameSendOutCard
 	Game_SendEndLottery
 	P16ReqGameSendOutCard
+	P16ReqChi
+	P16AckChi
 	P16ReqGameActPeng
+	P16AckGameActPeng
 	P16ReqGameActGang
+	P16AckGameActGang
+	P16ReqGameActBugang
+	P16AckGameActBugang
 	P16ReqGameActGuo
+	P16AckGameActGuo
 	P16ReqGameActHu
-	Game_DissolveDesk
+	P16ReqGameTing
+	P16AckGameTing
+	P16AckGameDabao
+	P16AckGameChangbao
 	SdyBaseUserPaiIds
 	SdyBaseRoomTypeInfo
 	SdyBaseTimerInfo
