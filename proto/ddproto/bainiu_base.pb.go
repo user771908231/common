@@ -311,6 +311,8 @@ It has these top-level messages:
 	HallAckFriendLotteryList
 	HallReqFriendLotteryDraw
 	HallAckFriendLotteryDraw
+	HallReqDistanceMatched
+	HallAckDistanceMatched
 	HallItemEvent
 	HallMailItem
 	HallBagItem
