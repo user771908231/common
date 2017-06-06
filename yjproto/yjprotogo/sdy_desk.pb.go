@@ -37,6 +37,36 @@ var _ = math.Inf
 
 // Ignoring public import of common_enum_os_type from common_client.proto
 
+// Ignoring public import of sdy_base_userPaiIds from sdy_base.proto
+
+// Ignoring public import of sdy_base_roomTypeInfo from sdy_base.proto
+
+// Ignoring public import of sdy_base_timerInfo from sdy_base.proto
+
+// Ignoring public import of sdy_base_playerInfo from sdy_base.proto
+
+// Ignoring public import of sdy_base_commonRateInfo from sdy_base.proto
+
+// Ignoring public import of sdy_base_deskInfo from sdy_base.proto
+
+// Ignoring public import of sdy_enum_protoId from sdy_base.proto
+
+// Ignoring public import of sdy_enum_errorCode from sdy_base.proto
+
+// Ignoring public import of sdy_enum_actType from sdy_base.proto
+
+// Ignoring public import of sdy_enum_deskStatus from sdy_base.proto
+
+// Ignoring public import of sdy_enum_userStatus from sdy_base.proto
+
+// Ignoring public import of sdy_enum_enterType from sdy_base.proto
+
+// Ignoring public import of sdy_enum_Option from sdy_base.proto
+
+// Ignoring public import of sdy_enum_coinRoomLevel from sdy_base.proto
+
+// Ignoring public import of sdy_enum_flowers from sdy_base.proto
+
 // 准备游戏
 type SdyReqReady struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -47,7 +77,7 @@ type SdyReqReady struct {
 func (m *SdyReqReady) Reset()                    { *m = SdyReqReady{} }
 func (m *SdyReqReady) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqReady) ProtoMessage()               {}
-func (*SdyReqReady) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
+func (*SdyReqReady) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
 
 func (m *SdyReqReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -74,7 +104,7 @@ type SdyAckReady struct {
 func (m *SdyAckReady) Reset()                    { *m = SdyAckReady{} }
 func (m *SdyAckReady) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckReady) ProtoMessage()               {}
-func (*SdyAckReady) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
+func (*SdyAckReady) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
 
 func (m *SdyAckReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -101,13 +131,16 @@ func (m *SdyAckReady) GetUserId() uint32 {
 type SdyBaseWinCoinInfo struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	TotalScore       *int32       `protobuf:"varint,2,opt,name=totalScore" json:"totalScore,omitempty"`
+	RoundScore       *int32       `protobuf:"varint,3,opt,name=roundScore" json:"roundScore,omitempty"`
+	WinCoin          *int32       `protobuf:"varint,4,opt,name=winCoin" json:"winCoin,omitempty"`
+	RoundCoin        *int32       `protobuf:"varint,5,opt,name=roundCoin" json:"roundCoin,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *SdyBaseWinCoinInfo) Reset()                    { *m = SdyBaseWinCoinInfo{} }
 func (m *SdyBaseWinCoinInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseWinCoinInfo) ProtoMessage()               {}
-func (*SdyBaseWinCoinInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
+func (*SdyBaseWinCoinInfo) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
 
 func (m *SdyBaseWinCoinInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -123,41 +156,54 @@ func (m *SdyBaseWinCoinInfo) GetTotalScore() int32 {
 	return 0
 }
 
+func (m *SdyBaseWinCoinInfo) GetRoundScore() int32 {
+	if m != nil && m.RoundScore != nil {
+		return *m.RoundScore
+	}
+	return 0
+}
+
+func (m *SdyBaseWinCoinInfo) GetWinCoin() int32 {
+	if m != nil && m.WinCoin != nil {
+		return *m.WinCoin
+	}
+	return 0
+}
+
+func (m *SdyBaseWinCoinInfo) GetRoundCoin() int32 {
+	if m != nil && m.RoundCoin != nil {
+		return *m.RoundCoin
+	}
+	return 0
+}
+
 // 本局结果(广播)
 type SdyBcCurrentResult struct {
 	WinCoinInfo      []*SdyBaseWinCoinInfo `protobuf:"bytes,1,rep,name=winCoinInfo" json:"winCoinInfo,omitempty"`
-	BankerScore      *int32                `protobuf:"varint,2,opt,name=bankerScore" json:"bankerScore,omitempty"`
-	CurrentRound     *int32                `protobuf:"varint,3,opt,name=currentRound" json:"currentRound,omitempty"`
-	BoardsCout       *int32                `protobuf:"varint,4,opt,name=boardsCout" json:"boardsCout,omitempty"`
-	FootPokers       []int32               `protobuf:"varint,5,rep,name=footPokers" json:"footPokers,omitempty"`
+	CurrentRound     *int32                `protobuf:"varint,2,opt,name=currentRound" json:"currentRound,omitempty"`
+	BoardsCout       *int32                `protobuf:"varint,3,opt,name=boardsCout" json:"boardsCout,omitempty"`
+	FootPokers       []int32               `protobuf:"varint,4,rep,name=footPokers" json:"footPokers,omitempty"`
+	HuanDiPokers     []int32               `protobuf:"varint,5,rep,name=huanDiPokers" json:"huanDiPokers,omitempty"`
 	BaseValue        *int32                `protobuf:"varint,6,opt,name=baseValue" json:"baseValue,omitempty"`
-	WinCoin          *int32                `protobuf:"varint,7,opt,name=winCoin" json:"winCoin,omitempty"`
-	IsWangKou        *bool                 `protobuf:"varint,8,opt,name=isWangKou" json:"isWangKou,omitempty"`
-	IsPoPai          *bool                 `protobuf:"varint,9,opt,name=isPoPai" json:"isPoPai,omitempty"`
-	IsKouDi          *bool                 `protobuf:"varint,10,opt,name=isKouDi" json:"isKouDi,omitempty"`
-	IsGuang          *bool                 `protobuf:"varint,11,opt,name=isGuang" json:"isGuang,omitempty"`
-	IsShangChe       *bool                 `protobuf:"varint,12,opt,name=isShangChe" json:"isShangChe,omitempty"`
-	IsChengPai       *bool                 `protobuf:"varint,13,opt,name=isChengPai" json:"isChengPai,omitempty"`
+	IsWangKou        *bool                 `protobuf:"varint,7,opt,name=isWangKou" json:"isWangKou,omitempty"`
+	IsPoPai          *bool                 `protobuf:"varint,8,opt,name=isPoPai" json:"isPoPai,omitempty"`
+	IsKouDi          *bool                 `protobuf:"varint,9,opt,name=isKouDi" json:"isKouDi,omitempty"`
+	IsGuang          *bool                 `protobuf:"varint,10,opt,name=isGuang" json:"isGuang,omitempty"`
+	IsShangChe       *bool                 `protobuf:"varint,11,opt,name=isShangChe" json:"isShangChe,omitempty"`
+	IsChengPai       *bool                 `protobuf:"varint,12,opt,name=isChengPai" json:"isChengPai,omitempty"`
 	XXX_unrecognized []byte                `json:"-"`
 }
 
 func (m *SdyBcCurrentResult) Reset()                    { *m = SdyBcCurrentResult{} }
 func (m *SdyBcCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcCurrentResult) ProtoMessage()               {}
-func (*SdyBcCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
+func (*SdyBcCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
 
 func (m *SdyBcCurrentResult) GetWinCoinInfo() []*SdyBaseWinCoinInfo {
 	if m != nil {
 		return m.WinCoinInfo
 	}
 	return nil
-}
-
-func (m *SdyBcCurrentResult) GetBankerScore() int32 {
-	if m != nil && m.BankerScore != nil {
-		return *m.BankerScore
-	}
-	return 0
 }
 
 func (m *SdyBcCurrentResult) GetCurrentRound() int32 {
@@ -181,16 +227,16 @@ func (m *SdyBcCurrentResult) GetFootPokers() []int32 {
 	return nil
 }
 
+func (m *SdyBcCurrentResult) GetHuanDiPokers() []int32 {
+	if m != nil {
+		return m.HuanDiPokers
+	}
+	return nil
+}
+
 func (m *SdyBcCurrentResult) GetBaseValue() int32 {
 	if m != nil && m.BaseValue != nil {
 		return *m.BaseValue
-	}
-	return 0
-}
-
-func (m *SdyBcCurrentResult) GetWinCoin() int32 {
-	if m != nil && m.WinCoin != nil {
-		return *m.WinCoin
 	}
 	return 0
 }
@@ -239,22 +285,22 @@ func (m *SdyBcCurrentResult) GetIsChengPai() bool {
 
 type SdyBaseBill struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	NickName         *string      `protobuf:"bytes,2,opt,name=nickName" json:"nickName,omitempty"`
-	BigWin           *bool        `protobuf:"varint,4,opt,name=bigWin" json:"bigWin,omitempty"`
-	IsOwner          *bool        `protobuf:"varint,5,opt,name=isOwner" json:"isOwner,omitempty"`
-	WinCoin          *int32       `protobuf:"varint,6,opt,name=winCoin" json:"winCoin,omitempty"`
-	ChengPai         *int32       `protobuf:"varint,7,opt,name=chengPai" json:"chengPai,omitempty"`
-	PoPai            *int32       `protobuf:"varint,8,opt,name=poPai" json:"poPai,omitempty"`
-	KouDi            *int32       `protobuf:"varint,9,opt,name=kouDi" json:"kouDi,omitempty"`
-	GuangPai         *int32       `protobuf:"varint,10,opt,name=guangPai" json:"guangPai,omitempty"`
-	ShangChe         *int32       `protobuf:"varint,11,opt,name=shangChe" json:"shangChe,omitempty"`
+	WXInfo           *WeixinInfo  `protobuf:"bytes,2,opt,name=wXInfo" json:"wXInfo,omitempty"`
+	IsBigWin         *bool        `protobuf:"varint,3,opt,name=isBigWin" json:"isBigWin,omitempty"`
+	IsOwner          *bool        `protobuf:"varint,4,opt,name=isOwner" json:"isOwner,omitempty"`
+	WinCoin          *int32       `protobuf:"varint,5,opt,name=winCoin" json:"winCoin,omitempty"`
+	ChengPai         *int32       `protobuf:"varint,6,opt,name=chengPai" json:"chengPai,omitempty"`
+	PoPai            *int32       `protobuf:"varint,7,opt,name=poPai" json:"poPai,omitempty"`
+	KouDi            *int32       `protobuf:"varint,8,opt,name=kouDi" json:"kouDi,omitempty"`
+	GuangPai         *int32       `protobuf:"varint,9,opt,name=guangPai" json:"guangPai,omitempty"`
+	ShangChe         *int32       `protobuf:"varint,10,opt,name=shangChe" json:"shangChe,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *SdyBaseBill) Reset()                    { *m = SdyBaseBill{} }
 func (m *SdyBaseBill) String() string            { return proto.CompactTextString(m) }
 func (*SdyBaseBill) ProtoMessage()               {}
-func (*SdyBaseBill) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
+func (*SdyBaseBill) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{4} }
 
 func (m *SdyBaseBill) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -263,16 +309,16 @@ func (m *SdyBaseBill) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *SdyBaseBill) GetNickName() string {
-	if m != nil && m.NickName != nil {
-		return *m.NickName
+func (m *SdyBaseBill) GetWXInfo() *WeixinInfo {
+	if m != nil {
+		return m.WXInfo
 	}
-	return ""
+	return nil
 }
 
-func (m *SdyBaseBill) GetBigWin() bool {
-	if m != nil && m.BigWin != nil {
-		return *m.BigWin
+func (m *SdyBaseBill) GetIsBigWin() bool {
+	if m != nil && m.IsBigWin != nil {
+		return *m.IsBigWin
 	}
 	return false
 }
@@ -337,7 +383,7 @@ type SdyBcEndLotteryInfo struct {
 func (m *SdyBcEndLotteryInfo) Reset()                    { *m = SdyBcEndLotteryInfo{} }
 func (m *SdyBcEndLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcEndLotteryInfo) ProtoMessage()               {}
-func (*SdyBcEndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
+func (*SdyBcEndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{5} }
 
 func (m *SdyBcEndLotteryInfo) GetUserBills() []*SdyBaseBill {
 	if m != nil {
@@ -360,6 +406,306 @@ func (m *SdyBcEndLotteryInfo) GetBoardsCout() int32 {
 	return 0
 }
 
+// 出的牌,出牌的玩家id
+type SdyReUserOutPai struct {
+	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	PokerId          *int32  `protobuf:"varint,2,opt,name=pokerId" json:"pokerId,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *SdyReUserOutPai) Reset()                    { *m = SdyReUserOutPai{} }
+func (m *SdyReUserOutPai) String() string            { return proto.CompactTextString(m) }
+func (*SdyReUserOutPai) ProtoMessage()               {}
+func (*SdyReUserOutPai) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{6} }
+
+func (m *SdyReUserOutPai) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyReUserOutPai) GetPokerId() int32 {
+	if m != nil && m.PokerId != nil {
+		return *m.PokerId
+	}
+	return 0
+}
+
+// 准备阶段需要发的消息
+type SdyReReady struct {
+	HandPokersId     []int32 `protobuf:"varint,1,rep,name=handPokersId" json:"handPokersId,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *SdyReReady) Reset()                    { *m = SdyReReady{} }
+func (m *SdyReReady) String() string            { return proto.CompactTextString(m) }
+func (*SdyReReady) ProtoMessage()               {}
+func (*SdyReReady) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{7} }
+
+func (m *SdyReReady) GetHandPokersId() []int32 {
+	if m != nil {
+		return m.HandPokersId
+	}
+	return nil
+}
+
+type SdyReHuanDi struct {
+	DeskFootPokersId []int32 `protobuf:"varint,1,rep,name=deskFootPokersId" json:"deskFootPokersId,omitempty"`
+	HuanDiPokersId   []int32 `protobuf:"varint,2,rep,name=huanDiPokersId" json:"huanDiPokersId,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *SdyReHuanDi) Reset()                    { *m = SdyReHuanDi{} }
+func (m *SdyReHuanDi) String() string            { return proto.CompactTextString(m) }
+func (*SdyReHuanDi) ProtoMessage()               {}
+func (*SdyReHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{8} }
+
+func (m *SdyReHuanDi) GetDeskFootPokersId() []int32 {
+	if m != nil {
+		return m.DeskFootPokersId
+	}
+	return nil
+}
+
+func (m *SdyReHuanDi) GetHuanDiPokersId() []int32 {
+	if m != nil {
+		return m.HuanDiPokersId
+	}
+	return nil
+}
+
+type SdyRePlay struct {
+	OutPai           []*SdyReUserOutPai `protobuf:"bytes,1,rep,name=outPai" json:"outPai,omitempty"`
+	ScorePai         []int32            `protobuf:"varint,2,rep,name=scorePai" json:"scorePai,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
+}
+
+func (m *SdyRePlay) Reset()                    { *m = SdyRePlay{} }
+func (m *SdyRePlay) String() string            { return proto.CompactTextString(m) }
+func (*SdyRePlay) ProtoMessage()               {}
+func (*SdyRePlay) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{9} }
+
+func (m *SdyRePlay) GetOutPai() []*SdyReUserOutPai {
+	if m != nil {
+		return m.OutPai
+	}
+	return nil
+}
+
+func (m *SdyRePlay) GetScorePai() []int32 {
+	if m != nil {
+		return m.ScorePai
+	}
+	return nil
+}
+
+type SdyReJiaoFen struct {
+	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	JiaoScore        *int32  `protobuf:"varint,2,opt,name=jiaoScore" json:"jiaoScore,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *SdyReJiaoFen) Reset()                    { *m = SdyReJiaoFen{} }
+func (m *SdyReJiaoFen) String() string            { return proto.CompactTextString(m) }
+func (*SdyReJiaoFen) ProtoMessage()               {}
+func (*SdyReJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{10} }
+
+func (m *SdyReJiaoFen) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyReJiaoFen) GetJiaoScore() int32 {
+	if m != nil && m.JiaoScore != nil {
+		return *m.JiaoScore
+	}
+	return 0
+}
+
+type SdyReLenHandPokers struct {
+	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	PokersLength     *int32  `protobuf:"varint,2,opt,name=pokersLength" json:"pokersLength,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *SdyReLenHandPokers) Reset()                    { *m = SdyReLenHandPokers{} }
+func (m *SdyReLenHandPokers) String() string            { return proto.CompactTextString(m) }
+func (*SdyReLenHandPokers) ProtoMessage()               {}
+func (*SdyReLenHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{11} }
+
+func (m *SdyReLenHandPokers) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyReLenHandPokers) GetPokersLength() int32 {
+	if m != nil && m.PokersLength != nil {
+		return *m.PokersLength
+	}
+	return 0
+}
+
+// 用于断线重连回来后发送的消息
+type SdyBcReconnectInfo struct {
+	Header           *ProtoHeader          `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PlayerInfo       []*SdyBasePlayerInfo  `protobuf:"bytes,2,rep,name=playerInfo" json:"playerInfo,omitempty"`
+	DeskInfo         *SdyBaseDeskInfo      `protobuf:"bytes,3,opt,name=deskInfo" json:"deskInfo,omitempty"`
+	ReconnectUser    *uint32               `protobuf:"varint,4,opt,name=reconnectUser" json:"reconnectUser,omitempty"`
+	ZhuFlower        *int32                `protobuf:"varint,5,opt,name=zhuFlower" json:"zhuFlower,omitempty"`
+	ActiveUser       *uint32               `protobuf:"varint,6,opt,name=activeUser" json:"activeUser,omitempty"`
+	DeskStatus       *int32                `protobuf:"varint,7,opt,name=deskStatus" json:"deskStatus,omitempty"`
+	BankerFen        *int32                `protobuf:"varint,8,opt,name=bankerFen" json:"bankerFen,omitempty"`
+	Ready            *SdyReReady           `protobuf:"bytes,9,opt,name=ready" json:"ready,omitempty"`
+	HuanDi           *SdyReHuanDi          `protobuf:"bytes,10,opt,name=huanDi" json:"huanDi,omitempty"`
+	OutPai           *SdyRePlay            `protobuf:"bytes,11,opt,name=outPai" json:"outPai,omitempty"`
+	CurrentResult    *SdyBcCurrentResult   `protobuf:"bytes,12,opt,name=currentResult" json:"currentResult,omitempty"`
+	JiaoFen          []*SdyReJiaoFen       `protobuf:"bytes,13,rep,name=jiaoFen" json:"jiaoFen,omitempty"`
+	PaiLen           []*SdyReLenHandPokers `protobuf:"bytes,14,rep,name=paiLen" json:"paiLen,omitempty"`
+	XXX_unrecognized []byte                `json:"-"`
+}
+
+func (m *SdyBcReconnectInfo) Reset()                    { *m = SdyBcReconnectInfo{} }
+func (m *SdyBcReconnectInfo) String() string            { return proto.CompactTextString(m) }
+func (*SdyBcReconnectInfo) ProtoMessage()               {}
+func (*SdyBcReconnectInfo) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{12} }
+
+func (m *SdyBcReconnectInfo) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetPlayerInfo() []*SdyBasePlayerInfo {
+	if m != nil {
+		return m.PlayerInfo
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetDeskInfo() *SdyBaseDeskInfo {
+	if m != nil {
+		return m.DeskInfo
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetReconnectUser() uint32 {
+	if m != nil && m.ReconnectUser != nil {
+		return *m.ReconnectUser
+	}
+	return 0
+}
+
+func (m *SdyBcReconnectInfo) GetZhuFlower() int32 {
+	if m != nil && m.ZhuFlower != nil {
+		return *m.ZhuFlower
+	}
+	return 0
+}
+
+func (m *SdyBcReconnectInfo) GetActiveUser() uint32 {
+	if m != nil && m.ActiveUser != nil {
+		return *m.ActiveUser
+	}
+	return 0
+}
+
+func (m *SdyBcReconnectInfo) GetDeskStatus() int32 {
+	if m != nil && m.DeskStatus != nil {
+		return *m.DeskStatus
+	}
+	return 0
+}
+
+func (m *SdyBcReconnectInfo) GetBankerFen() int32 {
+	if m != nil && m.BankerFen != nil {
+		return *m.BankerFen
+	}
+	return 0
+}
+
+func (m *SdyBcReconnectInfo) GetReady() *SdyReReady {
+	if m != nil {
+		return m.Ready
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetHuanDi() *SdyReHuanDi {
+	if m != nil {
+		return m.HuanDi
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetOutPai() *SdyRePlay {
+	if m != nil {
+		return m.OutPai
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetCurrentResult() *SdyBcCurrentResult {
+	if m != nil {
+		return m.CurrentResult
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetJiaoFen() []*SdyReJiaoFen {
+	if m != nil {
+		return m.JiaoFen
+	}
+	return nil
+}
+
+func (m *SdyBcReconnectInfo) GetPaiLen() []*SdyReLenHandPokers {
+	if m != nil {
+		return m.PaiLen
+	}
+	return nil
+}
+
+// 用于玩家断线重连回来后广播给其他玩家，通知该玩家是否在线
+type SdyBcIsOnLine struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	IsOnline         *bool        `protobuf:"varint,3,opt,name=isOnline" json:"isOnline,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyBcIsOnLine) Reset()                    { *m = SdyBcIsOnLine{} }
+func (m *SdyBcIsOnLine) String() string            { return proto.CompactTextString(m) }
+func (*SdyBcIsOnLine) ProtoMessage()               {}
+func (*SdyBcIsOnLine) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{13} }
+
+func (m *SdyBcIsOnLine) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyBcIsOnLine) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyBcIsOnLine) GetIsOnline() bool {
+	if m != nil && m.IsOnline != nil {
+		return *m.IsOnline
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*SdyReqReady)(nil), "yjprotogo.sdy_req_ready")
 	proto.RegisterType((*SdyAckReady)(nil), "yjprotogo.sdy_ack_ready")
@@ -367,43 +713,78 @@ func init() {
 	proto.RegisterType((*SdyBcCurrentResult)(nil), "yjprotogo.sdy_bc_currentResult")
 	proto.RegisterType((*SdyBaseBill)(nil), "yjprotogo.sdy_base_bill")
 	proto.RegisterType((*SdyBcEndLotteryInfo)(nil), "yjprotogo.sdy_bc_endLotteryInfo")
+	proto.RegisterType((*SdyReUserOutPai)(nil), "yjprotogo.sdy_re_userOutPai")
+	proto.RegisterType((*SdyReReady)(nil), "yjprotogo.sdy_re_ready")
+	proto.RegisterType((*SdyReHuanDi)(nil), "yjprotogo.sdy_re_huanDi")
+	proto.RegisterType((*SdyRePlay)(nil), "yjprotogo.sdy_re_play")
+	proto.RegisterType((*SdyReJiaoFen)(nil), "yjprotogo.sdy_re_jiaoFen")
+	proto.RegisterType((*SdyReLenHandPokers)(nil), "yjprotogo.sdy_re_lenHandPokers")
+	proto.RegisterType((*SdyBcReconnectInfo)(nil), "yjprotogo.sdy_bc_reconnectInfo")
+	proto.RegisterType((*SdyBcIsOnLine)(nil), "yjprotogo.sdy_bc_isOnLine")
 }
 
-var fileDescriptor5 = []byte{
-	// 545 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x41, 0x6f, 0xd3, 0x30,
-	0x18, 0x25, 0x0d, 0xed, 0x12, 0x67, 0x45, 0x28, 0x8c, 0xc9, 0xaa, 0x10, 0x44, 0x39, 0xf5, 0xd4,
-	0xc3, 0x0e, 0xdc, 0x59, 0x91, 0xd8, 0x34, 0x04, 0x55, 0x26, 0xd1, 0x63, 0xe5, 0x26, 0x6e, 0x6a,
-	0x92, 0xda, 0xc3, 0x76, 0x34, 0xf5, 0x77, 0xf0, 0x23, 0xf8, 0x21, 0xfc, 0x31, 0xf4, 0xd9, 0x71,
-	0x93, 0xc2, 0x24, 0xb4, 0x9d, 0x96, 0xf7, 0x9e, 0xfd, 0x3d, 0x7f, 0x6f, 0xaf, 0xe8, 0x85, 0x2a,
-	0xf6, 0xab, 0x82, 0xaa, 0x6a, 0x76, 0x27, 0x85, 0x16, 0x71, 0xb8, 0xff, 0x6e, 0x3e, 0x4a, 0x31,
-	0x79, 0x95, 0x8b, 0xdd, 0x4e, 0xf0, 0x55, 0x5e, 0x33, 0xca, 0xb5, 0xd5, 0xd3, 0x25, 0x1a, 0xc3,
-	0x0d, 0x49, 0x7f, 0xac, 0x24, 0x25, 0xc5, 0x3e, 0x9e, 0xa1, 0xd1, 0x96, 0x92, 0x82, 0x4a, 0xec,
-	0x25, 0xde, 0x34, 0xba, 0x38, 0x9f, 0x1d, 0x26, 0xcc, 0x16, 0xf0, 0xf7, 0xca, 0xa8, 0x59, 0x7b,
-	0x2a, 0x3e, 0x47, 0xa3, 0x46, 0x51, 0x79, 0x5d, 0xe0, 0x41, 0xe2, 0x4d, 0xc7, 0x59, 0x8b, 0x52,
-	0x66, 0x07, 0x93, 0xbc, 0x7a, 0xe2, 0xe0, 0x97, 0xc8, 0xdf, 0xa9, 0xd2, 0x4c, 0x0d, 0x33, 0xf8,
-	0xec, 0x59, 0xf9, 0x47, 0x56, 0x1b, 0x74, 0x06, 0x56, 0x6b, 0xa2, 0xe8, 0xea, 0x9e, 0xf1, 0xb9,
-	0x60, 0xfc, 0x9a, 0x6f, 0xc4, 0xa3, 0x1d, 0xdf, 0x22, 0xa4, 0x85, 0x26, 0xf5, 0x6d, 0x2e, 0x24,
-	0x35, 0xc6, 0xc3, 0xac, 0xc7, 0xa4, 0xbf, 0xfd, 0xd6, 0x28, 0x5f, 0xe5, 0x8d, 0x94, 0x94, 0xeb,
-	0x8c, 0xaa, 0xa6, 0xd6, 0xf1, 0x07, 0x14, 0xf5, 0x7c, 0xb1, 0x97, 0xf8, 0xd3, 0xe8, 0xe2, 0x5d,
-	0xcf, 0xed, 0xa1, 0xe7, 0x65, 0xfd, 0x3b, 0x71, 0x82, 0xa2, 0x35, 0xe1, 0x15, 0x95, 0x7d, 0xf3,
-	0x3e, 0x15, 0xa7, 0xe8, 0xd4, 0xb9, 0x8a, 0x86, 0xdb, 0x0c, 0x86, 0xd9, 0x11, 0x07, 0x1b, 0xac,
-	0x05, 0x91, 0x85, 0x9a, 0x8b, 0x46, 0xe3, 0xe7, 0x76, 0x83, 0x8e, 0x01, 0x7d, 0x23, 0x84, 0x5e,
-	0x88, 0x8a, 0x4a, 0x85, 0x87, 0x89, 0x0f, 0x7a, 0xc7, 0xc4, 0x6f, 0x50, 0x08, 0xcf, 0xfc, 0x46,
-	0xea, 0x86, 0xe2, 0x91, 0xb9, 0xde, 0x11, 0x31, 0x46, 0x27, 0xed, 0x93, 0xf1, 0x89, 0xd1, 0x1c,
-	0x84, 0x7b, 0x4c, 0x2d, 0x09, 0x2f, 0x6f, 0x44, 0x83, 0x83, 0xc4, 0x9b, 0x06, 0x59, 0x47, 0xc0,
-	0x3d, 0xa6, 0x16, 0x62, 0x41, 0x18, 0x0e, 0x8d, 0xe6, 0xa0, 0x55, 0x6e, 0x44, 0xf3, 0x91, 0x61,
-	0xe4, 0x14, 0x03, 0xad, 0xf2, 0xa9, 0x21, 0xbc, 0xc4, 0x91, 0x53, 0x0c, 0x84, 0x1d, 0x98, 0xba,
-	0xdd, 0x12, 0x5e, 0xce, 0xb7, 0x14, 0x9f, 0x1a, 0xb1, 0xc7, 0x58, 0x7d, 0xbe, 0xa5, 0xbc, 0x04,
-	0xc3, 0xb1, 0xd3, 0x1d, 0x93, 0xfe, 0x1a, 0xd8, 0x66, 0x9a, 0xff, 0xc7, 0x9a, 0xd5, 0xf5, 0xa3,
-	0x7b, 0x32, 0x41, 0x01, 0x67, 0x79, 0xf5, 0x85, 0xec, 0x68, 0x5b, 0xcf, 0x03, 0x86, 0x8e, 0xae,
-	0x59, 0xb9, 0x64, 0xdc, 0xa4, 0x1f, 0x64, 0x2d, 0xb2, 0xfb, 0x7c, 0xbd, 0xe7, 0x54, 0xe2, 0xa1,
-	0xdb, 0xc7, 0xc0, 0x7e, 0xaa, 0xa3, 0xe3, 0x54, 0x27, 0x28, 0xc8, 0xdd, 0x1e, 0x36, 0xf0, 0x03,
-	0x8e, 0xcf, 0xd0, 0xf0, 0xce, 0x24, 0x1a, 0x18, 0xc1, 0x02, 0x60, 0x2b, 0x93, 0x66, 0x68, 0x59,
-	0x03, 0x60, 0x4e, 0x09, 0xd1, 0xc1, 0x71, 0x64, 0xe7, 0x38, 0x0c, 0x9a, 0x72, 0x59, 0x46, 0x56,
-	0x73, 0x38, 0xfd, 0xe9, 0xa1, 0xd7, 0x6d, 0xdf, 0x29, 0x2f, 0x3e, 0x0b, 0xad, 0xa9, 0xdc, 0x9b,
-	0xb6, 0xbe, 0x47, 0x21, 0xfc, 0xf6, 0x2e, 0x59, 0x5d, 0xab, 0xb6, 0xee, 0xf8, 0xa1, 0xba, 0x43,
-	0xbc, 0x59, 0x77, 0xf4, 0x9f, 0x0e, 0x0f, 0xfe, 0xdb, 0x61, 0xff, 0xef, 0x0e, 0x5f, 0x0e, 0xae,
-	0xfc, 0xc5, 0xb3, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x26, 0x46, 0x12, 0xe5, 0xe8, 0x04, 0x00,
-	0x00,
+var fileDescriptor6 = []byte{
+	// 978 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xe1, 0x6e, 0x1b, 0x45,
+	0x10, 0xc6, 0x71, 0xed, 0xd8, 0xe3, 0x38, 0x94, 0xa3, 0x2d, 0x47, 0x14, 0x95, 0xe8, 0x84, 0x50,
+	0x84, 0xd4, 0x08, 0x05, 0x04, 0xfc, 0x42, 0x22, 0x69, 0x4d, 0xa2, 0x46, 0x8a, 0xb5, 0x11, 0x84,
+	0x7f, 0xa7, 0xcd, 0x79, 0x6b, 0x6f, 0x7d, 0xd9, 0x35, 0xbb, 0x77, 0x04, 0xf3, 0x1a, 0xbc, 0x04,
+	0x12, 0xef, 0xd0, 0x67, 0x43, 0x33, 0xbb, 0x7b, 0x77, 0x8e, 0xdd, 0x1f, 0xad, 0xfa, 0x2b, 0x9e,
+	0xef, 0xfb, 0x76, 0xe6, 0x66, 0x76, 0x66, 0x36, 0xb0, 0x6b, 0x27, 0xcb, 0x74, 0x22, 0xec, 0xfc,
+	0x68, 0x61, 0x74, 0xa1, 0xa3, 0xfe, 0xf2, 0x35, 0xfd, 0x98, 0xea, 0xbd, 0x4f, 0x33, 0x7d, 0x7b,
+	0xab, 0x55, 0x9a, 0xe5, 0x52, 0xa8, 0xc2, 0xf1, 0x7b, 0xa4, 0xbf, 0xe1, 0x56, 0x38, 0x3b, 0xb9,
+	0x86, 0x21, 0x22, 0x46, 0xfc, 0x91, 0x1a, 0xc1, 0x27, 0xcb, 0xe8, 0x08, 0xba, 0x33, 0xc1, 0x27,
+	0xc2, 0xc4, 0xad, 0x83, 0xd6, 0xe1, 0xe0, 0xf8, 0xc9, 0x51, 0xe5, 0xf1, 0x68, 0x8c, 0x7f, 0xcf,
+	0x88, 0x65, 0x5e, 0x15, 0x3d, 0x81, 0x6e, 0x69, 0x85, 0x39, 0x9f, 0xc4, 0x5b, 0x07, 0xad, 0xc3,
+	0x21, 0xf3, 0x56, 0x22, 0x9d, 0x63, 0x9e, 0xcd, 0xdf, 0xd3, 0xf1, 0x43, 0x68, 0xdf, 0xda, 0x29,
+	0x79, 0xed, 0x33, 0xfc, 0xd9, 0x08, 0xd5, 0x5e, 0x09, 0xf5, 0xa6, 0x05, 0x8f, 0x42, 0x5a, 0xe9,
+	0x9d, 0x54, 0xa7, 0x5a, 0xaa, 0x73, 0xf5, 0x4a, 0xbf, 0x73, 0xc8, 0xa7, 0x00, 0x85, 0x2e, 0x78,
+	0x7e, 0x95, 0x69, 0x23, 0x28, 0x72, 0x87, 0x35, 0x10, 0xe4, 0x8d, 0x2e, 0xd5, 0xc4, 0xf1, 0x6d,
+	0xc7, 0xd7, 0x48, 0x14, 0xc3, 0xb6, 0x0f, 0x1f, 0x3f, 0x20, 0x32, 0x98, 0xd1, 0x3e, 0xf4, 0x49,
+	0x47, 0x5c, 0x87, 0xb8, 0x1a, 0x48, 0xfe, 0x6b, 0xfb, 0x04, 0xb2, 0x34, 0x2b, 0x8d, 0x11, 0xaa,
+	0x60, 0xc2, 0x96, 0x79, 0x11, 0xfd, 0x0c, 0x83, 0x46, 0x3e, 0x71, 0xeb, 0xa0, 0x7d, 0x38, 0x38,
+	0xfe, 0xa2, 0x91, 0xc5, 0xa6, 0xb4, 0x59, 0xf3, 0x4c, 0x94, 0xc0, 0x4e, 0xf0, 0x89, 0xf1, 0x7c,
+	0x56, 0x2b, 0x18, 0xe6, 0x75, 0xa3, 0xb9, 0x99, 0xd8, 0x53, 0x5d, 0x16, 0x21, 0xaf, 0x1a, 0x41,
+	0xfe, 0x95, 0xd6, 0xc5, 0x58, 0xcf, 0x85, 0xb1, 0xf1, 0x83, 0x83, 0x36, 0xf2, 0x35, 0x82, 0x31,
+	0x66, 0x25, 0x57, 0xcf, 0xa5, 0x57, 0x74, 0x48, 0xb1, 0x82, 0x61, 0x05, 0xf0, 0x43, 0x7f, 0xe3,
+	0x79, 0x29, 0xe2, 0xae, 0xab, 0x40, 0x05, 0x20, 0x2b, 0xed, 0x35, 0x57, 0xd3, 0x97, 0xba, 0x8c,
+	0xb7, 0x0f, 0x5a, 0x87, 0x3d, 0x56, 0x03, 0x58, 0x57, 0x69, 0xc7, 0x7a, 0xcc, 0x65, 0xdc, 0x23,
+	0x2e, 0x98, 0x8e, 0x79, 0xa9, 0xcb, 0xe7, 0x32, 0xee, 0x07, 0x86, 0x4c, 0xc7, 0xfc, 0x52, 0x72,
+	0x35, 0x8d, 0x21, 0x30, 0x64, 0x62, 0x36, 0xd2, 0x5e, 0xcd, 0xb8, 0x9a, 0x9e, 0xce, 0x44, 0x3c,
+	0x20, 0xb2, 0x81, 0x38, 0xfe, 0x74, 0x26, 0xd4, 0x14, 0x03, 0xee, 0x04, 0x3e, 0x20, 0xc9, 0x9b,
+	0x2d, 0xd7, 0xda, 0x54, 0xf7, 0x1b, 0x99, 0xe7, 0xef, 0xdc, 0x67, 0xcf, 0xa0, 0x7b, 0xf7, 0x3b,
+	0xdd, 0xe8, 0x16, 0xe9, 0x1f, 0x37, 0xf4, 0xd7, 0x42, 0xfe, 0xe5, 0xef, 0xd1, 0x8b, 0xa2, 0x3d,
+	0xe8, 0x49, 0x7b, 0x22, 0xa7, 0xd7, 0x52, 0xd1, 0xe5, 0xf4, 0x58, 0x65, 0xbb, 0x34, 0x2f, 0xef,
+	0x94, 0x30, 0xd4, 0x72, 0x94, 0x26, 0x99, 0xcd, 0x66, 0xec, 0xac, 0x36, 0xe3, 0x1e, 0xf4, 0xb2,
+	0x90, 0x9e, 0xbb, 0x89, 0xca, 0x8e, 0x1e, 0x41, 0x67, 0x41, 0x85, 0xde, 0x26, 0xc2, 0x19, 0x88,
+	0xce, 0xa9, 0xc8, 0x3d, 0x87, 0x92, 0x81, 0x7e, 0xa6, 0x58, 0x51, 0x94, 0xf7, 0x9d, 0x9f, 0x60,
+	0x23, 0x67, 0x43, 0x89, 0xc1, 0x71, 0xc1, 0x4e, 0xfe, 0x69, 0xc1, 0x63, 0xdf, 0xee, 0x42, 0x4d,
+	0x2e, 0x74, 0x51, 0x08, 0xb3, 0xa4, 0x4c, 0xbf, 0x87, 0x3e, 0xce, 0xf4, 0x89, 0xcc, 0x73, 0xeb,
+	0xbb, 0x3d, 0xde, 0xd4, 0xed, 0x58, 0x75, 0x56, 0x4b, 0x3f, 0x44, 0x93, 0x27, 0x2f, 0xe0, 0x13,
+	0xb7, 0x09, 0x53, 0xf4, 0x7b, 0x59, 0x16, 0x98, 0x46, 0xbd, 0x72, 0x5a, 0xcd, 0x95, 0x83, 0xc5,
+	0x5d, 0x60, 0x5f, 0x9f, 0x87, 0x58, 0xc1, 0x4c, 0x8e, 0x61, 0xc7, 0xbb, 0x71, 0x6b, 0x0f, 0x67,
+	0x83, 0xab, 0x89, 0x9b, 0x02, 0xf2, 0xe3, 0x66, 0xa3, 0x81, 0x25, 0x59, 0x58, 0xc2, 0xa9, 0x1b,
+	0x99, 0xe8, 0x6b, 0x78, 0x88, 0x3b, 0x7d, 0x54, 0x8d, 0x58, 0x75, 0x70, 0x0d, 0x8f, 0xbe, 0x82,
+	0xdd, 0xe6, 0xa0, 0xd1, 0x17, 0xa1, 0xf2, 0x1e, 0x9a, 0xa4, 0x30, 0xf0, 0x41, 0x16, 0x39, 0x5f,
+	0x46, 0xdf, 0x41, 0x57, 0x53, 0x8e, 0xbe, 0xce, 0xfb, 0xf7, 0xea, 0xbc, 0x52, 0x07, 0xe6, 0xb5,
+	0x74, 0xad, 0xb8, 0xea, 0xf0, 0x9c, 0x0b, 0x53, 0xd9, 0xc9, 0xc8, 0x3d, 0x46, 0x46, 0xa4, 0xaf,
+	0x25, 0xd7, 0x23, 0xa1, 0xde, 0x5a, 0xbd, 0x7d, 0xe8, 0xa3, 0xa4, 0xb9, 0x66, 0x6b, 0x20, 0x61,
+	0x6e, 0x19, 0x1a, 0x91, 0xe6, 0x42, 0x9d, 0x55, 0x75, 0x7a, 0xab, 0xb7, 0x04, 0x76, 0xa8, 0xf8,
+	0xf6, 0x42, 0xa8, 0x69, 0x31, 0x0b, 0x97, 0xdf, 0xc4, 0x92, 0x7f, 0x3b, 0xd5, 0x86, 0x35, 0x22,
+	0xd3, 0x4a, 0x89, 0xac, 0x78, 0xaf, 0x27, 0xe2, 0x27, 0x00, 0x2c, 0x9f, 0x30, 0x7e, 0x7c, 0xb1,
+	0x74, 0x4f, 0x37, 0xb5, 0x68, 0xad, 0x62, 0x8d, 0x13, 0xd1, 0x8f, 0xd0, 0xc3, 0x1b, 0xa4, 0xd3,
+	0x6d, 0x8a, 0xb8, 0xbf, 0xe9, 0x74, 0xd0, 0xb0, 0x4a, 0x1d, 0x7d, 0x09, 0xc3, 0xea, 0xd3, 0x7f,
+	0xb5, 0x7e, 0xde, 0x87, 0x6c, 0x15, 0xc4, 0xd2, 0xfe, 0x3d, 0x2b, 0x47, 0xb9, 0xbe, 0x13, 0x26,
+	0x3c, 0x34, 0x15, 0x80, 0x33, 0xc0, 0xb3, 0x42, 0xfe, 0x29, 0xc8, 0x41, 0x97, 0x1c, 0x34, 0x10,
+	0xe4, 0x31, 0xde, 0x55, 0xc1, 0x8b, 0xd2, 0xfa, 0x15, 0xd0, 0x40, 0xdc, 0x12, 0x57, 0x73, 0x61,
+	0x46, 0x42, 0xf9, 0x5d, 0x50, 0x03, 0xd1, 0x33, 0xe8, 0x50, 0xcf, 0xd3, 0x32, 0x18, 0x1c, 0x7f,
+	0xb6, 0xde, 0x51, 0x44, 0x33, 0xa7, 0x8a, 0xbe, 0x81, 0xae, 0x6b, 0x51, 0x5a, 0x10, 0xeb, 0x93,
+	0x5e, 0x8d, 0x03, 0xf3, 0x3a, 0xbc, 0x2c, 0xdf, 0xb3, 0x83, 0xb5, 0xcb, 0x6a, 0xf4, 0x76, 0xd5,
+	0xad, 0x2f, 0x60, 0xb8, 0xf2, 0x9e, 0xd2, 0x32, 0xdf, 0xf0, 0x80, 0xde, 0x7b, 0x76, 0xd9, 0xea,
+	0xa9, 0xe8, 0x5b, 0xd8, 0xf6, 0x1d, 0x1d, 0x0f, 0xe9, 0xc2, 0x3f, 0x5f, 0x8f, 0xeb, 0x05, 0x2c,
+	0x28, 0xa3, 0x1f, 0xa0, 0xbb, 0xe0, 0xf2, 0x42, 0xa8, 0x78, 0x77, 0xe3, 0xab, 0x7d, 0xbf, 0xbd,
+	0x99, 0x97, 0x27, 0x25, 0x7c, 0xec, 0x3f, 0x4a, 0xda, 0x4b, 0x75, 0x21, 0x95, 0xf8, 0x50, 0xff,
+	0x93, 0xb9, 0x87, 0xe4, 0x52, 0xe5, 0x52, 0x89, 0xfa, 0x21, 0x71, 0xf6, 0xc9, 0xd6, 0x59, 0x7b,
+	0xfc, 0xd1, 0xb8, 0xf5, 0x7f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x82, 0x78, 0x11, 0x1e, 0x51, 0x0a,
+	0x00, 0x00,
 }
