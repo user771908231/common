@@ -11,7 +11,14 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"
+	"sync"
 )
+
+func init() {
+	//初始化缓存相关
+	PlayBackStack = map[int32][]*ddproto.PlaybackSnapshot{}
+	PlayBackNumbers = []int32{}
+}
 
 type MjRecordBean struct {
 	UserId    uint32
@@ -143,4 +150,47 @@ func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	} else {
 		return nil
 	}
+}
+
+//==================================回放缓存==================================
+//回放缓存-全局变量
+var PlayBackStack map[int32][]*ddproto.PlaybackSnapshot
+//缓存编号列表
+var PlayBackNumbers []int32
+//为缓存写上锁-保证线程安全
+var playBackWLock sync.Mutex
+
+//从内存缓存中取出-回放数据
+func GetMjPlayBackFromMemory(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	//如果缓存中存在则直接从缓存中取数据
+	if data,ok := PlayBackStack[gamenumber]; ok {
+		log.T("从内存读取mj数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
+		return data
+	}
+
+	//如果不存在则向缓存中写入一条
+	data := GetMjPlayBack(gamenumber)
+	if data == nil {
+		return nil
+	}
+
+	PlayBackStack[gamenumber] = data
+
+	//为写上锁，保证线程安全
+	playBackWLock.Lock()
+	defer playBackWLock.Unlock()
+
+	PlayBackNumbers = append(PlayBackNumbers, gamenumber)
+
+	//如果缓存条数超过100条则删除队列最前的一条
+	cache_len := len(PlayBackNumbers)
+	if cache_len > 50 {
+		old_number := PlayBackNumbers[0]
+		delete(PlayBackStack, old_number)
+		PlayBackNumbers = PlayBackNumbers[1:]
+		log.T("mj回放缓存队列已满，删除一条最前面的数据gamenumber:%d", old_number)
+	}
+
+	log.T("从数据库读取mj数据：gamenumber:%d 当前缓存条数：%d", gamenumber, cache_len)
+	return data
 }
