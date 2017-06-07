@@ -12,7 +12,7 @@ import (
 //获取分类下的商品列表
 func GetGoodsListByCategory(category model.CateEnum) []*model.T_Goods_Row {
 	row := []*model.T_Goods_Row{}
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GOODS_INFO).Find(bson.M{
 			"category": category,
 			"isshow":   true,
@@ -44,7 +44,7 @@ func GetGoodsListMsg(category model.CateEnum) []*ddproto.HallGoodsItemMsg {
 //获取单个商品的信息
 func GetGoodsInfo(goods_id int32) *model.T_Goods_Row {
 	row := &model.T_Goods_Row{}
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		err := d.C(tableName.DBT_T_GOODS_INFO).Find(bson.M{
 			"goodsid": goods_id,
 		}).One(row)

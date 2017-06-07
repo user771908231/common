@@ -10,7 +10,7 @@ import (
 
 func FindUserByKV(key string, v interface{}) *ddproto.User {
 	tuser := new(ddproto.User)
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER).Find(bson.M{key: v}).One(tuser)
 	})
 	if tuser.GetId() > 0 {
@@ -23,7 +23,7 @@ func FindUserByKV(key string, v interface{}) *ddproto.User {
 //找到对应的所有user
 func FindUsersByKV(key string, v interface{}) []*ddproto.User {
 	var tuser []*ddproto.User
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER).Find(bson.M{key: v}).All(&tuser)
 	})
 	return tuser
@@ -46,9 +46,9 @@ func FindUserByUnionId(unionid string) *ddproto.User {
 
 //
 func SaveUser2Mgo(user *ddproto.User) error {
-	return db.InsertMgoData(tableName.DBT_T_USER, user)
+	return db.InsertMgoData("", tableName.DBT_T_USER, user)
 }
 
 func UpdateUser2Mgo(user *ddproto.User) error {
-	return db.UpdateMgoDataU32(tableName.DBT_T_USER, user)
+	return db.UpdateMgoDataU32("", tableName.DBT_T_USER, user)
 }

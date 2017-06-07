@@ -35,7 +35,7 @@ type Task struct {
 //获得用户状态
 func (task *Task) GetState(userId uint32) *TaskState {
 	userState := new(TaskState)
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		err := d.C(tableName.DBT_T_USER_TASK).Find(bson.M{
 			"userid": userId,
 			"taskid": task.TaskId,
@@ -54,7 +54,7 @@ func (task *Task) GetState(userId uint32) *TaskState {
 
 //设置状态
 func (task *Task) SetUserState(userId uint32, state *TaskState) {
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER_TASK).Upsert(
 			bson.M{
 				"userid": userId,

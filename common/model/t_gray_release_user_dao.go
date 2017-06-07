@@ -17,7 +17,7 @@ var GrayUsers []T_gray_release_user
 //得到所有白名单的玩家
 func GetGrayReleaseUsers() []T_gray_release_user {
 	var users []T_gray_release_user
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GRAY_RELEASE_USER).Find(bson.M{"status": 1}).All(&users)
 	})
 	GrayUsers = users

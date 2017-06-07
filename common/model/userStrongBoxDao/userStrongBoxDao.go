@@ -10,7 +10,7 @@ import (
 
 func FindUserStrongBoxByKV(key string, v interface{}) *model.T_user_strongBox {
 	tuser := &model.T_user_strongBox{}
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER_STRONGBOX).Find(bson.M{key: v}).One(tuser)
 	})
 	if tuser.UserId <= 0 {
@@ -25,11 +25,11 @@ func FindUserStrongBoxByUserId(userId uint32) *model.T_user_strongBox {
 
 //插入一条数据
 func InsertUserStrongBox(t *model.T_user_strongBox) {
-	db.InsertMgoData(tableName.DBT_T_USER_STRONGBOX, t)
+	db.InsertMgoData("", tableName.DBT_T_USER_STRONGBOX, t)
 }
 
 func UpdateUserStrongBoxByModel(t *model.T_user_strongBox) {
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_USER_STRONGBOX).Update(bson.M{
 			"userid": t.UserId,
 		}, t)

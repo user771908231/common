@@ -92,7 +92,7 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 	detail.Memo = memo
 
 	//3,保存数据
-	err = db.InsertMgoData(tableName.DBT_T_USER_DIAMOND_DETAILS, detail)
+	err = db.InsertMgoData("", tableName.DBT_T_USER_DIAMOND_DETAILS, detail)
 	if err != nil {
 		log.E("保存用户交易记录的时候失败 error【%v】", err.Error())
 		return Error.NewError(0, "创建交易记录失败")

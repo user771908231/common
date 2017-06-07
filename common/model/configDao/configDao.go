@@ -10,7 +10,7 @@ import (
 
 func GetConfigSys() *ddproto.TConfigSys {
 	cfg := new(ddproto.TConfigSys)
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_T_CONFIG_SYS).Find(bson.M{"id": 1}).One(cfg)
 	})
 
@@ -25,9 +25,9 @@ func UpsertConfigSys(data *ddproto.TConfigSys) error {
 	//判断数据库中是否已经存在
 	od := GetConfigSys()
 	if od == nil {
-		db.InsertMgoData(tableName.DBT_T_CONFIG_SYS, data)
+		db.InsertMgoData("", tableName.DBT_T_CONFIG_SYS, data)
 	} else {
-		db.UpdateMgoData(tableName.DBT_T_CONFIG_SYS, data)
+		db.UpdateMgoData("", tableName.DBT_T_CONFIG_SYS, data)
 	}
 	return nil
 }

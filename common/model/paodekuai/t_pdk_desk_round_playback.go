@@ -25,7 +25,7 @@ type T_pdk_desk_round_playback struct {
 
 func GetPdkPlayBack(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 	ret := &T_pdk_desk_round_playback{}
-	db.Query(func(d *mgo.Database) {
+	db.Query("", func(d *mgo.Database) {
 		d.C(tableName.DBT_PDK_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}).One(ret)
 	})
 	if ret.DeskId > 0 {

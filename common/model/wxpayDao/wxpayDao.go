@@ -22,10 +22,10 @@ func UpsertDetail(d *ddproto.PayBaseDetails) error {
 func insertDetail(d *ddproto.PayBaseDetails) error {
 	id, _ := db.GetNextSeq(tableName.DBT_T_PAYBASEDETAILS)
 	d.Id = proto.Int32(id)
-	return db.InsertMgoData(tableName.DBT_T_PAYBASEDETAILS, d)
+	return db.InsertMgoData("", tableName.DBT_T_PAYBASEDETAILS, d)
 }
 
 //更新订单状态
 func updateDetail(d *ddproto.PayBaseDetails) error {
-	return db.UpdateMgoData(tableName.DBT_T_PAYBASEDETAILS, d)
+	return db.UpdateMgoData("", tableName.DBT_T_PAYBASEDETAILS, d)
 }

@@ -19,7 +19,7 @@ type T_statistics_roomcard struct {
 }
 
 func (t T_statistics_roomcard) Insert() {
-	db.InsertMgoData(tableName.DBT_STATISTICS_ROOMCARD, &t)
+	db.InsertMgoData("", tableName.DBT_STATISTICS_ROOMCARD, &t)
 	//2，增加统计的数据
 	T_statistics_roomcard_day_details{
 		Time:          timeUtils.FormatYYYYMMDD(t.Time),
@@ -36,7 +36,7 @@ type T_statistics_roomcard_day_details struct {
 }
 
 func (t T_statistics_roomcard_day_details) UpSert() {
-	db.Query(func(db *mgo.Database) {
+	db.Query("", func(db *mgo.Database) {
 		db.C(tableName.DBT_STATISTICS_ROOMCARD_DAY_DETAILS).Upsert(
 			bson.M{"time": t.Time, "gid": t.Gid},
 			bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }})
