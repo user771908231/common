@@ -9,7 +9,6 @@ It is generated from these files:
 	common_client.proto
 	common_enum.proto
 	common_server.proto
-	hall.proto
 	hall_base.proto
 	hall_common_server_award.proto
 	hall_common_server_model.proto
@@ -35,67 +34,15 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
-	HallReqEvent
-	HallAckEvent
-	HallLotteryItem
-	HallSignLotteryInfo
-	HallDrawLotteryInfo
-	HallReqMailList
-	HallAckMailList
-	HallReqTask
-	HallAckTask
-	HallReqCheckTask
-	HallAckCheckTask
-	HallReqTaskSum
-	HallAckTaskSum
-	HallReqCheckBonus
-	HallAckCheckBonus
-	HallReqBagItems
-	HallAckBagItems
-	HallReqUpdateRealData
-	HallAckUpdateRealData
-	HallReqGoodsList
-	HallAckGoodsList
-	HallReqGoodsBuy
-	HallAckGoodsBuy
-	HallGoodsItemMsg
-	HallReqRank
-	HallAckRank
-	HallReqDrawLottery
-	HallAckDrawLottery
-	HallReqDsLotteryInfo
-	HallAckDsLotteryInfo
-	HallReqFriendsList
-	HallAckFriendsList
-	HallReqRecommendUserList
-	HallAckRecommendUserList
-	HallReqFriendsSearch
-	HallAckFriendsSearch
-	HallReqAddFriend
-	HallAckAddFriend
-	HallReqDelFriend
-	HallAckDelFriend
-	HallFriendState
-	HallUserInfo
-	HallAckStrongboxInfo
-	HallReqStrongboxInfo
-	HallReqStrongboxAccess
-	HallAckStrongboxAccess
-	Game_GameRecord
-	BeanUserRecord
-	BeanGameRecord
-	Game_AckGameRecord
-	HallBeanBisai
-	HallReqBisai
-	HallReqFriendLotteryList
-	HallAckFriendLotteryList
-	HallReqFriendLotteryDraw
-	HallAckFriendLotteryDraw
-	HallReqDistanceMatched
-	HallAckDistanceMatched
+	HallReqServer
+	HallAckServer
+	HallReqFeedBack
+	HallAckFeedBack
+	HallReqNotice
+	HallAckNotice
+	HallNotice
 	HallItemEvent
 	HallMailItem
-	HallBagItem
 	HallItemTask
 	HallReqUserData
 	HallAckUserData
@@ -107,9 +54,28 @@ It has these top-level messages:
 	BuyZone
 	GoodsItem
 	HallStrongboxInfo
+	HallAckStrongboxInfo
+	HallReqStrongboxInfo
+	HallReqStrongboxAccess
+	HallAckStrongboxAccess
 	CommonReqGameLogin
 	CommonReqGameLoginViaInput
 	CommonAckGameLogin
+	HallReqDrawLottery
+	HallAckDrawLottery
+	HallReqDsLotteryInfo
+	HallAckDsLotteryInfo
+	HallReqBagItems
+	HallAckBagItems
+	HallReqGoodsList
+	HallAckGoodsList
+	HallReqGoodsBuy
+	HallAckGoodsBuy
+	HallGoodsItemMsg
+	HallBagItem
+	HallSignLotteryInfo
+	HallDrawLotteryInfo
+	HallLotteryItem
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List

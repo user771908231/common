@@ -106,7 +106,7 @@ func (x *SdyEnumJScore) UnmarshalJSON(data []byte) error {
 	*x = SdyEnumJScore(value)
 	return nil
 }
-func (SdyEnumJScore) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (SdyEnumJScore) EnumDescriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
 
 // 开局（接收服务端消息）
 type SdyBcOpening struct {
@@ -122,7 +122,7 @@ type SdyBcOpening struct {
 func (m *SdyBcOpening) Reset()                    { *m = SdyBcOpening{} }
 func (m *SdyBcOpening) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcOpening) ProtoMessage()               {}
-func (*SdyBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*SdyBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
 
 func (m *SdyBcOpening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -176,7 +176,7 @@ type SdyDealCards struct {
 func (m *SdyDealCards) Reset()                    { *m = SdyDealCards{} }
 func (m *SdyDealCards) String() string            { return proto.CompactTextString(m) }
 func (*SdyDealCards) ProtoMessage()               {}
-func (*SdyDealCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (*SdyDealCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{1} }
 
 func (m *SdyDealCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -201,7 +201,7 @@ type SdyBcPlayerPokers struct {
 func (m *SdyBcPlayerPokers) Reset()                    { *m = SdyBcPlayerPokers{} }
 func (m *SdyBcPlayerPokers) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcPlayerPokers) ProtoMessage()               {}
-func (*SdyBcPlayerPokers) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (*SdyBcPlayerPokers) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{2} }
 
 func (m *SdyBcPlayerPokers) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -228,7 +228,7 @@ type SdyBcJiaoFen struct {
 func (m *SdyBcJiaoFen) Reset()                    { *m = SdyBcJiaoFen{} }
 func (m *SdyBcJiaoFen) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcJiaoFen) ProtoMessage()               {}
-func (*SdyBcJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
+func (*SdyBcJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{3} }
 
 func (m *SdyBcJiaoFen) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -262,7 +262,7 @@ type SdyReqJiaoFen struct {
 func (m *SdyReqJiaoFen) Reset()                    { *m = SdyReqJiaoFen{} }
 func (m *SdyReqJiaoFen) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqJiaoFen) ProtoMessage()               {}
-func (*SdyReqJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
+func (*SdyReqJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{4} }
 
 func (m *SdyReqJiaoFen) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -295,7 +295,7 @@ type SdyAckJiaoFen struct {
 func (m *SdyAckJiaoFen) Reset()                    { *m = SdyAckJiaoFen{} }
 func (m *SdyAckJiaoFen) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckJiaoFen) ProtoMessage()               {}
-func (*SdyAckJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
+func (*SdyAckJiaoFen) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{5} }
 
 func (m *SdyAckJiaoFen) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -322,7 +322,7 @@ type SdyBcJiaoFenResult struct {
 func (m *SdyBcJiaoFenResult) Reset()                    { *m = SdyBcJiaoFenResult{} }
 func (m *SdyBcJiaoFenResult) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcJiaoFenResult) ProtoMessage()               {}
-func (*SdyBcJiaoFenResult) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
+func (*SdyBcJiaoFenResult) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{6} }
 
 func (m *SdyBcJiaoFenResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -355,7 +355,7 @@ type SdyBcStartPlay struct {
 func (m *SdyBcStartPlay) Reset()                    { *m = SdyBcStartPlay{} }
 func (m *SdyBcStartPlay) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcStartPlay) ProtoMessage()               {}
-func (*SdyBcStartPlay) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{7} }
+func (*SdyBcStartPlay) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{7} }
 
 func (m *SdyBcStartPlay) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -381,7 +381,7 @@ type SdyReqOutCards struct {
 func (m *SdyReqOutCards) Reset()                    { *m = SdyReqOutCards{} }
 func (m *SdyReqOutCards) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqOutCards) ProtoMessage()               {}
-func (*SdyReqOutCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{8} }
+func (*SdyReqOutCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{8} }
 
 func (m *SdyReqOutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -408,7 +408,7 @@ type SdyAckOutCards struct {
 func (m *SdyAckOutCards) Reset()                    { *m = SdyAckOutCards{} }
 func (m *SdyAckOutCards) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckOutCards) ProtoMessage()               {}
-func (*SdyAckOutCards) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{9} }
+func (*SdyAckOutCards) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{9} }
 
 func (m *SdyAckOutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -451,7 +451,7 @@ type SdyBcOverTurn struct {
 func (m *SdyBcOverTurn) Reset()                    { *m = SdyBcOverTurn{} }
 func (m *SdyBcOverTurn) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcOverTurn) ProtoMessage()               {}
-func (*SdyBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{10} }
+func (*SdyBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{10} }
 
 func (m *SdyBcOverTurn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -498,7 +498,7 @@ type SdyBcWhatPai struct {
 func (m *SdyBcWhatPai) Reset()                    { *m = SdyBcWhatPai{} }
 func (m *SdyBcWhatPai) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcWhatPai) ProtoMessage()               {}
-func (*SdyBcWhatPai) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{11} }
+func (*SdyBcWhatPai) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{11} }
 
 func (m *SdyBcWhatPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -527,7 +527,7 @@ type SdyBcScorePai struct {
 func (m *SdyBcScorePai) Reset()                    { *m = SdyBcScorePai{} }
 func (m *SdyBcScorePai) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcScorePai) ProtoMessage()               {}
-func (*SdyBcScorePai) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{12} }
+func (*SdyBcScorePai) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{12} }
 
 func (m *SdyBcScorePai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -577,7 +577,7 @@ type SdyBcGameInfo struct {
 func (m *SdyBcGameInfo) Reset()                    { *m = SdyBcGameInfo{} }
 func (m *SdyBcGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcGameInfo) ProtoMessage()               {}
-func (*SdyBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{13} }
+func (*SdyBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{13} }
 
 func (m *SdyBcGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -625,7 +625,7 @@ type SdyBcDingZhu struct {
 func (m *SdyBcDingZhu) Reset()                    { *m = SdyBcDingZhu{} }
 func (m *SdyBcDingZhu) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcDingZhu) ProtoMessage()               {}
-func (*SdyBcDingZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{14} }
+func (*SdyBcDingZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{14} }
 
 func (m *SdyBcDingZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -659,7 +659,7 @@ type SdyReqDingZhu struct {
 func (m *SdyReqDingZhu) Reset()                    { *m = SdyReqDingZhu{} }
 func (m *SdyReqDingZhu) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqDingZhu) ProtoMessage()               {}
-func (*SdyReqDingZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{15} }
+func (*SdyReqDingZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{15} }
 
 func (m *SdyReqDingZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -691,7 +691,7 @@ type SdyBcDingZhuResult struct {
 func (m *SdyBcDingZhuResult) Reset()                    { *m = SdyBcDingZhuResult{} }
 func (m *SdyBcDingZhuResult) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcDingZhuResult) ProtoMessage()               {}
-func (*SdyBcDingZhuResult) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{16} }
+func (*SdyBcDingZhuResult) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{16} }
 
 func (m *SdyBcDingZhuResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -717,7 +717,7 @@ type SdyAckDingZhu struct {
 func (m *SdyAckDingZhu) Reset()                    { *m = SdyAckDingZhu{} }
 func (m *SdyAckDingZhu) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckDingZhu) ProtoMessage()               {}
-func (*SdyAckDingZhu) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{17} }
+func (*SdyAckDingZhu) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{17} }
 
 func (m *SdyAckDingZhu) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -743,7 +743,7 @@ type SdyBcHuanDi struct {
 func (m *SdyBcHuanDi) Reset()                    { *m = SdyBcHuanDi{} }
 func (m *SdyBcHuanDi) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcHuanDi) ProtoMessage()               {}
-func (*SdyBcHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{18} }
+func (*SdyBcHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{18} }
 
 func (m *SdyBcHuanDi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -769,7 +769,7 @@ type SdyReqHuanDi struct {
 func (m *SdyReqHuanDi) Reset()                    { *m = SdyReqHuanDi{} }
 func (m *SdyReqHuanDi) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqHuanDi) ProtoMessage()               {}
-func (*SdyReqHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{19} }
+func (*SdyReqHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{19} }
 
 func (m *SdyReqHuanDi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -803,7 +803,7 @@ type SdyAckHuanDi struct {
 func (m *SdyAckHuanDi) Reset()                    { *m = SdyAckHuanDi{} }
 func (m *SdyAckHuanDi) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckHuanDi) ProtoMessage()               {}
-func (*SdyAckHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{20} }
+func (*SdyAckHuanDi) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{20} }
 
 func (m *SdyAckHuanDi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -858,7 +858,7 @@ func init() {
 	proto.RegisterEnum("yjprotogo.SdyEnumJScore", SdyEnumJScore_name, SdyEnumJScore_value)
 }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor12 = []byte{
 	// 841 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x56, 0x4f, 0x6b, 0xe3, 0x46,
 	0x14, 0xaf, 0x2c, 0x2b, 0x55, 0x9e, 0xed, 0x8d, 0x3b, 0x59, 0x82, 0x30, 0x4b, 0x30, 0x43, 0x0f,
