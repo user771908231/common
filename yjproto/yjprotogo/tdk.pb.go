@@ -53,7 +53,7 @@ type TdkHeartBeat struct {
 func (m *TdkHeartBeat) Reset()                    { *m = TdkHeartBeat{} }
 func (m *TdkHeartBeat) String() string            { return proto.CompactTextString(m) }
 func (*TdkHeartBeat) ProtoMessage()               {}
-func (*TdkHeartBeat) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*TdkHeartBeat) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
 
 func (m *TdkHeartBeat) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -72,7 +72,7 @@ type TdkJoinRoom struct {
 func (m *TdkJoinRoom) Reset()                    { *m = TdkJoinRoom{} }
 func (m *TdkJoinRoom) String() string            { return proto.CompactTextString(m) }
 func (*TdkJoinRoom) ProtoMessage()               {}
-func (*TdkJoinRoom) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
+func (*TdkJoinRoom) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
 
 func (m *TdkJoinRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -104,7 +104,7 @@ type TdkJoinRoomRsp struct {
 func (m *TdkJoinRoomRsp) Reset()                    { *m = TdkJoinRoomRsp{} }
 func (m *TdkJoinRoomRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkJoinRoomRsp) ProtoMessage()               {}
-func (*TdkJoinRoomRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
+func (*TdkJoinRoomRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
 
 func (m *TdkJoinRoomRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -129,7 +129,7 @@ type TdkLeaveRoom struct {
 func (m *TdkLeaveRoom) Reset()                    { *m = TdkLeaveRoom{} }
 func (m *TdkLeaveRoom) String() string            { return proto.CompactTextString(m) }
 func (*TdkLeaveRoom) ProtoMessage()               {}
-func (*TdkLeaveRoom) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{3} }
+func (*TdkLeaveRoom) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
 
 func (m *TdkLeaveRoom) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -154,7 +154,7 @@ type TdkLeaveRoomRsp struct {
 func (m *TdkLeaveRoomRsp) Reset()                    { *m = TdkLeaveRoomRsp{} }
 func (m *TdkLeaveRoomRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkLeaveRoomRsp) ProtoMessage()               {}
-func (*TdkLeaveRoomRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{4} }
+func (*TdkLeaveRoomRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
 
 func (m *TdkLeaveRoomRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -180,7 +180,7 @@ type TdkJoinDesk struct {
 func (m *TdkJoinDesk) Reset()                    { *m = TdkJoinDesk{} }
 func (m *TdkJoinDesk) String() string            { return proto.CompactTextString(m) }
 func (*TdkJoinDesk) ProtoMessage()               {}
-func (*TdkJoinDesk) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{5} }
+func (*TdkJoinDesk) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
 
 func (m *TdkJoinDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -216,7 +216,7 @@ type TdkJoinDeskRsp struct {
 func (m *TdkJoinDeskRsp) Reset()                    { *m = TdkJoinDeskRsp{} }
 func (m *TdkJoinDeskRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkJoinDeskRsp) ProtoMessage()               {}
-func (*TdkJoinDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{6} }
+func (*TdkJoinDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
 
 func (m *TdkJoinDeskRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -273,7 +273,7 @@ type TdkCreateDesk struct {
 func (m *TdkCreateDesk) Reset()                    { *m = TdkCreateDesk{} }
 func (m *TdkCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*TdkCreateDesk) ProtoMessage()               {}
-func (*TdkCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{7} }
+func (*TdkCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{7} }
 
 func (m *TdkCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -326,7 +326,7 @@ type TdkCreateDeskRsp struct {
 func (m *TdkCreateDeskRsp) Reset()                    { *m = TdkCreateDeskRsp{} }
 func (m *TdkCreateDeskRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkCreateDeskRsp) ProtoMessage()               {}
-func (*TdkCreateDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{8} }
+func (*TdkCreateDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{8} }
 
 func (m *TdkCreateDeskRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -351,7 +351,7 @@ type TdkLeaveDesk struct {
 func (m *TdkLeaveDesk) Reset()                    { *m = TdkLeaveDesk{} }
 func (m *TdkLeaveDesk) String() string            { return proto.CompactTextString(m) }
 func (*TdkLeaveDesk) ProtoMessage()               {}
-func (*TdkLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{9} }
+func (*TdkLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{9} }
 
 func (m *TdkLeaveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -378,7 +378,7 @@ type TdkLeaveDeskRsp struct {
 func (m *TdkLeaveDeskRsp) Reset()                    { *m = TdkLeaveDeskRsp{} }
 func (m *TdkLeaveDeskRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkLeaveDeskRsp) ProtoMessage()               {}
-func (*TdkLeaveDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{10} }
+func (*TdkLeaveDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{10} }
 
 func (m *TdkLeaveDeskRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -417,7 +417,7 @@ type TdkUserReady struct {
 func (m *TdkUserReady) Reset()                    { *m = TdkUserReady{} }
 func (m *TdkUserReady) String() string            { return proto.CompactTextString(m) }
 func (*TdkUserReady) ProtoMessage()               {}
-func (*TdkUserReady) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{11} }
+func (*TdkUserReady) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{11} }
 
 func (m *TdkUserReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -445,7 +445,7 @@ type TdkUserReadyRsp struct {
 func (m *TdkUserReadyRsp) Reset()                    { *m = TdkUserReadyRsp{} }
 func (m *TdkUserReadyRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkUserReadyRsp) ProtoMessage()               {}
-func (*TdkUserReadyRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{12} }
+func (*TdkUserReadyRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{12} }
 
 func (m *TdkUserReadyRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -506,7 +506,7 @@ type TdkReturnDesk struct {
 func (m *TdkReturnDesk) Reset()                    { *m = TdkReturnDesk{} }
 func (m *TdkReturnDesk) String() string            { return proto.CompactTextString(m) }
 func (*TdkReturnDesk) ProtoMessage()               {}
-func (*TdkReturnDesk) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{13} }
+func (*TdkReturnDesk) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{13} }
 
 func (m *TdkReturnDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -637,7 +637,7 @@ type TdkDissolveDeskReq struct {
 func (m *TdkDissolveDeskReq) Reset()                    { *m = TdkDissolveDeskReq{} }
 func (m *TdkDissolveDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*TdkDissolveDeskReq) ProtoMessage()               {}
-func (*TdkDissolveDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{14} }
+func (*TdkDissolveDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{14} }
 
 func (m *TdkDissolveDeskReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -666,7 +666,7 @@ type TdkDissolveDeskUser struct {
 func (m *TdkDissolveDeskUser) Reset()                    { *m = TdkDissolveDeskUser{} }
 func (m *TdkDissolveDeskUser) String() string            { return proto.CompactTextString(m) }
 func (*TdkDissolveDeskUser) ProtoMessage()               {}
-func (*TdkDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{15} }
+func (*TdkDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{15} }
 
 func (m *TdkDissolveDeskUser) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -714,7 +714,7 @@ type TdkDisDeskDesicionReq struct {
 func (m *TdkDisDeskDesicionReq) Reset()                    { *m = TdkDisDeskDesicionReq{} }
 func (m *TdkDisDeskDesicionReq) String() string            { return proto.CompactTextString(m) }
 func (*TdkDisDeskDesicionReq) ProtoMessage()               {}
-func (*TdkDisDeskDesicionReq) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{16} }
+func (*TdkDisDeskDesicionReq) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{16} }
 
 func (m *TdkDisDeskDesicionReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -749,7 +749,7 @@ type TdkDisDeskDesicionRsp struct {
 func (m *TdkDisDeskDesicionRsp) Reset()                    { *m = TdkDisDeskDesicionRsp{} }
 func (m *TdkDisDeskDesicionRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkDisDeskDesicionRsp) ProtoMessage()               {}
-func (*TdkDisDeskDesicionRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{17} }
+func (*TdkDisDeskDesicionRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{17} }
 
 func (m *TdkDisDeskDesicionRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -790,7 +790,7 @@ type TdkDisDeskReqResult struct {
 func (m *TdkDisDeskReqResult) Reset()                    { *m = TdkDisDeskReqResult{} }
 func (m *TdkDisDeskReqResult) String() string            { return proto.CompactTextString(m) }
 func (*TdkDisDeskReqResult) ProtoMessage()               {}
-func (*TdkDisDeskReqResult) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{18} }
+func (*TdkDisDeskReqResult) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{18} }
 
 func (m *TdkDisDeskReqResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -823,7 +823,7 @@ type TdkDisDesk struct {
 func (m *TdkDisDesk) Reset()                    { *m = TdkDisDesk{} }
 func (m *TdkDisDesk) String() string            { return proto.CompactTextString(m) }
 func (*TdkDisDesk) ProtoMessage()               {}
-func (*TdkDisDesk) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{19} }
+func (*TdkDisDesk) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{19} }
 
 func (m *TdkDisDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -853,7 +853,7 @@ type TdkSendPoker struct {
 func (m *TdkSendPoker) Reset()                    { *m = TdkSendPoker{} }
 func (m *TdkSendPoker) String() string            { return proto.CompactTextString(m) }
 func (*TdkSendPoker) ProtoMessage()               {}
-func (*TdkSendPoker) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{20} }
+func (*TdkSendPoker) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{20} }
 
 func (m *TdkSendPoker) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -909,7 +909,7 @@ type TdkStartBet struct {
 func (m *TdkStartBet) Reset()                    { *m = TdkStartBet{} }
 func (m *TdkStartBet) String() string            { return proto.CompactTextString(m) }
 func (*TdkStartBet) ProtoMessage()               {}
-func (*TdkStartBet) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{21} }
+func (*TdkStartBet) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{21} }
 
 func (m *TdkStartBet) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -951,7 +951,7 @@ type TdkBet struct {
 func (m *TdkBet) Reset()                    { *m = TdkBet{} }
 func (m *TdkBet) String() string            { return proto.CompactTextString(m) }
 func (*TdkBet) ProtoMessage()               {}
-func (*TdkBet) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{22} }
+func (*TdkBet) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{22} }
 
 func (m *TdkBet) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -996,7 +996,7 @@ type TdkBetRsp struct {
 func (m *TdkBetRsp) Reset()                    { *m = TdkBetRsp{} }
 func (m *TdkBetRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkBetRsp) ProtoMessage()               {}
-func (*TdkBetRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{23} }
+func (*TdkBetRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{23} }
 
 func (m *TdkBetRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1064,7 +1064,7 @@ type TdkFold struct {
 func (m *TdkFold) Reset()                    { *m = TdkFold{} }
 func (m *TdkFold) String() string            { return proto.CompactTextString(m) }
 func (*TdkFold) ProtoMessage()               {}
-func (*TdkFold) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{24} }
+func (*TdkFold) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{24} }
 
 func (m *TdkFold) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1094,7 +1094,7 @@ type TdkFoldRsp struct {
 func (m *TdkFoldRsp) Reset()                    { *m = TdkFoldRsp{} }
 func (m *TdkFoldRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkFoldRsp) ProtoMessage()               {}
-func (*TdkFoldRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{25} }
+func (*TdkFoldRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{25} }
 
 func (m *TdkFoldRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1157,7 +1157,7 @@ type TdkQiJiao struct {
 func (m *TdkQiJiao) Reset()                    { *m = TdkQiJiao{} }
 func (m *TdkQiJiao) String() string            { return proto.CompactTextString(m) }
 func (*TdkQiJiao) ProtoMessage()               {}
-func (*TdkQiJiao) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{26} }
+func (*TdkQiJiao) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{26} }
 
 func (m *TdkQiJiao) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1202,7 +1202,7 @@ type TdkQiJiaoRsp struct {
 func (m *TdkQiJiaoRsp) Reset()                    { *m = TdkQiJiaoRsp{} }
 func (m *TdkQiJiaoRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkQiJiaoRsp) ProtoMessage()               {}
-func (*TdkQiJiaoRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{27} }
+func (*TdkQiJiaoRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{27} }
 
 func (m *TdkQiJiaoRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1272,7 +1272,7 @@ type TdkFanTi struct {
 func (m *TdkFanTi) Reset()                    { *m = TdkFanTi{} }
 func (m *TdkFanTi) String() string            { return proto.CompactTextString(m) }
 func (*TdkFanTi) ProtoMessage()               {}
-func (*TdkFanTi) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{28} }
+func (*TdkFanTi) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{28} }
 
 func (m *TdkFanTi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1317,7 +1317,7 @@ type TdkFanTiRsp struct {
 func (m *TdkFanTiRsp) Reset()                    { *m = TdkFanTiRsp{} }
 func (m *TdkFanTiRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkFanTiRsp) ProtoMessage()               {}
-func (*TdkFanTiRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{29} }
+func (*TdkFanTiRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{29} }
 
 func (m *TdkFanTiRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1385,7 +1385,7 @@ type TdkPass struct {
 func (m *TdkPass) Reset()                    { *m = TdkPass{} }
 func (m *TdkPass) String() string            { return proto.CompactTextString(m) }
 func (*TdkPass) ProtoMessage()               {}
-func (*TdkPass) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{30} }
+func (*TdkPass) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{30} }
 
 func (m *TdkPass) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1414,7 +1414,7 @@ type TdkPassRsp struct {
 func (m *TdkPassRsp) Reset()                    { *m = TdkPassRsp{} }
 func (m *TdkPassRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkPassRsp) ProtoMessage()               {}
-func (*TdkPassRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{31} }
+func (*TdkPassRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{31} }
 
 func (m *TdkPassRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1468,7 +1468,7 @@ type TdkKaiPai struct {
 func (m *TdkKaiPai) Reset()                    { *m = TdkKaiPai{} }
 func (m *TdkKaiPai) String() string            { return proto.CompactTextString(m) }
 func (*TdkKaiPai) ProtoMessage()               {}
-func (*TdkKaiPai) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{32} }
+func (*TdkKaiPai) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{32} }
 
 func (m *TdkKaiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1496,7 +1496,7 @@ type TdkKaiPaiRsp struct {
 func (m *TdkKaiPaiRsp) Reset()                    { *m = TdkKaiPaiRsp{} }
 func (m *TdkKaiPaiRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkKaiPaiRsp) ProtoMessage()               {}
-func (*TdkKaiPaiRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{33} }
+func (*TdkKaiPaiRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{33} }
 
 func (m *TdkKaiPaiRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1546,7 +1546,7 @@ type TdkRoundEnd struct {
 func (m *TdkRoundEnd) Reset()                    { *m = TdkRoundEnd{} }
 func (m *TdkRoundEnd) String() string            { return proto.CompactTextString(m) }
 func (*TdkRoundEnd) ProtoMessage()               {}
-func (*TdkRoundEnd) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{34} }
+func (*TdkRoundEnd) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{34} }
 
 func (m *TdkRoundEnd) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1593,7 +1593,7 @@ type TdkZhanJi struct {
 func (m *TdkZhanJi) Reset()                    { *m = TdkZhanJi{} }
 func (m *TdkZhanJi) String() string            { return proto.CompactTextString(m) }
 func (*TdkZhanJi) ProtoMessage()               {}
-func (*TdkZhanJi) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{35} }
+func (*TdkZhanJi) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{35} }
 
 func (m *TdkZhanJi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1618,7 +1618,7 @@ type TdkZhanJiRsp struct {
 func (m *TdkZhanJiRsp) Reset()                    { *m = TdkZhanJiRsp{} }
 func (m *TdkZhanJiRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkZhanJiRsp) ProtoMessage()               {}
-func (*TdkZhanJiRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{36} }
+func (*TdkZhanJiRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{36} }
 
 func (m *TdkZhanJiRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1644,7 +1644,7 @@ type TdkMatchReq struct {
 func (m *TdkMatchReq) Reset()                    { *m = TdkMatchReq{} }
 func (m *TdkMatchReq) String() string            { return proto.CompactTextString(m) }
 func (*TdkMatchReq) ProtoMessage()               {}
-func (*TdkMatchReq) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{37} }
+func (*TdkMatchReq) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{37} }
 
 func (m *TdkMatchReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1670,7 +1670,7 @@ type TdkMatchRsp struct {
 func (m *TdkMatchRsp) Reset()                    { *m = TdkMatchRsp{} }
 func (m *TdkMatchRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkMatchRsp) ProtoMessage()               {}
-func (*TdkMatchRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{38} }
+func (*TdkMatchRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{38} }
 
 func (m *TdkMatchRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1703,7 +1703,7 @@ type TdkMatchAddUserRsp struct {
 func (m *TdkMatchAddUserRsp) Reset()                    { *m = TdkMatchAddUserRsp{} }
 func (m *TdkMatchAddUserRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkMatchAddUserRsp) ProtoMessage()               {}
-func (*TdkMatchAddUserRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{39} }
+func (*TdkMatchAddUserRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{39} }
 
 func (m *TdkMatchAddUserRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1736,7 +1736,7 @@ type TdkJoinPlayingDeskRsp struct {
 func (m *TdkJoinPlayingDeskRsp) Reset()                    { *m = TdkJoinPlayingDeskRsp{} }
 func (m *TdkJoinPlayingDeskRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkJoinPlayingDeskRsp) ProtoMessage()               {}
-func (*TdkJoinPlayingDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{40} }
+func (*TdkJoinPlayingDeskRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{40} }
 
 func (m *TdkJoinPlayingDeskRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1817,7 +1817,7 @@ type TdkEnterGame struct {
 func (m *TdkEnterGame) Reset()                    { *m = TdkEnterGame{} }
 func (m *TdkEnterGame) String() string            { return proto.CompactTextString(m) }
 func (*TdkEnterGame) ProtoMessage()               {}
-func (*TdkEnterGame) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{41} }
+func (*TdkEnterGame) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{41} }
 
 func (m *TdkEnterGame) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1843,7 +1843,7 @@ type TdkEnterGameRsp struct {
 func (m *TdkEnterGameRsp) Reset()                    { *m = TdkEnterGameRsp{} }
 func (m *TdkEnterGameRsp) String() string            { return proto.CompactTextString(m) }
 func (*TdkEnterGameRsp) ProtoMessage()               {}
-func (*TdkEnterGameRsp) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{42} }
+func (*TdkEnterGameRsp) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{42} }
 
 func (m *TdkEnterGameRsp) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1912,7 +1912,7 @@ func init() {
 	proto.RegisterType((*TdkEnterGameRsp)(nil), "yjprotogo.TdkEnterGameRsp")
 }
 
-var fileDescriptor14 = []byte{
+var fileDescriptor13 = []byte{
 	// 1288 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x58, 0x4f, 0x6f, 0x1b, 0x45,
 	0x14, 0x67, 0xbd, 0xfe, 0x3b, 0x8e, 0xd3, 0xb0, 0x85, 0x68, 0x09, 0xa8, 0xb2, 0xe6, 0x94, 0x03,
