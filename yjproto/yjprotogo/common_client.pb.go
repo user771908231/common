@@ -11,6 +11,7 @@ It is generated from these files:
 	common_server.proto
 	hall.proto
 	hall_base.proto
+	hall_common_server_award.proto
 	hall_common_server_model.proto
 	hall_playback.proto
 	mj_changchun_base.proto
@@ -112,6 +113,8 @@ It has these top-level messages:
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	Taward
+	AwardMOnline
 	User
 	TNotice
 	TGameCounts
