@@ -37,6 +37,12 @@ var _ = math.Inf
 
 // Ignoring public import of hall_strongbox_info from hall_base.proto
 
+// Ignoring public import of common_req_gameLogin from hall_base.proto
+
+// Ignoring public import of common_req_gameLogin_via_input from hall_base.proto
+
+// Ignoring public import of common_ack_gameLogin from hall_base.proto
+
 // Ignoring public import of hall_req_new_room_list from hall_base.proto
 
 // Ignoring public import of hall_ack_new_room_list from hall_base.proto
