@@ -15,6 +15,6 @@ func (t T_ip_address) Insert() {
 	//保存数据
 	go func(d *T_ip_address) {
 		Error.ErrorRecovery("保存ip地址表")
-		db.InsertMgoData("", tableName.DBT_IP_ADDRESS, d)
+		db.InsertMgoData(tableName.DBT_IP_ADDRESS, d)
 	}(&t)
 }

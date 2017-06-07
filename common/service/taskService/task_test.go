@@ -165,7 +165,7 @@ func TestInsertTaskInfo(t *testing.T) {
 	}
 	for _,task := range list {
 		var err error = nil
-		db.Query("", func(d *mgo.Database) {
+		db.Query(func(d *mgo.Database) {
 			err = d.C(tableName.DBT_T_TASK_INFO).Insert(task)
 		})
 		t.Log(err)

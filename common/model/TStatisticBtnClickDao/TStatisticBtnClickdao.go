@@ -10,5 +10,5 @@ import (
 //
 func SaveStatisticBtnClick(click *model.T_statistic_btn_click) error {
 	Error.ErrorRecovery("保存点击事件")
-	return db.InsertMgoData("", tableName.DBT_STATISTIC_BTN_CLICK, click)
+	return db.InsertMgoData(tableName.DBT_STATISTIC_BTN_CLICK, click)
 }

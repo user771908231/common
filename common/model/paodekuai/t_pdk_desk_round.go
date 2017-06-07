@@ -59,7 +59,7 @@ func (b PdkRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 func GetPdkDeskRoundByUserId(userId uint32) []T_pdk_desk_round {
 	var deskRecords []T_pdk_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_PDK_DESK_ROUND_ALL).
 			Find(bson.M{"userids": bson.RegEx{querKey, "."}}).
 			Sort("-deskid").
@@ -79,7 +79,7 @@ func GetPdkDeskRoundByUserId(userId uint32) []T_pdk_desk_round {
 func GetPdkDeskRoundByDeskId(userId uint32, deskId int32) []T_pdk_desk_round {
 	var deskRecords []T_pdk_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_PDK_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
 			"deskid":  deskId,

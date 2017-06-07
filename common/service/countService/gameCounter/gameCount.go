@@ -104,13 +104,13 @@ func GetAllCounter(userId uint32) *T_game_count {
 		UserId:userId,
 	}
 	var err error = nil
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		err = d.C(tableName.DBT_T_GAME_COUNT).Find(bson.M{
 			"userid": userId,
 		}).One(newCounter)
 	})
 	if err != nil {
-		db.Query("", func(d *mgo.Database) {
+		db.Query(func(d *mgo.Database) {
 			d.C(tableName.DBT_T_GAME_COUNT).Insert(newCounter)
 		})
 	}
@@ -127,14 +127,14 @@ func GetDayCounter(userId uint32) *T_game_count {
 			UserId:userId,
 		},
 	}
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		err = d.C(tableName.DBT_T_GAME_DAY_COUNT).Find(bson.M{
 			"t_game_count.userid": userId,
 			"day": dayStr,
 		}).One(newCounter)
 	})
 	if err != nil {
-		db.Query("", func(d *mgo.Database) {
+		db.Query(func(d *mgo.Database) {
 			d.C(tableName.DBT_T_GAME_DAY_COUNT).Insert(newCounter)
 		})
 	}
@@ -145,7 +145,7 @@ func GetDayCounter(userId uint32) *T_game_count {
 func Add(userId uint32,countType countType.CountType, num int) {
 	GetAllCounter(userId)
 	GetDayCounter(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GAME_COUNT).Update(bson.M{
 			"userid": userId,
 		},bson.M{
@@ -168,7 +168,7 @@ func GetUserCounterByType(userId uint32, countType countType.CountType) *Counter
 		DayCount:0,
 	}
 	var num map[string]int32
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GAME_COUNT).Find(bson.M{
 			"userid": userId,
 		}).Select(bson.M{
@@ -196,7 +196,7 @@ func GetUserCounterByType(userId uint32, countType countType.CountType) *Counter
 
 //保存
 func (t *T_game_count)Save() {
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GAME_COUNT).Upsert(bson.M{
 			"userid": t.UserId,
 		},t)
@@ -205,7 +205,7 @@ func (t *T_game_count)Save() {
 
 //保存
 func (t *T_game_day_count)Save() {
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_GAME_DAY_COUNT).Upsert(bson.M{
 			"userid": t.UserId,
 			"day": time.Now().Format("2006-01-02"),

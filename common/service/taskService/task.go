@@ -97,7 +97,7 @@ func RegistTask(task taskType.Task) {
 func GetTaskInfo(task_id int32) *taskType.TaskInfo {
 	task_info := new(taskType.TaskInfo)
 	var err error = nil
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		err = d.C(tableName.DBT_T_TASK_INFO).Find(bson.M{
 			"taskid": task_id,
 		}).One(task_info)
@@ -111,7 +111,7 @@ func GetTaskInfo(task_id int32) *taskType.TaskInfo {
 //从数据库获取所有的任务信息
 func GetTaskInfoList() []*taskType.TaskInfo {
 	task_info := []*taskType.TaskInfo{}
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_TASK_INFO).Find(bson.M{}).All(&task_info)
 	})
 	return task_info
@@ -164,7 +164,7 @@ func GetUserTaskList(userId uint32) []*taskType.UserTask {
 //获取活动列表
 func GetActiveList() []*ddproto.HallItemEvent {
 	list := []*ddproto.HallItemEvent{}
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_T_ACTIVE_LIST).Find(bson.M{}).All(&list)
 	})
 	return list

@@ -59,7 +59,7 @@ func (b DdzRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 func GetDdzDeskRoundByUserId(userId uint32) []T_ddz_desk_round {
 	var deskRecords []T_ddz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_DDZ_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
@@ -75,7 +75,7 @@ func GetDdzDeskRoundByUserId(userId uint32) []T_ddz_desk_round {
 func GetDdzDeskRoundByDeskId(userId uint32, deskId int32) []T_ddz_desk_round {
 	var deskRecords []T_ddz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_DDZ_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
 			"deskid":  deskId,

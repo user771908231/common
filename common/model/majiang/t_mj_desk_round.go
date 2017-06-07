@@ -69,7 +69,7 @@ func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_DESK_ROUND_ALL).Find(bson.M{
 			"userids":    bson.RegEx{querKey, "."},
 			"friendplay": true}).Sort("-deskid").Limit(20).All(&deskRecords)
@@ -87,7 +87,7 @@ func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
 			"userids":    bson.RegEx{querKey, "."},
 			"friendplay": true,
@@ -107,7 +107,7 @@ func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 func GetBSMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_BS_DESK_ROUND_ALL).Find(bson.M{
 			"userids":    bson.RegEx{querKey, "."},
 			"friendplay": true}).Sort("-deskid").Limit(20).All(&deskRecords)
@@ -125,7 +125,7 @@ func GetBSMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 func GetBSMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_BS_DESK_ROUND).Find(bson.M{
 			"userids":    bson.RegEx{querKey, "."},
 			"friendplay": true,
@@ -142,7 +142,7 @@ func GetBSMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 
 func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{"gamenumber": gamenumber}).One(ret)
 	})
 	if ret.DeskId > 0 {

@@ -60,7 +60,7 @@ func (t T_pinerzhang_desk_round) Insert() {
 	//插入到数据库
 	go func(d *T_pinerzhang_desk_round) {
 		Error.ErrorRecovery("插入拼二张的战绩")
-		db.InsertMgoData("", tableName.DBT_PEZ_DESK_ROUND, d)
+		db.InsertMgoData(tableName.DBT_PEZ_DESK_ROUND, d)
 	}(&t)
 }
 
@@ -68,7 +68,7 @@ func (t T_pinerzhang_desk_round) Insert() {
 func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_PEZ_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
 	})
 
@@ -84,7 +84,7 @@ func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query("", func(d *mgo.Database) {
+	db.Query(func(d *mgo.Database) {
 		d.C(tableName.DBT_PEZ_DESK_ROUND).Find(bson.M{
 			"userids": bson.RegEx{querKey, "."},
 			"deskid":  deskId,
