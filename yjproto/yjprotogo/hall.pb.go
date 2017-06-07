@@ -362,7 +362,7 @@ func (m *HallAckMailList) GetList() []*HallMailItem {
 // 任务
 type HallReqTask struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
+	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,json=taskType,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
 	XXX_unrecognized []byte            `json:"-"`
 }
 
@@ -456,7 +456,7 @@ func (m *HallAckCheckTask) GetHeader() *ProtoHeader {
 // 已完成，但未领取奖励的任务数
 type HallReqTaskSum struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	TaskType         *HallEnumTaskType `protobuf:"varint,3,opt,name=task_type,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
+	TaskType         *HallEnumTaskType `protobuf:"varint,3,opt,name=task_type,json=taskType,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
 	XXX_unrecognized []byte            `json:"-"`
 }
 
@@ -481,9 +481,9 @@ func (m *HallReqTaskSum) GetTaskType() HallEnumTaskType {
 
 type HallAckTaskSum struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	TaskSum          *int32       `protobuf:"varint,2,opt,name=task_sum" json:"task_sum,omitempty"`
-	BonusSum         *int32       `protobuf:"varint,3,opt,name=bonus_sum" json:"bonus_sum,omitempty"`
-	BonusNext        *int32       `protobuf:"varint,4,opt,name=bonus_next" json:"bonus_next,omitempty"`
+	TaskSum          *int32       `protobuf:"varint,2,opt,name=task_sum,json=taskSum" json:"task_sum,omitempty"`
+	BonusSum         *int32       `protobuf:"varint,3,opt,name=bonus_sum,json=bonusSum" json:"bonus_sum,omitempty"`
+	BonusNext        *int32       `protobuf:"varint,4,opt,name=bonus_next,json=bonusNext" json:"bonus_next,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -523,7 +523,7 @@ func (m *HallAckTaskSum) GetBonusNext() int32 {
 // 领取红包任务奖励
 type HallReqCheckBonus struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
+	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,json=taskType,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
 	XXX_unrecognized []byte            `json:"-"`
 }
 
@@ -548,7 +548,7 @@ func (m *HallReqCheckBonus) GetTaskType() HallEnumTaskType {
 
 type HallAckCheckBonus struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GiveBonus        *float64     `protobuf:"fixed64,2,opt,name=give_bonus" json:"give_bonus,omitempty"`
+	GiveBonus        *float64     `protobuf:"fixed64,2,opt,name=give_bonus,json=giveBonus" json:"give_bonus,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -685,7 +685,7 @@ func (m *HallAckUpdateRealData) GetHeader() *ProtoHeader {
 // 商品列表Req
 type HallReqGoodsList struct {
 	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsType        *HallEnumGoodsType `protobuf:"varint,2,opt,name=goods_type,enum=yjprotogo.HallEnumGoodsType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumGoodsType `protobuf:"varint,2,opt,name=goods_type,json=goodsType,enum=yjprotogo.HallEnumGoodsType" json:"goods_type,omitempty"`
 	ChannelId        *string            `protobuf:"bytes,3,opt,name=channelId" json:"channelId,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
@@ -719,7 +719,7 @@ func (m *HallReqGoodsList) GetChannelId() string {
 // 商品列表Ack
 type HallAckGoodsList struct {
 	Header           *ProtoHeader        `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsType        *HallEnumGoodsType  `protobuf:"varint,2,opt,name=goods_type,enum=yjprotogo.HallEnumGoodsType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumGoodsType  `protobuf:"varint,2,opt,name=goods_type,json=goodsType,enum=yjprotogo.HallEnumGoodsType" json:"goods_type,omitempty"`
 	Items            []*HallGoodsItemMsg `protobuf:"bytes,3,rep,name=items" json:"items,omitempty"`
 	XXX_unrecognized []byte              `json:"-"`
 }
@@ -753,8 +753,8 @@ func (m *HallAckGoodsList) GetItems() []*HallGoodsItemMsg {
 // 购买商品REQ
 type HallReqGoodsBuy struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsId          *int32       `protobuf:"varint,2,opt,name=goods_id" json:"goods_id,omitempty"`
-	GoodsNum         *int32       `protobuf:"varint,3,opt,name=goods_num" json:"goods_num,omitempty"`
+	GoodsId          *int32       `protobuf:"varint,2,opt,name=goods_id,json=goodsId" json:"goods_id,omitempty"`
+	GoodsNum         *int32       `protobuf:"varint,3,opt,name=goods_num,json=goodsNum" json:"goods_num,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -787,7 +787,7 @@ func (m *HallReqGoodsBuy) GetGoodsNum() int32 {
 // 购买商品ACK
 type HallAckGoodsBuy struct {
 	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	GoodsType        *HallEnumTradeType `protobuf:"varint,2,opt,name=goods_type,enum=yjprotogo.HallEnumTradeType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumTradeType `protobuf:"varint,2,opt,name=goods_type,json=goodsType,enum=yjprotogo.HallEnumTradeType" json:"goods_type,omitempty"`
 	Amount           *int32             `protobuf:"varint,3,opt,name=amount" json:"amount,omitempty"`
 	XXX_unrecognized []byte             `json:"-"`
 }
@@ -820,11 +820,11 @@ func (m *HallAckGoodsBuy) GetAmount() int32 {
 
 // 单个商品信息
 type HallGoodsItemMsg struct {
-	GoodsId          *int32             `protobuf:"varint,1,opt,name=goods_id" json:"goods_id,omitempty"`
+	GoodsId          *int32             `protobuf:"varint,1,opt,name=goods_id,json=goodsId" json:"goods_id,omitempty"`
 	Name             *string            `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	PriceType        *HallEnumTradeType `protobuf:"varint,3,opt,name=price_type,enum=yjprotogo.HallEnumTradeType" json:"price_type,omitempty"`
+	PriceType        *HallEnumTradeType `protobuf:"varint,3,opt,name=price_type,json=priceType,enum=yjprotogo.HallEnumTradeType" json:"price_type,omitempty"`
 	Price            *float64           `protobuf:"fixed64,4,opt,name=price" json:"price,omitempty"`
-	GoodsType        *HallEnumTradeType `protobuf:"varint,5,opt,name=goods_type,enum=yjprotogo.HallEnumTradeType" json:"goods_type,omitempty"`
+	GoodsType        *HallEnumTradeType `protobuf:"varint,5,opt,name=goods_type,json=goodsType,enum=yjprotogo.HallEnumTradeType" json:"goods_type,omitempty"`
 	Amount           *float64           `protobuf:"fixed64,6,opt,name=amount" json:"amount,omitempty"`
 	Discount         *string            `protobuf:"bytes,7,opt,name=discount" json:"discount,omitempty"`
 	Image            *string            `protobuf:"bytes,8,opt,name=image" json:"image,omitempty"`
@@ -1170,7 +1170,7 @@ func (m *HallAckFriendsSearch) GetUsers() []*HallFriendState {
 // 添加好友
 type HallReqAddFriend struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	AddUserid        []uint32     `protobuf:"varint,2,rep,name=add_userid" json:"add_userid,omitempty"`
+	AddUserid        []uint32     `protobuf:"varint,2,rep,name=add_userid,json=addUserid" json:"add_userid,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -1213,7 +1213,7 @@ func (m *HallAckAddFriend) GetHeader() *ProtoHeader {
 // 删除好友
 type HallReqDelFriend struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	DelUserid        *uint32      `protobuf:"varint,2,opt,name=del_userid" json:"del_userid,omitempty"`
+	DelUserid        *uint32      `protobuf:"varint,2,opt,name=del_userid,json=delUserid" json:"del_userid,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -1255,7 +1255,7 @@ func (m *HallAckDelFriend) GetHeader() *ProtoHeader {
 
 // 用户状态
 type HallFriendState struct {
-	IsOnline         *bool         `protobuf:"varint,1,opt,name=is_online" json:"is_online,omitempty"`
+	IsOnline         *bool         `protobuf:"varint,1,opt,name=is_online,json=isOnline" json:"is_online,omitempty"`
 	Info             *HallUserInfo `protobuf:"bytes,2,opt,name=info" json:"info,omitempty"`
 	XXX_unrecognized []byte        `json:"-"`
 }
@@ -1281,12 +1281,12 @@ func (m *HallFriendState) GetInfo() *HallUserInfo {
 
 // 用户信息
 type HallUserInfo struct {
-	NickName         *string `protobuf:"bytes,1,opt,name=nick_name" json:"nick_name,omitempty"`
-	HeadImg          *string `protobuf:"bytes,2,opt,name=head_img" json:"head_img,omitempty"`
+	NickName         *string `protobuf:"bytes,1,opt,name=nick_name,json=nickName" json:"nick_name,omitempty"`
+	HeadImg          *string `protobuf:"bytes,2,opt,name=head_img,json=headImg" json:"head_img,omitempty"`
 	Sex              *int32  `protobuf:"varint,3,opt,name=sex" json:"sex,omitempty"`
 	City             *string `protobuf:"bytes,4,opt,name=city" json:"city,omitempty"`
 	Sign             *string `protobuf:"bytes,5,opt,name=sign" json:"sign,omitempty"`
-	UserId           *uint32 `protobuf:"varint,6,opt,name=user_id" json:"user_id,omitempty"`
+	UserId           *uint32 `protobuf:"varint,6,opt,name=user_id,json=userId" json:"user_id,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
 
