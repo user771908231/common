@@ -52,8 +52,6 @@ It has these top-level messages:
 	HallAckCheckBonus
 	HallReqBagItems
 	HallAckBagItems
-	HallReqUserData
-	HallAckUserData
 	HallReqUpdateRealData
 	HallAckUpdateRealData
 	HallReqGoodsList
@@ -99,7 +97,8 @@ It has these top-level messages:
 	HallMailItem
 	HallBagItem
 	HallItemTask
-	HallUserData
+	HallReqUserData
+	HallAckUserData
 	HallRankItem
 	CoinZone
 	DiamondZone
