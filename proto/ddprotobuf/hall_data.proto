@@ -132,9 +132,11 @@ enum hall_enum_protoId {
     HALL_PID_NOTICE_REQ = 91; //notice公告
     HALL_PID_NOTICE_ACK = 92;
 
-    HALL_PID_REQ_DISTANCE_MATCHED = 93; //请求玩家间距离是否小于distance
-    HALL_PID_ACK_DISTANCE_MATCHED = 94; //回复玩家间距离小于distance的玩家列表
+    HALL_PID_NEWROOMLIST_REQ = 93; //创建房间列表
+    HALL_PID_NEWROOMLIST_ACK = 94; //返回创建房间列表
 
+    HALL_PID_REQ_DISTANCE_MATCHED = 95; //请求玩家间距离是否小于distance
+    HALL_PID_ACK_DISTANCE_MATCHED = 96; //回复玩家间距离小于distance的玩家列表
 }
 
 //货币与商品类型
@@ -324,4 +326,29 @@ message GoodsItem {
 message hall_strongbox_info {
     optional int64 boxCoin = 2; //用户保险箱里的金币
     optional int64 userCoin = 3; //用户身上的金币
+}
+
+//创建房间列表
+message hall_req_new_room_list{
+    optional ProtoHeader header = 1;
+    optional int32 hall_gameId = 2;
+}
+
+message hall_ack_new_room_list{
+    optional ProtoHeader header = 1;
+    optional string hall_name = 2;
+    optional int64 hall_money = 3;
+    optional int32 hall_num = 4;
+    optional hall_new_room_List roomlist = 5;
+}
+
+message hall_new_room_List {
+    optional ProtoHeader header = 1;
+    optional string fangJianType = 2;
+    optional int32 fangJianId = 3;
+    optional string fangJianTitle = 4;
+    optional int64 fangJianEnterCoin = 5;
+    optional int64 fangJianRenShu = 6;
+    optional string fangJianDesc = 7;
+    optional string fangJianJiangLi = 8;
 }
