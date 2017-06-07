@@ -659,6 +659,7 @@ type TdkDissolveDeskUser struct {
 	Userid           *uint32      `protobuf:"varint,2,opt,name=userid" json:"userid,omitempty"`
 	Resultcode       *int32       `protobuf:"varint,3,opt,name=resultcode" json:"resultcode,omitempty"`
 	Disuser          []uint32     `protobuf:"varint,4,rep,name=disuser" json:"disuser,omitempty"`
+	Disnovote        *bool        `protobuf:"varint,5,opt,name=disnovote" json:"disnovote,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -693,6 +694,13 @@ func (m *TdkDissolveDeskUser) GetDisuser() []uint32 {
 		return m.Disuser
 	}
 	return nil
+}
+
+func (m *TdkDissolveDeskUser) GetDisnovote() bool {
+	if m != nil && m.Disnovote != nil {
+		return *m.Disnovote
+	}
+	return false
 }
 
 // 解散牌桌的决定

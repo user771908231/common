@@ -904,7 +904,33 @@ func (m *HallItemTask) GetIsCheck() bool {
 }
 
 // 个人信息
-type HallUserData struct {
+type HallReqUserData struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=user_id,json=userId" json:"user_id,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *HallReqUserData) Reset()                    { *m = HallReqUserData{} }
+func (m *HallReqUserData) String() string            { return proto.CompactTextString(m) }
+func (*HallReqUserData) ProtoMessage()               {}
+func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+
+func (m *HallReqUserData) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *HallReqUserData) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+// 个人信息
+type HallAckUserData struct {
 	UserName          *string       `protobuf:"bytes,1,opt,name=userName" json:"userName,omitempty"`
 	UserId            *int32        `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
 	NiceValue         *int64        `protobuf:"varint,3,opt,name=niceValue" json:"niceValue,omitempty"`
@@ -932,166 +958,166 @@ type HallUserData struct {
 	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *HallUserData) Reset()                    { *m = HallUserData{} }
-func (m *HallUserData) String() string            { return proto.CompactTextString(m) }
-func (*HallUserData) ProtoMessage()               {}
-func (*HallUserData) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{4} }
+func (m *HallAckUserData) Reset()                    { *m = HallAckUserData{} }
+func (m *HallAckUserData) String() string            { return proto.CompactTextString(m) }
+func (*HallAckUserData) ProtoMessage()               {}
+func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
 
-func (m *HallUserData) GetUserName() string {
+func (m *HallAckUserData) GetUserName() string {
 	if m != nil && m.UserName != nil {
 		return *m.UserName
 	}
 	return ""
 }
 
-func (m *HallUserData) GetUserId() int32 {
+func (m *HallAckUserData) GetUserId() int32 {
 	if m != nil && m.UserId != nil {
 		return *m.UserId
 	}
 	return 0
 }
 
-func (m *HallUserData) GetNiceValue() int64 {
+func (m *HallAckUserData) GetNiceValue() int64 {
 	if m != nil && m.NiceValue != nil {
 		return *m.NiceValue
 	}
 	return 0
 }
 
-func (m *HallUserData) GetEvilValue() int64 {
+func (m *HallAckUserData) GetEvilValue() int64 {
 	if m != nil && m.EvilValue != nil {
 		return *m.EvilValue
 	}
 	return 0
 }
 
-func (m *HallUserData) GetUserLevel() int32 {
+func (m *HallAckUserData) GetUserLevel() int32 {
 	if m != nil && m.UserLevel != nil {
 		return *m.UserLevel
 	}
 	return 0
 }
 
-func (m *HallUserData) GetUserVIP() bool {
+func (m *HallAckUserData) GetUserVIP() bool {
 	if m != nil && m.UserVIP != nil {
 		return *m.UserVIP
 	}
 	return false
 }
 
-func (m *HallUserData) GetUserVIPLv() HallUser_VIP {
+func (m *HallAckUserData) GetUserVIPLv() HallUser_VIP {
 	if m != nil && m.UserVIPLv != nil {
 		return *m.UserVIPLv
 	}
 	return HallUser_VIP_LV_1
 }
 
-func (m *HallUserData) GetUserMoney() int64 {
+func (m *HallAckUserData) GetUserMoney() int64 {
 	if m != nil && m.UserMoney != nil {
 		return *m.UserMoney
 	}
 	return 0
 }
 
-func (m *HallUserData) GetUserDiamond() int64 {
+func (m *HallAckUserData) GetUserDiamond() int64 {
 	if m != nil && m.UserDiamond != nil {
 		return *m.UserDiamond
 	}
 	return 0
 }
 
-func (m *HallUserData) GetUserRedBag() float64 {
+func (m *HallAckUserData) GetUserRedBag() float64 {
 	if m != nil && m.UserRedBag != nil {
 		return *m.UserRedBag
 	}
 	return 0
 }
 
-func (m *HallUserData) GetUserLotteryTicket() int64 {
+func (m *HallAckUserData) GetUserLotteryTicket() int64 {
 	if m != nil && m.UserLotteryTicket != nil {
 		return *m.UserLotteryTicket
 	}
 	return 0
 }
 
-func (m *HallUserData) GetSex() bool {
+func (m *HallAckUserData) GetSex() bool {
 	if m != nil && m.Sex != nil {
 		return *m.Sex
 	}
 	return false
 }
 
-func (m *HallUserData) GetHeadUrl() string {
+func (m *HallAckUserData) GetHeadUrl() string {
 	if m != nil && m.HeadUrl != nil {
 		return *m.HeadUrl
 	}
 	return ""
 }
 
-func (m *HallUserData) GetIsFriend() bool {
+func (m *HallAckUserData) GetIsFriend() bool {
 	if m != nil && m.IsFriend != nil {
 		return *m.IsFriend
 	}
 	return false
 }
 
-func (m *HallUserData) GetRoomCard() int64 {
+func (m *HallAckUserData) GetRoomCard() int64 {
 	if m != nil && m.RoomCard != nil {
 		return *m.RoomCard
 	}
 	return 0
 }
 
-func (m *HallUserData) GetLastIp() string {
+func (m *HallAckUserData) GetLastIp() string {
 	if m != nil && m.LastIp != nil {
 		return *m.LastIp
 	}
 	return ""
 }
 
-func (m *HallUserData) GetLastTime() int64 {
+func (m *HallAckUserData) GetLastTime() int64 {
 	if m != nil && m.LastTime != nil {
 		return *m.LastTime
 	}
 	return 0
 }
 
-func (m *HallUserData) GetRealName() string {
+func (m *HallAckUserData) GetRealName() string {
 	if m != nil && m.RealName != nil {
 		return *m.RealName
 	}
 	return ""
 }
 
-func (m *HallUserData) GetPhoneNumber() string {
+func (m *HallAckUserData) GetPhoneNumber() string {
 	if m != nil && m.PhoneNumber != nil {
 		return *m.PhoneNumber
 	}
 	return ""
 }
 
-func (m *HallUserData) GetWxNumber() string {
+func (m *HallAckUserData) GetWxNumber() string {
 	if m != nil && m.WxNumber != nil {
 		return *m.WxNumber
 	}
 	return ""
 }
 
-func (m *HallUserData) GetRealAddress() string {
+func (m *HallAckUserData) GetRealAddress() string {
 	if m != nil && m.RealAddress != nil {
 		return *m.RealAddress
 	}
 	return ""
 }
 
-func (m *HallUserData) GetAddress() string {
+func (m *HallAckUserData) GetAddress() string {
 	if m != nil && m.Address != nil {
 		return *m.Address
 	}
 	return ""
 }
 
-func (m *HallUserData) GetDistance() string {
+func (m *HallAckUserData) GetDistance() string {
 	if m != nil && m.Distance != nil {
 		return *m.Distance
 	}
@@ -1110,7 +1136,7 @@ type HallRankItem struct {
 func (m *HallRankItem) Reset()                    { *m = HallRankItem{} }
 func (m *HallRankItem) String() string            { return proto.CompactTextString(m) }
 func (*HallRankItem) ProtoMessage()               {}
-func (*HallRankItem) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{5} }
+func (*HallRankItem) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
 
 func (m *HallRankItem) GetPlacing() int32 {
 	if m != nil && m.Placing != nil {
@@ -1149,7 +1175,7 @@ type CoinZone struct {
 func (m *CoinZone) Reset()                    { *m = CoinZone{} }
 func (m *CoinZone) String() string            { return proto.CompactTextString(m) }
 func (*CoinZone) ProtoMessage()               {}
-func (*CoinZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{6} }
+func (*CoinZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{7} }
 
 func (m *CoinZone) GetPay() []*GoodsItem {
 	if m != nil {
@@ -1167,7 +1193,7 @@ type DiamondZone struct {
 func (m *DiamondZone) Reset()                    { *m = DiamondZone{} }
 func (m *DiamondZone) String() string            { return proto.CompactTextString(m) }
 func (*DiamondZone) ProtoMessage()               {}
-func (*DiamondZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{7} }
+func (*DiamondZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{8} }
 
 func (m *DiamondZone) GetPay() []*GoodsItem {
 	if m != nil {
@@ -1185,7 +1211,7 @@ type ExchangeZone struct {
 func (m *ExchangeZone) Reset()                    { *m = ExchangeZone{} }
 func (m *ExchangeZone) String() string            { return proto.CompactTextString(m) }
 func (*ExchangeZone) ProtoMessage()               {}
-func (*ExchangeZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{8} }
+func (*ExchangeZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{9} }
 
 func (m *ExchangeZone) GetMoney() []*GoodsItem {
 	if m != nil {
@@ -1203,7 +1229,7 @@ type BuyZone struct {
 func (m *BuyZone) Reset()                    { *m = BuyZone{} }
 func (m *BuyZone) String() string            { return proto.CompactTextString(m) }
 func (*BuyZone) ProtoMessage()               {}
-func (*BuyZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{9} }
+func (*BuyZone) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{10} }
 
 func (m *BuyZone) GetPay() []*GoodsItem {
 	if m != nil {
@@ -1223,7 +1249,7 @@ type GoodsItem struct {
 func (m *GoodsItem) Reset()                    { *m = GoodsItem{} }
 func (m *GoodsItem) String() string            { return proto.CompactTextString(m) }
 func (*GoodsItem) ProtoMessage()               {}
-func (*GoodsItem) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{10} }
+func (*GoodsItem) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{11} }
 
 func (m *GoodsItem) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -1256,7 +1282,7 @@ type HallStrongboxInfo struct {
 func (m *HallStrongboxInfo) Reset()                    { *m = HallStrongboxInfo{} }
 func (m *HallStrongboxInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallStrongboxInfo) ProtoMessage()               {}
-func (*HallStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{11} }
+func (*HallStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{12} }
 
 func (m *HallStrongboxInfo) GetBoxCoin() int64 {
 	if m != nil && m.BoxCoin != nil {
@@ -1285,7 +1311,7 @@ type CommonReqGameLogin struct {
 func (m *CommonReqGameLogin) Reset()                    { *m = CommonReqGameLogin{} }
 func (m *CommonReqGameLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameLogin) ProtoMessage()               {}
-func (*CommonReqGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{12} }
+func (*CommonReqGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{13} }
 
 func (m *CommonReqGameLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1336,7 +1362,7 @@ type CommonReqGameLoginViaInput struct {
 func (m *CommonReqGameLoginViaInput) Reset()                    { *m = CommonReqGameLoginViaInput{} }
 func (m *CommonReqGameLoginViaInput) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameLoginViaInput) ProtoMessage()               {}
-func (*CommonReqGameLoginViaInput) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{13} }
+func (*CommonReqGameLoginViaInput) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{14} }
 
 func (m *CommonReqGameLoginViaInput) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1395,7 +1421,7 @@ type CommonAckGameLogin struct {
 func (m *CommonAckGameLogin) Reset()                    { *m = CommonAckGameLogin{} }
 func (m *CommonAckGameLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckGameLogin) ProtoMessage()               {}
-func (*CommonAckGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{14} }
+func (*CommonAckGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{15} }
 
 func (m *CommonAckGameLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1456,7 +1482,7 @@ type HallReqNewRoomList struct {
 func (m *HallReqNewRoomList) Reset()                    { *m = HallReqNewRoomList{} }
 func (m *HallReqNewRoomList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqNewRoomList) ProtoMessage()               {}
-func (*HallReqNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{15} }
+func (*HallReqNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{16} }
 
 func (m *HallReqNewRoomList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1484,7 +1510,7 @@ type HallAckNewRoomList struct {
 func (m *HallAckNewRoomList) Reset()                    { *m = HallAckNewRoomList{} }
 func (m *HallAckNewRoomList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckNewRoomList) ProtoMessage()               {}
-func (*HallAckNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{16} }
+func (*HallAckNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{17} }
 
 func (m *HallAckNewRoomList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1536,7 +1562,7 @@ type HallNewRoom_List struct {
 func (m *HallNewRoom_List) Reset()                    { *m = HallNewRoom_List{} }
 func (m *HallNewRoom_List) String() string            { return proto.CompactTextString(m) }
 func (*HallNewRoom_List) ProtoMessage()               {}
-func (*HallNewRoom_List) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{17} }
+func (*HallNewRoom_List) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{18} }
 
 func (m *HallNewRoom_List) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1599,7 +1625,8 @@ func init() {
 	proto.RegisterType((*HallMailItem)(nil), "yjprotogo.hall_mail_item")
 	proto.RegisterType((*HallBagItem)(nil), "yjprotogo.hall_bag_item")
 	proto.RegisterType((*HallItemTask)(nil), "yjprotogo.hall_item_task")
-	proto.RegisterType((*HallUserData)(nil), "yjprotogo.hall_userData")
+	proto.RegisterType((*HallReqUserData)(nil), "yjprotogo.hall_req_userData")
+	proto.RegisterType((*HallAckUserData)(nil), "yjprotogo.hall_ack_userData")
 	proto.RegisterType((*HallRankItem)(nil), "yjprotogo.hall_rank_item")
 	proto.RegisterType((*CoinZone)(nil), "yjprotogo.CoinZone")
 	proto.RegisterType((*DiamondZone)(nil), "yjprotogo.DiamondZone")
