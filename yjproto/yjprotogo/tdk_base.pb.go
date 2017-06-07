@@ -178,7 +178,7 @@ func (x *TdkEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumProtoId(value)
 	return nil
 }
-func (TdkEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (TdkEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 type TdkEnumDeskstatus int32
 
@@ -251,7 +251,7 @@ func (x *TdkEnumDeskstatus) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumDeskstatus(value)
 	return nil
 }
-func (TdkEnumDeskstatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{1} }
+func (TdkEnumDeskstatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 type TdkEnumRadyrsp int32
 
@@ -285,7 +285,7 @@ func (x *TdkEnumRadyrsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumRadyrsp(value)
 	return nil
 }
-func (TdkEnumRadyrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{2} }
+func (TdkEnumRadyrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
 
 type TdkEnumDisdesicionrsp int32
 
@@ -322,7 +322,7 @@ func (x *TdkEnumDisdesicionrsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumDisdesicionrsp(value)
 	return nil
 }
-func (TdkEnumDisdesicionrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{3} }
+func (TdkEnumDisdesicionrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
 
 type TdkEnumUserdisdesicion int32
 
@@ -359,7 +359,7 @@ func (x *TdkEnumUserdisdesicion) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumUserdisdesicion(value)
 	return nil
 }
-func (TdkEnumUserdisdesicion) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{4} }
+func (TdkEnumUserdisdesicion) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
 
 type TdkEnumDeskstartrsp int32
 
@@ -396,7 +396,7 @@ func (x *TdkEnumDeskstartrsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumDeskstartrsp(value)
 	return nil
 }
-func (TdkEnumDeskstartrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{5} }
+func (TdkEnumDeskstartrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{5} }
 
 type TdkEnumBetrsp int32
 
@@ -442,7 +442,7 @@ func (x *TdkEnumBetrsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumBetrsp(value)
 	return nil
 }
-func (TdkEnumBetrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{6} }
+func (TdkEnumBetrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{6} }
 
 type TdkEnumQijiaorsp int32
 
@@ -482,7 +482,7 @@ func (x *TdkEnumQijiaorsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumQijiaorsp(value)
 	return nil
 }
-func (TdkEnumQijiaorsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{7} }
+func (TdkEnumQijiaorsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{7} }
 
 type TdkEnumFantirsp int32
 
@@ -525,7 +525,7 @@ func (x *TdkEnumFantirsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumFantirsp(value)
 	return nil
 }
-func (TdkEnumFantirsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{8} }
+func (TdkEnumFantirsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{8} }
 
 type TdkEnumFoldrsp int32
 
@@ -562,7 +562,7 @@ func (x *TdkEnumFoldrsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumFoldrsp(value)
 	return nil
 }
-func (TdkEnumFoldrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{9} }
+func (TdkEnumFoldrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{9} }
 
 type TdkEnumDeskendtype int32
 
@@ -596,7 +596,7 @@ func (x *TdkEnumDeskendtype) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumDeskendtype(value)
 	return nil
 }
-func (TdkEnumDeskendtype) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{10} }
+func (TdkEnumDeskendtype) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{10} }
 
 type TdkEnumReqdisdeskrsp int32
 
@@ -633,7 +633,7 @@ func (x *TdkEnumReqdisdeskrsp) UnmarshalJSON(data []byte) error {
 	*x = TdkEnumReqdisdeskrsp(value)
 	return nil
 }
-func (TdkEnumReqdisdeskrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor13, []int{11} }
+func (TdkEnumReqdisdeskrsp) EnumDescriptor() ([]byte, []int) { return fileDescriptor15, []int{11} }
 
 func init() {
 	proto.RegisterEnum("yjprotogo.TdkEnumProtoId", TdkEnumProtoId_name, TdkEnumProtoId_value)
@@ -650,7 +650,7 @@ func init() {
 	proto.RegisterEnum("yjprotogo.TdkEnumReqdisdeskrsp", TdkEnumReqdisdeskrsp_name, TdkEnumReqdisdeskrsp_value)
 }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor15 = []byte{
 	// 1054 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x96, 0x5b, 0x72, 0xdb, 0x36,
 	0x17, 0xc7, 0x25, 0xd9, 0x4e, 0x6c, 0x24, 0xb1, 0x8f, 0x21, 0xdf, 0x6f, 0xb9, 0x7c, 0x5f, 0xfb,

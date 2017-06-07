@@ -124,7 +124,7 @@ func (x *PlaybackMjActType) UnmarshalJSON(data []byte) error {
 	*x = PlaybackMjActType(value)
 	return nil
 }
-func (PlaybackMjActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
+func (PlaybackMjActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 // Start： 201704142049 下面是麻将回放的 Proto
 // 当前页显示记录：第（length * page）条 到 第（length * (page + 1) - 1）条
@@ -139,7 +139,7 @@ type PlaybackReqPage struct {
 func (m *PlaybackReqPage) Reset()                    { *m = PlaybackReqPage{} }
 func (m *PlaybackReqPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackReqPage) ProtoMessage()               {}
-func (*PlaybackReqPage) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
+func (*PlaybackReqPage) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 func (m *PlaybackReqPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -183,7 +183,7 @@ type PlaybackAckPage struct {
 func (m *PlaybackAckPage) Reset()                    { *m = PlaybackAckPage{} }
 func (m *PlaybackAckPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackAckPage) ProtoMessage()               {}
-func (*PlaybackAckPage) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
+func (*PlaybackAckPage) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
 
 func (m *PlaybackAckPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -237,7 +237,7 @@ type PlaybackSnapshot struct {
 func (m *PlaybackSnapshot) Reset()                    { *m = PlaybackSnapshot{} }
 func (m *PlaybackSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackSnapshot) ProtoMessage()               {}
-func (*PlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{2} }
+func (*PlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
 
 func (m *PlaybackSnapshot) GetPlayerInfo() []*PlayerInfo {
 	if m != nil {
@@ -320,7 +320,7 @@ type PlaybackDeskInfo struct {
 func (m *PlaybackDeskInfo) Reset()                    { *m = PlaybackDeskInfo{} }
 func (m *PlaybackDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackDeskInfo) ProtoMessage()               {}
-func (*PlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{3} }
+func (*PlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{3} }
 
 func (m *PlaybackDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -404,7 +404,7 @@ type PlaybackItem struct {
 func (m *PlaybackItem) Reset()                    { *m = PlaybackItem{} }
 func (m *PlaybackItem) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackItem) ProtoMessage()               {}
-func (*PlaybackItem) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{4} }
+func (*PlaybackItem) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{4} }
 
 func (m *PlaybackItem) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -441,7 +441,7 @@ type PlaybackReqPageByGameid struct {
 func (m *PlaybackReqPageByGameid) Reset()                    { *m = PlaybackReqPageByGameid{} }
 func (m *PlaybackReqPageByGameid) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackReqPageByGameid) ProtoMessage()               {}
-func (*PlaybackReqPageByGameid) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{5} }
+func (*PlaybackReqPageByGameid) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{5} }
 
 func (m *PlaybackReqPageByGameid) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -488,7 +488,7 @@ func init() {
 	proto.RegisterEnum("yjprotogo.PlaybackMjActType", PlaybackMjActType_name, PlaybackMjActType_value)
 }
 
-var fileDescriptor5 = []byte{
+var fileDescriptor7 = []byte{
 	// 691 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x54, 0xc1, 0x6e, 0xda, 0x4a,
 	0x14, 0x7d, 0x86, 0x98, 0xc0, 0x05, 0xf2, 0xfc, 0x26, 0x79, 0x89, 0x45, 0xaa, 0x08, 0x59, 0x55,
