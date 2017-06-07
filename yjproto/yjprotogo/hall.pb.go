@@ -25,6 +25,8 @@ var _ = math.Inf
 
 // Ignoring public import of hall_ack_userData from hall_base.proto
 
+// Ignoring public import of hall_userData from hall_base.proto
+
 // Ignoring public import of hall_rank_item from hall_base.proto
 
 // Ignoring public import of CoinZone from hall_base.proto
