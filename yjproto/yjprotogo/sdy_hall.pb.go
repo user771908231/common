@@ -31,8 +31,6 @@ var _ = math.Inf
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
-// Ignoring public import of GAME_ID from common_client.proto
-
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -77,7 +75,7 @@ type SdyReqCreateDesk struct {
 func (m *SdyReqCreateDesk) Reset()                    { *m = SdyReqCreateDesk{} }
 func (m *SdyReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqCreateDesk) ProtoMessage()               {}
-func (*SdyReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
+func (*SdyReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
 
 func (m *SdyReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -107,7 +105,7 @@ type SdyAckCreateDesk struct {
 func (m *SdyAckCreateDesk) Reset()                    { *m = SdyAckCreateDesk{} }
 func (m *SdyAckCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckCreateDesk) ProtoMessage()               {}
-func (*SdyAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
+func (*SdyAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
 
 func (m *SdyAckCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -167,7 +165,7 @@ type SdyReqEnterDesk struct {
 func (m *SdyReqEnterDesk) Reset()                    { *m = SdyReqEnterDesk{} }
 func (m *SdyReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqEnterDesk) ProtoMessage()               {}
-func (*SdyReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
+func (*SdyReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
 
 func (m *SdyReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -215,7 +213,7 @@ func (m *SdyReqEnterDesk) GetCoinRoomLevel() SdyEnumCoinRoomLevel {
 	if m != nil && m.CoinRoomLevel != nil {
 		return *m.CoinRoomLevel
 	}
-	return SdyEnumCoinRoomLevel_LEVEL_1000
+	return SdyEnumCoinRoomLevel_LEVEL_ROOKIE
 }
 
 func (m *SdyReqEnterDesk) GetIsContinuous() bool {
@@ -234,7 +232,7 @@ type SdyAckEnterDesk struct {
 func (m *SdyAckEnterDesk) Reset()                    { *m = SdyAckEnterDesk{} }
 func (m *SdyAckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckEnterDesk) ProtoMessage()               {}
-func (*SdyAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{3} }
+func (*SdyAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{3} }
 
 func (m *SdyAckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -260,7 +258,7 @@ type SdyBcUserBreak struct {
 func (m *SdyBcUserBreak) Reset()                    { *m = SdyBcUserBreak{} }
 func (m *SdyBcUserBreak) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcUserBreak) ProtoMessage()               {}
-func (*SdyBcUserBreak) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{4} }
+func (*SdyBcUserBreak) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{4} }
 
 func (m *SdyBcUserBreak) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -286,7 +284,7 @@ type SdyReqDissolveDeskOwner struct {
 func (m *SdyReqDissolveDeskOwner) Reset()                    { *m = SdyReqDissolveDeskOwner{} }
 func (m *SdyReqDissolveDeskOwner) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqDissolveDeskOwner) ProtoMessage()               {}
-func (*SdyReqDissolveDeskOwner) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{5} }
+func (*SdyReqDissolveDeskOwner) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{5} }
 
 func (m *SdyReqDissolveDeskOwner) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -314,7 +312,7 @@ type SdyBcDissolveDeskOwner struct {
 func (m *SdyBcDissolveDeskOwner) Reset()                    { *m = SdyBcDissolveDeskOwner{} }
 func (m *SdyBcDissolveDeskOwner) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcDissolveDeskOwner) ProtoMessage()               {}
-func (*SdyBcDissolveDeskOwner) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{6} }
+func (*SdyBcDissolveDeskOwner) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{6} }
 
 func (m *SdyBcDissolveDeskOwner) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -354,7 +352,7 @@ type SdyReqApplyDissolveDeskApllyer struct {
 func (m *SdyReqApplyDissolveDeskApllyer) Reset()                    { *m = SdyReqApplyDissolveDeskApllyer{} }
 func (m *SdyReqApplyDissolveDeskApllyer) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqApplyDissolveDeskApllyer) ProtoMessage()               {}
-func (*SdyReqApplyDissolveDeskApllyer) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{7} }
+func (*SdyReqApplyDissolveDeskApllyer) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{7} }
 
 func (m *SdyReqApplyDissolveDeskApllyer) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -381,7 +379,7 @@ type SdyBcApplyDissolveDeskApplyer struct {
 func (m *SdyBcApplyDissolveDeskApplyer) Reset()                    { *m = SdyBcApplyDissolveDeskApplyer{} }
 func (m *SdyBcApplyDissolveDeskApplyer) String() string            { return proto.CompactTextString(m) }
 func (*SdyBcApplyDissolveDeskApplyer) ProtoMessage()               {}
-func (*SdyBcApplyDissolveDeskApplyer) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{8} }
+func (*SdyBcApplyDissolveDeskApplyer) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{8} }
 
 func (m *SdyBcApplyDissolveDeskApplyer) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -415,7 +413,7 @@ type SdyReqApplyDissolveDeskUser struct {
 func (m *SdyReqApplyDissolveDeskUser) Reset()                    { *m = SdyReqApplyDissolveDeskUser{} }
 func (m *SdyReqApplyDissolveDeskUser) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqApplyDissolveDeskUser) ProtoMessage()               {}
-func (*SdyReqApplyDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{9} }
+func (*SdyReqApplyDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{9} }
 
 func (m *SdyReqApplyDissolveDeskUser) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -449,7 +447,7 @@ type SdyAckApplyDissolveDeskUser struct {
 func (m *SdyAckApplyDissolveDeskUser) Reset()                    { *m = SdyAckApplyDissolveDeskUser{} }
 func (m *SdyAckApplyDissolveDeskUser) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckApplyDissolveDeskUser) ProtoMessage()               {}
-func (*SdyAckApplyDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{10} }
+func (*SdyAckApplyDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{10} }
 
 func (m *SdyAckApplyDissolveDeskUser) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -482,7 +480,7 @@ type SdyReqLeaveDesk struct {
 func (m *SdyReqLeaveDesk) Reset()                    { *m = SdyReqLeaveDesk{} }
 func (m *SdyReqLeaveDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqLeaveDesk) ProtoMessage()               {}
-func (*SdyReqLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{11} }
+func (*SdyReqLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{11} }
 
 func (m *SdyReqLeaveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -509,7 +507,7 @@ type SdyAckLeaveDesk struct {
 func (m *SdyAckLeaveDesk) Reset()                    { *m = SdyAckLeaveDesk{} }
 func (m *SdyAckLeaveDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckLeaveDesk) ProtoMessage()               {}
-func (*SdyAckLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{12} }
+func (*SdyAckLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{12} }
 
 func (m *SdyAckLeaveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -547,7 +545,7 @@ type SdyReqSendMessage struct {
 func (m *SdyReqSendMessage) Reset()                    { *m = SdyReqSendMessage{} }
 func (m *SdyReqSendMessage) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqSendMessage) ProtoMessage()               {}
-func (*SdyReqSendMessage) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{13} }
+func (*SdyReqSendMessage) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{13} }
 
 func (m *SdyReqSendMessage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -612,7 +610,7 @@ type SdyAckSendMessage struct {
 func (m *SdyAckSendMessage) Reset()                    { *m = SdyAckSendMessage{} }
 func (m *SdyAckSendMessage) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckSendMessage) ProtoMessage()               {}
-func (*SdyAckSendMessage) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{14} }
+func (*SdyAckSendMessage) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{14} }
 
 func (m *SdyAckSendMessage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -674,7 +672,7 @@ func init() {
 	proto.RegisterType((*SdyAckSendMessage)(nil), "yjprotogo.sdy_ack_sendMessage")
 }
 
-var fileDescriptor7 = []byte{
+var fileDescriptor8 = []byte{
 	// 643 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x55, 0xcd, 0x6e, 0xd3, 0x40,
 	0x10, 0xc6, 0x4e, 0x9b, 0x9f, 0xe9, 0x8f, 0x8a, 0x2b, 0x55, 0xa6, 0xa2, 0x60, 0x7c, 0xca, 0x29,

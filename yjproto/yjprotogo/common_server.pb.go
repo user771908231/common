@@ -33,7 +33,7 @@ type GameSession struct {
 func (m *GameSession) Reset()                    { *m = GameSession{} }
 func (m *GameSession) String() string            { return proto.CompactTextString(m) }
 func (*GameSession) ProtoMessage()               {}
-func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
+func (*GameSession) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
 
 func (m *GameSession) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -123,7 +123,7 @@ func init() {
 	proto.RegisterType((*GameSession)(nil), "yjprotogo.GameSession")
 }
 
-var fileDescriptor1 = []byte{
+var fileDescriptor2 = []byte{
 	// 255 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0xd1, 0x4a, 0xf3, 0x40,
 	0x10, 0x85, 0x49, 0xff, 0xbf, 0x6d, 0x32, 0xad, 0x20, 0x2b, 0xc8, 0x20, 0x22, 0xa1, 0x57, 0xc1,

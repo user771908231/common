@@ -31,8 +31,6 @@ var _ = math.Inf
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
-// Ignoring public import of GAME_ID from common_client.proto
-
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -348,7 +346,7 @@ func (x *HallEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = HallEnumProtoId(value)
 	return nil
 }
-func (HallEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
+func (HallEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
 
 // 货币与商品类型
 type HallEnumTradeType int32
@@ -427,7 +425,7 @@ func (x *HallEnumTradeType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumTradeType(value)
 	return nil
 }
-func (HallEnumTradeType) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{1} }
+func (HallEnumTradeType) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{1} }
 
 // 活动类型
 type HallEnumEvent int32
@@ -465,7 +463,7 @@ func (x *HallEnumEvent) UnmarshalJSON(data []byte) error {
 	*x = HallEnumEvent(value)
 	return nil
 }
-func (HallEnumEvent) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{2} }
+func (HallEnumEvent) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{2} }
 
 // 活动奖品
 type HallEnum_Reward int32
@@ -500,7 +498,7 @@ func (x *HallEnum_Reward) UnmarshalJSON(data []byte) error {
 	*x = HallEnum_Reward(value)
 	return nil
 }
-func (HallEnum_Reward) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{3} }
+func (HallEnum_Reward) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{3} }
 
 // 邮件类型
 type HallEnumMailType int32
@@ -535,7 +533,7 @@ func (x *HallEnumMailType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumMailType(value)
 	return nil
 }
-func (HallEnumMailType) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{4} }
+func (HallEnumMailType) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{4} }
 
 // 奖励物品类型
 type HallLotteryItemType int32
@@ -585,7 +583,7 @@ func (x *HallLotteryItemType) UnmarshalJSON(data []byte) error {
 	*x = HallLotteryItemType(value)
 	return nil
 }
-func (HallLotteryItemType) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{5} }
+func (HallLotteryItemType) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{5} }
 
 // 任务类型
 type HallEnumTaskType int32
@@ -626,7 +624,7 @@ func (x *HallEnumTaskType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumTaskType(value)
 	return nil
 }
-func (HallEnumTaskType) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{6} }
+func (HallEnumTaskType) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{6} }
 
 // vip等级
 type HallUser_VIP int32
@@ -673,7 +671,7 @@ func (x *HallUser_VIP) UnmarshalJSON(data []byte) error {
 	*x = HallUser_VIP(value)
 	return nil
 }
-func (HallUser_VIP) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{7} }
+func (HallUser_VIP) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{7} }
 
 // 商品列表页面类型
 type HallEnumGoodsType int32
@@ -717,7 +715,7 @@ func (x *HallEnumGoodsType) UnmarshalJSON(data []byte) error {
 	*x = HallEnumGoodsType(value)
 	return nil
 }
-func (HallEnumGoodsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor2, []int{8} }
+func (HallEnumGoodsType) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{8} }
 
 // 单个活动
 type HallItemEvent struct {
@@ -732,7 +730,7 @@ type HallItemEvent struct {
 func (m *HallItemEvent) Reset()                    { *m = HallItemEvent{} }
 func (m *HallItemEvent) String() string            { return proto.CompactTextString(m) }
 func (*HallItemEvent) ProtoMessage()               {}
-func (*HallItemEvent) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
+func (*HallItemEvent) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
 
 func (m *HallItemEvent) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -785,7 +783,7 @@ type HallMailItem struct {
 func (m *HallMailItem) Reset()                    { *m = HallMailItem{} }
 func (m *HallMailItem) String() string            { return proto.CompactTextString(m) }
 func (*HallMailItem) ProtoMessage()               {}
-func (*HallMailItem) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{1} }
+func (*HallMailItem) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{1} }
 
 func (m *HallMailItem) GetId() string {
 	if m != nil && m.Id != nil {
@@ -853,7 +851,7 @@ type HallBagItem struct {
 func (m *HallBagItem) Reset()                    { *m = HallBagItem{} }
 func (m *HallBagItem) String() string            { return proto.CompactTextString(m) }
 func (*HallBagItem) ProtoMessage()               {}
-func (*HallBagItem) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{2} }
+func (*HallBagItem) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{2} }
 
 func (m *HallBagItem) GetType() HallEnumTradeType {
 	if m != nil && m.Type != nil {
@@ -885,7 +883,7 @@ type HallItemTask struct {
 func (m *HallItemTask) Reset()                    { *m = HallItemTask{} }
 func (m *HallItemTask) String() string            { return proto.CompactTextString(m) }
 func (*HallItemTask) ProtoMessage()               {}
-func (*HallItemTask) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{3} }
+func (*HallItemTask) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{3} }
 
 func (m *HallItemTask) GetTaskId() int32 {
 	if m != nil && m.TaskId != nil {
@@ -953,7 +951,7 @@ type HallReqUserData struct {
 func (m *HallReqUserData) Reset()                    { *m = HallReqUserData{} }
 func (m *HallReqUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallReqUserData) ProtoMessage()               {}
-func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{4} }
+func (*HallReqUserData) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{4} }
 
 func (m *HallReqUserData) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1001,7 +999,7 @@ type HallUserData struct {
 func (m *HallUserData) Reset()                    { *m = HallUserData{} }
 func (m *HallUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallUserData) ProtoMessage()               {}
-func (*HallUserData) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{5} }
+func (*HallUserData) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{5} }
 
 func (m *HallUserData) GetUserName() string {
 	if m != nil && m.UserName != nil {
@@ -1173,7 +1171,7 @@ type HallAckUserData struct {
 func (m *HallAckUserData) Reset()                    { *m = HallAckUserData{} }
 func (m *HallAckUserData) String() string            { return proto.CompactTextString(m) }
 func (*HallAckUserData) ProtoMessage()               {}
-func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{6} }
+func (*HallAckUserData) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{6} }
 
 func (m *HallAckUserData) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1201,7 +1199,7 @@ type HallRankItem struct {
 func (m *HallRankItem) Reset()                    { *m = HallRankItem{} }
 func (m *HallRankItem) String() string            { return proto.CompactTextString(m) }
 func (*HallRankItem) ProtoMessage()               {}
-func (*HallRankItem) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{7} }
+func (*HallRankItem) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{7} }
 
 func (m *HallRankItem) GetPlacing() int32 {
 	if m != nil && m.Placing != nil {
@@ -1240,7 +1238,7 @@ type CoinZone struct {
 func (m *CoinZone) Reset()                    { *m = CoinZone{} }
 func (m *CoinZone) String() string            { return proto.CompactTextString(m) }
 func (*CoinZone) ProtoMessage()               {}
-func (*CoinZone) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{8} }
+func (*CoinZone) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{8} }
 
 func (m *CoinZone) GetPay() []*GoodsItem {
 	if m != nil {
@@ -1258,7 +1256,7 @@ type DiamondZone struct {
 func (m *DiamondZone) Reset()                    { *m = DiamondZone{} }
 func (m *DiamondZone) String() string            { return proto.CompactTextString(m) }
 func (*DiamondZone) ProtoMessage()               {}
-func (*DiamondZone) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{9} }
+func (*DiamondZone) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{9} }
 
 func (m *DiamondZone) GetPay() []*GoodsItem {
 	if m != nil {
@@ -1276,7 +1274,7 @@ type ExchangeZone struct {
 func (m *ExchangeZone) Reset()                    { *m = ExchangeZone{} }
 func (m *ExchangeZone) String() string            { return proto.CompactTextString(m) }
 func (*ExchangeZone) ProtoMessage()               {}
-func (*ExchangeZone) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{10} }
+func (*ExchangeZone) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{10} }
 
 func (m *ExchangeZone) GetMoney() []*GoodsItem {
 	if m != nil {
@@ -1294,7 +1292,7 @@ type BuyZone struct {
 func (m *BuyZone) Reset()                    { *m = BuyZone{} }
 func (m *BuyZone) String() string            { return proto.CompactTextString(m) }
 func (*BuyZone) ProtoMessage()               {}
-func (*BuyZone) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{11} }
+func (*BuyZone) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{11} }
 
 func (m *BuyZone) GetPay() []*GoodsItem {
 	if m != nil {
@@ -1314,7 +1312,7 @@ type GoodsItem struct {
 func (m *GoodsItem) Reset()                    { *m = GoodsItem{} }
 func (m *GoodsItem) String() string            { return proto.CompactTextString(m) }
 func (*GoodsItem) ProtoMessage()               {}
-func (*GoodsItem) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{12} }
+func (*GoodsItem) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{12} }
 
 func (m *GoodsItem) GetId() int32 {
 	if m != nil && m.Id != nil {
@@ -1347,7 +1345,7 @@ type HallStrongboxInfo struct {
 func (m *HallStrongboxInfo) Reset()                    { *m = HallStrongboxInfo{} }
 func (m *HallStrongboxInfo) String() string            { return proto.CompactTextString(m) }
 func (*HallStrongboxInfo) ProtoMessage()               {}
-func (*HallStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{13} }
+func (*HallStrongboxInfo) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{13} }
 
 func (m *HallStrongboxInfo) GetBoxCoin() int64 {
 	if m != nil && m.BoxCoin != nil {
@@ -1376,7 +1374,7 @@ type CommonReqGameLogin struct {
 func (m *CommonReqGameLogin) Reset()                    { *m = CommonReqGameLogin{} }
 func (m *CommonReqGameLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameLogin) ProtoMessage()               {}
-func (*CommonReqGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{14} }
+func (*CommonReqGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{14} }
 
 func (m *CommonReqGameLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1427,7 +1425,7 @@ type CommonReqGameLoginViaInput struct {
 func (m *CommonReqGameLoginViaInput) Reset()                    { *m = CommonReqGameLoginViaInput{} }
 func (m *CommonReqGameLoginViaInput) String() string            { return proto.CompactTextString(m) }
 func (*CommonReqGameLoginViaInput) ProtoMessage()               {}
-func (*CommonReqGameLoginViaInput) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{15} }
+func (*CommonReqGameLoginViaInput) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{15} }
 
 func (m *CommonReqGameLoginViaInput) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1486,7 +1484,7 @@ type CommonAckGameLogin struct {
 func (m *CommonAckGameLogin) Reset()                    { *m = CommonAckGameLogin{} }
 func (m *CommonAckGameLogin) String() string            { return proto.CompactTextString(m) }
 func (*CommonAckGameLogin) ProtoMessage()               {}
-func (*CommonAckGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{16} }
+func (*CommonAckGameLogin) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{16} }
 
 func (m *CommonAckGameLogin) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1553,7 +1551,7 @@ type HallGoodsItemMsg struct {
 func (m *HallGoodsItemMsg) Reset()                    { *m = HallGoodsItemMsg{} }
 func (m *HallGoodsItemMsg) String() string            { return proto.CompactTextString(m) }
 func (*HallGoodsItemMsg) ProtoMessage()               {}
-func (*HallGoodsItemMsg) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{17} }
+func (*HallGoodsItemMsg) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{17} }
 
 func (m *HallGoodsItemMsg) GetGoodsId() int32 {
 	if m != nil && m.GoodsId != nil {
@@ -1622,7 +1620,7 @@ type HallReqGoodsList struct {
 func (m *HallReqGoodsList) Reset()                    { *m = HallReqGoodsList{} }
 func (m *HallReqGoodsList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqGoodsList) ProtoMessage()               {}
-func (*HallReqGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{18} }
+func (*HallReqGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{18} }
 
 func (m *HallReqGoodsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1656,7 +1654,7 @@ type HallAckGoodsList struct {
 func (m *HallAckGoodsList) Reset()                    { *m = HallAckGoodsList{} }
 func (m *HallAckGoodsList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckGoodsList) ProtoMessage()               {}
-func (*HallAckGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{19} }
+func (*HallAckGoodsList) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{19} }
 
 func (m *HallAckGoodsList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1689,7 +1687,7 @@ type HallReqNewRoomList struct {
 func (m *HallReqNewRoomList) Reset()                    { *m = HallReqNewRoomList{} }
 func (m *HallReqNewRoomList) String() string            { return proto.CompactTextString(m) }
 func (*HallReqNewRoomList) ProtoMessage()               {}
-func (*HallReqNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{20} }
+func (*HallReqNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{20} }
 
 func (m *HallReqNewRoomList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1717,7 +1715,7 @@ type HallAckNewRoomList struct {
 func (m *HallAckNewRoomList) Reset()                    { *m = HallAckNewRoomList{} }
 func (m *HallAckNewRoomList) String() string            { return proto.CompactTextString(m) }
 func (*HallAckNewRoomList) ProtoMessage()               {}
-func (*HallAckNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{21} }
+func (*HallAckNewRoomList) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{21} }
 
 func (m *HallAckNewRoomList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1769,7 +1767,7 @@ type HallNewRoom_List struct {
 func (m *HallNewRoom_List) Reset()                    { *m = HallNewRoom_List{} }
 func (m *HallNewRoom_List) String() string            { return proto.CompactTextString(m) }
 func (*HallNewRoom_List) ProtoMessage()               {}
-func (*HallNewRoom_List) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{22} }
+func (*HallNewRoom_List) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{22} }
 
 func (m *HallNewRoom_List) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1862,7 +1860,7 @@ func init() {
 	proto.RegisterEnum("yjprotogo.HallEnumGoodsType", HallEnumGoodsType_name, HallEnumGoodsType_value)
 }
 
-var fileDescriptor2 = []byte{
+var fileDescriptor3 = []byte{
 	// 2906 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x59, 0xcb, 0x77, 0xdb, 0xd6,
 	0xd1, 0x0f, 0x49, 0x91, 0x12, 0xaf, 0x1e, 0x86, 0xaf, 0x65, 0x1b, 0x96, 0x5f, 0x0a, 0xe3, 0x24,
