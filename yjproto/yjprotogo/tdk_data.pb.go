@@ -27,7 +27,7 @@ type TdkDeskUserData struct {
 func (m *TdkDeskUserData) Reset()                    { *m = TdkDeskUserData{} }
 func (m *TdkDeskUserData) String() string            { return proto.CompactTextString(m) }
 func (*TdkDeskUserData) ProtoMessage()               {}
-func (*TdkDeskUserData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*TdkDeskUserData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *TdkDeskUserData) GetUserid() uint32 {
 	if m != nil && m.Userid != nil {
@@ -90,7 +90,7 @@ type TdkUserPokerData struct {
 func (m *TdkUserPokerData) Reset()                    { *m = TdkUserPokerData{} }
 func (m *TdkUserPokerData) String() string            { return proto.CompactTextString(m) }
 func (*TdkUserPokerData) ProtoMessage()               {}
-func (*TdkUserPokerData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{1} }
+func (*TdkUserPokerData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{1} }
 
 func (m *TdkUserPokerData) GetUserid() uint32 {
 	if m != nil && m.Userid != nil {
@@ -138,7 +138,7 @@ type TdkDisUserData struct {
 func (m *TdkDisUserData) Reset()                    { *m = TdkDisUserData{} }
 func (m *TdkDisUserData) String() string            { return proto.CompactTextString(m) }
 func (*TdkDisUserData) ProtoMessage()               {}
-func (*TdkDisUserData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{2} }
+func (*TdkDisUserData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{2} }
 
 func (m *TdkDisUserData) GetUserid() uint32 {
 	if m != nil && m.Userid != nil {
@@ -179,7 +179,7 @@ type TdkDeskConfig struct {
 func (m *TdkDeskConfig) Reset()                    { *m = TdkDeskConfig{} }
 func (m *TdkDeskConfig) String() string            { return proto.CompactTextString(m) }
 func (*TdkDeskConfig) ProtoMessage()               {}
-func (*TdkDeskConfig) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{3} }
+func (*TdkDeskConfig) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{3} }
 
 func (m *TdkDeskConfig) GetRoundcount() uint32 {
 	if m != nil && m.Roundcount != nil {
@@ -222,7 +222,7 @@ type TdkZhanJiData struct {
 func (m *TdkZhanJiData) Reset()                    { *m = TdkZhanJiData{} }
 func (m *TdkZhanJiData) String() string            { return proto.CompactTextString(m) }
 func (*TdkZhanJiData) ProtoMessage()               {}
-func (*TdkZhanJiData) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{4} }
+func (*TdkZhanJiData) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{4} }
 
 func (m *TdkZhanJiData) GetUserid() uint32 {
 	if m != nil && m.Userid != nil {
@@ -274,7 +274,7 @@ func init() {
 	proto.RegisterType((*TdkZhanJiData)(nil), "yjprotogo.TdkZhanJiData")
 }
 
-var fileDescriptor14 = []byte{
+var fileDescriptor15 = []byte{
 	// 374 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x92, 0x41, 0x6e, 0xea, 0x30,
 	0x10, 0x86, 0x65, 0x20, 0x01, 0xe6, 0x29, 0xbc, 0x27, 0xeb, 0x09, 0x59, 0x55, 0x55, 0x45, 0x59,
