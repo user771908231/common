@@ -105,6 +105,9 @@ It has these top-level messages:
 	BuyZone
 	GoodsItem
 	HallStrongboxInfo
+	CommonReqGameLogin
+	CommonReqGameLoginViaInput
+	CommonAckGameLogin
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
