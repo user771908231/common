@@ -99,6 +99,7 @@ It has these top-level messages:
 	HallItemTask
 	HallReqUserData
 	HallAckUserData
+	HallUserData
 	HallRankItem
 	CoinZone
 	DiamondZone
