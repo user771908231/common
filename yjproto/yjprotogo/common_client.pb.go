@@ -9,13 +9,18 @@ It is generated from these files:
 	common_client.proto
 	common_enum.proto
 	common_server.proto
+	hall.proto
 	hall_base.proto
+	hall_playback.proto
 	mj_changchun_base.proto
 	mj_changchun_play.proto
 	sdy_base.proto
 	sdy_desk.proto
 	sdy_hall.proto
 	sdy_play.proto
+	tdk.proto
+	tdk_base.proto
+	tdk_data.proto
 
 It has these top-level messages:
 	ProtoHeader
@@ -28,13 +33,71 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+	HallReqEvent
+	HallAckEvent
+	HallLotteryItem
+	HallSignLotteryInfo
+	HallDrawLotteryInfo
+	HallReqMailList
+	HallAckMailList
+	HallReqTask
+	HallAckTask
+	HallReqCheckTask
+	HallAckCheckTask
+	HallReqTaskSum
+	HallAckTaskSum
+	HallReqCheckBonus
+	HallAckCheckBonus
+	HallReqBagItems
+	HallAckBagItems
+	HallReqUserData
+	HallAckUserData
+	HallReqUpdateRealData
+	HallAckUpdateRealData
+	HallReqGoodsList
+	HallAckGoodsList
+	HallReqGoodsBuy
+	HallAckGoodsBuy
+	HallGoodsItemMsg
+	HallReqRank
+	HallAckRank
+	HallReqDrawLottery
+	HallAckDrawLottery
+	HallReqDsLotteryInfo
+	HallAckDsLotteryInfo
+	HallReqFriendsList
+	HallAckFriendsList
+	HallReqRecommendUserList
+	HallAckRecommendUserList
+	HallReqFriendsSearch
+	HallAckFriendsSearch
+	HallReqAddFriend
+	HallAckAddFriend
+	HallReqDelFriend
+	HallAckDelFriend
+	HallFriendState
+	HallUserInfo
+	HallAckStrongboxInfo
+	HallReqStrongboxInfo
+	HallReqStrongboxAccess
+	HallAckStrongboxAccess
+	Game_GameRecord
+	BeanUserRecord
+	BeanGameRecord
+	Game_AckGameRecord
+	HallBeanBisai
+	HallReqBisai
+	HallReqFriendLotteryList
+	HallAckFriendLotteryList
+	HallReqFriendLotteryDraw
+	HallAckFriendLotteryDraw
+	HallReqDistanceMatched
+	HallAckDistanceMatched
 	HallItemEvent
 	HallMailItem
 	HallBagItem
 	HallItemTask
-	HallReqUserData
 	HallUserData
-	HallAckUserData
 	HallRankItem
 	CoinZone
 	DiamondZone
@@ -45,12 +108,15 @@ It has these top-level messages:
 	CommonReqGameLogin
 	CommonReqGameLoginViaInput
 	CommonAckGameLogin
-	HallGoodsItemMsg
-	HallReqGoodsList
-	HallAckGoodsList
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	PlaybackReqPage
+	PlaybackAckPage
+	PlaybackSnapshot
+	PlaybackDeskInfo
+	PlaybackItem
+	PlaybackReqPageByGameid
 	UserCoinBean
 	RoomTypeInfo
 	EndLotteryInfo
@@ -161,6 +227,54 @@ It has these top-level messages:
 	SdyBcHuanDi
 	SdyReqHuanDi
 	SdyAckHuanDi
+	TdkHeartBeat
+	TdkJoinRoom
+	TdkJoinRoomRsp
+	TdkLeaveRoom
+	TdkLeaveRoomRsp
+	TdkJoinDesk
+	TdkJoinDeskRsp
+	TdkCreateDesk
+	TdkCreateDeskRsp
+	TdkLeaveDesk
+	TdkLeaveDeskRsp
+	TdkUserReady
+	TdkUserReadyRsp
+	TdkReturnDesk
+	TdkDissolveDeskReq
+	TdkDissolveDeskUser
+	TdkDisDeskDesicionReq
+	TdkDisDeskDesicionRsp
+	TdkDisDeskReqResult
+	TdkDisDesk
+	TdkSendPoker
+	TdkStartBet
+	TdkBet
+	TdkBetRsp
+	TdkFold
+	TdkFoldRsp
+	TdkQiJiao
+	TdkQiJiaoRsp
+	TdkFanTi
+	TdkFanTiRsp
+	TdkPass
+	TdkPassRsp
+	TdkKaiPai
+	TdkKaiPaiRsp
+	TdkRoundEnd
+	TdkZhanJi
+	TdkZhanJiRsp
+	TdkMatchReq
+	TdkMatchRsp
+	TdkMatchAddUserRsp
+	TdkJoinPlayingDeskRsp
+	TdkEnterGame
+	TdkEnterGameRsp
+	TdkDeskUserData
+	TdkUserPokerData
+	TdkDisUserData
+	TdkDeskConfig
+	TdkZhanJiData
 */
 package yjprotogo
 
