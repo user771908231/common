@@ -12,7 +12,6 @@ It is generated from these files:
 	hall_base.proto
 	hall_common_server_award.proto
 	hall_common_server_model.proto
-	hall_playback.proto
 	mj_changchun_base.proto
 	mj_changchun_play.proto
 	sdy_base.proto
@@ -86,12 +85,6 @@ It has these top-level messages:
 	TGameCounts
 	TUserTask
 	Push
-	PlaybackReqPage
-	PlaybackAckPage
-	PlaybackSnapshot
-	PlaybackDeskInfo
-	PlaybackItem
-	PlaybackReqPageByGameid
 	UserCoinBean
 	RoomTypeInfo
 	EndLotteryInfo
