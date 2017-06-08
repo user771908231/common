@@ -26,6 +26,7 @@ type BaseModeu32 interface {
 
 var mongoConfig struct {
 	ip                   string
+	logIp                string
 	port                 int
 	dbname               string
 	DB_ENSURECOUNTER_KEY string
@@ -33,9 +34,10 @@ var mongoConfig struct {
 	SessionNum           int
 }
 
-func Oninit(ip string, dbname string, key string) {
+func Oninit(ip string, logIp string, dbname string, key string) {
 	log.Debug("初始化mongoDb的地址  ip[%v]", ip)
 	mongoConfig.ip = ip
+	mongoConfig.logIp = logIp
 	mongoConfig.dbname = dbname
 	mongoConfig.DB_ENSURECOUNTER_KEY = key
 	mongoConfig.SessionNum = 100
@@ -222,21 +224,20 @@ type Collection struct {
 	DialAddr  string
 }
 
+//主数据库
 //args[0]:TableName args[1]:DialAddr
-func C(tableName ...string) *Collection {
-	switch len(tableName) {
-	case 1:
-		return &Collection{
-			TableName: tableName[0],
-			DialAddr:  mongoConfig.ip,
-		}
-	case 2:
-		return &Collection{
-			TableName: tableName[0],
-			DialAddr:  tableName[1],
-		}
-	default:
-		return nil
+func C(tableName string) *Collection {
+	return &Collection{
+		TableName: tableName,
+		DialAddr:  mongoConfig.ip,
+	}
+}
+
+//日志数据库
+func Log(tableName string) *Collection {
+	return &Collection{
+		TableName: tableName,
+		DialAddr: mongoConfig.logIp,
 	}
 }
 
