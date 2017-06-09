@@ -8,7 +8,6 @@ import (
 	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"
 	"sync"
@@ -176,7 +175,7 @@ func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
 	db.Log(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
 		"gamenumber": gamenumber,
-	}, &deskRecords)
+	}, &ret)
 	if ret.DeskId > 0 {
 		return ret.PlayBackData
 	} else {
