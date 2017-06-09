@@ -5,31 +5,31 @@ const (
 	DB_ENSURECOUNTER_KEY string = "id" //自增键
 
 	//大厅
-	DBT_T_USER                      string = "t_user"                      //用户表
-	DBT_T_USER_DIAMOND_DETAILS      string = "t_user_diamond_details"      //钻石交易记录
-	DBT_T_TH_NOTICE                 string = "t_th_notice"                 //公告
-	DBT_T_RECHARGE_DETAILS          string = "t_recharge_details"          //充值记录
-	DBT_T_ACTIVE_LIST               string = "t_config_active_list"        //活动列表
-	DBT_T_TASK_INFO                 string = "t_config_task_info"          //公共任务信息表
-	DBT_T_USER_TASK                 string = "t_user_task"                 //用户任务状态表
-	DBT_T_USER_BAG                  string = "t_user_bag"                  //用户背包道具表
-	DBT_T_MAIL_CONTENT              string = "t_mail_content"              //公共邮件表
-	DBT_T_USER_MAIL_list            string = "t_user_mail_list"            //用户邮件表
-	DBT_T_USER_FRIENDS_LIST         string = "t_user_friends_list"         //用户好友关系表
-	DBT_T_PAYBASEDETAILS            string = "t_PayBaseDetails"            //重新订单信息
-	DBT_T_USER_STRONGBOX            string = "t_user_strongbox"            //保险箱
-	DBT_T_GOODS_INFO                string = "t_goods_info"                //商品信息表
-	DBT_T_CONFIG_SYS                string = "t_config_sys"                //系统的配置表
-	DBT_T_USER_ATTACH               string = "t_user_attach"               //用户签到/抽奖/补助 领取记录表
-	DBT_T_DRAW_LOTTERY              string = "t_config_draw_lottery"       //转盘物品信息表
-	DBT_T_FRIEND_DRAW_LOTTERY              string = "t_config_friend_draw_lottery"//朋友桌分享转盘抽奖
-	DBT_T_SIGN_REWARD               string = "t_config_sign_reward"        //签到奖励表
-	DBT_T_GAME_LOG                  string = "t_game_log"                  //游戏记录表
-	DBT_T_GAME_COUNT                string = "t_game_count"                //游戏记录表
-	DBT_T_GAME_DAY_COUNT            string = "t_game_day_count"            //游戏记录表
-	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config" //红包任务计算配置表
-	DBT_T_TRADE_LOG                 string = "t_game_trade_log"            //游戏货币流水记录表
-	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"         //灰度发布的数据库表
+	DBT_T_USER                      string = "t_user"                       //用户表
+	DBT_T_USER_DIAMOND_DETAILS      string = "t_user_diamond_details"       //钻石交易记录
+	DBT_T_TH_NOTICE                 string = "t_th_notice"                  //公告
+	DBT_T_RECHARGE_DETAILS          string = "t_recharge_details"           //充值记录
+	DBT_T_ACTIVE_LIST               string = "t_config_active_list"         //活动列表
+	DBT_T_TASK_INFO                 string = "t_config_task_info"           //公共任务信息表
+	DBT_T_USER_TASK                 string = "t_user_task"                  //用户任务状态表
+	DBT_T_USER_BAG                  string = "t_user_bag"                   //用户背包道具表
+	DBT_T_MAIL_CONTENT              string = "t_mail_content"               //公共邮件表
+	DBT_T_USER_MAIL_list            string = "t_user_mail_list"             //用户邮件表
+	DBT_T_USER_FRIENDS_LIST         string = "t_user_friends_list"          //用户好友关系表
+	DBT_T_PAYBASEDETAILS            string = "t_PayBaseDetails"             //重新订单信息
+	DBT_T_USER_STRONGBOX            string = "t_user_strongbox"             //保险箱
+	DBT_T_GOODS_INFO                string = "t_goods_info"                 //商品信息表
+	DBT_T_CONFIG_SYS                string = "t_config_sys"                 //系统的配置表
+	DBT_T_USER_ATTACH               string = "t_user_attach"                //用户签到/抽奖/补助 领取记录表
+	DBT_T_DRAW_LOTTERY              string = "t_config_draw_lottery"        //转盘物品信息表
+	DBT_T_FRIEND_DRAW_LOTTERY       string = "t_config_friend_draw_lottery" //朋友桌分享转盘抽奖
+	DBT_T_SIGN_REWARD               string = "t_config_sign_reward"         //签到奖励表
+	DBT_T_GAME_LOG                  string = "t_game_log"                   //游戏记录表
+	DBT_T_GAME_COUNT                string = "t_game_count"                 //游戏记录表
+	DBT_T_GAME_DAY_COUNT            string = "t_game_day_count"             //游戏记录表
+	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config"  //红包任务计算配置表
+	DBT_T_TRADE_LOG                 string = "t_game_trade_log"             //游戏货币流水记录表
+	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"          //灰度发布的数据库表
 
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
@@ -62,8 +62,11 @@ const (
 	DBT_MJ_DESK_ROUND_ALL   = "t_mj_desk_round_all" //全局麻将结束
 	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
 
-	DBT_MJ_BS_DESK_ROUND       = "t_mj_bs_desk_round"     //一把白山麻将结束
-	DBT_MJ_BS_DESK_ROUND_ALL   = "t_mj_bs_desk_round_all" //全局白山麻将结束
+	DBT_MJ_BS_DESK_ROUND     = "t_mj_bs_desk_round"     //一把白山麻将结束
+	DBT_MJ_BS_DESK_ROUND_ALL = "t_mj_bs_desk_round_all" //全局白山麻将结束
+
+	DBT_MJ_ZXZ_DESK_ROUND     = "t_mj_zxz_desk_round"     //一把捉虾子麻将结束
+	DBT_MJ_ZXZ_DESK_ROUND_ALL = "t_mj_zxz_desk_round_all" //全局捉虾子麻将结束
 
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
