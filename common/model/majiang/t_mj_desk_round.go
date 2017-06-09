@@ -183,6 +183,30 @@ func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	}
 }
 
+func GetMjZXZPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	ret := &T_mj_desk_round{}
+	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
+	if ret.DeskId > 0 {
+		return ret.PlayBackData
+	} else {
+		return nil
+	}
+}
+
+func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	ret := &T_mj_desk_round{}
+	db.Log(tableName.DBT_MJ_BS_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
+	if ret.DeskId > 0 {
+		return ret.PlayBackData
+	} else {
+		return nil
+	}
+}
+
 //==================================回放缓存==================================
 //回放缓存-全局变量
 var PlayBackStack map[int32][]*ddproto.PlaybackSnapshot
@@ -192,7 +216,7 @@ var PlayBackNumbers []int32
 var playBackWLock sync.Mutex
 
 //从内存缓存中取出-回放数据
-func GetMjPlayBackFromMemory(gamenumber int32) []*ddproto.PlaybackSnapshot {
+func GetMjPlayBackFromMemory(gamenumber int32, gid int32) []*ddproto.PlaybackSnapshot {
 	//如果缓存中存在则直接从缓存中取数据
 	if data,ok := PlayBackStack[gamenumber]; ok {
 		log.T("从内存读取mj数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
@@ -200,7 +224,16 @@ func GetMjPlayBackFromMemory(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	}
 
 	//如果不存在则向缓存中写入一条
-	data := GetMjPlayBack(gamenumber)
+	data := []*ddproto.PlaybackSnapshot{}
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_ZXZ):
+		data = GetMjZXZPlayBack(gamenumber)
+	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
+		data = GetMjBSPlayBack(gamenumber)
+	default:
+		data = GetMjPlayBack(gamenumber)
+	}
+
 	if data == nil {
 		return nil
 	}
