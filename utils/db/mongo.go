@@ -35,7 +35,7 @@ var mongoConfig struct {
 }
 
 func Oninit(ip string, logIp string, dbname string, key string) {
-	log.Debug("初始化mongoDb的地址  ip[%v]", ip)
+	log.Debug("初始化mongoDb的信息  ip[%v] logIp[%v] dbname[%v] key[%v]", ip, logIp, dbname, key)
 	mongoConfig.ip = ip
 	mongoConfig.logIp = logIp
 	mongoConfig.dbname = dbname
