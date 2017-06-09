@@ -142,9 +142,7 @@ func GetBSMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 
 func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{"gamenumber": gamenumber}).One(ret)
-	})
+	db.Log(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{"gamenumber": gamenumber}, ret)
 	if ret.DeskId > 0 {
 		return ret.PlayBackData
 	} else {
