@@ -4,7 +4,6 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"sync"
 	"casino_common/common/log"
@@ -25,9 +24,7 @@ type T_pdk_desk_round_playback struct {
 
 func GetPdkPlayBack(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 	ret := &T_pdk_desk_round_playback{}
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PDK_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}).One(ret)
-	})
+	db.Log(tableName.DBT_PDK_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}, ret)
 	if ret.DeskId > 0 {
 		return ret.PlayBackData
 	} else {
