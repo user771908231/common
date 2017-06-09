@@ -6,7 +6,6 @@ import (
 	"casino_common/common/model"
 	"casino_common/utils/db"
 	"casino_common/utils/numUtils"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
