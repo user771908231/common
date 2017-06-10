@@ -8,7 +8,6 @@ import (
 	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"
 	"sync"
@@ -69,11 +68,10 @@ func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_MJ_DESK_ROUND_ALL).Find(bson.M{
-			"userids":    bson.RegEx{querKey, "."},
-			"friendplay": true}).Sort("-deskid").Limit(20).All(&deskRecords)
-	})
+	db.Log(tableName.DBT_MJ_DESK_ROUND_ALL).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"friendplay": true,
+	}, &deskRecords, "-deskid", 1, 20)
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]麻将相关的战绩...", userId)
@@ -87,13 +85,12 @@ func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
-			"userids":    bson.RegEx{querKey, "."},
-			"friendplay": true,
-			"deskid":     deskId,
-		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
-	})
+	db.Log(tableName.DBT_MJ_DESK_ROUND).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"friendplay": true,
+		"deskid":     deskId,
+	}, &deskRecords, "-gamenumber", 1, 20)
+
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]麻将相关的牌桌[%v]内战绩...", userId, deskId)
 		return nil
@@ -104,14 +101,14 @@ func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 
 
 //更具userId查询战绩
-func GetBSMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
+func GetMjBSDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_MJ_BS_DESK_ROUND_ALL).Find(bson.M{
-			"userids":    bson.RegEx{querKey, "."},
-			"friendplay": true}).Sort("-deskid").Limit(20).All(&deskRecords)
-	})
+
+	db.Log(tableName.DBT_MJ_BS_DESK_ROUND_ALL).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"friendplay": true,
+	}, &deskRecords, "-deskid", 1, 20)
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]白山麻将相关的战绩...", userId)
@@ -122,16 +119,14 @@ func GetBSMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 }
 
 //查询牌桌内战绩
-func GetBSMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
+func GetMjBSDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_MJ_BS_DESK_ROUND).Find(bson.M{
-			"userids":    bson.RegEx{querKey, "."},
-			"friendplay": true,
-			"deskid":     deskId,
-		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
-	})
+	db.Log(tableName.DBT_MJ_BS_DESK_ROUND).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"friendplay": true,
+		"deskid":     deskId,
+	}, &deskRecords, "-gamenumber", 1, 20)
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]白山麻将相关的牌桌[%v]内战绩...", userId, deskId)
 		return nil
@@ -140,11 +135,71 @@ func GetBSMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	}
 }
 
+
+//更具userId查询战绩
+func GetMjZXZDeskRoundByUserId(userId uint32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+
+	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"friendplay": true,
+	}, &deskRecords, "-deskid", 1, 20)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]捉虾子麻将相关的战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+//查询牌桌内战绩
+func GetMjZXZDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"friendplay": true,
+		"deskid":     deskId,
+	}, &deskRecords, "-gamenumber", 1, 20)
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]捉虾子麻将相关的牌桌[%v]内战绩...", userId, deskId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{"gamenumber": gamenumber}).One(ret)
-	})
+	db.Log(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
+	if ret.DeskId > 0 {
+		return ret.PlayBackData
+	} else {
+		return nil
+	}
+}
+
+func GetMjZXZPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	ret := &T_mj_desk_round{}
+	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
+	if ret.DeskId > 0 {
+		return ret.PlayBackData
+	} else {
+		return nil
+	}
+}
+
+func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	ret := &T_mj_desk_round{}
+	db.Log(tableName.DBT_MJ_BS_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
 	if ret.DeskId > 0 {
 		return ret.PlayBackData
 	} else {
@@ -161,7 +216,7 @@ var PlayBackNumbers []int32
 var playBackWLock sync.Mutex
 
 //从内存缓存中取出-回放数据
-func GetMjPlayBackFromMemory(gamenumber int32) []*ddproto.PlaybackSnapshot {
+func GetMjPlayBackFromMemory(gamenumber int32, gid int32) []*ddproto.PlaybackSnapshot {
 	//如果缓存中存在则直接从缓存中取数据
 	if data,ok := PlayBackStack[gamenumber]; ok {
 		log.T("从内存读取mj数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
@@ -169,7 +224,16 @@ func GetMjPlayBackFromMemory(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	}
 
 	//如果不存在则向缓存中写入一条
-	data := GetMjPlayBack(gamenumber)
+	data := []*ddproto.PlaybackSnapshot{}
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_ZXZ):
+		data = GetMjZXZPlayBack(gamenumber)
+	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
+		data = GetMjBSPlayBack(gamenumber)
+	default:
+		data = GetMjPlayBack(gamenumber)
+	}
+
 	if data == nil {
 		return nil
 	}
