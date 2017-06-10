@@ -798,6 +798,8 @@ func (x *Fang_Jian_Type) UnmarshalJSON(data []byte) error {
 }
 func (Fang_Jian_Type) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{10} }
 
+
+//客服
 type HallReqServer struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`

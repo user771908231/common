@@ -30,6 +30,7 @@ const (
 	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config" //红包任务计算配置表
 	DBT_T_TRADE_LOG                 string = "t_game_trade_log"            //游戏货币流水记录表
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"         //灰度发布的数据库表
+	DBT_T_HALL_SERVER		string = "t_hall_server"		//客服
 
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
