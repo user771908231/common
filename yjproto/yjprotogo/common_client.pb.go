@@ -33,8 +33,11 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+	AwardReqGetNewUser
+	AwardAckGetNewUser
 	HallReqServer
 	HallAckServer
+	Hallserver
 	HallReqFeedBack
 	HallAckFeedBack
 	HallReqNotice
@@ -92,6 +95,7 @@ It has these top-level messages:
 	DeskGameInfo
 	PlayerInfo
 	CardInfo
+	BuCardInfo
 	ComposeCard
 	PlayerCard
 	WinCoinInfo
@@ -139,6 +143,10 @@ It has these top-level messages:
 	P16AckGameTing
 	P16AckGameDabao
 	P16AckGameChangbao
+	P16ReqRemainMajiang
+	P16AckRemainMajiang
+	P16ReqChangeMajiang
+	P16AckChangeMajiang
 	SdyBaseUserPaiIds
 	SdyBaseRoomTypeInfo
 	SdyBaseTimerInfo
