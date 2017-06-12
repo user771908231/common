@@ -33,6 +33,8 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+	BagReqPassword
+	BagAckPassword
 	AwardReqGetNewUser
 	AwardAckGetNewUser
 	HallReqServer
@@ -81,12 +83,12 @@ It has these top-level messages:
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	Game_AckGameRecord
 	HallReqTask
 	HallAckTask
 	Game_GameRecord
 	BeanUserRecord
 	BeanGameRecord
-	Game_AckGameRecord
 	Taward
 	AwardMOnline
 	User
