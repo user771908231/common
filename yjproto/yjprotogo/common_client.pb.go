@@ -81,6 +81,12 @@ It has these top-level messages:
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	HallReqTask
+	HallAckTask
+	Game_GameRecord
+	BeanUserRecord
+	BeanGameRecord
+	Game_AckGameRecord
 	Taward
 	AwardMOnline
 	User
