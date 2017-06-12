@@ -325,6 +325,9 @@ It has these top-level messages:
 	BuyZone
 	GoodsItem
 	HallStrongboxInfo
+	HallReqNewRoomList
+	HallAckNewRoomList
+	HallNewRoom_List
 	PlaybackReqPage
 	PlaybackAckPage
 	PlayerInfo
