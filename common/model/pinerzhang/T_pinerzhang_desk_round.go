@@ -9,7 +9,6 @@ import (
 	"casino_common/utils/numUtils"
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"
 )
@@ -68,9 +67,9 @@ func (t T_pinerzhang_desk_round) Insert() {
 func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PEZ_DESK_ROUND_ALL).Find(bson.M{"userids": bson.RegEx{querKey, "."}}).Sort("-deskid").Limit(20).All(&deskRecords)
-	})
+	db.Log(tableName.DBT_PEZ_DESK_ROUND_ALL).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+	}, &deskRecords, "-gamenumber", 1, 20)
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]拼二张相关的战绩...", userId)
@@ -84,12 +83,11 @@ func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PEZ_DESK_ROUND).Find(bson.M{
-			"userids": bson.RegEx{querKey, "."},
-			"deskid":  deskId,
-		}).Sort("-gamenumber").Limit(20).All(&deskRecords)
-	})
+
+	db.Log(tableName.DBT_PEZ_DESK_ROUND).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"deskid":  deskId,
+	}, &deskRecords, "-gamenumber", 1, 20)
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]拼二张相关的牌桌内战绩...", userId)
