@@ -4,7 +4,6 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"sync"
 	"casino_common/common/log"
@@ -23,15 +22,13 @@ type T_pdk_desk_round_playback struct {
 	PlayBackData []*ddproto.PdkPlaybackSnapshot
 }
 
-func GetPdkPlayBack(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
+func GetPdkPlayBack(gamenumber int32) ([]*ddproto.PdkPlaybackSnapshot, error) {
 	ret := &T_pdk_desk_round_playback{}
-	db.Query(func(d *mgo.Database) {
-		d.C(tableName.DBT_PDK_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}).One(ret)
-	})
+	err := db.Log(tableName.DBT_PDK_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}, ret)
 	if ret.DeskId > 0 {
-		return ret.PlayBackData
+		return ret.PlayBackData, err
 	} else {
-		return nil
+		return nil, err
 	}
 }
 
@@ -45,6 +42,7 @@ var playBackWLock sync.Mutex
 
 //从内存缓存中取出-回放数据
 func GetPdkPlayBackFromMemory(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
+	log.T("开始从内存中获取跑得快的回放... gamenumber[%v]", gamenumber)
 	//如果缓存中存在则直接从缓存中取数据
 	if data,ok := PlayBackStack[gamenumber]; ok {
 		log.T("从内存读取pdk数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
@@ -52,8 +50,10 @@ func GetPdkPlayBackFromMemory(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 	}
 
 	//如果不存在则向缓存中写入一条
-	data := GetPdkPlayBack(gamenumber)
+	log.T("内存找不到跑得快的回放数据，开始从数据库中缓存... gamenumber[%v]", gamenumber)
+	data, err := GetPdkPlayBack(gamenumber)
 	if data == nil {
+		log.W("数据库中找不到跑得快的回放数据, 错误信息[%v] gamenumber[%v]", err.Error(), gamenumber)
 		return nil
 	}
 

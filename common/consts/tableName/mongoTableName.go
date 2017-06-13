@@ -30,6 +30,8 @@ const (
 	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config" //红包任务计算配置表
 	DBT_T_TRADE_LOG                 string = "t_game_trade_log"            //游戏货币流水记录表
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"         //灰度发布的数据库表
+	DBT_T_HALL_SERVER		string = "t_hall_server"		//客服
+	DBT_T_HALL_BAGPWD		string = "t_user_bag_password"		//背包密码
 
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
@@ -62,8 +64,14 @@ const (
 	DBT_MJ_DESK_ROUND_ALL   = "t_mj_desk_round_all" //全局麻将结束
 	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
 
-	DBT_MJ_BS_DESK_ROUND       = "t_mj_bs_desk_round"     //一把白山麻将结束
-	DBT_MJ_BS_DESK_ROUND_ALL   = "t_mj_bs_desk_round_all" //全局白山麻将结束
+	DBT_MJ_BS_DESK_ROUND     = "t_mj_bs_desk_round"     //一把白山麻将结束
+	DBT_MJ_BS_DESK_ROUND_ALL = "t_mj_bs_desk_round_all" //全局白山麻将结束
+
+	DBT_MJ_ZXZ_DESK_ROUND     = "t_mj_zxz_desk_round"     //一把捉虾子麻将结束
+	DBT_MJ_ZXZ_DESK_ROUND_ALL = "t_mj_zxz_desk_round_all" //全局捉虾子麻将结束
+
+	DBT_MJ_ZHZH_DESK_ROUND     = "t_mj_zhzh_desk_round"     //一把转转麻将结束
+	DBT_MJ_ZHZH_DESK_ROUND_ALL = "t_mj_zhzh_desk_round_all" //全局转转麻将结束
 
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
