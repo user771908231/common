@@ -62,6 +62,10 @@ func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
 	}
 }
 
+func (u *MJUserCore) DoBu(...interface{}) (interface{}, error)  {
+	return nil, nil
+}
+
 func (u *MJUserCore) DoChi(...interface{}) (interface{}, error) {
 	return nil, nil
 }
