@@ -33,6 +33,9 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+	FuReqDai
+	FuAckDai
+	Fudai
 	BagReqPassword
 	BagAckPassword
 	AwardReqGetNewUser

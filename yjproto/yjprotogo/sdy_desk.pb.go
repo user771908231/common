@@ -57,11 +57,9 @@ var _ = math.Inf
 
 // Ignoring public import of sdy_enum_userStatus from sdy_base.proto
 
-// Ignoring public import of sdy_enum_enterType from sdy_base.proto
-
 // Ignoring public import of sdy_enum_Option from sdy_base.proto
 
-// Ignoring public import of sdy_enum_coinRoomLevel from sdy_base.proto
+// Ignoring public import of sdy_enum_roomLevel from sdy_base.proto
 
 // Ignoring public import of sdy_enum_flowers from sdy_base.proto
 
