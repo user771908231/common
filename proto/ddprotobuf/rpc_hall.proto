@@ -1,9 +1,0 @@
-//大厅需要使用的rpc
-syntax = "proto2";
-package ddproto;
-
-//用于更新hall的配置文件
-//更新配置文件
-message rpc_hall_update_config {
-    optional int32 configId = 1;
-}

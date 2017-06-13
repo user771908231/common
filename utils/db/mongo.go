@@ -6,10 +6,15 @@ import (
 	"github.com/name5566/leaf/db/mongodb"
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
-	"github.com/name5566/leaf/log"
+	"casino_common/common/log"
 	"reflect"
 	"errors"
 )
+
+func init() {
+	//初始化dialc
+	mongoConfig.dialc = map[string]*mongodb.DialContext{}
+}
 
 type BaseMode interface {
 	GetId() int32
@@ -21,31 +26,55 @@ type BaseModeu32 interface {
 
 var mongoConfig struct {
 	ip                   string
+	logIp                string
 	port                 int
 	dbname               string
 	DB_ENSURECOUNTER_KEY string
-	dialc                *mongodb.DialContext
+	dialc                map[string]*mongodb.DialContext
 	SessionNum           int
 }
 
-func Oninit(ip string, dbname string, key string) {
-	log.Debug("初始化mongoDb的地址  ip[%v]", ip)
+func Oninit(ip string, logIp string, dbname string, key string) {
+	log.D("初始化mongoDb的信息  ip[%v] logIp[%v] dbname[%v] key[%v]", ip, logIp, dbname, key)
 	mongoConfig.ip = ip
+	mongoConfig.logIp = logIp
 	mongoConfig.dbname = dbname
 	mongoConfig.DB_ENSURECOUNTER_KEY = key
 	mongoConfig.SessionNum = 100
-	mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
+	dial_context, _ := mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
+	mongoConfig.dialc[mongoConfig.ip] = dial_context
 }
 
 //活的链接
 func GetMongoConn() (*mongodb.DialContext, error) {
-	if mongoConfig.dialc == nil {
-		mongoConfig.dialc, _ = mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
+	if dial_context, ok := mongoConfig.dialc[mongoConfig.ip]; ok {
+		return dial_context, nil
 	}
-	return mongoConfig.dialc, nil
+	dial_context, err := mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
+	if err != nil {
+		return nil, err
+	}
+	mongoConfig.dialc[mongoConfig.ip] = dial_context
+	return dial_context, nil
 }
 
-//保存数据
+//获得一个连接，通过连接地址
+func GetMongoConnByDialAddr(dialAddr string) (*mongodb.DialContext, error) {
+	if dialAddr == "" {
+		dialAddr = mongoConfig.ip
+	}
+	if dial_context, ok := mongoConfig.dialc[dialAddr]; ok {
+		return dial_context, nil
+	}
+	dial_context, err := mongodb.Dial(dialAddr, mongoConfig.SessionNum)
+	if err != nil {
+		return nil, err
+	}
+	mongoConfig.dialc[dialAddr] = dial_context
+	return dial_context, nil
+}
+
+//保存数据（dialAddr为空则连接默认数据库）
 func InsertMgoData(dbt string, data interface{}) error {
 	//得到连接
 	c, err := GetMongoConn()
@@ -62,7 +91,7 @@ func InsertMgoData(dbt string, data interface{}) error {
 	return error
 }
 
-//批量保存数据
+//批量保存数据（dialAddr为空则连接默认数据库）
 func InsertMgoDatas(dbt string, datas []interface{}) (err error, count int) {
 	c, err := GetMongoConn()
 	if err != nil {
@@ -132,9 +161,29 @@ func GetNextSeq(dbt string) (int32, error) {
 }
 
 //查询一个list
+//如果连接默认数据库，则dialAddr填空字符串即可。
+func QueryByDialAddr(dialAddr string, f func(*mgo.Database)) {
+	c, err := GetMongoConnByDialAddr(dialAddr)
+
+	if err != nil {
+		log.E("QueryByDialAddr(%s) err:%v", dialAddr, err)
+		return
+	}
+	//defer c.Close()
+
+	//获取session
+	s := c.Ref()
+	defer c.UnRef(s)
+	f(s.DB(mongoConfig.dbname))
+}
+
+//如果连接默认数据库，则dialAddr填空字符串即可。
 func Query(f func(*mgo.Database)) {
 	c, err := GetMongoConn()
+
 	if err != nil {
+		log.E("Query() err:%v", err)
+		return
 	}
 	//defer c.Close()
 
@@ -145,9 +194,9 @@ func Query(f func(*mgo.Database)) {
 }
 
 //通过k==v查询一条数据
-func FindByKV(dbt string, key string, value interface{}, obj interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
+func FindByKV(dialAddr string, dbt string, key string, value interface{}, obj interface{}) error {
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(dialAddr, func(mgo *mgo.Database) {
 		err = mgo.C(dbt).Find(bson.M{
 			key: value,
 		}).One(obj)
@@ -156,9 +205,9 @@ func FindByKV(dbt string, key string, value interface{}, obj interface{}) error 
 }
 
 //通过k==v查询多条数据
-func SelectByKV(dbt string, key string, value interface{}, obj interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
+func SelectByKV(dialAddr string, dbt string, key string, value interface{}, obj interface{}) error {
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(dialAddr, func(mgo *mgo.Database) {
 		err = mgo.C(dbt).Find(bson.M{
 			key: value,
 		}).All(obj)
@@ -167,35 +216,67 @@ func SelectByKV(dbt string, key string, value interface{}, obj interface{}) erro
 }
 
 func CloseMGO() {
-	log.Release("mgo close...")
-	mongoConfig.dialc.Close()
+	log.T("mgo close...")
+	for _, dial_context := range mongoConfig.dialc {
+		dial_context.Close()
+	}
 }
 
 //模拟类似ThinkPHP的M()方法
-type C string
+type Collection struct {
+	TableName string
+	DialAddr  string
+}
+
+//主数据库
+//args[0]:TableName args[1]:DialAddr
+func C(tableName string) *Collection {
+	return &Collection{
+		TableName: tableName,
+		DialAddr:  mongoConfig.ip,
+	}
+}
+
+//日志数据库
+func Log(tableName string) *Collection {
+	return &Collection{
+		TableName: tableName,
+		DialAddr: mongoConfig.logIp,
+	}
+}
 
 //查询单条
-func (c C) Find(query interface{}, result interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).Find(query).One(result)
+func (c *Collection) Find(query interface{}, result interface{}) error {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).Find(query).One(result)
 	})
 	return err
 }
 
 //查询多条
-func (c C) FindAll(query interface{}, result interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).Find(query).All(result)
+func (c *Collection) FindAll(query interface{}, result interface{}) error {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).Find(query).All(result)
 	})
 	return err
 }
 
 //查询分页
-func (c C) Page(query interface{}, result interface{}, sort string, page int, limit int) (err error, count int) {
-	Query(func(mgo *mgo.Database) {
-		q := mgo.C(string(c)).Find(query)
+func (c *Collection) Page(query interface{}, result interface{}, sort string, page int, limit int) (err error, count int) {
+	if c == nil {
+		return errors.New("collection is nil."), 0
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		q := mgo.C(c.TableName).Find(query)
 		//统计数量
 		count, err = q.Count()
 
@@ -211,33 +292,46 @@ func (c C) Page(query interface{}, result interface{}, sort string, page int, li
 }
 
 //更新一条
-func (c C) Update(query interface{}, update interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).Update(query, update)
+func (c *Collection) Update(query interface{}, update interface{}) error {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).Update(query, update)
 	})
 	return err
 }
 
 //更新多条
-func (c C) UpdateAll(query interface{}, update interface{}) (change_info *mgo.ChangeInfo, err error) {
-	Query(func(mgo *mgo.Database) {
-		change_info, err = mgo.C(string(c)).UpdateAll(query, update)
+func (c *Collection) UpdateAll(query interface{}, update interface{}) (change_info *mgo.ChangeInfo, err error) {
+	if c == nil {
+		return nil, errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		change_info, err = mgo.C(c.TableName).UpdateAll(query, update)
 	})
 	return
 }
 
 //插入一条或多条
-func (c C) Insert(doc ...interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).Insert(doc...)
+func (c *Collection) Insert(doc ...interface{}) error {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).Insert(doc...)
 	})
 	return err
 }
 
 //一次性插入多条数据
-func (c C) InsertAll(doc_slice interface{}) (error, int) {
+func (c *Collection) InsertAll(doc_slice interface{}) (error, int) {
+	if c == nil {
+		return errors.New("collection is nil."), 0
+	}
 	if reflect.TypeOf(doc_slice).Kind() != reflect.Slice {
 		return errors.New("doc_slice must be a slice."), 0
 	}
@@ -251,52 +345,75 @@ func (c C) InsertAll(doc_slice interface{}) (error, int) {
 }
 
 //删除单条数据
-func (c C) Remove(query interface{}) error {
-	var err error = nil
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).Remove(query)
+func (c *Collection) Remove(query interface{}) error {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).Remove(query)
 	})
 	return err
 }
 
 //删除多条数据
-func (c C) RemoveAll(query interface{}) (change_info *mgo.ChangeInfo, err error) {
-	Query(func(mgo *mgo.Database) {
-		change_info, err = mgo.C(string(c)).RemoveAll(query)
+func (c *Collection) RemoveAll(query interface{}) (change_info *mgo.ChangeInfo, err error) {
+	if c == nil {
+		return nil, errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		change_info, err = mgo.C(c.TableName).RemoveAll(query)
 	})
 	return
 }
 
 //计数
-func (c C) Count(query interface{}) (count int, err error) {
-	Query(func(mgo *mgo.Database) {
-		count, err = mgo.C(string(c)).Find(query).Count()
+func (c *Collection) Count(query interface{}) (count int, err error) {
+	if c == nil {
+		return 0, errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		count, err = mgo.C(c.TableName).Find(query).Count()
 	})
 	return
 }
 
 //管道
-func (c C) PipeAll(query interface{}, result interface{}) (err error) {
-	Query(func(mgo *mgo.Database) {
-		pipe := mgo.C(string(c)).Pipe(query)
+func (c *Collection) PipeAll(query interface{}, result interface{}) (err error) {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		pipe := mgo.C(c.TableName).Pipe(query)
 		err = pipe.All(result)
 	})
 	return
 }
 
 //管道
-func (c C) Pipe(query interface{}, result interface{}) (err error) {
-	Query(func(mgo *mgo.Database) {
-		pipe := mgo.C(string(c)).Pipe(query)
+func (c *Collection) Pipe(query interface{}, result interface{}) (err error) {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		pipe := mgo.C(c.TableName).Pipe(query)
 		err = pipe.One(result)
 	})
 	return
 }
 
 //删除表
-func (c C) Drop() (err error) {
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).DropCollection()
+func (c *Collection) Drop() (err error) {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).DropCollection()
 	})
 	return
 }
@@ -306,10 +423,14 @@ type ObjIds struct {
 }
 
 //查询id列表
-func (c C) FindAllId(query interface{}) (list []bson.ObjectId, err error) {
+func (c *Collection) FindAllId(query interface{}) (list []bson.ObjectId, err error) {
+	if c == nil {
+		return list, errors.New("collection is nil.")
+	}
+	err = errors.New("connect err.")
 	res := []ObjIds{}
-	Query(func(mgo *mgo.Database) {
-		err = mgo.C(string(c)).Find(query).All(&res)
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		err = mgo.C(c.TableName).Find(query).All(&res)
 	})
 	if err != nil {
 		return list, err

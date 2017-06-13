@@ -31,8 +31,6 @@ var _ = math.Inf
 
 // Ignoring public import of cm_hearbeat from common_client.proto
 
-// Ignoring public import of GAME_ID from common_client.proto
-
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -77,7 +75,7 @@ type SdyReqCreateDesk struct {
 func (m *SdyReqCreateDesk) Reset()                    { *m = SdyReqCreateDesk{} }
 func (m *SdyReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqCreateDesk) ProtoMessage()               {}
-func (*SdyReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
+func (*SdyReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{0} }
 
 func (m *SdyReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -107,7 +105,7 @@ type SdyAckCreateDesk struct {
 func (m *SdyAckCreateDesk) Reset()                    { *m = SdyAckCreateDesk{} }
 func (m *SdyAckCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckCreateDesk) ProtoMessage()               {}
-func (*SdyAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{1} }
+func (*SdyAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{1} }
 
 func (m *SdyAckCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -167,7 +165,7 @@ type SdyReqEnterDesk struct {
 func (m *SdyReqEnterDesk) Reset()                    { *m = SdyReqEnterDesk{} }
 func (m *SdyReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyReqEnterDesk) ProtoMessage()               {}
-func (*SdyReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{2} }
+func (*SdyReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{2} }
 
 func (m *SdyReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -215,7 +213,7 @@ func (m *SdyReqEnterDesk) GetCoinRoomLevel() SdyEnumCoinRoomLevel {
 	if m != nil && m.CoinRoomLevel != nil {
 		return *m.CoinRoomLevel
 	}
-	return SdyEnumCoinRoomLevel_LEVEL_1000
+	return SdyEnumCoinRoomLevel_LEVEL_ROOKIE
 }
 
 func (m *SdyReqEnterDesk) GetIsContinuous() bool {
@@ -234,7 +232,7 @@ type SdyAckEnterDesk struct {
 func (m *SdyAckEnterDesk) Reset()                    { *m = SdyAckEnterDesk{} }
 func (m *SdyAckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*SdyAckEnterDesk) ProtoMessage()               {}
-func (*SdyAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{3} }
+func (*SdyAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{3} }
 
 func (m *SdyAckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -250,38 +248,471 @@ func (m *SdyAckEnterDesk) GetIsContinuous() bool {
 	return false
 }
 
+// 玩家离线时发的广播，广播谁离线了
+type SdyBcUserBreak struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyBcUserBreak) Reset()                    { *m = SdyBcUserBreak{} }
+func (m *SdyBcUserBreak) String() string            { return proto.CompactTextString(m) }
+func (*SdyBcUserBreak) ProtoMessage()               {}
+func (*SdyBcUserBreak) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{4} }
+
+func (m *SdyBcUserBreak) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyBcUserBreak) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+// 房主解散房间的请求
+type SdyReqDissolveDeskOwner struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyReqDissolveDeskOwner) Reset()                    { *m = SdyReqDissolveDeskOwner{} }
+func (m *SdyReqDissolveDeskOwner) String() string            { return proto.CompactTextString(m) }
+func (*SdyReqDissolveDeskOwner) ProtoMessage()               {}
+func (*SdyReqDissolveDeskOwner) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{5} }
+
+func (m *SdyReqDissolveDeskOwner) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyReqDissolveDeskOwner) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+// 房主请求解散房间的回复
+type SdyBcDissolveDeskOwner struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	DeskId           *int32       `protobuf:"varint,3,opt,name=deskId" json:"deskId,omitempty"`
+	PassWord         *string      `protobuf:"bytes,4,opt,name=passWord" json:"passWord,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyBcDissolveDeskOwner) Reset()                    { *m = SdyBcDissolveDeskOwner{} }
+func (m *SdyBcDissolveDeskOwner) String() string            { return proto.CompactTextString(m) }
+func (*SdyBcDissolveDeskOwner) ProtoMessage()               {}
+func (*SdyBcDissolveDeskOwner) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{6} }
+
+func (m *SdyBcDissolveDeskOwner) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyBcDissolveDeskOwner) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyBcDissolveDeskOwner) GetDeskId() int32 {
+	if m != nil && m.DeskId != nil {
+		return *m.DeskId
+	}
+	return 0
+}
+
+func (m *SdyBcDissolveDeskOwner) GetPassWord() string {
+	if m != nil && m.PassWord != nil {
+		return *m.PassWord
+	}
+	return ""
+}
+
+// 玩家申请解散房间的请求
+type SdyReqApplyDissolveDeskApllyer struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyReqApplyDissolveDeskApllyer) Reset()                    { *m = SdyReqApplyDissolveDeskApllyer{} }
+func (m *SdyReqApplyDissolveDeskApllyer) String() string            { return proto.CompactTextString(m) }
+func (*SdyReqApplyDissolveDeskApllyer) ProtoMessage()               {}
+func (*SdyReqApplyDissolveDeskApllyer) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{7} }
+
+func (m *SdyReqApplyDissolveDeskApllyer) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyReqApplyDissolveDeskApllyer) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+// 广播是谁申请解散房间 的消息并且广播该玩家的结果（默认true）
+type SdyBcApplyDissolveDeskApplyer struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	Result           *bool        `protobuf:"varint,3,opt,name=result" json:"result,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyBcApplyDissolveDeskApplyer) Reset()                    { *m = SdyBcApplyDissolveDeskApplyer{} }
+func (m *SdyBcApplyDissolveDeskApplyer) String() string            { return proto.CompactTextString(m) }
+func (*SdyBcApplyDissolveDeskApplyer) ProtoMessage()               {}
+func (*SdyBcApplyDissolveDeskApplyer) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{8} }
+
+func (m *SdyBcApplyDissolveDeskApplyer) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyBcApplyDissolveDeskApplyer) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyBcApplyDissolveDeskApplyer) GetResult() bool {
+	if m != nil && m.Result != nil {
+		return *m.Result
+	}
+	return false
+}
+
+// 玩家同意还是拒绝解散房间的请求
+type SdyReqApplyDissolveDeskUser struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	IsAgree          *bool        `protobuf:"varint,3,opt,name=isAgree" json:"isAgree,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyReqApplyDissolveDeskUser) Reset()                    { *m = SdyReqApplyDissolveDeskUser{} }
+func (m *SdyReqApplyDissolveDeskUser) String() string            { return proto.CompactTextString(m) }
+func (*SdyReqApplyDissolveDeskUser) ProtoMessage()               {}
+func (*SdyReqApplyDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{9} }
+
+func (m *SdyReqApplyDissolveDeskUser) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyReqApplyDissolveDeskUser) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyReqApplyDissolveDeskUser) GetIsAgree() bool {
+	if m != nil && m.IsAgree != nil {
+		return *m.IsAgree
+	}
+	return false
+}
+
+// 广播玩家同意还是拒绝
+type SdyAckApplyDissolveDeskUser struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	IsAgree          *bool        `protobuf:"varint,3,opt,name=isAgree" json:"isAgree,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyAckApplyDissolveDeskUser) Reset()                    { *m = SdyAckApplyDissolveDeskUser{} }
+func (m *SdyAckApplyDissolveDeskUser) String() string            { return proto.CompactTextString(m) }
+func (*SdyAckApplyDissolveDeskUser) ProtoMessage()               {}
+func (*SdyAckApplyDissolveDeskUser) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{10} }
+
+func (m *SdyAckApplyDissolveDeskUser) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyAckApplyDissolveDeskUser) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyAckApplyDissolveDeskUser) GetIsAgree() bool {
+	if m != nil && m.IsAgree != nil {
+		return *m.IsAgree
+	}
+	return false
+}
+
+// 离开房间的请求
+type SdyReqLeaveDesk struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	IsExchange       *bool        `protobuf:"varint,2,opt,name=isExchange" json:"isExchange,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyReqLeaveDesk) Reset()                    { *m = SdyReqLeaveDesk{} }
+func (m *SdyReqLeaveDesk) String() string            { return proto.CompactTextString(m) }
+func (*SdyReqLeaveDesk) ProtoMessage()               {}
+func (*SdyReqLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{11} }
+
+func (m *SdyReqLeaveDesk) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyReqLeaveDesk) GetIsExchange() bool {
+	if m != nil && m.IsExchange != nil {
+		return *m.IsExchange
+	}
+	return false
+}
+
+// 离开房间的回复
+type SdyAckLeaveDesk struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	IsExchange       *bool        `protobuf:"varint,3,opt,name=isExchange" json:"isExchange,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyAckLeaveDesk) Reset()                    { *m = SdyAckLeaveDesk{} }
+func (m *SdyAckLeaveDesk) String() string            { return proto.CompactTextString(m) }
+func (*SdyAckLeaveDesk) ProtoMessage()               {}
+func (*SdyAckLeaveDesk) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{12} }
+
+func (m *SdyAckLeaveDesk) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyAckLeaveDesk) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyAckLeaveDesk) GetIsExchange() bool {
+	if m != nil && m.IsExchange != nil {
+		return *m.IsExchange
+	}
+	return false
+}
+
+// 发送消息的请求
+type SdyReqSendMessage struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	MsgType          *int32       `protobuf:"varint,2,opt,name=msgType" json:"msgType,omitempty"`
+	Id               *int32       `protobuf:"varint,3,opt,name=id" json:"id,omitempty"`
+	Msg              *string      `protobuf:"bytes,4,opt,name=msg" json:"msg,omitempty"`
+	UserId           *uint32      `protobuf:"varint,5,opt,name=userId" json:"userId,omitempty"`
+	DeskId           *uint32      `protobuf:"varint,6,opt,name=deskId" json:"deskId,omitempty"`
+	ToUserId         *uint32      `protobuf:"varint,7,opt,name=toUserId" json:"toUserId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyReqSendMessage) Reset()                    { *m = SdyReqSendMessage{} }
+func (m *SdyReqSendMessage) String() string            { return proto.CompactTextString(m) }
+func (*SdyReqSendMessage) ProtoMessage()               {}
+func (*SdyReqSendMessage) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{13} }
+
+func (m *SdyReqSendMessage) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyReqSendMessage) GetMsgType() int32 {
+	if m != nil && m.MsgType != nil {
+		return *m.MsgType
+	}
+	return 0
+}
+
+func (m *SdyReqSendMessage) GetId() int32 {
+	if m != nil && m.Id != nil {
+		return *m.Id
+	}
+	return 0
+}
+
+func (m *SdyReqSendMessage) GetMsg() string {
+	if m != nil && m.Msg != nil {
+		return *m.Msg
+	}
+	return ""
+}
+
+func (m *SdyReqSendMessage) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyReqSendMessage) GetDeskId() uint32 {
+	if m != nil && m.DeskId != nil {
+		return *m.DeskId
+	}
+	return 0
+}
+
+func (m *SdyReqSendMessage) GetToUserId() uint32 {
+	if m != nil && m.ToUserId != nil {
+		return *m.ToUserId
+	}
+	return 0
+}
+
+// 发送消息的回复
+type SdyAckSendMessage struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	MsgType          *int32       `protobuf:"varint,2,opt,name=msgType" json:"msgType,omitempty"`
+	Id               *int32       `protobuf:"varint,3,opt,name=id" json:"id,omitempty"`
+	Msg              *string      `protobuf:"bytes,4,opt,name=msg" json:"msg,omitempty"`
+	UserId           *uint32      `protobuf:"varint,5,opt,name=userId" json:"userId,omitempty"`
+	ToUserId         *uint32      `protobuf:"varint,6,opt,name=toUserId" json:"toUserId,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *SdyAckSendMessage) Reset()                    { *m = SdyAckSendMessage{} }
+func (m *SdyAckSendMessage) String() string            { return proto.CompactTextString(m) }
+func (*SdyAckSendMessage) ProtoMessage()               {}
+func (*SdyAckSendMessage) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{14} }
+
+func (m *SdyAckSendMessage) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *SdyAckSendMessage) GetMsgType() int32 {
+	if m != nil && m.MsgType != nil {
+		return *m.MsgType
+	}
+	return 0
+}
+
+func (m *SdyAckSendMessage) GetId() int32 {
+	if m != nil && m.Id != nil {
+		return *m.Id
+	}
+	return 0
+}
+
+func (m *SdyAckSendMessage) GetMsg() string {
+	if m != nil && m.Msg != nil {
+		return *m.Msg
+	}
+	return ""
+}
+
+func (m *SdyAckSendMessage) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *SdyAckSendMessage) GetToUserId() uint32 {
+	if m != nil && m.ToUserId != nil {
+		return *m.ToUserId
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*SdyReqCreateDesk)(nil), "yjprotogo.sdy_req_createDesk")
 	proto.RegisterType((*SdyAckCreateDesk)(nil), "yjprotogo.sdy_ack_createDesk")
 	proto.RegisterType((*SdyReqEnterDesk)(nil), "yjprotogo.sdy_req_enterDesk")
 	proto.RegisterType((*SdyAckEnterDesk)(nil), "yjprotogo.sdy_ack_enterDesk")
+	proto.RegisterType((*SdyBcUserBreak)(nil), "yjprotogo.sdy_bc_userBreak")
+	proto.RegisterType((*SdyReqDissolveDeskOwner)(nil), "yjprotogo.sdy_req_dissolveDeskOwner")
+	proto.RegisterType((*SdyBcDissolveDeskOwner)(nil), "yjprotogo.sdy_bc_dissolveDeskOwner")
+	proto.RegisterType((*SdyReqApplyDissolveDeskApllyer)(nil), "yjprotogo.sdy_req_applyDissolveDeskApllyer")
+	proto.RegisterType((*SdyBcApplyDissolveDeskApplyer)(nil), "yjprotogo.sdy_bc_applyDissolveDeskApplyer")
+	proto.RegisterType((*SdyReqApplyDissolveDeskUser)(nil), "yjprotogo.sdy_req_applyDissolveDeskUser")
+	proto.RegisterType((*SdyAckApplyDissolveDeskUser)(nil), "yjprotogo.sdy_ack_applyDissolveDeskUser")
+	proto.RegisterType((*SdyReqLeaveDesk)(nil), "yjprotogo.sdy_req_leaveDesk")
+	proto.RegisterType((*SdyAckLeaveDesk)(nil), "yjprotogo.sdy_ack_leaveDesk")
+	proto.RegisterType((*SdyReqSendMessage)(nil), "yjprotogo.sdy_req_sendMessage")
+	proto.RegisterType((*SdyAckSendMessage)(nil), "yjprotogo.sdy_ack_sendMessage")
 }
 
-var fileDescriptor6 = []byte{
-	// 395 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0xcd, 0xee, 0x93, 0x40,
-	0x14, 0xc5, 0x85, 0xfe, 0xdb, 0x7f, 0x99, 0x7e, 0x24, 0x8e, 0x49, 0x33, 0x69, 0x34, 0x41, 0x56,
-	0xac, 0x58, 0x74, 0xeb, 0xae, 0x36, 0x5a, 0x12, 0x17, 0x64, 0x62, 0xe2, 0x92, 0x4c, 0xe1, 0xda,
-	0x62, 0x61, 0xa6, 0xce, 0x80, 0xa6, 0xaf, 0xe0, 0xfb, 0xf9, 0x3a, 0xc6, 0xcc, 0xf0, 0xd1, 0xd2,
-	0xba, 0xaa, 0x2b, 0x38, 0xf7, 0x9e, 0x3b, 0x73, 0xee, 0x0f, 0xd0, 0x5c, 0xa5, 0xe7, 0xf8, 0xc0,
-	0xf2, 0x3c, 0x38, 0x49, 0x51, 0x0a, 0xec, 0x9c, 0xbf, 0x99, 0x97, 0xbd, 0x58, 0xbe, 0x4a, 0x44,
-	0x51, 0x08, 0x1e, 0x27, 0x79, 0x06, 0xbc, 0xac, 0xfb, 0x4b, 0xe3, 0xdf, 0x31, 0x05, 0xb5, 0xf6,
-	0x7e, 0x59, 0x08, 0xeb, 0x92, 0x84, 0xef, 0x71, 0x22, 0x81, 0x95, 0xb0, 0x01, 0x75, 0xc4, 0x01,
-	0x1a, 0x1d, 0x80, 0xa5, 0x20, 0x89, 0xe5, 0x5a, 0xfe, 0x64, 0xb5, 0x08, 0xba, 0x73, 0x83, 0x48,
-	0x3f, 0xb7, 0xa6, 0x4b, 0x1b, 0x17, 0xde, 0xa0, 0xa9, 0x14, 0xa2, 0xf8, 0x7c, 0x3e, 0x41, 0xc8,
-	0xbf, 0x0a, 0x62, 0x9b, 0x29, 0xf7, 0x6a, 0xaa, 0xbd, 0x37, 0xbe, 0xf6, 0xd1, 0xde, 0x94, 0xf7,
-	0xa7, 0x09, 0xc3, 0x92, 0xe3, 0xff, 0x84, 0x59, 0xa0, 0x51, 0x0a, 0xea, 0x18, 0xa6, 0x26, 0xc6,
-	0x90, 0x36, 0x0a, 0x2f, 0xd1, 0xf8, 0xc4, 0x94, 0xfa, 0x29, 0x64, 0x4a, 0x06, 0xae, 0xe5, 0x3b,
-	0xb4, 0xd3, 0xd8, 0x45, 0x93, 0x4a, 0x81, 0x5c, 0xb3, 0x9c, 0xf1, 0x04, 0xc8, 0x93, 0x6b, 0xf9,
-	0x03, 0x7a, 0x5d, 0xc2, 0xaf, 0x91, 0x53, 0x67, 0xfa, 0x00, 0x40, 0x86, 0xa6, 0x7f, 0x29, 0xdc,
-	0x01, 0x18, 0x3d, 0x04, 0xe0, 0xb7, 0x8d, 0x5e, 0xb6, 0x5f, 0x03, 0x78, 0x09, 0xf2, 0xa1, 0xfd,
-	0x09, 0x7a, 0x2e, 0x58, 0x99, 0x1c, 0x3a, 0x00, 0xad, 0xd4, 0x9d, 0x92, 0xed, 0x72, 0x08, 0x6b,
-	0x00, 0x43, 0xda, 0x4a, 0xcd, 0x26, 0x62, 0x4a, 0x7d, 0xd1, 0x6c, 0x9e, 0x6a, 0x36, 0xad, 0xd6,
-	0x3c, 0x35, 0x88, 0x30, 0x35, 0x6b, 0xcf, 0x68, 0xa3, 0xf0, 0x3b, 0xe4, 0x98, 0x90, 0x3a, 0xbe,
-	0x59, 0x78, 0xbe, 0x7a, 0x73, 0xb3, 0x30, 0xf0, 0xaa, 0x88, 0x3b, 0x13, 0xbd, 0xf8, 0xf1, 0x47,
-	0x34, 0x4b, 0x44, 0xc6, 0xa9, 0x10, 0xc5, 0x27, 0xf8, 0x01, 0x39, 0x79, 0x36, 0x07, 0xbc, 0xfd,
-	0xd7, 0x01, 0x3d, 0x23, 0xed, 0xcf, 0x61, 0x0f, 0x4d, 0x33, 0xf5, 0x5e, 0xf0, 0x32, 0xe3, 0x95,
-	0xa8, 0x14, 0x19, 0xbb, 0x96, 0x3f, 0xa6, 0xbd, 0x9a, 0xb7, 0xaf, 0xb1, 0xea, 0xff, 0xea, 0x71,
-	0xac, 0xb7, 0x17, 0xd9, 0xf7, 0x17, 0xad, 0xed, 0xed, 0x20, 0x7a, 0x11, 0x59, 0x7f, 0x03, 0x00,
-	0x00, 0xff, 0xff, 0x56, 0x19, 0x0a, 0x97, 0x97, 0x03, 0x00, 0x00,
+var fileDescriptor10 = []byte{
+	// 643 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x55, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0xc6, 0x4e, 0x9b, 0x9f, 0xe9, 0x8f, 0x8a, 0x2b, 0x55, 0xa6, 0xa2, 0x60, 0x7c, 0xca, 0x29,
+	0x87, 0x5e, 0x39, 0xb5, 0x14, 0x68, 0x24, 0x10, 0x91, 0x45, 0x85, 0xc4, 0x25, 0xda, 0xda, 0x83,
+	0xe3, 0xd6, 0xde, 0x35, 0xbb, 0x4e, 0x4b, 0xc4, 0x89, 0x2b, 0x0f, 0xc0, 0x9b, 0xf0, 0x18, 0x1c,
+	0x79, 0x1d, 0x84, 0x76, 0xbd, 0x9b, 0xd8, 0x6d, 0x7a, 0x31, 0x41, 0x70, 0x8a, 0xbf, 0xd9, 0x59,
+	0xcf, 0xf7, 0x7d, 0x9e, 0x99, 0xc0, 0xb6, 0x88, 0x66, 0xe3, 0x09, 0x49, 0xd3, 0x41, 0xce, 0x59,
+	0xc1, 0x9c, 0xde, 0xec, 0x42, 0x3d, 0xc4, 0x6c, 0x7f, 0x37, 0x64, 0x59, 0xc6, 0xe8, 0x38, 0x4c,
+	0x13, 0xa4, 0x45, 0x79, 0xbe, 0xaf, 0xf2, 0xcf, 0x89, 0xc0, 0x12, 0xfb, 0x5f, 0x2d, 0x70, 0x64,
+	0x88, 0xe3, 0xc7, 0x71, 0xc8, 0x91, 0x14, 0x78, 0x82, 0xe2, 0xd2, 0x19, 0x40, 0x7b, 0x82, 0x24,
+	0x42, 0xee, 0x5a, 0x9e, 0xd5, 0xdf, 0x38, 0xdc, 0x1b, 0xcc, 0xdf, 0x3b, 0x18, 0xc9, 0xdf, 0x53,
+	0x75, 0x1a, 0xe8, 0x2c, 0xe7, 0x04, 0x36, 0x39, 0x63, 0xd9, 0xdb, 0x59, 0x8e, 0x43, 0xfa, 0x81,
+	0xb9, 0xb6, 0xba, 0xe5, 0x55, 0x6e, 0x99, 0xba, 0xe3, 0x6a, 0x5e, 0x50, 0xbb, 0xe5, 0xff, 0xd2,
+	0x64, 0x48, 0x78, 0xf9, 0x27, 0x64, 0xf6, 0xa0, 0x1d, 0xa1, 0xb8, 0x1c, 0x46, 0x8a, 0xc6, 0x7a,
+	0xa0, 0x91, 0xb3, 0x0f, 0xdd, 0x9c, 0x08, 0x71, 0xcd, 0x78, 0xe4, 0xb6, 0x3c, 0xab, 0xdf, 0x0b,
+	0xe6, 0xd8, 0xf1, 0x60, 0x63, 0x2a, 0x90, 0x1f, 0x93, 0x94, 0xd0, 0x10, 0xdd, 0x35, 0xcf, 0xea,
+	0xb7, 0x82, 0x6a, 0xc8, 0x79, 0x08, 0xbd, 0x92, 0xd3, 0x0b, 0x44, 0x77, 0x5d, 0x9d, 0x2f, 0x02,
+	0xb7, 0x0c, 0x68, 0x37, 0x32, 0xe0, 0xa7, 0x0d, 0xf7, 0xcd, 0xd7, 0x40, 0x5a, 0x20, 0x6f, 0xa4,
+	0xdf, 0x85, 0x4e, 0x46, 0x8a, 0x70, 0x32, 0x37, 0xc0, 0x40, 0x79, 0x52, 0x90, 0xf3, 0x14, 0x87,
+	0xa5, 0x01, 0xeb, 0x81, 0x81, 0xd2, 0x9b, 0x11, 0x11, 0xe2, 0x9d, 0xf4, 0x66, 0xad, 0xf4, 0xc6,
+	0x60, 0xe9, 0xa7, 0x34, 0x62, 0x18, 0x29, 0xd9, 0x5b, 0x81, 0x46, 0xce, 0x53, 0xe8, 0x29, 0x92,
+	0x92, 0xbe, 0x12, 0xbc, 0x7d, 0x78, 0x70, 0x43, 0x30, 0xd2, 0x69, 0x36, 0x9e, 0x27, 0x05, 0x8b,
+	0x7c, 0xe7, 0x25, 0x6c, 0x85, 0x2c, 0xa1, 0x01, 0x63, 0xd9, 0x2b, 0xbc, 0xc2, 0xd4, 0xed, 0xa8,
+	0x17, 0x3c, 0x59, 0xf6, 0x82, 0x5a, 0x62, 0x50, 0xbf, 0xe7, 0xf8, 0xb0, 0x99, 0x88, 0x67, 0x8c,
+	0x16, 0x09, 0x9d, 0xb2, 0xa9, 0x70, 0xbb, 0x9e, 0xd5, 0xef, 0x06, 0xb5, 0x98, 0x1f, 0x97, 0xb6,
+	0xca, 0xbe, 0x6a, 0x6e, 0xeb, 0xcd, 0x42, 0xf6, 0x92, 0x42, 0xef, 0x61, 0x47, 0x7d, 0xe7, 0x70,
+	0xac, 0x5a, 0x87, 0x23, 0x69, 0xd4, 0xbe, 0xda, 0x6e, 0xbb, 0x6a, 0xb7, 0x1f, 0xc2, 0x03, 0xd3,
+	0x1b, 0x51, 0x22, 0x04, 0x4b, 0xaf, 0xd4, 0x78, 0xbc, 0xb9, 0xa6, 0xc8, 0x57, 0x56, 0xe4, 0x9b,
+	0x05, 0xae, 0x56, 0xf0, 0xd7, 0x8a, 0x54, 0x06, 0xb4, 0xb5, 0x6c, 0x40, 0xab, 0x4d, 0x68, 0xb0,
+	0x7f, 0x01, 0x9e, 0x51, 0x4f, 0xf2, 0x3c, 0x9d, 0x9d, 0x54, 0xd8, 0x1d, 0xe5, 0x69, 0x3a, 0x5b,
+	0xa1, 0x09, 0x5f, 0x2c, 0x78, 0xac, 0x4d, 0x58, 0x52, 0x2b, 0x5f, 0x65, 0x2d, 0x19, 0xe7, 0x28,
+	0xa6, 0x69, 0xa1, 0xbc, 0xe8, 0x06, 0x1a, 0x49, 0x0e, 0x07, 0x77, 0x0a, 0x3e, 0x13, 0x2b, 0x64,
+	0xe0, 0x42, 0x27, 0x11, 0x47, 0x31, 0x47, 0xd4, 0x14, 0x0c, 0x9c, 0x73, 0x90, 0x73, 0xf3, 0xaf,
+	0x38, 0x84, 0x8b, 0x8d, 0x98, 0x22, 0xb9, 0x6a, 0xf6, 0x8f, 0xf0, 0x08, 0x20, 0x11, 0xcf, 0x3f,
+	0x85, 0x13, 0x42, 0x63, 0xd4, 0x83, 0x5b, 0x89, 0xf8, 0x9f, 0x17, 0xfb, 0xa1, 0x79, 0x91, 0xbb,
+	0xb4, 0xd5, 0x8b, 0xb7, 0x6e, 0x15, 0xff, 0x61, 0xc1, 0xae, 0x91, 0x28, 0x90, 0x46, 0xaf, 0x51,
+	0x08, 0x12, 0x63, 0xa3, 0xb5, 0x2f, 0x62, 0xb5, 0x8c, 0xcd, 0xda, 0x2f, 0xa1, 0xb3, 0x0d, 0x76,
+	0x62, 0x66, 0xcd, 0x4e, 0x22, 0x67, 0x07, 0x5a, 0x99, 0x88, 0xf5, 0x88, 0xc9, 0xc7, 0x3b, 0x57,
+	0xfc, 0x62, 0x52, 0xdb, 0x65, 0x7c, 0x31, 0xa9, 0x05, 0x3b, 0x2b, 0x6f, 0x74, 0xd4, 0xc9, 0x1c,
+	0xfb, 0xdf, 0xb5, 0x1e, 0xe9, 0xe6, 0xff, 0xa6, 0xa7, 0xca, 0xbb, 0x5d, 0xe7, 0x7d, 0x6c, 0x9f,
+	0xb6, 0x46, 0xf7, 0x46, 0xd6, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe9, 0x99, 0x1c, 0x13, 0x53,
+	0x09, 0x00, 0x00,
 }

@@ -18,6 +18,7 @@ func SysInit(releaseTag int32,
 	logPath string,
 	logName string,
 	mongoIp string,
+	mongoLogIp string,
 	mongoName string,
 	mongoSeqTables []string) error {
 
@@ -26,7 +27,7 @@ func SysInit(releaseTag int32,
 	initRandSeed()                                                                     //初始化随机数种子
 	runtime.GOMAXPROCS(runtime.NumCPU())                                               //初始化cpu数量
 	log.InitLogger(logPath, logName)                                                   //初始化日志
-	db.InitMongoDb(mongoIp, mongoName, tableName.DB_ENSURECOUNTER_KEY, mongoSeqTables) //初始化mongo 的地址
+	db.InitMongoDb(mongoIp, mongoLogIp, mongoName, tableName.DB_ENSURECOUNTER_KEY, mongoSeqTables) //初始化mongo 的地址
 	e = initSysConfig()                                                                //初始化系统配置
 	if e != nil {
 		fmt.Printf("加载sys_ocnfig 的时候错误: %v", e)
