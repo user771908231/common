@@ -2703,9 +2703,6 @@ func (*Game_AckGameRecord) ProtoMessage()               {}
 
 func (*Game_AckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{48} }
 
-func (*Game_AckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{50} }
-
-
 func (m *Game_AckGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
@@ -2740,8 +2737,6 @@ type HallReqTask struct {
 
 	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
 
-	TaskType         *HallEnumTaskType `protobuf:"varint,2,opt,name=task_type,json=taskType,enum=yjprotogo.HallEnumTaskType" json:"task_type,omitempty"`
-
 	XXX_unrecognized []byte            `json:"-"`
 }
 
@@ -2750,9 +2745,6 @@ func (m *HallReqTask) String() string            { return proto.CompactTextStrin
 func (*HallReqTask) ProtoMessage()               {}
 
 func (*HallReqTask) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{49} }
-
-func (*HallReqTask) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{51} }
-
 
 func (m *HallReqTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2779,9 +2771,6 @@ func (m *HallAckTask) String() string            { return proto.CompactTextStrin
 func (*HallAckTask) ProtoMessage()               {}
 
 func (*HallAckTask) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{50} }
-
-func (*HallAckTask) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{52} }
-
 
 func (m *HallAckTask) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2811,9 +2800,6 @@ func (m *Game_GameRecord) String() string            { return proto.CompactTextS
 func (*Game_GameRecord) ProtoMessage()               {}
 
 func (*Game_GameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{51} }
-
-func (*Game_GameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{53} }
-
 
 func (m *Game_GameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2856,9 +2842,6 @@ func (m *BeanUserRecord) String() string            { return proto.CompactTextSt
 func (*BeanUserRecord) ProtoMessage()               {}
 
 func (*BeanUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{52} }
-
-func (*BeanUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{54} }
-
 
 func (m *BeanUserRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -2903,7 +2886,7 @@ func (m *BeanGameRecord) Reset()                    { *m = BeanGameRecord{} }
 func (m *BeanGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*BeanGameRecord) ProtoMessage()               {}
 
-func (*BeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{53} }
+//func (*BeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{53} }
 
 func (*BeanGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{55} }
 
