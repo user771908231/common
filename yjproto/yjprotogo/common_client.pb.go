@@ -9,11 +9,9 @@ It is generated from these files:
 	common_client.proto
 	common_enum.proto
 	common_server.proto
-	hall.proto
 	hall_base.proto
 	hall_common_server_award.proto
 	hall_common_server_model.proto
-	hall_playback.proto
 	mj_changchun_base.proto
 	mj_changchun_play.proto
 	sdy_base.proto
@@ -35,70 +33,26 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
-	HallReqEvent
-	HallAckEvent
-	HallLotteryItem
-	HallSignLotteryInfo
-	HallDrawLotteryInfo
-	HallReqMailList
-	HallAckMailList
-	HallReqTask
-	HallAckTask
-	HallReqCheckTask
-	HallAckCheckTask
-	HallReqTaskSum
-	HallAckTaskSum
-	HallReqCheckBonus
-	HallAckCheckBonus
-	HallReqBagItems
-	HallAckBagItems
-	HallReqUserData
-	HallAckUserData
-	HallReqUpdateRealData
-	HallAckUpdateRealData
-	HallReqGoodsList
-	HallAckGoodsList
-	HallReqGoodsBuy
-	HallAckGoodsBuy
-	HallGoodsItemMsg
-	HallReqRank
-	HallAckRank
-	HallReqDrawLottery
-	HallAckDrawLottery
-	HallReqDsLotteryInfo
-	HallAckDsLotteryInfo
-	HallReqFriendsList
-	HallAckFriendsList
-	HallReqRecommendUserList
-	HallAckRecommendUserList
-	HallReqFriendsSearch
-	HallAckFriendsSearch
-	HallReqAddFriend
-	HallAckAddFriend
-	HallReqDelFriend
-	HallAckDelFriend
-	HallFriendState
-	HallUserInfo
-	HallAckStrongboxInfo
-	HallReqStrongboxInfo
-	HallReqStrongboxAccess
-	HallAckStrongboxAccess
-	Game_GameRecord
-	BeanUserRecord
-	BeanGameRecord
-	Game_AckGameRecord
-	HallBeanBisai
-	HallReqBisai
-	HallReqFriendLotteryList
-	HallAckFriendLotteryList
-	HallReqFriendLotteryDraw
-	HallAckFriendLotteryDraw
-	HallReqDistanceMatched
-	HallAckDistanceMatched
+	FuReqDai
+	FuAckDai
+	Fudai
+	BagReqPassword
+	BagAckPassword
+	AwardReqGetNewUser
+	AwardAckGetNewUser
+	HallReqServer
+	HallAckServer
+	Hallserver
+	HallReqFeedBack
+	HallAckFeedBack
+	HallReqNotice
+	HallAckNotice
+	HallNotice
 	HallItemEvent
 	HallMailItem
-	HallBagItem
 	HallItemTask
+	HallReqUserData
+	HallAckUserData
 	HallUserData
 	HallRankItem
 	CoinZone
@@ -107,12 +61,37 @@ It has these top-level messages:
 	BuyZone
 	GoodsItem
 	HallStrongboxInfo
+	HallAckStrongboxInfo
+	HallReqStrongboxInfo
+	HallReqStrongboxAccess
+	HallAckStrongboxAccess
 	CommonReqGameLogin
 	CommonReqGameLoginViaInput
 	CommonAckGameLogin
+	HallReqDrawLottery
+	HallAckDrawLottery
+	HallReqDsLotteryInfo
+	HallAckDsLotteryInfo
+	HallReqBagItems
+	HallAckBagItems
+	HallReqGoodsList
+	HallAckGoodsList
+	HallReqGoodsBuy
+	HallAckGoodsBuy
+	HallGoodsItemMsg
+	HallBagItem
+	HallSignLotteryInfo
+	HallDrawLotteryInfo
+	HallLotteryItem
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	Game_AckGameRecord
+	HallReqTask
+	HallAckTask
+	Game_GameRecord
+	BeanUserRecord
+	BeanGameRecord
 	Taward
 	AwardMOnline
 	User
@@ -120,12 +99,6 @@ It has these top-level messages:
 	TGameCounts
 	TUserTask
 	Push
-	PlaybackReqPage
-	PlaybackAckPage
-	PlaybackSnapshot
-	PlaybackDeskInfo
-	PlaybackItem
-	PlaybackReqPageByGameid
 	UserCoinBean
 	RoomTypeInfo
 	EndLotteryInfo
@@ -133,6 +106,7 @@ It has these top-level messages:
 	DeskGameInfo
 	PlayerInfo
 	CardInfo
+	BuCardInfo
 	ComposeCard
 	PlayerCard
 	WinCoinInfo
@@ -180,6 +154,10 @@ It has these top-level messages:
 	P16AckGameTing
 	P16AckGameDabao
 	P16AckGameChangbao
+	P16ReqRemainMajiang
+	P16AckRemainMajiang
+	P16ReqChangeMajiang
+	P16AckChangeMajiang
 	SdyBaseUserPaiIds
 	SdyBaseRoomTypeInfo
 	SdyBaseTimerInfo
