@@ -1,4 +1,7 @@
 var loginIp = "182.92.225.121";
+var prod1 = "182.92.225.121";
+var prod2 = "47.93.150.22";
+var prod3 = "47.93.150.194 ";
 var tableName = "t_game_config_login_list";
 var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 
@@ -17,7 +20,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3798,
     "STATUS": 1.0
 });
@@ -32,7 +35,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3799,
     "STATUS": 1.0
 });
@@ -47,7 +50,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": "192.168.199.120",
+    "IP": prod2,
     "PORT": 3800,
     "STATUS": 2.0
 });
@@ -62,7 +65,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3801,
     "STATUS": 1.0
 });
@@ -77,7 +80,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod3,
     "PORT": 3802,
     "STATUS": 1.0
 });
@@ -92,7 +95,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3803,
     "STATUS": 1.0
 });
@@ -107,7 +110,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3804,
     "STATUS": 1.0
 });
@@ -123,7 +126,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3805,
     "STATUS": 1.0
 });
@@ -138,7 +141,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3807,
     "STATUS": 1.0
 });
@@ -153,7 +156,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": loginIp,
+    "IP": prod2,
     "PORT": 3806,
     "STATUS": 1.0
 });
