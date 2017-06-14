@@ -28,4 +28,8 @@ const (
 	//admin需要使用的
 	RKEY_ALL_ONLINE_USERS      string = "rkey_all_online_users"      //记录所有在线的玩家
 	RKEY_PRE_ONLINE_SINGE_GAME string = "rkey_pre_online_singe_game" //记录单个在线的游戏玩家
+
+	//admin  游戏服务器配置相关
+	ADMIN_GAMEID_ISMAINTAIN		string = "rkey_gameid_ison_maintain" //游戏服务器是否在维护
+	ADMIN_GAMEID_MAINTAIN_INFO		string = "rkey_gameid_maintain_info" //游戏服务器是否在维护
 )

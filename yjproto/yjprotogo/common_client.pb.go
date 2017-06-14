@@ -33,6 +33,16 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+<<<<<<< HEAD
+=======
+	RealityReq
+	RealityAck
+>>>>>>> 9acc1444663f452e461ae6c033b78f4059a59180
+	FuReqDai
+	FuAckDai
+	Fudai
+	BagReqPassword
+	BagAckPassword
 	AwardReqGetNewUser
 	AwardAckGetNewUser
 	HallReqServer
@@ -81,12 +91,12 @@ It has these top-level messages:
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	Game_AckGameRecord
 	HallReqTask
 	HallAckTask
 	Game_GameRecord
 	BeanUserRecord
 	BeanGameRecord
-	Game_AckGameRecord
 	Taward
 	AwardMOnline
 	User
