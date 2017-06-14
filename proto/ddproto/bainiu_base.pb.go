@@ -339,6 +339,9 @@ It has these top-level messages:
 	PdkPlayerInfo
 	PdkPlaybackSnapshot
 	PdkPlaybackDeskInfo
+	PdkDataRecoverPlayerInfo
+	PdkDataRecoverDeskInfo
+	PdkDataRecover
 	VersionInfo
 	AssetInfo
 	HotupdateReqVersionInfo
