@@ -32,6 +32,7 @@ const (
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"         //灰度发布的数据库表
 	DBT_T_HALL_SERVER		string = "t_hall_server"		//客服
 	DBT_T_HALL_BAGPWD		string = "t_user_bag_password"		//背包密码
+	DBT_T_FUDAI_LIST		string = "t_fudai_list"			//福袋列表
 
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
