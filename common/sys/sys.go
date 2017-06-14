@@ -18,7 +18,7 @@ type MgoLoger struct {
 
 func (mlog MgoLoger) Output(calldepth int, s string) error {
 	if calldepth == 3 {
-		log.T("MongoDB: %s", s)
+		log.T("[MongoDB]:%s", s)
 	}
 	return nil
 }
