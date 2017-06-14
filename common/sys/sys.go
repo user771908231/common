@@ -9,7 +9,20 @@ import (
 	"math/rand"
 	"runtime"
 	"time"
+	"gopkg.in/mgo.v2"
 )
+
+type MgoLoger struct {
+
+}
+
+func (mlog MgoLoger) Output(calldepth int, s string) error {
+	if calldepth == 3 {
+		log.T("MongoDB: %s", s)
+	}
+	return nil
+}
+
 
 func SysInit(releaseTag int32,
 	prodMode bool,
@@ -33,6 +46,10 @@ func SysInit(releaseTag int32,
 		fmt.Printf("加载sys_ocnfig 的时候错误: %v", e)
 		return e
 	}
+
+	//初始化mongo日志记录
+	var mgoLoger MgoLoger
+	mgo.SetLogger(mgoLoger)
 
 	initGAMEENV(prodMode) //初始化环境变量
 	return nil
