@@ -51,7 +51,7 @@ const (
 
 	//数据分析
 	ADMIN_USER_ATHOME     = "t_user_athome"
-	ADMIN_USER_ONLINEHOUR = "t_data_onlinehour"
+	ADMIN_USER_ONLINEHOUR = "t_online_count"
 	ADMIN_USER_ONLINEDAY  = "t_data_onlineday"
 
 	//接入服务器
