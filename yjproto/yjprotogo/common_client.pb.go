@@ -33,11 +33,8 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
-<<<<<<< HEAD
-=======
 	RealityReq
 	RealityAck
->>>>>>> 9acc1444663f452e461ae6c033b78f4059a59180
 	FuReqDai
 	FuAckDai
 	Fudai
