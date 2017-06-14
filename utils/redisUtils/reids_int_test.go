@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	data.InitRedis("192.168.2.145:6379", "test")
+	data.InitRedis("127.0.0.1:6379", "test")
 	log.InitLogger("", "") //初始化日志处理
 }
 
