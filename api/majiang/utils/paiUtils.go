@@ -1,11 +1,11 @@
 package utils
 
 import (
-	"casino_majiang/msg/protogo"
 	"casino_common/api/majiang"
 	"github.com/golang/protobuf/proto"
 	"fmt"
 	"casino_common/api/majiang/api"
+	"casino_majiang/msg/protogo"
 )
 
 func Mjapi2Card(p *majiang.MJPAI) *mjproto.CardInfo {
