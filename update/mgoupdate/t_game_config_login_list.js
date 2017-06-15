@@ -1,7 +1,7 @@
 var loginIp = "182.92.225.121";
 var prod1 = "182.92.225.121";
 var prod2 = "47.93.150.22";
-var prod3 = "47.93.150.194 ";
+var prod3 = "47.93.150.194";
 var tableName = "t_game_config_login_list";
 var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 
@@ -65,7 +65,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod1,
     "PORT": 3801,
     "STATUS": 1.0
 });
