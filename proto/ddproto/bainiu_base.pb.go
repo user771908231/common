@@ -380,6 +380,8 @@ It has these top-level messages:
 	NiuniuSrvDesk
 	NiuniuSrvUser
 	NiuniuSrvRoom
+	NiuniuSrvDeskSnapshotIdIndex
+	NiuniuSrvDeskSnapshot
 	PdkBasePlayerInfo
 	PdkBasePlayerRateInfo
 	PdkBaseCommonRateInfo
