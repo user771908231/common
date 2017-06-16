@@ -33,11 +33,8 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
-<<<<<<< HEAD
-=======
 	RealityReq
 	RealityAck
->>>>>>> 9acc1444663f452e461ae6c033b78f4059a59180
 	FuReqDai
 	FuAckDai
 	Fudai
@@ -116,9 +113,9 @@ It has these top-level messages:
 	PlayerCard
 	WinCoinInfo
 	Game_SendGameInfo
-	Game_AckActHu
+	P16GameAckActHu
+	P16AckSendCurrentResult
 	P16AckGameOpening
-	Game_SendCurrentResult
 	P16AckRoomInit
 	P16BeanDeskInfo
 	P16ReqCreateDesk
@@ -187,7 +184,6 @@ It has these top-level messages:
 	SdyAckCreateDesk
 	SdyReqEnterDesk
 	SdyAckEnterDesk
-	SdyBcUserBreak
 	SdyReqDissolveDeskOwner
 	SdyBcDissolveDeskOwner
 	SdyReqApplyDissolveDeskApllyer
@@ -219,6 +215,8 @@ It has these top-level messages:
 	SdyBcHuanDi
 	SdyReqHuanDi
 	SdyAckHuanDi
+	SdyReqChangeDesk
+	SdyAckChangeDesk
 	TdkHeartBeat
 	TdkJoinRoom
 	TdkJoinRoomRsp
