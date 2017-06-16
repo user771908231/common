@@ -94,6 +94,8 @@ It has these top-level messages:
 	Game_GameRecord
 	BeanUserRecord
 	BeanGameRecord
+	CommonReqGameState
+	CommonAckGameState
 	Taward
 	AwardMOnline
 	User
