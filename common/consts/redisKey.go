@@ -33,3 +33,8 @@ const (
 	ADMIN_GAMEID_ISMAINTAIN		string = "rkey_gameid_ison_maintain" //游戏服务器是否在维护
 	ADMIN_GAMEID_MAINTAIN_INFO		string = "rkey_gameid_maintain_info" //游戏服务器是否在维护
 )
+
+const (
+	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list"
+	RKEY_NIUNIU_SNAPSHOT_DATA string = "rkey_niuniu_snapshot_data"
+)
