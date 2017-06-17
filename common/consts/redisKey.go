@@ -15,6 +15,7 @@ const (
 	RKEY_USER_ROOMCARD          string = "user_roomcard_redis_key" //钻石朋友桌
 	RKEY_MJSESSION_KEY_PRE      string = "redis_game_session"      //session redis key
 	RKEY_QR_CODE                string = "redis_qr_code_key"       //二维码登陆成功后存储的key
+	RKEY_SEQ_ID_KEY             string = "redis_seq_id_key"        //自增id key
 )
 
 const (
@@ -31,4 +32,9 @@ const (
 	//admin  游戏服务器配置相关
 	ADMIN_GAMEID_ISMAINTAIN		string = "rkey_gameid_ison_maintain" //游戏服务器是否在维护
 	ADMIN_GAMEID_MAINTAIN_INFO		string = "rkey_gameid_maintain_info" //游戏服务器是否在维护
+)
+
+const (
+	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list"
+	RKEY_NIUNIU_SNAPSHOT_DATA string = "rkey_niuniu_snapshot_data"
 )
