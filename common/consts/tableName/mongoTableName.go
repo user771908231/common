@@ -52,6 +52,9 @@ const (
 	ADMIN_USER_ONLINEHOUR = "t_online_count"
 	ADMIN_USER_ONLINEDAY  = "t_data_onlineday"
 
+	//用户管理
+	DBT_USER_GIVE_RECORD		string = "t_user_give_record"		//用户赠送记录表
+
 	//接入服务器
 	DBT_GAME_CONFIG_LOGIN      = "t_game_config_login"      //登陆服配置	//游戏配置表
 	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置	//登陆服游戏列表
