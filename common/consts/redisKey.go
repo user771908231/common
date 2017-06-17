@@ -30,11 +30,16 @@ const (
 	RKEY_PRE_ONLINE_SINGE_GAME string = "rkey_pre_online_singe_game" //记录单个在线的游戏玩家
 
 	//admin  游戏服务器配置相关
-	ADMIN_GAMEID_ISMAINTAIN		string = "rkey_gameid_ison_maintain" //游戏服务器是否在维护
-	ADMIN_GAMEID_MAINTAIN_INFO		string = "rkey_gameid_maintain_info" //游戏服务器是否在维护
+	ADMIN_GAMEID_ISMAINTAIN    string = "rkey_gameid_ison_maintain" //游戏服务器是否在维护
+	ADMIN_GAMEID_MAINTAIN_INFO string = "rkey_gameid_maintain_info" //游戏服务器是否在维护
 )
 
 const (
 	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list"
-	RKEY_NIUNIU_SNAPSHOT_DATA string = "rkey_niuniu_snapshot_data"
+	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"
+)
+
+const (
+	RKEY_PDK_DATARECOVER_ID_LIST string = "rkey_pdk_datarecover_id_list" //跑得快数据恢复房间ID列表
+	RKEY_PDK_DATARECOVER_DATA    string = "rkey_pdk_datarecover_data"    //跑得快数据恢复数据
 )
