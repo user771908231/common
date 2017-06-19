@@ -33,6 +33,8 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+	FudaiDuiHuanReq
+	FudaiDuiHuanAck
 	FudaiXiangxiListReq
 	FudaiXiangxiListAck
 	RealityReq
@@ -253,8 +255,11 @@ It has these top-level messages:
 	TdkFanTiRsp
 	TdkPass
 	TdkPassRsp
-	TdkKaiPai
-	TdkKaiPaiRsp
+	TdkFKaiPai
+	TdkFKaiPaiRsp
+	TdkCKaiPai
+	TdkCKaiPaiRsp
+	TdkCKaiPaiRso
 	TdkRoundEnd
 	TdkZhanJi
 	TdkZhanJiRsp
