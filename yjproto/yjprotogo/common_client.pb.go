@@ -33,8 +33,11 @@ It has these top-level messages:
 	CmOffline
 	CmHearbeat
 	GameSession
+<<<<<<< HEAD
+=======
 	FudaiDuiHuanReq
 	FudaiDuiHuanAck
+>>>>>>> 89f349b234dc44e70bdac9ff0f0cb613059fa5ba
 	FudaiXiangxiListReq
 	FudaiXiangxiListAck
 	RealityReq
