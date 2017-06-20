@@ -979,6 +979,7 @@ type PdkBcOverTurn struct {
 	PlayerInfos      []*PdkBasePlayerInfo `protobuf:"bytes,8,rep,name=playerInfos" json:"playerInfos,omitempty"`
 	JiaoScore        *PdkEnumJdScore      `protobuf:"varint,9,opt,name=jiaoScore,enum=ddproto.PdkEnumJdScore" json:"jiaoScore,omitempty"`
 	IsCanPass        *bool                `protobuf:"varint,10,opt,name=isCanPass" json:"isCanPass,omitempty"`
+	FirstPokerId     *int32               `protobuf:"varint,11,opt,name=firstPokerId" json:"firstPokerId,omitempty"`
 	XXX_unrecognized []byte               `json:"-"`
 }
 
@@ -1055,6 +1056,13 @@ func (m *PdkBcOverTurn) GetIsCanPass() bool {
 		return *m.IsCanPass
 	}
 	return false
+}
+
+func (m *PdkBcOverTurn) GetFirstPokerId() int32 {
+	if m != nil && m.FirstPokerId != nil {
+		return *m.FirstPokerId
+	}
+	return 0
 }
 
 // 游戏信息(广播)
