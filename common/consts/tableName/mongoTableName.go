@@ -33,6 +33,8 @@ const (
 	DBT_T_HALL_SERVER		string = "t_hall_server"		//客服
 	DBT_T_HALL_BAGPWD		string = "t_user_bag_password"		//背包密码
 	DBT_T_FUDAI_LIST		string = "t_fudai_list"			//福袋列表
+	DBT_T_FUDAI_LIST_USER		string = "t_fudai_list_user"		//福袋user
+	DBT_T_FUDAI_XIANGXI_LIST	string = "t_fudai_xiangxi_list"		//福袋详细信息
 
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
