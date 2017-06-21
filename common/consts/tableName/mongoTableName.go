@@ -54,6 +54,7 @@ const (
 	ADMIN_USER_ATHOME     = "t_user_athome"
 	ADMIN_USER_ONLINEHOUR = "t_online_count"
 	ADMIN_USER_ONLINEDAY  = "t_data_onlineday"
+	ADMIN_USER_RECHARGE_RECORD  = "t_user_recharge_record"		//充值记录表
 
 	//用户管理
 	DBT_USER_GIVE_RECORD		string = "t_user_give_record"		//用户赠送记录表
