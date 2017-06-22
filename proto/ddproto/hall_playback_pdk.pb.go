@@ -127,6 +127,28 @@ var _ = math.Inf
 
 // Ignoring public import of pdk_enum_deskGameStatus from common_pdk.proto
 
+// Ignoring public import of pdk_srv_outPokerPais from pdk_server.proto
+
+// Ignoring public import of pdk_srv_deskTongJi from pdk_server.proto
+
+// Ignoring public import of pdk_srv_desk from pdk_server.proto
+
+// Ignoring public import of pdk_srv_gameData from pdk_server.proto
+
+// Ignoring public import of pdk_srv_billBean from pdk_server.proto
+
+// Ignoring public import of pdk_srv_bill from pdk_server.proto
+
+// Ignoring public import of pdk_srv_userStatisticsRound from pdk_server.proto
+
+// Ignoring public import of pdk_srv_userStatistics from pdk_server.proto
+
+// Ignoring public import of pdk_srv_user from pdk_server.proto
+
+// Ignoring public import of pdk_srv_room from pdk_server.proto
+
+// Ignoring public import of pdk_srv_bak from pdk_server.proto
+
 // 跑得快的操作类型
 type PlaybackPdkActType int32
 
@@ -508,16 +530,17 @@ func (m *PdkPlaybackDeskInfo) GetTimerInfo() *PdkBaseTimerInfo {
 }
 
 type PdkDataRecoverPlayerInfo struct {
-	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
-	HandPokers       []int32 `protobuf:"varint,2,rep,name=HandPokers" json:"HandPokers,omitempty"`
-	UserGameStatus   *int32  `protobuf:"varint,3,opt,name=UserGameStatus" json:"UserGameStatus,omitempty"`
-	DissolveStatus   *int32  `protobuf:"varint,4,opt,name=DissolveStatus" json:"DissolveStatus,omitempty"`
-	OutPaiList       []int32 `protobuf:"varint,5,rep,name=OutPaiList" json:"OutPaiList,omitempty"`
-	OnlineStatus     *bool   `protobuf:"varint,6,opt,name=OnlineStatus" json:"OnlineStatus,omitempty"`
-	IsBigWinner      *bool   `protobuf:"varint,7,opt,name=isBigWinner" json:"isBigWinner,omitempty"`
-	WinCoin          *int64  `protobuf:"varint,8,opt,name=winCoin" json:"winCoin,omitempty"`
-	Coin             *int64  `protobuf:"varint,9,opt,name=coin" json:"coin,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	UserId           *uint32               `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	HandPokers       []int32               `protobuf:"varint,2,rep,name=HandPokers" json:"HandPokers,omitempty"`
+	UserGameStatus   *int32                `protobuf:"varint,3,opt,name=UserGameStatus" json:"UserGameStatus,omitempty"`
+	DissolveStatus   *int32                `protobuf:"varint,4,opt,name=DissolveStatus" json:"DissolveStatus,omitempty"`
+	OnlineStatus     *bool                 `protobuf:"varint,5,opt,name=OnlineStatus" json:"OnlineStatus,omitempty"`
+	IsBigWinner      *bool                 `protobuf:"varint,6,opt,name=isBigWinner" json:"isBigWinner,omitempty"`
+	Coin             *int64                `protobuf:"varint,7,opt,name=coin" json:"coin,omitempty"`
+	OutPai           *PdkSrvOutPokerPais   `protobuf:"bytes,8,opt,name=outPai" json:"outPai,omitempty"`
+	Statistics       *PdkSrvUserStatistics `protobuf:"bytes,9,opt,name=statistics" json:"statistics,omitempty"`
+	Bill             *PdkSrvBill           `protobuf:"bytes,10,opt,name=bill" json:"bill,omitempty"`
+	XXX_unrecognized []byte                `json:"-"`
 }
 
 func (m *PdkDataRecoverPlayerInfo) Reset()                    { *m = PdkDataRecoverPlayerInfo{} }
@@ -553,13 +576,6 @@ func (m *PdkDataRecoverPlayerInfo) GetDissolveStatus() int32 {
 	return 0
 }
 
-func (m *PdkDataRecoverPlayerInfo) GetOutPaiList() []int32 {
-	if m != nil {
-		return m.OutPaiList
-	}
-	return nil
-}
-
 func (m *PdkDataRecoverPlayerInfo) GetOnlineStatus() bool {
 	if m != nil && m.OnlineStatus != nil {
 		return *m.OnlineStatus
@@ -574,13 +590,6 @@ func (m *PdkDataRecoverPlayerInfo) GetIsBigWinner() bool {
 	return false
 }
 
-func (m *PdkDataRecoverPlayerInfo) GetWinCoin() int64 {
-	if m != nil && m.WinCoin != nil {
-		return *m.WinCoin
-	}
-	return 0
-}
-
 func (m *PdkDataRecoverPlayerInfo) GetCoin() int64 {
 	if m != nil && m.Coin != nil {
 		return *m.Coin
@@ -588,18 +597,40 @@ func (m *PdkDataRecoverPlayerInfo) GetCoin() int64 {
 	return 0
 }
 
+func (m *PdkDataRecoverPlayerInfo) GetOutPai() *PdkSrvOutPokerPais {
+	if m != nil {
+		return m.OutPai
+	}
+	return nil
+}
+
+func (m *PdkDataRecoverPlayerInfo) GetStatistics() *PdkSrvUserStatistics {
+	if m != nil {
+		return m.Statistics
+	}
+	return nil
+}
+
+func (m *PdkDataRecoverPlayerInfo) GetBill() *PdkSrvBill {
+	if m != nil {
+		return m.Bill
+	}
+	return nil
+}
+
 type PdkDataRecoverDeskInfo struct {
-	DeskGameStatus   *int32            `protobuf:"varint,1,opt,name=DeskGameStatus" json:"DeskGameStatus,omitempty"`
-	PlayerNum        *int32            `protobuf:"varint,2,opt,name=PlayerNum" json:"PlayerNum,omitempty"`
-	ActiveUserId     *uint32           `protobuf:"varint,3,opt,name=ActiveUserId" json:"ActiveUserId,omitempty"`
-	IsFollowPai      *bool             `protobuf:"varint,4,opt,name=isFollowPai" json:"isFollowPai,omitempty"`
-	CurrentRound     *int32            `protobuf:"varint,5,opt,name=CurrentRound" json:"CurrentRound,omitempty"`
-	TotalRound       *int32            `protobuf:"varint,6,opt,name=TotalRound" json:"TotalRound,omitempty"`
-	TimerInfo        *PdkBaseTimerInfo `protobuf:"bytes,7,opt,name=timerInfo" json:"timerInfo,omitempty"`
-	LatestOutPokers  []int32           `protobuf:"varint,8,rep,name=LatestOutPokers" json:"LatestOutPokers,omitempty"`
-	RoomNumber       *string           `protobuf:"bytes,9,opt,name=RoomNumber" json:"RoomNumber,omitempty"`
-	Owner            *uint32           `protobuf:"varint,10,opt,name=owner" json:"owner,omitempty"`
-	XXX_unrecognized []byte            `json:"-"`
+	DeskGameStatus   *int32              `protobuf:"varint,1,opt,name=DeskGameStatus" json:"DeskGameStatus,omitempty"`
+	PlayerNum        *int32              `protobuf:"varint,2,opt,name=PlayerNum" json:"PlayerNum,omitempty"`
+	ActiveUserId     *uint32             `protobuf:"varint,3,opt,name=ActiveUserId" json:"ActiveUserId,omitempty"`
+	IsFollowPai      *bool               `protobuf:"varint,4,opt,name=isFollowPai" json:"isFollowPai,omitempty"`
+	CurrentRound     *int32              `protobuf:"varint,5,opt,name=CurrentRound" json:"CurrentRound,omitempty"`
+	TotalRound       *int32              `protobuf:"varint,6,opt,name=TotalRound" json:"TotalRound,omitempty"`
+	TimerInfo        *PdkBaseTimerInfo   `protobuf:"bytes,7,opt,name=timerInfo" json:"timerInfo,omitempty"`
+	RoomNumber       *string             `protobuf:"bytes,8,opt,name=RoomNumber" json:"RoomNumber,omitempty"`
+	Owner            *uint32             `protobuf:"varint,9,opt,name=owner" json:"owner,omitempty"`
+	OutPaiList       *PdkSrvOutPokerPais `protobuf:"bytes,10,opt,name=outPaiList" json:"outPaiList,omitempty"`
+	BaseValue        *int64              `protobuf:"varint,11,opt,name=baseValue" json:"baseValue,omitempty"`
+	XXX_unrecognized []byte              `json:"-"`
 }
 
 func (m *PdkDataRecoverDeskInfo) Reset()                    { *m = PdkDataRecoverDeskInfo{} }
@@ -656,13 +687,6 @@ func (m *PdkDataRecoverDeskInfo) GetTimerInfo() *PdkBaseTimerInfo {
 	return nil
 }
 
-func (m *PdkDataRecoverDeskInfo) GetLatestOutPokers() []int32 {
-	if m != nil {
-		return m.LatestOutPokers
-	}
-	return nil
-}
-
 func (m *PdkDataRecoverDeskInfo) GetRoomNumber() string {
 	if m != nil && m.RoomNumber != nil {
 		return *m.RoomNumber
@@ -673,6 +697,20 @@ func (m *PdkDataRecoverDeskInfo) GetRoomNumber() string {
 func (m *PdkDataRecoverDeskInfo) GetOwner() uint32 {
 	if m != nil && m.Owner != nil {
 		return *m.Owner
+	}
+	return 0
+}
+
+func (m *PdkDataRecoverDeskInfo) GetOutPaiList() *PdkSrvOutPokerPais {
+	if m != nil {
+		return m.OutPaiList
+	}
+	return nil
+}
+
+func (m *PdkDataRecoverDeskInfo) GetBaseValue() int64 {
+	if m != nil && m.BaseValue != nil {
+		return *m.BaseValue
 	}
 	return 0
 }
@@ -731,7 +769,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PlaybackPdkActType", PlaybackPdkActType_name, PlaybackPdkActType_value)
 }
 
-var fileDescriptor30 = []byte{
+var fileDescriptor30 = []byte {
 	// 913 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x94, 0x55, 0xcd, 0x6e, 0xdb, 0x46,
 	0x10, 0x2e, 0x45, 0xfd, 0x50, 0x63, 0x49, 0x56, 0x28, 0xc7, 0x61, 0x9d, 0xa2, 0x4d, 0xd5, 0x1e,
