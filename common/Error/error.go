@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"runtime/debug"
 	"casino_common/common/consts"
-	"casino_common/common/log"
 )
 
 var ERR_SYS = NewError(consts.ACK_RESULT_ERROR, "系统错误")
@@ -136,9 +135,7 @@ func GetErrorMsg(e error) (ret string) {
 func ErrorRecovery(addr string) {
 	// 必须要先声明defer，否则不能捕获到panic异常
 	if err := recover(); err != nil {
-		log.E("地址[%v]开始打印日志err[%v] \n", addr, err)
-		log.E("%s", string(debug.Stack()))
-		//fmt.Printf("地址[%v]开始打印日志err[%v] \n", addr, err) // 这里的err其实就是panic传入的内容，55
+		fmt.Printf("地址[%v]开始打印日志err[%v] \n", addr, err) // 这里的err其实就是panic传入的内容，55
 		debug.PrintStack()
 	}
 }
