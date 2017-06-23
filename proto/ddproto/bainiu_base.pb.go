@@ -123,6 +123,7 @@ It has these top-level messages:
 	CommonReqClickStatistic
 	CommonReqOffline
 	CommonReqUploadLocation
+	CommonBcLeaveTimeout
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -627,6 +628,8 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_req_offline from common_client.proto
 
 // Ignoring public import of common_req_upload_location from common_client.proto
+
+// Ignoring public import of common_bc_leaveTimeout from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 
