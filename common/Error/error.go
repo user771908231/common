@@ -6,8 +6,8 @@ package Error
 
 import (
 	"fmt"
-	"runtime/debug"
 	"casino_common/common/consts"
+	"runtime/debug"
 )
 
 var ERR_SYS = NewError(consts.ACK_RESULT_ERROR, "系统错误")
