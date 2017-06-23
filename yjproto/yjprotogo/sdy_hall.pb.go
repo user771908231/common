@@ -264,12 +264,13 @@ func (m *SdyReqDissolveDeskOwner) GetUserId() uint32 {
 	return 0
 }
 
-// 房主请求解散房间的回复
+// 服务器解散房间后给客户端发送的广播，用于返回大厅
 type SdyBcDissolveDeskOwner struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
 	DeskId           *int32       `protobuf:"varint,3,opt,name=deskId" json:"deskId,omitempty"`
 	PassWord         *string      `protobuf:"bytes,4,opt,name=passWord" json:"passWord,omitempty"`
+	IsOwnerDissolve  *bool        `protobuf:"varint,5,opt,name=isOwnerDissolve" json:"isOwnerDissolve,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
@@ -304,6 +305,13 @@ func (m *SdyBcDissolveDeskOwner) GetPassWord() string {
 		return *m.PassWord
 	}
 	return ""
+}
+
+func (m *SdyBcDissolveDeskOwner) GetIsOwnerDissolve() bool {
+	if m != nil && m.IsOwnerDissolve != nil {
+		return *m.IsOwnerDissolve
+	}
+	return false
 }
 
 // 玩家申请解散房间的请求
@@ -628,7 +636,6 @@ func init() {
 }
 
 var fileDescriptor10 = []byte{
-
 	// 602 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x54, 0x4d, 0x6f, 0xd3, 0x4c,
 	0x10, 0x7e, 0xed, 0xb4, 0xf9, 0xd8, 0xf4, 0x8d, 0xc0, 0x95, 0x2a, 0x13, 0xb5, 0xc2, 0xf2, 0x29,
@@ -668,5 +675,4 @@ var fileDescriptor10 = []byte{
 	0x6f, 0x8b, 0x8c, 0x8e, 0xf4, 0x94, 0xd8, 0xfd, 0xa6, 0xfa, 0x11, 0x9a, 0xfd, 0x6b, 0xfd, 0xd4,
 	0x79, 0xb7, 0xb7, 0x79, 0x5f, 0x9a, 0x57, 0xad, 0xd9, 0x7f, 0x33, 0xe3, 0x67, 0x00, 0x00, 0x00,
 	0xff, 0xff, 0xbc, 0xd3, 0xdf, 0x9e, 0x96, 0x08, 0x00, 0x00,
-
 }

@@ -45,17 +45,34 @@ func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_DIAMOND)
 }
 
+func SetUserDiamond(userId uint32,diamond int64) int64 {
+	SetUserMoney(userId,consts.RKEY_USER_DIAMOND,diamond)
+	return diamond
+}
+
 //获取用户的钻石
 func GetUserDiamond2(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_DIAMOND2)
 }
 
+//获取用户的房卡
 func GetUserRoomCard(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_ROOMCARD)
 }
 
+func SetUserRoomCard(userId uint32,roomcard int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_ROOMCARD,roomcard)
+	return roomcard
+}
+
+//获取用户的金币
 func GetUserCoin(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_COIN)
+}
+
+func SetUserCoin(userId uint32,coin int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_COIN,coin)
+	return coin
 }
 
 //获取用户奖券
