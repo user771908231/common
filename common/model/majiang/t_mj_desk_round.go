@@ -64,12 +64,13 @@ func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	return result
 }
 
+/************************* 四川长沙麻将 start ******************************/
 //更具userId查询战绩
 func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Log(tableName.DBT_MJ_DESK_ROUND_ALL).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
+		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 	}, &deskRecords, "-deskid", 1, 20)
 
@@ -86,7 +87,7 @@ func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Log(tableName.DBT_MJ_DESK_ROUND).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
+		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 		"deskid":     deskId,
 	}, &deskRecords, "-gamenumber", 1, 20)
@@ -99,14 +100,16 @@ func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	}
 }
 
+/************************* 四川长沙麻将 end ******************************/
 
+/************************* 白山麻将 start ******************************/
 //更具userId查询战绩
 func GetMjBSDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 
 	db.Log(tableName.DBT_MJ_BS_DESK_ROUND_ALL).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
+		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 	}, &deskRecords, "-deskid", 1, 20)
 
@@ -123,7 +126,7 @@ func GetMjBSDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Log(tableName.DBT_MJ_BS_DESK_ROUND).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
+		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 		"deskid":     deskId,
 	}, &deskRecords, "-gamenumber", 1, 20)
@@ -135,14 +138,54 @@ func GetMjBSDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	}
 }
 
+/************************* 白山麻将 end ******************************/
 
+/************************* 转转麻将 start ******************************/
+//更具userId查询战绩
+func GetMjZHZHDeskRoundByUserId(userId uint32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+
+	db.Log(tableName.DBT_MJ_ZHZH_DESK_ROUND_ALL).Page(bson.M{
+		"userids":    bson.RegEx{querKey, "."},
+		"friendplay": true,
+	}, &deskRecords, "-deskid", 1, 20)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]转转麻将相关的战绩...", userId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+//查询牌桌内战绩
+func GetMjZHZHDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+	db.Log(tableName.DBT_MJ_ZHZH_DESK_ROUND).Page(bson.M{
+		"userids":    bson.RegEx{querKey, "."},
+		"friendplay": true,
+		"deskid":     deskId,
+	}, &deskRecords, "-gamenumber", 1, 20)
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]转转麻将相关的牌桌[%v]内战绩...", userId, deskId)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+/************************* 转转麻将 end ******************************/
+
+/************************* 捉虾子麻将 end ******************************/
 //更具userId查询战绩
 func GetMjZXZDeskRoundByUserId(userId uint32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 
 	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
+		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 	}, &deskRecords, "-deskid", 1, 20)
 
@@ -159,7 +202,7 @@ func GetMjZXZDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
+		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 		"deskid":     deskId,
 	}, &deskRecords, "-gamenumber", 1, 20)
@@ -171,6 +214,9 @@ func GetMjZXZDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
 	}
 }
 
+/************************* 捉虾子麻将 start ******************************/
+
+/************************* 麻将回放 start ******************************/
 func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
 	db.Log(tableName.DBT_MJ_DESK_ROUND).Find(bson.M{
@@ -207,6 +253,20 @@ func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	}
 }
 
+func GetMjZHZHPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	ret := &T_mj_desk_round{}
+	db.Log(tableName.DBT_MJ_ZHZH_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
+	if ret.DeskId > 0 {
+		return ret.PlayBackData
+	} else {
+		return nil
+	}
+}
+
+/************************* 麻将回放 end ******************************/
+
 //==================================回放缓存==================================
 //回放缓存-全局变量
 var PlayBackStack map[int32][]*ddproto.PlaybackSnapshot
@@ -218,7 +278,7 @@ var playBackWLock sync.Mutex
 //从内存缓存中取出-回放数据
 func GetMjPlayBackFromMemory(gamenumber int32, gid int32) []*ddproto.PlaybackSnapshot {
 	//如果缓存中存在则直接从缓存中取数据
-	if data,ok := PlayBackStack[gamenumber]; ok {
+	if data, ok := PlayBackStack[gamenumber]; ok {
 		log.T("从内存读取mj数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
 		return data
 	}
@@ -230,6 +290,8 @@ func GetMjPlayBackFromMemory(gamenumber int32, gid int32) []*ddproto.PlaybackSna
 		data = GetMjZXZPlayBack(gamenumber)
 	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
 		data = GetMjBSPlayBack(gamenumber)
+	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
+		data = GetMjZHZHPlayBack(gamenumber)
 	default:
 		data = GetMjPlayBack(gamenumber)
 	}
