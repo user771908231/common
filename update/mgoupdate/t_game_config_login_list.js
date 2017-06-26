@@ -2,6 +2,7 @@ var loginIp = "182.92.225.121";
 var prod1 = "182.92.225.121";
 var prod2 = "47.93.150.22";
 var prod3 = "47.93.150.194";
+var prod4 = "182.92.179.230"; //测试服
 var tableName = "t_game_config_login_list";
 var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 
@@ -20,7 +21,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3798,
     "STATUS": 1.0
 });
@@ -35,7 +36,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3799,
     "STATUS": 1.0
 });
@@ -50,7 +51,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3800,
     "STATUS": 2.0
 });
@@ -65,7 +66,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod1,
+    "IP": prod4,
     "PORT": 3801,
     "STATUS": 1.0
 });
@@ -80,7 +81,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod3,
+    "IP": prod4,
     "PORT": 3802,
     "STATUS": 1.0
 });
@@ -95,7 +96,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3803,
     "STATUS": 1.0
 });
@@ -110,7 +111,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3804,
     "STATUS": 1.0
 });
@@ -126,7 +127,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3805,
     "STATUS": 1.0
 });
@@ -141,7 +142,7 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3807,
     "STATUS": 1.0
 });
@@ -156,7 +157,22 @@ db.getCollection(tableName).insert({
     "ReleaseTag": 1.0,
     "DownloadUrl": defaultDownloadUrl,
     "LatestClientVersion": 1.0,
-    "IP": prod2,
+    "IP": prod4,
     "PORT": 3806,
+    "STATUS": 1.0
+});
+
+db.getCollection(tableName).insert({
+    "GameId": 22,
+    "name": "转转麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "转转麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": defaultDownloadUrl,
+    "LatestClientVersion": 1.0,
+    "IP": prod4,
+    "PORT": 3818,
     "STATUS": 1.0
 });
