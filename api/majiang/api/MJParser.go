@@ -113,7 +113,7 @@ type CanGangInfoBean struct {
 }
 
 var (
-	PAI_TYPE_MENQING int32 = int32(ddproto.MjEnumPaiType_H_MenQing) //门清
+	PAI_TYPE_MENQING int32 = int32(ddproto.PaiType_H_MenQing) //门清
 )
 //胡牌之后的信息
 type CanHuInfo struct {
