@@ -43,3 +43,9 @@ const (
 	RKEY_PDK_DATARECOVER_ID_LIST string = "rkey_pdk_datarecover_id_list" //跑得快数据恢复房间ID列表
 	RKEY_PDK_DATARECOVER_DATA    string = "rkey_pdk_datarecover_data"    //跑得快数据恢复数据
 )
+
+const (
+	RKEY_PDK_REXIPAI_CHANCE_BOOM string = "rkey_pdk_rexipai_boom"
+	RKEY_PDK_REXIPAI_CHANCE_AIR  string = "rkey_pdk_rexipai_air"
+	RKEY_PDK_REXIPAI_CHANCE_SHUN string = "rkey_pdk_rexipai_shun"
+)
