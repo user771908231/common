@@ -519,8 +519,6 @@ It has these top-level messages:
 	PdkPlayerInfo
 	PdkPlaybackSnapshot
 	PdkPlaybackDeskInfo
-	PdkDataRecoverPlayerInfo
-	PdkDataRecoverDeskInfo
 	PdkDataRecover
 	PdkDataRecoverDeskIdList
 	PezBase_PaiInfo
