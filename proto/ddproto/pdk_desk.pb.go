@@ -123,7 +123,7 @@ type PdkReqDissolveDesk struct {
 func (m *PdkReqDissolveDesk) Reset()                    { *m = PdkReqDissolveDesk{} }
 func (m *PdkReqDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkReqDissolveDesk) ProtoMessage()               {}
-func (*PdkReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{0} }
+func (*PdkReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{0} }
 
 func (m *PdkReqDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -151,7 +151,7 @@ type PdkAckDissolveDesk struct {
 func (m *PdkAckDissolveDesk) Reset()                    { *m = PdkAckDissolveDesk{} }
 func (m *PdkAckDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkAckDissolveDesk) ProtoMessage()               {}
-func (*PdkAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{1} }
+func (*PdkAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{1} }
 
 func (m *PdkAckDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -192,7 +192,7 @@ type PdkReqReady struct {
 func (m *PdkReqReady) Reset()                    { *m = PdkReqReady{} }
 func (m *PdkReqReady) String() string            { return proto.CompactTextString(m) }
 func (*PdkReqReady) ProtoMessage()               {}
-func (*PdkReqReady) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{2} }
+func (*PdkReqReady) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{2} }
 
 func (m *PdkReqReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -226,7 +226,7 @@ type PdkAckReady struct {
 func (m *PdkAckReady) Reset()                    { *m = PdkAckReady{} }
 func (m *PdkAckReady) String() string            { return proto.CompactTextString(m) }
 func (*PdkAckReady) ProtoMessage()               {}
-func (*PdkAckReady) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{3} }
+func (*PdkAckReady) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{3} }
 
 func (m *PdkAckReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -268,7 +268,7 @@ type PdkBaseWinCoinInfo struct {
 func (m *PdkBaseWinCoinInfo) Reset()                    { *m = PdkBaseWinCoinInfo{} }
 func (m *PdkBaseWinCoinInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseWinCoinInfo) ProtoMessage()               {}
-func (*PdkBaseWinCoinInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{4} }
+func (*PdkBaseWinCoinInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{4} }
 
 func (m *PdkBaseWinCoinInfo) GetNickName() string {
 	if m != nil && m.NickName != nil {
@@ -358,7 +358,7 @@ type PdkBaCurrentResult struct {
 func (m *PdkBaCurrentResult) Reset()                    { *m = PdkBaCurrentResult{} }
 func (m *PdkBaCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaCurrentResult) ProtoMessage()               {}
-func (*PdkBaCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{5} }
+func (*PdkBaCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{5} }
 
 func (m *PdkBaCurrentResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -397,7 +397,7 @@ type PdkBaseEndLotteryInfo struct {
 func (m *PdkBaseEndLotteryInfo) Reset()                    { *m = PdkBaseEndLotteryInfo{} }
 func (m *PdkBaseEndLotteryInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseEndLotteryInfo) ProtoMessage()               {}
-func (*PdkBaseEndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{6} }
+func (*PdkBaseEndLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{6} }
 
 func (m *PdkBaseEndLotteryInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -472,7 +472,7 @@ type PdkBcEndLottery struct {
 func (m *PdkBcEndLottery) Reset()                    { *m = PdkBcEndLottery{} }
 func (m *PdkBcEndLottery) String() string            { return proto.CompactTextString(m) }
 func (*PdkBcEndLottery) ProtoMessage()               {}
-func (*PdkBcEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor37, []int{7} }
+func (*PdkBcEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{7} }
 
 func (m *PdkBcEndLottery) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -499,7 +499,7 @@ func init() {
 	proto.RegisterType((*PdkBcEndLottery)(nil), "ddproto.pdk_bc_endLottery")
 }
 
-var fileDescriptor37 = []byte{
+var fileDescriptor39 = []byte{
 	// 583 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0xdf, 0x8a, 0xd3, 0x4e,
 	0x14, 0xfe, 0x25, 0xd9, 0x76, 0xdb, 0x29, 0xfb, 0x63, 0x8d, 0x8b, 0x86, 0xa2, 0x4b, 0xc8, 0x55,

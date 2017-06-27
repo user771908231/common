@@ -303,7 +303,7 @@ func (x *ErddzEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumProtoId(value)
 	return nil
 }
-func (ErddzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{0} }
+func (ErddzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{0} }
 
 type ErddzEnumErrorCode int32
 
@@ -353,7 +353,7 @@ func (x *ErddzEnumErrorCode) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumErrorCode(value)
 	return nil
 }
-func (ErddzEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{1} }
+func (ErddzEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{1} }
 
 // 牌型
 type ErddzEnumPaiType int32
@@ -430,7 +430,7 @@ func (x *ErddzEnumPaiType) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumPaiType(value)
 	return nil
 }
-func (ErddzEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{2} }
+func (ErddzEnumPaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{2} }
 
 // 轮到玩家操作时：可执行何种操作
 type ErddzEnumActType int32
@@ -474,7 +474,7 @@ func (x *ErddzEnumActType) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumActType(value)
 	return nil
 }
-func (ErddzEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{3} }
+func (ErddzEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{3} }
 
 // 桌子当前状态的枚举 DS == desk status
 type ErddzEnumDeskStatus int32
@@ -533,7 +533,7 @@ func (x *ErddzEnumDeskStatus) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumDeskStatus(value)
 	return nil
 }
-func (ErddzEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{4} }
+func (ErddzEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{4} }
 
 // 玩家当前状态 PS == player status
 type ErddzEnumPlayerStatus int32
@@ -616,7 +616,7 @@ func (x *ErddzEnumPlayerStatus) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumPlayerStatus(value)
 	return nil
 }
-func (ErddzEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{5} }
+func (ErddzEnumPlayerStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{5} }
 
 //
 type ErddzEnumRoomType int32
@@ -651,7 +651,7 @@ func (x *ErddzEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumRoomType(value)
 	return nil
 }
-func (ErddzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{6} }
+func (ErddzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{6} }
 
 type ErddzEnumCoinRoomLevel int32
 
@@ -691,7 +691,7 @@ func (x *ErddzEnumCoinRoomLevel) UnmarshalJSON(data []byte) error {
 	*x = ErddzEnumCoinRoomLevel(value)
 	return nil
 }
-func (ErddzEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor23, []int{7} }
+func (ErddzEnumCoinRoomLevel) EnumDescriptor() ([]byte, []int) { return fileDescriptor22, []int{7} }
 
 type ErddzBaseRoomTypeInfo struct {
 	BoardsCount      *int32                  `protobuf:"varint,2,opt,name=boardsCount" json:"boardsCount,omitempty"`
@@ -707,7 +707,7 @@ type ErddzBaseRoomTypeInfo struct {
 func (m *ErddzBaseRoomTypeInfo) Reset()                    { *m = ErddzBaseRoomTypeInfo{} }
 func (m *ErddzBaseRoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*ErddzBaseRoomTypeInfo) ProtoMessage()               {}
-func (*ErddzBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{0} }
+func (*ErddzBaseRoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{0} }
 
 func (m *ErddzBaseRoomTypeInfo) GetBoardsCount() int32 {
 	if m != nil && m.BoardsCount != nil {
@@ -782,7 +782,7 @@ type ErddzBasePlayerInfo struct {
 func (m *ErddzBasePlayerInfo) Reset()                    { *m = ErddzBasePlayerInfo{} }
 func (m *ErddzBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ErddzBasePlayerInfo) ProtoMessage()               {}
-func (*ErddzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{1} }
+func (*ErddzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{1} }
 
 func (m *ErddzBasePlayerInfo) GetIsDiZhu() bool {
 	if m != nil && m.IsDiZhu != nil {
@@ -914,7 +914,7 @@ type ErddzBasePlayerRateInfo struct {
 func (m *ErddzBasePlayerRateInfo) Reset()                    { *m = ErddzBasePlayerRateInfo{} }
 func (m *ErddzBasePlayerRateInfo) String() string            { return proto.CompactTextString(m) }
 func (*ErddzBasePlayerRateInfo) ProtoMessage()               {}
-func (*ErddzBasePlayerRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{2} }
+func (*ErddzBasePlayerRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{2} }
 
 func (m *ErddzBasePlayerRateInfo) GetTotalRate() int32 {
 	if m != nil && m.TotalRate != nil {
@@ -958,7 +958,7 @@ type ErddzBaseCommonRateInfo struct {
 func (m *ErddzBaseCommonRateInfo) Reset()                    { *m = ErddzBaseCommonRateInfo{} }
 func (m *ErddzBaseCommonRateInfo) String() string            { return proto.CompactTextString(m) }
 func (*ErddzBaseCommonRateInfo) ProtoMessage()               {}
-func (*ErddzBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{3} }
+func (*ErddzBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{3} }
 
 func (m *ErddzBaseCommonRateInfo) GetInitPlayRate() int32 {
 	if m != nil && m.InitPlayRate != nil {
@@ -1019,7 +1019,7 @@ type ErddzBaseTimerInfo struct {
 func (m *ErddzBaseTimerInfo) Reset()                    { *m = ErddzBaseTimerInfo{} }
 func (m *ErddzBaseTimerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ErddzBaseTimerInfo) ProtoMessage()               {}
-func (*ErddzBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{4} }
+func (*ErddzBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{4} }
 
 func (m *ErddzBaseTimerInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -1055,7 +1055,7 @@ type ErddzBaseDeskInfo struct {
 func (m *ErddzBaseDeskInfo) Reset()                    { *m = ErddzBaseDeskInfo{} }
 func (m *ErddzBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*ErddzBaseDeskInfo) ProtoMessage()               {}
-func (*ErddzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor23, []int{5} }
+func (*ErddzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor22, []int{5} }
 
 func (m *ErddzBaseDeskInfo) GetStatus() ErddzEnumDeskStatus {
 	if m != nil && m.Status != nil {
@@ -1165,7 +1165,7 @@ func init() {
 	proto.RegisterEnum("ddproto.ErddzEnumCoinRoomLevel", ErddzEnumCoinRoomLevel_name, ErddzEnumCoinRoomLevel_value)
 }
 
-var fileDescriptor23 = []byte{
+var fileDescriptor22 = []byte{
 	// 2010 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x58, 0x4d, 0x73, 0xdb, 0xc6,
 	0x19, 0x36, 0x48, 0x8a, 0x12, 0x97, 0x92, 0xbc, 0x5e, 0xf9, 0x03, 0x96, 0x65, 0x87, 0x66, 0x1c,

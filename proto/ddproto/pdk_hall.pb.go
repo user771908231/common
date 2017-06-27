@@ -155,7 +155,7 @@ type PdkReqCreateDesk struct {
 func (m *PdkReqCreateDesk) Reset()                    { *m = PdkReqCreateDesk{} }
 func (m *PdkReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkReqCreateDesk) ProtoMessage()               {}
-func (*PdkReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
+func (*PdkReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{0} }
 
 func (m *PdkReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -185,7 +185,7 @@ type PdkAckCreateDesk struct {
 func (m *PdkAckCreateDesk) Reset()                    { *m = PdkAckCreateDesk{} }
 func (m *PdkAckCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkAckCreateDesk) ProtoMessage()               {}
-func (*PdkAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{1} }
+func (*PdkAckCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{1} }
 
 func (m *PdkAckCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -240,7 +240,7 @@ type PdkReqGameRecord struct {
 func (m *PdkReqGameRecord) Reset()                    { *m = PdkReqGameRecord{} }
 func (m *PdkReqGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*PdkReqGameRecord) ProtoMessage()               {}
-func (*PdkReqGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{2} }
+func (*PdkReqGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{2} }
 
 func (m *PdkReqGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -275,7 +275,7 @@ type PdkBaseUserRecord struct {
 func (m *PdkBaseUserRecord) Reset()                    { *m = PdkBaseUserRecord{} }
 func (m *PdkBaseUserRecord) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseUserRecord) ProtoMessage()               {}
-func (*PdkBaseUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{3} }
+func (*PdkBaseUserRecord) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{3} }
 
 func (m *PdkBaseUserRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -318,7 +318,7 @@ type PdkBaseGameRecord struct {
 func (m *PdkBaseGameRecord) Reset()                    { *m = PdkBaseGameRecord{} }
 func (m *PdkBaseGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseGameRecord) ProtoMessage()               {}
-func (*PdkBaseGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{4} }
+func (*PdkBaseGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{4} }
 
 func (m *PdkBaseGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -366,7 +366,7 @@ type PdkAckGameRecord struct {
 func (m *PdkAckGameRecord) Reset()                    { *m = PdkAckGameRecord{} }
 func (m *PdkAckGameRecord) String() string            { return proto.CompactTextString(m) }
 func (*PdkAckGameRecord) ProtoMessage()               {}
-func (*PdkAckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{5} }
+func (*PdkAckGameRecord) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{5} }
 
 func (m *PdkAckGameRecord) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -405,7 +405,7 @@ type PdkReqEnterDesk struct {
 func (m *PdkReqEnterDesk) Reset()                    { *m = PdkReqEnterDesk{} }
 func (m *PdkReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkReqEnterDesk) ProtoMessage()               {}
-func (*PdkReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{6} }
+func (*PdkReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{6} }
 
 func (m *PdkReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -472,7 +472,7 @@ type PdkAckEnterDesk struct {
 func (m *PdkAckEnterDesk) Reset()                    { *m = PdkAckEnterDesk{} }
 func (m *PdkAckEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkAckEnterDesk) ProtoMessage()               {}
-func (*PdkAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{7} }
+func (*PdkAckEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor40, []int{7} }
 
 func (m *PdkAckEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -499,7 +499,7 @@ func init() {
 	proto.RegisterType((*PdkAckEnterDesk)(nil), "ddproto.pdk_ack_enterDesk")
 }
 
-var fileDescriptor38 = []byte{
+var fileDescriptor40 = []byte{
 	// 550 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x53, 0xcd, 0x8e, 0xd3, 0x3c,
 	0x14, 0xfd, 0x92, 0x7c, 0xfd, 0x73, 0x67, 0x2a, 0xf0, 0xa0, 0x51, 0x54, 0x2a, 0x88, 0xb2, 0xea,

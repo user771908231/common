@@ -14,7 +14,6 @@ It is generated from these files:
 	common_client_pay.proto
 	common_enum.proto
 	common_mj.proto
-	common_mj_play.proto
 	common_pdk.proto
 	common_server.proto
 	common_server_award.proto
@@ -36,8 +35,11 @@ It is generated from these files:
 	hall.proto
 	hall_data.proto
 	hall_playback.proto
-	hall_playback_pdk.proto
 	hot_update.proto
+	majiang_base.proto
+	majiang_desk.proto
+	majiang_hall.proto
+	majiang_play.proto
 	mj_baishan_base.proto
 	niuniu_base.proto
 	niuniu_play.proto
@@ -141,10 +143,12 @@ It has these top-level messages:
 	ApplepayAcksRechargecb
 	CardInfo
 	RoomTypeInfo
+	PlayOptions
+	ChangShaPlayOptions
+	BaiShanPlayOptions
+	ZhuanZhuanPlayOptions
 	ComposeCard
 	PlayerCard
-	GameReqBuxiazi
-	GameAckBuxiazi
 	PdkBaseRoomTypeInfo
 	PdkBaseTimerInfo
 	GameSession
@@ -336,14 +340,6 @@ It has these top-level messages:
 	PlaybackDeskInfo
 	PlaybackItem
 	PlaybackReqPageByGameid
-	PlaybackPdkAckPage
-	PdkPlayerInfo
-	PdkPlaybackSnapshot
-	PdkPlaybackDeskInfo
-	PdkDataRecoverPlayerInfo
-	PdkDataRecoverDeskInfo
-	PdkDataRecover
-	PdkDataRecoverDeskIdList
 	VersionInfo
 	AssetInfo
 	HotupdateReqVersionInfo
@@ -352,6 +348,83 @@ It has these top-level messages:
 	HotupdateAckAssetsInfo
 	HotupdateReqGameAssetsInfo
 	HotupdateAckGameAssetsInfo
+	MJPlayerInfo
+	MJDeskGameInfo
+	Game_DissolveDesk
+	Game_AckDissolveDesk
+	Game_ReqDissolveDesk
+	Game_AckReqDissolveDesk
+	Game_Ready
+	Game_AckReady
+	BirdInfo
+	WinCoinInfo
+	EndLotteryInfo
+	Game_SendCurrentResult
+	Game_SendEndLottery
+	Game_QuickConn
+	Game_AckQuickConn
+	Game_Login
+	Game_AckLogin
+	Game_Notice
+	Game_AckNotice
+	Game_Feedback
+	Game_CreateRoom
+	Game_AckCreateRoom
+	Game_EnterRoom
+	Game_AckEnterRoom
+	UserCoinBean
+	Game_Opening
+	Game_DealCards
+	Game_ExchangeCards
+	Game_DealHaiDiCards
+	Game_ReqDealHaiDiCards
+	Game_AckDealHaiDiCards
+	Game_AckExchangeCards
+	Game_ExchangeCardsEnd
+	Game_DingQue
+	DingQueEndBean
+	Game_DingQueEnd
+	Game_BroadcastBeginDingQue
+	Game_BroadcastBeginExchange
+	Game_GetInCard
+	Game_SendOutCard
+	Game_AckSendOutCard
+	Game_ActPeng
+	Game_AckActPeng
+	Game_ActChi
+	Game_AckActChi
+	Game_ActGang
+	Game_AckActGang
+	Game_ChangShaActGang
+	Game_ChangShaAckActGang
+	Game_ActHu
+	Game_AckActHu
+	Game_ActChangShaQiShouHu
+	Game_AckActChangShaQiShouHu
+	Game_AckActHuChangSha
+	Game_ActGuo
+	Game_AckActGuo
+	Game_ChangShaOverTurnAfterGang
+	Game_ChangshQiShouHuOverTurn
+	Game_OverTurn
+	ChiOverTurn
+	JiaoInfo
+	JiaoPaiInfo
+	Game_SendGameInfo
+	GameReqBuxiazi
+	GameAckBuxiazi
+	GameBcBaoting
+	GameReqBaoting
+	GameAckBaoting
+	GameBcFenzhang
+	GameBcPiao
+	GameReqPiao
+	GameAckPiao
+	GameBcBenjin
+	GameReqFly
+	GameAckFly
+	GameReqTi
+	GameAckTi
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption
@@ -441,6 +514,14 @@ It has these top-level messages:
 	PdkSrvUser
 	PdkSrvRoom
 	PdkSrvBak
+	PlaybackPdkAckPage
+	PdkPlayerInfo
+	PdkPlaybackSnapshot
+	PdkPlaybackDeskInfo
+	PdkDataRecoverPlayerInfo
+	PdkDataRecoverDeskInfo
+	PdkDataRecover
+	PdkDataRecoverDeskIdList
 	PezBase_PaiInfo
 	PezBase_PlayConf
 	PezBase_RoomTypeInfo

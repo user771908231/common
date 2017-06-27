@@ -117,25 +117,33 @@ var _ = math.Inf
 
 // Ignoring public import of RoomTypeInfo from common_mj.proto
 
+// Ignoring public import of PlayOptions from common_mj.proto
+
+// Ignoring public import of ChangShaPlayOptions from common_mj.proto
+
+// Ignoring public import of BaiShanPlayOptions from common_mj.proto
+
+// Ignoring public import of ZhuanZhuanPlayOptions from common_mj.proto
+
 // Ignoring public import of ComposeCard from common_mj.proto
 
 // Ignoring public import of PlayerCard from common_mj.proto
 
 // Ignoring public import of ErrorCode from common_mj.proto
 
-// Ignoring public import of mj_enum_color from common_mj.proto
+// Ignoring public import of MahjongColor from common_mj.proto
 
-// Ignoring public import of mj_enum_gangType from common_mj.proto
+// Ignoring public import of GangType from common_mj.proto
 
-// Ignoring public import of mj_enum_huType from common_mj.proto
+// Ignoring public import of HuType from common_mj.proto
 
-// Ignoring public import of mj_enum_composeCardType from common_mj.proto
+// Ignoring public import of ComposeCardType from common_mj.proto
 
-// Ignoring public import of mj_enum_paiType from common_mj.proto
+// Ignoring public import of PaiType from common_mj.proto
 
-// Ignoring public import of mj_enum_userGameStatus from common_mj.proto
+// Ignoring public import of MJUserGameStatus from common_mj.proto
 
-// Ignoring public import of mj_enum_deskGameStatus from common_mj.proto
+// Ignoring public import of DeskGameStatus from common_mj.proto
 
 // Ignoring public import of MJRoomType from common_mj.proto
 
@@ -196,7 +204,7 @@ func (x *PlaybackMjActType) UnmarshalJSON(data []byte) error {
 	*x = PlaybackMjActType(value)
 	return nil
 }
-func (PlaybackMjActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor29, []int{0} }
+func (PlaybackMjActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor28, []int{0} }
 
 // Start： 201704142049 下面是麻将回放的 Proto
 // 当前页显示记录：第（length * page）条 到 第（length * (page + 1) - 1）条
@@ -211,7 +219,7 @@ type PlaybackReqPage struct {
 func (m *PlaybackReqPage) Reset()                    { *m = PlaybackReqPage{} }
 func (m *PlaybackReqPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackReqPage) ProtoMessage()               {}
-func (*PlaybackReqPage) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{0} }
+func (*PlaybackReqPage) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{0} }
 
 func (m *PlaybackReqPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -255,7 +263,7 @@ type PlaybackAckPage struct {
 func (m *PlaybackAckPage) Reset()                    { *m = PlaybackAckPage{} }
 func (m *PlaybackAckPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackAckPage) ProtoMessage()               {}
-func (*PlaybackAckPage) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{1} }
+func (*PlaybackAckPage) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{1} }
 
 func (m *PlaybackAckPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -318,7 +326,7 @@ type PlayerInfo struct {
 func (m *PlayerInfo) Reset()                    { *m = PlayerInfo{} }
 func (m *PlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PlayerInfo) ProtoMessage()               {}
-func (*PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{2} }
+func (*PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{2} }
 
 func (m *PlayerInfo) GetIsBanker() bool {
 	if m != nil && m.IsBanker != nil {
@@ -463,7 +471,7 @@ type PlaybackSnapshot struct {
 func (m *PlaybackSnapshot) Reset()                    { *m = PlaybackSnapshot{} }
 func (m *PlaybackSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackSnapshot) ProtoMessage()               {}
-func (*PlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{3} }
+func (*PlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{3} }
 
 func (m *PlaybackSnapshot) GetPlayerInfo() []*PlayerInfo {
 	if m != nil {
@@ -546,7 +554,7 @@ type PlaybackDeskInfo struct {
 func (m *PlaybackDeskInfo) Reset()                    { *m = PlaybackDeskInfo{} }
 func (m *PlaybackDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackDeskInfo) ProtoMessage()               {}
-func (*PlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{4} }
+func (*PlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{4} }
 
 func (m *PlaybackDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -630,7 +638,7 @@ type PlaybackItem struct {
 func (m *PlaybackItem) Reset()                    { *m = PlaybackItem{} }
 func (m *PlaybackItem) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackItem) ProtoMessage()               {}
-func (*PlaybackItem) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{5} }
+func (*PlaybackItem) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{5} }
 
 func (m *PlaybackItem) GetId() uint32 {
 	if m != nil && m.Id != nil {
@@ -667,7 +675,7 @@ type PlaybackReqPageByGameid struct {
 func (m *PlaybackReqPageByGameid) Reset()                    { *m = PlaybackReqPageByGameid{} }
 func (m *PlaybackReqPageByGameid) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackReqPageByGameid) ProtoMessage()               {}
-func (*PlaybackReqPageByGameid) Descriptor() ([]byte, []int) { return fileDescriptor29, []int{6} }
+func (*PlaybackReqPageByGameid) Descriptor() ([]byte, []int) { return fileDescriptor28, []int{6} }
 
 func (m *PlaybackReqPageByGameid) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -715,7 +723,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PlaybackMjActType", PlaybackMjActType_name, PlaybackMjActType_value)
 }
 
-var fileDescriptor29 = []byte{
+var fileDescriptor28 = []byte{
 	// 895 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x55, 0xdd, 0x6e, 0xea, 0x46,
 	0x10, 0xae, 0x21, 0x80, 0x19, 0x20, 0x71, 0x36, 0x69, 0xb5, 0x4d, 0xab, 0x0a, 0xa1, 0xaa, 0x8a,
