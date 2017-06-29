@@ -46,6 +46,11 @@ func IsXia(p *majiang.MJPAI) bool {
 	return p.Flower == majiang.MJ_FLOWER_W
 }
 
+//判断一张牌是不是红中
+func IsHongZhong(p *majiang.MJPAI) bool {
+	return p.GetClientId() == 32 //32是红中的client id
+}
+
 func List2Str(pais []*majiang.MJPAI) string {
 	if len(pais) <= 0 {
 		return ""

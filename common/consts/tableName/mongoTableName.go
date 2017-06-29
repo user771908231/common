@@ -83,6 +83,9 @@ const (
 	DBT_MJ_ZHZH_DESK_ROUND     = "t_mj_zhzh_desk_round"     //一把转转麻将结束
 	DBT_MJ_ZHZH_DESK_ROUND_ALL = "t_mj_zhzh_desk_round_all" //全局转转麻将结束
 
+	DBT_MJ_HZH_DESK_ROUND     = "t_mj_hzh_desk_round"     //一把红中麻将结束
+	DBT_MJ_HZH_DESK_ROUND_ALL = "t_mj_hzh_desk_round_all" //全局红中麻将结束
+
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
 	DBT_DDZ_DESK_ROUND_ALL = "t_ddz_desk_round_all" //全局斗地主结束
