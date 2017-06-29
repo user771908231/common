@@ -501,6 +501,7 @@ It has these top-level messages:
 	PdkAckOutCards
 	PdkReqActGuo
 	PdkAckGuoAck
+	PdkOverturnPlayerInfo
 	PdkBcOverTurn
 	PdkBcGameInfo
 	PdkSrvOutPokerPais
