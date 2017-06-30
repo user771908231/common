@@ -42,6 +42,8 @@ const (
 
 	//游戏session表
 	DBT_GAME_SESSION          string = "t_game_session"
+	//代开房间记录
+	DBT_AGENT_CREATE_ROOM_RECORD string = "t_agent_create_room_record"
 
 	//统计
 	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡消耗

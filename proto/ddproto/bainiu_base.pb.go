@@ -155,6 +155,7 @@ It has these top-level messages:
 	CommonSrvGameUser
 	CommonSrvGameDesk
 	CommonDeskByAgent
+	RedisDeskByAgent
 	Taward
 	AwardMOnline
 	TConfigSys
