@@ -154,6 +154,7 @@ It has these top-level messages:
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
+	CommonDeskByAgent
 	Taward
 	AwardMOnline
 	TConfigSys
