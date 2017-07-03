@@ -348,6 +348,18 @@ func (c *Collection) UpdateAll(query interface{}, update interface{}) (change_in
 	return
 }
 
+//查不到则插入
+func (c *Collection) Upsert(query interface{}, update interface{}) error {
+	if c == nil {
+		return errors.New("collection is nil.")
+	}
+	var err error = errors.New("connect err.")
+	QueryByDialAddr(c.DialAddr, func(mgo *mgo.Database) {
+		_, err = mgo.C(c.TableName).Upsert(query, update)
+	})
+	return err
+}
+
 //插入一条或多条
 func (c *Collection) Insert(doc ...interface{}) error {
 	if c == nil {

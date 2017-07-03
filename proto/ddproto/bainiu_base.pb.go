@@ -126,6 +126,7 @@ It has these top-level messages:
 	CommonReqOffline
 	CommonReqUploadLocation
 	CommonBcLeaveTimeout
+	CommonDeskByAgent
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -154,6 +155,7 @@ It has these top-level messages:
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
+	RedisDeskByAgent
 	Taward
 	AwardMOnline
 	TConfigSys
@@ -318,6 +320,10 @@ It has these top-level messages:
 	HallAckFriendLotteryDraw
 	HallReqDistanceMatched
 	HallAckDistanceMatched
+	HallReqAgentRoomGamingList
+	HallAckAgentRoomGamingList
+	HallReqAgentRoomHistoryList
+	HallAckAgentRoomHistoryList
 	HallItemEvent
 	HallMailItem
 	HallBagItem
@@ -710,6 +716,8 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_req_upload_location from common_client.proto
 
 // Ignoring public import of common_bc_leaveTimeout from common_client.proto
+
+// Ignoring public import of common_desk_by_agent from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 

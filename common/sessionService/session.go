@@ -13,6 +13,9 @@ import (
 	"fmt"
 	"github.com/golang/protobuf/proto"
 	"strings"
+	"casino_common/utils/db"
+	"casino_common/common/consts/tableName"
+	"gopkg.in/mgo.v2/bson"
 )
 
 // session相关的...
@@ -97,6 +100,8 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 
 	//这里需要在redis-set中保存在线用户的数据
 	statisticsService.IncrOnline(userId, gameId)
+	//异步更新session表
+	go db.C(tableName.DBT_GAME_SESSION).Upsert(bson.M{"userid": session.GetUserId(), "gameid": session.GetGameId()}, session)
 	return session, nil
 }
 
@@ -108,6 +113,8 @@ func delSession(s *ddproto.GameSession) {
 		log.T("开始删除玩家[%v]的roomType[%v] session[%v] ", s.GetUserId(), s.GetRoomType(), s)
 		redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
 		statisticsService.DecrOnline(s.GetUserId(), s.GetGameId())
+		//异步删除玩家session表
+		go db.C(tableName.DBT_GAME_SESSION).Remove(bson.M{"userid": s.GetUserId(), "gameid": s.GetGameId()})
 	}
 }
 
