@@ -125,6 +125,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_bc_leaveTimeout from common_client.proto
 
+// Ignoring public import of common_desk_by_agent from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -152,8 +154,6 @@ var _ = math.Inf
 // Ignoring public import of common_srv_game_user from common_server.proto
 
 // Ignoring public import of common_srv_game_desk from common_server.proto
-
-// Ignoring public import of common_desk_by_agent from common_server.proto
 
 // Ignoring public import of redis_desk_by_agent from common_server.proto
 
