@@ -50,6 +50,11 @@ func checkItem(item *ddproto.CommonDeskByAgent) error {
 //创建房间
 func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tips string, createTime int64) error {
 	item_list := GetAgentRooms(creator)
+
+	if len(item_list) >= 20 {
+		return errors.New("您最多只能创建20个房间！")
+	}
+
 	for _, item := range item_list {
 		if item.GetCreator() == creator && item.GetGameId() == gameId && item.GetDeskId() == deskId {
 			//如果已存在，则更新到redis
