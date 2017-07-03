@@ -26,7 +26,7 @@ func GetAgentRooms(creator uint32) []*ddproto.CommonDeskByAgent {
 }
 
 //更新redis
-func updateToRedis(creator uint32, gameId int32, deskId int32, item_list []*ddproto.CommonDeskByAgent) error {
+func updateToRedis(creator uint32, item_list []*ddproto.CommonDeskByAgent) error {
 
 	redis_key := fmt.Sprintf("%s_%d", consts.RKEY_AGENT_CREATE_DESK_LIST, creator)
 
@@ -64,7 +64,7 @@ func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tip
 			if err := checkItem(item); err != nil {
 				return err
 			}
-			return updateToRedis(creator, gameId, deskId, item_list)
+			return updateToRedis(creator, item_list)
 		}
 	}
 
@@ -85,7 +85,7 @@ func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tip
 	}
 
 	item_list = append(item_list, new_item)
-	return updateToRedis(creator, gameId, deskId, item_list)
+	return updateToRedis(creator, item_list)
 }
 
 //牌桌开局
@@ -94,7 +94,7 @@ func DoStart(creator uint32, gameId int32, deskId int32) error {
 	for _, item := range item_list {
 		if item.GetCreator() == creator && item.GetGameId() == gameId && item.GetDeskId() == deskId {
 			item.Status = proto.Int32(1)
-			return updateToRedis(creator, gameId, deskId, item_list)
+			return updateToRedis(creator, item_list)
 		}
 	}
 	return errors.New("item not found.")
@@ -112,7 +112,7 @@ func DoEnd(creator uint32, gameId int32, deskId int32) error {
 			}
 			//再删除并保存进redis
 			item_list = append(item_list[:i], item_list[i+1:]...)
-			return updateToRedis(creator, gameId, deskId, item_list)
+			return updateToRedis(creator, item_list)
 		}
 	}
 	return errors.New("item not found.")
@@ -132,7 +132,7 @@ func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) erro
 				}
 			}
 			item.Users = append(item.Users, new_user)
-			return updateToRedis(creator, gameId, deskId, item_list)
+			return updateToRedis(creator, item_list)
 		}
 	}
 	return errors.New("item not found.")
