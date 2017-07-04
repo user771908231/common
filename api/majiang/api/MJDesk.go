@@ -80,6 +80,30 @@ func (d *MJDeskCore) ActBu(...interface{}) error {
 	return nil
 }
 
+func (d *MJDeskCore) ActOut(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActPeng(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActReady(userId uint32) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActGang(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActHu(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActGuo(...interface{}) error {
+	return nil
+}
+
 func (d *MJDeskCore) ActPiao(...interface{}) error {
 	return nil
 }
@@ -194,5 +218,25 @@ func (d *MJDeskCore) SendMessage(m interface{}) error {
 	*result.ToUserId = msg.GetToUserId()
 	//发送消息
 	d.BroadCastProto(result)
+	return nil
+}
+
+func (d *MJDeskCore) ApplyDissolve(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ApplyDissolveBack(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) Dissolve(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) EnterUser(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) GetCfg() interface{} {
 	return nil
 }
