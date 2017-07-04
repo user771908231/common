@@ -40,6 +40,11 @@ const (
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
 	DBT_IP_ADDRESS            string = "dbt_ip_address"          //存储Ip对应的地址
 
+	//游戏session表
+	DBT_GAME_SESSION          string = "t_game_session"
+	//代开房间记录
+	DBT_AGENT_CREATE_ROOM_RECORD string = "t_agent_create_room_record"
+
 	//统计
 	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡消耗
 	DBT_STATISTICS_ROOMCARD_DAY_DETAILS string = "t_statistics_roomcard_day_details" //游戏房卡消耗汇总

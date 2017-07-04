@@ -1,9 +1,9 @@
 package test
 
 import (
-	//"casino_common/common/sys"
-	//"casino_common/utils/db"
-	//"casino_common/common/log"
+	"casino_common/common/sys"
+	"casino_common/utils/db"
+	"casino_common/common/log"
 )
 
 func TestInit() {

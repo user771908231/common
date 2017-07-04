@@ -16,6 +16,8 @@ const (
 	RKEY_MJSESSION_KEY_PRE      string = "redis_game_session"      //session redis key
 	RKEY_QR_CODE                string = "redis_qr_code_key"       //二维码登陆成功后存储的key
 	RKEY_SEQ_ID_KEY             string = "redis_seq_id_key"        //自增id key
+
+	RKEY_AGENT_CREATE_DESK_LIST  string = "rkey_agent_create_desk_list"  //代开房间列表 key
 )
 
 const (
