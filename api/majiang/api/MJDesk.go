@@ -42,6 +42,7 @@ type MJDesk interface {
 	BroadCastProto(message proto.Message) error //发送广播
 	DlogDes() string                            //打印日志用到的tag
 	GetUserById(userId uint32) MJUser           //得到一个User
+	GetDeskSkeleton() interface{}               //得到骨架desk
 }
 
 type MJDeskCore struct {
@@ -238,5 +239,9 @@ func (d *MJDeskCore) EnterUser(...interface{}) error {
 }
 
 func (d *MJDeskCore) GetCfg() interface{} {
+	return nil
+}
+
+func (d *MJDeskCore) GetDeskSkeleton() interface{} {
 	return nil
 }
