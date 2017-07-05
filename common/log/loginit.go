@@ -2,14 +2,20 @@ package log
 
 import "os"
 
-func InitLogger(logPath, logName string, logFileSize int32) {
+func InitLogger(logPath, logName string, logFileSize int32, logFileCount int32) {
 	//配置log 文件.这里可以通过conf.json 来进行配置
-	SetMaxFileCount(int32(100))
+	if logFileCount <= 0 {
+		SetMaxFileCount(int32(100))
+	}else {
+		SetMaxFileCount(logFileCount)
+	}
+
 	if logFileSize <= 0 {
 		SetMaxFileSize(int64(100), MB)
 	}else {
 		SetMaxFileSize(int64(logFileSize), MB)
 	}
+
 	SetLevel(ALL)
 	SetConsole(true)
 	SetDebug(true)
