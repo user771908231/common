@@ -31,6 +31,7 @@ func SysInit(releaseTag int32,
 	logPath string,
 	logName string,
 	logFileSize int32,
+	logFileCount int32,
 	mongoIp string,
 	mongoLogIp string,
 	mongoName string,
@@ -40,7 +41,7 @@ func SysInit(releaseTag int32,
 	InitRedis(redisAddr, redisName)                                                    //初始化redis
 	initRandSeed()                                                                     //初始化随机数种子
 	runtime.GOMAXPROCS(runtime.NumCPU())                                               //初始化cpu数量
-	log.InitLogger(logPath, logName, logFileSize)                                                   //初始化日志
+	log.InitLogger(logPath, logName, logFileSize, logFileCount)                                                   //初始化日志
 	db.InitMongoDb(mongoIp, mongoLogIp, mongoName, tableName.DB_ENSURECOUNTER_KEY, mongoSeqTables) //初始化mongo 的地址
 	e = initSysConfig()                                                                //初始化系统配置
 	if e != nil {
