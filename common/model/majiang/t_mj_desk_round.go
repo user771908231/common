@@ -263,7 +263,7 @@ func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	}
 }
 
-func GetMjZHZHPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
 	tbName := tableName.DBT_MJ_ZHZH_DESK_ROUND
 	if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
