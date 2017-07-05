@@ -117,6 +117,18 @@ func DoEnd(creator uint32, gameId int32, deskId int32) error {
 	}
 	return errors.New("item not found.")
 }
+//牌桌解散
+func DoDissolve(creator uint32, gameId int32, deskId int32) error {
+	item_list := GetAgentRooms(creator)
+	for i, item := range item_list {
+		if item.GetCreator() == creator && item.GetGameId() == gameId && item.GetDeskId() == deskId {
+			//删除并保存进redis
+			item_list = append(item_list[:i], item_list[i+1:]...)
+			return updateToRedis(creator, item_list)
+		}
+	}
+	return errors.New("item not found.")
+}
 
 //添加用户
 func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) error {
