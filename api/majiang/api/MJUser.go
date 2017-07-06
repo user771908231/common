@@ -142,6 +142,55 @@ func (u *MJUserCore) WriteMsg(p proto.Message) error {
 	return nil
 }
 
-func (u *MJUserCore) SendJiaoInfos() error {
+func (u *MJUserCore) GetDesk() MJDesk {
 	return nil
 }
+
+func (u *MJUserCore) GetGameData() interface{} {
+	return nil
+}
+
+//func (u *MJUserCore) SendJiaoInfos() error {
+//	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送jiaoInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
+//	ack := &ddproto.GameAckJiaoinfos{}
+//	ack.Header = &ddproto.ProtoHeader{
+//		UserId:proto.Uint32(u.GetUserId()),
+//	}
+//	//判断碰牌之后的叫info
+//	jiaoInfos, err := u.GetDesk().GetParser().GetJiaoInfos(u.GetGameData(), u.GetDesk().GetAllMingPai(u.GetUserId()))
+//	if err != nil {
+//		log.E("%v 获取玩家[%v]jiaoinfo 时出错:err %v ", u.GetDesk().DlogDes(), u.GetUserId(), err)
+//		return err
+//	}
+//
+//	log.T("%v 获取到玩家[%v]jiaoinfo[%+v]", u.GetDesk().DlogDes(), u.GetUserId(), jiaoInfos)
+//	if jiaoInfos == nil {
+//		log.T("%v 玩家[%v]jiaoinfo 为空 不发送jiaoInfo", u.GetDesk().DlogDes(), u.GetUserId())
+//		return nil
+//	}
+//
+//	jfs := jiaoInfos.([]*JiaoInfo)
+//	if jfs == nil || len(jfs) <= 0 {
+//		log.T("%v 玩家[%v]jiaoinfo 为空 不发送jiaoInfo", u.GetDesk().DlogDes(), u.GetUserId())
+//		return nil
+//	}
+//
+//	if jiaoInfos != nil {
+//		//得到叫牌的信息
+//		for _, jf := range jfs {
+//			j := &ddproto.JiaoInfo{}
+//			j.OutCard = jf.OutPai.GetCardInfo2()
+//			for _, jfb := range jf.Jiaos {
+//				j.PaiInfos = append(j.PaiInfos, &ddproto.JiaoPaiInfo{
+//					HuCard: jfb.HuPai.GetCardInfo2(),
+//					Fan:    proto.Int32(jfb.Fan),
+//					Count:  proto.Int32(jfb.Count),
+//				})
+//			}
+//			ack.JiaoInfos = append(ack.JiaoInfos, j)
+//		}
+//	}
+//
+//	u.WriteMsg(ack)
+//	return nil
+//}
