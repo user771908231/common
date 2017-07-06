@@ -45,6 +45,7 @@ type MJDesk interface {
 	GetUserById(userId uint32) MJUser             //得到一个User
 	GetDeskSkeleton() interface{}                 //得到骨架desk
 	GetAllMingPai(userId uint32) []*majiang.MJPAI //得到对玩家来说的明牌
+	GetCfgStr() string                            //得到配置信息的文字描述
 }
 
 type MJDeskCore struct {
@@ -242,6 +243,10 @@ func (d *MJDeskCore) EnterUser(...interface{}) error {
 
 func (d *MJDeskCore) GetCfg() interface{} {
 	return nil
+}
+
+func (d *MJDeskCore) GetCfgStr() string {
+	return ""
 }
 
 func (d *MJDeskCore) GetDeskSkeleton() interface{} {
