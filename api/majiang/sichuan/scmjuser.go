@@ -43,10 +43,10 @@ func NewSCMJuser(userId uint32, a gate.Agent) *SCMJUser {
 	}
 }
 
-func (d *SCMJUser) UpdateAgent(a gate.Agent) {
-	d.Agent = a
-	d.Break = false
-	d.Leave = false
+func (u *SCMJUser) UpdateAgent(a gate.Agent) {
+	u.Agent = a
+	u.GameStatus.IsBreak = false
+	u.GameStatus.IsLeave = false
 }
 
 //得到和玩家关键的 desk
@@ -65,8 +65,8 @@ func (u *SCMJUser) UpdateSession(gid, gameNumber int32) error {
 		u.GetDesk().GetRoom().GetRoomId(),
 		u.GetDesk().GetDeskId(),
 		u.S,
-		u.Break,
-		u.Leave,
+		u.GameStatus.IsBreak,
+		u.GameStatus.IsLeave,
 		u.GetDesk().GetRoom().GetRoomType(),
 		u.GetDesk().GetPassword())
 	if s != nil {
@@ -89,7 +89,7 @@ func (u *SCMJUser) WriteMsg(p proto.Message) error {
 		return nil
 	}
 	//todo判断条件
-	if u.Break || u.Leave {
+	if u.GetIsBreak() || u.GetIsLeave() {
 		return nil
 	}
 	//
@@ -185,14 +185,14 @@ func (u *SCMJUser) GetPlayerCard(showHand bool) *mjproto.PlayerCard {
 func (u *SCMJUser) GetPlayerInfo(showHand bool, reconnect mjproto.RECONNECT_TYPE) *mjproto.PlayerInfo {
 	log.T("开始得到user[%v]的牌的信息，showHand[%v]", u.GetUserId(), showHand)
 	info := newProto.NewPlayerInfo()
-	if u.Ready {
+	if u.GetIsReady() {
 		info.BReady = proto.Int32(1)
 	}
 	*info.NHuPai = 0     //捉虾子用不着的
 	*info.BDingQue = 0   //捉虾子用不着的
 	*info.BExchanged = 0 //捉虾子用不着的
 	*info.Coin = u.GetCoin()
-	*info.IsBanker = u.Banker
+	*info.IsBanker = u.IsBanker
 	info.PlayerCard = u.GetPlayerCard(showHand) //获取游戏的数据
 	*info.NickName = u.GetNickName()
 	*info.UserId = u.GetUserId()

@@ -5,6 +5,8 @@ import (
 	"casino_majiang/msg/funcsInit"
 	"casino_majiang/msg/protogo"
 	"strings"
+	"casino_common/proto/ddproto"
+	"github.com/golang/protobuf/proto"
 )
 
 var clienMap map[int]int32
@@ -289,6 +291,18 @@ func (p *MJPAI) GetCardInfo() *mjproto.CardInfo {
 	*cardInfo.Id = p.Index
 	*cardInfo.Type = int32(p.Flower)
 	*cardInfo.Value = p.GetClientId()
+	return cardInfo
+}
+
+func (p *MJPAI) GetCardInfo2() *ddproto.CardInfo {
+	if p == nil {
+		return &ddproto.CardInfo{}
+	}
+	//cardInfo := newProto.NewCardInfo()
+	cardInfo := &ddproto.CardInfo{}
+	cardInfo.Id = proto.Int32(p.Index)
+	cardInfo.Type = proto.Int32(int32(p.Flower))
+	cardInfo.Value = proto.Int32(p.GetClientId())
 	return cardInfo
 }
 

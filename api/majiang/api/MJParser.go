@@ -27,6 +27,18 @@ type MJParser interface {
 type MJParserCore struct {
 }
 
+//得到叫牌的信息
+type JiaoInfoBean struct {
+	HuPai *majiang.MJPAI
+	Fan   int32
+	Count int32
+}
+
+type JiaoInfo struct {
+	OutPai *majiang.MJPAI  //打出去的牌
+	Jiaos  []*JiaoInfoBean //打牌之后的叫牌
+}
+
 //
 
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
