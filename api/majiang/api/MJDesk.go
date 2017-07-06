@@ -10,39 +10,41 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/module"
 	"sync"
+	"casino_common/api/majiang"
 )
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error             //玩家进入desk，不定参数
-	ActOut(...interface{}) error                //出牌的user和牌型
-	ActPeng(...interface{}) error               //碰
-	ActGuo(...interface{}) error                //过
-	ActGang(...interface{}) error               //杠
-	ActBu(...interface{}) error                 //补
-	ActChi(...interface{}) error                //吃
-	ActHu(...interface{}) error                 //胡
-	ActBaoTing(...interface{}) error            //报听
-	ActPiao(...interface{}) error               //飘
-	ActFly(...interface{}) error                //飞
-	ActTi(...interface{}) error                 //提
-	ActLeave(...interface{}) error              //离开房间
-	ActReady(userId uint32) error               //准备
-	Dissolve(...interface{}) error              //解散
-	ApplyDissolve(...interface{}) error         //申请解散
-	ApplyDissolveBack(...interface{}) error     //申请解散回复
-	SendMessage(interface{}) error              //聊天
-	Break(...interface{}) error                 //断线的处理
-	GetDeskId() int32                           //得到desk id
-	GetRoom() MJRoom                            //得到一个room
-	GetPassword() string                        //得到房间号
-	GetCfg() interface{}                        //的牌桌子的配置信息
-	GetUsers() []MJUser                         //得到所有的玩家
-	GetParser() MJParser                        //得到解析器
-	BroadCastProto(message proto.Message) error //发送广播
-	DlogDes() string                            //打印日志用到的tag
-	GetUserById(userId uint32) MJUser           //得到一个User
-	GetDeskSkeleton() interface{}               //得到骨架desk
+	EnterUser(...interface{}) error               //玩家进入desk，不定参数
+	ActOut(...interface{}) error                  //出牌的user和牌型
+	ActPeng(...interface{}) error                 //碰
+	ActGuo(...interface{}) error                  //过
+	ActGang(...interface{}) error                 //杠
+	ActBu(...interface{}) error                   //补
+	ActChi(...interface{}) error                  //吃
+	ActHu(...interface{}) error                   //胡
+	ActBaoTing(...interface{}) error              //报听
+	ActPiao(...interface{}) error                 //飘
+	ActFly(...interface{}) error                  //飞
+	ActTi(...interface{}) error                   //提
+	ActLeave(...interface{}) error                //离开房间
+	ActReady(userId uint32) error                 //准备
+	Dissolve(...interface{}) error                //解散
+	ApplyDissolve(...interface{}) error           //申请解散
+	ApplyDissolveBack(...interface{}) error       //申请解散回复
+	SendMessage(interface{}) error                //聊天
+	Break(...interface{}) error                   //断线的处理
+	GetDeskId() int32                             //得到desk id
+	GetRoom() MJRoom                              //得到一个room
+	GetPassword() string                          //得到房间号
+	GetCfg() interface{}                          //的牌桌子的配置信息
+	GetUsers() []MJUser                           //得到所有的玩家
+	GetParser() MJParser                          //得到解析器
+	BroadCastProto(message proto.Message) error   //发送广播
+	DlogDes() string                              //打印日志用到的tag
+	GetUserById(userId uint32) MJUser             //得到一个User
+	GetDeskSkeleton() interface{}                 //得到骨架desk
+	GetAllMingPai(userId uint32) []*majiang.MJPAI //得到对玩家来说的明牌
 }
 
 type MJDeskCore struct {
@@ -243,5 +245,9 @@ func (d *MJDeskCore) GetCfg() interface{} {
 }
 
 func (d *MJDeskCore) GetDeskSkeleton() interface{} {
+	return nil
+}
+
+func (d *MJDeskCore) GetAllMingPai(userId uint32) []*majiang.MJPAI {
 	return nil
 }
