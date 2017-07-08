@@ -431,6 +431,7 @@ It has these top-level messages:
 	GameAckFly
 	GameReqTi
 	GameAckTi
+	GameAckJiaoinfos
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption
