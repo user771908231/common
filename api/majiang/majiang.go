@@ -364,3 +364,10 @@ func (list MjPAIList) Swap(i, j int) {
 	list[i] = list[j]
 	list[j] = temp
 }
+
+func (list MjPAIList) Indexs() (indexs []int32) {
+	for _, i := range list {
+		indexs = append(indexs, i.GetIndex())
+	}
+	return
+}
