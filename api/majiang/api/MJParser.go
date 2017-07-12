@@ -110,6 +110,8 @@ var (
 	GANGTYPE_MING int32 = 1
 	GANGTYPE_BA   int32 = 2
 	GANGTYPE_AN   int32 = 3
+	GANGTYPE_BU   int32 = 4
+	GANGTYPE_FENG int32 = 5
 )
 
 type CanGangInfo struct {
@@ -122,6 +124,19 @@ type CanGangInfo struct {
 type CanGangInfoBean struct {
 	GangPai  *majiang.MJPAI
 	GangType int32 //杠牌的类型
+}
+
+//新的结构
+type CanGangInfo2 struct {
+	OutUserId   uint32      //打牌的人
+	GangsUserId uint32      //杠牌的人
+	CanGang     bool        //是否能杠
+	GangBean    []*GangBean //这里可以使用 map 来存储
+}
+
+type GangBean struct {
+	Pais []*majiang.MJPAI //能杠的4张牌
+	Type int32            //杠牌的类型 普通杠1~3: 1点杠 2巴杠 3暗杠 补充: 4补杠 5风杠(旋风杠、喜杠)
 }
 
 var (
