@@ -414,6 +414,7 @@ It has these top-level messages:
 	Game_ChangshQiShouHuOverTurn
 	Game_OverTurn
 	ChiOverTurn
+	GangBean
 	JiaoInfo
 	JiaoPaiInfo
 	Game_SendGameInfo
@@ -432,6 +433,8 @@ It has these top-level messages:
 	GameReqTi
 	GameAckTi
 	GameAckJiaoinfos
+	GameReqGang
+	GameAckGang
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption

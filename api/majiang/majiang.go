@@ -347,20 +347,32 @@ func (list MjPAIList) Len() int {
 func (list MjPAIList) Less(i, j int) bool {
 	if list[i].Flower < list[j].Flower {
 		return true
-	} else if list[i].Flower == list[j].Flower {
-		if list[i].Value < list[j].Value {
-			return true
-		} else {
-			return false
-		}
-
-	} else {
-		return false
 	}
 
+	if list[i].Flower == list[j].Flower {
+		if list[i].Value < list[j].Value {
+			return true
+		}
+		if list[i].Value == list[j].Value {
+			if list[i].Index < list[j].Index {
+				return true
+			}
+			return false
+		}
+		return false
+	}
+	return false
 }
+
 func (list MjPAIList) Swap(i, j int) {
 	temp := list[i]
 	list[i] = list[j]
 	list[j] = temp
+}
+
+func (list MjPAIList) Indexs() (indexs []int32) {
+	for _, i := range list {
+		indexs = append(indexs, i.GetIndex())
+	}
+	return
 }
