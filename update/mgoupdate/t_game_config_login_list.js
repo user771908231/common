@@ -176,3 +176,18 @@ db.getCollection(tableName).insert({
     "PORT": 3818,
     "STATUS": 1.0
 });
+
+db.getCollection(tableName).insert({
+    "GameId": 16,
+    "name": "松江河麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "松江河麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": defaultDownloadUrl,
+    "LatestClientVersion": 1.0,
+    "IP": prod4,
+    "PORT": 3815,
+    "STATUS": 1.0
+});
