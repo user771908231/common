@@ -44,9 +44,9 @@ type MJUser interface {
 //核心User
 type MJUserCore struct {
 	UserId uint32
-	uRedis userService.U_REDIS //这里可以使用redis的方法
+	URedis userService.U_REDIS //这里可以使用redis的方法
 	Desk   MJDesk              //关联的desk
-	coin   int64               //金币
+	Coin   int64               //金币
 	gate.Agent                 //agent
 	GameStatus                 //玩家的状态
 }
@@ -73,7 +73,7 @@ const (
 func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
 	return &MJUserCore{
 		UserId: userId,
-		uRedis: userService.U_REDIS(userId),
+		URedis: userService.U_REDIS(userId),
 		Agent:  a,
 	}
 }
@@ -99,19 +99,19 @@ func (u *MJUserCore) GetUserId() uint32 {
 }
 
 func (u *MJUserCore) GetSex() int32 {
-	return u.uRedis.GetSex()
+	return u.URedis.GetSex()
 }
 
 func (u *MJUserCore) GetHeadUrl() string {
-	return u.uRedis.GetHeadUrl()
+	return u.URedis.GetHeadUrl()
 }
 
 func (u *MJUserCore) GetOpenId() string {
-	return u.uRedis.GetOpenId()
+	return u.URedis.GetOpenId()
 }
 
 func (u *MJUserCore) GetNickName() string {
-	return u.uRedis.GetNickName()
+	return u.URedis.GetNickName()
 }
 
 func (u *MJUserCore) GetIp() string {
@@ -119,11 +119,11 @@ func (u *MJUserCore) GetIp() string {
 }
 
 func (u *MJUserCore) GetCoin() int64 {
-	return u.coin
+	return u.Coin
 }
 
 func (u *MJUserCore) AddCoin(c int64) int64 {
-	return atomic.AddInt64(&u.coin, c)
+	return atomic.AddInt64(&u.Coin, c)
 }
 
 func (u *MJUserCore) GetIsBreak() bool {

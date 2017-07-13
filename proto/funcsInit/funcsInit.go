@@ -78,6 +78,7 @@ func NewCommonSrvGameDesk() *ddproto.CommonSrvGameDesk {
 	ret.EndTime = new(string)
 	ret.NInitActionTime = new(int32)
 	ret.UserCountLimit = new(int32)
+	ret.IsDaikai = new(bool)
 	return ret
 }
 

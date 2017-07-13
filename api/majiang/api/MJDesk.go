@@ -49,21 +49,21 @@ type MJDesk interface {
 }
 
 type MJDeskCore struct {
-	room     MJRoom
-	s        *module.Skeleton
-	deskId   int32
-	password string //房间号
-	parser   MJParser
+	Room     MJRoom
+	S        *module.Skeleton
+	DeskId   int32
+	Password string //房间号
+	Parser   MJParser
 	Users    []MJUser
 	sync.Mutex
 }
 
 func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	desk := &MJDeskCore{
-		s: s,
+		S: s,
 	}
 	//main key
-	desk.deskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
+	desk.DeskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
 	return desk
 }
 
@@ -126,32 +126,32 @@ func (d *MJDeskCore) Break(...interface{}) error {
 }
 
 func (d *MJDeskCore) LeafS() *module.Skeleton {
-	return d.s
+	return d.S
 }
 
 func (d *MJDeskCore) GetRoom() MJRoom {
-	return d.room
+	return d.Room
 }
 
 func (d *MJDeskCore) SetRoom(r MJRoom) {
-	d.room = r
+	d.Room = r
 }
 
 //胡牌的 解析器
 func (d *MJDeskCore) GetParser() MJParser {
-	return d.parser
+	return d.Parser
 }
 
 func (d *MJDeskCore) SetParser(p MJParser) {
-	d.parser = p
+	d.Parser = p
 }
 
 func (d *MJDeskCore) GetDeskId() int32 {
-	return d.deskId
+	return d.DeskId
 }
 
 func (d *MJDeskCore) GetPassword() string {
-	return d.password
+	return d.Password
 }
 func (d *MJDeskCore) GetUserById(userId uint32) MJUser {
 	for _, u := range d.Users {

@@ -44,6 +44,9 @@ const (
 const (
 	RKEY_PDK_DATARECOVER_ID_LIST string = "rkey_pdk_datarecover_id_list" //跑得快数据恢复房间ID列表
 	RKEY_PDK_DATARECOVER_DATA    string = "rkey_pdk_datarecover_data"    //跑得快数据恢复数据
+
+	RKEY_ZZHZ_DATARECOVER_ID_LIST string = "rkey_zzhz_datarecover_id_list" //转转红中麻将数据恢复房间ID列表
+	RKEY_ZZHZ_DATARECOVER_DATA    string = "rkey_zzhz_datarecover_data"    //转转红中麻将数据恢复数据
 )
 
 const (
