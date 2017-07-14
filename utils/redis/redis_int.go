@@ -11,6 +11,7 @@ import (
 var (
 	Redis_svr   string
 	Redis_name  string
+	Redis_pwd   string
 	RedisClient *redis.Pool
 )
 
@@ -21,7 +22,7 @@ func initPool() {
 		MaxActive:   10,
 		IdleTimeout: 180 * time.Second,
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", Redis_svr)
+			c, err := redis.Dial("tcp", Redis_svr, redis.DialPassword(Redis_pwd))
 			if err != nil {
 				return nil, err
 			}
@@ -32,11 +33,12 @@ func initPool() {
 	}
 }
 
-func InitRedis(redisAddr, redisName string) {
+func InitRedis(redisAddr, redisName string, redisPwd string) {
 	config := cfg.Get()
 
 	Redis_svr = redisAddr
 	Redis_name = redisName
+	Redis_pwd = redisPwd
 	if len(config["redis_svr"]) != 0 {
 		Redis_svr = config["redis_svr"]
 	}
