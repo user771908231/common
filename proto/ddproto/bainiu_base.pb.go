@@ -433,8 +433,6 @@ It has these top-level messages:
 	GameReqTi
 	GameAckTi
 	GameAckJiaoinfos
-	GameReqGang
-	GameAckGang
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption

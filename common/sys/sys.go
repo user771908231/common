@@ -28,6 +28,7 @@ func SysInit(releaseTag int32,
 	prodMode bool,
 	redisAddr string,
 	redisName string,
+	redisPwd string,
 	logPath string,
 	logName string,
 	logFileSize int32,
@@ -38,7 +39,7 @@ func SysInit(releaseTag int32,
 	mongoSeqTables []string) error {
 
 	var e error
-	InitRedis(redisAddr, redisName)                                                    //初始化redis
+	InitRedis(redisAddr, redisName, redisPwd)                                                    //初始化redis
 	initRandSeed()                                                                     //初始化随机数种子
 	runtime.GOMAXPROCS(runtime.NumCPU())                                               //初始化cpu数量
 	log.InitLogger(logPath, logName, logFileSize, logFileCount)                                                   //初始化日志
@@ -58,9 +59,9 @@ func SysInit(releaseTag int32,
 }
 
 //
-func InitRedis(addr, name string) error {
+func InitRedis(addr, name, pwd string) error {
 	fmt.Println("3，初始化redis...")
-	data.InitRedis(addr, name)
+	data.InitRedis(addr, name, pwd)
 	return nil
 }
 

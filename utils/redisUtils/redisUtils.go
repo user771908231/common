@@ -40,10 +40,23 @@ func Get(key string) string {
 	return result
 }
 
+func GetBytes(key string) ([]byte, error) {
+	conn := GetConn()
+	defer conn.Close()
+	result, err := conn.Gets(key)
+	return result, err
+}
+
 func Set(key string, value string) {
 	conn := GetConn()
 	defer conn.Close()
 	conn.Set(key, []byte(value))
+}
+
+func SetBytes(key string, value []byte) error {
+	conn := GetConn()
+	defer conn.Close()
+	return conn.Set(key, value)
 }
 
 //得到int64的值
