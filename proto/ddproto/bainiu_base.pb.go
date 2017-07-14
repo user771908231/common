@@ -150,6 +150,7 @@ It has these top-level messages:
 	ZhuanZhuanPlayOptions
 	ComposeCard
 	PlayerCard
+	GangBean
 	PdkBaseRoomTypeInfo
 	PdkBaseTimerInfo
 	GameSession
@@ -414,7 +415,6 @@ It has these top-level messages:
 	Game_ChangshQiShouHuOverTurn
 	Game_OverTurn
 	ChiOverTurn
-	GangBean
 	JiaoInfo
 	JiaoPaiInfo
 	Game_SendGameInfo

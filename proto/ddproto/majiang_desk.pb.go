@@ -29,6 +29,8 @@ var _ = math.Inf
 
 // Ignoring public import of PlayerCard from common_mj.proto
 
+// Ignoring public import of GangBean from common_mj.proto
+
 // Ignoring public import of ErrorCode from common_mj.proto
 
 // Ignoring public import of MahjongColor from common_mj.proto
