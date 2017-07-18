@@ -3,7 +3,7 @@ var prod1 = "182.92.225.121";
 var prod2 = "47.93.150.22";
 var prod3 = "47.93.150.194";
 var prod4 = "182.92.179.230"; //测试服
-var tableName = "t_game_config_login_list";
+var tableName = "t_game_config_login_list_shenzhen";
 var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 
 conn = new Mongo();
