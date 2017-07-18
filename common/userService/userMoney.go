@@ -6,7 +6,7 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/common/model"
-	"casino_common/common/model/hall"
+	//"casino_common/common/model/hall"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"casino_common/utils/redisUtils"
@@ -178,16 +178,17 @@ func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, er
 		return count, errors.New("余额不足，减少房卡失败！")
 	}
 	//增加扣除房卡的记录
-	go func() {
-		//1，增加单个人的消费记录
-		hall.T_statistics_roomcard{
-			Time:          time.Now(),
-			UserId:        userId,
-			Gid:           gid,
-			Memo:          memo,
-			RoomCardCount: d,
-		}.Insert()
-	}()
+	//注释掉-防止跟真实房卡消耗统计方法冲突
+	//go func() {
+	//	//1，增加单个人的消费记录
+	//	hall.T_statistics_roomcard{
+	//		Time:          time.Now(),
+	//		UserId:        userId,
+	//		Gid:           gid,
+	//		Memo:          memo,
+	//		RoomCardCount: d,
+	//	}.Insert()
+	//}()
 	return decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 }
 
