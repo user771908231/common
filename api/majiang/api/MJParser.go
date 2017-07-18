@@ -48,7 +48,7 @@ func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	// 0 ~ 8 万
 	// 9 ~ 17 索
 	// 18 ~ 26 筒
-	// 27 ~ 35 中27 发28 白29 东30 南31 西32 北33
+	// 27 ~ 35 东27 南28 西29 北30 中31 白32 发33
 
 	//counts := make([]int, 27) //0~27
 	counts := make([]int, 36) //0~35

@@ -150,6 +150,7 @@ It has these top-level messages:
 	ZhuanZhuanPlayOptions
 	ComposeCard
 	PlayerCard
+	GangBean
 	PdkBaseRoomTypeInfo
 	PdkBaseTimerInfo
 	GameSession
