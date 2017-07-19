@@ -22,23 +22,30 @@ func (t T_statistics_roomcard) Insert() {
 	db.InsertMgoData(tableName.DBT_STATISTICS_ROOMCARD, &t)
 	//2，增加统计的数据
 	T_statistics_roomcard_day_details{
-		Time:          timeUtils.FormatYYYYMMDD(t.Time),
+		Time:          t.Time,
 		Gid:           t.Gid,
+		Day:           timeUtils.FormatYYYYMMDD(t.Time),
 		RoomCardCount: t.RoomCardCount,
 	}.UpSert()
 }
 
 //房卡的每日消耗记录
 type T_statistics_roomcard_day_details struct {
-	Time          string //时间，按天来统计
+	Time          time.Time //时间，按天来统计
+	Day           string
 	Gid           int32  //游戏id
 	RoomCardCount int64  //房卡的数量
 }
 
 func (t T_statistics_roomcard_day_details) UpSert() {
 	db.Query(func(db *mgo.Database) {
+		//单个游戏
 		db.C(tableName.DBT_STATISTICS_ROOMCARD_DAY_DETAILS).Upsert(
-			bson.M{"time": t.Time, "gid": t.Gid},
-			bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }})
+			bson.M{"day": t.Day, "gid": t.Gid},
+			bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }, "$set": bson.M{"time": t.Time}})
+		//全部游戏
+		db.C(tableName.DBT_STATISTICS_ROOMCARD_DAY_DETAILS).Upsert(
+			bson.M{"day": t.Day, "gid": 0},
+			bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }, "$set": bson.M{"time": t.Time}})
 	})
 }
