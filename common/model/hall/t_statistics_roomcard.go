@@ -44,8 +44,10 @@ func (t T_statistics_roomcard_day_details) UpSert() {
 			bson.M{"day": t.Day, "gid": t.Gid},
 			bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }, "$set": bson.M{"time": t.Time}})
 		//全部游戏
-		db.C(tableName.DBT_STATISTICS_ROOMCARD_DAY_DETAILS).Upsert(
-			bson.M{"day": t.Day, "gid": 0},
-			bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }, "$set": bson.M{"time": t.Time}})
+		if t.Gid != 0 {  //防止重复计数
+			db.C(tableName.DBT_STATISTICS_ROOMCARD_DAY_DETAILS).Upsert(
+				bson.M{"day": t.Day, "gid": 0},
+				bson.M{"$inc": bson.M{"roomcardcount": t.RoomCardCount, }, "$set": bson.M{"time": t.Time}})
+		}
 	})
 }
