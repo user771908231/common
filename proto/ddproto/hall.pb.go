@@ -127,6 +127,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_ack_leaveDesk from common_client.proto
 
+// Ignoring public import of common_req_kickout from common_client.proto
+
 // Ignoring public import of common_bc_kickout from common_client.proto
 
 // Ignoring public import of common_req_allowance from common_client.proto

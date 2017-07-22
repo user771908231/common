@@ -113,6 +113,7 @@ It has these top-level messages:
 	CommonAckQuitAgentMode
 	CommonReqLeaveDesk
 	CommonAckLeaveDesk
+	CommonReqKickout
 	CommonBcKickout
 	CommonReqAllowance
 	CommonAckAllowance
@@ -694,6 +695,8 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_req_leaveDesk from common_client.proto
 
 // Ignoring public import of common_ack_leaveDesk from common_client.proto
+
+// Ignoring public import of common_req_kickout from common_client.proto
 
 // Ignoring public import of common_bc_kickout from common_client.proto
 
