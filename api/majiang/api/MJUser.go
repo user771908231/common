@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"casino_common/proto/ddproto"
 	"casino_common/common/log"
+	"reflect"
 )
 
 type MJUser interface {
@@ -30,7 +31,7 @@ type MJUser interface {
 	//基本功能
 	SendOverTurn(p proto.Message) error         //发送overTurn
 	SendJiaoInfos() error                       //发送下叫jiaoInfos的提示
-	WriteMsg(p proto.Message) error             //发送信息
+	WriteMsg2(p proto.Message) error            //发送信息
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
 	DoPeng(...interface{}) (interface{}, error) //碰牌
@@ -142,7 +143,23 @@ func (u *MJUserCore) GetIsReady() bool {
 	return u.GameStatus.IsReady
 }
 
-func (u *MJUserCore) WriteMsg(p proto.Message) error {
+func (u *MJUserCore) WriteMsg2(p proto.Message) error {
+	if u == nil {
+		return nil
+	}
+
+	if p == nil {
+		return nil
+	}
+
+	//todo判断条件
+	//if u.GameStatus.IsBreak {
+	//	log.T("%v玩家[%v]掉线, 协议不发送 type[%v] msg[%v]", u.Desk.DlogDes(), u.GetUserId(), reflect.TypeOf(p).String(), p)
+	//	return nil
+	//}
+	//
+	log.T("%v开始给玩家[%v]发送type[%v]，msg[%v]", u.Desk.DlogDes(), u.GetUserId(), reflect.TypeOf(p).String(), p)
+	u.Agent.WriteMsg(p)
 	return nil
 }
 
@@ -195,6 +212,6 @@ func (u *MJUserCore) SendJiaoInfos() error {
 		}
 	}
 
-	u.WriteMsg(ack)
+	u.WriteMsg2(ack)
 	return nil
 }
