@@ -337,8 +337,10 @@ func (p *MJParserCore) IsMengQing(g MJUserGameData) bool {
 	if len(g.GetPengPais()) > 0 {
 		return false
 	}
-	if len(g.GetGangPais()) > 0 {
-		return false
+	for _, gang := range g.GetGangPais() {
+		if gang.GangType != GANGTYPE_AN {
+			return false
+		}
 	}
 	return true
 }

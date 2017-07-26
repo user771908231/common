@@ -110,4 +110,6 @@ func OnInit(mjProcessor *protobuf.Processor) {
 
 	mjProcessor.Register(&mjproto.GameReqGang{}) //95 请求杠 new
 	mjProcessor.Register(&mjproto.GameAckGang{}) //96 回复杠 new
+
+	mjProcessor.Register(&ddproto.CommonReqKickout{}) //97 房主请求踢人
 }
