@@ -434,6 +434,7 @@ It has these top-level messages:
 	GameReqTi
 	GameAckTi
 	GameAckJiaoinfos
+	GameAckTinginfos
 	GameReqGang
 	GameAckGang
 	NiuniuClientPoker
