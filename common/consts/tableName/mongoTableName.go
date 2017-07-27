@@ -46,8 +46,10 @@ const (
 	DBT_AGENT_CREATE_ROOM_RECORD string = "t_agent_create_room_record"
 
 	//统计
-	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡消耗
+	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡游戏内实际消耗
 	DBT_STATISTICS_ROOMCARD_DAY_DETAILS string = "t_statistics_roomcard_day_details" //游戏房卡消耗汇总
+
+	DBT_ROOMCARD_LOG string = "t_roomcard_log"  //房卡消耗记录表
 
 	//代理充值系统
 	DBT_AGENT_GOODS        = "t_agent_goods"        //商品信息表

@@ -23,7 +23,6 @@ func (mlog MgoLoger) Output(calldepth int, s string) error {
 	return nil
 }
 
-
 func SysInit(releaseTag int32,
 	prodMode bool,
 	redisAddr string,

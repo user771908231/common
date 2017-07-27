@@ -12,7 +12,7 @@ import (
 )
 
 func init() {
-	sys.InitRedis("localhost", "test")
+	sys.InitRedis("localhost", "test", "")
 }
 
 func TestIP2site(t *testing.T) {
@@ -31,7 +31,7 @@ func TestIP2siteAsyn(t *testing.T) {
 }
 
 func TestGetIPSite(t *testing.T) {
-	log.Printf("%v \n", GetIPSite("118.112.57.224"))
+	log.Printf("location:%v. \n", GetIPSite("118.112.57.224"))
 }
 
 func TestGetLocationByLatitudeAndLongitude(t *testing.T) {
