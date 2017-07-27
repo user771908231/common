@@ -11,41 +11,46 @@ import (
 	"github.com/name5566/leaf/module"
 	"sync"
 	"casino_common/api/majiang"
+	"fmt"
+	"casino_common/common/log"
+	"casino_common/common/sessionService"
 )
 
 //麻将桌子的定义
 type MJDesk interface {
-	EnterUser(...interface{}) error               //玩家进入desk，不定参数
-	ActOut(...interface{}) error                  //出牌的user和牌型
-	ActPeng(...interface{}) error                 //碰
-	ActGuo(...interface{}) error                  //过
-	ActGang(...interface{}) error                 //杠
-	ActBu(...interface{}) error                   //补
-	ActChi(...interface{}) error                  //吃
-	ActHu(...interface{}) error                   //胡
-	ActBaoTing(...interface{}) error              //报听
-	ActPiao(...interface{}) error                 //飘
-	ActFly(...interface{}) error                  //飞
-	ActTi(...interface{}) error                   //提
-	ActLeave(...interface{}) error                //离开房间
-	ActReady(userId uint32) error                 //准备
-	Dissolve(...interface{}) error                //解散
-	ApplyDissolve(...interface{}) error           //申请解散
-	ApplyDissolveBack(...interface{}) error       //申请解散回复
-	SendMessage(interface{}) error                //聊天
-	Break(...interface{}) error                   //断线的处理
-	GetDeskId() int32                             //得到desk id
-	GetRoom() MJRoom                              //得到一个room
-	GetPassword() string                          //得到房间号
-	GetCfg() interface{}                          //的牌桌子的配置信息
-	GetUsers() []MJUser                           //得到所有的玩家
-	GetParser() MJParser                          //得到解析器
-	BroadCastProto(message proto.Message) error   //发送广播
-	DlogDes() string                              //打印日志用到的tag
-	GetUserById(userId uint32) MJUser             //得到一个User
-	GetDeskSkeleton() interface{}                 //得到骨架desk
-	GetAllMingPai(userId uint32) []*majiang.MJPAI //得到对玩家来说的明牌
-	GetCfgStr() string                            //得到配置信息的文字描述
+	EnterUser(...interface{}) error                 //玩家进入desk，不定参数
+	ActOut(...interface{}) error                    //出牌的user和牌型
+	ActPeng(...interface{}) error                   //碰
+	ActGuo(...interface{}) error                    //过
+	ActGang(...interface{}) error                   //杠
+	ActBu(...interface{}) error                     //补
+	ActChi(...interface{}) error                    //吃
+	ActHu(...interface{}) error                     //胡
+	ActBaoTing(...interface{}) error                //报听
+	ActPiao(...interface{}) error                   //飘
+	ActFly(...interface{}) error                    //飞
+	ActTi(...interface{}) error                     //提
+	ActLeave(...interface{}) error                  //离开房间
+	ActReady(userId uint32) error                   //准备
+	Dissolve(...interface{}) error                  //解散
+	ApplyDissolve(...interface{}) error             //申请解散
+	ApplyDissolveBack(...interface{}) error         //申请解散回复
+	SendMessage(interface{}) error                  //聊天
+	Break(...interface{}) error                     //断线的处理
+	GetDeskId() int32                               //得到desk id
+	GetRoom() MJRoom                                //得到一个room
+	GetPassword() string                            //得到房间号
+	GetCfg() interface{}                            //的牌桌子的配置信息
+	GetUsers() []MJUser                             //得到所有的玩家
+	GetParser() MJParser                            //得到解析器
+	BroadCastProto(message proto.Message) error     //发送广播
+	DlogDes() string                                //打印日志用到的tag
+	GetUserById(userId uint32) MJUser               //得到一个User
+	GetDeskSkeleton() interface{}                   //得到骨架desk
+	GetAllMingPai(userId uint32) []*majiang.MJPAI   //得到对玩家来说的明牌
+	GetCfgStr() string                              //得到配置信息的文字描述
+	RmUser(userId uint32)                           //从桌子里删除一个玩家
+	KickOutUser(userId, kickOutUserId uint32) error //踢出玩家
 }
 
 type MJDeskCore struct {
@@ -54,6 +59,7 @@ type MJDeskCore struct {
 	DeskId   int32
 	Password string //房间号
 	Parser   MJParser
+	*MJDeskCfg
 	Users    []MJUser
 	sync.Mutex
 }
@@ -150,6 +156,10 @@ func (d *MJDeskCore) GetDeskId() int32 {
 	return d.DeskId
 }
 
+func (d *MJDeskCore) SetGid(gid int32) {
+	d.Gid = gid
+}
+
 func (d *MJDeskCore) GetPassword() string {
 	return d.Password
 }
@@ -175,10 +185,14 @@ func (d *MJDeskCore) GetUsers() []MJUser {
 	return d.Users
 }
 
+func (d *MJDeskCore) DlogDes() string {
+	return fmt.Sprintf("[desk%v-r%v] ", d.GetDeskId(), d.CurrRound)
+}
+
 func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
 	for _, u := range d.Users {
 		if u != nil {
-			u.WriteMsg(p)
+			u.WriteMsg2(p)
 		}
 	}
 	return nil
@@ -188,7 +202,7 @@ func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
 func (d *MJDeskCore) BroadCastProtoExclusive(p proto.Message, userId uint32) {
 	for _, u := range d.Users {
 		if u.GetUserId() != userId {
-			u.WriteMsg(p)
+			u.WriteMsg2(p)
 		}
 	}
 }
@@ -254,5 +268,51 @@ func (d *MJDeskCore) GetDeskSkeleton() interface{} {
 }
 
 func (d *MJDeskCore) GetAllMingPai(userId uint32) []*majiang.MJPAI {
+	return nil
+}
+
+func (d *MJDeskCore) RmUser(userId uint32) {
+	for i, u := range d.Users {
+		if u != nil && u.GetUserId() == userId {
+			d.Users[i] = nil
+			sessionService.DelSessionByKey(
+				u.GetUserId(),
+				int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND),
+				d.Gid,
+				d.GetDeskId())
+		}
+	}
+}
+
+var ERR_KICKOUT_ERROR error = Error.NewError(consts.ACK_RESULT_ERROR, "踢出玩家失败")
+
+func (d *MJDeskCore) KickOutUser(userId, kickOutUserId uint32) error {
+	log.T("%v玩家[%v]请求踢出玩家[%v]开始处理", d.DlogDes(), userId, kickOutUserId)
+	if d.Owner != userId {
+		log.W("%v玩家[%v]请求踢出玩家[%v]失败 玩家[%v]不是房主[%v]", d.DlogDes(), userId, kickOutUserId, userId, d.Owner)
+		return ERR_KICKOUT_ERROR
+	}
+	if d.CurrRound != 0 {
+		log.W("%v玩家[%v]请求踢出玩家[%v]失败 游戏进行中 局数[%v]", d.DlogDes(), userId, kickOutUserId, d.CurrRound)
+		return ERR_KICKOUT_ERROR //踢出房间失败 游戏进行中
+	}
+
+	kickOutUser := d.GetUserById(kickOutUserId)
+	if kickOutUser == nil {
+		log.W("%v玩家[%v]请求踢出玩家[%v]失败 找不到被踢出玩家", d.DlogDes(), userId, kickOutUserId)
+		return ERR_KICKOUT_ERROR
+	}
+
+	d.RmUser(kickOutUserId)
+
+	bc := commonNewPorot.NewBCKickOut()
+	*bc.Type = ddproto.COMMON_ENUM_KICKOUT_K_OWNER
+	*bc.UserId = kickOutUserId
+
+	kickOutUser.WriteMsg2(bc)
+
+	d.BroadCastProtoExclusive(bc, kickOutUserId)
+
+	log.T("%v玩家[%v]请求踢出玩家[%v]处理完毕", d.DlogDes(), userId, kickOutUserId)
 	return nil
 }
