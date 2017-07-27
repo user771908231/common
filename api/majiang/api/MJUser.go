@@ -215,3 +215,45 @@ func (u *MJUserCore) SendJiaoInfos() error {
 	u.WriteMsg2(ack)
 	return nil
 }
+
+func (u *MJUserCore) SendTingInfos() error {
+	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送tingInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
+	ack := &ddproto.GameAckTinginfos{}
+	ack.Header = &ddproto.ProtoHeader{
+		UserId: proto.Uint32(u.GetUserId()),
+	}
+	//获取tinginfos
+	tingInfoBeans, err := u.GetDesk().GetParser().GetTingInfos(u.GetDesk().GetUserById(u.GetUserId()).GetGameData(), u.GetDesk().GetAllMingPai(u.GetUserId()))
+	if err != nil {
+		log.E("%v 获取玩家[%v]tinginfo 时出错:err %v 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId(), err)
+		u.WriteMsg2(ack)
+		return err
+	}
+
+	log.T("%v 获取到玩家[%v]tinginfo[%+v]", u.GetDesk().DlogDes(), u.GetUserId(), tingInfoBeans)
+	if tingInfoBeans == nil {
+		log.W("%v 玩家[%v]tinginfo 为空 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId())
+		u.WriteMsg2(ack)
+		return nil
+	}
+
+	tfs := tingInfoBeans.([]*JiaoInfoBean)
+	if tfs == nil || len(tfs) <= 0 {
+		log.T("%v 玩家[%v]tinginfo 为空 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId())
+		u.WriteMsg2(ack)
+		return nil
+	}
+
+	//得到叫牌的信息
+	for _, tf := range tfs {
+		j := &ddproto.JiaoPaiInfo{}
+		j.HuCard = tf.HuPai.GetCardInfo2()
+		j.Fan = proto.Int32(tf.Fan)
+		j.Count = proto.Int32(tf.Count)
+		ack.PaiInfos = append(ack.PaiInfos, j)
+	}
+
+
+	u.WriteMsg2(ack)
+	return nil
+}
