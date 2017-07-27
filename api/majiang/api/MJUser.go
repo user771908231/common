@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"casino_common/proto/ddproto"
 	"casino_common/common/log"
+	"reflect"
 )
 
 type MJUser interface {
@@ -30,7 +31,8 @@ type MJUser interface {
 	//基本功能
 	SendOverTurn(p proto.Message) error         //发送overTurn
 	SendJiaoInfos() error                       //发送下叫jiaoInfos的提示
-	WriteMsg(p proto.Message) error             //发送信息
+	SendTingInfos() error                       //发送下叫tingInfos的提示
+	WriteMsg2(p proto.Message) error            //发送信息
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
 	DoPeng(...interface{}) (interface{}, error) //碰牌
@@ -142,12 +144,29 @@ func (u *MJUserCore) GetIsReady() bool {
 	return u.GameStatus.IsReady
 }
 
-func (u *MJUserCore) WriteMsg(p proto.Message) error {
+func (u *MJUserCore) WriteMsg2(p proto.Message) error {
+	if p == nil {
+		log.W("%v玩家[%v]WriteMsg2() 协议为空 不发送消息", u.GetDesk().DlogDes(), u.GetUserId())
+		return nil
+	}
+	if u.Agent == nil {
+		log.W("%v玩家[%v]WriteMsg2(%v) Agent连接为空 不发送消息", u.GetDesk().DlogDes(), u.GetUserId(), reflect.TypeOf(p).String())
+		return nil
+	}
+
+	//todo判断条件
+	//if u.GameStatus.IsBreak {
+	//	log.T("%v玩家[%v]掉线, 协议不发送 type[%v] msg[%v]", u.Desk.DlogDes(), u.GetUserId(), reflect.TypeOf(p).String(), p)
+	//	return nil
+	//}
+	//
+	log.T("%v开始给玩家[%v]发送type[%v]，msg[%v]", u.GetDesk().DlogDes(), u.GetUserId(), reflect.TypeOf(p).String(), p)
+	u.Agent.WriteMsg(p)
 	return nil
 }
 
 func (u *MJUserCore) GetDesk() MJDesk {
-	return nil
+	return u.Desk
 }
 
 func (u *MJUserCore) GetGameData() interface{} {
@@ -158,10 +177,10 @@ func (u *MJUserCore) SendJiaoInfos() error {
 	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送jiaoInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
 	ack := &ddproto.GameAckJiaoinfos{}
 	ack.Header = &ddproto.ProtoHeader{
-		UserId:proto.Uint32(u.GetUserId()),
+		UserId: proto.Uint32(u.GetUserId()),
 	}
 	//判断碰牌之后的叫info
-	jiaoInfos, err := u.GetDesk().GetParser().GetJiaoInfos(u.GetGameData(), u.GetDesk().GetAllMingPai(u.GetUserId()))
+	jiaoInfos, err := u.GetDesk().GetParser().GetJiaoInfos(u.GetDesk().GetUserById(u.GetUserId()).GetGameData(), u.GetDesk().GetAllMingPai(u.GetUserId()))
 	if err != nil {
 		log.E("%v 获取玩家[%v]jiaoinfo 时出错:err %v ", u.GetDesk().DlogDes(), u.GetUserId(), err)
 		return err
@@ -195,6 +214,48 @@ func (u *MJUserCore) SendJiaoInfos() error {
 		}
 	}
 
-	u.WriteMsg(ack)
+	u.WriteMsg2(ack)
+	return nil
+}
+
+func (u *MJUserCore) SendTingInfos() error {
+	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送tingInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
+	ack := &ddproto.GameAckTinginfos{}
+	ack.Header = &ddproto.ProtoHeader{
+		UserId: proto.Uint32(u.GetUserId()),
+	}
+	//获取tinginfos
+	tingInfoBeans, err := u.GetDesk().GetParser().GetTingInfos(u.GetDesk().GetUserById(u.GetUserId()).GetGameData(), u.GetDesk().GetAllMingPai(u.GetUserId()))
+	if err != nil {
+		log.E("%v 获取玩家[%v]tinginfo 时出错:err %v 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId(), err)
+		u.WriteMsg2(ack)
+		return err
+	}
+
+	log.T("%v 获取到玩家[%v]tinginfo[%+v]", u.GetDesk().DlogDes(), u.GetUserId(), tingInfoBeans)
+	if tingInfoBeans == nil {
+		log.W("%v 玩家[%v]tinginfo 为空 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId())
+		u.WriteMsg2(ack)
+		return nil
+	}
+
+	tfs := tingInfoBeans.([]*JiaoInfoBean)
+	if tfs == nil || len(tfs) <= 0 {
+		log.T("%v 玩家[%v]tinginfo 为空 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId())
+		u.WriteMsg2(ack)
+		return nil
+	}
+
+	//得到叫牌的信息
+	for _, tf := range tfs {
+		j := &ddproto.JiaoPaiInfo{}
+		j.HuCard = tf.HuPai.GetCardInfo2()
+		j.Fan = proto.Int32(tf.Fan)
+		j.Count = proto.Int32(tf.Count)
+		ack.PaiInfos = append(ack.PaiInfos, j)
+	}
+
+
+	u.WriteMsg2(ack)
 	return nil
 }
