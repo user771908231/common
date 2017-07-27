@@ -15,6 +15,7 @@ type MJParser interface {
 	CanFly(interface{}, interface{}) (bool, error)    //是否可以飞 宜宾麻将
 	CanTi(interface{}) (interface{}, error)           //是否可以提 宜宾麻将
 	GetJiaoInfos(...interface{}) (interface{}, error) //判断是否有叫
+	GetTingInfos(...interface{}) (interface{}, error) //获取听牌
 	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
 	XiPai() interface{}                               //洗牌
 	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
@@ -262,8 +263,13 @@ func (p *MJParserCore) CanBu(...interface{}) (interface{}, error) {
 	return nil, nil
 }
 
-//得到叫牌的信息
+//得到叫牌的信息 打出哪张牌后能胡哪些牌
 func (p *MJParserCore) GetJiaoInfos(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
+//获取听牌 能胡哪些牌
+func (p *MJParserCore) GetTingInfos(...interface{}) (interface{}, error) {
 	return nil, nil
 }
 
