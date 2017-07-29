@@ -64,113 +64,65 @@ func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	return result
 }
 
-/************************* 四川长沙麻将 start ******************************/
-//更具userId查询战绩
-func GetMjDeskRoundByUserId(userId uint32) []T_mj_desk_round {
-	var deskRecords []T_mj_desk_round
-	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_MJ_DESK_ROUND_ALL).Page(bson.M{
-		"userids":    bson.RegEx{querKey, "."},
-		"friendplay": true,
-	}, &deskRecords, "-deskid", 1, 20)
-
-	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]麻将相关的战绩...", userId)
-		return nil
-	} else {
-		return deskRecords
-	}
-}
-
-//查询牌桌内战绩
-func GetMjDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
-	var deskRecords []T_mj_desk_round
-	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_MJ_DESK_ROUND).Page(bson.M{
-		"userids":    bson.RegEx{querKey, "."},
-		"friendplay": true,
-		"deskid":     deskId,
-	}, &deskRecords, "-gamenumber", 1, 20)
-
-	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]麻将相关的牌桌[%v]内战绩...", userId, deskId)
-		return nil
-	} else {
-		return deskRecords
-	}
-}
-
-/************************* 四川长沙麻将 end ******************************/
-
-/************************* 白山麻将 start ******************************/
-//更具userId查询战绩
-func GetMjBSDeskRoundByUserId(userId uint32) []T_mj_desk_round {
+//根据userId查询全局战绩
+func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 
-	db.Log(tableName.DBT_MJ_BS_DESK_ROUND_ALL).Page(bson.M{
-		"userids":    bson.RegEx{querKey, "."},
-		"friendplay": true,
-	}, &deskRecords, "-deskid", 1, 20)
+	tbName := tableName.DBT_MJ_DESK_ROUND
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_ZXZ):
+		tbName = tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL
 
-	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]白山麻将相关的战绩...", userId)
-		return nil
-	} else {
-		return deskRecords
+	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
+		tbName = tableName.DBT_MJ_BS_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_MJ_SONGJIANGHE):
+		tbName = tableName.DBT_MJ_SJH_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
+		tbName = tableName.DBT_MJ_ZHZH_DESK_ROUND_ALL
+		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
+			tbName = tableName.DBT_MJ_HZH_DESK_ROUND_ALL
+		}
+	default:
 	}
-}
 
-//查询牌桌内战绩
-func GetMjBSDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
-	var deskRecords []T_mj_desk_round
-	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_MJ_BS_DESK_ROUND).Page(bson.M{
-		"userids":    bson.RegEx{querKey, "."},
-		"friendplay": true,
-		"deskid":     deskId,
-	}, &deskRecords, "-gamenumber", 1, 20)
-	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]白山麻将相关的牌桌[%v]内战绩...", userId, deskId)
-		return nil
-	} else {
-		return deskRecords
-	}
-}
-
-/************************* 白山麻将 end ******************************/
-
-/************************* 转转麻将 start ******************************/
-//更具userId查询战绩
-func GetMjZHZHDeskRoundByUserId(userId uint32, roomType int32) []T_mj_desk_round {
-	var deskRecords []T_mj_desk_round
-	querKey, _ := numUtils.Uint2String(userId)
-
-	tbName := tableName.DBT_MJ_ZHZH_DESK_ROUND_ALL
-	if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
-		tbName = tableName.DBT_MJ_HZH_DESK_ROUND_ALL
-	}
 	db.Log(tbName).Page(bson.M{
 		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
 	}, &deskRecords, "-deskid", 1, 20)
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]转转麻将【%v】相关的战绩...", userId, roomType)
+		log.T("没有找到玩家[%v]麻将相关的战绩... gid[%v] roomType[%v]", userId, gid, roomType)
 		return nil
 	} else {
 		return deskRecords
 	}
 }
 
-//查询牌桌内战绩
-func GetMjZHZHDeskRoundByDeskId(userId uint32, deskId int32, roomType int32) []T_mj_desk_round {
+//根据deskId查询单局战绩
+func GetMjDeskRoundByDeskId(userId uint32, deskId, gid, roomType int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 
-	tbName := tableName.DBT_MJ_ZHZH_DESK_ROUND
-	if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
-		tbName = tableName.DBT_MJ_HZH_DESK_ROUND
+	tbName := tableName.DBT_MJ_DESK_ROUND
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_ZXZ):
+		tbName = tableName.DBT_MJ_ZXZ_DESK_ROUND
+
+	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
+		tbName = tableName.DBT_MJ_BS_DESK_ROUND
+
+	case int32(ddproto.CommonEnumGame_GID_MJ_SONGJIANGHE):
+		tbName = tableName.DBT_MJ_SJH_DESK_ROUND
+
+	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
+		tbName = tableName.DBT_MJ_ZHZH_DESK_ROUND
+		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
+			tbName = tableName.DBT_MJ_HZH_DESK_ROUND
+		}
+	default:
 	}
 
 	db.Log(tbName).Page(bson.M{
@@ -179,52 +131,12 @@ func GetMjZHZHDeskRoundByDeskId(userId uint32, deskId int32, roomType int32) []T
 		"deskid":     deskId,
 	}, &deskRecords, "-gamenumber", 1, 20)
 	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]转转麻将【%v】相关的牌桌[%v]内战绩...", userId, deskId, roomType)
+		log.T("没有找到玩家[%v]麻将相关的牌桌内战绩... deskId[%v] gid[%v] roomType[%v]", userId, deskId, gid, roomType)
 		return nil
 	} else {
 		return deskRecords
 	}
 }
-
-/************************* 转转麻将 end ******************************/
-
-/************************* 捉虾子麻将 end ******************************/
-//更具userId查询战绩
-func GetMjZXZDeskRoundByUserId(userId uint32) []T_mj_desk_round {
-	var deskRecords []T_mj_desk_round
-	querKey, _ := numUtils.Uint2String(userId)
-
-	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL).Page(bson.M{
-		"userids":    bson.RegEx{querKey, "."},
-		"friendplay": true,
-	}, &deskRecords, "-deskid", 1, 20)
-
-	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]捉虾子麻将相关的战绩...", userId)
-		return nil
-	} else {
-		return deskRecords
-	}
-}
-
-//查询牌桌内战绩
-func GetMjZXZDeskRoundByDeskId(userId uint32, deskId int32) []T_mj_desk_round {
-	var deskRecords []T_mj_desk_round
-	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_MJ_ZXZ_DESK_ROUND).Page(bson.M{
-		"userids":    bson.RegEx{querKey, "."},
-		"friendplay": true,
-		"deskid":     deskId,
-	}, &deskRecords, "-gamenumber", 1, 20)
-	if deskRecords == nil || len(deskRecords) <= 0 {
-		log.T("没有找到玩家[%v]捉虾子麻将相关的牌桌[%v]内战绩...", userId, deskId)
-		return nil
-	} else {
-		return deskRecords
-	}
-}
-
-/************************* 捉虾子麻将 start ******************************/
 
 /************************* 麻将回放 start ******************************/
 func GetMjPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
