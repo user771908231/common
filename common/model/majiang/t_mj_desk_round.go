@@ -69,7 +69,7 @@ func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_roun
 	var deskRecords []T_mj_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 
-	tbName := tableName.DBT_MJ_DESK_ROUND
+	tbName := tableName.DBT_MJ_DESK_ROUND_ALL
 	switch gid {
 	case int32(ddproto.CommonEnumGame_GID_ZXZ):
 		tbName = tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL
@@ -88,6 +88,7 @@ func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_roun
 	default:
 	}
 
+	log.T("userId%v gameId%v roomType%v tbName[%v]", userId, gid, roomType, tbName)
 	db.Log(tbName).Page(bson.M{
 		"userids":    bson.RegEx{querKey, "."},
 		"friendplay": true,
