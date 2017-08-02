@@ -51,6 +51,9 @@ const (
 	RKEY_ZXZ_DATARECOVER_ID_LIST string = "rkey_zxz_datarecover_id_list" //捉瞎子麻将数据恢复房间ID列表
 	RKEY_ZXZ_DATARECOVER_DATA    string = "rkey_zxz_datarecover_data"    //捉瞎子麻将数据恢复数据
 
+	RKEY_MJ_DATARECOVER_ID_LIST string = "rkey_mj_datarecover_id_list" //四川、长沙麻将数据恢复房间ID列表
+	RKEY_MJ_DATARECOVER_DATA    string = "rkey_mj_datarecover_data"    //四川、长沙麻将数据恢复数据
+
 )
 
 const (
