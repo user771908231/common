@@ -106,7 +106,7 @@ func OnInit(mjProcessor *protobuf.Processor) {
 
 	mjProcessor.Register(&ddproto.CommonBcLeaveTimeout{}) //93 广播玩家离线状态
 
-	mjProcessor.Register(&mjproto.GameAckJiaoinfos{}) //94 向玩家推送下叫提示
+	mjProcessor.Register(&ddproto.GameAckJiaoinfos{}) //94 向玩家推送下叫提示
 
 	mjProcessor.Register(&mjproto.GameReqGang{}) //95 请求杠 new
 	mjProcessor.Register(&mjproto.GameAckGang{}) //96 回复杠 new
