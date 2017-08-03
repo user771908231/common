@@ -223,6 +223,7 @@ func (t *Data) GetObj(key string, pb proto.Message) error {
 func (t *Data) GetObjv2(key string, pb proto.Message) proto.Message {
 	d, err := t.Gets(key)
 	if err != nil {
+		log.E("redis get err: %v", err)
 		return nil
 	}
 	if d == nil {
