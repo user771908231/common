@@ -268,7 +268,7 @@ func (t *Data) GetObjv2(key string, pb proto.Message) proto.Message {
 
 func (t *Data) Del(key string) error {
 	if t.conn != nil {
-		_, err := redis.String(t.conn.Do("DEL", key))
+		_, err := t.conn.Do("DEL", key)
 		if err != nil {
 			log.E("[Redis] Del fail %s err:%v", key, err)
 		}
