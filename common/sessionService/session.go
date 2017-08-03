@@ -36,9 +36,8 @@ func GetSession(userId uint32, roomType int32) *ddproto.GameSession {
 	s := redisUtils.GetObj(getSessionKey(userId, roomType), &ddproto.GameSession{})
 	if s != nil {
 		return s.(*ddproto.GameSession)
-	} else {
-		return nil
 	}
+	return nil
 }
 
 //自动查找session
@@ -57,26 +56,48 @@ func GetSessionAuto(userId uint32) *ddproto.GameSession {
 //得到朋友桌的session
 func GetFriendSession(userId uint32, gid int32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
-	if session == nil || session.GetDeskId() == 0 || session.GetGameId() != gid {
+	if session == nil {
+		log.W("无法获取玩家[%v]在游戏为[%v]的朋友桌session,找到的session为nil", userId, gid)
 		return nil
-	} else {
-		return session
 	}
 
+	if session.GetDeskId() == 0 {
+		log.W("获取玩家[%v]在游戏为[%v]的朋友桌session错误,桌子id错误,找到的session[%v]", userId, gid, session)
+		return nil
+	}
+
+	if session.GetGameId() != gid {
+		log.W("获取玩家[%v]在游戏为[%v]的朋友桌session错误,游戏id不匹配,找到的session[%v]", userId, gid, session)
+		return nil
+	}
+	return session
 }
 
 //得到金币场的session
 func GetCoinSession(userId uint32, gid int32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
-	if session == nil || session.GetDeskId() == 0 || session.GetGameId() != gid {
+	if session == nil {
+		log.W("无法获取玩家[%v]在游戏为[%v]的金币场session,找到的session为nil", userId, gid)
 		return nil
-	} else {
-		return session
 	}
+
+	if session.GetDeskId() == 0 {
+		log.W("获取玩家[%v]在游戏为[%v]的金币场session错误,桌子id错误,找到的session[%v]", userId, gid, session)
+		return nil
+	}
+
+	if session.GetGameId() != gid {
+		log.W("获取玩家[%v]在游戏为[%v]的金币场session错误,游戏id不匹配,找到的session[%v]", userId, gid, session)
+		return nil
+	}
+	return session
 }
 
 //更新用户的session信息，具体更新什么信息待定
 func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int32, roomId int32, deskId int32, gameCustomStatus int32, isBreak bool, isLeave bool, roomType int32, roomPass string) (*ddproto.GameSession, error) {
+	//同步更新内存中的session
+	UpdateSessionv2(userId, gameStatus, gameId, gameNumber, roomId, deskId, gameCustomStatus, isBreak, isLeave, roomType, roomPass)
+
 	session := GetSession(userId, roomType)
 	if session == nil {
 		log.W("没有找到user[%v]的session,需要重新申请一个并保存...", userId)
@@ -174,6 +195,9 @@ func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error,
 
 //通过suerId roomType 删除玩家的session
 func DelSessionByKey(userId uint32, roomType int32, gid int32, deskId int32) {
+	//同步删除内存中session
+	DelSessionByKeyv2(userId, gid, roomType, deskId)
+
 	s := GetSession(userId, roomType)
 
 	if s == nil {

@@ -201,7 +201,7 @@ func (d *MJDeskCore) BroadCastProto(p proto.Message) error {
 //发送广播
 func (d *MJDeskCore) BroadCastProtoExclusive(p proto.Message, userId uint32) {
 	for _, u := range d.Users {
-		if u.GetUserId() != userId {
+		if u != nil && u.GetUserId() != userId {
 			u.WriteMsg2(p)
 		}
 	}

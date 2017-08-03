@@ -3,6 +3,7 @@ package api
 import (
 	"casino_common/api/majiang"
 	"casino_common/proto/ddproto"
+	"sort"
 )
 
 //跑得快解析器
@@ -184,11 +185,16 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 	if gameData.GetMoPai() != nil {
 		handPais = append(handPais, gameData.GetMoPai())
 	}
+
+	var listHandPais majiang.MjPAIList
+	listHandPais = handPais
+	sort.Sort(listHandPais)
+
 	pengPais := gameData.GetPengPais() //得到所有的吃牌
 	var ret []*CanGangInfoBean
 	//首先判断明杠
 	counts := p.CountHandPais(handPais) //统计牌
-	for _, p := range handPais {
+	for _, p := range listHandPais {
 		if 4 == counts[ p.GetCountIndex()] {
 			r := &CanGangInfoBean{
 				GangPai:  p,
@@ -199,7 +205,7 @@ func (p *MJParserCore) ZiMoGangCards(userGameData interface{}) (interface{}, err
 	}
 
 	//再判断巴杠
-	for _, p := range handPais {
+	for _, p := range listHandPais {
 		for _, peng := range pengPais {
 			pengPai := peng.Pais[0] //判断碰牌的第一张和手牌是否一致
 			if p.Flower == pengPai.Flower &&
