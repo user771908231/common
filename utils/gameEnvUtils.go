@@ -32,6 +32,8 @@ func GetGameName(gid int32, roomType int32) string {
 		}
 	} else if gid == int32(ddproto.CommonEnumGame_GID_ZJH) {
 		return "炸金花"
+	} else if gid == int32(ddproto.CommonEnumGame_GID_NIUNIUJINGDIAN) {
+		return "牛牛朋友桌"
 	}
 	return "其他"
 

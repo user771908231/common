@@ -4,6 +4,7 @@ import (
 	"time"
 	"casino_common/common/log"
 	"casino_common/utils/rand"
+	"errors"
 )
 
 const TIME_LAYOUT = "2006-01-02 15:04:05"
@@ -73,4 +74,22 @@ func DiffSec(time1, time2 time.Time) int64 {
 func RandDuration(a, b int32) time.Duration {
 	d := rand.Rand(a, b)
 	return time.Second * time.Duration(d)
+}
+
+//取得时间区间内的每一天的列表
+func RangeDayList(start_time time.Time, end_time time.Time)([]time.Time, error) {
+	if start_time.After(end_time) {
+		return []time.Time{}, errors.New("end_time必须大于start_time")
+	}
+	sub_day_sum := int(end_time.Sub(start_time).Hours()/24 + 1)
+
+	day_list := make([]time.Time, sub_day_sum)
+
+	start_day := start_time
+	for i,_ := range day_list {
+		day_list[i] =  start_day
+		start_day = start_day.AddDate(0, 0,1)
+	}
+
+	return day_list, nil
 }
