@@ -18,9 +18,10 @@ var (
 func initPool() {
 	RedisClient = &redis.Pool{
 		// 从配置文件获取maxidle以及maxactive，取不到则用后面的默认值
-		MaxIdle:     1,
-		MaxActive:   10,
+		MaxIdle:     10,
+		MaxActive:   0,
 		IdleTimeout: 180 * time.Second,
+		Wait: true,
 		Dial: func() (redis.Conn, error) {
 			c, err := redis.Dial("tcp", Redis_svr, redis.DialPassword(Redis_pwd))
 			if err != nil {
