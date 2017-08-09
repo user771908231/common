@@ -49,7 +49,7 @@ const (
 	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡游戏内实际消耗
 	DBT_STATISTICS_ROOMCARD_DAY_DETAILS string = "t_statistics_roomcard_day_details" //游戏房卡消耗汇总
 
-	DBT_ROOMCARD_LOG string = "t_roomcard_log"  //房卡消耗记录表
+	DBT_ROOMCARD_LOG string = "t_roomcard_log" //房卡消耗记录表
 
 	//代理充值系统
 	DBT_AGENT_GOODS        = "t_agent_goods"        //商品信息表
@@ -69,8 +69,8 @@ const (
 	DBT_USER_GIVE_RECORD string = "t_user_give_record" //用户赠送记录表
 
 	//接入服务器
-	DBT_GAME_CONFIG_LOGIN      = "t_game_config_login"      //登陆服配置	//游戏配置表
-	DBT_GAME_CONFIG_LOGIN_LIST = "t_game_config_login_list" //登陆服配置	//登陆服游戏列表（阿里云北京）
+	DBT_GAME_CONFIG_LOGIN               = "t_game_config_login"               //登陆服配置	//游戏配置表
+	DBT_GAME_CONFIG_LOGIN_LIST          = "t_game_config_login_list"          //登陆服配置	//登陆服游戏列表（阿里云北京）
 	DBT_GAME_CONFIG_LOGIN_LIST_SHENZHEN = "t_game_config_login_list_shenzhen" //登录服配置（阿里云深圳）
 
 	//麻将
@@ -113,5 +113,7 @@ const (
 
 	//百人牛牛
 	DBT_BAINIU_AREA_BILL_COUNT = "t_bainiu_area_bill_count" //百人牛牛区域胜负统计
+
+	DBT_USER_GAME_BILL = "t_user_game_bill" //玩家游戏账单记录
 
 )
