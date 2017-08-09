@@ -158,6 +158,10 @@ var _ = math.Inf
 
 // Ignoring public import of redis_desk_by_agent from common_server.proto
 
+// Ignoring public import of redis_user_game_bill from common_server.proto
+
+// Ignoring public import of user_game_bill from common_server.proto
+
 // ========================================回放与数据恢复=============================================
 // 跑得快的操作类型
 type PlaybackPdkActType int32
