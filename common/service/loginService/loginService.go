@@ -111,6 +111,12 @@ func WxReg(weixin *ddproto.WeixinInfo, channelId string, regIp string) *ddproto.
 		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), channelId, regIp)
 	} else {
 		log.W("玩家[%v],unionId[%v]已经注册成功了，不需要重复注册", user.GetId(), user.GetUnionId())
+		//更新微信信息到mongo和redis
+		user.HeadUrl = weixin.HeadUrl
+		user.NickName = weixin.NickName
+		user.City = weixin.City
+		user.Sex = weixin.Sex
+		userService.UpdateUser2Mgo(user)
 	}
 
 	if user == nil {
