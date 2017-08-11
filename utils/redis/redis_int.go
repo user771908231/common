@@ -163,7 +163,7 @@ func (t *Data) Gets(key string) (value []byte, err error) {
 			if err == redis.ErrNil {
 				err = nil
 			}else {
-				log.E("[Redis] Get fail %s err:%v", key, err)
+				log.E("[Redis] Gets fail %s err:%v", key, err)
 			}
 		}
 
@@ -247,7 +247,7 @@ func (t *Data) SetObj(key string, pb proto.Message) error {
 func (t *Data) GetObj(key string, pb proto.Message) error {
 	d, err := t.Gets(key)
 	if err != nil {
-		log.E("[Redis] SetObj fail %s err:%v", key, err)
+		log.E("[Redis] GetObj fail %s err:%v", key, err)
 		return err
 	}
 	return proto.Unmarshal(d, pb)
@@ -256,7 +256,7 @@ func (t *Data) GetObj(key string, pb proto.Message) error {
 func (t *Data) GetObjv2(key string, pb proto.Message) proto.Message {
 	d, err := t.Gets(key)
 	if err != nil {
-		log.E("[Redis] SetObjV2 fail %s err:%v", key, err)
+		log.E("[Redis] GetObjV2 fail %s err:%v", key, err)
 		return nil
 	}
 	if d == nil {
