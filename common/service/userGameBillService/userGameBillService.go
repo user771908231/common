@@ -259,6 +259,8 @@ func GetWinUser(roomType int32, userIds []uint32) (userId uint32, randScore int3
 		for i := 0; i < len(bills) - 1; i++ {
 			if bills[i].GetWinAmount() < 0 && bills[i+1].GetWinAmount() < 0 {
 				loseCount++
+			}else {
+				break
 			}
 		}
 		if limit := rand.Rand(3, 5); loseCount >= limit {
