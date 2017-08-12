@@ -29,7 +29,7 @@ func GetTestXiPai(gid int32) []int {
 	var xipai = &XiPai{}
 	err = json.Unmarshal(data, xipai)
 	if err != nil {
-		log.Fatal("%v", err)
+		log.T("%v", err)
 	}
 	fmt.Println("读取到自定义的文件:", xipai)
 	return xipai.Ids
