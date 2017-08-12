@@ -17,6 +17,7 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"math"
+	"casino_common/utils/rand"
 )
 
 //玩家游戏账单数据 没玩完一局游戏存储一次数据
@@ -239,32 +240,35 @@ func IsUserShouldWin(userId uint32, roomType int32, f func(b []*ddproto.UserGame
 	return f(bills), nil
 }
 
-//获取一组玩家中谁可以赢 是否必须赢
-func GetWinUser(roomType int32, userIds []uint32) (uint32, bool) {
+//获取一组玩家中谁可以赢 赢的概率是多少 0~10
+func GetWinUser(roomType int32, userIds []uint32) (userId uint32, randScore int32) {
 	if len(userIds) <= 0 {
 		log.T("GetWinUser 传入的userIds数组为空 返回0")
-		return 0, false
+		return 0, 0
 	}
 
 	for _, userId := range userIds {
 		defeatedPoint := getUserDefeatedPoint(userId, roomType)
 		log.T("GetWinUser defeatedPoint:%v", defeatedPoint)
 		if defeatedPoint > float64(7) {
-			return userId, false
+			return userId, int32(defeatedPoint)
 		}
 
 		bills := GetViaCache(userId, roomType)
-		if len(bills) >= 3 {
-			if bills[0].GetWinAmount() <= 0 && bills[1].GetWinAmount() <= 0 && bills[2].GetWinAmount() <= 0 {
-				//连输三把 直接让他赢
-				log.T("GetWinUser 玩家[%v]最近已连输三把 让他赢 bills[%v]", userId, bills)
-				return userId, true
+		loseCount := int32(0)
+		for i := 0; i < len(bills) - 1; i++ {
+			if bills[i].GetWinAmount() < 0 && bills[i+1].GetWinAmount() < 0 {
+				loseCount++
 			}
+		}
+		if limit := rand.Rand(3, 5); loseCount >= limit {
+			log.T("GetWinUser 玩家[%v]最近已连输[%v]把 超过限制[%v] 让他必赢 bills[%v]", userId, loseCount, limit, bills)
+			return userId, 10
 		}
 	}
 
 	log.T("GetWinUser 没有符合条件的玩家 返回0")
-	return 0, false
+	return 0, 0
 }
 
 func getUserDefeatedPoint(userId uint32, roomType int32) (defeatedPoint float64) {
