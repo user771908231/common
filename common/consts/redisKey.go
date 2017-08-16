@@ -63,3 +63,7 @@ const (
 	RKEY_PDK_REXIPAI_CHANCE_AIR  string = "rkey_pdk_rexipai_air"
 	RKEY_PDK_REXIPAI_CHANCE_SHUN string = "rkey_pdk_rexipai_shun"
 )
+
+const (
+	RKEY_DESK_PRE_XIPAI_DATA string = "rkey_desk_pre_xipai_data"   //牌桌预洗牌
+)

@@ -10,7 +10,7 @@ func TestInit() {
 	//sys.InitRedis("192.168.199.200:6379", "test")
 	//db.Oninit("192.168.199.200", 27017, "test", "id")
 	//log.InitLogger("", "") //初始化日志处理
-	sys.InitRedis("127.0.0.1:6379", "test")
+	sys.InitRedis("127.0.0.1:6379", "test", "")
 	db.Oninit("127.0.0.1:27017", "127.0.0.1:27017", "test", "id")
-	log.InitLogger("", "") //初始化日志处理
+	log.InitLogger("", "",100,100) //初始化日志处理
 }
