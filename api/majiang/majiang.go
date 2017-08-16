@@ -1,12 +1,10 @@
 package majiang
 
 import (
-	"casino_common/utils/numUtils"
-	"casino_majiang/msg/funcsInit"
-	"casino_majiang/msg/protogo"
-	"strings"
 	"casino_common/proto/ddproto"
+	"casino_common/utils/numUtils"
 	"github.com/golang/protobuf/proto"
+	"strings"
 )
 
 var clienMap map[int]int32
@@ -204,7 +202,7 @@ type FlyPai struct {
 	OutUserId uint32
 	InUserId  uint32
 	Pais      []*MJPAI //三张牌 含听用
-	Pai       *MJPAI //飞的是什么牌
+	Pai       *MJPAI   //飞的是什么牌
 }
 
 type GangPai struct {
