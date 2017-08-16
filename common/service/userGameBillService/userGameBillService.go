@@ -6,8 +6,6 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"casino_common/common/log"
 	"casino_common/utils/db"
-	"errors"
-	"fmt"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/Error"
 	"casino_common/utils/numUtils"
@@ -16,6 +14,8 @@ import (
 	"casino_common/utils/redisUtils"
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
+	"math"
+	"casino_common/utils/rand"
 )
 
 //玩家游戏账单数据 没玩完一局游戏存储一次数据
@@ -107,7 +107,7 @@ func getRedisKey(userId uint32, gameId, roomType int32) string {
 }
 
 //根据userId从redis查询玩家账单数据
-func GetViaRedis(userId uint32, roomType int32) []*ddproto.UserGameBill {
+func GetViaRedis(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 	log.T("GetViaRedis userId%v gameId%v roomType%v tbName[%v] limitLength[%v]", userId, Cfg.gameId, roomType, Cfg.tbName, Cfg.limitLength)
 	gameBills := &ddproto.RedisUserGameBill{}
 
@@ -117,35 +117,30 @@ func GetViaRedis(userId uint32, roomType int32) []*ddproto.UserGameBill {
 		return nil
 	}
 
-	bills := gameBills.GetData()
-	//返回限定长度
-	if len(bills) > int(Cfg.limitLength) {
-		return bills[:Cfg.limitLength]
-	}
-	return bills
+	return gameBills
 }
 
 //找到玩家账单数据 先从内存 找不到再从数据库并缓存到内存
-func GetViaCache(userId uint32, roomType int32) []*ddproto.UserGameBill {
+func GetViaCache(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 	log.T("开始查找玩家[%v]的游戏账单数据...", userId)
 	gets := UserBill.Get(userId)
-	bills := []*ddproto.UserGameBill{}
+	gameBill := &ddproto.RedisUserGameBill{}
 	if gets != nil {
 		//从内存中获取到了 且长度符合要求 直接返回
-		bills = gets.([]*ddproto.UserGameBill)
-		if bills != nil && len(bills) == int(Cfg.limitLength) {
-			log.T("从内存中查询玩家[%v]的游戏账单数据, 返回[%v]", userId, bills)
-			return bills
+		gameBill = gets.(*ddproto.RedisUserGameBill)
+		if gameBill != nil && gameBill.GetData() != nil {
+			log.T("从内存中查询玩家[%v]的游戏账单数据, 返回[%v]", userId, gameBill)
+			return gameBill
 		}
 	}
 
-	//从数据库中查询
-	bills = GetViaRedis(userId, roomType)
-	if bills != nil && len(bills) > 0 {
+	//从redis中查询
+	gameBill = GetViaRedis(userId, roomType)
+	if gameBill.GetData() != nil && len(gameBill.GetData()) > 0 {
 		//查询到了 缓存到内存里
-		UserBill.Set(userId, bills)
-		log.T("从redis中查询玩家[%v]的游戏账单数据, 缓存到内存并返回[%v]", userId, bills)
-		return bills
+		UserBill.Set(userId, gameBill)
+		log.T("从redis中查询玩家[%v]的游戏账单数据, 缓存到内存并返回[%v]", userId, gameBill)
+		return gameBill
 	}
 	log.W("没有找到玩家[%v]的游戏账单数据", userId)
 	return nil
@@ -183,22 +178,23 @@ func insert2Memory(b *ddproto.UserGameBill) {
 	log.T("开始添加玩家[%v]的游戏账单数据到内存中... bill[%v]", b.GetUserId(), b)
 	//将内存中的bills取出来 把新的bill追加进去 再将汇总的bills重新set回去
 	gets := UserBill.Get(b.GetUserId())
-	userBills := []*ddproto.UserGameBill{}
+	gameBill := &ddproto.RedisUserGameBill{}
 	if gets != nil {
-		userBills = gets.([]*ddproto.UserGameBill)
+		gameBill = gets.(*ddproto.RedisUserGameBill)
 	}
 
 	//将这条数据追加到第一个位置
 	newUserBills := []*ddproto.UserGameBill{b}
 
-	if len(userBills) >= int(Cfg.limitLength) {
+	if gameBill.GetData() != nil && len(gameBill.GetData()) >= int(Cfg.limitLength) {
 		//原始长度超出限制
-		newUserBills = append(newUserBills, userBills[:Cfg.limitLength-1]...)
+		newUserBills = append(newUserBills, gameBill.Data[:Cfg.limitLength-1]...)
 	} else {
-		newUserBills = append(newUserBills, userBills...)
+		newUserBills = append(newUserBills, gameBill.Data...)
 	}
 
-	UserBill.Set(b.GetUserId(), newUserBills)
+	gameBill.Data = newUserBills
+	UserBill.Set(b.GetUserId(), gameBill)
 	log.T("添加玩家[%v]的游戏账单数据到内存中完毕", b.GetUserId())
 }
 
@@ -225,15 +221,117 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
 }
 
-//根据玩家游戏账单数据判定是否让他赢
-func IsUserShouldWin(userId uint32, roomType int32, f func(b []*ddproto.UserGameBill) bool) (bool, error) {
-	log.T("开始根据玩家[%v]游戏账单数据判定是否让他赢", userId)
-	bills := GetViaCache(userId, roomType)
+func updateUserGameBill(userId uint32, roomType int32, b *ddproto.RedisUserGameBill) {
+	log.T("开始更新玩家[%v]redis和内存中的游戏账单数据... bill[%v]", userId, b)
+	UserBill.Set(userId, b)
+	redisUtils.SetObj(getRedisKey(userId, Cfg.gameId, roomType), b)
+	log.T("完成更新玩家[%v]redis和内存中的游戏账单数据... bill[%v]", userId, b)
+	return
+}
 
-	if bills == nil || len(bills) <= 0 {
-		log.W("找不到玩家[%v]的游戏账单数据, 无法判定IsUserShouldWin", userId)
-		return false, errors.New(fmt.Sprintf("找不到玩家[%v]的游戏账单数据, 无法判定", userId))
+//获取一组玩家中谁可以赢 赢的概率是多少 0~10
+func GetWinUser(roomType int32, userIds []uint32) (userId uint32, randScore int32) {
+	if len(userIds) <= 0 {
+		log.T("GetWinUser 传入的userIds数组为空 返回0")
+		return 0, 0
 	}
 
-	return f(bills), nil
+	for _, userId := range userIds {
+		gameBill := GetViaCache(userId, roomType)
+		if gameBill == nil {
+			continue
+		}
+
+		wonPoint := getUserWonPoint(gameBill.GetData())
+		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
+
+		log.T("GetWinUser 玩家[%v]当前是否处于赢的模式[%v] 当前输的绩点[%v] 赢的绩点[%v] bills[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint, gameBill.GetData())
+
+		if gameBill.GetIsWinMode() {
+			//玩家当前在赢的模式中
+			if wonPoint >= float64(7) {
+				//玩家超过赢的得分限制 退出赢的模式
+				*gameBill.IsWinMode = false
+				updateUserGameBill(userId, roomType, gameBill)
+				log.T("GetWinUser 玩家[%v] 赢的绩点[%v]满足条件 开始退出赢的模式", userId, wonPoint)
+				continue
+			}
+			log.T("GetWinUser 玩家[%v] 当前处于赢的模式", userId)
+			return userId, int32(defeatedPoint)
+		}
+		//玩家没有处在赢的模式中 根据输的得分判定是否进入赢的模式
+		if defeatedPoint >= float64(7) {
+			//玩家超过输的得分限制 进入赢的模式
+			*gameBill.IsWinMode = true
+			updateUserGameBill(userId, roomType, gameBill)
+			log.T("GetWinUser 玩家[%v] 输的绩点[%v]满足条件 开始进入赢的模式", userId, defeatedPoint)
+			return userId, int32(defeatedPoint)
+		}
+
+		continueLoseCount := int32(0)
+		for i := 0; i < len(gameBill.GetData())-1; i++ {
+			if gameBill.Data[i].GetWinAmount() < 0 && gameBill.Data[i+1].GetWinAmount() < 0 {
+				continueLoseCount++
+			} else {
+				break
+			}
+		}
+		log.T("GetWinUser 玩家[%v]最近已连输[%v]把", userId, continueLoseCount)
+		if limit := rand.Rand(3, 5); continueLoseCount >= limit {
+			log.T("GetWinUser 玩家[%v]连输局数超过限制[%v] 让他必赢", userId, limit)
+			return userId, 10
+		}
+	}
+
+	log.T("GetWinUser 没有符合条件的玩家 返回0")
+	return 0, 0
+}
+
+func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint float64) {
+	loseCount := float64(0)
+	totalLoseAmount := float64(0)
+	for _, b := range bills {
+		totalLoseAmount += float64(b.GetWinAmount())
+		if b.GetWinAmount() < 0 {
+			loseCount++
+		}
+	}
+
+	if totalLoseAmount > 0 {
+		totalLoseAmount = 0
+	}else {
+		totalLoseAmount = -totalLoseAmount
+	}
+
+	log.T("getUserDefeatedPoint loseCount:%v totalLoseAmount:%v", loseCount, totalLoseAmount)
+	defeatedPoint = getPoint(loseCount, float64(len(bills)), totalLoseAmount)
+	return
+}
+
+func getUserWonPoint(bills []*ddproto.UserGameBill) (winPoint float64) {
+	winCount := float64(0)
+	totalWinAmount := float64(0)
+	for _, b := range bills {
+		totalWinAmount += float64(b.GetWinAmount())
+		if b.GetWinAmount() > 0 {
+			winCount++
+		}
+	}
+	if totalWinAmount <= 0 {
+		totalWinAmount = 0
+	}
+
+	log.T("getUserWinPoint winCount:%v totalWinAmount:%v", winCount, totalWinAmount)
+	winPoint = getPoint(winCount, float64(len(bills)), totalWinAmount)
+	return
+}
+
+func getPoint(targetCount, length, amount float64) (point float64) {
+	ratio := targetCount / length * amount
+	if ratio <= 1 {
+		point = 0
+		return
+	}
+	point = math.Log2(ratio)
+	return point
 }
