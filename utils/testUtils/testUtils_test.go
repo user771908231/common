@@ -21,15 +21,15 @@ func TestSetDeskPoker(t *testing.T) {
 	}
 
 	//写入redis
-	err := SetDeskPreSendPokers(1,1, pokers)
+	err := SetDeskPreSendPokers(1,"123", pokers)
 	t.Log(err)
 
 	//第一次查询redis
-	redis_poker, err := GetDeskPreSendPokers(1, 1)
+	redis_poker, err := GetDeskPreSendPokers(1, "123")
 	t.Log(redis_poker, err)
 
 	//再次查询redis
-	redis_poker, err = GetDeskPreSendPokers(1, 1)
+	redis_poker, err = GetDeskPreSendPokers(1, "123")
 	t.Log(redis_poker, err)
 
 }
