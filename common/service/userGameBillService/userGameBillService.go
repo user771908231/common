@@ -21,6 +21,11 @@ import (
 //玩家游戏账单数据 没玩完一局游戏存储一次数据
 // 1.展示玩家输赢走势 2.下一局输赢判定策略的依据
 
+const (
+	WINLOSE_SWITCH_POINT  float64 = 6 //是否进入退出赢模式的点数
+	CONTIUNELOSECOUNT_MAX int32   = 5 //连输最多不能超过的局数
+)
+
 func init() {
 	UserBill = new(util.Map)
 }
@@ -230,8 +235,8 @@ func updateUserGameBill(userId uint32, roomType int32, b *ddproto.RedisUserGameB
 	return
 }
 
-//获取一组玩家中谁可以赢 赢的概率是多少 0~10
-func GetWinUser(roomType int32, userIds []uint32) (userId uint32, randScore int32) {
+//获取一组玩家中谁可以赢 赢的概率是多少 0~100
+func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRate int32) {
 	if len(userIds) <= 0 {
 		log.T("GetWinUser 传入的userIds数组为空 返回0")
 		return 0, 0
@@ -246,41 +251,48 @@ func GetWinUser(roomType int32, userIds []uint32) (userId uint32, randScore int3
 		wonPoint := getUserWonPoint(gameBill.GetData())
 		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
 
-		log.T("GetWinUser 玩家[%v]当前是否处于赢的模式[%v] 当前输的绩点[%v] 赢的绩点[%v] bills[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint, gameBill.GetData())
+		log.T("GetWinUser 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v] wonPoint[%v] bills[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint, gameBill.GetData())
 
 		if gameBill.GetIsWinMode() {
 			//玩家当前在赢的模式中
-			if wonPoint >= float64(7) {
+			if wonPoint >= WINLOSE_SWITCH_POINT {
 				//玩家超过赢的得分限制 退出赢的模式
 				gameBill.IsWinMode = proto.Bool(false)
 				updateUserGameBill(userId, roomType, gameBill)
-				log.T("GetWinUser 玩家[%v] 赢的绩点[%v]满足条件 开始退出赢的模式", userId, wonPoint)
+				log.T("GetWinUser 玩家[%v] wonPoint[%v]满足条件 开始退出赢的模式", userId, wonPoint)
 				continue
 			}
-			log.T("GetWinUser 玩家[%v] 当前处于赢的模式", userId)
-			return userId, int32(defeatedPoint)
+			log.T("GetWinUser 玩家[%v] 当前处于赢的模式 可以继续赢", userId)
+			return userId, 70
 		}
 		//玩家没有处在赢的模式中 根据输的得分判定是否进入赢的模式
-		if defeatedPoint >= float64(7) {
+		if defeatedPoint >= WINLOSE_SWITCH_POINT {
 			//玩家超过输的得分限制 进入赢的模式
-			*gameBill.IsWinMode = true
+			gameBill.IsWinMode = proto.Bool(true)
 			updateUserGameBill(userId, roomType, gameBill)
-			log.T("GetWinUser 玩家[%v] 输的绩点[%v]满足条件 开始进入赢的模式", userId, defeatedPoint)
-			return userId, int32(defeatedPoint)
+			log.T("GetWinUser 玩家[%v] defeatedPoint[%v]满足条件 开始进入赢的模式", userId, defeatedPoint)
+			return userId, 70
 		}
 
+		//最近连输的场次统计
 		continueLoseCount := int32(0)
-		for i := 0; i < len(gameBill.GetData())-1; i++ {
-			if gameBill.Data[i].GetWinAmount() < 0 && gameBill.Data[i+1].GetWinAmount() < 0 {
-				continueLoseCount++
-			} else {
+		for _, b := range gameBill.GetData() {
+			if b.GetWinAmount() > 0 {
+				//有正的得分 就不是连输 退出循环
 				break
 			}
+			if b.GetWinAmount() == 0 {
+				//过滤掉0分
+				continue
+			}
+			//累计输的局数
+			continueLoseCount++
 		}
+
 		log.T("GetWinUser 玩家[%v]最近已连输[%v]把", userId, continueLoseCount)
-		if limit := rand.Rand(3, 5); continueLoseCount >= limit {
+		if limit := rand.Rand(3, CONTIUNELOSECOUNT_MAX); continueLoseCount >= limit {
 			log.T("GetWinUser 玩家[%v]连输局数超过限制[%v] 让他必赢", userId, limit)
-			return userId, 10
+			return userId, 100
 		}
 	}
 
@@ -300,7 +312,7 @@ func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint float64)
 
 	if totalLoseAmount > 0 {
 		totalLoseAmount = 0
-	}else {
+	} else {
 		totalLoseAmount = -totalLoseAmount
 	}
 
