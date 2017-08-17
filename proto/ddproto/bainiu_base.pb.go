@@ -592,6 +592,25 @@ It has these top-level messages:
 	PhzPlay_SendCards
 	PhzReq_OutCards
 	PhzAck_OutCards
+	PhzPlay_MoPai
+	PhzPlay_Overturn
+	PhzPlay_CanPeng
+	PhzReq_Peng
+	PhzAck_Peng
+	PhzPlay_ChiPai
+	PhzPlayCanChi
+	PhzReqChiPai
+	PhzAckChiPai
+	PhzPlayTiPai
+	PhzPlayWeiPai
+	PhzPlayPaoPai
+	PhzPlayCanHuPai
+	PhzReqHuPai
+	PhzAckHuPai
+	PhzPlayHandPokers
+	PhzPlayRoundBillBean
+	PhzPlayCurrentResult
+	PhzPlayEndResult
 	RpcHallUpdateConfig
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
