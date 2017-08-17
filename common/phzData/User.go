@@ -57,6 +57,7 @@ func (u *User) SetGameStatus(s int32) {
 }
 
 type UserGameData struct {
+	Score      int64       //总得分
 	Bills      *Bill       //账单
 	HandPokers []*PHZPoker //牌
 }

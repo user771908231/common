@@ -583,10 +583,15 @@ It has these top-level messages:
 	PhzReqCreateDesk
 	PhzReqEnterDesk
 	PhzAckDesk
-	PhzBcGameInfo
+	PhzReqGameInfo
+	PhzDeskGameInfo
 	PhzReq_Ready
-	PhzPlay_ReadyStatus
 	PhzAck_Ready
+	PhzPlay_ReadyStatus
+	PhzPlay_Opening
+	PhzPlay_SendCards
+	PhzReq_OutCards
+	PhzAck_OutCards
 	RpcHallUpdateConfig
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
