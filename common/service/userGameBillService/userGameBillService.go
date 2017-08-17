@@ -215,7 +215,8 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	newUserBills := []*ddproto.UserGameBill{b}
 	newUserBills = append(newUserBills, redisUserGameBill.GetData()...)
 
-	redisUserGameBill.Data = newUserBills
+	//只保留设置条数的数据
+	redisUserGameBill.Data = newUserBills[:Cfg.limitLength]
 
 	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
@@ -251,7 +252,7 @@ func GetWinUser(roomType int32, userIds []uint32) (userId uint32, randScore int3
 			//玩家当前在赢的模式中
 			if wonPoint >= float64(7) {
 				//玩家超过赢的得分限制 退出赢的模式
-				*gameBill.IsWinMode = false
+				gameBill.IsWinMode = proto.Bool(false)
 				updateUserGameBill(userId, roomType, gameBill)
 				log.T("GetWinUser 玩家[%v] 赢的绩点[%v]满足条件 开始退出赢的模式", userId, wonPoint)
 				continue
@@ -326,8 +327,8 @@ func getUserWonPoint(bills []*ddproto.UserGameBill) (winPoint float64) {
 	return
 }
 
-func getPoint(targetCount, length, amount float64) (point float64) {
-	ratio := targetCount / length * amount
+func getPoint(targetCount, totalCount, amount float64) (point float64) {
+	ratio := targetCount / totalCount * amount
 	if ratio <= 1 {
 		point = 0
 		return
