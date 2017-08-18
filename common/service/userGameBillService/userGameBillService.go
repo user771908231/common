@@ -220,10 +220,12 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	newUserBills := []*ddproto.UserGameBill{b}
 	newUserBills = append(newUserBills, redisUserGameBill.GetData()...)
 
+	lenth := len(newUserBills)
 	//只保留限定条数的数据
 	if len(newUserBills) > int(Cfg.limitLength) {
-		redisUserGameBill.Data = newUserBills[:Cfg.limitLength]
+		lenth = int(Cfg.limitLength)
 	}
+	redisUserGameBill.Data = newUserBills[:lenth]
 
 	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
