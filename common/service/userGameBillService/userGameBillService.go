@@ -22,7 +22,7 @@ import (
 // 1.展示玩家输赢走势 2.下一局输赢判定策略的依据
 
 const (
-	WINLOSE_SWITCH_POINT  float64 = 6 //是否进入退出赢模式的点数
+	WINLOSE_SWITCH_POINT  float64 = 5 //是否进入退出赢模式的点数
 	CONTIUNELOSECOUNT_MAX int32   = 5 //连输最多不能超过的局数
 )
 
@@ -134,7 +134,7 @@ func GetViaCache(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 		//从内存中获取到了 且长度符合要求 直接返回
 		gameBill = gets.(*ddproto.RedisUserGameBill)
 		if gameBill != nil && gameBill.GetData() != nil {
-			log.T("从内存中查询玩家[%v]的游戏账单数据, 返回[%v]", userId, gameBill)
+			log.T("从内存中查询玩家[%v]的游戏账单数据", userId)
 			return gameBill
 		}
 	}
@@ -144,7 +144,7 @@ func GetViaCache(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 	if gameBill.GetData() != nil && len(gameBill.GetData()) > 0 {
 		//查询到了 缓存到内存里
 		UserBill.Set(userId, gameBill)
-		log.T("从redis中查询玩家[%v]的游戏账单数据, 缓存到内存并返回[%v]", userId, gameBill)
+		log.T("从redis中查询玩家[%v]的游戏账单数据, 缓存到内存并返回", userId)
 		return gameBill
 	}
 	log.W("没有找到玩家[%v]的游戏账单数据", userId)
@@ -220,8 +220,10 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	newUserBills := []*ddproto.UserGameBill{b}
 	newUserBills = append(newUserBills, redisUserGameBill.GetData()...)
 
-	//只保留设置条数的数据
-	redisUserGameBill.Data = newUserBills[:Cfg.limitLength]
+	//只保留限定条数的数据
+	if len(newUserBills) > int(Cfg.limitLength) {
+		redisUserGameBill.Data = newUserBills[:Cfg.limitLength]
+	}
 
 	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
@@ -251,7 +253,7 @@ func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRa
 		wonPoint := getUserWonPoint(gameBill.GetData())
 		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
 
-		log.T("GetWinUser 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v] wonPoint[%v] bills[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint, gameBill.GetData())
+		log.T("GetWinUser 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v] wonPoint[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint)
 
 		if gameBill.GetIsWinMode() {
 			//玩家当前在赢的模式中
