@@ -10,7 +10,6 @@ import (
 type Desk struct {
 	S          *module.Skeleton //leaf骨架
 	DeskId     int32            //唯一ID
-	Password   string           //房间号
 	Cfg        *DeskCfg         //配置器
 	GameData   *DeskGameData    //数据
 	GameStatus *DeskGameStatus  //状态
@@ -21,6 +20,7 @@ type Desk struct {
 type DeskCfg struct {
 	Owner            uint32    //房主
 	Banker           uint32    //庄家
+	NextBanker       uint32    //下一个庄家
 	CreateFee        int64     //房费
 	GameNumber       int32     //游戏编号
 	ActiveUser       uint32    //活动玩家
@@ -33,6 +33,8 @@ type DeskCfg struct {
 	TotalPokerNum    int32     //扑克牌
 	HandPokerInitNum int32     //初始手牌的数量
 	ApplyDis         bool      //申请状态
+	HuXi             int32     //胡息数
+	IsDaiKai         bool      //是否代开
 }
 
 type DeskGameData struct {
