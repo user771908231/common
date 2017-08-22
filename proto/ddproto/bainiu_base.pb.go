@@ -585,6 +585,8 @@ It has these top-level messages:
 	PhzAckDesk
 	PhzReqGameInfo
 	PhzDeskGameInfo
+	PhzReqDissolveDesk
+	PhzAckDissolveDesk
 	PhzReq_Ready
 	PhzAck_Ready
 	PhzPlay_ReadyStatus
