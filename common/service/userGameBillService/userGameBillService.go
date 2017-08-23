@@ -22,25 +22,26 @@ import (
 // 1.展示玩家输赢走势 2.下一局输赢判定策略的依据
 
 const (
-	WINLOSE_SWITCH_POINT  float64 = 5 //是否进入退出赢模式的点数
-	CONTIUNELOSECOUNT_MAX int32   = 5 //连输最多不能超过的局数
+	CONTIUNELOSECOUNT_MAX int32 = 5 //连输最多不能超过的局数
 )
 
 func init() {
 	UserBill = new(util.Map)
 }
 
-func OnInit(gameId, limitLength int32) {
+func OnInit(gameId, limitLength int32, watchPoint float64) {
 	Cfg.gameId = gameId
 	Cfg.limitLength = limitLength
 	Cfg.tbName = tableName.DBT_USER_GAME_BILL
+	Cfg.watchPoint = watchPoint
 }
 
 //程序启动加载时初始化配置信息
 var Cfg struct {
-	gameId      int32  //游戏id
-	limitLength int32  //内存中数据的条数
-	tbName      string //表名
+	gameId      int32   //游戏id
+	limitLength int32   //内存中数据的条数
+	tbName      string  //表名
+	watchPoint  float64 //是否进入退出赢模式的点数
 }
 
 //游戏账单数据 数据库里一局游戏一条记录
@@ -259,7 +260,7 @@ func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRa
 
 		if gameBill.GetIsWinMode() {
 			//玩家当前在赢的模式中
-			if wonPoint >= WINLOSE_SWITCH_POINT {
+			if wonPoint >= Cfg.watchPoint {
 				//玩家超过赢的得分限制 退出赢的模式
 				gameBill.IsWinMode = proto.Bool(false)
 				updateUserGameBill(userId, roomType, gameBill)
@@ -270,7 +271,7 @@ func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRa
 			return userId, 70
 		}
 		//玩家没有处在赢的模式中 根据输的得分判定是否进入赢的模式
-		if defeatedPoint >= WINLOSE_SWITCH_POINT {
+		if defeatedPoint >= Cfg.watchPoint {
 			//玩家超过输的得分限制 进入赢的模式
 			gameBill.IsWinMode = proto.Bool(true)
 			updateUserGameBill(userId, roomType, gameBill)
