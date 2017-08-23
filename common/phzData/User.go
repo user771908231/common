@@ -62,6 +62,7 @@ type UserGameData struct {
 	Score      int64           //总得分
 	Bills      map[int32]*Bill //账单
 	HandPokers []*PHZPoker     //牌
+	MoPai      *PHZPoker       //每次摸的牌
 	Statistic  *UserStatistic  //统计信息
 }
 

@@ -128,6 +128,10 @@ func (p *PHZPoker) GetDes() string {
 	return p.Des
 }
 
+func (p *PHZPoker) IsBig() bool {
+	return p.BigWord
+}
+
 func initByDes(des string) FLOWER {
 	//初始化花色
 	var ret FLOWER
@@ -206,4 +210,40 @@ func XiPai() []*PHZPoker {
 		pokerPais = append(pokerPais, p)
 	}
 	return pokerPais
+}
+
+func (p *PHZPoker) GetLogDes() string {
+	suit, _ := numUtils.Int2String(p.GetId())
+	switch p.GetFlower() {
+	case int32(FLOWER_B):
+		suit = "黑"
+	case int32(FLOWER_R):
+		suit = "红"
+	default:
+	}
+	if p.IsBig() {
+		suit += "大"
+	} else {
+		suit += "小"
+	}
+	valueString, _ := numUtils.Int2String(p.GetValue())
+	suit += valueString
+	return suit
+}
+func Cards2String(cs []*PHZPoker) string {
+	if cs == nil || len(cs) <= 0 {
+		return "没有牌"
+	}
+
+	s := ""
+	for _, c := range cs {
+		if c != nil {
+			s += " " + c.GetLogDes()
+		}
+	}
+	return s
+}
+
+func Card2String(p *PHZPoker) string {
+	return  p.GetLogDes()
 }

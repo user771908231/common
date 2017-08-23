@@ -32,9 +32,11 @@ type DeskCfg struct {
 	RoomType         int32     //房间类型
 	TotalPokerNum    int32     //扑克牌
 	HandPokerInitNum int32     //初始手牌的数量
-	ApplyDis         bool      //申请状态
+	ApplyDis         bool      //申请解散状态
 	HuXi             int32     //胡息数
-	IsDaiKai         bool      //是否代开
+	PaiCursor        int32
+	CardsNum         int32 //手牌数量
+	IsDaiKai         bool  //是否代开
 }
 
 type DeskGameData struct {
