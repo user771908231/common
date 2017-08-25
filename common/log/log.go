@@ -29,9 +29,11 @@ var maxLogSeq int64 = 500
 
 var TraceLoger *FileLogger
 var ErrorLogger *FileLogger
+var GateLogger *FileLogger
 
 var traceLogStrChan chan string
 var errorLogStrChan chan string
+var gateLogStrChan chan string
 
 const (
 	ALL LEVEL = iota
@@ -87,7 +89,9 @@ func SetMaxFileSize(maxSize int64, _unit UNIT) {
 	maxFileSize = maxSize * int64(_unit)
 }
 
+//初始化日志记录器
 func InitLoggers(fileDir, fileName string) {
+	//普通日志
 	fmt.Println("日志的目录:", fileDir)
 	fmt.Println("日志的名字:", fileName)
 	TraceLoger = new(FileLogger)
@@ -95,10 +99,17 @@ func InitLoggers(fileDir, fileName string) {
 	traceLogStrChan = make(chan string, maxLogSeq)
 	go TraceLoger.logWriter(traceLogStrChan)
 
+	//错误日志
 	ErrorLogger = new(FileLogger)
 	ErrorLogger.SetRollingFile(fileDir, fileName + ".err")
 	errorLogStrChan = make(chan string, maxLogSeq)
 	go ErrorLogger.logWriter(errorLogStrChan)
+
+	//网关日志
+	GateLogger = new(FileLogger)
+	GateLogger.SetRollingFile(fileDir, fileName + "_gate.log")
+	gateLogStrChan = make(chan string, maxLogSeq)
+	go GateLogger.logWriter(gateLogStrChan)
 }
 
 func (f *FileLogger) logWriter(logStrChan chan string) {
@@ -159,6 +170,18 @@ func Trace(format string, v ...interface{}) {
 
 func T(format string, v ...interface{}) {
 	Trace(format, v...)
+}
+
+//网关日志
+func Gate(format string, v ...interface{})  {
+	_, file, line, _ := runtime.Caller(2) //calldepth=3
+	if logLevel <= ALL {
+		gateLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[TRACE] " + format + " \033[0m ", v...)
+	}
+}
+
+func G(format string, v ...interface{}) {
+	Gate(format, v...)
 }
 
 func Debug(format string, v ...interface{}) {

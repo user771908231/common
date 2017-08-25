@@ -120,28 +120,28 @@ func LREM(key string, value string) error {
 }
 
 //对指定的key 加上 i的值
-func INCRBY(key string, i int64) int64 {
+func INCRBY(key string, i int64) (int64, error) {
 	conn := GetConn()
 	defer conn.Close()
 	value, err := conn.INCRBY(key, i)
 	if err != nil {
 		log.E("redis INCRBY的时候出错 err[%v]", err)
-		return 0
+		return 0, err
 	} else {
-		return value.(int64)
+		return value.(int64), nil
 	}
 }
 
 //对指定的key 减去i 的值
-func DECRBY(key string, i int64) int64 {
+func DECRBY(key string, i int64) (int64, error) {
 	conn := GetConn()
 	defer conn.Close()
 	value, err := conn.DECRBY(key, i)
 	if err != nil {
 		log.E("redis DECRBY的时候出错 err[%v]", err)
-		return 0
+		return 0, err
 	} else {
-		return value.(int64)
+		return value.(int64), nil
 	}
 }
 

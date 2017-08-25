@@ -40,6 +40,8 @@ const (
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
 	DBT_IP_ADDRESS            string = "dbt_ip_address"          //存储Ip对应的地址
 
+	DBT_APPLY_AGENTPRO_RECORD string = "t_apply_agentpro_record"  //代理申请记录
+
 	DBT_GAME_SERVER_INFO = "t_game_server_info"
 	DBT_GAME_ROOM_INFO = "t_game_room_info"
 
