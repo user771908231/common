@@ -62,6 +62,11 @@ func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	return counts
 }
 
+//空实现
+func (p *MJParserCore) CanHu(...interface{}) (interface{}, error) {
+	return nil, nil
+}
+
 //是否能碰牌
 func (p *MJParserCore) CanPeng(userGameData interface{}, pengPai interface{}) (bool, error) {
 	//log.T("判断是否能碰:userGameData.type%v,content:%v \n", reflect.TypeOf(userGameData), userGameData)
