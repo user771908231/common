@@ -20,6 +20,7 @@ type MJParser interface {
 	Parse(pids []int32) (interface{}, error)          //通过一副牌的id解析牌型
 	XiPai() interface{}                               //洗牌
 	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
+	CanHu(...interface{}) (interface{}, error)        //能否胡牌 不带番数得分计算...
 	InitMjPaiByIndex(index int32) *majiang.MJPAI      //通过id得到一张麻将牌
 	IsTingYongPai(pai majiang.MJPAI) bool             //是否是听用牌 宜宾麻将
 	IsMengQing(g MJUserGameData) bool                 //是否是门清 没有吃碰杠 白山麻将
