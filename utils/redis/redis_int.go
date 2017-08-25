@@ -18,10 +18,10 @@ var (
 func initPool() {
 	RedisClient = &redis.Pool{
 		// 从配置文件获取maxidle以及maxactive，取不到则用后面的默认值
-		MaxIdle:     10,
-		MaxActive:   0,
-		IdleTimeout: 180 * time.Second,
-		Wait: true,
+		MaxIdle:     10,  //为最大空闲连接数
+		MaxActive:   0,  //为0则连接池连接数自动增长，大于0则为最大活跃连接数
+		IdleTimeout: 180 * time.Second,  //空闲超时时间
+		Wait: true,  //是否等待空闲连接
 		Dial: func() (redis.Conn, error) {
 			c, err := redis.Dial("tcp", Redis_svr, redis.DialPassword(Redis_pwd))
 			if err != nil {
@@ -30,6 +30,10 @@ func initPool() {
 			// 选择db
 			c.Do("SELECT", Redis_name)
 			return c, nil
+		},
+		TestOnBorrow: func(c redis.Conn, t time.Time) error {
+
+			return nil
 		},
 	}
 }

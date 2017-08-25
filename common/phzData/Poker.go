@@ -1,5 +1,12 @@
 package phzData
 
+import (
+	"casino_common/common/log"
+	"casino_common/utils/chessUtils"
+	"casino_common/utils/numUtils"
+	"strings"
+)
+
 const PHZ_ALLPOKER_NUM int32 = 80 //所有牌的数量
 
 var PokerMap map[int32]string
@@ -7,94 +14,103 @@ var PokerMap map[int32]string
 func init() {
 	PokerMap = make(map[int32]string, PHZ_ALLPOKER_NUM)
 	PokerMap[0] = ""
-	PokerMap[1] = "一_1"
-	PokerMap[2] = "一_1"
-	PokerMap[3] = "一_1"
-	PokerMap[4] = "一_1"
-	PokerMap[5] = "1_1"
-	PokerMap[6] = "1_1"
-	PokerMap[7] = "1_1"
-	PokerMap[8] = "1_1"
-	PokerMap[9] = "二_2"
-	PokerMap[10] = "二_2"
-	PokerMap[11] = "二_2"
-	PokerMap[12] = "二_2"
-	PokerMap[13] = "2_2"
-	PokerMap[14] = "2_2"
-	PokerMap[15] = "2_2"
-	PokerMap[16] = "2_2"
-	PokerMap[17] = "三_3"
-	PokerMap[18] = "三_3"
-	PokerMap[19] = "三_3"
-	PokerMap[20] = "三_3"
-	PokerMap[21] = "3_3"
-	PokerMap[22] = "3_3"
-	PokerMap[23] = "3_3"
-	PokerMap[24] = "3_3"
-	PokerMap[25] = "四_4"
-	PokerMap[26] = "四_4"
-	PokerMap[27] = "四_4"
-	PokerMap[28] = "四_4"
-	PokerMap[29] = "4_4"
-	PokerMap[30] = "4_4"
-	PokerMap[31] = "4_4"
-	PokerMap[32] = "4_4"
-	PokerMap[33] = "五_5"
-	PokerMap[33] = "五_5"
-	PokerMap[33] = "五_5"
-	PokerMap[33] = "五_5"
-	PokerMap[33] = "5_5"
-	PokerMap[33] = "5_5"
-	PokerMap[33] = "5_5"
-	PokerMap[33] = "5_5"
-	PokerMap[33] = "六_6"
-	PokerMap[33] = "六_6"
-	PokerMap[33] = "六_6"
-	PokerMap[33] = "六_6"
-	PokerMap[33] = "六_6"
-	PokerMap[33] = "6_6"
-	PokerMap[33] = "6_6"
-	PokerMap[33] = "6_6"
-	PokerMap[33] = "6_6"
-	PokerMap[33] = "七_7"
-	PokerMap[33] = "七_7"
-	PokerMap[33] = "七_7"
-	PokerMap[33] = "七_7"
-	PokerMap[33] = "7_7"
-	PokerMap[33] = "7_7"
-	PokerMap[33] = "7_7"
-	PokerMap[33] = "7_7"
-	PokerMap[33] = "八_8"
-	PokerMap[33] = "八_8"
-	PokerMap[33] = "八_8"
-	PokerMap[33] = "八_8"
-	PokerMap[33] = "8_8"
-	PokerMap[33] = "8_8"
-	PokerMap[33] = "8_8"
-	PokerMap[33] = "8_8"
-	PokerMap[33] = "九_9"
-	PokerMap[33] = "九_9"
-	PokerMap[33] = "九_9"
-	PokerMap[33] = "九_9"
-	PokerMap[33] = "9_9"
-	PokerMap[33] = "9_9"
-	PokerMap[33] = "9_9"
-	PokerMap[33] = "9_9"
-	PokerMap[33] = "十_10"
-	PokerMap[33] = "十_10"
-	PokerMap[33] = "十_10"
-	PokerMap[33] = "十_10"
-	PokerMap[33] = "10_10"
-	PokerMap[33] = "10_10"
-	PokerMap[33] = "10_10"
-	PokerMap[33] = "10_10"
+	PokerMap[1] = "Black_Y_1"
+	PokerMap[2] = "Black_Y_1"
+	PokerMap[3] = "Black_Y_1"
+	PokerMap[4] = "Black_Y_1"
+	PokerMap[5] = "Black_N_1"
+	PokerMap[6] = "Black_N_1"
+	PokerMap[7] = "Black_N_1"
+	PokerMap[8] = "Black_N_1"
+	PokerMap[9] = "Red_Y_2"
+	PokerMap[10] = "Red_Y_2"
+	PokerMap[11] = "Red_Y_2"
+	PokerMap[12] = "Red_Y_2"
+	PokerMap[13] = "Red_N_2"
+	PokerMap[14] = "Red_N_2"
+	PokerMap[15] = "Red_N_2"
+	PokerMap[16] = "Red_N_2"
+	PokerMap[17] = "Black_Y_3"
+	PokerMap[18] = "Black_Y_3"
+	PokerMap[19] = "Black_Y_3"
+	PokerMap[20] = "Black_Y_3"
+	PokerMap[21] = "Black_N_3"
+	PokerMap[22] = "Black_N_3"
+	PokerMap[23] = "Black_N_3"
+	PokerMap[24] = "Black_N_3"
+	PokerMap[25] = "Black_Y_4"
+	PokerMap[26] = "Black_Y_4"
+	PokerMap[27] = "Black_Y_4"
+	PokerMap[28] = "Black_Y_4"
+	PokerMap[29] = "Black_N_4"
+	PokerMap[30] = "Black_N_4"
+	PokerMap[31] = "Black_N_4"
+	PokerMap[32] = "Black_N_4"
+	PokerMap[33] = "Black_Y_5"
+	PokerMap[34] = "Black_Y_5"
+	PokerMap[35] = "Black_Y_5"
+	PokerMap[36] = "Black_Y_5"
+	PokerMap[37] = "Black_N_5"
+	PokerMap[38] = "Black_N_5"
+	PokerMap[39] = "Black_N_5"
+	PokerMap[40] = "Black_N_5"
+	PokerMap[41] = "Black_Y_6"
+	PokerMap[42] = "Black_Y_6"
+	PokerMap[43] = "Black_Y_6"
+	PokerMap[44] = "Black_Y_6"
+	PokerMap[45] = "Black_N_6"
+	PokerMap[46] = "Black_N_6"
+	PokerMap[47] = "Black_N_6"
+	PokerMap[48] = "Black_N_6"
+	PokerMap[49] = "Red_Y_7"
+	PokerMap[50] = "Red_Y_7"
+	PokerMap[51] = "Red_Y_7"
+	PokerMap[52] = "Red_Y_7"
+	PokerMap[53] = "Red_N_7"
+	PokerMap[54] = "Red_N_7"
+	PokerMap[55] = "Red_N_7"
+	PokerMap[56] = "Red_N_7"
+	PokerMap[57] = "Black_Y_8"
+	PokerMap[58] = "Black_Y_8"
+	PokerMap[59] = "Black_Y_8"
+	PokerMap[60] = "Black_Y_8"
+	PokerMap[61] = "Black_N_8"
+	PokerMap[62] = "Black_N_8"
+	PokerMap[63] = "Black_N_8"
+	PokerMap[64] = "Black_N_8"
+	PokerMap[65] = "Black_Y_9"
+	PokerMap[66] = "Black_Y_9"
+	PokerMap[67] = "Black_Y_9"
+	PokerMap[68] = "Black_Y_9"
+	PokerMap[69] = "Black_N_9"
+	PokerMap[70] = "Black_N_9"
+	PokerMap[71] = "Black_N_9"
+	PokerMap[72] = "Black_N_9"
+	PokerMap[73] = "Red_Y_10"
+	PokerMap[74] = "Red_Y_10"
+	PokerMap[75] = "Red_Y_10"
+	PokerMap[76] = "Red_Y_10"
+	PokerMap[77] = "Red_N_10"
+	PokerMap[78] = "Red_N_10"
+	PokerMap[79] = "Red_N_10"
+	PokerMap[80] = "Red_N_10"
 }
 
 type PHZPoker struct {
-	Id     int32 //每张牌唯一的ID
-	Value  int32 //牌值
-	Flower int32 //花色
+	Id      int32  //每张牌唯一的ID
+	Value   int32  //牌值
+	Flower  FLOWER //花色
+	BigWord bool   //true：大字  false：小字
+	Des     string //描述
 }
+
+type FLOWER int32
+
+var (
+	MJ_FLOWER_ERROR FLOWER = 0
+	FLOWER_R        FLOWER = 1 //红字
+	FLOWER_B        FLOWER = 2 //黑字
+)
 
 func (p *PHZPoker) GetId() int32 {
 	return p.Id
@@ -105,5 +121,129 @@ func (p *PHZPoker) GetValue() int32 {
 }
 
 func (p *PHZPoker) GetFlower() int32 {
-	return p.Flower
+	return int32(p.Flower)
+}
+
+func (p *PHZPoker) GetDes() string {
+	return p.Des
+}
+
+func (p *PHZPoker) IsBig() bool {
+	return p.BigWord
+}
+
+func initByDes(des string) FLOWER {
+	//初始化花色
+	var ret FLOWER
+	switch des {
+	case "Red": //红字
+		ret = FLOWER_R
+	case "Black": //黑字
+		ret = FLOWER_B
+	default:
+		ret = MJ_FLOWER_ERROR
+	}
+	return ret
+}
+
+func initBigOrSmall(des string) bool {
+	var ret bool
+	switch des {
+	case "N":
+		ret = false
+	case "Y":
+		ret = true
+	default:
+		ret = false
+	}
+	return ret
+}
+
+func parserByIndex(index int32) (id int32, value int32, isBig bool, flower FLOWER, des string) {
+	var pokerString string = PokerMap[index]
+	sarry := strings.Split(pokerString, "_")
+	paiValue := int32(numUtils.String2Int(sarry[2]))
+	paiFlower := initByDes(sarry[0])
+	isBigPai := initBigOrSmall(sarry[1])
+	return index, paiValue, isBigPai, paiFlower, pokerString
+}
+
+func InitPaiByIndex(index int32) *PHZPoker {
+	if index < 0 || index > PHZ_ALLPOKER_NUM {
+		log.E("解析牌失败...ID非法")
+		return nil
+	}
+	_, value, isBig, flower, des := parserByIndex(index)
+
+	poker := &PHZPoker{
+		Id:      index,
+		Value:   value,
+		Flower:  flower,
+		BigWord: isBig,
+		Des:     des,
+	}
+	return poker
+}
+
+func InitPaisByArray(array []int32) []*PHZPoker {
+	if array == nil {
+		log.E("根据索引数组初始化失败...")
+		return nil
+	}
+	pokers := []*PHZPoker{}
+	for _, index := range array {
+		p := InitPaiByIndex(index)
+		pokers = append(pokers, p)
+	}
+	return pokers
+}
+
+func XiPai() []*PHZPoker {
+	paiIndex := chessUtils.Xipai(1, int(PHZ_ALLPOKER_NUM))
+	log.T("一局洗出来的牌是：[%v]", paiIndex)
+	pokerPais := []*PHZPoker{}
+	for _, index := range paiIndex {
+		p := InitPaiByIndex(index)
+		if p == nil {
+			return nil
+		}
+		pokerPais = append(pokerPais, p)
+	}
+	return pokerPais
+}
+
+func (p *PHZPoker) GetLogDes() string {
+	suit, _ := numUtils.Int2String(p.GetId())
+	switch p.GetFlower() {
+	case int32(FLOWER_B):
+		suit = "黑"
+	case int32(FLOWER_R):
+		suit = "红"
+	default:
+	}
+	if p.IsBig() {
+		suit += "大"
+	} else {
+		suit += "小"
+	}
+	valueString, _ := numUtils.Int2String(p.GetValue())
+	suit += valueString
+	return suit
+}
+func Cards2String(cs []*PHZPoker) string {
+	if cs == nil || len(cs) <= 0 {
+		return "没有牌"
+	}
+
+	s := ""
+	for _, c := range cs {
+		if c != nil {
+			s += " " + c.GetLogDes()
+		}
+	}
+	return s
+}
+
+func Card2String(p *PHZPoker) string {
+	return  p.GetLogDes()
 }

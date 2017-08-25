@@ -11,6 +11,7 @@ import (
 	"casino_common/utils/redisUtils"
 	"github.com/golang/protobuf/proto"
 	"time"
+	"errors"
 )
 
 /**
@@ -137,8 +138,8 @@ func GetUserByUserName(userName string) *ddproto.User {
 /**
 	将用户model保存在redis中
  */
-func SaveUser2Redis(u *ddproto.User) {
-	redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
+func SaveUser2Redis(u *ddproto.User) error {
+	return redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
 }
 
 func UpdateUser2MgoById(userId uint32) {
@@ -175,18 +176,23 @@ func GetUserByUnionId(unionid string) *ddproto.User {
 }
 
 //更新redis user 的各种money ,同步之后会save到redis中
-func SyncReidsUserMoney(user *ddproto.User) {
+func SyncReidsUserMoney(user *ddproto.User) error {
 	user.Coin = proto.Int64(GetUserCoin(user.GetId()))         //更新金币
 	user.Diamond = proto.Int64(GetUserDiamond(user.GetId()))   //更新钻石
 	user.Diamond2 = proto.Int64(GetUserDiamond2(user.GetId())) //更新钻石2
 	user.RoomCard = proto.Int64(GetUserRoomCard(user.GetId())) //更新房卡
-	SaveUser2Redis(user)
+	return SaveUser2Redis(user)
 }
 
 //调用此方法 保证mongey,redisuser,mgo 的数据一致
 func SyncMgoUserMoney(userId uint32) error {
 	user := GetUserById(userId)
-	SyncReidsUserMoney(user)
-	userDao.UpdateUser2Mgo(user) //保存用户到mgo
-	return nil
+	if user == nil {
+		return errors.New("user is nil.")
+	}
+	err := SyncReidsUserMoney(user)
+	if err != nil {
+		return err
+	}
+	return userDao.UpdateUser2Mgo(user) //保存用户到mgo
 }

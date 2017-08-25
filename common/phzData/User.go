@@ -5,15 +5,17 @@ import (
 	"casino_common/utils/agentUtils"
 	"github.com/name5566/leaf/gate"
 	"sync/atomic"
+	ltimer "github.com/name5566/leaf/timer"
 )
 
 type User struct {
-	gate.Agent                     //leaf agent
-	URedis     userService.U_REDIS //redis中的微信相关的方法
-	UserId     uint32              //玩家ID
-	Score      int64               //玩家游戏中的分数
-	GameData   *UserGameData
-	GameStatus *UserGameStatus
+	gate.Agent                        //leaf agent
+	URedis        userService.U_REDIS //redis中的微信相关的方法
+	UserId        uint32              //玩家ID
+	Score         int64               //玩家游戏中的分数
+	GameData      *UserGameData
+	GameStatus    *UserGameStatus
+	ApplyDisTimer *ltimer.Timer
 }
 
 func (u *User) GetUserId() uint32 {
@@ -57,9 +59,11 @@ func (u *User) SetGameStatus(s int32) {
 }
 
 type UserGameData struct {
-	Score      int64       //总得分
-	Bills      *Bill       //账单
-	HandPokers []*PHZPoker //牌
+	Score      int64           //总得分
+	Bills      map[int32]*Bill //账单
+	HandPokers []*PHZPoker     //牌
+	MoPai      *PHZPoker       //每次摸的牌
+	Statistic  *UserStatistic  //统计信息
 }
 
 type UserGameStatus struct {
@@ -83,4 +87,31 @@ type BillBean struct {
 type Bill struct {
 	Score     int64       //所有单局账单输赢分数的总和
 	BillBeans []*BillBean //存放每一局的账单
+}
+
+type UserStatisticBean struct {
+	Round    int32 //第几局
+	CDianPao int32 //点炮的次数 总次数
+	CZimo    int32 //自摸的次数 总次数
+	CBeiZimo int32 //被自摸的次数
+	CHu      int32 //胡牌的次数
+
+	TScore    int64 //输赢的金币数
+	CAnGang   int32 //暗杠的次数
+	CDianGang int32 //点杠的次数
+	CMingGang int32 //点杠的次数
+}
+
+type UserStatistic struct {
+	TcountDianPao  int32 //点炮的次数 总次数
+	TcountHu       int32 //胡的次数 总次数
+	TcountZimo     int32 //自摸的次数 总次数
+	TcountBeiZimo  int32 //被自摸的次数
+	TCoin          int64 //输赢的金币数
+	TcountAnGang   int32 //暗杠的次数
+	TcountDianGang int32 //点杠的次数
+	TcountMingGang int32 //明杠的次数
+	TcountZhaMa    int32 //扎码中的码数
+	//每一局的次数
+	Beans map[int32]*UserStatisticBean //通过map来存储
 }

@@ -27,8 +27,7 @@ func UpdateRedisUserMoney(userId uint32) error {
 		return errors.New("增加money失败,没有找到用户")
 	}
 	//修改并且更新用户数据
-	SyncReidsUserMoney(user)
-	return nil
+	return SyncReidsUserMoney(user)
 }
 
 func GetUserMoney(userId uint32, money string) int64 {
@@ -122,9 +121,12 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 func incrUser(userid uint32, key string, d int64) (int64, error) {
 	log.T("为用户[%v]增加[%v][%v]", userid, key, d)
 	//1,增加余额
-	remain := redisUtils.INCRBY(redisUtils.K(key, userid), d)
+	remain, err := redisUtils.INCRBY(redisUtils.K(key, userid), d)
+	if err != nil {
+		return remain, err
+	}
 	//2,更新redis和数据库中的数据
-	err := UpdateRedisUserMoney(userid) //增加用户货币之后
+	err = UpdateRedisUserMoney(userid) //增加用户货币之后
 	//3,返回值
 	log.T("为用户[%v]增加[%v][%v],增加之后redis的值:%v", userid, key, d, remain)
 	return remain, err
@@ -133,21 +135,23 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 //减少用户的货币
 func decrUser(userid uint32, key string, d int64) (int64, error) {
 	log.T("为用户[%v]减少[%v][%v]", userid, key, d)
-	remain := redisUtils.DECRBY(redisUtils.K(key, userid), d)
+	remain,err := redisUtils.DECRBY(redisUtils.K(key, userid), d)
+	if err != nil {
+		return remain, err
+	}
 	if remain < 0 {
 		old, _ := incrUser(userid, key, d)
 		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足[%v],减少的时候失败", userid, key, old, d)
-		log.E(errMsg)
 		log.E(errMsg)
 		log.T("为用户[%v]减少[%v][%v],减少之后redis的值:%v,备注:不够的情况", userid, key, d, remain)
 
 		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
-		UpdateRedisUserMoney(userid)
+		err = UpdateRedisUserMoney(userid)
 		log.T("为用户[%v]减少[%v][%v],减少之后redis的值:%v", userid, key, d, remain)
 
-		return remain, nil
+		return remain, err
 	}
 }
 
@@ -167,6 +171,18 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 
 //增加用户的房卡 参数:gid:游戏id，memo :说明
 func INCRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
+	roomCardBefore := GetUserRoomCard(userId)
+
+	roomCard, err := incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
+
+	if err != nil {
+		return roomCard, err
+	}
+
+	if roomCard != roomCardBefore + d {
+		err = errors.New("inc roomcard validate fail.")
+		return roomCard, err
+	}
 
 	//增加扣除房卡的记录
 	go db.C(tableName.DBT_ROOMCARD_LOG).Insert(hall.T_statistics_roomcard{
@@ -177,15 +193,22 @@ func INCRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, er
 		RoomCardCount: d,
 	})
 
-	return incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
+	return roomCard, err
 }
 
 //减少用户的房卡
 //参数说明:gid:游戏id, memo:说明
 func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
-	count := GetUserRoomCard(userId)
-	if count-d < 0 {
-		return count, errors.New("余额不足，减少房卡失败！")
+	roomCardBefore := GetUserRoomCard(userId)
+	if roomCardBefore-d < 0 {
+		return roomCardBefore, errors.New("余额不足，减少房卡失败！")
+	}
+
+	roomCard, err := decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
+
+	if roomCard != roomCardBefore - d {
+		err = errors.New("dec roomcard validate fail.")
+		return roomCard, err
 	}
 
 	//增加扣除房卡的记录
@@ -197,7 +220,7 @@ func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, er
 		RoomCardCount: -d,
 	})
 
-	return decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
+	return roomCard, err
 }
 
 //增加用户的朋友桌钻石
