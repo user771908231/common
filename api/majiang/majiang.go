@@ -5,12 +5,14 @@ import (
 	"casino_common/utils/numUtils"
 	"github.com/golang/protobuf/proto"
 	"strings"
+	"casino_majiang/msg/protogo"
+	"casino_majiang/msg/funcsInit"
 )
 
 var clienMap map[int]int32
 
 func init() {
-	clienMap = make(map[int]int32, 136) //108
+	clienMap = make(map[int]int32, 144) //108
 	clienMap[0] = 19
 	clienMap[1] = 19
 	clienMap[2] = 19
@@ -187,6 +189,16 @@ func init() {
 	clienMap[133] = 34
 	clienMap[134] = 34
 	clienMap[135] = 34
+
+	clienMap[136] = 35 //春
+	clienMap[137] = 36 //夏
+	clienMap[138] = 37 //秋
+	clienMap[139] = 38 //冬
+
+	clienMap[140] = 39 //梅
+	clienMap[141] = 40 //兰
+	clienMap[142] = 41 //竹
+	clienMap[143] = 42 //菊
 
 }
 
