@@ -4,8 +4,8 @@ import (
 	"casino_common/common/userService"
 	"casino_common/utils/agentUtils"
 	"github.com/name5566/leaf/gate"
-	"sync/atomic"
 	ltimer "github.com/name5566/leaf/timer"
+	"sync/atomic"
 )
 
 type User struct {
@@ -59,11 +59,31 @@ func (u *User) SetGameStatus(s int32) {
 }
 
 type UserGameData struct {
+	HandPokers []*PHZPoker     //手牌
+	PengPai    []*PengPai      //碰的牌
+	GangPai    []*TiPai        //提的牌
+	ChiPai     []*ChiPai       //吃的牌
+	TiPai      []*TiPai        //提的牌
+	HuInfo     *HuInfo         //胡牌信息
 	Score      int64           //总得分
 	Bills      map[int32]*Bill //账单
-	HandPokers []*PHZPoker     //牌
-	MoPai      *PHZPoker       //每次摸的牌
 	Statistic  *UserStatistic  //统计信息
+}
+
+func (d *UserGameData) GetPengPai() []*PengPai {
+	return d.PengPai
+}
+
+func (d *UserGameData) GetGangPai() []*TiPai {
+	return d.GangPai
+}
+
+func (d *UserGameData) GetChiPai() []*ChiPai {
+	return d.ChiPai
+}
+
+func (d *UserGameData) GetHandPokers() []*PHZPoker {
+	return d.HandPokers
 }
 
 type UserGameStatus struct {
