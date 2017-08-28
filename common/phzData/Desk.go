@@ -13,6 +13,7 @@ type Desk struct {
 	Cfg        *DeskCfg         //配置器
 	GameData   *DeskGameData    //数据
 	GameStatus *DeskGameStatus  //状态
+	Parser     PHZParser        //解析器
 	sync.Mutex
 }
 
@@ -42,6 +43,7 @@ type DeskCfg struct {
 type DeskGameData struct {
 	AllPokers    []*PHZPoker //所有的牌
 	RemainPokers []*PHZPoker //桌面上剩余的牌
+	LiangZhang   *PHZPoker   //每轮的亮张:摸的牌
 }
 
 type DeskGameStatus struct {
