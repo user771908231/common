@@ -197,8 +197,8 @@ func init() {
 
 	clienMap[140] = 39 //梅
 	clienMap[141] = 40 //兰
-	clienMap[142] = 41 //竹
-	clienMap[143] = 42 //菊
+	clienMap[142] = 41 //菊
+	clienMap[143] = 42 //竹
 
 }
 
@@ -247,6 +247,9 @@ var (
 
 	//风牌 中发白东南西北 分别是1234567
 	MJ_FLOWER_FENG MJ_FLOWER = 4
+
+	//花牌 春夏秋冬 梅兰菊竹 分别是12345678
+	MJ_FLOWER_HUA MJ_FLOWER = 5
 )
 
 //麻将牌的结构
@@ -276,6 +279,8 @@ func (p *MJPAI) InitByDes() error {
 		p.Flower = MJ_FLOWER_W
 	case "FENG": //风牌
 		p.Flower = MJ_FLOWER_FENG
+	case "HUA":
+		p.Flower = MJ_FLOWER_HUA
 
 	default:
 		p.Flower = MJ_FLOWER_ERROR
