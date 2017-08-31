@@ -114,4 +114,6 @@ func OnInit(mjProcessor *protobuf.Processor) {
 	mjProcessor.Register(&ddproto.CommonReqKickout{}) //97 房主请求踢人
 
 	mjProcessor.Register(&ddproto.GameAckTinginfos{}) //98 可胡牌列表(听牌)的推送
+
+	mjProcessor.Register(&ddproto.GameAckBuhua{}) //99 补花的推送
 }
