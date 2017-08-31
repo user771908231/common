@@ -101,6 +101,7 @@ type PengPai struct {
 	Pais      []*PHZPoker
 	OutUserId uint32
 	InUserId  uint32
+	HuXi      int32
 }
 
 type TiPai struct {
@@ -108,6 +109,7 @@ type TiPai struct {
 	Pais      []*PHZPoker
 	OutUserId uint32
 	InUserId  uint32
+	HuXi      int32
 }
 
 type ChiPai struct {
@@ -115,10 +117,10 @@ type ChiPai struct {
 	Pai       *PHZPoker
 	OutUserId uint32
 	InUserId  uint32
+	HuXi      int32
 }
 
 type TiInfo struct {
-
 }
 
 type PHZPoker struct {
