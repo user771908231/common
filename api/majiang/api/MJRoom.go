@@ -7,7 +7,7 @@ import (
 
 type MJRoom interface {
 	CreateDesk(interface{}) (MJDesk, error)   //创建房间
-	GetEnterDesk(interface{}) (MJDesk, error) //得到一个房间
+	GetEnterDesk(...interface{}) (MJDesk, error) //得到一个房间
 	GetDeskById(int32) MJDesk                 //得到一个desk
 	GetRoomId() int32                         //得到id
 	ListDesk() *util.Map                      //获取所有桌子
@@ -18,17 +18,21 @@ type MJRoom interface {
 
 //room 基本的操作
 type MJRoomCore struct {
-	S        *module.Skeleton
-	RoomId   int32
-	RoomType int32
-	desks    *util.Map //所有的desk
+	S         *module.Skeleton
+	RoomId    int32
+	RoomType  int32
+	desks     *util.Map //所有的desk
 }
 
 func NewMJRoomCore(s *module.Skeleton) *MJRoomCore {
 	return &MJRoomCore{
 		desks: new(util.Map), //所有的desk
-		S:     s, //组合leaf的骨架
+		S:     s,             //组合leaf的骨架
 	}
+}
+
+func (r *MJRoomCore) CreateFee(args ...interface{}) int64 {
+	return 0
 }
 
 func (r *MJRoomCore) GetRoomId() int32 {
