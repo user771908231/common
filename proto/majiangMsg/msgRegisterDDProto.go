@@ -2,12 +2,12 @@ package majiangMsg
 
 import (
 	"github.com/name5566/leaf/network/protobuf"
+	"casino_common/proto/ddproto/mjproto"
 	"casino_common/proto/ddproto"
-	"casino_majiang/msg/protogo"
 )
 
-func OnInit(mjProcessor *protobuf.Processor) {
-	mjProcessor.Register(&ddproto.Heartbeat{})                   //0
+func OnInitDDMJProto(mjProcessor *protobuf.Processor) {
+	mjProcessor.Register(&mjproto.Heartbeat{})                   //0
 	mjProcessor.Register(&mjproto.Game_QuickConn{})              //1 接入服务器
 	mjProcessor.Register(&mjproto.Game_AckQuickConn{})           //2
 	mjProcessor.Register(&ddproto.CommonReqGameLogin{})          //3 登录游戏
@@ -106,14 +106,14 @@ func OnInit(mjProcessor *protobuf.Processor) {
 
 	mjProcessor.Register(&ddproto.CommonBcLeaveTimeout{}) //93 广播玩家离线状态
 
-	mjProcessor.Register(&ddproto.GameAckJiaoinfos{}) //94 向玩家推送下叫提示
+	mjProcessor.Register(&mjproto.GameAckJiaoinfos{}) //94 向玩家推送下叫提示
 
 	mjProcessor.Register(&mjproto.GameReqGang{}) //95 请求杠 new
 	mjProcessor.Register(&mjproto.GameAckGang{}) //96 回复杠 new
 
 	mjProcessor.Register(&ddproto.CommonReqKickout{}) //97 房主请求踢人
 
-	mjProcessor.Register(&ddproto.GameAckTinginfos{}) //98 可胡牌列表(听牌)的推送
+	mjProcessor.Register(&mjproto.GameAckTinginfos{}) //98 可胡牌列表(听牌)的推送
 
-	mjProcessor.Register(&ddproto.GameAckBuhua{}) //99 补花的推送
+	mjProcessor.Register(&mjproto.GameAckBuhua{}) //99 补花的推送
 }

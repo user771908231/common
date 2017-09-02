@@ -8,7 +8,7 @@ import (
 	"sync/atomic"
 	"casino_common/common/Error"
 	"fmt"
-	"casino_common/proto/ddproto"
+	ddMJProto "casino_common/proto/ddproto/mjproto"
 	"casino_common/common/log"
 	"reflect"
 )
@@ -144,6 +144,10 @@ func (u *MJUserCore) GetIsReady() bool {
 	return u.GameStatus.IsReady
 }
 
+func (u *MJUserCore) SendOverTurn(p proto.Message) error {
+	return nil
+}
+
 func (u *MJUserCore) WriteMsg2(p proto.Message) error {
 	if p == nil {
 		log.W("%v玩家[%v]WriteMsg2() 协议为空 不发送消息", u.GetDesk().DlogDes(), u.GetUserId())
@@ -175,8 +179,8 @@ func (u *MJUserCore) GetGameData() interface{} {
 
 func (u *MJUserCore) SendJiaoInfos() error {
 	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送jiaoInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
-	ack := &ddproto.GameAckJiaoinfos{}
-	ack.Header = &ddproto.ProtoHeader{
+	ack := &ddMJProto.GameAckJiaoinfos{}
+	ack.Header = &ddMJProto.ProtoHeader{
 		UserId: proto.Uint32(u.GetUserId()),
 	}
 	//判断碰牌之后的叫info
@@ -201,10 +205,10 @@ func (u *MJUserCore) SendJiaoInfos() error {
 	if jiaoInfos != nil {
 		//得到叫牌的信息
 		for _, jf := range jfs {
-			j := &ddproto.JiaoInfo{}
+			j := &ddMJProto.JiaoInfo{}
 			j.OutCard = jf.OutPai.GetCardInfo2()
 			for _, jfb := range jf.Jiaos {
-				j.PaiInfos = append(j.PaiInfos, &ddproto.JiaoPaiInfo{
+				j.PaiInfos = append(j.PaiInfos, &ddMJProto.JiaoPaiInfo{
 					HuCard: jfb.HuPai.GetCardInfo2(),
 					Fan:    proto.Int32(jfb.Fan),
 					Count:  proto.Int32(jfb.Count),
@@ -220,8 +224,8 @@ func (u *MJUserCore) SendJiaoInfos() error {
 
 func (u *MJUserCore) SendTingInfos() error {
 	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送tingInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
-	ack := &ddproto.GameAckTinginfos{}
-	ack.Header = &ddproto.ProtoHeader{
+	ack := &ddMJProto.GameAckTinginfos{}
+	ack.Header = &ddMJProto.ProtoHeader{
 		UserId: proto.Uint32(u.GetUserId()),
 	}
 	//获取tinginfos
@@ -248,13 +252,12 @@ func (u *MJUserCore) SendTingInfos() error {
 
 	//得到叫牌的信息
 	for _, tf := range tfs {
-		j := &ddproto.JiaoPaiInfo{}
+		j := &ddMJProto.JiaoPaiInfo{}
 		j.HuCard = tf.HuPai.GetCardInfo2()
 		j.Fan = proto.Int32(tf.Fan)
 		j.Count = proto.Int32(tf.Count)
 		ack.PaiInfos = append(ack.PaiInfos, j)
 	}
-
 
 	u.WriteMsg2(ack)
 	return nil

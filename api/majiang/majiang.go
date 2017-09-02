@@ -1,12 +1,12 @@
 package majiang
 
 import (
-	"casino_common/proto/ddproto"
 	"casino_common/utils/numUtils"
 	"github.com/golang/protobuf/proto"
 	"strings"
 	"casino_majiang/msg/protogo"
 	"casino_majiang/msg/funcsInit"
+	ddMjProto "casino_common/proto/ddproto/mjproto"
 )
 
 var clienMap map[int]int32
@@ -309,12 +309,12 @@ func (p *MJPAI) GetCardInfo() *mjproto.CardInfo {
 	return cardInfo
 }
 
-func (p *MJPAI) GetCardInfo2() *ddproto.CardInfo {
+func (p *MJPAI) GetCardInfo2() *ddMjProto.CardInfo {
 	if p == nil {
-		return &ddproto.CardInfo{}
+		return &ddMjProto.CardInfo{}
 	}
 	//cardInfo := newProto.NewCardInfo()
-	cardInfo := &ddproto.CardInfo{}
+	cardInfo := &ddMjProto.CardInfo{}
 	cardInfo.Id = proto.Int32(p.Index)
 	cardInfo.Type = proto.Int32(int32(p.Flower))
 	cardInfo.Value = proto.Int32(p.GetClientId())
@@ -345,6 +345,8 @@ func GetFlow(f int32) string {
 		return "索"
 	case MJ_FLOWER_FENG:
 		return "风"
+	case MJ_FLOWER_HUA:
+		return "花"
 	default:
 		return "白"
 	}

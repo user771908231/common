@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"casino_common/api/majiang/api"
 	"casino_majiang/msg/protogo"
-	"casino_common/proto/ddproto"
+	ddMjProto "casino_common/proto/ddproto/mjproto"
 )
 
-func Mjapi2Card(p *majiang.MJPAI) *mjproto.CardInfo {
+func Mjpai2Card(p *majiang.MJPAI) *mjproto.CardInfo {
 	//判断空
 	if p == nil {
 		return &mjproto.CardInfo{}
@@ -23,14 +23,14 @@ func Mjapi2Card(p *majiang.MJPAI) *mjproto.CardInfo {
 	}
 }
 
-func Mjapi2DDProtoCard(p *majiang.MJPAI) *ddproto.CardInfo {
+func Mjpai2CommonProtoCard(p *majiang.MJPAI) *ddMjProto.CardInfo {
 	//判断空
 	if p == nil {
-		return &ddproto.CardInfo{}
+		return &ddMjProto.CardInfo{}
 	}
 
 	//返回对应的cardInfo
-	return &ddproto.CardInfo{
+	return &ddMjProto.CardInfo{
 		Type:  proto.Int32(int32(p.Flower)),
 		Value: proto.Int32(p.GetClientId()),
 		Id:    proto.Int32(p.Index),
@@ -57,16 +57,16 @@ func ListMjapi2Card(ps []*majiang.MJPAI) []*mjproto.CardInfo {
 	return ret
 }
 
-func ListMjapi2DDProtoCard(ps []*majiang.MJPAI) []*ddproto.CardInfo {
+func ListMjpai2CommonProtoCard(ps []*majiang.MJPAI) []*ddMjProto.CardInfo {
 	//判断空
 	if len(ps) <= 0 {
 		return nil
 	}
 
-	var ret []*ddproto.CardInfo
+	var ret []*ddMjProto.CardInfo
 	for _, p := range ps {
 		if p != nil {
-			ret = append(ret, &ddproto.CardInfo{
+			ret = append(ret, &ddMjProto.CardInfo{
 				Type:  proto.Int32(int32(p.Flower)),
 				Value: proto.Int32(p.GetClientId()),
 				Id:    proto.Int32(p.Index),

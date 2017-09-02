@@ -1,0 +1,6 @@
+#!/bin/sh
+cd ./ddproto/mjproto
+rm -rf *.pb.go
+cd ../../ddprotobuf/mjproto
+protoc --proto_path=.  --go_out=../../ddproto/mjproto *.proto
+
