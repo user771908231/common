@@ -1,8 +1,8 @@
 package ddproto
 
 import (
-	"casino_common/utils/pokerUtils"
 	"casino_common/utils/numUtils"
+	"casino_common/utils/pokerUtils"
 )
 
 //得到牌的张数
@@ -17,7 +17,7 @@ func (out *PdkSrvOutPokerPais) GetPaiCount() int32 {
 
 //牌相关的方法
 
-func ( p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {
+func (p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {
 	ret := new(ClientBasePoker)
 	ret.Suit = new(CommonEnumPokerColor)
 	ret.Id = p.Id
@@ -27,7 +27,7 @@ func ( p *CommonSrvPokerPai) GetClientPoker() *ClientBasePoker {
 }
 
 //牌型名
-func (poker *ZjhSrvPoker)GetName() string {
+func (poker *ZjhSrvPoker) GetName() string {
 	switch poker.GetType() {
 	case ZjhEnum_ZJHTYPE_ZJHTYPE_GAOPAI:
 		return "高牌"
@@ -46,9 +46,9 @@ func (poker *ZjhSrvPoker)GetName() string {
 }
 
 func (p *CommonSrvPokerPai) GetSuit() CommonEnumPokerColor {
-	if p.GetFlower() == pokerUtil.FLOWER_DIAMOND {
+	if p.GetFlower() == pokerUtil.FLOWER_CLUB {
 		return CommonEnumPokerColor_FANGKUAI
-	} else if p.GetFlower() == pokerUtil.FLOWER_CLUB {
+	} else if p.GetFlower() == pokerUtil.FLOWER_DIAMOND {
 		return CommonEnumPokerColor_MEIHUA
 	} else if p.GetFlower() == pokerUtil.FLOWER_HEART {
 		return CommonEnumPokerColor_HONGTAO
@@ -81,4 +81,3 @@ func (p *CommonSrvPokerPai) GetLogDes() string {
 	suit += p.GetName()
 	return suit
 }
-
