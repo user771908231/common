@@ -63,6 +63,9 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	case "61", "62":
 		//对于白山channelId:61 和 62：新注册用户默认拥有1张房卡
 		INCRUserRoomcard(uint32(id), 1,0,"新用户注册") //新用户注册的时候,默认的房卡数量
+	case "1", "2":
+		//对于四川的用户，每人给10张房卡
+		INCRUserRoomcard(uint32(id), 20, 0, "新用户注册")
 	default:
 		INCRUserRoomcard(uint32(id), sys.CONFIG_SYS.GetNewUserRoomcard(),0,"新用户注册") //新用户注册的时候,默认的房卡数量
 	}
