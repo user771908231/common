@@ -14,86 +14,113 @@ var PokerMap map[int32]string
 func init() {
 	PokerMap = make(map[int32]string, PHZ_ALLPOKER_NUM)
 	PokerMap[0] = ""
-	PokerMap[1] = "Black_Y_1"
-	PokerMap[2] = "Black_Y_1"
-	PokerMap[3] = "Black_Y_1"
-	PokerMap[4] = "Black_Y_1"
+	PokerMap[1] = "Black_Y_11"
+	PokerMap[2] = "Black_Y_11"
+	PokerMap[3] = "Black_Y_11"
+	PokerMap[4] = "Black_Y_11"
 	PokerMap[5] = "Black_N_1"
 	PokerMap[6] = "Black_N_1"
 	PokerMap[7] = "Black_N_1"
 	PokerMap[8] = "Black_N_1"
-	PokerMap[9] = "Red_Y_2"
-	PokerMap[10] = "Red_Y_2"
-	PokerMap[11] = "Red_Y_2"
-	PokerMap[12] = "Red_Y_2"
+	PokerMap[9] = "Red_Y_12"
+	PokerMap[10] = "Red_Y_12"
+	PokerMap[11] = "Red_Y_12"
+	PokerMap[12] = "Red_Y_12"
 	PokerMap[13] = "Red_N_2"
 	PokerMap[14] = "Red_N_2"
 	PokerMap[15] = "Red_N_2"
 	PokerMap[16] = "Red_N_2"
-	PokerMap[17] = "Black_Y_3"
-	PokerMap[18] = "Black_Y_3"
-	PokerMap[19] = "Black_Y_3"
-	PokerMap[20] = "Black_Y_3"
-	PokerMap[21] = "Black_N_3"
+	PokerMap[17] = "Black_Y_13"
+	PokerMap[18] = "Black_Y_13"
+	PokerMap[19] = "Black_Y_13"
+	PokerMap[20] = "Black_Y_13"
+	PokerMap[21] = "Black_N_13"
 	PokerMap[22] = "Black_N_3"
 	PokerMap[23] = "Black_N_3"
 	PokerMap[24] = "Black_N_3"
-	PokerMap[25] = "Black_Y_4"
-	PokerMap[26] = "Black_Y_4"
-	PokerMap[27] = "Black_Y_4"
-	PokerMap[28] = "Black_Y_4"
+	PokerMap[25] = "Black_Y_14"
+	PokerMap[26] = "Black_Y_14"
+	PokerMap[27] = "Black_Y_14"
+	PokerMap[28] = "Black_Y_14"
 	PokerMap[29] = "Black_N_4"
 	PokerMap[30] = "Black_N_4"
 	PokerMap[31] = "Black_N_4"
 	PokerMap[32] = "Black_N_4"
-	PokerMap[33] = "Black_Y_5"
-	PokerMap[34] = "Black_Y_5"
-	PokerMap[35] = "Black_Y_5"
-	PokerMap[36] = "Black_Y_5"
+	PokerMap[33] = "Black_Y_15"
+	PokerMap[34] = "Black_Y_15"
+	PokerMap[35] = "Black_Y_15"
+	PokerMap[36] = "Black_Y_15"
 	PokerMap[37] = "Black_N_5"
 	PokerMap[38] = "Black_N_5"
 	PokerMap[39] = "Black_N_5"
 	PokerMap[40] = "Black_N_5"
-	PokerMap[41] = "Black_Y_6"
-	PokerMap[42] = "Black_Y_6"
-	PokerMap[43] = "Black_Y_6"
-	PokerMap[44] = "Black_Y_6"
+	PokerMap[41] = "Black_Y_16"
+	PokerMap[42] = "Black_Y_16"
+	PokerMap[43] = "Black_Y_16"
+	PokerMap[44] = "Black_Y_16"
 	PokerMap[45] = "Black_N_6"
 	PokerMap[46] = "Black_N_6"
 	PokerMap[47] = "Black_N_6"
 	PokerMap[48] = "Black_N_6"
-	PokerMap[49] = "Red_Y_7"
-	PokerMap[50] = "Red_Y_7"
-	PokerMap[51] = "Red_Y_7"
-	PokerMap[52] = "Red_Y_7"
+	PokerMap[49] = "Red_Y_17"
+	PokerMap[50] = "Red_Y_17"
+	PokerMap[51] = "Red_Y_17"
+	PokerMap[52] = "Red_Y_17"
 	PokerMap[53] = "Red_N_7"
 	PokerMap[54] = "Red_N_7"
 	PokerMap[55] = "Red_N_7"
 	PokerMap[56] = "Red_N_7"
-	PokerMap[57] = "Black_Y_8"
-	PokerMap[58] = "Black_Y_8"
-	PokerMap[59] = "Black_Y_8"
-	PokerMap[60] = "Black_Y_8"
+	PokerMap[57] = "Black_Y_18"
+	PokerMap[58] = "Black_Y_18"
+	PokerMap[59] = "Black_Y_18"
+	PokerMap[60] = "Black_Y_18"
 	PokerMap[61] = "Black_N_8"
 	PokerMap[62] = "Black_N_8"
 	PokerMap[63] = "Black_N_8"
 	PokerMap[64] = "Black_N_8"
-	PokerMap[65] = "Black_Y_9"
-	PokerMap[66] = "Black_Y_9"
-	PokerMap[67] = "Black_Y_9"
-	PokerMap[68] = "Black_Y_9"
+	PokerMap[65] = "Black_Y_19"
+	PokerMap[66] = "Black_Y_19"
+	PokerMap[67] = "Black_Y_19"
+	PokerMap[68] = "Black_Y_19"
 	PokerMap[69] = "Black_N_9"
 	PokerMap[70] = "Black_N_9"
 	PokerMap[71] = "Black_N_9"
 	PokerMap[72] = "Black_N_9"
-	PokerMap[73] = "Red_Y_10"
-	PokerMap[74] = "Red_Y_10"
-	PokerMap[75] = "Red_Y_10"
-	PokerMap[76] = "Red_Y_10"
+	PokerMap[73] = "Red_Y_20"
+	PokerMap[74] = "Red_Y_20"
+	PokerMap[75] = "Red_Y_20"
+	PokerMap[76] = "Red_Y_20"
 	PokerMap[77] = "Red_N_10"
 	PokerMap[78] = "Red_N_10"
 	PokerMap[79] = "Red_N_10"
 	PokerMap[80] = "Red_N_10"
+}
+
+type PengPai struct {
+	PengType  int32 //碰牌的类型：偎牌，碰，臭偎
+	Pais      []*PHZPoker
+	OutUserId uint32
+	InUserId  uint32
+	HuXi      int32
+}
+
+type TiPai struct {
+	TiType    int32 //杠牌的类型
+	Pais      []*PHZPoker
+	OutUserId uint32
+	InUserId  uint32
+	HuXi      int32
+}
+
+type ChiPai struct {
+	Pais      []*PHZPoker
+	Pai       *PHZPoker
+	OutUserId uint32
+	InUserId  uint32
+	HuXi      int32
+}
+
+type TiInfo struct {
 }
 
 type PHZPoker struct {
@@ -245,5 +272,60 @@ func Cards2String(cs []*PHZPoker) string {
 }
 
 func Card2String(p *PHZPoker) string {
-	return  p.GetLogDes()
+	return p.GetLogDes()
+}
+
+func (p *PHZPoker) GetPaiIndexByValue() int32 {
+	//根据牌的value和花色返回index，此处的index用于统计牌的张数
+	if p.IsBig() {
+		switch p.GetValue() {
+		case 1:
+			return 11
+		case 2:
+			return 12
+		case 3:
+			return 13
+		case 4:
+			return 14
+		case 5:
+			return 15
+		case 6:
+			return 16
+		case 7:
+			return 17
+		case 8:
+			return 18
+		case 9:
+			return 19
+		case 10:
+			return 20
+		default:
+			return 0
+		}
+	} else {
+		switch p.GetValue() {
+		case 1:
+			return 1
+		case 2:
+			return 2
+		case 3:
+			return 3
+		case 4:
+			return 4
+		case 5:
+			return 5
+		case 6:
+			return 6
+		case 7:
+			return 7
+		case 8:
+			return 8
+		case 9:
+			return 9
+		case 10:
+			return 10
+		default:
+			return 0
+		}
+	}
 }
