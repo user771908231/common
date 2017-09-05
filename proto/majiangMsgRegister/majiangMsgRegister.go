@@ -1,4 +1,4 @@
-package majiangMsg
+package majiangMsgRegister
 
 import (
 	"github.com/name5566/leaf/network/protobuf"
@@ -6,8 +6,8 @@ import (
 	"casino_common/proto/ddproto"
 )
 
-func OnInitDDMJProto(mjProcessor *protobuf.Processor) {
-	mjProcessor.Register(&mjproto.Heartbeat{})                   //0
+func OnInit(mjProcessor *protobuf.Processor) {
+	mjProcessor.Register(&ddproto.Heartbeat{})                   //0
 	mjProcessor.Register(&mjproto.Game_QuickConn{})              //1 接入服务器
 	mjProcessor.Register(&mjproto.Game_AckQuickConn{})           //2
 	mjProcessor.Register(&ddproto.CommonReqGameLogin{})          //3 登录游戏

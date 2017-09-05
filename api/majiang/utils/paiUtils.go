@@ -5,8 +5,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"fmt"
 	"casino_common/api/majiang/api"
-	"casino_majiang/msg/protogo"
-	ddMjProto "casino_common/proto/ddproto/mjproto"
+	"casino_common/proto/ddproto/mjproto"
 )
 
 func Mjpai2Card(p *majiang.MJPAI) *mjproto.CardInfo {
@@ -17,20 +16,6 @@ func Mjpai2Card(p *majiang.MJPAI) *mjproto.CardInfo {
 
 	//返回对应的cardInfo
 	return &mjproto.CardInfo{
-		Type:  proto.Int32(int32(p.Flower)),
-		Value: proto.Int32(p.GetClientId()),
-		Id:    proto.Int32(p.Index),
-	}
-}
-
-func Mjpai2CommonProtoCard(p *majiang.MJPAI) *ddMjProto.CardInfo {
-	//判断空
-	if p == nil {
-		return &ddMjProto.CardInfo{}
-	}
-
-	//返回对应的cardInfo
-	return &ddMjProto.CardInfo{
 		Type:  proto.Int32(int32(p.Flower)),
 		Value: proto.Int32(p.GetClientId()),
 		Id:    proto.Int32(p.Index),
@@ -57,25 +42,6 @@ func ListMjapi2Card(ps []*majiang.MJPAI) []*mjproto.CardInfo {
 	return ret
 }
 
-func ListMjpai2CommonProtoCard(ps []*majiang.MJPAI) []*ddMjProto.CardInfo {
-	//判断空
-	if len(ps) <= 0 {
-		return nil
-	}
-
-	var ret []*ddMjProto.CardInfo
-	for _, p := range ps {
-		if p != nil {
-			ret = append(ret, &ddMjProto.CardInfo{
-				Type:  proto.Int32(int32(p.Flower)),
-				Value: proto.Int32(p.GetClientId()),
-				Id:    proto.Int32(p.Index),
-			})
-		}
-	}
-	//返回对应的cardInfo
-	return ret
-}
 
 func IsXia(p *majiang.MJPAI) bool {
 	if p == nil {

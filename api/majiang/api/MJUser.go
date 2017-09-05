@@ -206,10 +206,10 @@ func (u *MJUserCore) SendJiaoInfos() error {
 		//得到叫牌的信息
 		for _, jf := range jfs {
 			j := &ddMJProto.JiaoInfo{}
-			j.OutCard = jf.OutPai.GetCardInfo2()
+			j.OutCard = jf.OutPai.GetCardInfo()
 			for _, jfb := range jf.Jiaos {
 				j.PaiInfos = append(j.PaiInfos, &ddMJProto.JiaoPaiInfo{
-					HuCard: jfb.HuPai.GetCardInfo2(),
+					HuCard: jfb.HuPai.GetCardInfo(),
 					Fan:    proto.Int32(jfb.Fan),
 					Count:  proto.Int32(jfb.Count),
 				})
@@ -253,7 +253,7 @@ func (u *MJUserCore) SendTingInfos() error {
 	//得到叫牌的信息
 	for _, tf := range tfs {
 		j := &ddMJProto.JiaoPaiInfo{}
-		j.HuCard = tf.HuPai.GetCardInfo2()
+		j.HuCard = tf.HuPai.GetCardInfo()
 		j.Fan = proto.Int32(tf.Fan)
 		j.Count = proto.Int32(tf.Count)
 		ack.PaiInfos = append(ack.PaiInfos, j)
