@@ -191,3 +191,32 @@ db.getCollection(tableName).insert({
     "PORT": 3815,
     "STATUS": 1.0
 });
+
+db.getCollection("t_game_config_login_list_shenzhen").insert({
+    "GameId": 24,
+    "name": "海南麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "海南麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3820,
+    "STATUS": 1.0
+});
+db.getCollection("t_game_config_login_list").insert({
+    "GameId": 24,
+    "name": "海南麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "海南麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3820,
+    "STATUS": 1.0
+});
