@@ -1,12 +1,10 @@
 package majiang
 
 import (
-	"casino_common/proto/ddproto"
 	"casino_common/utils/numUtils"
-	"github.com/golang/protobuf/proto"
 	"strings"
-	"casino_majiang/msg/protogo"
-	"casino_majiang/msg/funcsInit"
+	"casino_common/proto/ddproto/mjproto"
+	"casino_common/proto/funcsInit"
 )
 
 var clienMap map[int]int32
@@ -197,8 +195,8 @@ func init() {
 
 	clienMap[140] = 39 //梅
 	clienMap[141] = 40 //兰
-	clienMap[142] = 41 //竹
-	clienMap[143] = 42 //菊
+	clienMap[142] = 41 //菊
+	clienMap[143] = 42 //竹
 
 }
 
@@ -247,6 +245,9 @@ var (
 
 	//风牌 中发白东南西北 分别是1234567
 	MJ_FLOWER_FENG MJ_FLOWER = 4
+
+	//花牌 春夏秋冬 梅兰菊竹 分别是12345678
+	MJ_FLOWER_HUA MJ_FLOWER = 5
 )
 
 //麻将牌的结构
@@ -276,6 +277,8 @@ func (p *MJPAI) InitByDes() error {
 		p.Flower = MJ_FLOWER_W
 	case "FENG": //风牌
 		p.Flower = MJ_FLOWER_FENG
+	case "HUA":
+		p.Flower = MJ_FLOWER_HUA
 
 	default:
 		p.Flower = MJ_FLOWER_ERROR
@@ -297,22 +300,10 @@ func (p *MJPAI) GetCardInfo() *mjproto.CardInfo {
 	if p == nil {
 		return &mjproto.CardInfo{}
 	}
-	cardInfo := newProto.NewCardInfo()
+	cardInfo := commonNewPorot.NewCardInfo()
 	*cardInfo.Id = p.Index
 	*cardInfo.Type = int32(p.Flower)
 	*cardInfo.Value = p.GetClientId()
-	return cardInfo
-}
-
-func (p *MJPAI) GetCardInfo2() *ddproto.CardInfo {
-	if p == nil {
-		return &ddproto.CardInfo{}
-	}
-	//cardInfo := newProto.NewCardInfo()
-	cardInfo := &ddproto.CardInfo{}
-	cardInfo.Id = proto.Int32(p.Index)
-	cardInfo.Type = proto.Int32(int32(p.Flower))
-	cardInfo.Value = proto.Int32(p.GetClientId())
 	return cardInfo
 }
 
@@ -325,9 +316,75 @@ func (p *MJPAI) LogDes() string {
 	if p == nil {
 		return "空牌"
 	}
-	valueStr, _ := numUtils.Int2String(p.Value)
+
 	idStr, _ := numUtils.Int2String(p.Index)
-	return idStr + "-" + valueStr + GetFlow(int32(p.Flower))
+	des := ""
+
+	switch p.Flower {
+	case MJ_FLOWER_HUA:
+		//花牌使用花牌的描述
+		des = p.DesHua()
+	case MJ_FLOWER_FENG:
+		//风牌使用风牌的描述
+		des = p.DesFeng()
+	default:
+		//其他字牌用字牌的描述
+		valueStr, _ := numUtils.Int2String(p.Value)
+		des = valueStr + GetFlow(int32(p.Flower))
+	}
+
+
+	return idStr + "-" + des
+}
+
+//风牌的描述
+func (p *MJPAI) DesFeng() string {
+	des := ""
+	switch {
+	case p.Index >= 108 && p.Index <= 111 :
+		des = "东"
+	case p.Index >= 112 && p.Index <= 115 :
+		des = "南"
+	case p.Index >= 116 && p.Index <= 119 :
+		des = "西"
+	case p.Index >= 120 && p.Index <= 123 :
+		des = "北"
+	case p.Index >= 124 && p.Index <= 127 :
+		des = "中"
+	case p.Index >= 128 && p.Index <= 131 :
+		des = "白"
+	case p.Index >= 132 && p.Index <= 135 :
+		des = "发"
+	default:
+		des = "默认风"
+	}
+	return des
+}
+
+//花牌的描述
+func (p *MJPAI) DesHua() string {
+	des := ""
+	switch {
+	case p.Index == 136 :
+		des = "春"
+	case p.Index == 137 :
+		des = "夏"
+	case p.Index == 138 :
+		des = "秋"
+	case p.Index == 139 :
+		des = "东"
+	case p.Index == 140 :
+		des = "梅"
+	case p.Index == 141 :
+		des = "兰"
+	case p.Index == 142 :
+		des = "菊"
+	case p.Index == 143 :
+		des = "竹"
+	default:
+		des = "默认花"
+	}
+	return des
 }
 
 func GetFlow(f int32) string {
@@ -340,6 +397,8 @@ func GetFlow(f int32) string {
 		return "索"
 	case MJ_FLOWER_FENG:
 		return "风"
+	case MJ_FLOWER_HUA:
+		return "花"
 	default:
 		return "白"
 	}

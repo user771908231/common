@@ -8,8 +8,8 @@ import (
 	"casino_common/common/sessionService"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/iputils"
-	"casino_majiang/msg/funcsInit"
-	"casino_majiang/msg/protogo"
+	"casino_common/proto/funcsInit"
+	"casino_common/proto/ddproto/mjproto"
 	"errors"
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/gate"
@@ -123,7 +123,7 @@ func (u *SCMJUser) GetGameData() interface{} {
 }
 
 func (u *SCMJUser) GetPlayerCard(showHand bool) *mjproto.PlayerCard {
-	playerCard := newProto.NewPlayerCard()
+	playerCard := commonNewPorot.NewPlayerCard()
 	playerCard.UserId = proto.Uint32(u.GetUserId())
 	playerCard.HandCardCount = proto.Int32(int32(len(u.SCGameData.GetHandPais()))) //手牌的长度
 
@@ -140,7 +140,7 @@ func (u *SCMJUser) GetPlayerCard(showHand bool) *mjproto.PlayerCard {
 	//得到碰牌
 	for _, info := range u.SCGameData.GetPengPais() {
 		if info != nil {
-			com := newProto.NewComposeCard()
+			com := commonNewPorot.NewComposeCard()
 			*com.Value = info.Pais[0].GetClientId()
 			*com.Type = int32(mjproto.ComposeCardType_C_PENG) //todo ,需要把type 放置在常量里面 这里代表的是碰牌
 			playerCard.ComposeCard = append(playerCard.ComposeCard, com)
@@ -150,7 +150,7 @@ func (u *SCMJUser) GetPlayerCard(showHand bool) *mjproto.PlayerCard {
 	//得到杠牌
 	for _, info := range u.SCGameData.GetGangPais() {
 		if info != nil {
-			com := newProto.NewComposeCard()
+			com := commonNewPorot.NewComposeCard()
 			*com.Value = info.Pais[0].GetClientId()
 
 			if info.GangType == api.GANGTYPE_MING {
@@ -184,7 +184,7 @@ func (u *SCMJUser) GetPlayerCard(showHand bool) *mjproto.PlayerCard {
 //返回一个用户信息
 func (u *SCMJUser) GetPlayerInfo(showHand bool, reconnect mjproto.RECONNECT_TYPE) *mjproto.PlayerInfo {
 	log.T("开始得到user[%v]的牌的信息，showHand[%v]", u.GetUserId(), showHand)
-	info := newProto.NewPlayerInfo()
+	info := commonNewPorot.NewPlayerInfo()
 	if u.GetIsReady() {
 		info.BReady = proto.Int32(1)
 	}

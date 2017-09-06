@@ -52,9 +52,9 @@ func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
 	// 9 ~ 17 索
 	// 18 ~ 26 筒
 	// 27 ~ 35 东27 南28 西29 北30 中31 白32 发33
+	// 36 ~ 43 春36 夏37 秋38 冬39 梅40 兰41 菊42 竹43
 
-	//counts := make([]int, 27) //0~27
-	counts := make([]int, 36) //0~35
+	counts := make([]int, 44) //0~43
 	for _, p := range pais {
 		counts[p.GetCountIndex() ] ++
 	}

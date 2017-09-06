@@ -5,10 +5,10 @@ import (
 	"github.com/golang/protobuf/proto"
 	"fmt"
 	"casino_common/api/majiang/api"
-	"casino_majiang/msg/protogo"
+	"casino_common/proto/ddproto/mjproto"
 )
 
-func Mjapi2Card(p *majiang.MJPAI) *mjproto.CardInfo {
+func Mjpai2Card(p *majiang.MJPAI) *mjproto.CardInfo {
 	//判断空
 	if p == nil {
 		return &mjproto.CardInfo{}
@@ -41,6 +41,7 @@ func ListMjapi2Card(ps []*majiang.MJPAI) []*mjproto.CardInfo {
 	//返回对应的cardInfo
 	return ret
 }
+
 
 func IsXia(p *majiang.MJPAI) bool {
 	if p == nil {
