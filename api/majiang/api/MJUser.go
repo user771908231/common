@@ -49,12 +49,13 @@ type MJUser interface {
 
 //核心User
 type MJUserCore struct {
-	UserId uint32
-	URedis userService.U_REDIS //这里可以使用redis的方法
-	Desk   MJDesk              //关联的desk
-	Coin   int64               //金币
-	gate.Agent                 //agent
-	GameStatus                 //玩家的状态
+	UserId  uint32
+	URedis  userService.U_REDIS //这里可以使用redis的方法
+	Desk    MJDesk              //关联的desk
+	Coin    int64               //金币
+	IsRobot bool                //是否是机器人
+	gate.Agent                  //agent
+	GameStatus                  //玩家的状态
 }
 
 //User的状态信息
@@ -81,6 +82,7 @@ func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
 		UserId: userId,
 		URedis: userService.U_REDIS(userId),
 		Agent:  a,
+		IsRobot: a == nil,
 	}
 }
 
