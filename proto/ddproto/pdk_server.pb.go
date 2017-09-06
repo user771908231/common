@@ -196,7 +196,7 @@ func (x *PlaybackPdkActType) UnmarshalJSON(data []byte) error {
 	*x = PlaybackPdkActType(value)
 	return nil
 }
-func (PlaybackPdkActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor42, []int{0} }
+func (PlaybackPdkActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
 
 // 打出去的牌
 type PdkSrvOutPokerPais struct {
@@ -215,7 +215,7 @@ type PdkSrvOutPokerPais struct {
 func (m *PdkSrvOutPokerPais) Reset()                    { *m = PdkSrvOutPokerPais{} }
 func (m *PdkSrvOutPokerPais) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvOutPokerPais) ProtoMessage()               {}
-func (*PdkSrvOutPokerPais) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{0} }
+func (*PdkSrvOutPokerPais) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
 
 func (m *PdkSrvOutPokerPais) GetKeyValue() int32 {
 	if m != nil && m.KeyValue != nil {
@@ -290,7 +290,7 @@ type PdkSrvDeskTongJi struct {
 func (m *PdkSrvDeskTongJi) Reset()                    { *m = PdkSrvDeskTongJi{} }
 func (m *PdkSrvDeskTongJi) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvDeskTongJi) ProtoMessage()               {}
-func (*PdkSrvDeskTongJi) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{1} }
+func (*PdkSrvDeskTongJi) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{1} }
 
 func (m *PdkSrvDeskTongJi) GetBombs() []*PdkSrvOutPokerPais {
 	if m != nil {
@@ -348,7 +348,7 @@ type PdkSrvDesk struct {
 func (m *PdkSrvDesk) Reset()                    { *m = PdkSrvDesk{} }
 func (m *PdkSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvDesk) ProtoMessage()               {}
-func (*PdkSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{2} }
+func (*PdkSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{2} }
 
 func (m *PdkSrvDesk) GetAllPokerPai() []*CommonSrvPokerPai {
 	if m != nil {
@@ -599,7 +599,7 @@ type PdkSrvGameData struct {
 func (m *PdkSrvGameData) Reset()                    { *m = PdkSrvGameData{} }
 func (m *PdkSrvGameData) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvGameData) ProtoMessage()               {}
-func (*PdkSrvGameData) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{3} }
+func (*PdkSrvGameData) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{3} }
 
 func (m *PdkSrvGameData) GetHandPokers() []*CommonSrvPokerPai {
 	if m != nil {
@@ -635,7 +635,7 @@ type PdkSrvBillBean struct {
 func (m *PdkSrvBillBean) Reset()                    { *m = PdkSrvBillBean{} }
 func (m *PdkSrvBillBean) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvBillBean) ProtoMessage()               {}
-func (*PdkSrvBillBean) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{4} }
+func (*PdkSrvBillBean) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{4} }
 
 func (m *PdkSrvBillBean) GetCoin() int64 {
 	if m != nil && m.Coin != nil {
@@ -682,7 +682,7 @@ type PdkSrvBill struct {
 func (m *PdkSrvBill) Reset()                    { *m = PdkSrvBill{} }
 func (m *PdkSrvBill) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvBill) ProtoMessage()               {}
-func (*PdkSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{5} }
+func (*PdkSrvBill) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{5} }
 
 func (m *PdkSrvBill) GetWinCoin() int64 {
 	if m != nil && m.WinCoin != nil {
@@ -714,7 +714,7 @@ type PdkSrvUserStatisticsRound struct {
 func (m *PdkSrvUserStatisticsRound) Reset()                    { *m = PdkSrvUserStatisticsRound{} }
 func (m *PdkSrvUserStatisticsRound) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvUserStatisticsRound) ProtoMessage()               {}
-func (*PdkSrvUserStatisticsRound) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{6} }
+func (*PdkSrvUserStatisticsRound) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{6} }
 
 func (m *PdkSrvUserStatisticsRound) GetRound() int32 {
 	if m != nil && m.Round != nil {
@@ -787,7 +787,7 @@ type PdkSrvUserStatistics struct {
 func (m *PdkSrvUserStatistics) Reset()                    { *m = PdkSrvUserStatistics{} }
 func (m *PdkSrvUserStatistics) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvUserStatistics) ProtoMessage()               {}
-func (*PdkSrvUserStatistics) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{7} }
+func (*PdkSrvUserStatistics) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{7} }
 
 func (m *PdkSrvUserStatistics) GetRoundBean() []*PdkSrvUserStatisticsRound {
 	if m != nil {
@@ -874,7 +874,7 @@ type PdkSrvUser struct {
 func (m *PdkSrvUser) Reset()                    { *m = PdkSrvUser{} }
 func (m *PdkSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvUser) ProtoMessage()               {}
-func (*PdkSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{8} }
+func (*PdkSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{8} }
 
 func (m *PdkSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -1081,7 +1081,7 @@ type PdkSrvRoom struct {
 func (m *PdkSrvRoom) Reset()                    { *m = PdkSrvRoom{} }
 func (m *PdkSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvRoom) ProtoMessage()               {}
-func (*PdkSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{9} }
+func (*PdkSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{9} }
 
 func (m *PdkSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -1100,7 +1100,7 @@ type PdkSrvBak struct {
 func (m *PdkSrvBak) Reset()                    { *m = PdkSrvBak{} }
 func (m *PdkSrvBak) String() string            { return proto.CompactTextString(m) }
 func (*PdkSrvBak) ProtoMessage()               {}
-func (*PdkSrvBak) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{10} }
+func (*PdkSrvBak) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{10} }
 
 func (m *PdkSrvBak) GetDesk() *PdkSrvDesk {
 	if m != nil {
@@ -1130,7 +1130,7 @@ type PlaybackPdkAckPage struct {
 func (m *PlaybackPdkAckPage) Reset()                    { *m = PlaybackPdkAckPage{} }
 func (m *PlaybackPdkAckPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackPdkAckPage) ProtoMessage()               {}
-func (*PlaybackPdkAckPage) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{11} }
+func (*PlaybackPdkAckPage) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{11} }
 
 func (m *PlaybackPdkAckPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1190,7 +1190,7 @@ type PdkPlayerInfo struct {
 func (m *PdkPlayerInfo) Reset()                    { *m = PdkPlayerInfo{} }
 func (m *PdkPlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkPlayerInfo) ProtoMessage()               {}
-func (*PdkPlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{12} }
+func (*PdkPlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{12} }
 
 func (m *PdkPlayerInfo) GetPlayerPokers() []*ClientBasePoker {
 	if m != nil {
@@ -1313,7 +1313,7 @@ type PdkPlaybackSnapshot struct {
 func (m *PdkPlaybackSnapshot) Reset()                    { *m = PdkPlaybackSnapshot{} }
 func (m *PdkPlaybackSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*PdkPlaybackSnapshot) ProtoMessage()               {}
-func (*PdkPlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{13} }
+func (*PdkPlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{13} }
 
 func (m *PdkPlaybackSnapshot) GetPlayerInfo() []*PdkPlayerInfo {
 	if m != nil {
@@ -1389,7 +1389,7 @@ type PdkPlaybackDeskInfo struct {
 func (m *PdkPlaybackDeskInfo) Reset()                    { *m = PdkPlaybackDeskInfo{} }
 func (m *PdkPlaybackDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkPlaybackDeskInfo) ProtoMessage()               {}
-func (*PdkPlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{14} }
+func (*PdkPlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{14} }
 
 func (m *PdkPlaybackDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -1472,7 +1472,7 @@ type PdkDataRecover struct {
 func (m *PdkDataRecover) Reset()                    { *m = PdkDataRecover{} }
 func (m *PdkDataRecover) String() string            { return proto.CompactTextString(m) }
 func (*PdkDataRecover) ProtoMessage()               {}
-func (*PdkDataRecover) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{15} }
+func (*PdkDataRecover) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{15} }
 
 func (m *PdkDataRecover) GetPdkDeskInfo() *PdkSrvDesk {
 	if m != nil {
@@ -1510,7 +1510,7 @@ type PdkDataRecoverDeskIdList struct {
 func (m *PdkDataRecoverDeskIdList) Reset()                    { *m = PdkDataRecoverDeskIdList{} }
 func (m *PdkDataRecoverDeskIdList) String() string            { return proto.CompactTextString(m) }
 func (*PdkDataRecoverDeskIdList) ProtoMessage()               {}
-func (*PdkDataRecoverDeskIdList) Descriptor() ([]byte, []int) { return fileDescriptor42, []int{16} }
+func (*PdkDataRecoverDeskIdList) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{16} }
 
 func (m *PdkDataRecoverDeskIdList) GetDeskId() []int32 {
 	if m != nil {
@@ -1540,9 +1540,9 @@ func init() {
 	proto.RegisterEnum("ddproto.PlaybackPdkActType", PlaybackPdkActType_name, PlaybackPdkActType_value)
 }
 
-func init() { proto.RegisterFile("pdk_server.proto", fileDescriptor42) }
+func init() { proto.RegisterFile("pdk_server.proto", fileDescriptor38) }
 
-var fileDescriptor42 = []byte{
+var fileDescriptor38 = []byte{
 	// 2193 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x9c, 0x58, 0x5f, 0x73, 0x1b, 0xb7,
 	0x11, 0x2f, 0x49, 0xf1, 0xdf, 0x52, 0x92, 0x15, 0x48, 0x56, 0xce, 0xb2, 0xa2, 0xa8, 0x37, 0x99,

@@ -151,7 +151,7 @@ type ZjhBcGameInfo struct {
 func (m *ZjhBcGameInfo) Reset()                    { *m = ZjhBcGameInfo{} }
 func (m *ZjhBcGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcGameInfo) ProtoMessage()               {}
-func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{0} }
+func (*ZjhBcGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{0} }
 
 func (m *ZjhBcGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -214,7 +214,7 @@ type ZjhBaseDeskInfo struct {
 func (m *ZjhBaseDeskInfo) Reset()                    { *m = ZjhBaseDeskInfo{} }
 func (m *ZjhBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseDeskInfo) ProtoMessage()               {}
-func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{1} }
+func (*ZjhBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{1} }
 
 func (m *ZjhBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -352,7 +352,7 @@ type ZjhBcNewPlayerEnter struct {
 func (m *ZjhBcNewPlayerEnter) Reset()                    { *m = ZjhBcNewPlayerEnter{} }
 func (m *ZjhBcNewPlayerEnter) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcNewPlayerEnter) ProtoMessage()               {}
-func (*ZjhBcNewPlayerEnter) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{2} }
+func (*ZjhBcNewPlayerEnter) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{2} }
 
 func (m *ZjhBcNewPlayerEnter) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -377,7 +377,7 @@ type ZjhReqLeave struct {
 func (m *ZjhReqLeave) Reset()                    { *m = ZjhReqLeave{} }
 func (m *ZjhReqLeave) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqLeave) ProtoMessage()               {}
-func (*ZjhReqLeave) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{3} }
+func (*ZjhReqLeave) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{3} }
 
 func (m *ZjhReqLeave) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -396,7 +396,7 @@ type ZjhBcLeave struct {
 func (m *ZjhBcLeave) Reset()                    { *m = ZjhBcLeave{} }
 func (m *ZjhBcLeave) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcLeave) ProtoMessage()               {}
-func (*ZjhBcLeave) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{4} }
+func (*ZjhBcLeave) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{4} }
 
 func (m *ZjhBcLeave) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -435,7 +435,7 @@ type ZjhBasePlayerInfo struct {
 func (m *ZjhBasePlayerInfo) Reset()                    { *m = ZjhBasePlayerInfo{} }
 func (m *ZjhBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBasePlayerInfo) ProtoMessage()               {}
-func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{5} }
+func (*ZjhBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{5} }
 
 func (m *ZjhBasePlayerInfo) GetIsFirst() bool {
 	if m != nil && m.IsFirst != nil {
@@ -553,7 +553,7 @@ type ZjhBcOpening struct {
 func (m *ZjhBcOpening) Reset()                    { *m = ZjhBcOpening{} }
 func (m *ZjhBcOpening) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcOpening) ProtoMessage()               {}
-func (*ZjhBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{6} }
+func (*ZjhBcOpening) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{6} }
 
 func (m *ZjhBcOpening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -587,7 +587,7 @@ type ZjhReqReady struct {
 func (m *ZjhReqReady) Reset()                    { *m = ZjhReqReady{} }
 func (m *ZjhReqReady) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqReady) ProtoMessage()               {}
-func (*ZjhReqReady) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{7} }
+func (*ZjhReqReady) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{7} }
 
 func (m *ZjhReqReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -613,7 +613,7 @@ type ZjhBcReady struct {
 func (m *ZjhBcReady) Reset()                    { *m = ZjhBcReady{} }
 func (m *ZjhBcReady) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcReady) ProtoMessage()               {}
-func (*ZjhBcReady) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{8} }
+func (*ZjhBcReady) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{8} }
 
 func (m *ZjhBcReady) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -643,7 +643,7 @@ type ZjhBcOverTurn struct {
 func (m *ZjhBcOverTurn) Reset()                    { *m = ZjhBcOverTurn{} }
 func (m *ZjhBcOverTurn) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcOverTurn) ProtoMessage()               {}
-func (*ZjhBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{9} }
+func (*ZjhBcOverTurn) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{9} }
 
 func (m *ZjhBcOverTurn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -696,7 +696,7 @@ type ZjhReqCheckCards struct {
 func (m *ZjhReqCheckCards) Reset()                    { *m = ZjhReqCheckCards{} }
 func (m *ZjhReqCheckCards) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqCheckCards) ProtoMessage()               {}
-func (*ZjhReqCheckCards) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{10} }
+func (*ZjhReqCheckCards) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{10} }
 
 func (m *ZjhReqCheckCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -716,7 +716,7 @@ type ZjhBcCheckCards struct {
 func (m *ZjhBcCheckCards) Reset()                    { *m = ZjhBcCheckCards{} }
 func (m *ZjhBcCheckCards) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcCheckCards) ProtoMessage()               {}
-func (*ZjhBcCheckCards) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{11} }
+func (*ZjhBcCheckCards) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{11} }
 
 func (m *ZjhBcCheckCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -749,7 +749,7 @@ type ZjhReqFold struct {
 func (m *ZjhReqFold) Reset()                    { *m = ZjhReqFold{} }
 func (m *ZjhReqFold) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqFold) ProtoMessage()               {}
-func (*ZjhReqFold) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{12} }
+func (*ZjhReqFold) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{12} }
 
 func (m *ZjhReqFold) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -768,7 +768,7 @@ type ZjhBcFold struct {
 func (m *ZjhBcFold) Reset()                    { *m = ZjhBcFold{} }
 func (m *ZjhBcFold) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcFold) ProtoMessage()               {}
-func (*ZjhBcFold) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{13} }
+func (*ZjhBcFold) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{13} }
 
 func (m *ZjhBcFold) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -795,7 +795,7 @@ type ZjhReqCall struct {
 func (m *ZjhReqCall) Reset()                    { *m = ZjhReqCall{} }
 func (m *ZjhReqCall) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqCall) ProtoMessage()               {}
-func (*ZjhReqCall) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{14} }
+func (*ZjhReqCall) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{14} }
 
 func (m *ZjhReqCall) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -824,7 +824,7 @@ type ZjhBcCall struct {
 func (m *ZjhBcCall) Reset()                    { *m = ZjhBcCall{} }
 func (m *ZjhBcCall) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcCall) ProtoMessage()               {}
-func (*ZjhBcCall) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{15} }
+func (*ZjhBcCall) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{15} }
 
 func (m *ZjhBcCall) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -871,7 +871,7 @@ type ZjhReqBloodFight struct {
 func (m *ZjhReqBloodFight) Reset()                    { *m = ZjhReqBloodFight{} }
 func (m *ZjhReqBloodFight) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqBloodFight) ProtoMessage()               {}
-func (*ZjhReqBloodFight) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{16} }
+func (*ZjhReqBloodFight) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{16} }
 
 func (m *ZjhReqBloodFight) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -892,7 +892,7 @@ type ZjhBcBloodFight struct {
 func (m *ZjhBcBloodFight) Reset()                    { *m = ZjhBcBloodFight{} }
 func (m *ZjhBcBloodFight) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcBloodFight) ProtoMessage()               {}
-func (*ZjhBcBloodFight) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{17} }
+func (*ZjhBcBloodFight) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{17} }
 
 func (m *ZjhBcBloodFight) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -931,7 +931,7 @@ type ZjhBcBloodEnd struct {
 func (m *ZjhBcBloodEnd) Reset()                    { *m = ZjhBcBloodEnd{} }
 func (m *ZjhBcBloodEnd) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcBloodEnd) ProtoMessage()               {}
-func (*ZjhBcBloodEnd) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{18} }
+func (*ZjhBcBloodEnd) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{18} }
 
 func (m *ZjhBcBloodEnd) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -951,7 +951,7 @@ type ZjhReqRaiseFight struct {
 func (m *ZjhReqRaiseFight) Reset()                    { *m = ZjhReqRaiseFight{} }
 func (m *ZjhReqRaiseFight) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqRaiseFight) ProtoMessage()               {}
-func (*ZjhReqRaiseFight) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{19} }
+func (*ZjhReqRaiseFight) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{19} }
 
 func (m *ZjhReqRaiseFight) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -979,7 +979,7 @@ type ZjhBcRaiseAck struct {
 func (m *ZjhBcRaiseAck) Reset()                    { *m = ZjhBcRaiseAck{} }
 func (m *ZjhBcRaiseAck) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcRaiseAck) ProtoMessage()               {}
-func (*ZjhBcRaiseAck) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{20} }
+func (*ZjhBcRaiseAck) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{20} }
 
 func (m *ZjhBcRaiseAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1020,7 +1020,7 @@ type ZjhReqCompare struct {
 func (m *ZjhReqCompare) Reset()                    { *m = ZjhReqCompare{} }
 func (m *ZjhReqCompare) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqCompare) ProtoMessage()               {}
-func (*ZjhReqCompare) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{21} }
+func (*ZjhReqCompare) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{21} }
 
 func (m *ZjhReqCompare) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1051,7 +1051,7 @@ type ZjhBcCompare struct {
 func (m *ZjhBcCompare) Reset()                    { *m = ZjhBcCompare{} }
 func (m *ZjhBcCompare) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcCompare) ProtoMessage()               {}
-func (*ZjhBcCompare) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{22} }
+func (*ZjhBcCompare) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{22} }
 
 func (m *ZjhBcCompare) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1115,7 +1115,7 @@ type ZjhBcGameEnd struct {
 func (m *ZjhBcGameEnd) Reset()                    { *m = ZjhBcGameEnd{} }
 func (m *ZjhBcGameEnd) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcGameEnd) ProtoMessage()               {}
-func (*ZjhBcGameEnd) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{23} }
+func (*ZjhBcGameEnd) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{23} }
 
 func (m *ZjhBcGameEnd) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1156,7 +1156,7 @@ type ZjhBcDeskState struct {
 func (m *ZjhBcDeskState) Reset()                    { *m = ZjhBcDeskState{} }
 func (m *ZjhBcDeskState) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcDeskState) ProtoMessage()               {}
-func (*ZjhBcDeskState) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{24} }
+func (*ZjhBcDeskState) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{24} }
 
 func (m *ZjhBcDeskState) GetCuurBaseValue() int64 {
 	if m != nil && m.CuurBaseValue != nil {
@@ -1188,7 +1188,7 @@ type ZjhReqDaShang struct {
 func (m *ZjhReqDaShang) Reset()                    { *m = ZjhReqDaShang{} }
 func (m *ZjhReqDaShang) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqDaShang) ProtoMessage()               {}
-func (*ZjhReqDaShang) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{25} }
+func (*ZjhReqDaShang) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{25} }
 
 func (m *ZjhReqDaShang) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1208,7 +1208,7 @@ type ZjhBcDaShang struct {
 func (m *ZjhBcDaShang) Reset()                    { *m = ZjhBcDaShang{} }
 func (m *ZjhBcDaShang) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBcDaShang) ProtoMessage()               {}
-func (*ZjhBcDaShang) Descriptor() ([]byte, []int) { return fileDescriptor54, []int{26} }
+func (*ZjhBcDaShang) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{26} }
 
 func (m *ZjhBcDaShang) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1268,9 +1268,9 @@ func init() {
 	proto.RegisterType((*ZjhBcDaShang)(nil), "ddproto.zjh_bc_daShang")
 }
 
-func init() { proto.RegisterFile("zjh_play.proto", fileDescriptor54) }
+func init() { proto.RegisterFile("zjh_play.proto", fileDescriptor50) }
 
-var fileDescriptor54 = []byte{
+var fileDescriptor50 = []byte{
 	// 1280 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xd4, 0x58, 0xdf, 0x6e, 0x1c, 0xb5,
 	0x17, 0xfe, 0xcd, 0x6e, 0x76, 0xbb, 0xeb, 0x4d, 0xd2, 0xd4, 0xed, 0x0f, 0x2d, 0x21, 0x42, 0xab,
