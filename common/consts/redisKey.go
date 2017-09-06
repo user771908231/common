@@ -39,8 +39,10 @@ const (
 )
 
 const (
-	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list"
-	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"
+	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list"  //牛牛数据恢复id列表
+	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"  //牛牛数据恢复数据
+
+	RKEY_GAME_WHITE_LIST string = "rkey_game_white_list" //牛牛白名单
 )
 
 const (

@@ -12,6 +12,7 @@ import (
 	"casino_common/utils/redisUtils"
 	"sync"
 	"casino_common/common/consts"
+	"time"
 )
 
 func init() {
@@ -450,6 +451,46 @@ func (c *Collection) Pipe(query interface{}, result interface{}) (err error) {
 	})
 	return
 }
+
+//时间区间统计器
+type DateRangeCounter []struct {
+	Sum float64
+	Time time.Time
+}
+
+func (data *DateRangeCounter) GetTimeJsonArr() string {
+	return ""
+}
+
+/**
+每日数据统计
+list, err := db.C("t_test_group").RangeDayCount(bson.M{}, "$time", "$sum", "$score")
+ */
+func (c *Collection) RangeDayCount(query interface{}, time_field string, count_type string, count_field string) (result DateRangeCounter, err error) {
+	err = c.PipeAll([]bson.M{
+		bson.M{
+			"$match": query,
+		},
+		bson.M{
+			"$group": bson.M{
+				"_id": bson.M{
+					"year": bson.M{"$year": time_field},
+					"month": bson.M{"$month": time_field},
+					"day": bson.M{"$dayOfMonth": time_field},
+				},
+				"sum": bson.M{count_type: count_field},
+				"time": bson.M{"$first": time_field},
+			},
+		},
+		bson.M{
+			"$sort": bson.M{
+				"time": 1,
+			},
+		},
+	}, &result)
+	return result, err
+}
+
 
 //删除表
 func (c *Collection) Drop() (err error) {
