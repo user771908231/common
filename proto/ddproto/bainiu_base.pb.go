@@ -36,10 +36,6 @@ It is generated from these files:
 	hall_data.proto
 	hall_playback.proto
 	hot_update.proto
-	majiang_base.proto
-	majiang_desk.proto
-	majiang_hall.proto
-	majiang_play.proto
 	mj_baishan_base.proto
 	niuniu_base.proto
 	niuniu_play.proto
@@ -152,6 +148,7 @@ It has these top-level messages:
 	ChangShaPlayOptions
 	BaiShanPlayOptions
 	ZhuanZhuanPlayOptions
+	HaiNanPlayOptions
 	ComposeCard
 	PlayerCard
 	GangBean
@@ -361,87 +358,6 @@ It has these top-level messages:
 	HotupdateAckAssetsInfo
 	HotupdateReqGameAssetsInfo
 	HotupdateAckGameAssetsInfo
-	MJPlayerInfo
-	MJDeskGameInfo
-	Game_DissolveDesk
-	Game_AckDissolveDesk
-	Game_ReqDissolveDesk
-	Game_AckReqDissolveDesk
-	Game_Ready
-	Game_AckReady
-	BirdInfo
-	WinCoinInfo
-	EndLotteryInfo
-	Game_SendCurrentResult
-	Game_SendEndLottery
-	Game_QuickConn
-	Game_AckQuickConn
-	Game_Login
-	Game_AckLogin
-	Game_Notice
-	Game_AckNotice
-	Game_Feedback
-	Game_CreateRoom
-	Game_AckCreateRoom
-	Game_EnterRoom
-	Game_AckEnterRoom
-	UserCoinBean
-	Game_Opening
-	Game_DealCards
-	Game_ExchangeCards
-	Game_DealHaiDiCards
-	Game_ReqDealHaiDiCards
-	Game_AckDealHaiDiCards
-	Game_AckExchangeCards
-	Game_ExchangeCardsEnd
-	Game_DingQue
-	DingQueEndBean
-	Game_DingQueEnd
-	Game_BroadcastBeginDingQue
-	Game_BroadcastBeginExchange
-	Game_GetInCard
-	Game_SendOutCard
-	Game_AckSendOutCard
-	Game_ActPeng
-	Game_AckActPeng
-	Game_ActChi
-	Game_AckActChi
-	Game_ActGang
-	Game_AckActGang
-	Game_ChangShaActGang
-	Game_ChangShaAckActGang
-	Game_ActHu
-	Game_AckActHu
-	Game_ActChangShaQiShouHu
-	Game_AckActChangShaQiShouHu
-	Game_AckActHuChangSha
-	Game_ActGuo
-	Game_AckActGuo
-	Game_ChangShaOverTurnAfterGang
-	Game_ChangshQiShouHuOverTurn
-	Game_OverTurn
-	ChiOverTurn
-	JiaoInfo
-	JiaoPaiInfo
-	Game_SendGameInfo
-	GameReqBuxiazi
-	GameAckBuxiazi
-	GameBcBaoting
-	GameReqBaoting
-	GameAckBaoting
-	GameBcFenzhang
-	GameBcPiao
-	GameReqPiao
-	GameAckPiao
-	GameBcBenjin
-	GameReqFly
-	GameAckFly
-	GameReqTi
-	GameAckTi
-	GameAckJiaoinfos
-	GameAckTinginfos
-	GameReqGang
-	GameAckGang
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption

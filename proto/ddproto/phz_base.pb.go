@@ -251,7 +251,7 @@ func (x *PhzEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumProtoId(value)
 	return nil
 }
-func (PhzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor47, []int{0} }
+func (PhzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor43, []int{0} }
 
 type PhzEnumRoomType int32
 
@@ -282,7 +282,7 @@ func (x *PhzEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumRoomType(value)
 	return nil
 }
-func (PhzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor47, []int{1} }
+func (PhzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor43, []int{1} }
 
 type PhzEnumTipaiType int32
 
@@ -316,7 +316,7 @@ func (x *PhzEnumTipaiType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumTipaiType(value)
 	return nil
 }
-func (PhzEnumTipaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor47, []int{2} }
+func (PhzEnumTipaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor43, []int{2} }
 
 type PhzEnumPengType int32
 
@@ -353,7 +353,7 @@ func (x *PhzEnumPengType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumPengType(value)
 	return nil
 }
-func (PhzEnumPengType) EnumDescriptor() ([]byte, []int) { return fileDescriptor47, []int{3} }
+func (PhzEnumPengType) EnumDescriptor() ([]byte, []int) { return fileDescriptor43, []int{3} }
 
 type PhzBaseCreateOption struct {
 	UserCount        *int32           `protobuf:"varint,1,opt,name=userCount" json:"userCount,omitempty"`
@@ -367,7 +367,7 @@ type PhzBaseCreateOption struct {
 func (m *PhzBaseCreateOption) Reset()                    { *m = PhzBaseCreateOption{} }
 func (m *PhzBaseCreateOption) String() string            { return proto.CompactTextString(m) }
 func (*PhzBaseCreateOption) ProtoMessage()               {}
-func (*PhzBaseCreateOption) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{0} }
+func (*PhzBaseCreateOption) Descriptor() ([]byte, []int) { return fileDescriptor43, []int{0} }
 
 func (m *PhzBaseCreateOption) GetUserCount() int32 {
 	if m != nil && m.UserCount != nil {
@@ -418,7 +418,7 @@ type PhzBaseRoomInfo struct {
 func (m *PhzBaseRoomInfo) Reset()                    { *m = PhzBaseRoomInfo{} }
 func (m *PhzBaseRoomInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzBaseRoomInfo) ProtoMessage()               {}
-func (*PhzBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{1} }
+func (*PhzBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor43, []int{1} }
 
 func (m *PhzBaseRoomInfo) GetOwnerId() uint32 {
 	if m != nil && m.OwnerId != nil {
@@ -479,7 +479,7 @@ type PhzBaseDeskInfo struct {
 func (m *PhzBaseDeskInfo) Reset()                    { *m = PhzBaseDeskInfo{} }
 func (m *PhzBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzBaseDeskInfo) ProtoMessage()               {}
-func (*PhzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{2} }
+func (*PhzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor43, []int{2} }
 
 func (m *PhzBaseDeskInfo) GetRoomInfo() *PhzBaseRoomInfo {
 	if m != nil {
@@ -516,7 +516,7 @@ type PhzBasePlayerInfo struct {
 func (m *PhzBasePlayerInfo) Reset()                    { *m = PhzBasePlayerInfo{} }
 func (m *PhzBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzBasePlayerInfo) ProtoMessage()               {}
-func (*PhzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{3} }
+func (*PhzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor43, []int{3} }
 
 func (m *PhzBasePlayerInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -578,7 +578,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PhzEnumPengType", PhzEnumPengType_name, PhzEnumPengType_value)
 }
 
-var fileDescriptor47 = []byte{
+var fileDescriptor43 = []byte{
 	// 871 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0xdd, 0x52, 0xdb, 0x46,
 	0x14, 0x8e, 0x30, 0x36, 0x66, 0x13, 0x9c, 0x65, 0xcd, 0x8f, 0x70, 0x20, 0x25, 0xee, 0x4c, 0x87,

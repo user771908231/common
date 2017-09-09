@@ -357,7 +357,7 @@ func (x *PdkEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumProtoId(value)
 	return nil
 }
-func (PdkEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
+func (PdkEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor34, []int{0} }
 
 type PdkEnumErrorCode int32
 
@@ -407,7 +407,7 @@ func (x *PdkEnumErrorCode) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumErrorCode(value)
 	return nil
 }
-func (PdkEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor38, []int{1} }
+func (PdkEnumErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor34, []int{1} }
 
 // 轮到玩家操作时：可执行何种操作
 type PdkEnumActType int32
@@ -457,7 +457,7 @@ func (x *PdkEnumActType) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumActType(value)
 	return nil
 }
-func (PdkEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor38, []int{2} }
+func (PdkEnumActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor34, []int{2} }
 
 type PdkEnumGameStatus int32
 
@@ -500,7 +500,7 @@ func (x *PdkEnumGameStatus) UnmarshalJSON(data []byte) error {
 	*x = PdkEnumGameStatus(value)
 	return nil
 }
-func (PdkEnumGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor38, []int{3} }
+func (PdkEnumGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor34, []int{3} }
 
 type PdkBasePlayerInfo struct {
 	IsDiZhu          *bool                  `protobuf:"varint,1,opt,name=isDiZhu" json:"isDiZhu,omitempty"`
@@ -530,7 +530,7 @@ type PdkBasePlayerInfo struct {
 func (m *PdkBasePlayerInfo) Reset()                    { *m = PdkBasePlayerInfo{} }
 func (m *PdkBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBasePlayerInfo) ProtoMessage()               {}
-func (*PdkBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{0} }
+func (*PdkBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor34, []int{0} }
 
 func (m *PdkBasePlayerInfo) GetIsDiZhu() bool {
 	if m != nil && m.IsDiZhu != nil {
@@ -690,7 +690,7 @@ type PdkBasePlayerRateInfo struct {
 func (m *PdkBasePlayerRateInfo) Reset()                    { *m = PdkBasePlayerRateInfo{} }
 func (m *PdkBasePlayerRateInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBasePlayerRateInfo) ProtoMessage()               {}
-func (*PdkBasePlayerRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{1} }
+func (*PdkBasePlayerRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor34, []int{1} }
 
 func (m *PdkBasePlayerRateInfo) GetTotalRate() int32 {
 	if m != nil && m.TotalRate != nil {
@@ -734,7 +734,7 @@ type PdkBaseCommonRateInfo struct {
 func (m *PdkBaseCommonRateInfo) Reset()                    { *m = PdkBaseCommonRateInfo{} }
 func (m *PdkBaseCommonRateInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseCommonRateInfo) ProtoMessage()               {}
-func (*PdkBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{2} }
+func (*PdkBaseCommonRateInfo) Descriptor() ([]byte, []int) { return fileDescriptor34, []int{2} }
 
 func (m *PdkBaseCommonRateInfo) GetInitPlayRate() int32 {
 	if m != nil && m.InitPlayRate != nil {
@@ -809,7 +809,7 @@ type PdkBaseDeskInfo struct {
 func (m *PdkBaseDeskInfo) Reset()                    { *m = PdkBaseDeskInfo{} }
 func (m *PdkBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PdkBaseDeskInfo) ProtoMessage()               {}
-func (*PdkBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor38, []int{3} }
+func (*PdkBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor34, []int{3} }
 
 func (m *PdkBaseDeskInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -941,7 +941,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PdkEnumGameStatus", PdkEnumGameStatus_name, PdkEnumGameStatus_value)
 }
 
-var fileDescriptor38 = []byte{
+var fileDescriptor34 = []byte{
 	// 1731 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x58, 0xdd, 0x72, 0xdb, 0xc6,
 	0x15, 0x36, 0xf5, 0x6b, 0xad, 0x24, 0x6a, 0xb5, 0xb2, 0x65, 0x58, 0x76, 0x64, 0x46, 0x71, 0x5c,

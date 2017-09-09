@@ -129,6 +129,8 @@ var _ = math.Inf
 
 // Ignoring public import of ZhuanZhuanPlayOptions from common_mj.proto
 
+// Ignoring public import of HaiNanPlayOptions from common_mj.proto
+
 // Ignoring public import of ComposeCard from common_mj.proto
 
 // Ignoring public import of PlayerCard from common_mj.proto

@@ -141,7 +141,7 @@ type PhzReq_Ready struct {
 func (m *PhzReq_Ready) Reset()                    { *m = PhzReq_Ready{} }
 func (m *PhzReq_Ready) String() string            { return proto.CompactTextString(m) }
 func (*PhzReq_Ready) ProtoMessage()               {}
-func (*PhzReq_Ready) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{0} }
+func (*PhzReq_Ready) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{0} }
 
 func (m *PhzReq_Ready) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -159,7 +159,7 @@ type PhzAck_Ready struct {
 func (m *PhzAck_Ready) Reset()                    { *m = PhzAck_Ready{} }
 func (m *PhzAck_Ready) String() string            { return proto.CompactTextString(m) }
 func (*PhzAck_Ready) ProtoMessage()               {}
-func (*PhzAck_Ready) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{1} }
+func (*PhzAck_Ready) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{1} }
 
 func (m *PhzAck_Ready) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -184,7 +184,7 @@ type PhzPlay_ReadyStatus struct {
 func (m *PhzPlay_ReadyStatus) Reset()                    { *m = PhzPlay_ReadyStatus{} }
 func (m *PhzPlay_ReadyStatus) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_ReadyStatus) ProtoMessage()               {}
-func (*PhzPlay_ReadyStatus) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{2} }
+func (*PhzPlay_ReadyStatus) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{2} }
 
 func (m *PhzPlay_ReadyStatus) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -209,7 +209,7 @@ type PhzPlay_Opening struct {
 func (m *PhzPlay_Opening) Reset()                    { *m = PhzPlay_Opening{} }
 func (m *PhzPlay_Opening) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_Opening) ProtoMessage()               {}
-func (*PhzPlay_Opening) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{3} }
+func (*PhzPlay_Opening) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{3} }
 
 func (m *PhzPlay_Opening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -235,7 +235,7 @@ type PhzPlay_SendCards struct {
 func (m *PhzPlay_SendCards) Reset()                    { *m = PhzPlay_SendCards{} }
 func (m *PhzPlay_SendCards) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_SendCards) ProtoMessage()               {}
-func (*PhzPlay_SendCards) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{4} }
+func (*PhzPlay_SendCards) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{4} }
 
 func (m *PhzPlay_SendCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -261,7 +261,7 @@ type PhzReq_OutCards struct {
 func (m *PhzReq_OutCards) Reset()                    { *m = PhzReq_OutCards{} }
 func (m *PhzReq_OutCards) String() string            { return proto.CompactTextString(m) }
 func (*PhzReq_OutCards) ProtoMessage()               {}
-func (*PhzReq_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{5} }
+func (*PhzReq_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{5} }
 
 func (m *PhzReq_OutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -286,7 +286,7 @@ type PhzAck_OutCards struct {
 func (m *PhzAck_OutCards) Reset()                    { *m = PhzAck_OutCards{} }
 func (m *PhzAck_OutCards) String() string            { return proto.CompactTextString(m) }
 func (*PhzAck_OutCards) ProtoMessage()               {}
-func (*PhzAck_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{6} }
+func (*PhzAck_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{6} }
 
 func (m *PhzAck_OutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -313,7 +313,7 @@ type PhzPlay_MoPai struct {
 func (m *PhzPlay_MoPai) Reset()                    { *m = PhzPlay_MoPai{} }
 func (m *PhzPlay_MoPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_MoPai) ProtoMessage()               {}
-func (*PhzPlay_MoPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{7} }
+func (*PhzPlay_MoPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{7} }
 
 func (m *PhzPlay_MoPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -355,7 +355,7 @@ type PhzPlay_Overturn struct {
 func (m *PhzPlay_Overturn) Reset()                    { *m = PhzPlay_Overturn{} }
 func (m *PhzPlay_Overturn) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_Overturn) ProtoMessage()               {}
-func (*PhzPlay_Overturn) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{8} }
+func (*PhzPlay_Overturn) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{8} }
 
 func (m *PhzPlay_Overturn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -401,7 +401,7 @@ type PhzPlay_CanPeng struct {
 func (m *PhzPlay_CanPeng) Reset()                    { *m = PhzPlay_CanPeng{} }
 func (m *PhzPlay_CanPeng) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_CanPeng) ProtoMessage()               {}
-func (*PhzPlay_CanPeng) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{9} }
+func (*PhzPlay_CanPeng) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{9} }
 
 func (m *PhzPlay_CanPeng) GetCanPeng() bool {
 	if m != nil && m.CanPeng != nil {
@@ -427,7 +427,7 @@ type PhzReq_Peng struct {
 func (m *PhzReq_Peng) Reset()                    { *m = PhzReq_Peng{} }
 func (m *PhzReq_Peng) String() string            { return proto.CompactTextString(m) }
 func (*PhzReq_Peng) ProtoMessage()               {}
-func (*PhzReq_Peng) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{10} }
+func (*PhzReq_Peng) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{10} }
 
 func (m *PhzReq_Peng) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -459,7 +459,7 @@ type PhzAck_Peng struct {
 func (m *PhzAck_Peng) Reset()                    { *m = PhzAck_Peng{} }
 func (m *PhzAck_Peng) String() string            { return proto.CompactTextString(m) }
 func (*PhzAck_Peng) ProtoMessage()               {}
-func (*PhzAck_Peng) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{11} }
+func (*PhzAck_Peng) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{11} }
 
 func (m *PhzAck_Peng) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -476,7 +476,7 @@ type PhzPlay_ChiPai struct {
 func (m *PhzPlay_ChiPai) Reset()                    { *m = PhzPlay_ChiPai{} }
 func (m *PhzPlay_ChiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_ChiPai) ProtoMessage()               {}
-func (*PhzPlay_ChiPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{12} }
+func (*PhzPlay_ChiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{12} }
 
 func (m *PhzPlay_ChiPai) GetPaiId() []int32 {
 	if m != nil {
@@ -495,7 +495,7 @@ type PhzPlayCanChi struct {
 func (m *PhzPlayCanChi) Reset()                    { *m = PhzPlayCanChi{} }
 func (m *PhzPlayCanChi) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCanChi) ProtoMessage()               {}
-func (*PhzPlayCanChi) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{13} }
+func (*PhzPlayCanChi) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{13} }
 
 func (m *PhzPlayCanChi) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -527,7 +527,7 @@ type PhzReqChiPai struct {
 func (m *PhzReqChiPai) Reset()                    { *m = PhzReqChiPai{} }
 func (m *PhzReqChiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqChiPai) ProtoMessage()               {}
-func (*PhzReqChiPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{14} }
+func (*PhzReqChiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{14} }
 
 func (m *PhzReqChiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -554,7 +554,7 @@ type PhzAckChiPai struct {
 func (m *PhzAckChiPai) Reset()                    { *m = PhzAckChiPai{} }
 func (m *PhzAckChiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzAckChiPai) ProtoMessage()               {}
-func (*PhzAckChiPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{15} }
+func (*PhzAckChiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{15} }
 
 func (m *PhzAckChiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -593,7 +593,7 @@ type PhzPlayTiPai struct {
 func (m *PhzPlayTiPai) Reset()                    { *m = PhzPlayTiPai{} }
 func (m *PhzPlayTiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayTiPai) ProtoMessage()               {}
-func (*PhzPlayTiPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{16} }
+func (*PhzPlayTiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{16} }
 
 func (m *PhzPlayTiPai) GetPaiId() []int32 {
 	if m != nil {
@@ -618,7 +618,7 @@ type PhzPlayCanTiPai struct {
 func (m *PhzPlayCanTiPai) Reset()                    { *m = PhzPlayCanTiPai{} }
 func (m *PhzPlayCanTiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCanTiPai) ProtoMessage()               {}
-func (*PhzPlayCanTiPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{17} }
+func (*PhzPlayCanTiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{17} }
 
 func (m *PhzPlayCanTiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -643,7 +643,7 @@ type PhzPlayWeiPai struct {
 func (m *PhzPlayWeiPai) Reset()                    { *m = PhzPlayWeiPai{} }
 func (m *PhzPlayWeiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayWeiPai) ProtoMessage()               {}
-func (*PhzPlayWeiPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{18} }
+func (*PhzPlayWeiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{18} }
 
 func (m *PhzPlayWeiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -668,7 +668,7 @@ type PhzPlayPaoPai struct {
 func (m *PhzPlayPaoPai) Reset()                    { *m = PhzPlayPaoPai{} }
 func (m *PhzPlayPaoPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayPaoPai) ProtoMessage()               {}
-func (*PhzPlayPaoPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{19} }
+func (*PhzPlayPaoPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{19} }
 
 func (m *PhzPlayPaoPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -695,7 +695,7 @@ type PhzPlayCanHuPai struct {
 func (m *PhzPlayCanHuPai) Reset()                    { *m = PhzPlayCanHuPai{} }
 func (m *PhzPlayCanHuPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCanHuPai) ProtoMessage()               {}
-func (*PhzPlayCanHuPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{20} }
+func (*PhzPlayCanHuPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{20} }
 
 func (m *PhzPlayCanHuPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -734,7 +734,7 @@ type PhzReqHuPai struct {
 func (m *PhzReqHuPai) Reset()                    { *m = PhzReqHuPai{} }
 func (m *PhzReqHuPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqHuPai) ProtoMessage()               {}
-func (*PhzReqHuPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{21} }
+func (*PhzReqHuPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{21} }
 
 func (m *PhzReqHuPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -759,7 +759,7 @@ type PhzAckHuPai struct {
 func (m *PhzAckHuPai) Reset()                    { *m = PhzAckHuPai{} }
 func (m *PhzAckHuPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzAckHuPai) ProtoMessage()               {}
-func (*PhzAckHuPai) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{22} }
+func (*PhzAckHuPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{22} }
 
 func (m *PhzAckHuPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -785,7 +785,7 @@ type PhzPlayHandPokers struct {
 func (m *PhzPlayHandPokers) Reset()                    { *m = PhzPlayHandPokers{} }
 func (m *PhzPlayHandPokers) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayHandPokers) ProtoMessage()               {}
-func (*PhzPlayHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{23} }
+func (*PhzPlayHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{23} }
 
 func (m *PhzPlayHandPokers) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -813,7 +813,7 @@ type PhzPlayRoundBillBean struct {
 func (m *PhzPlayRoundBillBean) Reset()                    { *m = PhzPlayRoundBillBean{} }
 func (m *PhzPlayRoundBillBean) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayRoundBillBean) ProtoMessage()               {}
-func (*PhzPlayRoundBillBean) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{24} }
+func (*PhzPlayRoundBillBean) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{24} }
 
 func (m *PhzPlayRoundBillBean) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -855,7 +855,7 @@ type PhzPlayCurrentResult struct {
 func (m *PhzPlayCurrentResult) Reset()                    { *m = PhzPlayCurrentResult{} }
 func (m *PhzPlayCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCurrentResult) ProtoMessage()               {}
-func (*PhzPlayCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{25} }
+func (*PhzPlayCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{25} }
 
 func (m *PhzPlayCurrentResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -905,7 +905,7 @@ type PhzPlayEndResult struct {
 func (m *PhzPlayEndResult) Reset()                    { *m = PhzPlayEndResult{} }
 func (m *PhzPlayEndResult) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayEndResult) ProtoMessage()               {}
-func (*PhzPlayEndResult) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{26} }
+func (*PhzPlayEndResult) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{26} }
 
 func (m *PhzPlayEndResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -979,7 +979,7 @@ func init() {
 	proto.RegisterType((*PhzPlayEndResult)(nil), "ddproto.phz_play_endResult")
 }
 
-var fileDescriptor49 = []byte{
+var fileDescriptor45 = []byte{
 	// 947 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xdb, 0x6e, 0xdc, 0x44,
 	0x18, 0xc6, 0x7b, 0x4a, 0xfa, 0x6f, 0x0f, 0x30, 0x89, 0x82, 0x59, 0x0a, 0x44, 0x73, 0x43, 0x54,
