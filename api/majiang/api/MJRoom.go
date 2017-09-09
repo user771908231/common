@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/name5566/leaf/util"
 	"github.com/name5566/leaf/module"
+	"casino_common/proto/ddproto"
 )
 
 type MJRoom interface {
@@ -16,6 +17,11 @@ type MJRoom interface {
 	CreateFee(...interface{}) int64 //房费
 }
 
+const (
+	ROOM_FIREND int32 = int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) //朋友桌
+	ROOM_COIN   int32 = int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN)   //金币场
+)
+
 //room 基本的操作
 type MJRoomCore struct {
 	S        *module.Skeleton
@@ -27,8 +33,12 @@ type MJRoomCore struct {
 func NewMJRoomCore(s *module.Skeleton) *MJRoomCore {
 	return &MJRoomCore{
 		desks: new(util.Map), //所有的desk
-		S:     s, //组合leaf的骨架
+		S:     s,             //组合leaf的骨架
 	}
+}
+
+func (r *MJRoomCore) CreateFee(args ...interface{}) int64 {
+	return 0
 }
 
 func (r *MJRoomCore) GetRoomId() int32 {

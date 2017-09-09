@@ -45,7 +45,7 @@ func GetSessionAuto(userId uint32) *ddproto.GameSession {
 	session := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
 	log.T("开始自动查找玩家[%v]朋友sessin[%v]", userId, session)
 	if session == nil || session.GetDeskId() == 0 || session.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME) {
-		//2,第二步获取朋友桌的session
+		//2,第二步获取金币场的session
 		session = GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
 		log.T("开始自动查找玩家[%v]金币sessin[%v]", userId, session)
 
@@ -140,57 +140,39 @@ func delSession(s *ddproto.GameSession) {
 }
 
 //检测是否能够进入游戏房间
-/**
-	1,如果是进入朋友桌
-		检测是否正在朋友桌玩，如果gid一样，roomType一样，则返回对应的session
-	2,如果是进入金币本
-		检测是否正在朋友桌玩，如果在朋友桌完，那么不能进入金币场
-		检测是否正在金币场玩，如果在金币场完，那么检测gid,roomLevel是否一致，如果一致，那么可以玩，否则不可以玩
- */
-func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (error, *ddproto.GameSession) {
-	var getError = func(gid int32, roomType int32) error {
+func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (bool, error) {
+	log.T("开始根据session判断玩家[%v]能否进入游戏id为[%v],roomType[%v],roomLevel[%v]", userId, gid, roomType, roomLevel)
+	var getError = func(gid, roomType int32) error {
 		msg := fmt.Sprintf("已经在游戏%v中了，结束之后再来吧!", utils.GetGameName(gid, roomType))
 		return Error.NewError(consts.ACK_RESULT_ERROR, msg)
 	}
 
-	//判断朋友桌是否能进去
-	//1,如果没有session表示没有在游戏中，可以直接进入
-	s := GetSessionAuto(userId)
+	s := GetSession(userId, roomType)
 	if s == nil {
-		return nil, nil
+		//没有session 可以进
+		log.T("找不到玩家[%v]的session, 可以进入", userId)
+		return true, nil
+	}
+	if s.GetGameStatus() != int32(ddproto.COMMON_ENUM_GAMESTATUS_GAMING) {
+		//没在游戏中 可以进
+		log.T("找到的玩家[%v]session没在游戏中, 可以进入", userId)
+		return true, nil
 	}
 
-	/**
-		如果请求的是朋友桌子
-		1，在玩金币场，可以进入朋友桌
-		2，在朋友桌中，并且gid一样，那么可以进入朋友桌
-	 */
-	if roomType == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) {
-		//如果玩家正在朋友桌子中完，但是gid 不一样，那么返回进入失败
-		if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) &&
-			(s.GetGameId() != gid || s.GetRoomLevel() != roomLevel) {
-			return getError(s.GetGameId(), s.GetRoomType()), nil
-		}
+	if s.GetGameId() != gid {
+		//根据roomType找到的session是在其他游戏中 不能进
+		return false, getError(s.GetGameId(), s.GetRoomType())
 	}
 
-	/**
-		如果请求的是金币场
-		1，在玩金币场，并且游戏id，等级一样的表示可以进入
-	 */
-	if roomType == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN) {
-		//如果正在朋友桌子中玩，返回进入金币场失败
-		if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) {
-			return getError(s.GetGameId(), s.GetRoomType()), nil
-		}
-
-		//如果gid 不一样，或者level不一样，返回进入失败
-		if s.GetGameId() != gid || s.GetRoomLevel() != roomLevel {
-			return getError(s.GetGameId(), s.GetRoomType()), nil
+	if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN) {
+		if s.GetRoomLevel() != roomLevel {
+			//同一游戏的金币场 不同级别不能进
+			return false, getError(s.GetGameId(), s.GetRoomType())
 		}
 	}
-
 	//其他条件可以进入房间
-	return nil, s
+	log.T("根据session判断玩家[%v]可以进入游戏", userId)
+	return true, nil
 }
 
 //通过suerId roomType 删除玩家的session
