@@ -53,7 +53,6 @@ It is generated from these files:
 	phz_play.proto
 	rpc_greeter.proto
 	rpc_hall.proto
-	rpc_zzhz.proto
 	zjh_base.proto
 	zjh_desk.proto
 	zjh_hall.proto
