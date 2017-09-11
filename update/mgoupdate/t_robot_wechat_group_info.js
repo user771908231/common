@@ -8,36 +8,24 @@ db.getCollection('t_robot_wechat_group_info').drop();
 db.getCollection('t_robot_wechat_group_info').insert({
     "groupname": "来一圈转转麻将",  //群名称
     "ownerid": 12921,    //群主id
-    "gametype": "转转麻将"     //游戏id
+    "gametype": "转转麻将"     //游戏类型
 });
 
 db.getCollection('t_robot_wechat_group_info').insert({
     "groupname": "来一圈红中麻将",  //群名称
     "ownerid": 12921,    //群主id
-    "gametype": "红中麻将"     //游戏id
-});
-
-db.getCollection('t_robot_wechat_group_info').insert({
-    "groupname": "来一圈急速牛牛",  //群名称
-    "ownerid": 12921,    //群主id
-    "gametype": "急速牛牛"     //游戏id
-});
-
-db.getCollection('t_robot_wechat_group_info').insert({
-    "groupname": "来一圈经典牛牛",  //群名称
-    "ownerid": 12921,    //群主id
-    "gametype": "经典牛牛"     //游戏id
+    "gametype": "红中麻将"     //游戏类型
 });
 
 db.getCollection('t_robot_wechat_group_info').insert({
     "groupname": "来一圈经典跑得快",  //群名称
     "ownerid": 12921,    //群主id
-    "gametype": "经典跑得快"     //游戏id
+    "gametype": "经典跑得快"     //游戏类型
 });
 
 db.getCollection('t_robot_wechat_group_info').insert({
     "groupname": "来一圈十五张跑得快",  //群名称
     "ownerid": 12921,    //群主id
-    "gametype": "十五张跑得快"     //游戏id
+    "gametype": "十五张跑得快"     //游戏类型
 });
 

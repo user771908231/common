@@ -16,3 +16,9 @@ var ZzHzPool Pool
 func GetZzHz() mjproto.ZzHzClient {
 	return mjproto.NewZzHzClient(ZzHzPool.Get())
 }
+
+//跑得快
+var PdkPool Pool
+func GetPdk() ddproto.PdkRpcClient {
+	return ddproto.NewPdkRpcClient(PdkPool.Get())
+}
