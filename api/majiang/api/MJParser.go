@@ -21,6 +21,7 @@ type MJParser interface {
 	XiPai() interface{}                               //洗牌
 	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
 	CanHu(...interface{}) (interface{}, error)        //能否胡牌 不带番数得分计算...
+	ChaHu(...interface{}) (interface{}, error)        //计算输家的分数番数
 	InitMjPaiByIndex(index int32) *majiang.MJPAI      //通过id得到一张麻将牌
 	IsTingYongPai(pai majiang.MJPAI) bool             //是否是听用牌 宜宾麻将
 	IsMengQing(g MJUserGameData) bool                 //是否是门清 没有吃碰杠 白山麻将
@@ -293,6 +294,10 @@ func (p *MJParserCore) Parse(pids []int32) (interface{}, error) {
 //洗牌
 func (p *MJParserCore) XiPai() interface{} {
 	return nil
+}
+
+func (p *MJParserCore) ChaHu(...interface{}) (interface{}, error) {
+	return nil, nil
 }
 
 //todo 清一色
