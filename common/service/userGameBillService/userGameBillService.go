@@ -15,7 +15,6 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"math"
-	"casino_common/utils/rand"
 )
 
 //玩家游戏账单数据 没玩完一局游戏存储一次数据
@@ -256,22 +255,24 @@ func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRa
 	//赢的概率默认70
 	winRandomRate = 70
 
-	continueLoseUsers := getContinueLoseUsers(userIds, roomType, rand.Rand(CONTIUNELOSECOUNT_MIN, CONTIUNELOSECOUNT_MAX))
-	if len(continueLoseUsers) == 1 {
-		//只有一个玩家连输的时候直接返回
-		winUserId = continueLoseUsers[0]
-		winRandomRate = 100 //必赢
-		log.T("GetWinUser 找到单个连输的玩家[%v] 让他必赢", winUserId)
-		return
-	}
-
-	if len(continueLoseUsers) <= 0 {
-		//没有连输的玩家 设置为所有玩家
-		continueLoseUsers = userIds
-	}
+	//todo 暂时注释连输的控制
+	//continueLoseUsers := getContinueLoseUsers(userIds, roomType, rand.Rand(CONTIUNELOSECOUNT_MIN, CONTIUNELOSECOUNT_MAX))
+	//if len(continueLoseUsers) == 1 {
+	//	//只有一个玩家连输的时候直接返回
+	//	winUserId = continueLoseUsers[0]
+	//	winRandomRate = 100 //必赢
+	//	log.T("GetWinUser 找到单个连输的玩家[%v] 让他必赢", winUserId)
+	//	return
+	//}
+	//
+	//if len(continueLoseUsers) <= 0 {
+	//	//没有连输的玩家 设置为所有玩家
+	//	continueLoseUsers = userIds
+	//}
 
 	//获取位于赢模式的玩家
-	winModeUsers := getWinModeUsers(continueLoseUsers, roomType)
+	//winModeUsers := getWinModeUsers(continueLoseUsers, roomType)
+	winModeUsers := getWinModeUsers(userIds, roomType)
 	if len(winModeUsers) == 1 {
 		//只有一个玩家处于赢模式的时候直接返回
 		winUserId = winModeUsers[0]
