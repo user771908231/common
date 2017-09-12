@@ -4,6 +4,8 @@ import (
 	"casino_common/api/majiang"
 	"casino_common/proto/ddproto"
 	"sort"
+	"casino_common/utils/chessUtils"
+	"casino_common/common/log"
 )
 
 //跑得快解析器
@@ -44,6 +46,17 @@ type JiaoInfo struct {
 }
 
 //
+
+//初始化牌
+func (p *MJParserCore) InitMjPaiByIndex(index int32) *majiang.MJPAI {
+	result := &majiang.MJPAI{
+		Index: index,
+		Des:   majiang.MjpaiMap[int(index)],
+	}
+	result.InitByDes()
+	//返回结果
+	return result
+}
 
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
 func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
@@ -293,7 +306,35 @@ func (p *MJParserCore) Parse(pids []int32) (interface{}, error) {
 
 //洗牌
 func (p *MJParserCore) XiPai() interface{} {
-	return nil
+	pResult := chessUtils.Xipai(0, majiang.TOTALPAICOUNT)
+	log.T("洗牌之后,得到的随机的index数组[%v] 长度[%v]", pResult, len(pResult))
+	//开始得到牌的信息
+	var result []*majiang.MJPAI
+	for i := 0; i < int(majiang.TOTALPAICOUNT); i++ {
+		tp := p.InitMjPaiByIndex(pResult[i])
+		result = append(result, tp)
+	}
+	return result
+}
+
+//过滤4张红中
+func (p *MJParserCore) Ignore4HongZhong(pais []*majiang.MJPAI) []*majiang.MJPAI {
+	hongzhongCount := 0
+	ignoredPais := []*majiang.MJPAI{}
+	for _, pai := range pais {
+		//4红中玩法 且 ignored牌堆中红中大于等于4张 且当前的牌是红中
+		if hongzhongCount >= 4 && pai.GetClientId() == 32 {
+			log.T("ignored牌堆中红中数[%v]大于等于4张 且当前的牌是红中 过滤pai[%v]", hongzhongCount, pai.LogDes())
+			continue
+		}
+
+		if pai.GetClientId() == 32 {
+			//统计append红中牌的次数
+			hongzhongCount++
+		}
+		ignoredPais = append(ignoredPais, pai)
+	}
+	return ignoredPais
 }
 
 func (p *MJParserCore) ChaHu(...interface{}) (interface{}, error) {

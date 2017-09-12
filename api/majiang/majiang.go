@@ -7,10 +7,180 @@ import (
 	"casino_common/proto/funcsInit"
 )
 
+var TOTALPAICOUNT int = 148 //4:万条筒 东南西北 中发白 1:春夏秋冬 梅兰菊竹 4:中
+var MjpaiMap map[int]string
 var clienMap map[int]int32
 
 func init() {
-	clienMap = make(map[int]int32, 144) //108
+	MjpaiMap = make(map[int]string, TOTALPAICOUNT)
+	MjpaiMap[0] = "T_1"
+	MjpaiMap[1] = "T_1"
+	MjpaiMap[2] = "T_1"
+	MjpaiMap[3] = "T_1"
+	MjpaiMap[4] = "T_2"
+	MjpaiMap[5] = "T_2"
+	MjpaiMap[6] = "T_2"
+	MjpaiMap[7] = "T_2"
+	MjpaiMap[8] = "T_3"
+	MjpaiMap[9] = "T_3"
+	MjpaiMap[10] = "T_3"
+	MjpaiMap[11] = "T_3"
+	MjpaiMap[12] = "T_4"
+	MjpaiMap[13] = "T_4"
+	MjpaiMap[14] = "T_4"
+	MjpaiMap[15] = "T_4"
+	MjpaiMap[16] = "T_5"
+	MjpaiMap[17] = "T_5"
+	MjpaiMap[18] = "T_5"
+	MjpaiMap[19] = "T_5"
+	MjpaiMap[20] = "T_6"
+	MjpaiMap[21] = "T_6"
+	MjpaiMap[22] = "T_6"
+	MjpaiMap[23] = "T_6"
+	MjpaiMap[24] = "T_7"
+	MjpaiMap[25] = "T_7"
+	MjpaiMap[26] = "T_7"
+	MjpaiMap[27] = "T_7"
+	MjpaiMap[28] = "T_8"
+	MjpaiMap[29] = "T_8"
+	MjpaiMap[30] = "T_8"
+	MjpaiMap[31] = "T_8"
+	MjpaiMap[32] = "T_9"
+	MjpaiMap[33] = "T_9"
+	MjpaiMap[34] = "T_9"
+	MjpaiMap[35] = "T_9"
+	MjpaiMap[36] = "S_1"
+	MjpaiMap[37] = "S_1"
+	MjpaiMap[38] = "S_1"
+	MjpaiMap[39] = "S_1"
+	MjpaiMap[40] = "S_2"
+	MjpaiMap[41] = "S_2"
+	MjpaiMap[42] = "S_2"
+	MjpaiMap[43] = "S_2"
+	MjpaiMap[44] = "S_3"
+	MjpaiMap[45] = "S_3"
+	MjpaiMap[46] = "S_3"
+	MjpaiMap[47] = "S_3"
+	MjpaiMap[48] = "S_4"
+	MjpaiMap[49] = "S_4"
+	MjpaiMap[50] = "S_4"
+	MjpaiMap[51] = "S_4"
+	MjpaiMap[52] = "S_5"
+	MjpaiMap[53] = "S_5"
+	MjpaiMap[54] = "S_5"
+	MjpaiMap[55] = "S_5"
+	MjpaiMap[56] = "S_6"
+	MjpaiMap[57] = "S_6"
+	MjpaiMap[58] = "S_6"
+	MjpaiMap[59] = "S_6"
+	MjpaiMap[60] = "S_7"
+	MjpaiMap[61] = "S_7"
+	MjpaiMap[62] = "S_7"
+	MjpaiMap[63] = "S_7"
+	MjpaiMap[64] = "S_8"
+	MjpaiMap[65] = "S_8"
+	MjpaiMap[66] = "S_8"
+	MjpaiMap[67] = "S_8"
+	MjpaiMap[68] = "S_9"
+	MjpaiMap[69] = "S_9"
+	MjpaiMap[70] = "S_9"
+	MjpaiMap[71] = "S_9"
+	MjpaiMap[72] = "W_1"
+	MjpaiMap[73] = "W_1"
+	MjpaiMap[74] = "W_1"
+	MjpaiMap[75] = "W_1"
+	MjpaiMap[76] = "W_2"
+	MjpaiMap[77] = "W_2"
+	MjpaiMap[78] = "W_2"
+	MjpaiMap[79] = "W_2"
+	MjpaiMap[80] = "W_3"
+	MjpaiMap[81] = "W_3"
+	MjpaiMap[82] = "W_3"
+	MjpaiMap[83] = "W_3"
+	MjpaiMap[84] = "W_4"
+	MjpaiMap[85] = "W_4"
+	MjpaiMap[86] = "W_4"
+	MjpaiMap[87] = "W_4"
+	MjpaiMap[88] = "W_5"
+	MjpaiMap[89] = "W_5"
+	MjpaiMap[90] = "W_5"
+	MjpaiMap[91] = "W_5"
+	MjpaiMap[92] = "W_6"
+	MjpaiMap[93] = "W_6"
+	MjpaiMap[94] = "W_6"
+	MjpaiMap[95] = "W_6"
+	MjpaiMap[96] = "W_7"
+	MjpaiMap[97] = "W_7"
+	MjpaiMap[98] = "W_7"
+	MjpaiMap[99] = "W_7"
+	MjpaiMap[100] = "W_8"
+	MjpaiMap[101] = "W_8"
+	MjpaiMap[102] = "W_8"
+	MjpaiMap[103] = "W_8"
+	MjpaiMap[104] = "W_9"
+	MjpaiMap[105] = "W_9"
+	MjpaiMap[106] = "W_9"
+	MjpaiMap[107] = "W_9"
+
+	//东
+	MjpaiMap[108] = "FENG_1_EAST"
+	MjpaiMap[109] = "FENG_1_EAST"
+	MjpaiMap[110] = "FENG_1_EAST"
+	MjpaiMap[111] = "FENG_1_EAST"
+
+	//南
+	MjpaiMap[112] = "FENG_2_SOUTH"
+	MjpaiMap[113] = "FENG_2_SOUTH"
+	MjpaiMap[114] = "FENG_2_SOUTH"
+	MjpaiMap[115] = "FENG_2_SOUTH"
+
+	//西
+	MjpaiMap[116] = "FENG_3_WEST"
+	MjpaiMap[117] = "FENG_3_WEST"
+	MjpaiMap[118] = "FENG_3_WEST"
+	MjpaiMap[119] = "FENG_3_WEST"
+
+	//北
+	MjpaiMap[120] = "FENG_4_NORTH"
+	MjpaiMap[121] = "FENG_4_NORTH"
+	MjpaiMap[122] = "FENG_4_NORTH"
+	MjpaiMap[123] = "FENG_4_NORTH"
+
+	//中
+	MjpaiMap[124] = "FENG_5_Z"
+	MjpaiMap[125] = "FENG_5_Z"
+	MjpaiMap[126] = "FENG_5_Z"
+	MjpaiMap[127] = "FENG_5_Z"
+
+	//白
+	MjpaiMap[128] = "FENG_6_B"
+	MjpaiMap[129] = "FENG_6_B"
+	MjpaiMap[130] = "FENG_6_B"
+	MjpaiMap[131] = "FENG_6_B"
+
+	//发
+	MjpaiMap[132] = "FENG_7_F"
+	MjpaiMap[133] = "FENG_7_F"
+	MjpaiMap[134] = "FENG_7_F"
+	MjpaiMap[135] = "FENG_7_F"
+
+	MjpaiMap[136] = "HUA_1_CHUN" //春夏秋冬
+	MjpaiMap[137] = "HUA_2_XIA"
+	MjpaiMap[138] = "HUA_3_QIU"
+	MjpaiMap[139] = "HUA_4_DONG"
+
+	MjpaiMap[140] = "HUA_5_MEI" //梅兰菊竹
+	MjpaiMap[141] = "HUA_6_LAN"
+	MjpaiMap[142] = "HUA_7_JU"
+	MjpaiMap[143] = "HUA_8_ZHU"
+
+	//中
+	MjpaiMap[144] = "FENG_5_Z"
+	MjpaiMap[145] = "FENG_5_Z"
+	MjpaiMap[146] = "FENG_5_Z"
+	MjpaiMap[147] = "FENG_5_Z"
+
+	clienMap = make(map[int]int32, TOTALPAICOUNT)
 	clienMap[0] = 19
 	clienMap[1] = 19
 	clienMap[2] = 19
@@ -198,6 +368,11 @@ func init() {
 	clienMap[142] = 41 //菊
 	clienMap[143] = 42 //竹
 
+	//中
+	clienMap[144] = 32
+	clienMap[145] = 32
+	clienMap[146] = 32
+	clienMap[147] = 32
 }
 
 //番数 顶番5
@@ -339,21 +514,24 @@ func (p *MJPAI) LogDes() string {
 
 //风牌的描述
 func (p *MJPAI) DesFeng() string {
+	if p.Flower != MJ_FLOWER_FENG {
+		return "未知风"
+	}
 	des := ""
 	switch {
-	case p.Index >= 108 && p.Index <= 111 :
+	case p.Value == 1 :
 		des = "东"
-	case p.Index >= 112 && p.Index <= 115 :
+	case p.Value == 2 :
 		des = "南"
-	case p.Index >= 116 && p.Index <= 119 :
+	case p.Value == 3 :
 		des = "西"
-	case p.Index >= 120 && p.Index <= 123 :
+	case p.Value == 4 :
 		des = "北"
-	case p.Index >= 124 && p.Index <= 127 :
+	case p.Value == 5 :
 		des = "中"
-	case p.Index >= 128 && p.Index <= 131 :
+	case p.Value == 6 :
 		des = "白"
-	case p.Index >= 132 && p.Index <= 135 :
+	case p.Value == 7 :
 		des = "发"
 	default:
 		des = "默认风"
@@ -363,23 +541,26 @@ func (p *MJPAI) DesFeng() string {
 
 //花牌的描述
 func (p *MJPAI) DesHua() string {
+	if p.Flower != MJ_FLOWER_HUA {
+		return "未知花"
+	}
 	des := ""
 	switch {
-	case p.Index == 136 :
+	case p.Value == 1 :
 		des = "春"
-	case p.Index == 137 :
+	case p.Value == 2 :
 		des = "夏"
-	case p.Index == 138 :
+	case p.Value == 3 :
 		des = "秋"
-	case p.Index == 139 :
+	case p.Value == 4 :
 		des = "东"
-	case p.Index == 140 :
+	case p.Value == 5 :
 		des = "梅"
-	case p.Index == 141 :
+	case p.Value == 6 :
 		des = "兰"
-	case p.Index == 142 :
+	case p.Value == 7 :
 		des = "菊"
-	case p.Index == 143 :
+	case p.Value == 8 :
 		des = "竹"
 	default:
 		des = "默认花"
