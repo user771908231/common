@@ -49,13 +49,12 @@ type MJUser interface {
 
 //核心User
 type MJUserCore struct {
-	UserId  uint32
-	URedis  userService.U_REDIS //这里可以使用redis的方法
-	Desk    MJDesk              //关联的desk
-	Coin    int64               //金币
-	IsRobot bool                //是否是机器人
-	gate.Agent                  //agent
-	GameStatus                  //玩家的状态
+	UserId uint32
+	URedis userService.U_REDIS //这里可以使用redis的方法
+	Desk   MJDesk              //关联的desk
+	Coin   int64               //金币
+	gate.Agent                 //agent
+	GameStatus                 //玩家的状态
 }
 
 //User的状态信息
@@ -68,6 +67,8 @@ type GameStatus struct {
 	S             int32 //玩家的状态
 	CanOut        bool  //是否可以打牌
 	ApplyDissolve int32 //申请解散的状态
+	IsRobot       bool  //是否是机器人
+	IsAgentMode   bool  //是否是托管模式
 }
 
 const (
@@ -78,12 +79,13 @@ const (
 
 //New一个CoreUser
 func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
-	return &MJUserCore{
-		UserId: userId,
-		URedis: userService.U_REDIS(userId),
-		Agent:  a,
-		IsRobot: a == nil,
+	ret := &MJUserCore{
+		UserId:  userId,
+		URedis:  userService.U_REDIS(userId),
+		Agent:   a,
 	}
+	ret.IsRobot = a == nil
+	return ret
 }
 
 func (u *MJUserCore) DoBu(...interface{}) (interface{}, error) {
