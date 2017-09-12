@@ -32,6 +32,7 @@ type MJDesk interface {
 	ActTi(...interface{}) error                     //提
 	ActLeave(...interface{}) error                  //离开房间
 	ActReady(userId uint32) error                   //准备
+	Lottery() error                                 //一局结束
 	Dissolve(...interface{}) error                  //解散
 	ApplyDissolve(...interface{}) error             //申请解散
 	ApplyDissolveBack(...interface{}) error         //申请解散回复
@@ -61,6 +62,7 @@ type MJDeskCore struct {
 	Parser   MJParser
 	*MJDeskCfg
 	Users    []MJUser
+	TopDesk  MJDesk //上层desk
 	sync.Mutex
 }
 
@@ -123,6 +125,10 @@ func (d *MJDeskCore) ActFly(...interface{}) error {
 }
 
 func (d *MJDeskCore) ActTi(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) Lottery() error {
 	return nil
 }
 
