@@ -173,8 +173,9 @@ func DECRUserDiamond(userid uint32, d int64) (int64, error) {
 func INCRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
 	roomCardBefore := GetUserRoomCard(userId)
 
+	log.T("INCRUserRoomcard(userId=%d,d=%d,gid=%d,memo=%s) before:%d", userId, d, gid, memo, GetUserRoomCard(userId))
 	roomCard, err := incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
-
+	log.T("INCRUserRoomcard(userId=%d,d=%d,gid=%d,memo=%s) after:%d", userId, d, gid, memo, GetUserRoomCard(userId))
 	if err != nil {
 		return roomCard, err
 	}

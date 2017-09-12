@@ -6,6 +6,9 @@ import (
 	"github.com/garyburd/redigo/redis"
 	"github.com/golang/protobuf/proto"
 	"time"
+	"strings"
+	"casino_common/common/consts"
+	"runtime/debug"
 )
 
 var (
@@ -199,6 +202,11 @@ func (t *Data) GetInt64(key string) (value int64, err error) {
 }
 
 func (t *Data) Set(key string, value []byte) error {
+	if strings.HasPrefix(key, consts.RKEY_USER_ROOMCARD) {
+		//如果直接set房卡，则报错
+		log.E("[SET ROOMCARD] key:%v value:%v Error!!!", key, value)
+		log.E("[Debug] %s", debug.Stack())
+	}
 	if t.conn != nil {
 		//log.T("[TRACE] try redis.Set(%v) value:%v", key, value)
 		_, err := redis.String(t.conn.Do("SET", key, value))
