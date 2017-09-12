@@ -19,6 +19,7 @@ import (
 //麻将桌子的定义
 type MJDesk interface {
 	EnterUser(...interface{}) error                 //玩家进入desk，不定参数
+	BeginStart() error                              //开始打牌
 	ActOut(...interface{}) error                    //出牌的user和牌型
 	ActPeng(...interface{}) error                   //碰
 	ActGuo(...interface{}) error                    //过
@@ -28,6 +29,7 @@ type MJDesk interface {
 	ActHu(...interface{}) error                     //胡
 	ActBaoTing(...interface{}) error                //报听
 	ActPiao(...interface{}) error                   //飘
+	ActShangGa(...interface{}) error                //上嘎
 	ActFly(...interface{}) error                    //飞
 	ActTi(...interface{}) error                     //提
 	ActLeave(...interface{}) error                  //离开房间
@@ -75,6 +77,11 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 	return desk
 }
 
+//开始打牌
+func (d *MJDeskCore) BeginStart() error {
+	return nil
+}
+
 //离开房间
 func (d *MJDeskCore) ActLeave(...interface{}) error {
 	return nil
@@ -93,6 +100,10 @@ func (d *MJDeskCore) ActBu(...interface{}) error {
 }
 
 func (d *MJDeskCore) ActOut(...interface{}) error {
+	return nil
+}
+
+func (d *MJDeskCore) ActShangGa(...interface{}) error {
 	return nil
 }
 
