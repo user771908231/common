@@ -54,6 +54,8 @@ type MJDesk interface {
 	GetCfgStr() string                              //得到配置信息的文字描述
 	RmUser(userId uint32)                           //从桌子里删除一个玩家
 	KickOutUser(userId, kickOutUserId uint32) error //踢出玩家
+	EnterAgentMode(userId uint32) error             //请求进入托管模式
+	QuitAgentMode(userId uint32) error              //请求退出托管模式
 }
 
 type MJDeskCore struct {
@@ -331,5 +333,13 @@ func (d *MJDeskCore) KickOutUser(userId, kickOutUserId uint32) error {
 	d.BroadCastProtoExclusive(bc, kickOutUserId)
 
 	log.T("%v玩家[%v]请求踢出玩家[%v]处理完毕", d.DlogDes(), userId, kickOutUserId)
+	return nil
+}
+
+func (d *MJDeskCore) EnterAgentMode(userId uint32) error {
+	return nil
+}
+
+func (d *MJDeskCore) QuitAgentMode(userId uint32) error {
 	return nil
 }
