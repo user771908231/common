@@ -519,6 +519,8 @@ It has these top-level messages:
 	PhzPlay_ChiPai
 	PhzPlayCanChi
 	PhzReqChiPai
+	PhzReqBiPai
+	PhzAckBiPai
 	PhzAckChiPai
 	PhzPlayTiPai
 	PhzPlayCanTiPai
@@ -527,10 +529,13 @@ It has these top-level messages:
 	PhzPlayCanHuPai
 	PhzReqHuPai
 	PhzAckHuPai
+	PhzReqPass
+	PhzAckPass
 	PhzPlayHandPokers
 	PhzPlayRoundBillBean
 	PhzPlayCurrentResult
 	PhzPlayEndResult
+	PhzPlayEndLottery
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig
