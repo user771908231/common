@@ -31,7 +31,7 @@ type MJUser interface {
 	//基本功能
 	SendOverTurn(p proto.Message) error         //发送overTurn
 	SendJiaoInfos() error                       //发送下叫jiaoInfos的提示
-	SendTingInfos() error                       //发送下叫tingInfos的提示
+	SendTingInfos() (interface{}, error)                       //发送下叫tingInfos的提示
 	WriteMsg2(p proto.Message) error            //发送信息
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
@@ -72,9 +72,9 @@ type GameStatus struct {
 }
 
 const (
-	MJUER_APPLYDISSOLVE_S_REFUSE  int32 = -1 //拒绝解散
+	MJUER_APPLYDISSOLVE_S_REFUSE int32 = -1 //拒绝解散
 	MJUER_APPLYDISSOLVE_S_DEFAULT int32 = 0  //没有处理
-	MJUER_APPLYDISSOLVE_S_AGREE   int32 = 1  //同意解散
+	MJUER_APPLYDISSOLVE_S_AGREE int32 = 1  //同意解散
 )
 
 //New一个CoreUser
@@ -226,7 +226,7 @@ func (u *MJUserCore) SendJiaoInfos() error {
 	return nil
 }
 
-func (u *MJUserCore) SendTingInfos() error {
+func (u *MJUserCore) SendTingInfos() (interface{}, error) {
 	defer Error.ErrorRecovery(fmt.Sprintf("%v给玩家[%v]发送tingInfos提示时异常, 已捕获待处理", u.GetDesk().DlogDes(), u.GetUserId()))
 	ack := &ddMJProto.GameAckTinginfos{}
 	ack.Header = &ddMJProto.ProtoHeader{
@@ -237,21 +237,21 @@ func (u *MJUserCore) SendTingInfos() error {
 	if err != nil {
 		log.E("%v 获取玩家[%v]tinginfo 时出错:err %v 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId(), err)
 		u.WriteMsg2(ack)
-		return err
+		return nil, err
 	}
 
 	log.T("%v 获取到玩家[%v]tinginfo[%+v]", u.GetDesk().DlogDes(), u.GetUserId(), tingInfoBeans)
 	if tingInfoBeans == nil {
 		log.W("%v 玩家[%v]tinginfo 为空 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId())
 		u.WriteMsg2(ack)
-		return nil
+		return nil, nil
 	}
 
 	tfs := tingInfoBeans.([]*JiaoInfoBean)
 	if tfs == nil || len(tfs) <= 0 {
 		log.T("%v 玩家[%v]tinginfo 为空 发送空的tingInfo", u.GetDesk().DlogDes(), u.GetUserId())
 		u.WriteMsg2(ack)
-		return nil
+		return nil, nil
 	}
 
 	//得到叫牌的信息
@@ -264,5 +264,5 @@ func (u *MJUserCore) SendTingInfos() error {
 	}
 
 	u.WriteMsg2(ack)
-	return nil
+	return tingInfoBeans, nil
 }
