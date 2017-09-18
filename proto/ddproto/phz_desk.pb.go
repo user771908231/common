@@ -128,9 +128,11 @@ var _ = math.Inf
 
 // Ignoring public import of phz_enum_roomType from phz_base.proto
 
-// Ignoring public import of phz_enum_tipaiType from phz_base.proto
+// Ignoring public import of phz_enum_tiType from phz_base.proto
 
 // Ignoring public import of phz_enum_pengType from phz_base.proto
+
+// Ignoring public import of phz_enum_paoType from phz_base.proto
 
 // 创建房间
 type PhzReqCreateDesk struct {

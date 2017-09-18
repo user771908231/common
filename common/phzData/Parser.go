@@ -5,7 +5,6 @@ import (
 	"casino_common/proto/ddproto"
 )
 
-
 type PHZParser interface {
 	CanTi(...interface{}) (interface{}, error)   //根据桌面的牌判断手牌里三张的牌是否可以跑
 	GetTiPai(interface{}) interface{}            //获取手牌里原始可以提的牌
@@ -20,7 +19,7 @@ type ParserCore struct {
 
 type HuInfo struct {
 	WinUser    uint32 //
-	HuXiCount  int    //赢家的虾子的数量
+	HuXi       int32  //胡息数
 	LoseUser   uint32
 	IsZimo     bool
 	GetUserId  uint32
@@ -42,21 +41,24 @@ func (p *ParserCore) CountHandPais(pais []*PHZPoker) []int {
 		}
 		counts[p.GetPaiIndexByValue()]++
 	}
+	log.T("测试用...counts=%v", counts)
 	return counts
 }
 
 func (p *ParserCore) GetTiPai(data interface{}) interface{} {
-	var tiInfo []*TiPai
+	tiInfo := []*TiPai{}
 	handPokers := data.([]*PHZPoker)
 	paiCounts := p.CountHandPais(handPokers)
 	if paiCounts != nil {
 		for paiValue, paiCount := range paiCounts {
 			if paiCount == 4 {
 				ti := &TiPai{}
-				ti.TiType = int32(ddproto.PhzEnumTipaiType_PHZ_TIPAITYPE_MING)
+				ti.TiType = int32(ddproto.PhzEnumTiType_PHZ_TITYPE_HAVE_FOUR)
 				if paiValue <= 10 {
+					log.T("提小字，胡息数为9")
 					ti.HuXi = 9 //提小字9胡息
 				} else {
+					log.T("提大字，胡息数为12")
 					ti.HuXi = 12 //提大字12胡息
 				}
 				//将提的牌放进提牌结构里
@@ -81,10 +83,11 @@ func (p *ParserCore) CanTi(data interface{}, tiData interface{}) (interface{}, e
 	if paiCounts != nil {
 		for paiValue, paiCount := range paiCounts {
 			if paiCount == 3 && paiValue == int(tiPai.GetValue()) {
-				ti.TiType = int32(ddproto.PhzEnumTipaiType_PHZ_TIPAITYPE_AN)
 				if paiValue <= 10 {
+					log.T("跑小字，胡息数9")
 					ti.HuXi = 9 //提小字9胡息
 				} else {
+					log.T("跑大字，胡息数12")
 					ti.HuXi = 12 //提小字12胡息
 				}
 				for _, pai := range handPokers {
@@ -92,9 +95,9 @@ func (p *ParserCore) CanTi(data interface{}, tiData interface{}) (interface{}, e
 						ti.Pais = append(ti.Pais, pai)
 					}
 				}
+				return ti, nil
 			}
 		}
-		return ti, nil
 	}
 	return nil, nil
 }
@@ -104,22 +107,27 @@ func (p *ParserCore) CanPeng(userGameData interface{}, pengData interface{}) (in
 	pengPai := pengData.(*PHZPoker)
 	pengReslut := &PengPai{}
 	paiCounts := p.CountHandPais(handPokers)
+	pengReslut.Pais = append(pengReslut.Pais, pengPai) //将桌面内的碰牌也存进去
 	if paiCounts != nil {
 		for paiValue, paiCount := range paiCounts {
+			log.T("测试用...paiValue=[%v]  paiCount=[%v] pengPai.value=[%v]", paiValue, paiCount, pengPai.GetValue())
 			if paiValue == int(pengPai.GetValue()) && paiCount == 2 {
+				log.T("可以碰牌...碰的牌是：[%v]  pengPai.value=[%v]   paiValue= [%v]", Card2String(pengPai), pengPai.GetValue(), paiValue)
 				for _, pai := range handPokers {
 					if pai.GetValue() == int32(paiValue) {
 						pengReslut.Pais = append(pengReslut.Pais, pai)
 						if paiValue <= 10 {
+							log.T("碰小字，胡息数为：[%v]", 1)
 							pengReslut.HuXi = 1 //碰小字1胡息
 						} else {
+							log.T("碰大字，胡息数为：[%v]", 3)
 							pengReslut.HuXi = 3 //碰大字3胡息
 						}
 					}
 				}
+				return pengReslut, nil
 			}
 		}
-		return pengReslut, nil
 	}
 	return nil, nil
 }
@@ -484,7 +492,7 @@ func (p *ParserCore) GetPaiByValue(handPokers []*PHZPoker, value int32) *PHZPoke
 	return nil
 }
 
-//天胡
+//校验玩家是否天胡：砌完牌后，玩家手中有3提或5坎，称为天胡
 func (p *ParserCore) CheckHu(userGameData interface{}) (bool, error) {
 	tiCount := make(map[int]int32)
 	kanCount := make(map[int]int32)
