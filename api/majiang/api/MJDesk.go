@@ -56,6 +56,8 @@ type MJDesk interface {
 	KickOutUser(userId, kickOutUserId uint32) error //踢出玩家
 	EnterAgentMode(userId uint32) error             //请求进入托管模式
 	QuitAgentMode(userId uint32) error              //请求退出托管模式
+	GetNextPai(MJUser) *majiang.MJPAI //获取下一张牌
+	WipeDesk() error //备份桌子信息 数据恢复
 }
 
 type MJDeskCore struct {
@@ -81,72 +83,99 @@ func NewMJDeskCore(s *module.Skeleton) *MJDeskCore {
 
 //开始打牌
 func (d *MJDeskCore) BeginStart() error {
+	log.W("MJDeskCore BeginStart Nothing to Do")
+	return nil
+}
+
+func (d *MJDeskCore) GetNextPai(MJUser) *majiang.MJPAI {
+	log.W("MJDeskCore GetNextPai Nothing to Do")
+	return nil
+}
+
+func (d *MJDeskCore) WipeDesk() error {
+	log.W("MJDeskCore WipeDesk Nothing to Do")
 	return nil
 }
 
 //离开房间
 func (d *MJDeskCore) ActLeave(...interface{}) error {
+	log.W("MJDeskCore ActLeave Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActChi(...interface{}) error {
+	log.W("MJDeskCore ActChi Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActBaoTing(...interface{}) error {
+	log.W("MJDeskCore ActBaoTing Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActBu(...interface{}) error {
+	log.W("MJDeskCore ActBu Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActOut(...interface{}) error {
+	log.W("MJDeskCore ActOut Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActShangGa(...interface{}) error {
+	log.W("MJDeskCore ActShangGa Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActPeng(...interface{}) error {
+	log.W("MJDeskCore ActPeng Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActReady(userId uint32) error {
+	log.W("MJDeskCore ActReady Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActGang(...interface{}) error {
+	log.W("MJDeskCore ActGang Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActHu(...interface{}) error {
+	log.W("MJDeskCore ActHu Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActGuo(...interface{}) error {
+	log.W("MJDeskCore ActGuo Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActPiao(...interface{}) error {
+	log.W("MJDeskCore ActPiao Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActFly(...interface{}) error {
+	log.W("MJDeskCore ActFly Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ActTi(...interface{}) error {
+	log.W("MJDeskCore ActTi Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) Lottery() error {
+	log.W("MJDeskCore Lottery Nothing to Do")
 	return nil
 }
 
 //断线
 func (d *MJDeskCore) Break(...interface{}) error {
+	log.W("MJDeskCore Break Nothing to Do")
 	return nil
 }
 
@@ -259,34 +288,42 @@ func (d *MJDeskCore) SendMessage(m interface{}) error {
 }
 
 func (d *MJDeskCore) ApplyDissolve(...interface{}) error {
+	log.W("MJDeskCore ApplyDissolve Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) ApplyDissolveBack(...interface{}) error {
+	log.W("MJDeskCore ApplyDissolveBack Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) Dissolve(...interface{}) error {
+	log.W("MJDeskCore Dissolve Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) EnterUser(...interface{}) error {
+	log.W("MJDeskCore EnterUser Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) GetCfg() interface{} {
+	log.W("MJDeskCore GetCfg Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) GetCfgStr() string {
+	log.W("MJDeskCore GetCfgStr Nothing to Do")
 	return ""
 }
 
 func (d *MJDeskCore) GetDeskSkeleton() interface{} {
+	log.W("MJDeskCore GetDeskSkeleton Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) GetAllMingPai(userId uint32) []*majiang.MJPAI {
+	log.W("MJDeskCore GetAllMingPai Nothing to Do")
 	return nil
 }
 
@@ -337,9 +374,11 @@ func (d *MJDeskCore) KickOutUser(userId, kickOutUserId uint32) error {
 }
 
 func (d *MJDeskCore) EnterAgentMode(userId uint32) error {
+	log.W("MJDeskCore EnterAgentMode Nothing to Do")
 	return nil
 }
 
 func (d *MJDeskCore) QuitAgentMode(userId uint32) error {
+	log.W("MJDeskCore QuitAgentMode Nothing to Do")
 	return nil
 }

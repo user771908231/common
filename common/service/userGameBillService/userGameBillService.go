@@ -195,7 +195,7 @@ func insert2Memory(b *ddproto.UserGameBill) {
 
 	if gameBill.GetData() != nil && len(gameBill.GetData()) >= int(Cfg.limitLength) {
 		//原始长度超出限制
-		newUserBills = append(newUserBills, gameBill.Data[:Cfg.limitLength-1]...)
+		newUserBills = append(newUserBills, gameBill.Data[:Cfg.limitLength - 1]...)
 	} else {
 		newUserBills = append(newUserBills, gameBill.Data...)
 	}
@@ -346,7 +346,7 @@ func getTOPDefeatedPointUser(userIds []uint32, roomType int32) uint32 {
 		if gameBill == nil {
 			continue
 		}
-		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
+		defeatedPoint, _, _ := getUserDefeatedPoint(gameBill.GetData())
 		if topDefeatedPointUserId == uint32(0) {
 			topDefeatedPointUserId = userId
 			topDefeatedPoint = defeatedPoint
@@ -368,10 +368,10 @@ func updateWinMode(userIds []uint32, roomType int32) {
 			continue
 		}
 
-		wonPoint := getUserWonPoint(gameBill.GetData())
-		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
+		wonPoint, wonCount, totalWonAmount := getUserWonPoint(gameBill.GetData())
+		defeatedPoint, loseCount, totalLoseAmount := getUserDefeatedPoint(gameBill.GetData())
 
-		log.T("更新玩家输赢模式 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v] wonPoint[%v] watchPoint[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint, Cfg.watchPoint)
+		log.T("判断是否更新玩家输赢模式 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v]-loseCount[%v]-totalLoseAmount[%v] wonPoint[%v]-wonCount[%v]-totalWonAmount[%v] watchPoint[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, loseCount, totalLoseAmount, wonPoint, wonCount, totalWonAmount, Cfg.watchPoint)
 
 		if gameBill.GetIsWinMode() {
 			//玩家当前在赢的模式中
@@ -379,7 +379,7 @@ func updateWinMode(userIds []uint32, roomType int32) {
 				//玩家超过赢的得分限制 退出赢的模式
 				gameBill.IsWinMode = proto.Bool(false)
 				updateUserGameBill(userId, roomType, gameBill)
-				log.T("更新玩家输赢模式 玩家[%v] wonPoint[%v]满足条件 退出赢的模式", userId, wonPoint)
+				log.T("更新玩家输赢模式 玩家[%v]wonPoint[%v]满足条件 退出赢的模式 wonCount[%v]-totalWonAmount[%v]", userId, wonPoint, wonCount, totalWonAmount)
 				continue
 			}
 			continue
@@ -389,15 +389,13 @@ func updateWinMode(userIds []uint32, roomType int32) {
 			//玩家超过输的得分限制 进入赢的模式
 			gameBill.IsWinMode = proto.Bool(true)
 			updateUserGameBill(userId, roomType, gameBill)
-			log.T("更新玩家输赢模式 玩家[%v] defeatedPoint[%v]满足条件 进入赢的模式", userId, defeatedPoint)
+			log.T("更新玩家输赢模式 玩家[%v]defeatedPoint[%v]满足条件 进入赢的模式 loseCount[%v]-totalLoseAmount[%v]", userId, defeatedPoint, loseCount, totalLoseAmount)
 			continue
 		}
 	}
 }
 
-func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint float64) {
-	loseCount := float64(0)
-	totalLoseAmount := float64(0)
+func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint, loseCount, totalLoseAmount float64) {
 	for _, b := range bills {
 		totalLoseAmount += float64(b.GetWinAmount())
 		if b.GetWinAmount() < 0 {
@@ -416,9 +414,7 @@ func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint float64)
 	return
 }
 
-func getUserWonPoint(bills []*ddproto.UserGameBill) (winPoint float64) {
-	winCount := float64(0)
-	totalWinAmount := float64(0)
+func getUserWonPoint(bills []*ddproto.UserGameBill) (winPoint, winCount, totalWinAmount float64) {
 	for _, b := range bills {
 		totalWinAmount += float64(b.GetWinAmount())
 		if b.GetWinAmount() > 0 {
