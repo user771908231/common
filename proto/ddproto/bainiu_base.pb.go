@@ -128,6 +128,10 @@ It has these top-level messages:
 	CommonReqUploadLocation
 	CommonBcLeaveTimeout
 	CommonDeskByAgent
+	CommonReqListCoinDesk
+	CommonAckListCoinDesk
+	CommonCoinDeskInfo
+	CreateCoinDeskInfo
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -691,6 +695,14 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_bc_leaveTimeout from common_client.proto
 
 // Ignoring public import of common_desk_by_agent from common_client.proto
+
+// Ignoring public import of common_req_list_coin_desk from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_desk from common_client.proto
+
+// Ignoring public import of CommonCoinDeskInfo from common_client.proto
+
+// Ignoring public import of createCoinDeskInfo from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 
