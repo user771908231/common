@@ -30,9 +30,9 @@ func init() {
 	UserBill = new(util.Map)
 }
 
-func OnInit(gameId, limitLength int32, watchPoint float64) {
+func OnInit(gameId int32, watchPoint float64) {
 	Cfg.gameId = gameId
-	Cfg.limitLength = limitLength
+	//Cfg.limitLength = limitLength
 	Cfg.tbName = tableName.DBT_USER_GAME_BILL
 	Cfg.watchPoint = watchPoint
 }
@@ -193,12 +193,7 @@ func insert2Memory(b *ddproto.UserGameBill) {
 	//将这条数据追加到第一个位置
 	newUserBills := []*ddproto.UserGameBill{b}
 
-	if gameBill.GetData() != nil && len(gameBill.GetData()) >= int(Cfg.limitLength) {
-		//原始长度超出限制
-		newUserBills = append(newUserBills, gameBill.Data[:Cfg.limitLength - 1]...)
-	} else {
-		newUserBills = append(newUserBills, gameBill.Data...)
-	}
+	newUserBills = append(newUserBills, gameBill.Data...)
 
 	gameBill.Data = newUserBills
 	UserBill.Set(b.GetUserId(), gameBill)
@@ -222,12 +217,12 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	newUserBills := []*ddproto.UserGameBill{b}
 	newUserBills = append(newUserBills, redisUserGameBill.GetData()...)
 
-	lenth := len(newUserBills)
+	//lenth := len(newUserBills)
 	//只保留限定条数的数据
-	if len(newUserBills) > int(Cfg.limitLength) {
-		lenth = int(Cfg.limitLength)
-	}
-	redisUserGameBill.Data = newUserBills[:lenth]
+	//if len(newUserBills) > int(Cfg.limitLength) {
+	//	lenth = int(Cfg.limitLength)
+	//}
+	//redisUserGameBill.Data = newUserBills[:lenth]
 
 	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
@@ -378,6 +373,7 @@ func updateWinMode(userIds []uint32, roomType int32) {
 			if wonPoint >= Cfg.watchPoint {
 				//玩家超过赢的得分限制 退出赢的模式
 				gameBill.IsWinMode = proto.Bool(false)
+				gameBill.Data = nil
 				updateUserGameBill(userId, roomType, gameBill)
 				log.T("更新玩家输赢模式 玩家[%v]wonPoint[%v]满足条件 退出赢的模式 wonCount[%v]-totalWonAmount[%v]", userId, wonPoint, wonCount, totalWonAmount)
 				continue
@@ -388,6 +384,7 @@ func updateWinMode(userIds []uint32, roomType int32) {
 		if defeatedPoint >= Cfg.watchPoint {
 			//玩家超过输的得分限制 进入赢的模式
 			gameBill.IsWinMode = proto.Bool(true)
+			gameBill.Data = nil
 			updateUserGameBill(userId, roomType, gameBill)
 			log.T("更新玩家输赢模式 玩家[%v]defeatedPoint[%v]满足条件 进入赢的模式 loseCount[%v]-totalLoseAmount[%v]", userId, defeatedPoint, loseCount, totalLoseAmount)
 			continue
