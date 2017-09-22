@@ -34,7 +34,7 @@ func init() {
 	PokerMap[18] = "Black_Y_13"
 	PokerMap[19] = "Black_Y_13"
 	PokerMap[20] = "Black_Y_13"
-	PokerMap[21] = "Black_N_13"
+	PokerMap[21] = "Black_N_3"
 	PokerMap[22] = "Black_N_3"
 	PokerMap[23] = "Black_N_3"
 	PokerMap[24] = "Black_N_3"

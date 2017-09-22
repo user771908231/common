@@ -65,7 +65,7 @@ type UserGameData struct {
 	TiPai         []*TiPai              //提的牌
 	HuInfo        *HuInfo               //胡牌信息
 	ChouPais      []*PHZPoker           //忍碰、忍吃后的牌为臭牌
-	CheckCase     []*UserCheckCase      //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
+	CheckCase     *UserCheckCase        //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
 	PaoPais       []*PaoPai             //跑牌
 	WeiPais       []*WeiPai             //偎的牌
 	PrePengResult *PengPai              //预处理请求碰牌的结果
@@ -149,8 +149,11 @@ type UserCheckCase struct {
 	CanPeng     bool        //是否可以碰牌
 	PengPais    []*PHZPoker //可以碰的牌
 	CanChi      bool        //是否可以吃牌
+	ChiPais     []*PHZPoker //可以吃的牌
 	CanHu       bool        //是否可以胡牌
-	HuXi        int32       //胡息数
+	PengHuXi    int32       //胡息数
+	ChiHuXi     int32       //吃牌的胡息
+	HuHuXi      int32       //胡的胡息
 }
 
 func NewCheckCase() *UserCheckCase {
