@@ -385,6 +385,10 @@ It has these top-level messages:
 	NiuJiabeiReq
 	NiuJiabeiAck
 	NiuJiabeiBc
+	NiuXuanpaiOt
+	NiuXuanpaiReq
+	NiuXuanpaiAck
+	NiuXuanpaiBc
 	NiuBipaiResultItem
 	NiuBipaiResultBc
 	NiuGameEnd
@@ -523,7 +527,8 @@ It has these top-level messages:
 	PhzPlay_ChiPai
 	PhzPlayCanChi
 	PhzReqChiPai
-	PhzPlayBiPai
+	PhzReqBiPai
+	PhzAckBiPai
 	PhzAckChiPai
 	PhzPlayTiPai
 	PhzPlayCanTiPai
@@ -538,6 +543,7 @@ It has these top-level messages:
 	PhzPlayRoundBillBean
 	PhzPlayCurrentResult
 	PhzPlayEndResult
+	PhzPlayEndLottery
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig
