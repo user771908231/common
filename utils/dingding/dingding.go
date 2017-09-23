@@ -28,6 +28,7 @@ func init() {
 	fmt.Println("开始初始化ddmsger...")
 	DingMsger = &DingMessage{
 		chatid:  "chat7548ac2ea5f759f5b260a37013263409",
+		token: "",
 		msgtype: "text",
 		msgbody: make(chan *sendBody, 100),
 	}
@@ -42,7 +43,7 @@ type dingRet struct {
 }
 
 //发送消息时候的回复
-type dingSendRet struct {
+type SendRet struct {
 	Errmsg  string `json:"errmsg"`
 	Errcode int32 `json:"errcode"`
 }
@@ -90,7 +91,7 @@ func (m *DingMessage) send(postParams []byte) {
 	body2, _ := ioutil.ReadAll(resp.Body)
 
 	//
-	dr := &dingSendRet{}
+	dr := &SendRet{}
 	json.Unmarshal(body2, dr)
 	fmt.Printf("ddmsger 发送信息 得到的结果 %+v \n", dr)
 	if (dr.Errcode == EC_TOKEN_TIMEOUT || dr.Errcode == EC_TOKEN) &&

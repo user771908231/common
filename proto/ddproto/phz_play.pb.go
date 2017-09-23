@@ -110,6 +110,12 @@ var _ = math.Inf
 
 // Ignoring public import of common_desk_by_agent from common_client.proto
 
+// Ignoring public import of common_req_list_coin_desk from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_desk from common_client.proto
+
+// Ignoring public import of CommonCoinDeskInfo from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -128,10 +134,117 @@ var _ = math.Inf
 
 // Ignoring public import of phz_enum_roomType from phz_base.proto
 
-// Ignoring public import of phz_enum_tipaiType from phz_base.proto
+// Ignoring public import of phz_enum_tiType from phz_base.proto
 
 // Ignoring public import of phz_enum_pengType from phz_base.proto
 
+// Ignoring public import of phz_enum_paoType from phz_base.proto
+
+type PhzEnumActionType int32
+
+const (
+	PhzEnumActionType_PHZ_ACTIONTYPE_MOPAI     PhzEnumActionType = 1
+	PhzEnumActionType_PHZ_ACTIONTYPE_CHUPAI    PhzEnumActionType = 2
+	PhzEnumActionType_PHZ_ACTIONTYPE_PAO       PhzEnumActionType = 3
+	PhzEnumActionType_PHZ_ACTIONTYPE_CHIPENGHU PhzEnumActionType = 4
+)
+
+var PhzEnumActionType_name = map[int32]string{
+	1: "PHZ_ACTIONTYPE_MOPAI",
+	2: "PHZ_ACTIONTYPE_CHUPAI",
+	3: "PHZ_ACTIONTYPE_PAO",
+	4: "PHZ_ACTIONTYPE_CHIPENGHU",
+}
+var PhzEnumActionType_value = map[string]int32{
+	"PHZ_ACTIONTYPE_MOPAI":     1,
+	"PHZ_ACTIONTYPE_CHUPAI":    2,
+	"PHZ_ACTIONTYPE_PAO":       3,
+	"PHZ_ACTIONTYPE_CHIPENGHU": 4,
+}
+
+func (x PhzEnumActionType) Enum() *PhzEnumActionType {
+	p := new(PhzEnumActionType)
+	*p = x
+	return p
+}
+func (x PhzEnumActionType) String() string {
+	return proto.EnumName(PhzEnumActionType_name, int32(x))
+}
+func (x *PhzEnumActionType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PhzEnumActionType_value, data, "PhzEnumActionType")
+	if err != nil {
+		return err
+	}
+	*x = PhzEnumActionType(value)
+	return nil
+}
+func (PhzEnumActionType) EnumDescriptor() ([]byte, []int) { return fileDescriptor47, []int{0} }
+
+type PhzEnumHuType int32
+
+const (
+	PhzEnumHuType_PHZ_HUTYPE_YIKUAIBIAN  PhzEnumHuType = 1
+	PhzEnumHuType_PHZ_HUTYPE_YIDIANHONG  PhzEnumHuType = 2
+	PhzEnumHuType_PHZ_HUTYPE_SHIHONG     PhzEnumHuType = 3
+	PhzEnumHuType_PHZ_HUTYPE_HONGHU      PhzEnumHuType = 4
+	PhzEnumHuType_PHZ_HUTYPE_WUHU        PhzEnumHuType = 5
+	PhzEnumHuType_PHZ_HUTYPE_KAHU        PhzEnumHuType = 6
+	PhzEnumHuType_PHZ_HUTYPE_20HU        PhzEnumHuType = 7
+	PhzEnumHuType_PHZ_HUTYPE_DUIDUIHU    PhzEnumHuType = 8
+	PhzEnumHuType_PHZ_HUTYPE_HAIDIHU     PhzEnumHuType = 9
+	PhzEnumHuType_PHZ_HUTYPE_TIANHU      PhzEnumHuType = 10
+	PhzEnumHuType_PHZ_HUTYPE_DIHU        PhzEnumHuType = 11
+	PhzEnumHuType_PHZ_HUTYPE_HUANGZHUANG PhzEnumHuType = 12
+)
+
+var PhzEnumHuType_name = map[int32]string{
+	1:  "PHZ_HUTYPE_YIKUAIBIAN",
+	2:  "PHZ_HUTYPE_YIDIANHONG",
+	3:  "PHZ_HUTYPE_SHIHONG",
+	4:  "PHZ_HUTYPE_HONGHU",
+	5:  "PHZ_HUTYPE_WUHU",
+	6:  "PHZ_HUTYPE_KAHU",
+	7:  "PHZ_HUTYPE_20HU",
+	8:  "PHZ_HUTYPE_DUIDUIHU",
+	9:  "PHZ_HUTYPE_HAIDIHU",
+	10: "PHZ_HUTYPE_TIANHU",
+	11: "PHZ_HUTYPE_DIHU",
+	12: "PHZ_HUTYPE_HUANGZHUANG",
+}
+var PhzEnumHuType_value = map[string]int32{
+	"PHZ_HUTYPE_YIKUAIBIAN":  1,
+	"PHZ_HUTYPE_YIDIANHONG":  2,
+	"PHZ_HUTYPE_SHIHONG":     3,
+	"PHZ_HUTYPE_HONGHU":      4,
+	"PHZ_HUTYPE_WUHU":        5,
+	"PHZ_HUTYPE_KAHU":        6,
+	"PHZ_HUTYPE_20HU":        7,
+	"PHZ_HUTYPE_DUIDUIHU":    8,
+	"PHZ_HUTYPE_HAIDIHU":     9,
+	"PHZ_HUTYPE_TIANHU":      10,
+	"PHZ_HUTYPE_DIHU":        11,
+	"PHZ_HUTYPE_HUANGZHUANG": 12,
+}
+
+func (x PhzEnumHuType) Enum() *PhzEnumHuType {
+	p := new(PhzEnumHuType)
+	*p = x
+	return p
+}
+func (x PhzEnumHuType) String() string {
+	return proto.EnumName(PhzEnumHuType_name, int32(x))
+}
+func (x *PhzEnumHuType) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PhzEnumHuType_value, data, "PhzEnumHuType")
+	if err != nil {
+		return err
+	}
+	*x = PhzEnumHuType(value)
+	return nil
+}
+func (PhzEnumHuType) EnumDescriptor() ([]byte, []int) { return fileDescriptor47, []int{1} }
+
+// 玩家请求i准备
 type PhzReq_Ready struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
@@ -140,7 +253,7 @@ type PhzReq_Ready struct {
 func (m *PhzReq_Ready) Reset()                    { *m = PhzReq_Ready{} }
 func (m *PhzReq_Ready) String() string            { return proto.CompactTextString(m) }
 func (*PhzReq_Ready) ProtoMessage()               {}
-func (*PhzReq_Ready) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{0} }
+func (*PhzReq_Ready) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{0} }
 
 func (m *PhzReq_Ready) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -149,6 +262,7 @@ func (m *PhzReq_Ready) GetHeader() *ProtoHeader {
 	return nil
 }
 
+// 玩家请求准备的回复，回复每个玩家的准备状态
 type PhzAck_Ready struct {
 	Header           *ProtoHeader           `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	UserReadyStatus  []*PhzPlay_ReadyStatus `protobuf:"bytes,2,rep,name=userReadyStatus" json:"userReadyStatus,omitempty"`
@@ -158,7 +272,7 @@ type PhzAck_Ready struct {
 func (m *PhzAck_Ready) Reset()                    { *m = PhzAck_Ready{} }
 func (m *PhzAck_Ready) String() string            { return proto.CompactTextString(m) }
 func (*PhzAck_Ready) ProtoMessage()               {}
-func (*PhzAck_Ready) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{1} }
+func (*PhzAck_Ready) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{1} }
 
 func (m *PhzAck_Ready) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -174,6 +288,7 @@ func (m *PhzAck_Ready) GetUserReadyStatus() []*PhzPlay_ReadyStatus {
 	return nil
 }
 
+// 每个玩家的准备状态
 type PhzPlay_ReadyStatus struct {
 	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
 	IsReady          *bool   `protobuf:"varint,2,opt,name=isReady" json:"isReady,omitempty"`
@@ -183,7 +298,7 @@ type PhzPlay_ReadyStatus struct {
 func (m *PhzPlay_ReadyStatus) Reset()                    { *m = PhzPlay_ReadyStatus{} }
 func (m *PhzPlay_ReadyStatus) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_ReadyStatus) ProtoMessage()               {}
-func (*PhzPlay_ReadyStatus) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{2} }
+func (*PhzPlay_ReadyStatus) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{2} }
 
 func (m *PhzPlay_ReadyStatus) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -199,6 +314,7 @@ func (m *PhzPlay_ReadyStatus) GetIsReady() bool {
 	return false
 }
 
+// 开局
 type PhzPlay_Opening struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	CurrentRound     *int32       `protobuf:"varint,2,opt,name=currentRound" json:"currentRound,omitempty"`
@@ -208,7 +324,7 @@ type PhzPlay_Opening struct {
 func (m *PhzPlay_Opening) Reset()                    { *m = PhzPlay_Opening{} }
 func (m *PhzPlay_Opening) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_Opening) ProtoMessage()               {}
-func (*PhzPlay_Opening) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{3} }
+func (*PhzPlay_Opening) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{3} }
 
 func (m *PhzPlay_Opening) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -234,7 +350,7 @@ type PhzPlay_SendCards struct {
 func (m *PhzPlay_SendCards) Reset()                    { *m = PhzPlay_SendCards{} }
 func (m *PhzPlay_SendCards) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_SendCards) ProtoMessage()               {}
-func (*PhzPlay_SendCards) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{4} }
+func (*PhzPlay_SendCards) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{4} }
 
 func (m *PhzPlay_SendCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -260,7 +376,7 @@ type PhzReq_OutCards struct {
 func (m *PhzReq_OutCards) Reset()                    { *m = PhzReq_OutCards{} }
 func (m *PhzReq_OutCards) String() string            { return proto.CompactTextString(m) }
 func (*PhzReq_OutCards) ProtoMessage()               {}
-func (*PhzReq_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{5} }
+func (*PhzReq_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{5} }
 
 func (m *PhzReq_OutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -276,16 +392,18 @@ func (m *PhzReq_OutCards) GetPaiId() int32 {
 	return 0
 }
 
+// 出牌后的回复，失败成功都要回复
 type PhzAck_OutCards struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	IsOutCardOK      *bool        `protobuf:"varint,2,opt,name=isOutCardOK" json:"isOutCardOK,omitempty"`
+	PaiId            *int32       `protobuf:"varint,3,opt,name=paiId" json:"paiId,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzAck_OutCards) Reset()                    { *m = PhzAck_OutCards{} }
 func (m *PhzAck_OutCards) String() string            { return proto.CompactTextString(m) }
 func (*PhzAck_OutCards) ProtoMessage()               {}
-func (*PhzAck_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{6} }
+func (*PhzAck_OutCards) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{6} }
 
 func (m *PhzAck_OutCards) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -301,18 +419,27 @@ func (m *PhzAck_OutCards) GetIsOutCardOK() bool {
 	return false
 }
 
+func (m *PhzAck_OutCards) GetPaiId() int32 {
+	if m != nil && m.PaiId != nil {
+		return *m.PaiId
+	}
+	return 0
+}
+
+// 摸牌协议
 type PhzPlay_MoPai struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	PaiId            *int32       `protobuf:"varint,2,opt,name=paiId" json:"paiId,omitempty"`
 	IsFirst          *bool        `protobuf:"varint,3,opt,name=isFirst" json:"isFirst,omitempty"`
 	OperatorUID      *uint32      `protobuf:"varint,4,opt,name=operatorUID" json:"operatorUID,omitempty"`
+	RemainPokerCount *int32       `protobuf:"varint,5,opt,name=remainPokerCount" json:"remainPokerCount,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzPlay_MoPai) Reset()                    { *m = PhzPlay_MoPai{} }
 func (m *PhzPlay_MoPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_MoPai) ProtoMessage()               {}
-func (*PhzPlay_MoPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{7} }
+func (*PhzPlay_MoPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{7} }
 
 func (m *PhzPlay_MoPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -342,19 +469,29 @@ func (m *PhzPlay_MoPai) GetOperatorUID() uint32 {
 	return 0
 }
 
+func (m *PhzPlay_MoPai) GetRemainPokerCount() int32 {
+	if m != nil && m.RemainPokerCount != nil {
+		return *m.RemainPokerCount
+	}
+	return 0
+}
+
+// 操作overturn
 type PhzPlay_Overturn struct {
-	Header           *ProtoHeader     `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	Peng             *PhzPlay_CanPeng `protobuf:"bytes,2,opt,name=Peng" json:"Peng,omitempty"`
-	Chi              *PhzPlayCanChi   `protobuf:"bytes,3,opt,name=Chi" json:"Chi,omitempty"`
-	Hu               *PhzPlayCanHuPai `protobuf:"bytes,4,opt,name=Hu" json:"Hu,omitempty"`
-	OperatorUID      *uint32          `protobuf:"varint,5,opt,name=operatorUID" json:"operatorUID,omitempty"`
-	XXX_unrecognized []byte           `json:"-"`
+	Header           *ProtoHeader       `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	CanPeng          *bool              `protobuf:"varint,2,opt,name=canPeng" json:"canPeng,omitempty"`
+	Chi              *PhzPlayCanChi     `protobuf:"bytes,3,opt,name=Chi" json:"Chi,omitempty"`
+	CanHu            *bool              `protobuf:"varint,4,opt,name=canHu" json:"canHu,omitempty"`
+	OperatorUID      *uint32            `protobuf:"varint,5,opt,name=operatorUID" json:"operatorUID,omitempty"`
+	CanOutCard       *bool              `protobuf:"varint,6,opt,name=canOutCard" json:"canOutCard,omitempty"`
+	ActionType       *PhzEnumActionType `protobuf:"varint,7,opt,name=actionType,enum=ddproto.PhzEnumActionType" json:"actionType,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
 }
 
 func (m *PhzPlay_Overturn) Reset()                    { *m = PhzPlay_Overturn{} }
 func (m *PhzPlay_Overturn) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_Overturn) ProtoMessage()               {}
-func (*PhzPlay_Overturn) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{8} }
+func (*PhzPlay_Overturn) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{8} }
 
 func (m *PhzPlay_Overturn) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -363,11 +500,11 @@ func (m *PhzPlay_Overturn) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *PhzPlay_Overturn) GetPeng() *PhzPlay_CanPeng {
-	if m != nil {
-		return m.Peng
+func (m *PhzPlay_Overturn) GetCanPeng() bool {
+	if m != nil && m.CanPeng != nil {
+		return *m.CanPeng
 	}
-	return nil
+	return false
 }
 
 func (m *PhzPlay_Overturn) GetChi() *PhzPlayCanChi {
@@ -377,11 +514,11 @@ func (m *PhzPlay_Overturn) GetChi() *PhzPlayCanChi {
 	return nil
 }
 
-func (m *PhzPlay_Overturn) GetHu() *PhzPlayCanHuPai {
-	if m != nil {
-		return m.Hu
+func (m *PhzPlay_Overturn) GetCanHu() bool {
+	if m != nil && m.CanHu != nil {
+		return *m.CanHu
 	}
-	return nil
+	return false
 }
 
 func (m *PhzPlay_Overturn) GetOperatorUID() uint32 {
@@ -391,42 +528,72 @@ func (m *PhzPlay_Overturn) GetOperatorUID() uint32 {
 	return 0
 }
 
+func (m *PhzPlay_Overturn) GetCanOutCard() bool {
+	if m != nil && m.CanOutCard != nil {
+		return *m.CanOutCard
+	}
+	return false
+}
+
+func (m *PhzPlay_Overturn) GetActionType() PhzEnumActionType {
+	if m != nil && m.ActionType != nil {
+		return *m.ActionType
+	}
+	return PhzEnumActionType_PHZ_ACTIONTYPE_MOPAI
+}
+
+// 是否可以碰牌，包括是否偎牌字段，之前定的偎牌的单独的proto暂时不管,臭偎和偎牌直接根据这个message显示
 type PhzPlay_CanPeng struct {
-	CanPeng          *bool  `protobuf:"varint,1,opt,name=canPeng" json:"canPeng,omitempty"`
-	CanPengPaiId     *int32 `protobuf:"varint,2,opt,name=canPengPaiId" json:"canPengPaiId,omitempty"`
-	XXX_unrecognized []byte `json:"-"`
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	WeiPais          []int32      `protobuf:"varint,2,rep,name=weiPais" json:"weiPais,omitempty"`
+	IsWeiPai         *bool        `protobuf:"varint,3,opt,name=isWeiPai" json:"isWeiPai,omitempty"`
+	IsChouWei        *bool        `protobuf:"varint,4,opt,name=isChouWei" json:"isChouWei,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzPlay_CanPeng) Reset()                    { *m = PhzPlay_CanPeng{} }
 func (m *PhzPlay_CanPeng) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_CanPeng) ProtoMessage()               {}
-func (*PhzPlay_CanPeng) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{9} }
+func (*PhzPlay_CanPeng) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{9} }
 
-func (m *PhzPlay_CanPeng) GetCanPeng() bool {
-	if m != nil && m.CanPeng != nil {
-		return *m.CanPeng
+func (m *PhzPlay_CanPeng) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PhzPlay_CanPeng) GetWeiPais() []int32 {
+	if m != nil {
+		return m.WeiPais
+	}
+	return nil
+}
+
+func (m *PhzPlay_CanPeng) GetIsWeiPai() bool {
+	if m != nil && m.IsWeiPai != nil {
+		return *m.IsWeiPai
 	}
 	return false
 }
 
-func (m *PhzPlay_CanPeng) GetCanPengPaiId() int32 {
-	if m != nil && m.CanPengPaiId != nil {
-		return *m.CanPengPaiId
+func (m *PhzPlay_CanPeng) GetIsChouWei() bool {
+	if m != nil && m.IsChouWei != nil {
+		return *m.IsChouWei
 	}
-	return 0
+	return false
 }
 
+// 请求碰牌，只需传userId，由服务器内部处理碰哪张牌
 type PhzReq_Peng struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PengPaiId        *int32       `protobuf:"varint,2,opt,name=pengPaiId" json:"pengPaiId,omitempty"`
-	Peng             *bool        `protobuf:"varint,3,opt,name=peng" json:"peng,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzReq_Peng) Reset()                    { *m = PhzReq_Peng{} }
 func (m *PhzReq_Peng) String() string            { return proto.CompactTextString(m) }
 func (*PhzReq_Peng) ProtoMessage()               {}
-func (*PhzReq_Peng) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{10} }
+func (*PhzReq_Peng) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{10} }
 
 func (m *PhzReq_Peng) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -435,30 +602,20 @@ func (m *PhzReq_Peng) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *PhzReq_Peng) GetPengPaiId() int32 {
-	if m != nil && m.PengPaiId != nil {
-		return *m.PengPaiId
-	}
-	return 0
-}
-
-func (m *PhzReq_Peng) GetPeng() bool {
-	if m != nil && m.Peng != nil {
-		return *m.Peng
-	}
-	return false
-}
-
-// 碰牌ack
+// 正常碰牌的回复，
 type PhzAck_Peng struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	OutUser          *uint32      `protobuf:"varint,2,opt,name=outUser" json:"outUser,omitempty"`
+	PengUser         *uint32      `protobuf:"varint,3,opt,name=pengUser" json:"pengUser,omitempty"`
+	PengPai          []int32      `protobuf:"varint,4,rep,name=pengPai" json:"pengPai,omitempty"`
+	HuXi             *int32       `protobuf:"varint,5,opt,name=huXi" json:"huXi,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzAck_Peng) Reset()                    { *m = PhzAck_Peng{} }
 func (m *PhzAck_Peng) String() string            { return proto.CompactTextString(m) }
 func (*PhzAck_Peng) ProtoMessage()               {}
-func (*PhzAck_Peng) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{11} }
+func (*PhzAck_Peng) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{11} }
 
 func (m *PhzAck_Peng) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -467,6 +624,35 @@ func (m *PhzAck_Peng) GetHeader() *ProtoHeader {
 	return nil
 }
 
+func (m *PhzAck_Peng) GetOutUser() uint32 {
+	if m != nil && m.OutUser != nil {
+		return *m.OutUser
+	}
+	return 0
+}
+
+func (m *PhzAck_Peng) GetPengUser() uint32 {
+	if m != nil && m.PengUser != nil {
+		return *m.PengUser
+	}
+	return 0
+}
+
+func (m *PhzAck_Peng) GetPengPai() []int32 {
+	if m != nil {
+		return m.PengPai
+	}
+	return nil
+}
+
+func (m *PhzAck_Peng) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+// 所有可以吃的牌的组合
 type PhzPlay_ChiPai struct {
 	PaiId            []int32 `protobuf:"varint,1,rep,name=paiId" json:"paiId,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
@@ -475,7 +661,7 @@ type PhzPlay_ChiPai struct {
 func (m *PhzPlay_ChiPai) Reset()                    { *m = PhzPlay_ChiPai{} }
 func (m *PhzPlay_ChiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlay_ChiPai) ProtoMessage()               {}
-func (*PhzPlay_ChiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{12} }
+func (*PhzPlay_ChiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{12} }
 
 func (m *PhzPlay_ChiPai) GetPaiId() []int32 {
 	if m != nil {
@@ -484,30 +670,23 @@ func (m *PhzPlay_ChiPai) GetPaiId() []int32 {
 	return nil
 }
 
+// 是否可以吃牌
 type PhzPlayCanChi struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	CanChi           *bool             `protobuf:"varint,2,opt,name=canChi" json:"canChi,omitempty"`
-	ChiPaiGroup      []*PhzPlay_ChiPai `protobuf:"bytes,3,rep,name=chiPaiGroup" json:"chiPaiGroup,omitempty"`
+	ChiPaiGroup      []*PhzPlay_ChiPai `protobuf:"bytes,2,rep,name=chiPaiGroup" json:"chiPaiGroup,omitempty"`
 	XXX_unrecognized []byte            `json:"-"`
 }
 
 func (m *PhzPlayCanChi) Reset()                    { *m = PhzPlayCanChi{} }
 func (m *PhzPlayCanChi) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCanChi) ProtoMessage()               {}
-func (*PhzPlayCanChi) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{13} }
+func (*PhzPlayCanChi) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{13} }
 
 func (m *PhzPlayCanChi) GetHeader() *ProtoHeader {
 	if m != nil {
 		return m.Header
 	}
 	return nil
-}
-
-func (m *PhzPlayCanChi) GetCanChi() bool {
-	if m != nil && m.CanChi != nil {
-		return *m.CanChi
-	}
-	return false
 }
 
 func (m *PhzPlayCanChi) GetChiPaiGroup() []*PhzPlay_ChiPai {
@@ -517,16 +696,18 @@ func (m *PhzPlayCanChi) GetChiPaiGroup() []*PhzPlay_ChiPai {
 	return nil
 }
 
+// 吃牌的请求
 type PhzReqChiPai struct {
-	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	ChiPais          *PhzPlay_ChiPai `protobuf:"bytes,2,opt,name=chiPais" json:"chiPais,omitempty"`
-	XXX_unrecognized []byte          `json:"-"`
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	ChiPais          *PhzPlay_ChiPai   `protobuf:"bytes,2,opt,name=chiPais" json:"chiPais,omitempty"`
+	BiPais           []*PhzPlay_ChiPai `protobuf:"bytes,3,rep,name=biPais" json:"biPais,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
 }
 
 func (m *PhzReqChiPai) Reset()                    { *m = PhzReqChiPai{} }
 func (m *PhzReqChiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqChiPai) ProtoMessage()               {}
-func (*PhzReqChiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{14} }
+func (*PhzReqChiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{14} }
 
 func (m *PhzReqChiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -542,18 +723,80 @@ func (m *PhzReqChiPai) GetChiPais() *PhzPlay_ChiPai {
 	return nil
 }
 
+func (m *PhzReqChiPai) GetBiPais() []*PhzPlay_ChiPai {
+	if m != nil {
+		return m.BiPais
+	}
+	return nil
+}
+
+type PhzReqBiPai struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	ChiPaiIds        []int32      `protobuf:"varint,2,rep,name=chiPaiIds" json:"chiPaiIds,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PhzReqBiPai) Reset()                    { *m = PhzReqBiPai{} }
+func (m *PhzReqBiPai) String() string            { return proto.CompactTextString(m) }
+func (*PhzReqBiPai) ProtoMessage()               {}
+func (*PhzReqBiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{15} }
+
+func (m *PhzReqBiPai) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PhzReqBiPai) GetChiPaiIds() []int32 {
+	if m != nil {
+		return m.ChiPaiIds
+	}
+	return nil
+}
+
+// 玩家选择吃牌后， 由服务器返回比牌的结果
+type PhzAckBiPai struct {
+	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	BiPais           []*PhzPlay_ChiPai `protobuf:"bytes,2,rep,name=biPais" json:"biPais,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *PhzAckBiPai) Reset()                    { *m = PhzAckBiPai{} }
+func (m *PhzAckBiPai) String() string            { return proto.CompactTextString(m) }
+func (*PhzAckBiPai) ProtoMessage()               {}
+func (*PhzAckBiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{16} }
+
+func (m *PhzAckBiPai) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PhzAckBiPai) GetBiPais() []*PhzPlay_ChiPai {
+	if m != nil {
+		return m.BiPais
+	}
+	return nil
+}
+
+// 玩家请求吃牌且比牌(如果要比牌的话)后的回复
 type PhzAckChiPai struct {
 	Header           *ProtoHeader      `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	IsBiPai          *bool             `protobuf:"varint,2,opt,name=isBiPai" json:"isBiPai,omitempty"`
 	ChiPais          *PhzPlay_ChiPai   `protobuf:"bytes,3,opt,name=chiPais" json:"chiPais,omitempty"`
-	Pais             []*PhzPlay_ChiPai `protobuf:"bytes,4,rep,name=pais" json:"pais,omitempty"`
+	BiPais           []*PhzPlay_ChiPai `protobuf:"bytes,4,rep,name=biPais" json:"biPais,omitempty"`
+	OutUser          *uint32           `protobuf:"varint,5,opt,name=outUser" json:"outUser,omitempty"`
+	ChiUser          *uint32           `protobuf:"varint,6,opt,name=chiUser" json:"chiUser,omitempty"`
+	HuXi             *int32            `protobuf:"varint,7,opt,name=huXi" json:"huXi,omitempty"`
 	XXX_unrecognized []byte            `json:"-"`
 }
 
 func (m *PhzAckChiPai) Reset()                    { *m = PhzAckChiPai{} }
 func (m *PhzAckChiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzAckChiPai) ProtoMessage()               {}
-func (*PhzAckChiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{15} }
+func (*PhzAckChiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{17} }
 
 func (m *PhzAckChiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -576,23 +819,45 @@ func (m *PhzAckChiPai) GetChiPais() *PhzPlay_ChiPai {
 	return nil
 }
 
-func (m *PhzAckChiPai) GetPais() []*PhzPlay_ChiPai {
+func (m *PhzAckChiPai) GetBiPais() []*PhzPlay_ChiPai {
 	if m != nil {
-		return m.Pais
+		return m.BiPais
 	}
 	return nil
 }
 
+func (m *PhzAckChiPai) GetOutUser() uint32 {
+	if m != nil && m.OutUser != nil {
+		return *m.OutUser
+	}
+	return 0
+}
+
+func (m *PhzAckChiPai) GetChiUser() uint32 {
+	if m != nil && m.ChiUser != nil {
+		return *m.ChiUser
+	}
+	return 0
+}
+
+func (m *PhzAckChiPai) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+// 暂不用
 type PhzPlayTiPai struct {
-	PaiId            []int32           `protobuf:"varint,1,rep,name=paiId" json:"paiId,omitempty"`
-	TiType           *PhzEnumTipaiType `protobuf:"varint,2,opt,name=tiType,enum=ddproto.PhzEnumTipaiType" json:"tiType,omitempty"`
-	XXX_unrecognized []byte            `json:"-"`
+	PaiId            []int32        `protobuf:"varint,1,rep,name=paiId" json:"paiId,omitempty"`
+	TiType           *PhzEnumTiType `protobuf:"varint,3,opt,name=tiType,enum=ddproto.PhzEnumTiType" json:"tiType,omitempty"`
+	XXX_unrecognized []byte         `json:"-"`
 }
 
 func (m *PhzPlayTiPai) Reset()                    { *m = PhzPlayTiPai{} }
 func (m *PhzPlayTiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayTiPai) ProtoMessage()               {}
-func (*PhzPlayTiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{16} }
+func (*PhzPlayTiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{18} }
 
 func (m *PhzPlayTiPai) GetPaiId() []int32 {
 	if m != nil {
@@ -601,23 +866,28 @@ func (m *PhzPlayTiPai) GetPaiId() []int32 {
 	return nil
 }
 
-func (m *PhzPlayTiPai) GetTiType() PhzEnumTipaiType {
+func (m *PhzPlayTiPai) GetTiType() PhzEnumTiType {
 	if m != nil && m.TiType != nil {
 		return *m.TiType
 	}
-	return PhzEnumTipaiType_PHZ_TIPAITYPE_MING
+	return PhzEnumTiType_PHZ_TITYPE_HAVE_THREE
 }
 
+// 用于玩家提牌、跑牌
 type PhzPlayCanTiPai struct {
 	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	TiPais           []*PhzPlayTiPai `protobuf:"bytes,2,rep,name=tiPais" json:"tiPais,omitempty"`
+	OutUser          *uint32         `protobuf:"varint,4,opt,name=outUser" json:"outUser,omitempty"`
+	TiUser           *uint32         `protobuf:"varint,5,opt,name=tiUser" json:"tiUser,omitempty"`
+	HuXi             *int32          `protobuf:"varint,6,opt,name=huXi" json:"huXi,omitempty"`
+	IsBaKuai         *bool           `protobuf:"varint,7,opt,name=isBaKuai" json:"isBaKuai,omitempty"`
 	XXX_unrecognized []byte          `json:"-"`
 }
 
 func (m *PhzPlayCanTiPai) Reset()                    { *m = PhzPlayCanTiPai{} }
 func (m *PhzPlayCanTiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCanTiPai) ProtoMessage()               {}
-func (*PhzPlayCanTiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{17} }
+func (*PhzPlayCanTiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{19} }
 
 func (m *PhzPlayCanTiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -633,16 +903,46 @@ func (m *PhzPlayCanTiPai) GetTiPais() []*PhzPlayTiPai {
 	return nil
 }
 
+func (m *PhzPlayCanTiPai) GetOutUser() uint32 {
+	if m != nil && m.OutUser != nil {
+		return *m.OutUser
+	}
+	return 0
+}
+
+func (m *PhzPlayCanTiPai) GetTiUser() uint32 {
+	if m != nil && m.TiUser != nil {
+		return *m.TiUser
+	}
+	return 0
+}
+
+func (m *PhzPlayCanTiPai) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+func (m *PhzPlayCanTiPai) GetIsBaKuai() bool {
+	if m != nil && m.IsBaKuai != nil {
+		return *m.IsBaKuai
+	}
+	return false
+}
+
+// 偎牌协议
 type PhzPlayWeiPai struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	WeiPais          []int32      `protobuf:"varint,2,rep,name=weiPais" json:"weiPais,omitempty"`
+	HuXi             *int32       `protobuf:"varint,3,opt,name=huXi" json:"huXi,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzPlayWeiPai) Reset()                    { *m = PhzPlayWeiPai{} }
 func (m *PhzPlayWeiPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayWeiPai) ProtoMessage()               {}
-func (*PhzPlayWeiPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{18} }
+func (*PhzPlayWeiPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{20} }
 
 func (m *PhzPlayWeiPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -658,16 +958,29 @@ func (m *PhzPlayWeiPai) GetWeiPais() []int32 {
 	return nil
 }
 
+func (m *PhzPlayWeiPai) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+// 用于跑牌
 type PhzPlayPaoPai struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PaoPais          []int32      `protobuf:"varint,2,rep,name=paoPais" json:"paoPais,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+	Header           *ProtoHeader    `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PaoPais          []int32         `protobuf:"varint,2,rep,name=paoPais" json:"paoPais,omitempty"`
+	PaoType          *PhzEnumPaoType `protobuf:"varint,3,opt,name=paoType,enum=ddproto.PhzEnumPaoType" json:"paoType,omitempty"`
+	OutUser          *uint32         `protobuf:"varint,4,opt,name=outUser" json:"outUser,omitempty"`
+	PaoUser          *uint32         `protobuf:"varint,5,opt,name=paoUser" json:"paoUser,omitempty"`
+	HuXi             *int32          `protobuf:"varint,6,opt,name=huXi" json:"huXi,omitempty"`
+	IsBaKuai         *bool           `protobuf:"varint,7,opt,name=isBaKuai" json:"isBaKuai,omitempty"`
+	XXX_unrecognized []byte          `json:"-"`
 }
 
 func (m *PhzPlayPaoPai) Reset()                    { *m = PhzPlayPaoPai{} }
 func (m *PhzPlayPaoPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayPaoPai) ProtoMessage()               {}
-func (*PhzPlayPaoPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{19} }
+func (*PhzPlayPaoPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{21} }
 
 func (m *PhzPlayPaoPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -683,6 +996,42 @@ func (m *PhzPlayPaoPai) GetPaoPais() []int32 {
 	return nil
 }
 
+func (m *PhzPlayPaoPai) GetPaoType() PhzEnumPaoType {
+	if m != nil && m.PaoType != nil {
+		return *m.PaoType
+	}
+	return PhzEnumPaoType_PHZ_PAOTYPE_THREE_ONE
+}
+
+func (m *PhzPlayPaoPai) GetOutUser() uint32 {
+	if m != nil && m.OutUser != nil {
+		return *m.OutUser
+	}
+	return 0
+}
+
+func (m *PhzPlayPaoPai) GetPaoUser() uint32 {
+	if m != nil && m.PaoUser != nil {
+		return *m.PaoUser
+	}
+	return 0
+}
+
+func (m *PhzPlayPaoPai) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+func (m *PhzPlayPaoPai) GetIsBaKuai() bool {
+	if m != nil && m.IsBaKuai != nil {
+		return *m.IsBaKuai
+	}
+	return false
+}
+
+// 玩家是否可以胡牌
 type PhzPlayCanHuPai struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
 	CanHu            *bool        `protobuf:"varint,2,opt,name=canHu" json:"canHu,omitempty"`
@@ -694,7 +1043,7 @@ type PhzPlayCanHuPai struct {
 func (m *PhzPlayCanHuPai) Reset()                    { *m = PhzPlayCanHuPai{} }
 func (m *PhzPlayCanHuPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCanHuPai) ProtoMessage()               {}
-func (*PhzPlayCanHuPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{20} }
+func (*PhzPlayCanHuPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{22} }
 
 func (m *PhzPlayCanHuPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -724,16 +1073,16 @@ func (m *PhzPlayCanHuPai) GetIsTianHu() bool {
 	return false
 }
 
+// 胡牌请求
 type PhzReqHuPai struct {
 	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PaiId            *int32       `protobuf:"varint,2,opt,name=paiId" json:"paiId,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *PhzReqHuPai) Reset()                    { *m = PhzReqHuPai{} }
 func (m *PhzReqHuPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqHuPai) ProtoMessage()               {}
-func (*PhzReqHuPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{21} }
+func (*PhzReqHuPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{23} }
 
 func (m *PhzReqHuPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -742,23 +1091,22 @@ func (m *PhzReqHuPai) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *PhzReqHuPai) GetPaiId() int32 {
-	if m != nil && m.PaiId != nil {
-		return *m.PaiId
-	}
-	return 0
-}
-
+// 胡牌的回复
 type PhzAckHuPai struct {
-	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	PaiIds           []int32      `protobuf:"varint,2,rep,name=paiIds" json:"paiIds,omitempty"`
-	XXX_unrecognized []byte       `json:"-"`
+	Header           *ProtoHeader   `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	PaiIds           []int32        `protobuf:"varint,2,rep,name=paiIds" json:"paiIds,omitempty"`
+	OutUser          *uint32        `protobuf:"varint,3,opt,name=outUser" json:"outUser,omitempty"`
+	HuUser           *uint32        `protobuf:"varint,4,opt,name=huUser" json:"huUser,omitempty"`
+	HuXi             *int32         `protobuf:"varint,5,opt,name=huXi" json:"huXi,omitempty"`
+	HuType           *PhzEnumHuType `protobuf:"varint,6,opt,name=huType,enum=ddproto.PhzEnumHuType" json:"huType,omitempty"`
+	IsZiMo           *bool          `protobuf:"varint,7,opt,name=isZiMo" json:"isZiMo,omitempty"`
+	XXX_unrecognized []byte         `json:"-"`
 }
 
 func (m *PhzAckHuPai) Reset()                    { *m = PhzAckHuPai{} }
 func (m *PhzAckHuPai) String() string            { return proto.CompactTextString(m) }
 func (*PhzAckHuPai) ProtoMessage()               {}
-func (*PhzAckHuPai) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{22} }
+func (*PhzAckHuPai) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{24} }
 
 func (m *PhzAckHuPai) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -774,6 +1122,107 @@ func (m *PhzAckHuPai) GetPaiIds() []int32 {
 	return nil
 }
 
+func (m *PhzAckHuPai) GetOutUser() uint32 {
+	if m != nil && m.OutUser != nil {
+		return *m.OutUser
+	}
+	return 0
+}
+
+func (m *PhzAckHuPai) GetHuUser() uint32 {
+	if m != nil && m.HuUser != nil {
+		return *m.HuUser
+	}
+	return 0
+}
+
+func (m *PhzAckHuPai) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+func (m *PhzAckHuPai) GetHuType() PhzEnumHuType {
+	if m != nil && m.HuType != nil {
+		return *m.HuType
+	}
+	return PhzEnumHuType_PHZ_HUTYPE_YIKUAIBIAN
+}
+
+func (m *PhzAckHuPai) GetIsZiMo() bool {
+	if m != nil && m.IsZiMo != nil {
+		return *m.IsZiMo
+	}
+	return false
+}
+
+type PhzReqPass struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	UserId           *uint32      `protobuf:"varint,2,opt,name=userId" json:"userId,omitempty"`
+	IsPass           *bool        `protobuf:"varint,3,opt,name=isPass" json:"isPass,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PhzReqPass) Reset()                    { *m = PhzReqPass{} }
+func (m *PhzReqPass) String() string            { return proto.CompactTextString(m) }
+func (*PhzReqPass) ProtoMessage()               {}
+func (*PhzReqPass) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{25} }
+
+func (m *PhzReqPass) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PhzReqPass) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PhzReqPass) GetIsPass() bool {
+	if m != nil && m.IsPass != nil {
+		return *m.IsPass
+	}
+	return false
+}
+
+type PhzAckPass struct {
+	Header           *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	Userid           *uint32      `protobuf:"varint,2,opt,name=userid" json:"userid,omitempty"`
+	IsPassOk         *bool        `protobuf:"varint,3,opt,name=isPassOk" json:"isPassOk,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
+}
+
+func (m *PhzAckPass) Reset()                    { *m = PhzAckPass{} }
+func (m *PhzAckPass) String() string            { return proto.CompactTextString(m) }
+func (*PhzAckPass) ProtoMessage()               {}
+func (*PhzAckPass) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{26} }
+
+func (m *PhzAckPass) GetHeader() *ProtoHeader {
+	if m != nil {
+		return m.Header
+	}
+	return nil
+}
+
+func (m *PhzAckPass) GetUserid() uint32 {
+	if m != nil && m.Userid != nil {
+		return *m.Userid
+	}
+	return 0
+}
+
+func (m *PhzAckPass) GetIsPassOk() bool {
+	if m != nil && m.IsPassOk != nil {
+		return *m.IsPassOk
+	}
+	return false
+}
+
 // 玩家的手牌
 type PhzPlayHandPokers struct {
 	UserId           *uint32 `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
@@ -784,7 +1233,7 @@ type PhzPlayHandPokers struct {
 func (m *PhzPlayHandPokers) Reset()                    { *m = PhzPlayHandPokers{} }
 func (m *PhzPlayHandPokers) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayHandPokers) ProtoMessage()               {}
-func (*PhzPlayHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{23} }
+func (*PhzPlayHandPokers) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{27} }
 
 func (m *PhzPlayHandPokers) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -812,7 +1261,7 @@ type PhzPlayRoundBillBean struct {
 func (m *PhzPlayRoundBillBean) Reset()                    { *m = PhzPlayRoundBillBean{} }
 func (m *PhzPlayRoundBillBean) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayRoundBillBean) ProtoMessage()               {}
-func (*PhzPlayRoundBillBean) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{24} }
+func (*PhzPlayRoundBillBean) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{28} }
 
 func (m *PhzPlayRoundBillBean) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -843,18 +1292,20 @@ func (m *PhzPlayRoundBillBean) GetCoin() int64 {
 }
 
 type PhzPlayCurrentResult struct {
-	Header           *ProtoHeader            `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
-	HandPokers       []*PhzPlayHandPokers    `protobuf:"bytes,2,rep,name=handPokers" json:"handPokers,omitempty"`
-	CurrentRound     *int32                  `protobuf:"varint,3,opt,name=currentRound" json:"currentRound,omitempty"`
-	TotalRound       *int32                  `protobuf:"varint,4,opt,name=totalRound" json:"totalRound,omitempty"`
-	RoundBean        []*PhzPlayRoundBillBean `protobuf:"bytes,5,rep,name=roundBean" json:"roundBean,omitempty"`
-	XXX_unrecognized []byte                  `json:"-"`
+	Header           *ProtoHeader              `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
+	DeskRemainPokers []int32                   `protobuf:"varint,2,rep,name=deskRemainPokers" json:"deskRemainPokers,omitempty"`
+	HuType           *int32                    `protobuf:"varint,3,opt,name=huType" json:"huType,omitempty"`
+	CurrentRound     *int32                    `protobuf:"varint,4,opt,name=currentRound" json:"currentRound,omitempty"`
+	TotalRound       *int32                    `protobuf:"varint,5,opt,name=totalRound" json:"totalRound,omitempty"`
+	IsHuangZhuang    *bool                     `protobuf:"varint,6,opt,name=isHuangZhuang" json:"isHuangZhuang,omitempty"`
+	UserLotteryInfo  []*PhzPlayUserLotteryInfo `protobuf:"bytes,7,rep,name=userLotteryInfo" json:"userLotteryInfo,omitempty"`
+	XXX_unrecognized []byte                    `json:"-"`
 }
 
 func (m *PhzPlayCurrentResult) Reset()                    { *m = PhzPlayCurrentResult{} }
 func (m *PhzPlayCurrentResult) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayCurrentResult) ProtoMessage()               {}
-func (*PhzPlayCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{25} }
+func (*PhzPlayCurrentResult) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{29} }
 
 func (m *PhzPlayCurrentResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -863,11 +1314,18 @@ func (m *PhzPlayCurrentResult) GetHeader() *ProtoHeader {
 	return nil
 }
 
-func (m *PhzPlayCurrentResult) GetHandPokers() []*PhzPlayHandPokers {
+func (m *PhzPlayCurrentResult) GetDeskRemainPokers() []int32 {
 	if m != nil {
-		return m.HandPokers
+		return m.DeskRemainPokers
 	}
 	return nil
+}
+
+func (m *PhzPlayCurrentResult) GetHuType() int32 {
+	if m != nil && m.HuType != nil {
+		return *m.HuType
+	}
+	return 0
 }
 
 func (m *PhzPlayCurrentResult) GetCurrentRound() int32 {
@@ -884,9 +1342,154 @@ func (m *PhzPlayCurrentResult) GetTotalRound() int32 {
 	return 0
 }
 
-func (m *PhzPlayCurrentResult) GetRoundBean() []*PhzPlayRoundBillBean {
+func (m *PhzPlayCurrentResult) GetIsHuangZhuang() bool {
+	if m != nil && m.IsHuangZhuang != nil {
+		return *m.IsHuangZhuang
+	}
+	return false
+}
+
+func (m *PhzPlayCurrentResult) GetUserLotteryInfo() []*PhzPlayUserLotteryInfo {
 	if m != nil {
-		return m.RoundBean
+		return m.UserLotteryInfo
+	}
+	return nil
+}
+
+type PhzPlayUserLotteryInfo struct {
+	UserId           *uint32          `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	IsBanker         *bool            `protobuf:"varint,2,opt,name=isBanker" json:"isBanker,omitempty"`
+	IsWin            *bool            `protobuf:"varint,3,opt,name=isWin" json:"isWin,omitempty"`
+	IsZiMo           *bool            `protobuf:"varint,4,opt,name=isZiMo" json:"isZiMo,omitempty"`
+	IsDianPao        *bool            `protobuf:"varint,5,opt,name=isDianPao" json:"isDianPao,omitempty"`
+	HuXi             *int32           `protobuf:"varint,6,opt,name=huXi" json:"huXi,omitempty"`
+	HuPai            *int32           `protobuf:"varint,7,opt,name=huPai" json:"huPai,omitempty"`
+	PengPais         []*PhzPlayPaiIds `protobuf:"bytes,8,rep,name=pengPais" json:"pengPais,omitempty"`
+	WeiPais          []*PhzPlayPaiIds `protobuf:"bytes,9,rep,name=weiPais" json:"weiPais,omitempty"`
+	TiPais           []*PhzPlayPaiIds `protobuf:"bytes,10,rep,name=tiPais" json:"tiPais,omitempty"`
+	PaoPais          []*PhzPlayPaiIds `protobuf:"bytes,11,rep,name=paoPais" json:"paoPais,omitempty"`
+	JiangPai         []*PhzPlayPaiIds `protobuf:"bytes,12,rep,name=jiangPai" json:"jiangPai,omitempty"`
+	ChiPais          []*PhzPlayPaiIds `protobuf:"bytes,13,rep,name=chiPais" json:"chiPais,omitempty"`
+	RemainPokers     []*PhzPlayPaiIds `protobuf:"bytes,14,rep,name=remainPokers" json:"remainPokers,omitempty"`
+	XXX_unrecognized []byte           `json:"-"`
+}
+
+func (m *PhzPlayUserLotteryInfo) Reset()                    { *m = PhzPlayUserLotteryInfo{} }
+func (m *PhzPlayUserLotteryInfo) String() string            { return proto.CompactTextString(m) }
+func (*PhzPlayUserLotteryInfo) ProtoMessage()               {}
+func (*PhzPlayUserLotteryInfo) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{30} }
+
+func (m *PhzPlayUserLotteryInfo) GetUserId() uint32 {
+	if m != nil && m.UserId != nil {
+		return *m.UserId
+	}
+	return 0
+}
+
+func (m *PhzPlayUserLotteryInfo) GetIsBanker() bool {
+	if m != nil && m.IsBanker != nil {
+		return *m.IsBanker
+	}
+	return false
+}
+
+func (m *PhzPlayUserLotteryInfo) GetIsWin() bool {
+	if m != nil && m.IsWin != nil {
+		return *m.IsWin
+	}
+	return false
+}
+
+func (m *PhzPlayUserLotteryInfo) GetIsZiMo() bool {
+	if m != nil && m.IsZiMo != nil {
+		return *m.IsZiMo
+	}
+	return false
+}
+
+func (m *PhzPlayUserLotteryInfo) GetIsDianPao() bool {
+	if m != nil && m.IsDianPao != nil {
+		return *m.IsDianPao
+	}
+	return false
+}
+
+func (m *PhzPlayUserLotteryInfo) GetHuXi() int32 {
+	if m != nil && m.HuXi != nil {
+		return *m.HuXi
+	}
+	return 0
+}
+
+func (m *PhzPlayUserLotteryInfo) GetHuPai() int32 {
+	if m != nil && m.HuPai != nil {
+		return *m.HuPai
+	}
+	return 0
+}
+
+func (m *PhzPlayUserLotteryInfo) GetPengPais() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.PengPais
+	}
+	return nil
+}
+
+func (m *PhzPlayUserLotteryInfo) GetWeiPais() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.WeiPais
+	}
+	return nil
+}
+
+func (m *PhzPlayUserLotteryInfo) GetTiPais() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.TiPais
+	}
+	return nil
+}
+
+func (m *PhzPlayUserLotteryInfo) GetPaoPais() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.PaoPais
+	}
+	return nil
+}
+
+func (m *PhzPlayUserLotteryInfo) GetJiangPai() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.JiangPai
+	}
+	return nil
+}
+
+func (m *PhzPlayUserLotteryInfo) GetChiPais() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.ChiPais
+	}
+	return nil
+}
+
+func (m *PhzPlayUserLotteryInfo) GetRemainPokers() []*PhzPlayPaiIds {
+	if m != nil {
+		return m.RemainPokers
+	}
+	return nil
+}
+
+type PhzPlayPaiIds struct {
+	PokerId          []int32 `protobuf:"varint,1,rep,name=pokerId" json:"pokerId,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *PhzPlayPaiIds) Reset()                    { *m = PhzPlayPaiIds{} }
+func (m *PhzPlayPaiIds) String() string            { return proto.CompactTextString(m) }
+func (*PhzPlayPaiIds) ProtoMessage()               {}
+func (*PhzPlayPaiIds) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{31} }
+
+func (m *PhzPlayPaiIds) GetPokerId() []int32 {
+	if m != nil {
+		return m.PokerId
 	}
 	return nil
 }
@@ -904,7 +1507,7 @@ type PhzPlayEndResult struct {
 func (m *PhzPlayEndResult) Reset()                    { *m = PhzPlayEndResult{} }
 func (m *PhzPlayEndResult) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayEndResult) ProtoMessage()               {}
-func (*PhzPlayEndResult) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{26} }
+func (*PhzPlayEndResult) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{32} }
 
 func (m *PhzPlayEndResult) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -948,6 +1551,23 @@ func (m *PhzPlayEndResult) GetWxInfo() *WeixinInfo {
 	return nil
 }
 
+type PhzPlayEndLottery struct {
+	UserLottery      []*PhzPlayEndResult `protobuf:"bytes,1,rep,name=userLottery" json:"userLottery,omitempty"`
+	XXX_unrecognized []byte              `json:"-"`
+}
+
+func (m *PhzPlayEndLottery) Reset()                    { *m = PhzPlayEndLottery{} }
+func (m *PhzPlayEndLottery) String() string            { return proto.CompactTextString(m) }
+func (*PhzPlayEndLottery) ProtoMessage()               {}
+func (*PhzPlayEndLottery) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{33} }
+
+func (m *PhzPlayEndLottery) GetUserLottery() []*PhzPlayEndResult {
+	if m != nil {
+		return m.UserLottery
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*PhzReq_Ready)(nil), "ddproto.phz_req_Ready")
 	proto.RegisterType((*PhzAck_Ready)(nil), "ddproto.phz_ack_Ready")
@@ -964,6 +1584,8 @@ func init() {
 	proto.RegisterType((*PhzPlay_ChiPai)(nil), "ddproto.phz_play_ChiPai")
 	proto.RegisterType((*PhzPlayCanChi)(nil), "ddproto.phz_play_canChi")
 	proto.RegisterType((*PhzReqChiPai)(nil), "ddproto.phz_req_chiPai")
+	proto.RegisterType((*PhzReqBiPai)(nil), "ddproto.phz_req_biPai")
+	proto.RegisterType((*PhzAckBiPai)(nil), "ddproto.phz_ack_biPai")
 	proto.RegisterType((*PhzAckChiPai)(nil), "ddproto.phz_ack_chiPai")
 	proto.RegisterType((*PhzPlayTiPai)(nil), "ddproto.phz_play_tiPai")
 	proto.RegisterType((*PhzPlayCanTiPai)(nil), "ddproto.phz_play_canTiPai")
@@ -972,74 +1594,121 @@ func init() {
 	proto.RegisterType((*PhzPlayCanHuPai)(nil), "ddproto.phz_play_canHuPai")
 	proto.RegisterType((*PhzReqHuPai)(nil), "ddproto.phz_req_huPai")
 	proto.RegisterType((*PhzAckHuPai)(nil), "ddproto.phz_ack_huPai")
+	proto.RegisterType((*PhzReqPass)(nil), "ddproto.phz_req_pass")
+	proto.RegisterType((*PhzAckPass)(nil), "ddproto.phz_ack_pass")
 	proto.RegisterType((*PhzPlayHandPokers)(nil), "ddproto.phz_play_handPokers")
 	proto.RegisterType((*PhzPlayRoundBillBean)(nil), "ddproto.phz_play_roundBillBean")
 	proto.RegisterType((*PhzPlayCurrentResult)(nil), "ddproto.phz_play_currentResult")
+	proto.RegisterType((*PhzPlayUserLotteryInfo)(nil), "ddproto.phz_play_userLotteryInfo")
+	proto.RegisterType((*PhzPlayPaiIds)(nil), "ddproto.phz_play_paiIds")
 	proto.RegisterType((*PhzPlayEndResult)(nil), "ddproto.phz_play_endResult")
+	proto.RegisterType((*PhzPlayEndLottery)(nil), "ddproto.phz_play_endLottery")
+	proto.RegisterEnum("ddproto.PhzEnumActionType", PhzEnumActionType_name, PhzEnumActionType_value)
+	proto.RegisterEnum("ddproto.PhzEnumHuType", PhzEnumHuType_name, PhzEnumHuType_value)
 }
 
-func init() { proto.RegisterFile("phz_play.proto", fileDescriptor45) }
+func init() { proto.RegisterFile("phz_play.proto", fileDescriptor47) }
 
-var fileDescriptor45 = []byte{
-	// 947 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xdb, 0x6e, 0xdc, 0x44,
-	0x18, 0xc6, 0x7b, 0x4a, 0xfa, 0x6f, 0x0f, 0x30, 0x89, 0x82, 0x59, 0x0a, 0x44, 0x73, 0x43, 0x54,
-	0x4a, 0x90, 0x96, 0x3b, 0xd4, 0xde, 0x24, 0x88, 0xee, 0x0a, 0xa1, 0x58, 0x93, 0x94, 0x72, 0xb8,
-	0x58, 0x4d, 0xec, 0x21, 0x1e, 0x75, 0x33, 0x36, 0x63, 0x9b, 0x34, 0x3c, 0x00, 0x5c, 0x21, 0x21,
-	0xf1, 0x36, 0xbc, 0x09, 0xaf, 0xc0, 0x53, 0xa0, 0xf9, 0x67, 0x7c, 0xd8, 0x6c, 0x56, 0xd4, 0x56,
-	0x6f, 0x56, 0xf3, 0xcd, 0x7e, 0xff, 0xf9, 0xe0, 0x81, 0xfb, 0x69, 0xfc, 0xeb, 0x22, 0x5d, 0xf2,
-	0xeb, 0xc3, 0x54, 0x27, 0x79, 0x42, 0xb6, 0xa2, 0x08, 0x0f, 0x93, 0x9d, 0x30, 0xb9, 0xbc, 0x4c,
-	0xd4, 0x22, 0x5c, 0x4a, 0xa1, 0x72, 0xfb, 0xef, 0x04, 0xd9, 0xe7, 0x3c, 0x13, 0x16, 0xd3, 0xa7,
-	0x70, 0xcf, 0xdc, 0x68, 0xf1, 0xf3, 0x82, 0x09, 0x1e, 0x5d, 0x93, 0xc7, 0x30, 0x8a, 0x05, 0x8f,
-	0x84, 0xf6, 0xbd, 0x7d, 0xef, 0x60, 0x3c, 0xdd, 0x3d, 0x74, 0xfa, 0x0e, 0x03, 0xf3, 0x3b, 0xc3,
-	0xff, 0x98, 0xe3, 0xd0, 0xdf, 0x3c, 0x2b, 0xcf, 0xc3, 0x97, 0x5d, 0xe4, 0xc9, 0x33, 0x78, 0x50,
-	0x64, 0x42, 0xa3, 0xe8, 0x69, 0xce, 0xf3, 0x22, 0xf3, 0x7b, 0xfb, 0xfd, 0x83, 0xf1, 0xf4, 0x83,
-	0x4a, 0xac, 0x0c, 0x6f, 0xd1, 0x20, 0xb1, 0x9b, 0x52, 0x74, 0x06, 0xbb, 0xb7, 0x11, 0xc9, 0x1e,
-	0x8c, 0x0c, 0x75, 0x1e, 0xa1, 0x3b, 0xf7, 0x98, 0x43, 0xc4, 0x87, 0x2d, 0x99, 0x21, 0xd1, 0xef,
-	0xed, 0x7b, 0x07, 0xdb, 0xac, 0x84, 0x34, 0x82, 0xb7, 0x2b, 0x4d, 0x27, 0xa9, 0x50, 0x52, 0x5d,
-	0xb4, 0x0c, 0x8a, 0xc2, 0xdd, 0xb0, 0xd0, 0x5a, 0xa8, 0x9c, 0x25, 0x85, 0x8a, 0xd0, 0xc0, 0x90,
-	0xad, 0xdc, 0xd1, 0x1f, 0x80, 0x54, 0x56, 0x4e, 0x85, 0x8a, 0x8e, 0xb9, 0x8e, 0xb2, 0x96, 0x76,
-	0xf6, 0x60, 0x94, 0x72, 0x39, 0x8f, 0x6c, 0xce, 0x86, 0xcc, 0x21, 0xfa, 0xad, 0x8d, 0xc0, 0xd4,
-	0xf4, 0xa4, 0xc8, 0xbb, 0x68, 0xde, 0x85, 0x21, 0xea, 0x72, 0xae, 0x5b, 0x40, 0xcf, 0xad, 0x5e,
-	0x53, 0xeb, 0x8e, 0x7a, 0xf7, 0x61, 0x2c, 0x33, 0x27, 0x7b, 0xf2, 0xb5, 0xcb, 0x7c, 0xf3, 0x8a,
-	0xfe, 0xe9, 0xd5, 0x0d, 0xbd, 0xf8, 0x26, 0x09, 0xb8, 0x7c, 0x13, 0xae, 0xdb, 0x72, 0x7f, 0x25,
-	0x75, 0x96, 0xfb, 0xfd, 0xb2, 0xdc, 0x08, 0x8d, 0x4b, 0x49, 0x2a, 0x34, 0xcf, 0x13, 0xfd, 0x7c,
-	0xfe, 0xa5, 0x3f, 0xc0, 0x2e, 0x69, 0x5e, 0xd1, 0x7f, 0x3d, 0x78, 0xa7, 0xee, 0x88, 0x5f, 0x84,
-	0xce, 0x0b, 0xad, 0x5a, 0x7a, 0xf5, 0x29, 0x0c, 0x02, 0xa1, 0x2e, 0xd0, 0xa9, 0xf1, 0xf4, 0xbd,
-	0xf5, 0xe6, 0x3e, 0xe6, 0xca, 0x10, 0x18, 0xd2, 0xc8, 0x23, 0xe8, 0x1f, 0xc7, 0x12, 0x5d, 0x1d,
-	0x4f, 0xfd, 0x75, 0x76, 0xc8, 0xd5, 0x71, 0x2c, 0x99, 0x21, 0x91, 0x47, 0xd0, 0x9b, 0x15, 0xe8,
-	0xf7, 0x78, 0x3a, 0xb9, 0x95, 0x3a, 0x2b, 0x02, 0x2e, 0x59, 0x6f, 0x56, 0xdc, 0x0c, 0x76, 0xb8,
-	0x1e, 0x6c, 0xd0, 0xe8, 0x7e, 0xe7, 0x93, 0x49, 0x5e, 0x68, 0x8f, 0x18, 0xeb, 0x36, 0x2b, 0x21,
-	0x76, 0xba, 0x3d, 0x06, 0x8d, 0x9c, 0xaf, 0xdc, 0x51, 0x05, 0x77, 0xcb, 0x6e, 0x44, 0x99, 0x76,
-	0x89, 0x7b, 0x08, 0x77, 0xd2, 0x1b, 0xea, 0xeb, 0x0b, 0x42, 0x60, 0x60, 0x80, 0xab, 0x29, 0x9e,
-	0xe9, 0x13, 0x6b, 0xcf, 0x74, 0x69, 0x7b, 0x7b, 0xf4, 0x63, 0x78, 0x50, 0xc7, 0x1f, 0x4b, 0xd3,
-	0x7f, 0x55, 0x47, 0x79, 0x38, 0x65, 0x6e, 0x18, 0xfe, 0xf2, 0x1a, 0x4c, 0x5b, 0x8f, 0xf6, 0xe3,
-	0x6b, 0xe5, 0xdc, 0x1c, 0x38, 0x44, 0xbe, 0x80, 0x71, 0x88, 0x96, 0x9f, 0xe9, 0xa4, 0x48, 0xfd,
-	0x3e, 0xee, 0xc3, 0x5b, 0x9a, 0xc0, 0xba, 0xc7, 0x9a, 0x64, 0xaa, 0xed, 0xf4, 0x98, 0x64, 0xdb,
-	0xeb, 0x96, 0x3e, 0x4d, 0x61, 0xcb, 0xca, 0x65, 0xae, 0x55, 0x37, 0xdb, 0x2d, 0x89, 0xf4, 0x6f,
-	0x37, 0xb2, 0x26, 0xe3, 0x9d, 0x8c, 0xe2, 0x70, 0x1e, 0x19, 0xc1, 0x7a, 0x17, 0x23, 0x6c, 0xba,
-	0xd3, 0x7f, 0x4d, 0x77, 0xc8, 0x63, 0x18, 0xa4, 0x46, 0x60, 0xf0, 0x3f, 0x79, 0x43, 0x16, 0xfd,
-	0xb1, 0xb1, 0x6e, 0xf2, 0xcd, 0xe5, 0x26, 0x9f, 0xc3, 0x28, 0x97, 0x67, 0xd7, 0xa9, 0x40, 0x17,
-	0xef, 0x4f, 0xdf, 0x5f, 0xd1, 0x2b, 0x54, 0x71, 0xb9, 0xc8, 0x65, 0xca, 0x91, 0xc2, 0x1c, 0x95,
-	0xea, 0xc6, 0xe2, 0x08, 0xb9, 0x3a, 0xeb, 0x90, 0x9b, 0xcf, 0x8c, 0x5d, 0x57, 0x0f, 0x13, 0xcf,
-	0xbb, 0xeb, 0xf1, 0xe0, 0xff, 0xcc, 0xd1, 0xe8, 0xf7, 0x8d, 0xb6, 0xbc, 0x12, 0xdd, 0xaa, 0x61,
-	0xe5, 0xca, 0xcf, 0x4a, 0x09, 0x57, 0x54, 0xa7, 0x3c, 0xe9, 0xa4, 0xda, 0xca, 0x55, 0xaa, 0x1d,
-	0xa4, 0x7f, 0x78, 0xab, 0xa9, 0xc2, 0x95, 0xd5, 0x7e, 0xf3, 0xa3, 0xa4, 0x6b, 0x22, 0x0b, 0x8c,
-	0xcd, 0xb8, 0xb0, 0xeb, 0xa3, 0x8f, 0xeb, 0xa3, 0x84, 0x64, 0x02, 0xdb, 0x32, 0x3b, 0x93, 0x28,
-	0x32, 0x40, 0x91, 0x0a, 0xd3, 0xd3, 0xfa, 0x59, 0x14, 0x17, 0x6f, 0xe8, 0x23, 0x44, 0x9f, 0xd7,
-	0x6f, 0xa5, 0x2e, 0x4a, 0x37, 0x7d, 0xee, 0xe7, 0xb0, 0x53, 0xa5, 0x2e, 0xe6, 0x2a, 0x0a, 0x92,
-	0x97, 0x42, 0x6f, 0x7e, 0xf9, 0x4c, 0x60, 0x3b, 0x35, 0x8c, 0x5a, 0x51, 0x85, 0xa9, 0x82, 0xbd,
-	0x4a, 0x95, 0x36, 0xef, 0x94, 0x23, 0xb9, 0x5c, 0x1e, 0x09, 0xae, 0x36, 0x6a, 0xdb, 0x85, 0x61,
-	0x16, 0x26, 0xda, 0x8e, 0x45, 0x9f, 0x59, 0x60, 0xf6, 0x72, 0x5c, 0x7c, 0x27, 0x5d, 0xc6, 0xf1,
-	0x6c, 0xee, 0xc2, 0x44, 0x2a, 0x4c, 0x75, 0x9f, 0xe1, 0x99, 0xfe, 0xde, 0x6b, 0x18, 0x2c, 0xdf,
-	0x47, 0x22, 0x2b, 0x96, 0x79, 0xcb, 0xdc, 0x3c, 0x01, 0xa8, 0x43, 0x77, 0xa3, 0xf2, 0x70, 0x7d,
-	0x54, 0x6a, 0x0e, 0x6b, 0xf0, 0xd7, 0x1e, 0x6c, 0xfd, 0xf5, 0x07, 0x1b, 0xf9, 0x10, 0x20, 0x4f,
-	0x72, 0xbe, 0xb4, 0x8c, 0x01, 0x32, 0x1a, 0x37, 0xe4, 0x29, 0xdc, 0xb1, 0x19, 0x13, 0x5c, 0xf9,
-	0x43, 0x74, 0xe0, 0xa3, 0x75, 0x07, 0x56, 0x92, 0xca, 0x6a, 0x09, 0xfa, 0x8f, 0xd7, 0x78, 0x10,
-	0x0a, 0x15, 0x75, 0xca, 0x42, 0x5d, 0xa4, 0xde, 0xcd, 0x92, 0xcb, 0xec, 0x5c, 0x5e, 0xbc, 0x90,
-	0xca, 0x7d, 0x2a, 0x2b, 0x6c, 0x97, 0xef, 0xc9, 0x95, 0x12, 0xda, 0x0d, 0x41, 0x09, 0x8d, 0xd4,
-	0x95, 0x54, 0xa7, 0x58, 0xdd, 0x21, 0x16, 0xad, 0xc2, 0xe4, 0x13, 0x18, 0x5d, 0xbd, 0x9a, 0xab,
-	0x9f, 0x12, 0x7f, 0x84, 0x7e, 0xed, 0x54, 0x7e, 0xbd, 0x10, 0xf2, 0x95, 0x54, 0xe6, 0x2f, 0xe6,
-	0x28, 0xc1, 0x5b, 0x81, 0xf7, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x50, 0x82, 0x7d, 0x8b, 0xa6,
-	0x0c, 0x00, 0x00,
+var fileDescriptor47 = []byte{
+	// 1595 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x18, 0xcb, 0x72, 0x1b, 0xc5,
+	0xf6, 0x8e, 0x9e, 0x76, 0xcb, 0x4e, 0x94, 0xb6, 0xe3, 0x4c, 0x7c, 0x7d, 0x6f, 0x99, 0x29, 0xaa,
+	0x70, 0x39, 0x54, 0x48, 0x89, 0xac, 0xa8, 0x64, 0x21, 0xcb, 0xc1, 0x33, 0x65, 0x62, 0x4d, 0x8d,
+	0x3d, 0x38, 0x31, 0x0b, 0x55, 0x5b, 0x6a, 0xac, 0xc6, 0x76, 0x8f, 0x98, 0x07, 0x8e, 0x61, 0xc3,
+	0x2a, 0x3b, 0x76, 0x6c, 0xa9, 0x62, 0xc1, 0x9a, 0x2f, 0xc8, 0x86, 0x7f, 0x60, 0xc3, 0x07, 0xf0,
+	0x03, 0x7c, 0x01, 0xd5, 0xa7, 0x7b, 0x66, 0x5a, 0x92, 0x15, 0x45, 0xaa, 0x6c, 0x54, 0x73, 0x4e,
+	0x9f, 0xd3, 0xe7, 0xfd, 0x68, 0xa1, 0x5b, 0x83, 0xfe, 0xf7, 0x9d, 0xc1, 0x05, 0xb9, 0x7e, 0x38,
+	0x08, 0x83, 0x38, 0xc0, 0xd5, 0x5e, 0x0f, 0x3e, 0xd6, 0x57, 0xba, 0xc1, 0xe5, 0x65, 0xc0, 0x3b,
+	0xdd, 0x0b, 0x46, 0x79, 0x2c, 0x4f, 0xd7, 0x81, 0xfa, 0x94, 0x44, 0x54, 0xc2, 0xd6, 0x53, 0xb4,
+	0x2c, 0x30, 0x21, 0xfd, 0xb6, 0xe3, 0x51, 0xd2, 0xbb, 0xc6, 0x1f, 0xa3, 0x4a, 0x9f, 0x92, 0x1e,
+	0x0d, 0x4d, 0x63, 0xd3, 0xd8, 0xaa, 0x35, 0x56, 0x1f, 0xaa, 0xfb, 0x1e, 0xba, 0xe2, 0xd7, 0x86,
+	0x33, 0x4f, 0xd1, 0x58, 0xaf, 0x0d, 0xc9, 0x4f, 0xba, 0xe7, 0xf3, 0xf0, 0xe3, 0x3d, 0x74, 0x3b,
+	0x89, 0x68, 0x08, 0xac, 0x87, 0x31, 0x89, 0x93, 0xc8, 0x2c, 0x6c, 0x16, 0xb7, 0x6a, 0x8d, 0xff,
+	0x65, 0x6c, 0xa9, 0x79, 0x1d, 0x8d, 0xc8, 0x1b, 0xe5, 0xb2, 0x6c, 0xb4, 0x7a, 0x13, 0x21, 0x5e,
+	0x43, 0x15, 0x41, 0xea, 0xf4, 0x40, 0x9d, 0x65, 0x4f, 0x41, 0xd8, 0x44, 0x55, 0x16, 0x01, 0xa1,
+	0x59, 0xd8, 0x34, 0xb6, 0x16, 0xbc, 0x14, 0xb4, 0x7a, 0xa8, 0x9e, 0xdd, 0xd4, 0x1e, 0x50, 0xce,
+	0xf8, 0xd9, 0x8c, 0x46, 0x59, 0x68, 0xa9, 0x9b, 0x84, 0x21, 0xe5, 0xb1, 0x17, 0x24, 0xbc, 0x07,
+	0x02, 0xca, 0xde, 0x10, 0xce, 0x3a, 0x41, 0x38, 0x93, 0x72, 0x48, 0x79, 0xaf, 0x45, 0xc2, 0x5e,
+	0x34, 0xa3, 0x9c, 0x35, 0x54, 0x19, 0x10, 0xe6, 0xf4, 0xa4, 0xcf, 0xca, 0x9e, 0x82, 0xac, 0x2f,
+	0xa5, 0x05, 0x22, 0xa6, 0xed, 0x24, 0x9e, 0xe7, 0xe6, 0x55, 0x54, 0x86, 0xbb, 0x94, 0xea, 0x12,
+	0xb0, 0x5e, 0xc9, 0x7b, 0x45, 0xac, 0xe7, 0xbc, 0x77, 0x13, 0xd5, 0x58, 0xa4, 0x78, 0xdb, 0xfb,
+	0xca, 0xf3, 0x3a, 0x2a, 0x97, 0x5c, 0xd4, 0x25, 0xbf, 0x31, 0xf2, 0x34, 0xef, 0x3c, 0x0f, 0x5c,
+	0xc2, 0xde, 0x87, 0x41, 0x32, 0x09, 0x3e, 0x67, 0x61, 0x14, 0x83, 0x38, 0x48, 0x02, 0x00, 0x85,
+	0xa2, 0xc1, 0x80, 0x86, 0x24, 0x0e, 0x42, 0xdf, 0xd9, 0x35, 0x4b, 0x90, 0x3b, 0x3a, 0x0a, 0x6f,
+	0xa3, 0x7a, 0x48, 0x2f, 0x09, 0xe3, 0x6e, 0x70, 0x4e, 0xc3, 0x56, 0x90, 0xf0, 0xd8, 0x2c, 0xc3,
+	0xe5, 0x63, 0x78, 0xeb, 0x97, 0x02, 0xba, 0x93, 0xe7, 0xd4, 0x77, 0x34, 0x8c, 0x93, 0x90, 0xcf,
+	0x68, 0x81, 0x89, 0xaa, 0x5d, 0xc2, 0x5d, 0xca, 0xcf, 0xd2, 0x84, 0x55, 0x20, 0xde, 0x46, 0xc5,
+	0x56, 0x9f, 0x81, 0x05, 0xb5, 0x86, 0x39, 0x5e, 0x37, 0x5d, 0xc2, 0x5b, 0x7d, 0xe6, 0x09, 0x22,
+	0xe1, 0x87, 0x2e, 0xe1, 0x76, 0x02, 0x16, 0x2d, 0x78, 0x12, 0x18, 0xb5, 0xb6, 0x3c, 0x6e, 0xed,
+	0xff, 0x11, 0xea, 0x12, 0xae, 0xc2, 0x64, 0x56, 0x80, 0x59, 0xc3, 0xe0, 0x27, 0x08, 0x91, 0x6e,
+	0xcc, 0x02, 0x7e, 0x74, 0x3d, 0xa0, 0x66, 0x75, 0xd3, 0xd8, 0xba, 0xd5, 0xd8, 0x18, 0x52, 0x85,
+	0xf2, 0xe4, 0xb2, 0x93, 0xd3, 0x78, 0x1a, 0xbd, 0xf5, 0xb3, 0xa1, 0xd5, 0x5c, 0x4b, 0x99, 0x35,
+	0xb3, 0x7b, 0xae, 0x28, 0x73, 0x09, 0x4b, 0x8b, 0x21, 0x05, 0xf1, 0x3a, 0x5a, 0x60, 0xd1, 0x31,
+	0x00, 0x2a, 0xca, 0x19, 0x8c, 0x37, 0xd0, 0x22, 0x8b, 0x5a, 0xfd, 0x20, 0x39, 0xa6, 0x4c, 0xb9,
+	0x24, 0x47, 0x58, 0x4f, 0xd0, 0x52, 0x5a, 0x47, 0xb3, 0x6b, 0x64, 0xfd, 0x6a, 0x48, 0x76, 0x51,
+	0x2e, 0xf3, 0x19, 0x14, 0x24, 0xb1, 0x1f, 0xd1, 0x10, 0xe2, 0xbd, 0xec, 0xa5, 0xa0, 0x30, 0x68,
+	0x40, 0xf9, 0x19, 0x1c, 0x15, 0xe1, 0x28, 0x83, 0x05, 0x97, 0xf8, 0x16, 0xb6, 0x96, 0xa4, 0x1b,
+	0x14, 0x88, 0x31, 0x2a, 0xf5, 0x93, 0x17, 0x4c, 0xe5, 0x28, 0x7c, 0x5b, 0x1f, 0xa1, 0xdb, 0xb9,
+	0xdb, 0xfb, 0xe0, 0x91, 0xac, 0x50, 0x0c, 0x60, 0x57, 0xf5, 0xf7, 0x83, 0x46, 0x28, 0xd3, 0x69,
+	0x46, 0x6b, 0x3e, 0x43, 0xb5, 0x2e, 0x08, 0xd8, 0x0b, 0x83, 0x64, 0xa0, 0x7a, 0xfc, 0x0d, 0xb9,
+	0x2a, 0xb5, 0xf0, 0x74, 0x62, 0xeb, 0x37, 0x55, 0xfc, 0x22, 0x0e, 0x12, 0x3f, 0xa3, 0xf0, 0x06,
+	0xaa, 0x4a, 0xbe, 0x08, 0x5c, 0xf9, 0x36, 0xc1, 0x29, 0x21, 0x7e, 0x84, 0x2a, 0xa7, 0x92, 0xa5,
+	0x38, 0x45, 0x57, 0x45, 0x67, 0x7d, 0x95, 0x4f, 0xd2, 0xd3, 0x39, 0x94, 0xdc, 0x40, 0x8b, 0x52,
+	0x76, 0xde, 0xcf, 0x73, 0x84, 0x15, 0xe4, 0x63, 0x76, 0x9e, 0xcb, 0x73, 0x6b, 0x0a, 0xef, 0x68,
+	0xcd, 0xeb, 0x82, 0x74, 0xba, 0x90, 0x38, 0x97, 0xd3, 0xa1, 0xb7, 0xee, 0x40, 0xd5, 0x65, 0x03,
+	0x16, 0x40, 0x3d, 0x1c, 0xc5, 0xd9, 0xc3, 0x51, 0x7a, 0x37, 0x03, 0xf4, 0xfa, 0x29, 0x0f, 0xd7,
+	0x8f, 0x09, 0xf2, 0xe1, 0xa4, 0x22, 0x4f, 0x14, 0x98, 0xd5, 0x48, 0x55, 0xab, 0x91, 0x17, 0xda,
+	0xe4, 0x89, 0x27, 0x97, 0x88, 0xd0, 0x30, 0x66, 0xd0, 0xfd, 0x8a, 0xd0, 0xfd, 0xcc, 0xf1, 0xee,
+	0x27, 0xcf, 0x3d, 0x45, 0x67, 0xfd, 0x69, 0x68, 0x53, 0xa1, 0x4b, 0xf8, 0xd1, 0x1c, 0x5e, 0xfe,
+	0x44, 0x48, 0xd5, 0x02, 0x7b, 0x6f, 0xdc, 0x2f, 0xb1, 0x74, 0x4b, 0x3c, 0xe6, 0x96, 0xd2, 0xb0,
+	0x5b, 0xd6, 0xc4, 0x55, 0x9a, 0xbf, 0x14, 0x94, 0x39, 0xa5, 0x92, 0x3b, 0x45, 0xf6, 0xd4, 0x1d,
+	0xb2, 0x9f, 0x10, 0xe9, 0x2c, 0xe8, 0xa9, 0x12, 0xb6, 0x2e, 0xb5, 0x5e, 0x21, 0x7b, 0xf0, 0x7b,
+	0x6b, 0xe5, 0xa9, 0x2a, 0x45, 0x2d, 0x3e, 0xff, 0x18, 0x9a, 0xbc, 0x01, 0x09, 0xe6, 0x92, 0x27,
+	0xf9, 0x32, 0x79, 0x0a, 0xc4, 0x9f, 0xc2, 0x89, 0x16, 0xd4, 0xfb, 0xe3, 0x41, 0x55, 0x04, 0x5e,
+	0x4a, 0xf9, 0x16, 0x0f, 0x4b, 0x41, 0x7a, 0x4a, 0x2a, 0x70, 0x66, 0x1f, 0xff, 0x34, 0x92, 0x3a,
+	0x76, 0x32, 0xd7, 0x4a, 0x24, 0x57, 0x81, 0x82, 0xbe, 0x0a, 0x98, 0xa8, 0xda, 0x4f, 0x5c, 0x6d,
+	0x03, 0x4b, 0x41, 0xa9, 0xcf, 0x11, 0xd3, 0xb6, 0x87, 0x0c, 0xd6, 0x5f, 0x11, 0xfd, 0xd9, 0x55,
+	0xb1, 0xfe, 0xd6, 0x5e, 0x11, 0x73, 0xf0, 0x4f, 0x5a, 0x84, 0xf5, 0x50, 0x14, 0xc7, 0x92, 0xbd,
+	0x9f, 0x68, 0x31, 0x52, 0xd0, 0x4d, 0x53, 0x52, 0x54, 0x76, 0x3f, 0x81, 0x24, 0xa8, 0x4c, 0xaa,
+	0x6c, 0x79, 0xee, 0x29, 0x3a, 0x71, 0x3b, 0x8b, 0x4e, 0xd8, 0xf3, 0x40, 0x05, 0x4e, 0x41, 0xd6,
+	0x45, 0xbe, 0x50, 0x0c, 0x48, 0x34, 0xc7, 0xba, 0xaf, 0x9e, 0x32, 0x85, 0xa1, 0xa7, 0x0c, 0x48,
+	0x73, 0x49, 0x14, 0xa9, 0xf5, 0x46, 0x41, 0xd6, 0x20, 0xdf, 0x3f, 0xe6, 0x97, 0xc6, 0x86, 0xa4,
+	0x31, 0x95, 0x06, 0xe2, 0xfe, 0xf6, 0x79, 0xbe, 0x4e, 0x49, 0xd8, 0x72, 0xd0, 0x4a, 0x96, 0x95,
+	0x7d, 0xc2, 0x7b, 0xb0, 0x02, 0x4f, 0x7e, 0x83, 0x89, 0x45, 0x46, 0x50, 0xe4, 0x81, 0xcb, 0x60,
+	0x8b, 0xa3, 0xb5, 0xec, 0xaa, 0x50, 0xbc, 0x98, 0x76, 0xd8, 0xc5, 0xc5, 0x0e, 0x25, 0x7c, 0xe2,
+	0x6d, 0xab, 0xa8, 0x1c, 0x75, 0x83, 0x90, 0x82, 0xbe, 0x45, 0x4f, 0x02, 0x37, 0xb5, 0x0c, 0x81,
+	0xeb, 0x06, 0x8c, 0x43, 0xe8, 0x8b, 0x1e, 0x7c, 0x5b, 0x7f, 0x14, 0x34, 0x81, 0xe9, 0x4b, 0x8d,
+	0x46, 0xc9, 0x45, 0x3c, 0xa3, 0xdf, 0xb6, 0x51, 0xbd, 0x47, 0xa3, 0x73, 0x2f, 0x7f, 0x03, 0xa4,
+	0xc6, 0x8d, 0xe1, 0x65, 0x16, 0x66, 0xed, 0xa5, 0x9c, 0xe5, 0xcf, 0xe8, 0x03, 0xb2, 0x34, 0xfe,
+	0x80, 0x14, 0x1b, 0x79, 0x1c, 0xc4, 0xe4, 0x42, 0x52, 0xc8, 0x7c, 0xd5, 0x30, 0xf8, 0x43, 0xb4,
+	0xcc, 0x22, 0x3b, 0x21, 0xfc, 0xec, 0xa4, 0x2f, 0x7e, 0xd5, 0xd2, 0x3e, 0x8c, 0xc4, 0xfb, 0xf2,
+	0xfd, 0xfd, 0x45, 0x10, 0xc7, 0x34, 0xbc, 0x76, 0xf8, 0xd7, 0x22, 0x65, 0xc5, 0x20, 0xf9, 0x60,
+	0x7c, 0x90, 0x8c, 0x10, 0x7a, 0xa3, 0x9c, 0xd6, 0x9b, 0x12, 0x32, 0x27, 0x51, 0xbf, 0x2d, 0x09,
+	0x44, 0x5b, 0xe3, 0xe7, 0x6a, 0xd1, 0x55, 0x6d, 0x4e, 0xc0, 0x22, 0xa4, 0x2c, 0x3a, 0x66, 0x5c,
+	0x25, 0x9a, 0x04, 0xb4, 0xea, 0x2a, 0xe9, 0xd5, 0x25, 0x97, 0xf9, 0x5d, 0x46, 0xb8, 0x4b, 0x02,
+	0x70, 0x08, 0x2c, 0xf3, 0x0a, 0x71, 0x63, 0x8b, 0x5d, 0x45, 0x65, 0x68, 0x37, 0x6a, 0xe0, 0x4b,
+	0x00, 0x3f, 0x96, 0xfb, 0x35, 0x0c, 0x84, 0x85, 0x49, 0xdb, 0x86, 0xec, 0x30, 0x5e, 0x46, 0x29,
+	0xb6, 0x9a, 0x74, 0x6a, 0x2d, 0x4e, 0x61, 0xca, 0xe6, 0xd9, 0xa3, 0x6c, 0x7a, 0xa3, 0x29, 0x2c,
+	0xe9, 0xf8, 0x6e, 0xe4, 0xb3, 0xaa, 0x36, 0x4d, 0x4a, 0x3a, 0xc5, 0x1e, 0xa3, 0x85, 0x6f, 0x18,
+	0x91, 0x8f, 0x82, 0xa5, 0x69, 0xf6, 0xa4, 0x94, 0xfa, 0x96, 0xb6, 0x3c, 0x4d, 0x52, 0xba, 0xa5,
+	0x3d, 0x41, 0x4b, 0xa1, 0x9e, 0xf7, 0xb7, 0xa6, 0x30, 0x0e, 0x51, 0x5b, 0x0f, 0x86, 0x06, 0x79,
+	0xda, 0xc0, 0x55, 0x47, 0x50, 0xcb, 0x56, 0x0a, 0x5a, 0x7f, 0x19, 0xda, 0x1f, 0x28, 0x94, 0xf7,
+	0xe6, 0xaa, 0xd5, 0x49, 0x1d, 0x15, 0x72, 0xf2, 0x94, 0x9d, 0xe5, 0xa9, 0x97, 0xc1, 0x72, 0xaf,
+	0x6d, 0x5f, 0x71, 0x35, 0x3a, 0x60, 0xaf, 0x05, 0x50, 0x70, 0x5d, 0x31, 0x7e, 0x08, 0x3d, 0xa8,
+	0x0c, 0xad, 0x25, 0x83, 0xf1, 0x03, 0x54, 0xb9, 0x7a, 0x05, 0xe5, 0x55, 0x01, 0xbd, 0x56, 0x32,
+	0xbd, 0x8e, 0x29, 0x7b, 0xc5, 0x38, 0x14, 0x94, 0x22, 0xb1, 0x8e, 0xb4, 0x36, 0x4a, 0x79, 0x4f,
+	0x55, 0x11, 0x7e, 0x8a, 0x6a, 0x5a, 0x51, 0x81, 0x43, 0x6a, 0x8d, 0xff, 0x8e, 0x3b, 0x37, 0xf3,
+	0x86, 0xa7, 0xd3, 0x6f, 0xff, 0x68, 0xc8, 0x6b, 0x47, 0x1e, 0xe2, 0xd8, 0x44, 0xab, 0xae, 0x7d,
+	0xd2, 0x69, 0xb6, 0x8e, 0x9c, 0xf6, 0xc1, 0xd1, 0x4b, 0xf7, 0x59, 0xe7, 0x79, 0xdb, 0x6d, 0x3a,
+	0x75, 0x03, 0xdf, 0x47, 0x77, 0x47, 0x4e, 0x5a, 0xb6, 0x2f, 0x8e, 0x0a, 0x78, 0x0d, 0xe1, 0x91,
+	0x23, 0xb7, 0xd9, 0xae, 0x17, 0xf1, 0x06, 0x32, 0xc7, 0x58, 0x1c, 0xf7, 0xd9, 0xc1, 0x9e, 0xed,
+	0xd7, 0x4b, 0xdb, 0xbf, 0x17, 0x64, 0x88, 0xb5, 0x99, 0x99, 0x0a, 0xb1, 0x7d, 0xa0, 0x7e, 0xe9,
+	0xec, 0xfb, 0x4d, 0x67, 0xc7, 0x69, 0x1e, 0xe4, 0xf2, 0xb3, 0xa3, 0x5d, 0xa7, 0x79, 0x60, 0xb7,
+	0x0f, 0xf6, 0x72, 0xf9, 0xea, 0xe8, 0xd0, 0x76, 0x00, 0x5f, 0xc4, 0x77, 0xd1, 0x1d, 0x0d, 0x2f,
+	0x90, 0x42, 0x30, 0x5e, 0x41, 0xb7, 0x35, 0xf4, 0xb1, 0x6f, 0xfb, 0xf5, 0xf2, 0x08, 0x72, 0xbf,
+	0x69, 0xfb, 0xf5, 0xca, 0x08, 0xb2, 0xf1, 0xc8, 0xf6, 0xeb, 0x55, 0x7c, 0x0f, 0xad, 0x68, 0xc8,
+	0x5d, 0xdf, 0xd9, 0xf5, 0x1d, 0xdb, 0xaf, 0x2f, 0x8c, 0xa8, 0x61, 0x37, 0x9d, 0x5d, 0x81, 0x5f,
+	0x1c, 0x51, 0xe3, 0x48, 0xe8, 0xed, 0xd7, 0xd1, 0xc8, 0xe5, 0x40, 0x5b, 0xc3, 0xeb, 0x68, 0x4d,
+	0xbf, 0xc3, 0x6f, 0x1e, 0xec, 0x9d, 0xc0, 0x6f, 0x7d, 0xc9, 0xfd, 0x8f, 0x6b, 0xfc, 0x1b, 0x00,
+	0x00, 0xff, 0xff, 0x10, 0xb7, 0x6a, 0xb4, 0xe0, 0x15, 0x00, 0x00,
 }

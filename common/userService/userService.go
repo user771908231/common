@@ -169,10 +169,7 @@ func GetUserByUnionId(unionid string) *ddproto.User {
 	//2,从数据库中查询
 	user := userDao.FindUserByUnionId(unionid)
 	if user != nil {
-		log.T("在mongo中查询到了user.UnionId[%v],现在开始缓存", user.GetUnionId())
-		//把从数据获得的结果填充到redis的model中
-		SaveUser2Redis(user)
-		InitUserMoney2Redis(user)
+		user = GetUserById(user.GetId())
 	}
 	//判断用户是否存在,如果不存在,则返回空
 	return user

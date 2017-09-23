@@ -156,7 +156,7 @@ func (rm *RobotsManager) ExpropriationRobotByRange(minCoin, maxCoin int64) *Robo
 
 	for _, r := range rm.robots {
 		robotCoin := userService.GetUserCoin(r.GetId())
-		log.T("机器人[%v]的coin %v,min[%v]~max[%v]", r.GetId(), robotCoin, minCoin, maxCoin)
+		//log.T("机器人[%v]的coin %v,min[%v]~max[%v]", r.GetId(), robotCoin, minCoin, maxCoin)
 		if r.IsAvailable() && robotCoin >= minCoin && robotCoin < maxCoin {
 			r.available = false
 			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1

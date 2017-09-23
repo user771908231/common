@@ -110,6 +110,12 @@ var _ = math.Inf
 
 // Ignoring public import of common_desk_by_agent from common_client.proto
 
+// Ignoring public import of common_req_list_coin_desk from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_desk from common_client.proto
+
+// Ignoring public import of CommonCoinDeskInfo from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -247,7 +253,7 @@ func (x *PezEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = PezEnumProtoId(value)
 	return nil
 }
-func (PezEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{0} }
+func (PezEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{0} }
 
 type PezEnum_PEZTYPE int32
 
@@ -284,7 +290,7 @@ func (x *PezEnum_PEZTYPE) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_PEZTYPE(value)
 	return nil
 }
-func (PezEnum_PEZTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{1} }
+func (PezEnum_PEZTYPE) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{1} }
 
 type PezEnum_ErrorCode int32
 
@@ -328,7 +334,7 @@ func (x *PezEnum_ErrorCode) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_ErrorCode(value)
 	return nil
 }
-func (PezEnum_ErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{2} }
+func (PezEnum_ErrorCode) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{2} }
 
 type PezEnum_Option int32
 
@@ -368,7 +374,7 @@ func (x *PezEnum_Option) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_Option(value)
 	return nil
 }
-func (PezEnum_Option) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{3} }
+func (PezEnum_Option) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{3} }
 
 // 房间类型信息：包含房间类型和对应的局数、封顶、玩法等信息
 // 房间类型枚举
@@ -401,7 +407,7 @@ func (x *Pez_RoomType) UnmarshalJSON(data []byte) error {
 	*x = Pez_RoomType(value)
 	return nil
 }
-func (Pez_RoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{4} }
+func (Pez_RoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{4} }
 
 // 麻将花色
 type PezEnumMjColor int32
@@ -436,7 +442,7 @@ func (x *PezEnumMjColor) UnmarshalJSON(data []byte) error {
 	*x = PezEnumMjColor(value)
 	return nil
 }
-func (PezEnumMjColor) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{5} }
+func (PezEnumMjColor) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{5} }
 
 type PezEnum_PaiType int32
 
@@ -473,7 +479,7 @@ func (x *PezEnum_PaiType) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_PaiType(value)
 	return nil
 }
-func (PezEnum_PaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{6} }
+func (PezEnum_PaiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{6} }
 
 type PezEnum_Base int32
 
@@ -510,7 +516,7 @@ func (x *PezEnum_Base) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_Base(value)
 	return nil
 }
-func (PezEnum_Base) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{7} }
+func (PezEnum_Base) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{7} }
 
 // 押注按钮代表的值
 type PezEnum_Bet int32
@@ -548,7 +554,7 @@ func (x *PezEnum_Bet) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_Bet(value)
 	return nil
 }
-func (PezEnum_Bet) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{8} }
+func (PezEnum_Bet) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{8} }
 
 type PezEnum_UserGameStatus int32
 
@@ -591,7 +597,7 @@ func (x *PezEnum_UserGameStatus) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_UserGameStatus(value)
 	return nil
 }
-func (PezEnum_UserGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{9} }
+func (PezEnum_UserGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{9} }
 
 type PezEnum_DeskGameStatus int32
 
@@ -637,7 +643,7 @@ func (x *PezEnum_DeskGameStatus) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_DeskGameStatus(value)
 	return nil
 }
-func (PezEnum_DeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{10} }
+func (PezEnum_DeskGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{10} }
 
 type PezEnum_TuoziType int32
 
@@ -698,7 +704,7 @@ func (x *PezEnum_TuoziType) UnmarshalJSON(data []byte) error {
 	*x = PezEnum_TuoziType(value)
 	return nil
 }
-func (PezEnum_TuoziType) EnumDescriptor() ([]byte, []int) { return fileDescriptor39, []int{11} }
+func (PezEnum_TuoziType) EnumDescriptor() ([]byte, []int) { return fileDescriptor41, []int{11} }
 
 // 麻将牌
 type PezBase_PaiInfo struct {
@@ -711,7 +717,7 @@ type PezBase_PaiInfo struct {
 func (m *PezBase_PaiInfo) Reset()                    { *m = PezBase_PaiInfo{} }
 func (m *PezBase_PaiInfo) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_PaiInfo) ProtoMessage()               {}
-func (*PezBase_PaiInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{0} }
+func (*PezBase_PaiInfo) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{0} }
 
 func (m *PezBase_PaiInfo) GetType() int32 {
 	if m != nil && m.Type != nil {
@@ -744,7 +750,7 @@ type PezBase_PlayConf struct {
 func (m *PezBase_PlayConf) Reset()                    { *m = PezBase_PlayConf{} }
 func (m *PezBase_PlayConf) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_PlayConf) ProtoMessage()               {}
-func (*PezBase_PlayConf) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{1} }
+func (*PezBase_PlayConf) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{1} }
 
 func (m *PezBase_PlayConf) GetPlayerCount() int32 {
 	if m != nil && m.PlayerCount != nil {
@@ -771,7 +777,7 @@ type PezBase_RoomTypeInfo struct {
 func (m *PezBase_RoomTypeInfo) Reset()                    { *m = PezBase_RoomTypeInfo{} }
 func (m *PezBase_RoomTypeInfo) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_RoomTypeInfo) ProtoMessage()               {}
-func (*PezBase_RoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{2} }
+func (*PezBase_RoomTypeInfo) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{2} }
 
 func (m *PezBase_RoomTypeInfo) GetOwnerID() uint32 {
 	if m != nil && m.OwnerID != nil {
@@ -811,7 +817,7 @@ type PezBaseTimerInfo struct {
 func (m *PezBaseTimerInfo) Reset()                    { *m = PezBaseTimerInfo{} }
 func (m *PezBaseTimerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PezBaseTimerInfo) ProtoMessage()               {}
-func (*PezBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{3} }
+func (*PezBaseTimerInfo) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{3} }
 
 func (m *PezBaseTimerInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -835,7 +841,7 @@ type PezBase_PaiValue struct {
 func (m *PezBase_PaiValue) Reset()                    { *m = PezBase_PaiValue{} }
 func (m *PezBase_PaiValue) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_PaiValue) ProtoMessage()               {}
-func (*PezBase_PaiValue) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{4} }
+func (*PezBase_PaiValue) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{4} }
 
 func (m *PezBase_PaiValue) GetValue() int32 {
 	if m != nil && m.Value != nil {
@@ -855,7 +861,7 @@ type PezBase_PlayerCard struct {
 func (m *PezBase_PlayerCard) Reset()                    { *m = PezBase_PlayerCard{} }
 func (m *PezBase_PlayerCard) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_PlayerCard) ProtoMessage()               {}
-func (*PezBase_PlayerCard) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{5} }
+func (*PezBase_PlayerCard) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{5} }
 
 func (m *PezBase_PlayerCard) GetHandCard() []*PezBase_PaiInfo {
 	if m != nil {
@@ -888,7 +894,7 @@ type PezLastScore struct {
 func (m *PezLastScore) Reset()                    { *m = PezLastScore{} }
 func (m *PezLastScore) String() string            { return proto.CompactTextString(m) }
 func (*PezLastScore) ProtoMessage()               {}
-func (*PezLastScore) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{6} }
+func (*PezLastScore) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{6} }
 
 func (m *PezLastScore) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -927,7 +933,7 @@ type PezBase_PlayerInfo struct {
 func (m *PezBase_PlayerInfo) Reset()                    { *m = PezBase_PlayerInfo{} }
 func (m *PezBase_PlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_PlayerInfo) ProtoMessage()               {}
-func (*PezBase_PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{7} }
+func (*PezBase_PlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{7} }
 
 func (m *PezBase_PlayerInfo) GetIsBanker() bool {
 	if m != nil && m.IsBanker != nil {
@@ -1066,7 +1072,7 @@ type PezBase_DeskGameInfo struct {
 func (m *PezBase_DeskGameInfo) Reset()                    { *m = PezBase_DeskGameInfo{} }
 func (m *PezBase_DeskGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*PezBase_DeskGameInfo) ProtoMessage()               {}
-func (*PezBase_DeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{8} }
+func (*PezBase_DeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{8} }
 
 func (m *PezBase_DeskGameInfo) GetGameStatus() int32 {
 	if m != nil && m.GameStatus != nil {
@@ -1205,7 +1211,7 @@ type PezTuozi struct {
 func (m *PezTuozi) Reset()                    { *m = PezTuozi{} }
 func (m *PezTuozi) String() string            { return proto.CompactTextString(m) }
 func (*PezTuozi) ProtoMessage()               {}
-func (*PezTuozi) Descriptor() ([]byte, []int) { return fileDescriptor39, []int{9} }
+func (*PezTuozi) Descriptor() ([]byte, []int) { return fileDescriptor41, []int{9} }
 
 func (m *PezTuozi) GetPais() []int32 {
 	if m != nil {
@@ -1253,9 +1259,9 @@ func init() {
 	proto.RegisterEnum("ddproto.PezEnum_TuoziType", PezEnum_TuoziType_name, PezEnum_TuoziType_value)
 }
 
-func init() { proto.RegisterFile("pez_base.proto", fileDescriptor39) }
+func init() { proto.RegisterFile("pez_base.proto", fileDescriptor41) }
 
-var fileDescriptor39 = []byte{
+var fileDescriptor41 = []byte{
 	// 1787 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x57, 0xcd, 0x6e, 0xdb, 0xc8,
 	0x1d, 0xb7, 0x24, 0xcb, 0x92, 0x46, 0x96, 0x3d, 0x1e, 0x27, 0x0e, 0xed, 0x6c, 0xb2, 0x5e, 0x61,
