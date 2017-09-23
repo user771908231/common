@@ -34,7 +34,7 @@ func init() {
 	PokerMap[18] = "Black_Y_13"
 	PokerMap[19] = "Black_Y_13"
 	PokerMap[20] = "Black_Y_13"
-	PokerMap[21] = "Black_N_13"
+	PokerMap[21] = "Black_N_3"
 	PokerMap[22] = "Black_N_3"
 	PokerMap[23] = "Black_N_3"
 	PokerMap[24] = "Black_N_3"
@@ -104,8 +104,16 @@ type PengPai struct {
 	HuXi      int32
 }
 
+type PaoPai struct {
+	Pais      []*PHZPoker
+	PaoType   int32 //跑牌类型
+	OutUserId uint32
+	InUserId  uint32
+	HuXi      int32
+}
+
 type TiPai struct {
-	TiType    int32 //杠牌的类型
+	TiType    int32 //提牌的类型
 	Pais      []*PHZPoker
 	OutUserId uint32
 	InUserId  uint32
@@ -118,6 +126,12 @@ type ChiPai struct {
 	OutUserId uint32
 	InUserId  uint32
 	HuXi      int32
+}
+
+type WeiPai struct {
+	Pais []*PHZPoker
+	Pai  *PHZPoker
+	HuXi int32
 }
 
 type TiInfo struct {
@@ -189,10 +203,10 @@ func initBigOrSmall(des string) bool {
 func parserByIndex(index int32) (id int32, value int32, isBig bool, flower FLOWER, des string) {
 	var pokerString string = PokerMap[index]
 	sarry := strings.Split(pokerString, "_")
-	paiValue := int32(numUtils.String2Int(sarry[2]))
-	paiFlower := initByDes(sarry[0])
-	isBigPai := initBigOrSmall(sarry[1])
-	return index, paiValue, isBigPai, paiFlower, pokerString
+	flower = initByDes(sarry[0])
+	isBig = initBigOrSmall(sarry[1])
+	value = int32(numUtils.String2Int(sarry[2]))
+	return index, value, isBig, flower, pokerString
 }
 
 func InitPaiByIndex(index int32) *PHZPoker {
@@ -253,7 +267,13 @@ func (p *PHZPoker) GetLogDes() string {
 	} else {
 		suit += "小"
 	}
-	valueString, _ := numUtils.Int2String(p.GetValue())
+	valueString := ""
+	//valueString, _ := numUtils.Int2String(p.GetValue())
+	if p.GetValue() > 10 {
+		valueString, _ = numUtils.Int2String(p.GetValue() - 10)
+	} else {
+		valueString, _ = numUtils.Int2String(p.GetValue())
+	}
 	suit += valueString
 	return suit
 }
@@ -277,55 +297,5 @@ func Card2String(p *PHZPoker) string {
 
 func (p *PHZPoker) GetPaiIndexByValue() int32 {
 	//根据牌的value和花色返回index，此处的index用于统计牌的张数
-	if p.IsBig() {
-		switch p.GetValue() {
-		case 1:
-			return 11
-		case 2:
-			return 12
-		case 3:
-			return 13
-		case 4:
-			return 14
-		case 5:
-			return 15
-		case 6:
-			return 16
-		case 7:
-			return 17
-		case 8:
-			return 18
-		case 9:
-			return 19
-		case 10:
-			return 20
-		default:
-			return 0
-		}
-	} else {
-		switch p.GetValue() {
-		case 1:
-			return 1
-		case 2:
-			return 2
-		case 3:
-			return 3
-		case 4:
-			return 4
-		case 5:
-			return 5
-		case 6:
-			return 6
-		case 7:
-			return 7
-		case 8:
-			return 8
-		case 9:
-			return 9
-		case 10:
-			return 10
-		default:
-			return 0
-		}
-	}
+	return p.GetValue()
 }
