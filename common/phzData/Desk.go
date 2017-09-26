@@ -16,7 +16,6 @@ type Desk struct {
 	GameData   *DeskGameData    //数据
 	GameStatus *DeskGameStatus  //状态
 	HuUser     uint32           //纪录每局胡牌的玩家
-	//Parser     PHZParser        //解析器
 	sync.Mutex
 }
 
@@ -39,15 +38,22 @@ type DeskCfg struct {
 	ApplyDis         bool      //申请解散状态
 	HuXi             int32     //胡息数
 	PaiCursor        int32
-	CardsNum         int32 //手牌数量
-	IsDaiKai         bool  //是否代开
+	CardsNum         int32  //手牌数量
+	IsDaiKai         bool   //是否代开
+	ApplyDisUser     uint32 //申请解散的玩家
 }
 
 type DeskGameData struct {
 	AllPokers      []*PHZPoker //所有的牌
 	RemainPokers   []*PHZPoker //桌面上剩余的牌
-	LiangZhang     *PHZPoker   //每轮的亮张:摸的牌
+	LiangZhang     *OutCard    //每轮的亮张:摸的牌
 	FirstTimeMoPai bool        //是否是每局的第一次摸牌
+}
+
+type OutCard struct {
+	Pai      *PHZPoker //桌面上的亮张
+	UserId   uint32    //这张牌是谁摸的，或者谁打出来的
+	IsOutPai bool      //是否是玩家打出来的牌
 }
 
 type DeskGameStatus struct {

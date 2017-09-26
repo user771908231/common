@@ -211,7 +211,7 @@ func parserByIndex(index int32) (id int32, value int32, isBig bool, flower FLOWE
 
 func InitPaiByIndex(index int32) *PHZPoker {
 	if index < 0 || index > PHZ_ALLPOKER_NUM {
-		log.E("解析牌失败...ID非法")
+		log.W("解析牌失败...ID非法")
 		return nil
 	}
 	_, value, isBig, flower, des := parserByIndex(index)
