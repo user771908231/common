@@ -493,6 +493,7 @@ It has these top-level messages:
 	Pez_AckBet
 	Pez_BCOpenPai
 	Pez_SendGameInfo
+	PhzPlayPaiIds
 	PhzBaseCreateOption
 	PhzBaseRoomInfo
 	PhzBaseDeskInfo
@@ -534,7 +535,8 @@ It has these top-level messages:
 	PhzPlayHandPokers
 	PhzPlayRoundBillBean
 	PhzPlayCurrentResult
-	PhzPlayEndResult
+	PhzPlayUserLotteryInfo
+	PhzPlayUserEndResult
 	PhzPlayEndLottery
 	HelloRequest
 	HelloReply
