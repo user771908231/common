@@ -62,8 +62,9 @@ type UserGameData struct {
 	PaoPais      []*PaoPai      //跑牌
 	WeiPais      []*WeiPai      //偎的牌
 	Score        int64          //总得分
+	PaoScore     int64          //放炮分,根据这个分数判断是否可以结算
 	RoundHuXi    int32          //单局胡息数，用于计算是否能胡牌
-	GameHuXi     int32          //总的胡息，够200或者400 时结束游戏
+	GameHuXi     int32          //总的胡息，够200或者400时结束游戏
 	Bill         *Bill          //账单
 	Statistic    *UserStatistic //统计信息
 }
@@ -95,15 +96,20 @@ type UserGameStatus struct {
 }
 
 type BillBean struct {
-	Round  int32  //第几局
-	UserId uint32 //谁的账单
-	Banker uint32 //庄家
-	Winner uint32 //赢家
-	Score  int64  //输赢分数
+	Round         int32   //第几局
+	UserId        uint32  //谁的账单
+	Banker        uint32  //庄家
+	IsHuangZhuang bool    //是否是荒庄
+	Winner        uint32  //赢家
+	Score         int64   //输赢分数
+	PaoScore      int64   //放炮罚的分数，根据这个分数判断是否牌局结束
+	HuXi          int32   //单局的胡息数
+	HuInfo        *HuInfo //胡牌信息
 }
 
 type Bill struct {
 	Score     int64       //所有单局账单输赢分数的总和
+	HuXi      int32       //当前玩家总胡息
 	BillBeans []*BillBean //存放每一局的账单
 }
 
