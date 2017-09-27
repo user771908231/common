@@ -29,6 +29,7 @@ type HuInfo struct {
 	WinUser     uint32      //赢家
 	LoseUser    []uint32    //输家
 	IsZimo      bool        //是否自摸
+	IsDianPao   bool        //是否点炮
 	DianPaoUser uint32      //点炮的玩家
 	Fan         int32       //胡牌时的番数
 	WinScore    int64       //得分
@@ -134,6 +135,7 @@ func (p *ParserCore) CanTi(data interface{}, tiData interface{}) (interface{}, e
 						ti.Pais = append(ti.Pais, pai)
 					}
 				}
+				ti.Pais = append(ti.Pais, tiPai)
 			}
 		}
 	}

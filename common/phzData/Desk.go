@@ -48,6 +48,7 @@ type DeskGameData struct {
 	RemainPokers   []*PHZPoker //桌面上剩余的牌
 	LiangZhang     *OutCard    //每轮的亮张:摸的牌
 	FirstTimeMoPai bool        //是否是每局的第一次摸牌
+	NoWinnerTimes  int32       //荒庄次数
 }
 
 type OutCard struct {
