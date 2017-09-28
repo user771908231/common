@@ -31,8 +31,6 @@ It is generated from these files:
 	erddz_desk.proto
 	erddz_hall.proto
 	erddz_play.proto
-	group_base.proto
-	group_req.proto
 	hall.proto
 	hall_data.proto
 	hall_playback.proto
@@ -130,9 +128,6 @@ It has these top-level messages:
 	CommonReqUploadLocation
 	CommonBcLeaveTimeout
 	CommonDeskByAgent
-	CommonReqListCoinDesk
-	CommonAckListCoinDesk
-	CommonCoinDeskInfo
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -270,18 +265,6 @@ It has these top-level messages:
 	ErddzAckActGuo
 	ErddzBcOverTurn
 	ErddzBcGameInfo
-	GroupInfo
-	GroupMemberInfo
-	GameOption
-	GroupMsgItem
-	HallGroupListReq
-	HallGroupListAck
-	HallGroupAddReq
-	HallGroupAddAck
-	HallCheckGroupUpdateReq
-	HallCheckGroupUpdateAck
-	HallGroupSendMsgReq
-	HallGroupSendMsgBc
 	HallReqEvent
 	HallAckEvent
 	HallLotteryItem
@@ -398,10 +381,6 @@ It has these top-level messages:
 	NiuJiabeiReq
 	NiuJiabeiAck
 	NiuJiabeiBc
-	NiuXuanpaiOt
-	NiuXuanpaiReq
-	NiuXuanpaiAck
-	NiuXuanpaiBc
 	NiuBipaiResultItem
 	NiuBipaiResultBc
 	NiuGameEnd
@@ -514,6 +493,7 @@ It has these top-level messages:
 	Pez_AckBet
 	Pez_BCOpenPai
 	Pez_SendGameInfo
+	PhzPlayPaiIds
 	PhzBaseCreateOption
 	PhzBaseRoomInfo
 	PhzBaseDeskInfo
@@ -555,7 +535,8 @@ It has these top-level messages:
 	PhzPlayHandPokers
 	PhzPlayRoundBillBean
 	PhzPlayCurrentResult
-	PhzPlayEndResult
+	PhzPlayUserLotteryInfo
+	PhzPlayUserEndResult
 	PhzPlayEndLottery
 	HelloRequest
 	HelloReply
@@ -714,12 +695,6 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_bc_leaveTimeout from common_client.proto
 
 // Ignoring public import of common_desk_by_agent from common_client.proto
-
-// Ignoring public import of common_req_list_coin_desk from common_client.proto
-
-// Ignoring public import of common_ack_list_coin_desk from common_client.proto
-
-// Ignoring public import of CommonCoinDeskInfo from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 
@@ -962,7 +937,7 @@ func init() { proto.RegisterFile("bainiu_base.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
 	// 493 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x74, 0x92, 0x4d, 0x6f, 0xda, 0x30,
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0x4d, 0x6f, 0xda, 0x30,
 	0x18, 0xc7, 0x49, 0x48, 0x4b, 0xfb, 0x40, 0xe9, 0x83, 0x29, 0x1b, 0x74, 0xda, 0x54, 0xed, 0x54,
 	0x21, 0x0d, 0x69, 0xec, 0xfd, 0x68, 0x20, 0x2b, 0x1e, 0x93, 0x43, 0xb3, 0x44, 0x7d, 0xb9, 0x58,
 	0x69, 0xc9, 0x01, 0x6d, 0x90, 0x88, 0xd2, 0x43, 0x8f, 0xfb, 0x36, 0xfb, 0x42, 0x3b, 0xec, 0xdb,

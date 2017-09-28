@@ -1,6 +1,8 @@
 package phzData
 
 import (
+	"casino_common/common/consts/tableName"
+	"casino_common/utils/db"
 	"github.com/name5566/leaf/module"
 	"sync"
 	"time"
@@ -13,7 +15,7 @@ type Desk struct {
 	Cfg        *DeskCfg         //配置器
 	GameData   *DeskGameData    //数据
 	GameStatus *DeskGameStatus  //状态
-	Parser     PHZParser        //解析器
+	HuUser     uint32           //纪录每局胡牌的玩家
 	sync.Mutex
 }
 
@@ -36,18 +38,38 @@ type DeskCfg struct {
 	ApplyDis         bool      //申请解散状态
 	HuXi             int32     //胡息数
 	PaiCursor        int32
-	CardsNum         int32 //手牌数量
-	IsDaiKai         bool  //是否代开
+	CardsNum         int32  //手牌数量
+	IsDaiKai         bool   //是否代开
+	ApplyDisUser     uint32 //申请解散的玩家
 }
 
 type DeskGameData struct {
-	AllPokers    []*PHZPoker //所有的牌
-	RemainPokers []*PHZPoker //桌面上剩余的牌
-	LiangZhang   *PHZPoker   //每轮的亮张:摸的牌
+	AllPokers      []*PHZPoker //所有的牌
+	RemainPokers   []*PHZPoker //桌面上剩余的牌
+	LiangZhang     *OutCard    //每轮的亮张:摸的牌
+	FirstTimeMoPai bool        //是否是每局的第一次摸牌
+	NoWinnerTimes  int32       //荒庄次数
+}
+
+type OutCard struct {
+	Pai      *PHZPoker //桌面上的亮张
+	UserId   uint32    //这张牌是谁摸的，或者谁打出来的
+	IsOutPai bool      //是否是玩家打出来的牌
 }
 
 type DeskGameStatus struct {
 	status int32 //Desk状态
+}
+
+func NewDesk(cfg *DeskCfg, s *module.Skeleton) *Desk {
+	desk := &Desk{
+		S:          s,
+		Cfg:        cfg,
+		GameData:   &DeskGameData{},
+		GameStatus: &DeskGameStatus{},
+	}
+	desk.DeskId, _ = db.GetNextSeq(tableName.DBT_MJ_DESK)
+	return desk
 }
 
 func (d *Desk) GetStatus() int32 {
