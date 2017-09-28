@@ -2,7 +2,6 @@ package phzData
 
 import (
 	"casino_common/common/userService"
-	"casino_common/proto/ddproto"
 	"casino_common/utils/agentUtils"
 	"github.com/name5566/leaf/gate"
 	ltimer "github.com/name5566/leaf/timer"
@@ -42,14 +41,6 @@ func (u *User) GetIp() string {
 	return agentUtils.GetIP(u.Agent)
 }
 
-func (u *User) GetScore() int64 {
-	return u.GameData.Score
-}
-
-func (u *User) AddScore(s int64) int64 {
-	return atomic.AddInt64(&u.GameData.Score, s)
-}
-
 func (u *User) GetGameStatus() int32 {
 	return u.GameStatus.S
 }
@@ -59,21 +50,23 @@ func (u *User) SetGameStatus(s int32) {
 }
 
 type UserGameData struct {
-	HandPokers    []*PHZPoker           //手牌
-	PengPai       []*PengPai            //碰的牌
-	ChiPai        []*ChiPai             //吃的牌
-	TiPai         []*TiPai              //提的牌
-	HuInfo        *HuInfo               //胡牌信息
-	ChouPais      []*PHZPoker           //忍碰、忍吃后的牌为臭牌
-	CheckCase     *UserCheckCase        //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
-	PaoPais       []*PaoPai             //跑牌
-	WeiPais       []*WeiPai             //偎的牌
-	PrePengResult *PengPai              //预处理请求碰牌的结果
-	PreChiResult  *ddproto.PhzAckChiPai //预处理请求吃牌的结果
-	Score         int64                 //总得分
-	HuXi          int32                 //总的胡息数
-	Bill          *Bill                 //账单
-	Statistic     *UserStatistic        //统计信息
+	HandPokers   []*PHZPoker    //手牌
+	OutCards     []*PHZPoker    //玩家打出去的牌
+	PengPai      []*PengPai     //碰的牌
+	ChiPai       []*ChiPai      //吃的牌
+	TiPai        []*TiPai       //提的牌
+	HuInfo       *HuInfo        //胡牌信息
+	PengChouPais []*PHZPoker    //忍碰、忍吃后的牌为臭牌
+	ChiChouPais  []*PHZPoker    //吃的臭牌
+	CheckCase    *UserCheckCase //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
+	PaoPais      []*PaoPai      //跑牌
+	WeiPais      []*WeiPai      //偎的牌
+	Score        int64          //总得分
+	PaoScore     int64          //放炮分,根据这个分数判断是否可以结算
+	RoundHuXi    int32          //单局胡息数，用于计算是否能胡牌
+	GameHuXi     int32          //总的胡息，够200或者400时结束游戏
+	Bill         *Bill          //账单
+	Statistic    *UserStatistic //统计信息
 }
 
 func (d *UserGameData) GetPengPai() []*PengPai {
@@ -89,55 +82,43 @@ func (d *UserGameData) GetHandPokers() []*PHZPoker {
 }
 
 type UserGameStatus struct {
-	IsBreak       bool //掉线
-	IsLeave       bool //离开
-	IsReady       bool
-	IsBanker      bool
-	IsOwner       bool
-	IsPaoPai      bool  //用于纪录玩家是否跑过牌的信号量
-	IsTiPai       bool  //用于纪录玩家是否已经提过牌
-	S             int32 //玩家的状态
-	ApplyDissolve int32
+	IsBreak        bool //掉线
+	IsLeave        bool //离开
+	IsReady        bool
+	IsBanker       bool
+	IsOwner        bool
+	IsPaoPai       bool  //用于纪录玩家是否跑过牌的信号量
+	IsTiPai        bool  //用于纪录玩家是否已经提过牌
+	IsReconnect    bool  //是否是断线重连
+	IsShouldChuPai bool  //过胡后是否需要继续出牌
+	S              int32 //玩家的状态
+	ApplyDissolve  int32
 }
 
 type BillBean struct {
-	Round  int32  //第几局
-	UserId uint32 //谁的账单
-	Banker uint32 //庄家
-	Winner uint32 //赢家
-	Score  int64  //输赢分数
+	Round         int32   //第几局
+	UserId        uint32  //谁的账单
+	Banker        uint32  //庄家
+	IsHuangZhuang bool    //是否是荒庄
+	Winner        uint32  //赢家
+	Score         int64   //输赢分数
+	PaoScore      int64   //放炮罚的分数，根据这个分数判断是否牌局结束
+	HuXi          int32   //单局的胡息数
+	HuInfo        *HuInfo //胡牌信息
 }
 
 type Bill struct {
 	Score     int64       //所有单局账单输赢分数的总和
+	HuXi      int32       //当前玩家总胡息
 	BillBeans []*BillBean //存放每一局的账单
 }
 
-type UserStatisticBean struct {
-	Round    int32 //第几局
-	CDianPao int32 //点炮的次数 总次数
-	CZimo    int32 //自摸的次数 总次数
-	CBeiZimo int32 //被自摸的次数
-	CHu      int32 //胡牌的次数
-
-	TScore    int64 //输赢的金币数
-	CAnGang   int32 //暗杠的次数
-	CDianGang int32 //点杠的次数
-	CMingGang int32 //点杠的次数
-}
-
 type UserStatistic struct {
-	TcountDianPao  int32 //点炮的次数 总次数
-	TcountHu       int32 //胡的次数 总次数
-	TcountZimo     int32 //自摸的次数 总次数
-	TcountBeiZimo  int32 //被自摸的次数
-	TCoin          int64 //输赢的金币数
-	TcountAnGang   int32 //暗杠的次数
-	TcountDianGang int32 //点杠的次数
-	TcountMingGang int32 //明杠的次数
-	TcountZhaMa    int32 //扎码中的码数
-	//每一局的次数
-	Beans map[int32]*UserStatisticBean //通过map来存储
+	TcountHu      int32 //胡的次数 总次数
+	TcountZiMo    int32 //自摸的次数 总次数
+	TcountDianPao int32 //点炮的次数 总次数
+	TcountTiPai   int32 //提牌次数
+	TcountPaoPai  int32 //跑牌次数
 }
 
 type UserCheckCase struct {
@@ -149,7 +130,7 @@ type UserCheckCase struct {
 	CanPeng     bool        //是否可以碰牌
 	PengPais    []*PHZPoker //可以碰的牌
 	CanChi      bool        //是否可以吃牌
-	ChiPais     []*PHZPoker //可以吃的牌
+	ChiPais     []*ChiPai   //可以吃的牌
 	CanHu       bool        //是否可以胡牌
 	PengHuXi    int32       //胡息数
 	ChiHuXi     int32       //吃牌的胡息
@@ -157,7 +138,12 @@ type UserCheckCase struct {
 }
 
 func NewCheckCase() *UserCheckCase {
-	ret := &UserCheckCase{}
+	ret := &UserCheckCase{
+		CanHu:   false,
+		CanChi:  false,
+		CanPeng: false,
+		ChiPais: nil,
+	}
 	atomic.AddInt32(&ret.CheckID, 1)
 	return ret
 }
