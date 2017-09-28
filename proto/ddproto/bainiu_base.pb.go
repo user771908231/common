@@ -31,6 +31,8 @@ It is generated from these files:
 	erddz_desk.proto
 	erddz_hall.proto
 	erddz_play.proto
+	group_base.proto
+	group_req.proto
 	hall.proto
 	hall_data.proto
 	hall_playback.proto
@@ -131,7 +133,6 @@ It has these top-level messages:
 	CommonReqListCoinDesk
 	CommonAckListCoinDesk
 	CommonCoinDeskInfo
-	CreateCoinDeskInfo
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -269,6 +270,18 @@ It has these top-level messages:
 	ErddzAckActGuo
 	ErddzBcOverTurn
 	ErddzBcGameInfo
+	GroupInfo
+	GroupMemberInfo
+	GameOption
+	GroupMsgItem
+	HallGroupListReq
+	HallGroupListAck
+	HallGroupAddReq
+	HallGroupAddAck
+	HallCheckGroupUpdateReq
+	HallCheckGroupUpdateAck
+	HallGroupSendMsgReq
+	HallGroupSendMsgBc
 	HallReqEvent
 	HallAckEvent
 	HallLotteryItem
@@ -707,8 +720,6 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_ack_list_coin_desk from common_client.proto
 
 // Ignoring public import of CommonCoinDeskInfo from common_client.proto
-
-// Ignoring public import of createCoinDeskInfo from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 

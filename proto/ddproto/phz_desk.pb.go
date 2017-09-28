@@ -116,8 +116,6 @@ var _ = math.Inf
 
 // Ignoring public import of CommonCoinDeskInfo from common_client.proto
 
-// Ignoring public import of createCoinDeskInfo from common_client.proto
-
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
@@ -152,7 +150,7 @@ type PhzReqCreateDesk struct {
 func (m *PhzReqCreateDesk) Reset()                    { *m = PhzReqCreateDesk{} }
 func (m *PhzReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqCreateDesk) ProtoMessage()               {}
-func (*PhzReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{0} }
+func (*PhzReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{0} }
 
 func (m *PhzReqCreateDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -178,7 +176,7 @@ type PhzReqEnterDesk struct {
 func (m *PhzReqEnterDesk) Reset()                    { *m = PhzReqEnterDesk{} }
 func (m *PhzReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqEnterDesk) ProtoMessage()               {}
-func (*PhzReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{1} }
+func (*PhzReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{1} }
 
 func (m *PhzReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -205,7 +203,7 @@ type PhzAckDesk struct {
 func (m *PhzAckDesk) Reset()                    { *m = PhzAckDesk{} }
 func (m *PhzAckDesk) String() string            { return proto.CompactTextString(m) }
 func (*PhzAckDesk) ProtoMessage()               {}
-func (*PhzAckDesk) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{2} }
+func (*PhzAckDesk) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{2} }
 
 func (m *PhzAckDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -236,7 +234,7 @@ type PhzReqGameInfo struct {
 func (m *PhzReqGameInfo) Reset()                    { *m = PhzReqGameInfo{} }
 func (m *PhzReqGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqGameInfo) ProtoMessage()               {}
-func (*PhzReqGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{3} }
+func (*PhzReqGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{3} }
 
 func (m *PhzReqGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -255,7 +253,7 @@ type PhzDeskGameInfo struct {
 func (m *PhzDeskGameInfo) Reset()                    { *m = PhzDeskGameInfo{} }
 func (m *PhzDeskGameInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzDeskGameInfo) ProtoMessage()               {}
-func (*PhzDeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{4} }
+func (*PhzDeskGameInfo) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{4} }
 
 func (m *PhzDeskGameInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -288,7 +286,7 @@ type PhzReqDissolveDesk struct {
 func (m *PhzReqDissolveDesk) Reset()                    { *m = PhzReqDissolveDesk{} }
 func (m *PhzReqDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*PhzReqDissolveDesk) ProtoMessage()               {}
-func (*PhzReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{5} }
+func (*PhzReqDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{5} }
 
 func (m *PhzReqDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -315,7 +313,7 @@ type PhzAckDissolveDesk struct {
 func (m *PhzAckDissolveDesk) Reset()                    { *m = PhzAckDissolveDesk{} }
 func (m *PhzAckDissolveDesk) String() string            { return proto.CompactTextString(m) }
 func (*PhzAckDissolveDesk) ProtoMessage()               {}
-func (*PhzAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor44, []int{6} }
+func (*PhzAckDissolveDesk) Descriptor() ([]byte, []int) { return fileDescriptor46, []int{6} }
 
 func (m *PhzAckDissolveDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -355,9 +353,9 @@ func init() {
 	proto.RegisterType((*PhzAckDissolveDesk)(nil), "ddproto.phz_ack_dissolveDesk")
 }
 
-func init() { proto.RegisterFile("phz_desk.proto", fileDescriptor44) }
+func init() { proto.RegisterFile("phz_desk.proto", fileDescriptor46) }
 
-var fileDescriptor44 = []byte{
+var fileDescriptor46 = []byte{
 	// 363 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x92, 0xc1, 0x4a, 0xfb, 0x40,
 	0x10, 0xc6, 0xff, 0xf9, 0x57, 0x6b, 0x9d, 0xda, 0xa2, 0x6b, 0x91, 0x12, 0x44, 0x4a, 0x10, 0xe9,

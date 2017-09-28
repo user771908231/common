@@ -116,8 +116,6 @@ var _ = math.Inf
 
 // Ignoring public import of CommonCoinDeskInfo from common_client.proto
 
-// Ignoring public import of createCoinDeskInfo from common_client.proto
-
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto
