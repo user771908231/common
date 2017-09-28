@@ -51,6 +51,8 @@ const (
 
 	//游戏session表
 	DBT_GAME_SESSION string = "t_game_session"
+	//代开当前房间列表
+	DBT_AGENT_CREATED_ROOM string = "t_agent_created_room"
 	//代开房间记录
 	DBT_AGENT_CREATE_ROOM_RECORD string = "t_agent_create_room_record"
 

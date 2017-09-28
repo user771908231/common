@@ -39,9 +39,15 @@ func TestGroupInfo_SaveToMongo(t *testing.T) {
 					Option:proto.String("经典牛牛 3人 10场"),
 				},
 			},
-			SyncId: proto.Int64(1),
+			SyncId: proto.Int32(1),
 		},
 	}
 
 	group.SaveToMongo()
+}
+
+//获取群列表
+func TestGetUserGroups(t *testing.T) {
+	list, err := GetUserGroups(10010)
+	t.Log(list, err)
 }

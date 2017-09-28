@@ -516,6 +516,7 @@ It has these top-level messages:
 	Pez_AckBet
 	Pez_BCOpenPai
 	Pez_SendGameInfo
+	PhzPlayPaiIds
 	PhzBaseCreateOption
 	PhzBaseRoomInfo
 	PhzBaseDeskInfo
@@ -558,12 +559,12 @@ It has these top-level messages:
 	PhzPlayRoundBillBean
 	PhzPlayCurrentResult
 	PhzPlayUserLotteryInfo
-	PhzPlayPaiIds
-	PhzPlayEndResult
+	PhzPlayUserEndResult
 	PhzPlayEndLottery
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig
+	HallRpcDeskEventMsg
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList

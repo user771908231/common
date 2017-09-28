@@ -31,3 +31,13 @@ func DelAgent(userId uint32) {
 		delete(AgentMap, userId)
 	}
 }
+
+//发消息
+func WriteMsg(uid uint32, msg interface{}) error {
+	if agent,ok := AgentMap[uid];ok {
+		agent.WriteMsg(msg)
+		return nil
+	}else {
+		return errors.New("user agent not found.")
+	}
+}
