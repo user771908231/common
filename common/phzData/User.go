@@ -61,7 +61,7 @@ type UserGameData struct {
 	CheckCase    *UserCheckCase //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
 	PaoPais      []*PaoPai      //跑牌
 	WeiPais      []*WeiPai      //偎的牌
-	Score        int64          //总得分
+	Score        int64          //总的得分
 	PaoScore     int64          //放炮分,根据这个分数判断是否可以结算
 	RoundHuXi    int32          //单局胡息数，用于计算是否能胡牌
 	GameHuXi     int32          //总的胡息，够200或者400时结束游戏
