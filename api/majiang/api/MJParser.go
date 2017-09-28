@@ -4,6 +4,8 @@ import (
 	"casino_common/api/majiang"
 	"casino_common/proto/ddproto"
 	"sort"
+	"casino_common/common/log"
+	"casino_common/utils/chessUtils"
 )
 
 //跑得快解析器
@@ -21,6 +23,7 @@ type MJParser interface {
 	XiPai() interface{}                               //洗牌
 	Hu(...interface{}) (interface{}, error)           //胡牌的方式...
 	CanHu(...interface{}) (interface{}, error)        //能否胡牌 不带番数得分计算...
+	ChaHu(...interface{}) (interface{}, error)        //计算输家的分数番数
 	InitMjPaiByIndex(index int32) *majiang.MJPAI      //通过id得到一张麻将牌
 	IsTingYongPai(pai majiang.MJPAI) bool             //是否是听用牌 宜宾麻将
 	IsMengQing(g MJUserGameData) bool                 //是否是门清 没有吃碰杠 白山麻将
@@ -43,6 +46,17 @@ type JiaoInfo struct {
 }
 
 //
+
+//初始化牌
+func (p *MJParserCore) InitMjPaiByIndex(index int32) *majiang.MJPAI {
+	result := &majiang.MJPAI{
+		Index: index,
+		Des:   majiang.MjpaiMap[int(index)],
+	}
+	result.InitByDes()
+	//返回结果
+	return result
+}
 
 //统计牌 27这个谁需要考虑 东南西北发中白的情况？
 func (p *MJParserCore) CountHandPais(pais []*majiang.MJPAI) []int {
@@ -116,9 +130,9 @@ func (p *MJParserCore) CanGang(userGameData interface{}, gangPai interface{}) (i
 
 var (
 	GANGTYPE_MING int32 = 1
-	GANGTYPE_BA   int32 = 2
-	GANGTYPE_AN   int32 = 3
-	GANGTYPE_BU   int32 = 4
+	GANGTYPE_BA int32 = 2
+	GANGTYPE_AN int32 = 3
+	GANGTYPE_BU int32 = 4
 	GANGTYPE_FENG int32 = 5
 )
 
@@ -292,7 +306,40 @@ func (p *MJParserCore) Parse(pids []int32) (interface{}, error) {
 
 //洗牌
 func (p *MJParserCore) XiPai() interface{} {
-	return nil
+	pResult := chessUtils.Xipai(0, majiang.TOTALPAICOUNT)
+	//pResult := []int32{143, 144, 145, 146, 147, 139, 140, 141, 142, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138}
+	log.T("洗牌之后,得到的随机的index数组[%v] 长度[%v]", pResult, len(pResult))
+	//开始得到牌的信息
+	var result []*majiang.MJPAI
+	for i := 0; i < int(majiang.TOTALPAICOUNT); i++ {
+		tp := p.InitMjPaiByIndex(pResult[i])
+		result = append(result, tp)
+	}
+	return result
+}
+
+//过滤4张红中
+func (p *MJParserCore) Ignore4HongZhong(pais []*majiang.MJPAI) []*majiang.MJPAI {
+	hongzhongCount := 0
+	ignoredPais := []*majiang.MJPAI{}
+	for _, pai := range pais {
+		//4红中玩法 且 ignored牌堆中红中大于等于4张 且当前的牌是红中
+		if hongzhongCount >= 4 && pai.GetClientId() == 32 {
+			log.T("ignored牌堆中红中数[%v]大于等于4张 且当前的牌是红中 过滤pai[%v]", hongzhongCount, pai.LogDes())
+			continue
+		}
+
+		if pai.GetClientId() == 32 {
+			//统计append红中牌的次数
+			hongzhongCount++
+		}
+		ignoredPais = append(ignoredPais, pai)
+	}
+	return ignoredPais
+}
+
+func (p *MJParserCore) ChaHu(...interface{}) (interface{}, error) {
+	return nil, nil
 }
 
 //todo 清一色
@@ -345,7 +392,7 @@ func (p *MJParserCore) is19(val int) bool {
 }
 
 func (p *MJParserCore) GettPaiValueByCountPos(countPos int) int32 {
-	return int32(countPos%9 + 1)
+	return int32(countPos % 9 + 1)
 }
 
 func (p *MJParserCore) IsMengQing(g MJUserGameData) bool {
@@ -388,14 +435,14 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		return true, isAll19, jiang
 	}
 
-	if (len%3 == 2) {
+	if (len % 3 == 2) {
 		//log.T("if %v 取模 3 == 2", len)
 		// 说明对牌出现
 		for i := 0; i < 27; i++ {
 			if (count[i] >= 2) {
 				count[i] -= 2
 
-				result, isAll19, jiang = p.TryHU(count, len-2)
+				result, isAll19, jiang = p.TryHU(count, len - 2)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if ! p.is19(i) {
@@ -412,11 +459,11 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		//log.T("else %v", len)
 		// 是否是顺子，这里应该分开判断
 		for i := 0; i < 7; i++ {
-			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
 				count[i] -= 1;
-				count[i+1] -= 1;
-				count[i+2] -= 1;
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				count[i + 1] -= 1;
+				count[i + 2] -= 1;
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -427,17 +474,17 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1
-				count[i+1] += 1
-				count[i+2] += 1
+				count[i + 1] += 1
+				count[i + 2] += 1
 			}
 		}
 
 		for i := 9; i < 16; i++ {
-			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
 				count[i] -= 1
-				count[i+1] -= 1
-				count[i+2] -= 1
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				count[i + 1] -= 1
+				count[i + 2] -= 1
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -448,17 +495,17 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1
-				count[i+1] += 1
-				count[i+2] += 1
+				count[i + 1] += 1
+				count[i + 2] += 1
 			}
 		}
 
 		for i := 18; i < 25; i++ {
-			if (count[i] > 0 && count[i+1] > 0 && count[i+2] > 0) {
+			if (count[i] > 0 && count[i + 1] > 0 && count[i + 2] > 0) {
 				count[i] -= 1;
-				count[i+1] -= 1;
-				count[i+2] -= 1;
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				count[i + 1] -= 1;
+				count[i + 2] -= 1;
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) && !p.is19(i + 1) && !p.is19(i + 2) {
@@ -469,8 +516,8 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 					return true, isAll19, jiang
 				}
 				count[i] += 1;
-				count[i+1] += 1;
-				count[i+2] += 1;
+				count[i + 1] += 1;
+				count[i + 2] += 1;
 			}
 		}
 
@@ -478,7 +525,7 @@ func (p *MJParserCore) TryHU(count []int, len int) (result bool, isAll19 bool, j
 		for i := 0; i < 27; i++ {
 			if (count[i] >= 3) {
 				count[i] -= 3
-				result, isAll19, jiang = p.TryHU(count, len-3)
+				result, isAll19, jiang = p.TryHU(count, len - 3)
 				if (result) {
 					//log.T("i: %v, value: %v", i, count[i])
 					if !p.is19(i) {

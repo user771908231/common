@@ -15,7 +15,6 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"math"
-	"casino_common/utils/rand"
 )
 
 //玩家游戏账单数据 没玩完一局游戏存储一次数据
@@ -31,9 +30,9 @@ func init() {
 	UserBill = new(util.Map)
 }
 
-func OnInit(gameId, limitLength int32, watchPoint float64) {
+func OnInit(gameId int32, watchPoint float64) {
 	Cfg.gameId = gameId
-	Cfg.limitLength = limitLength
+	//Cfg.limitLength = limitLength
 	Cfg.tbName = tableName.DBT_USER_GAME_BILL
 	Cfg.watchPoint = watchPoint
 }
@@ -194,12 +193,7 @@ func insert2Memory(b *ddproto.UserGameBill) {
 	//将这条数据追加到第一个位置
 	newUserBills := []*ddproto.UserGameBill{b}
 
-	if gameBill.GetData() != nil && len(gameBill.GetData()) >= int(Cfg.limitLength) {
-		//原始长度超出限制
-		newUserBills = append(newUserBills, gameBill.Data[:Cfg.limitLength-1]...)
-	} else {
-		newUserBills = append(newUserBills, gameBill.Data...)
-	}
+	newUserBills = append(newUserBills, gameBill.Data...)
 
 	gameBill.Data = newUserBills
 	UserBill.Set(b.GetUserId(), gameBill)
@@ -223,12 +217,12 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	newUserBills := []*ddproto.UserGameBill{b}
 	newUserBills = append(newUserBills, redisUserGameBill.GetData()...)
 
-	lenth := len(newUserBills)
+	//lenth := len(newUserBills)
 	//只保留限定条数的数据
-	if len(newUserBills) > int(Cfg.limitLength) {
-		lenth = int(Cfg.limitLength)
-	}
-	redisUserGameBill.Data = newUserBills[:lenth]
+	//if len(newUserBills) > int(Cfg.limitLength) {
+	//	lenth = int(Cfg.limitLength)
+	//}
+	//redisUserGameBill.Data = newUserBills[:lenth]
 
 	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
@@ -256,22 +250,24 @@ func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRa
 	//赢的概率默认70
 	winRandomRate = 70
 
-	continueLoseUsers := getContinueLoseUsers(userIds, roomType, rand.Rand(CONTIUNELOSECOUNT_MIN, CONTIUNELOSECOUNT_MAX))
-	if len(continueLoseUsers) == 1 {
-		//只有一个玩家连输的时候直接返回
-		winUserId = continueLoseUsers[0]
-		winRandomRate = 100 //必赢
-		log.T("GetWinUser 找到单个连输的玩家[%v] 让他必赢", winUserId)
-		return
-	}
-
-	if len(continueLoseUsers) <= 0 {
-		//没有连输的玩家 设置为所有玩家
-		continueLoseUsers = userIds
-	}
+	//todo 暂时注释连输的控制
+	//continueLoseUsers := getContinueLoseUsers(userIds, roomType, rand.Rand(CONTIUNELOSECOUNT_MIN, CONTIUNELOSECOUNT_MAX))
+	//if len(continueLoseUsers) == 1 {
+	//	//只有一个玩家连输的时候直接返回
+	//	winUserId = continueLoseUsers[0]
+	//	winRandomRate = 100 //必赢
+	//	log.T("GetWinUser 找到单个连输的玩家[%v] 让他必赢", winUserId)
+	//	return
+	//}
+	//
+	//if len(continueLoseUsers) <= 0 {
+	//	//没有连输的玩家 设置为所有玩家
+	//	continueLoseUsers = userIds
+	//}
 
 	//获取位于赢模式的玩家
-	winModeUsers := getWinModeUsers(continueLoseUsers, roomType)
+	//winModeUsers := getWinModeUsers(continueLoseUsers, roomType)
+	winModeUsers := getWinModeUsers(userIds, roomType)
 	if len(winModeUsers) == 1 {
 		//只有一个玩家处于赢模式的时候直接返回
 		winUserId = winModeUsers[0]
@@ -345,7 +341,7 @@ func getTOPDefeatedPointUser(userIds []uint32, roomType int32) uint32 {
 		if gameBill == nil {
 			continue
 		}
-		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
+		defeatedPoint, _, _ := getUserDefeatedPoint(gameBill.GetData())
 		if topDefeatedPointUserId == uint32(0) {
 			topDefeatedPointUserId = userId
 			topDefeatedPoint = defeatedPoint
@@ -367,18 +363,19 @@ func updateWinMode(userIds []uint32, roomType int32) {
 			continue
 		}
 
-		wonPoint := getUserWonPoint(gameBill.GetData())
-		defeatedPoint := getUserDefeatedPoint(gameBill.GetData())
+		wonPoint, wonCount, totalWonAmount := getUserWonPoint(gameBill.GetData())
+		defeatedPoint, loseCount, totalLoseAmount := getUserDefeatedPoint(gameBill.GetData())
 
-		log.T("更新玩家输赢模式 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v] wonPoint[%v] watchPoint[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, wonPoint, Cfg.watchPoint)
+		log.T("判断是否更新玩家输赢模式 玩家[%v]当前是否处于赢的模式[%v] 当前defeatedPoint[%v]-loseCount[%v]-totalLoseAmount[%v] wonPoint[%v]-wonCount[%v]-totalWonAmount[%v] watchPoint[%v]", userId, gameBill.GetIsWinMode(), defeatedPoint, loseCount, totalLoseAmount, wonPoint, wonCount, totalWonAmount, Cfg.watchPoint)
 
 		if gameBill.GetIsWinMode() {
 			//玩家当前在赢的模式中
 			if wonPoint >= Cfg.watchPoint {
 				//玩家超过赢的得分限制 退出赢的模式
 				gameBill.IsWinMode = proto.Bool(false)
+				gameBill.Data = nil
 				updateUserGameBill(userId, roomType, gameBill)
-				log.T("更新玩家输赢模式 玩家[%v] wonPoint[%v]满足条件 退出赢的模式", userId, wonPoint)
+				log.T("更新玩家输赢模式 玩家[%v]wonPoint[%v]满足条件 退出赢的模式 wonCount[%v]-totalWonAmount[%v]", userId, wonPoint, wonCount, totalWonAmount)
 				continue
 			}
 			continue
@@ -387,16 +384,15 @@ func updateWinMode(userIds []uint32, roomType int32) {
 		if defeatedPoint >= Cfg.watchPoint {
 			//玩家超过输的得分限制 进入赢的模式
 			gameBill.IsWinMode = proto.Bool(true)
+			gameBill.Data = nil
 			updateUserGameBill(userId, roomType, gameBill)
-			log.T("更新玩家输赢模式 玩家[%v] defeatedPoint[%v]满足条件 进入赢的模式", userId, defeatedPoint)
+			log.T("更新玩家输赢模式 玩家[%v]defeatedPoint[%v]满足条件 进入赢的模式 loseCount[%v]-totalLoseAmount[%v]", userId, defeatedPoint, loseCount, totalLoseAmount)
 			continue
 		}
 	}
 }
 
-func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint float64) {
-	loseCount := float64(0)
-	totalLoseAmount := float64(0)
+func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint, loseCount, totalLoseAmount float64) {
 	for _, b := range bills {
 		totalLoseAmount += float64(b.GetWinAmount())
 		if b.GetWinAmount() < 0 {
@@ -415,9 +411,7 @@ func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint float64)
 	return
 }
 
-func getUserWonPoint(bills []*ddproto.UserGameBill) (winPoint float64) {
-	winCount := float64(0)
-	totalWinAmount := float64(0)
+func getUserWonPoint(bills []*ddproto.UserGameBill) (winPoint, winCount, totalWinAmount float64) {
 	for _, b := range bills {
 		totalWinAmount += float64(b.GetWinAmount())
 		if b.GetWinAmount() > 0 {

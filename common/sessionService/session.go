@@ -153,6 +153,7 @@ func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (bool, 
 		log.T("找不到玩家[%v]的session, 可以进入", userId)
 		return true, nil
 	}
+	log.T("判断玩家能否进入游戏时，找到的玩家session[%v]", s)
 	if s.GetGameStatus() != int32(ddproto.COMMON_ENUM_GAMESTATUS_GAMING) {
 		//没在游戏中 可以进
 		log.T("找到的玩家[%v]session没在游戏中, 可以进入", userId)
@@ -162,13 +163,6 @@ func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (bool, 
 	if s.GetGameId() != gid {
 		//根据roomType找到的session是在其他游戏中 不能进
 		return false, getError(s.GetGameId(), s.GetRoomType())
-	}
-
-	if s.GetRoomType() == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN) {
-		if s.GetRoomLevel() != roomLevel {
-			//同一游戏的金币场 不同级别不能进
-			return false, getError(s.GetGameId(), s.GetRoomType())
-		}
 	}
 	//其他条件可以进入房间
 	log.T("根据session判断玩家[%v]可以进入游戏", userId)
