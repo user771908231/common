@@ -3,6 +3,7 @@ package rpcService
 import (
 	"google.golang.org/grpc"
 	"sync"
+	"casino_common/common/log"
 )
 
 type Pool struct {
@@ -29,6 +30,10 @@ func (p *Pool) Init(addr string, init_conn int) error {
 
 //从连接池中取一个出来
 func (p *Pool) Get() *grpc.ClientConn {
+	if len(p.pools) == 0 {
+		log.E("Rpc Pool未初始化！")
+		return nil
+	}
 	p.mu.Lock()
 	next_index := p.pool_index%len(p.pools)
 	p.pool_index++

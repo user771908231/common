@@ -79,7 +79,9 @@ func saveToRedis(creator uint32, gameId int32, deskId int32) error {
 
 	//保存至redis
 	saveToRedisByCreator(desk.GetCreator())
-	saveToRedisByGroupid(desk.GetGroupId())
+	if desk.GetGroupId() > 0 {
+		saveToRedisByGroupid(desk.GetGroupId())
+	}
 
 	return nil
 }
@@ -188,7 +190,7 @@ func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tip
 			return errors.New("insert err.")
 		case saveToRedisByCreator(creator) != nil:
 			return errors.New("save redis creator err.")
-		case saveToRedisByGroupid(groupId) != nil:
+		case groupId > 0 && saveToRedisByGroupid(groupId) != nil:
 			return errors.New("save redis group err.")
 	}
 
@@ -240,7 +242,15 @@ func DoEnd(creator uint32, gameId int32, deskId int32) error {
 	}
 
 	//插入已结束表
-	return insertToMongo(ex_desk)
+	insertToMongo(ex_desk)
+
+	//推送解散消息
+	_,err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+		Msg: proto.String("房间已结束游戏"),
+		Desk: ex_desk,
+	})
+
+	return err
 }
 
 //牌桌解散
@@ -263,16 +273,31 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 		return err
 	}
 
+	//更新状态
+	ex_desk.Status = proto.Int32(3);
+	insertToMongo(ex_desk)
+
 	//更新redis
 	saveToRedisByCreator(ex_desk.GetCreator())
 	if ex_desk.GetGroupId() > 0 {
 		saveToRedisByGroupid(ex_desk.GetGroupId())
 	}
-	return nil
+
+	//推送解散消息
+	_,err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+		Msg: proto.String("房间已解散"),
+		Desk: ex_desk,
+	})
+
+	return err
 }
 
 //添加用户
 func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) error {
+	if count_exuser,_ := db.C(tableName.DBT_AGENT_CREATED_ROOM).Count(bson.M{"users": new_user}); count_exuser > 0 {
+		return errors.New("用户已在房间里，重复请求进房。")
+	}
+
 	query := bson.M{
 		"creator": creator,
 		"gameid": gameId,
