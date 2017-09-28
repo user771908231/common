@@ -116,4 +116,11 @@ func OnInit(mjProcessor *protobuf.Processor) {
 	mjProcessor.Register(&mjproto.GameAckTinginfos{}) //98 可胡牌列表(听牌)的推送
 
 	mjProcessor.Register(&mjproto.GameAckBuhua{}) //99 补花的推送
+
+	mjProcessor.Register(&mjproto.GameBcShangga{}) //100 上嘎 给每个玩家单独推送 让其上嘎
+	mjProcessor.Register(&mjproto.GameReqShangga{}) //101 上嘎请求
+	mjProcessor.Register(&mjproto.GameAckShangga{}) //102 上嘎ack
+
+	mjProcessor.Register(&ddproto.CommonReqListCoinDesk{}) //103 请求金币场桌子列表
+	mjProcessor.Register(&ddproto.CommonAckListCoinDesk{}) //104 回复金币场桌子列表
 }

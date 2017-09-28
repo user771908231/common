@@ -4,6 +4,7 @@ import (
 	"github.com/name5566/leaf/util"
 	"github.com/name5566/leaf/module"
 	"casino_common/proto/ddproto"
+	"casino_common/utils/chessUtils"
 )
 
 type MJRoom interface {
@@ -47,6 +48,36 @@ func (r *MJRoomCore) GetRoomId() int32 {
 
 func (r *MJRoomCore) GetRoomType() int32 {
 	return r.RoomType
+}
+
+
+//随机一个房间号码
+func (r *MJRoomCore) RandRoomKey(gid int32) string {
+	//金币场没有房间号码
+	roomKey := chessUtils.GetRoomPass(gid)
+	//1,判断roomKey是否已经存在
+	if r.IsRoomKeyExist(roomKey) {
+		//log.E("房间密钥[%v]已经存在,创建房间失败,重新创建", roomKey)
+		return r.RandRoomKey(gid)
+	} else {
+		//log.T("最终得到的密钥是[%v]", roomKey)
+		return roomKey
+	}
+	return ""
+}
+
+//判断roomkey是否已经存在了
+func (r *MJRoomCore) IsRoomKeyExist(roomkey string) bool {
+	ret := false
+	r.ListDesk().UnsafeRange(func(k interface{}, v interface{}) {
+		if v != nil {
+			d := v.(MJDesk)
+			if d.GetPassword() == roomkey {
+				ret = true
+			}
+		}
+	})
+	return ret
 }
 
 //增加一个desk
