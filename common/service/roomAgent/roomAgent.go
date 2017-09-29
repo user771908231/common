@@ -63,24 +63,28 @@ func GetAgentFreeRoomByOption(group_id int32, gamer_num int, keywords []string) 
 }
 
 //查询单个牌桌信息
-func saveToRedis(creator uint32, gameId int32, deskId int32) error {
-	desk := new(ddproto.CommonDeskByAgent)
-
-	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(bson.M{
-		"creator": creator,
-		"gameid": gameId,
-		"deskid": deskId,
-	},desk)
-
-	if err != nil {
-		log.E("saveToRedis(creator:%d,gameId:%d,deskId:%d) err:%v", creator, gameId, deskId, err)
-		return err
-	}
+func saveToRedis(creator uint32, gameId int32, deskId int32, groupId int32) error {
 
 	//保存至redis
-	saveToRedisByCreator(desk.GetCreator())
-	if desk.GetGroupId() > 0 {
-		saveToRedisByGroupid(desk.GetGroupId())
+	saveToRedisByCreator(creator)
+	if groupId > 0 {
+		saveToRedisByGroupid(groupId)
+	}else if groupId == 0 {
+		desk := new(ddproto.CommonDeskByAgent)
+
+		err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(bson.M{
+			"creator": creator,
+			"gameid": gameId,
+			"deskid": deskId,
+		},desk)
+
+		if err != nil {
+			log.E("saveToRedis(creator:%d,gameId:%d,deskId:%d) err:%v", creator, gameId, deskId, err)
+			return err
+		}
+		if desk.GetGroupId() > 0{
+			saveToRedisByGroupid(desk.GetGroupId())
+		}
 	}
 
 	return nil
@@ -211,7 +215,7 @@ func DoStart(creator uint32, gameId int32, deskId int32) error {
 		return err
 	}
 
-	return saveToRedis(creator, gameId, deskId)
+	return saveToRedis(creator, gameId, deskId, 0)
 }
 
 //牌桌结束
@@ -294,34 +298,41 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 
 //添加用户
 func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) error {
-	if count_exuser,_ := db.C(tableName.DBT_AGENT_CREATED_ROOM).Count(bson.M{"users": new_user}); count_exuser > 0 {
-		return errors.New("用户已在房间里，重复请求进房。")
-	}
-
 	query := bson.M{
 		"creator": creator,
 		"gameid": gameId,
 		"deskid": deskId,
 	}
-	//更新用户列表
-	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Update(query, bson.M{
-		"$push": bson.M{"users": new_user},
-	})
 
+	//更新redis
+	desk := new(ddproto.CommonDeskByAgent)
+	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(query, desk)
+	if err != nil {
+		return err
+	}
+
+	for _,u := range desk.Users{
+		if u == new_user {
+			return errors.New("用户已在房间里，重复请求进房。")
+		}
+	}
+	desk.Users = append(desk.Users, new_user)
+
+	//更新用户列表
+	err = db.C(tableName.DBT_AGENT_CREATED_ROOM).Update(query, bson.M{
+		"$addToSet": bson.M{"users": new_user},
+	})
 	if err != nil {
 		return err
 	}
 
 	//保存到redis
-	err = saveToRedis(creator, gameId, deskId)
-	if err != nil {
-		return err
+	group_id := desk.GetGroupId()
+	if group_id <= 0 {
+		group_id = -1
 	}
-
-	//推送到大厅
-	desk := new(ddproto.CommonDeskByAgent)
-	err = db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(query, desk)
-	if err != nil || desk.GetGroupId() <= 0 {
+	err = saveToRedis(creator, gameId, deskId, group_id)
+	if err != nil {
 		return err
 	}
 

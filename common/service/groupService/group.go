@@ -283,8 +283,7 @@ func (g *GroupInfo) OnReceiveMsg(msg *ddproto.GroupMsgItem, agent gate.Agent) {
 				DeskContent: new_desk,
 			},
 		}
-		agent.WriteMsg(res)
-		return
+		g.BroadCast(res)
 	case ddproto.GroupMsgType_group_msg_type_MemberOut:
 		//退出群聊,房主踢人,解散房间
 		if msg.GetFromUid() == g.GetOwner() {
