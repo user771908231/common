@@ -169,6 +169,8 @@ const (
 	PhzEnumProtoId_PHZ_PID_LEAVEDESK_ACK         PhzEnumProtoId = 41
 	PhzEnumProtoId_PHZ_PID_KICKUSER              PhzEnumProtoId = 42
 	PhzEnumProtoId_PHZ_PID_KICKUSER_BC           PhzEnumProtoId = 43
+	PhzEnumProtoId_PHZ_PID_MESSAGE_REQ           PhzEnumProtoId = 44
+	PhzEnumProtoId_PHZ_PID_MESSAGE_BC            PhzEnumProtoId = 45
 )
 
 var PhzEnumProtoId_name = map[int32]string{
@@ -216,6 +218,8 @@ var PhzEnumProtoId_name = map[int32]string{
 	41: "PHZ_PID_LEAVEDESK_ACK",
 	42: "PHZ_PID_KICKUSER",
 	43: "PHZ_PID_KICKUSER_BC",
+	44: "PHZ_PID_MESSAGE_REQ",
+	45: "PHZ_PID_MESSAGE_BC",
 }
 var PhzEnumProtoId_value = map[string]int32{
 	"PHZ_PID_HEARTBEAT":             0,
@@ -262,6 +266,8 @@ var PhzEnumProtoId_value = map[string]int32{
 	"PHZ_PID_LEAVEDESK_ACK":         41,
 	"PHZ_PID_KICKUSER":              42,
 	"PHZ_PID_KICKUSER_BC":           43,
+	"PHZ_PID_MESSAGE_REQ":           44,
+	"PHZ_PID_MESSAGE_BC":            45,
 }
 
 func (x PhzEnumProtoId) Enum() *PhzEnumProtoId {
@@ -471,6 +477,68 @@ func (x *PhzEnumDeskStatus) UnmarshalJSON(data []byte) error {
 }
 func (PhzEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{5} }
 
+type PhzEnumUserStatus int32
+
+const (
+	// *******User的流程状态*********
+	PhzEnumUserStatus_PHZUSER_STATUS_INIT     PhzEnumUserStatus = 1
+	PhzEnumUserStatus_PHZUSER_STATUS_READY    PhzEnumUserStatus = 2
+	PhzEnumUserStatus_PHZUSER_STATUS_BEGIN    PhzEnumUserStatus = 3
+	PhzEnumUserStatus_PHZUSER_STATUS_MOPAI    PhzEnumUserStatus = 4
+	PhzEnumUserStatus_PHZUSER_STATUS_CANCHI   PhzEnumUserStatus = 5
+	PhzEnumUserStatus_PHZUSER_STATUS_CANPENG  PhzEnumUserStatus = 6
+	PhzEnumUserStatus_PHZUSER_STATUS_CANHU    PhzEnumUserStatus = 7
+	PhzEnumUserStatus_PHZUSER_STATUS_CHECKING PhzEnumUserStatus = 8
+	PhzEnumUserStatus_PHZUSER_STATUS_OUTCARD  PhzEnumUserStatus = 9
+	PhzEnumUserStatus_PHZUSER_STATUS_LOTTERY  PhzEnumUserStatus = 10
+	PhzEnumUserStatus_PHZUSER_STATUS_FINISH   PhzEnumUserStatus = 11
+)
+
+var PhzEnumUserStatus_name = map[int32]string{
+	1:  "PHZUSER_STATUS_INIT",
+	2:  "PHZUSER_STATUS_READY",
+	3:  "PHZUSER_STATUS_BEGIN",
+	4:  "PHZUSER_STATUS_MOPAI",
+	5:  "PHZUSER_STATUS_CANCHI",
+	6:  "PHZUSER_STATUS_CANPENG",
+	7:  "PHZUSER_STATUS_CANHU",
+	8:  "PHZUSER_STATUS_CHECKING",
+	9:  "PHZUSER_STATUS_OUTCARD",
+	10: "PHZUSER_STATUS_LOTTERY",
+	11: "PHZUSER_STATUS_FINISH",
+}
+var PhzEnumUserStatus_value = map[string]int32{
+	"PHZUSER_STATUS_INIT":     1,
+	"PHZUSER_STATUS_READY":    2,
+	"PHZUSER_STATUS_BEGIN":    3,
+	"PHZUSER_STATUS_MOPAI":    4,
+	"PHZUSER_STATUS_CANCHI":   5,
+	"PHZUSER_STATUS_CANPENG":  6,
+	"PHZUSER_STATUS_CANHU":    7,
+	"PHZUSER_STATUS_CHECKING": 8,
+	"PHZUSER_STATUS_OUTCARD":  9,
+	"PHZUSER_STATUS_LOTTERY":  10,
+	"PHZUSER_STATUS_FINISH":   11,
+}
+
+func (x PhzEnumUserStatus) Enum() *PhzEnumUserStatus {
+	p := new(PhzEnumUserStatus)
+	*p = x
+	return p
+}
+func (x PhzEnumUserStatus) String() string {
+	return proto.EnumName(PhzEnumUserStatus_name, int32(x))
+}
+func (x *PhzEnumUserStatus) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(PhzEnumUserStatus_value, data, "PhzEnumUserStatus")
+	if err != nil {
+		return err
+	}
+	*x = PhzEnumUserStatus(value)
+	return nil
+}
+func (PhzEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor43, []int{6} }
+
 type PhzPlayPaiIds struct {
 	PokerId          []int32 `protobuf:"varint,1,rep,name=pokerId" json:"pokerId,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
@@ -660,22 +728,23 @@ func (m *PhzBaseDeskInfo) GetIsOutCard() bool {
 }
 
 type PhzBasePlayerInfo struct {
-	UserId           *uint32          `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
-	IsOwner          *bool            `protobuf:"varint,2,opt,name=isOwner" json:"isOwner,omitempty"`
-	IsBanker         *bool            `protobuf:"varint,3,opt,name=isBanker" json:"isBanker,omitempty"`
-	IsReady          *bool            `protobuf:"varint,4,opt,name=isReady" json:"isReady,omitempty"`
-	IsLeave          *bool            `protobuf:"varint,5,opt,name=isLeave" json:"isLeave,omitempty"`
-	HuXi             *int32           `protobuf:"varint,6,opt,name=huXi" json:"huXi,omitempty"`
-	Score            *int64           `protobuf:"varint,7,opt,name=score" json:"score,omitempty"`
-	WxInfo           *WeixinInfo      `protobuf:"bytes,8,opt,name=wxInfo" json:"wxInfo,omitempty"`
-	HandPokers       []int32          `protobuf:"varint,9,rep,name=handPokers" json:"handPokers,omitempty"`
-	TiPais           []*PhzPlayPaiIds `protobuf:"bytes,10,rep,name=tiPais" json:"tiPais,omitempty"`
-	PaoPais          []*PhzPlayPaiIds `protobuf:"bytes,11,rep,name=paoPais" json:"paoPais,omitempty"`
-	WeiPais          []*PhzPlayPaiIds `protobuf:"bytes,12,rep,name=weiPais" json:"weiPais,omitempty"`
-	PengPais         []*PhzPlayPaiIds `protobuf:"bytes,13,rep,name=pengPais" json:"pengPais,omitempty"`
-	ChiPais          []*PhzPlayPaiIds `protobuf:"bytes,14,rep,name=chiPais" json:"chiPais,omitempty"`
-	OutCards         []int32          `protobuf:"varint,15,rep,name=outCards" json:"outCards,omitempty"`
-	XXX_unrecognized []byte           `json:"-"`
+	UserId           *uint32            `protobuf:"varint,1,opt,name=userId" json:"userId,omitempty"`
+	IsOwner          *bool              `protobuf:"varint,2,opt,name=isOwner" json:"isOwner,omitempty"`
+	IsBanker         *bool              `protobuf:"varint,3,opt,name=isBanker" json:"isBanker,omitempty"`
+	IsReady          *bool              `protobuf:"varint,4,opt,name=isReady" json:"isReady,omitempty"`
+	IsLeave          *bool              `protobuf:"varint,5,opt,name=isLeave" json:"isLeave,omitempty"`
+	HuXi             *int32             `protobuf:"varint,6,opt,name=huXi" json:"huXi,omitempty"`
+	Score            *int64             `protobuf:"varint,7,opt,name=score" json:"score,omitempty"`
+	WxInfo           *WeixinInfo        `protobuf:"bytes,8,opt,name=wxInfo" json:"wxInfo,omitempty"`
+	HandPokers       []int32            `protobuf:"varint,9,rep,name=handPokers" json:"handPokers,omitempty"`
+	TiPais           []*PhzPlayPaiIds   `protobuf:"bytes,10,rep,name=tiPais" json:"tiPais,omitempty"`
+	PaoPais          []*PhzPlayPaiIds   `protobuf:"bytes,11,rep,name=paoPais" json:"paoPais,omitempty"`
+	WeiPais          []*PhzPlayPaiIds   `protobuf:"bytes,12,rep,name=weiPais" json:"weiPais,omitempty"`
+	PengPais         []*PhzPlayPaiIds   `protobuf:"bytes,13,rep,name=pengPais" json:"pengPais,omitempty"`
+	ChiPais          []*PhzPlayPaiIds   `protobuf:"bytes,14,rep,name=chiPais" json:"chiPais,omitempty"`
+	OutCards         []int32            `protobuf:"varint,15,rep,name=outCards" json:"outCards,omitempty"`
+	PlayerStatus     *PhzEnumUserStatus `protobuf:"varint,16,opt,name=playerStatus,enum=ddproto.PhzEnumUserStatus" json:"playerStatus,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
 }
 
 func (m *PhzBasePlayerInfo) Reset()                    { *m = PhzBasePlayerInfo{} }
@@ -788,6 +857,13 @@ func (m *PhzBasePlayerInfo) GetOutCards() []int32 {
 	return nil
 }
 
+func (m *PhzBasePlayerInfo) GetPlayerStatus() PhzEnumUserStatus {
+	if m != nil && m.PlayerStatus != nil {
+		return *m.PlayerStatus
+	}
+	return PhzEnumUserStatus_PHZUSER_STATUS_INIT
+}
+
 func init() {
 	proto.RegisterType((*PhzPlayPaiIds)(nil), "ddproto.phz_play_paiIds")
 	proto.RegisterType((*PhzBaseCreateOption)(nil), "ddproto.phz_base_createOption")
@@ -800,6 +876,7 @@ func init() {
 	proto.RegisterEnum("ddproto.PhzEnumPengType", PhzEnumPengType_name, PhzEnumPengType_value)
 	proto.RegisterEnum("ddproto.PhzEnumPaoType", PhzEnumPaoType_name, PhzEnumPaoType_value)
 	proto.RegisterEnum("ddproto.PhzEnumDeskStatus", PhzEnumDeskStatus_name, PhzEnumDeskStatus_value)
+	proto.RegisterEnum("ddproto.PhzEnumUserStatus", PhzEnumUserStatus_name, PhzEnumUserStatus_value)
 }
 
 func init() { proto.RegisterFile("phz_base.proto", fileDescriptor45) }
