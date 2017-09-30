@@ -138,6 +138,8 @@ var _ = math.Inf
 
 // Ignoring public import of phz_enum_deskStatus from phz_base.proto
 
+// Ignoring public import of phz_enum_userStatus from phz_base.proto
+
 type PhzEnumActionType int32
 
 const (

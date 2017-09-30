@@ -138,6 +138,8 @@ var _ = math.Inf
 
 // Ignoring public import of phz_enum_deskStatus from phz_base.proto
 
+// Ignoring public import of phz_enum_userStatus from phz_base.proto
+
 // Ignoring public import of phz_req_Ready from phz_play.proto
 
 // Ignoring public import of phz_ack_Ready from phz_play.proto
