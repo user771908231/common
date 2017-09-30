@@ -635,8 +635,11 @@ func TryHu(userGameData interface{}, pai interface{}) (interface{}, error) {
 		checkPai := pai.(*PHZPoker)
 		checkPokers = append(util.DeepClone(pais).([]*PHZPoker), checkPai)
 	}
+	if checkPokers == nil || len(checkPokers) == 0 {
+		return huInfo, nil
+	}
+	log.T("TryHu的牌是：[%v]", Cards2String(checkPokers))
 	for {
-		log.T("判断是否可以胡牌时检查手牌里是否有提牌...")
 		tiData, handPokers := GetTiPaisForHu(checkPokers)
 		//check胡牌时按胡息数从高到低的找每一种牌型，如果找完时，刚好手牌数为0，则可以胡牌
 		//1、先找成提的牌
@@ -649,7 +652,6 @@ func TryHu(userGameData interface{}, pai interface{}) (interface{}, error) {
 		checkPokers = handPokers
 
 		//2、找成坎的牌
-		log.T("判断是否可以胡牌时检查手牌里是否有坎牌...")
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
@@ -660,7 +662,6 @@ func TryHu(userGameData interface{}, pai interface{}) (interface{}, error) {
 		checkPokers = handPokers
 
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
-		log.T("判断是否可以胡牌时检查手牌里是否有一句话...")
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
 			for _, yjh := range yijuhua {
@@ -671,7 +672,6 @@ func TryHu(userGameData interface{}, pai interface{}) (interface{}, error) {
 		checkPokers = handPokers
 
 		//4、找一缴牌
-		log.T("判断是否可以胡牌时检查手牌里是否有一缴牌...")
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
 			for _, yjp := range yijiaopai {
@@ -682,7 +682,6 @@ func TryHu(userGameData interface{}, pai interface{}) (interface{}, error) {
 		checkPokers = handPokers
 
 		//5、找对子将牌
-		log.T("判断是否可以胡牌时检查手牌里是否有将牌...")
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
 			for _, duizi := range duiZiData {
@@ -693,17 +692,23 @@ func TryHu(userGameData interface{}, pai interface{}) (interface{}, error) {
 		checkPokers = handPokers
 		log.T("checkHu 后剩余牌是：[%v]", Cards2String(checkPokers))
 
-		if (tiData == nil || len(tiData) == 0) && (kanData == nil || len(kanData) == 0) && (yijuhua == nil || len(yijuhua) == 0) &&
+		if checkPokers == nil || len(checkPokers) == 0 {
+			if duiZiData == nil || len(duiZiData) == 0 {
+				log.T("玩家可以胡牌了...")
+				return huInfo, nil
+			}
+			if duiZiData != nil && len(duiZiData) == 1 {
+				log.T("玩家可以胡牌了...")
+				return huInfo, nil
+			}
+			return nil, nil
+		} else if (tiData == nil || len(tiData) == 0) && (kanData == nil || len(kanData) == 0) && (yijuhua == nil || len(yijuhua) == 0) &&
 			(yijiaopai == nil || len(yijiaopai) == 0) && (duiZiData == nil || len(duiZiData) > 1) && len(checkPokers) > 0 {
+			log.T("玩家还不能胡牌")
 			return nil, nil
 		}
-		if (checkPokers == nil && duiZiData == nil) || (checkPokers == nil && (len(duiZiData) <= 1)) {
-			return huInfo, nil
-		}
-		if (len(checkPokers) == 0 && duiZiData == nil) || (len(checkPokers) == 0 && (len(duiZiData)) <= 1) {
-			return huInfo, nil
-		}
 	}
+	log.T("玩家还不能胡牌")
 	return nil, nil
 }
 
@@ -749,7 +754,7 @@ func GetKanPaisForHu(pais []*PHZPoker) (result []*YiKanPai, remainPokers []*PHZP
 			kanData.Pais = GetPaisByValue2(handPokers, int32(paiValue))
 			if paiValue <= 10 {
 				kanData.HuXi = 3
-			} else {
+			} else if paiValue > 10 {
 				kanData.HuXi = 6
 			}
 			result = append(result, kanData)
@@ -836,7 +841,7 @@ func GetYiJuHuaForHu(handPais []*PHZPoker) ([]*YJH, []*PHZPoker) {
 			handPokers = DelPaiFromPokers(handPokers, pai2)
 
 			yijuhua.Pais = append(yijuhua.Pais, pai3)
-			handPokers = DelPaiFromPokers(handPokers, pai2)
+			handPokers = DelPaiFromPokers(handPokers, pai3)
 			yijuhua.HuXi = 3
 			result = append(result, yijuhua)
 		}

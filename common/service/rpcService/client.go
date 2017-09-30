@@ -22,3 +22,9 @@ var PdkPool Pool
 func GetPdk() ddproto.PdkRpcClient {
 	return ddproto.NewPdkRpcClient(PdkPool.Get())
 }
+
+//大厅
+var HallPool Pool
+func GetHall() ddproto.HallRpcClient {
+	return ddproto.NewHallRpcClient(HallPool.Get())
+}

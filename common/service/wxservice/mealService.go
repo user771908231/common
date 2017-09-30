@@ -37,9 +37,9 @@ func getDefaultPayModel() *ddproto.PayBasePaymodel {
 func getDDZPayModel() *ddproto.PayBasePaymodel {
 	ret := &ddproto.PayBasePaymodel{
 		Id:    proto.Int32(1),
-		AppId: proto.String("wx968f1e52358d6a29"),
-		MchId: proto.String("1426502002"),
-		AppKey:proto.String("SjDDze834Or9Lndw3FeNoj4IqPoda330")}
+		AppId: proto.String(WXConfig.AppId),
+		MchId: proto.String(WXConfig.MchId),
+		AppKey:proto.String(WXConfig.ApiKey)}
 	return ret
 }
 

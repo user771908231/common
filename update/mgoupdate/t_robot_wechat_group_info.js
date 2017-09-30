@@ -29,3 +29,9 @@ db.getCollection('t_robot_wechat_group_info').insert({
     "gametype": "十五张跑得快"     //游戏类型
 });
 
+db.getCollection('t_robot_wechat_group_info').insert({
+    "groupname": "来一圈测试群",  //群名称
+    "ownerid": 12921,    //群主id
+    "gametype": "十五张跑得快"     //游戏类型
+});
+
