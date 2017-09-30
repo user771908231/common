@@ -18,6 +18,8 @@ const (
 	RKEY_SEQ_ID_KEY             string = "redis_seq_id_key"        //自增id key
 
 	RKEY_AGENT_CREATE_DESK_LIST string = "rkey_agent_create_desk_list" //代开房间列表 key
+	RKEY_AGENT_GROUP_CREATE_DESK_LIST string = "rkey_agent_group_create_desk_list" //代开房间列表 key
+
 
 	RKEY_USER_GAME_BILL string = "rkey_user_game_bill" //玩家游戏账单数据
 )

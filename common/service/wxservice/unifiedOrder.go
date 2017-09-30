@@ -21,7 +21,7 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 	//app支付 需要这么多就行了
 	unifiedOrderRequest := new(pay.UnifiedOrderRequest)
 	unifiedOrderRequest.DeviceInfo = deviceInfo
-	unifiedOrderRequest.Body = "神经棋牌-游戏充值"
+	unifiedOrderRequest.Body = "游戏充值"  //微信支付-确认交易页面的标题
 	unifiedOrderRequest.OutTradeNo = tradeNo //商户内部的订单号 test ：time+userId+type+rand ?
 	unifiedOrderRequest.FeeType = "CNY"
 	unifiedOrderRequest.TotalFee = totalFee
@@ -33,7 +33,7 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 
 	result, err := pay.UnifiedOrder2(client, unifiedOrderRequest)
 	if err != nil {
-		log.E("统一下单的时候出现错误...err:%v", err)
+		log.E("统一下单的时候出现错误...err:%v WxConfig:%v", err, WXConfig)
 		return nil, err
 	}
 
@@ -108,7 +108,7 @@ func GetAppWxpayReqParams(payModelId int32, mealId int32, userId uint32, ip stri
 	//开始请求
 	ack, err := UnifiedOrder(int64(meal.Price*100), ip, tradeNo, payModel.GetAppId(), payModel.GetMchId(), payModel.GetAppKey(), deviceInfo, tnow, WXConfig.WXPAY_NOTIFYURL)
 	if err != nil {
-		log.E("统一下单的时候出现错误:%v", err.Error())
+		log.E("统一下单的时候出现错误:%v WxConfig:%v", err.Error(), WXConfig)
 		return nil, err
 	}
 

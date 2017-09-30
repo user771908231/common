@@ -31,6 +31,8 @@ It is generated from these files:
 	erddz_desk.proto
 	erddz_hall.proto
 	erddz_play.proto
+	group_base.proto
+	group_req.proto
 	hall.proto
 	hall_data.proto
 	hall_playback.proto
@@ -128,6 +130,9 @@ It has these top-level messages:
 	CommonReqUploadLocation
 	CommonBcLeaveTimeout
 	CommonDeskByAgent
+	CommonReqListCoinDesk
+	CommonAckListCoinDesk
+	CommonCoinDeskInfo
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -265,6 +270,20 @@ It has these top-level messages:
 	ErddzAckActGuo
 	ErddzBcOverTurn
 	ErddzBcGameInfo
+	GroupInfo
+	GroupMemberInfo
+	GameOption
+	GroupMsgItem
+	HallGroupListReq
+	HallGroupListAck
+	HallGroupAddReq
+	HallGroupAddAck
+	HallCheckGroupUpdateReq
+	HallCheckGroupUpdateAck
+	HallGroupSendMsgReq
+	HallGroupSendMsgBc
+	HallGroupDeskListReq
+	HallGroupDeskListAck
 	HallReqEvent
 	HallAckEvent
 	HallLotteryItem
@@ -381,6 +400,10 @@ It has these top-level messages:
 	NiuJiabeiReq
 	NiuJiabeiAck
 	NiuJiabeiBc
+	NiuXuanpaiOt
+	NiuXuanpaiReq
+	NiuXuanpaiAck
+	NiuXuanpaiBc
 	NiuBipaiResultItem
 	NiuBipaiResultBc
 	NiuGameEnd
@@ -541,6 +564,7 @@ It has these top-level messages:
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig
+	HallRpcDeskEventMsg
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
@@ -695,6 +719,12 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_bc_leaveTimeout from common_client.proto
 
 // Ignoring public import of common_desk_by_agent from common_client.proto
+
+// Ignoring public import of common_req_list_coin_desk from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_desk from common_client.proto
+
+// Ignoring public import of CommonCoinDeskInfo from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 

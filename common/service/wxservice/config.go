@@ -1,9 +1,6 @@
 package service
 
 func init() {
-	WXConfig.AppId = "wx4d338762d89927b4"
-	WXConfig.MchId = "1417107302"
-	WXConfig.ApiKey = "DD18Secoh98GdO5Ikl1Kehj4IqPop123"
 	WXConfig.WXPAY_NOTIFYURL = "http://wxpaytest.tondeen.com/wxpaycb"
 }
 

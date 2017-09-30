@@ -36,6 +36,8 @@ const (
 	DBT_T_FUDAI_LIST_USER           string = "t_fudai_list_user"            //福袋user
 	DBT_T_FUDAI_XIANGXI_LIST        string = "t_fudai_xiangxi_list"         //福袋详细信息
 
+	DBT_GROUP_INFO string = "t_group_info"     //群组信息及成员列表
+
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
 	DBT_IP_ADDRESS            string = "dbt_ip_address"          //存储Ip对应的地址
@@ -49,6 +51,8 @@ const (
 
 	//游戏session表
 	DBT_GAME_SESSION string = "t_game_session"
+	//代开当前房间列表
+	DBT_AGENT_CREATED_ROOM string = "t_agent_created_room"
 	//代开房间记录
 	DBT_AGENT_CREATE_ROOM_RECORD string = "t_agent_create_room_record"
 

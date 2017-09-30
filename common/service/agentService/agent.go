@@ -3,7 +3,7 @@ package agentService
 import (
 	"github.com/name5566/leaf/gate"
 	"errors"
-	"casino_common/common/log"
+	//"casino_common/common/log"
 )
 
 func init() {
@@ -22,12 +22,22 @@ func GetAgent(userId uint32) (gate.Agent, error) {
 
 func SetAgent(userId uint32, a gate.Agent) {
 	AgentMap[userId] = a
-	log.T("set %v", AgentMap)
+	//log.T("set %v", AgentMap)
 }
 
 func DelAgent(userId uint32) {
 	_,ok := AgentMap[userId]
 	if ok {
 		delete(AgentMap, userId)
+	}
+}
+
+//发消息
+func WriteMsg(uid uint32, msg interface{}) error {
+	if agent,ok := AgentMap[uid];ok {
+		agent.WriteMsg(msg)
+		return nil
+	}else {
+		return errors.New("user agent not found.")
 	}
 }

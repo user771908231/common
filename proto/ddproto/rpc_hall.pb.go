@@ -7,10 +7,257 @@ import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
+import (
+	context "golang.org/x/net/context"
+	grpc "google.golang.org/grpc"
+)
+
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+// Ignoring public import of hall_req_event from hall.proto
+
+// Ignoring public import of hall_ack_event from hall.proto
+
+// Ignoring public import of hall_lottery_item from hall.proto
+
+// Ignoring public import of hall_sign_lottery_info from hall.proto
+
+// Ignoring public import of hall_draw_lottery_info from hall.proto
+
+// Ignoring public import of hall_req_mail_list from hall.proto
+
+// Ignoring public import of hall_ack_mail_list from hall.proto
+
+// Ignoring public import of hall_req_task from hall.proto
+
+// Ignoring public import of hall_ack_task from hall.proto
+
+// Ignoring public import of hall_req_checkTask from hall.proto
+
+// Ignoring public import of hall_ack_checkTask from hall.proto
+
+// Ignoring public import of hall_req_task_sum from hall.proto
+
+// Ignoring public import of hall_ack_task_sum from hall.proto
+
+// Ignoring public import of hall_req_checkBonus from hall.proto
+
+// Ignoring public import of hall_ack_checkBonus from hall.proto
+
+// Ignoring public import of hall_req_bag_items from hall.proto
+
+// Ignoring public import of hall_ack_bag_items from hall.proto
+
+// Ignoring public import of hall_req_userData from hall.proto
+
+// Ignoring public import of hall_ack_userData from hall.proto
+
+// Ignoring public import of hall_req_updateRealData from hall.proto
+
+// Ignoring public import of hall_ack_updateRealData from hall.proto
+
+// Ignoring public import of hall_req_goods_list from hall.proto
+
+// Ignoring public import of hall_ack_goods_list from hall.proto
+
+// Ignoring public import of hall_req_goods_buy from hall.proto
+
+// Ignoring public import of hall_ack_goods_buy from hall.proto
+
+// Ignoring public import of hall_goods_item_msg from hall.proto
+
+// Ignoring public import of hall_req_rank from hall.proto
+
+// Ignoring public import of hall_ack_rank from hall.proto
+
+// Ignoring public import of hall_req_draw_lottery from hall.proto
+
+// Ignoring public import of hall_ack_draw_lottery from hall.proto
+
+// Ignoring public import of hall_req_ds_lottery_info from hall.proto
+
+// Ignoring public import of hall_ack_ds_lottery_info from hall.proto
+
+// Ignoring public import of hall_req_friends_list from hall.proto
+
+// Ignoring public import of hall_ack_friends_list from hall.proto
+
+// Ignoring public import of hall_req_recommend_user_list from hall.proto
+
+// Ignoring public import of hall_ack_recommend_user_list from hall.proto
+
+// Ignoring public import of hall_req_friends_search from hall.proto
+
+// Ignoring public import of hall_ack_friends_search from hall.proto
+
+// Ignoring public import of hall_req_add_friend from hall.proto
+
+// Ignoring public import of hall_ack_add_friend from hall.proto
+
+// Ignoring public import of hall_req_del_friend from hall.proto
+
+// Ignoring public import of hall_ack_del_friend from hall.proto
+
+// Ignoring public import of hall_friend_state from hall.proto
+
+// Ignoring public import of hall_user_info from hall.proto
+
+// Ignoring public import of hall_ack_strongbox_info from hall.proto
+
+// Ignoring public import of hall_req_strongbox_info from hall.proto
+
+// Ignoring public import of hall_req_strongbox_access from hall.proto
+
+// Ignoring public import of hall_ack_strongbox_access from hall.proto
+
+// Ignoring public import of game_GameRecord from hall.proto
+
+// Ignoring public import of BeanUserRecord from hall.proto
+
+// Ignoring public import of BeanGameRecord from hall.proto
+
+// Ignoring public import of game_AckGameRecord from hall.proto
+
+// Ignoring public import of hall_bean_bisai from hall.proto
+
+// Ignoring public import of hall_req_bisai from hall.proto
+
+// Ignoring public import of hall_req_friend_lottery_list from hall.proto
+
+// Ignoring public import of hall_ack_friend_lottery_list from hall.proto
+
+// Ignoring public import of hall_req_friend_lottery_draw from hall.proto
+
+// Ignoring public import of hall_ack_friend_lottery_draw from hall.proto
+
+// Ignoring public import of hall_req_distance_matched from hall.proto
+
+// Ignoring public import of hall_ack_distance_matched from hall.proto
+
+// Ignoring public import of hall_req_agent_room_gaming_list from hall.proto
+
+// Ignoring public import of hall_ack_agent_room_gaming_list from hall.proto
+
+// Ignoring public import of hall_req_agent_room_history_list from hall.proto
+
+// Ignoring public import of hall_ack_agent_room_history_list from hall.proto
+
+// Ignoring public import of hall_enum_goods_type from hall.proto
+
+// Ignoring public import of hall_strongbox_access_type from hall.proto
+
+// Ignoring public import of ProtoHeader from common_client.proto
+
+// Ignoring public import of Heartbeat from common_client.proto
+
+// Ignoring public import of ServerInfo from common_client.proto
+
+// Ignoring public import of QuickConn from common_client.proto
+
+// Ignoring public import of AckQuickConn from common_client.proto
+
+// Ignoring public import of WeixinInfo from common_client.proto
+
+// Ignoring public import of common_req_reg from common_client.proto
+
+// Ignoring public import of common_req_reg_via_input from common_client.proto
+
+// Ignoring public import of common_ack_reg from common_client.proto
+
+// Ignoring public import of common_req_gameLogin from common_client.proto
+
+// Ignoring public import of common_req_gameLogin_via_input from common_client.proto
+
+// Ignoring public import of common_ack_gameLogin from common_client.proto
+
+// Ignoring public import of common_req_qrLogin from common_client.proto
+
+// Ignoring public import of common_ack_qrLogin from common_client.proto
+
+// Ignoring public import of common_req_qrWxInfo from common_client.proto
+
+// Ignoring public import of common_ack_qrWxInfo from common_client.proto
+
+// Ignoring public import of common_ack_reconnect from common_client.proto
+
+// Ignoring public import of common_req_reconnect from common_client.proto
+
+// Ignoring public import of common_req_gameState from common_client.proto
+
+// Ignoring public import of common_ack_gameState from common_client.proto
+
+// Ignoring public import of common_req_logout from common_client.proto
+
+// Ignoring public import of common_ack_logout from common_client.proto
+
+// Ignoring public import of common_req_feedback from common_client.proto
+
+// Ignoring public import of client_base_poker from common_client.proto
+
+// Ignoring public import of common_req_message from common_client.proto
+
+// Ignoring public import of common_bc_message from common_client.proto
+
+// Ignoring public import of common_req_notice from common_client.proto
+
+// Ignoring public import of common_ack_notice from common_client.proto
+
+// Ignoring public import of common_req_enterAgentMode from common_client.proto
+
+// Ignoring public import of common_ack_enterAgentMode from common_client.proto
+
+// Ignoring public import of common_req_quitAgentMode from common_client.proto
+
+// Ignoring public import of common_ack_quitAgentMode from common_client.proto
+
+// Ignoring public import of common_req_leaveDesk from common_client.proto
+
+// Ignoring public import of common_ack_leaveDesk from common_client.proto
+
+// Ignoring public import of common_req_kickout from common_client.proto
+
+// Ignoring public import of common_bc_kickout from common_client.proto
+
+// Ignoring public import of common_req_allowance from common_client.proto
+
+// Ignoring public import of common_ack_allowance from common_client.proto
+
+// Ignoring public import of common_req_applyDissolve from common_client.proto
+
+// Ignoring public import of common_bc_applyDissolve from common_client.proto
+
+// Ignoring public import of common_req_applyDissolveBack from common_client.proto
+
+// Ignoring public import of common_ack_applyDissolveBack from common_client.proto
+
+// Ignoring public import of common_ack_timeout from common_client.proto
+
+// Ignoring public import of common_bc_userBreak from common_client.proto
+
+// Ignoring public import of common_req_clickStatistic from common_client.proto
+
+// Ignoring public import of common_req_offline from common_client.proto
+
+// Ignoring public import of common_req_upload_location from common_client.proto
+
+// Ignoring public import of common_bc_leaveTimeout from common_client.proto
+
+// Ignoring public import of common_desk_by_agent from common_client.proto
+
+// Ignoring public import of common_req_list_coin_desk from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_desk from common_client.proto
+
+// Ignoring public import of CommonCoinDeskInfo from common_client.proto
+
+// Ignoring public import of common_enum_reg from common_client.proto
+
+// Ignoring public import of common_enum_os_type from common_client.proto
+
+// Ignoring public import of common_enum_pokerColor from common_client.proto
 
 // 用于更新hall的配置文件
 // 更新配置文件
@@ -22,7 +269,7 @@ type RpcHallUpdateConfig struct {
 func (m *RpcHallUpdateConfig) Reset()                    { *m = RpcHallUpdateConfig{} }
 func (m *RpcHallUpdateConfig) String() string            { return proto.CompactTextString(m) }
 func (*RpcHallUpdateConfig) ProtoMessage()               {}
-func (*RpcHallUpdateConfig) Descriptor() ([]byte, []int) { return fileDescriptor47, []int{0} }
+func (*RpcHallUpdateConfig) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{0} }
 
 func (m *RpcHallUpdateConfig) GetConfigId() int32 {
 	if m != nil && m.ConfigId != nil {
@@ -31,18 +278,163 @@ func (m *RpcHallUpdateConfig) GetConfigId() int32 {
 	return 0
 }
 
-func init() {
-	proto.RegisterType((*RpcHallUpdateConfig)(nil), "ddproto.rpc_hall_update_config")
+// 代开房间状态更新消息
+type HallRpcDeskEventMsg struct {
+	Msg              *string            `protobuf:"bytes,1,opt,name=msg" json:"msg,omitempty"`
+	Desk             *CommonDeskByAgent `protobuf:"bytes,2,opt,name=desk" json:"desk,omitempty"`
+	XXX_unrecognized []byte             `json:"-"`
 }
 
-func init() { proto.RegisterFile("rpc_hall.proto", fileDescriptor47) }
+func (m *HallRpcDeskEventMsg) Reset()                    { *m = HallRpcDeskEventMsg{} }
+func (m *HallRpcDeskEventMsg) String() string            { return proto.CompactTextString(m) }
+func (*HallRpcDeskEventMsg) ProtoMessage()               {}
+func (*HallRpcDeskEventMsg) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{1} }
 
-var fileDescriptor47 = []byte{
-	// 82 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2b, 0x2a, 0x48, 0x8e,
-	0xcf, 0x48, 0xcc, 0xc9, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0x49, 0x01, 0x33,
-	0x94, 0x4c, 0xb8, 0xc4, 0x60, 0x52, 0xf1, 0xa5, 0x05, 0x29, 0x89, 0x25, 0xa9, 0xf1, 0xc9, 0xf9,
-	0x79, 0x69, 0x99, 0xe9, 0x42, 0x52, 0x5c, 0x1c, 0x10, 0x96, 0x67, 0x8a, 0x04, 0xa3, 0x02, 0xa3,
-	0x06, 0x6b, 0x10, 0x9c, 0x0f, 0x08, 0x00, 0x00, 0xff, 0xff, 0x1e, 0x59, 0xaa, 0x33, 0x4f, 0x00,
-	0x00, 0x00,
+func (m *HallRpcDeskEventMsg) GetMsg() string {
+	if m != nil && m.Msg != nil {
+		return *m.Msg
+	}
+	return ""
+}
+
+func (m *HallRpcDeskEventMsg) GetDesk() *CommonDeskByAgent {
+	if m != nil {
+		return m.Desk
+	}
+	return nil
+}
+
+func init() {
+	proto.RegisterType((*RpcHallUpdateConfig)(nil), "ddproto.rpc_hall_update_config")
+	proto.RegisterType((*HallRpcDeskEventMsg)(nil), "ddproto.hall_rpc_desk_event_msg")
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// Client API for HallRpc service
+
+type HallRpcClient interface {
+	// 创建房间
+	GetAgentRoomList(ctx context.Context, in *HallReqAgentRoomGamingList, opts ...grpc.CallOption) (*HallAckAgentRoomGamingList, error)
+	SendDeskEventMsg(ctx context.Context, in *HallRpcDeskEventMsg, opts ...grpc.CallOption) (*ProtoHeader, error)
+}
+
+type hallRpcClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewHallRpcClient(cc *grpc.ClientConn) HallRpcClient {
+	return &hallRpcClient{cc}
+}
+
+func (c *hallRpcClient) GetAgentRoomList(ctx context.Context, in *HallReqAgentRoomGamingList, opts ...grpc.CallOption) (*HallAckAgentRoomGamingList, error) {
+	out := new(HallAckAgentRoomGamingList)
+	err := grpc.Invoke(ctx, "/ddproto.HallRpc/GetAgentRoomList", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hallRpcClient) SendDeskEventMsg(ctx context.Context, in *HallRpcDeskEventMsg, opts ...grpc.CallOption) (*ProtoHeader, error) {
+	out := new(ProtoHeader)
+	err := grpc.Invoke(ctx, "/ddproto.HallRpc/SendDeskEventMsg", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for HallRpc service
+
+type HallRpcServer interface {
+	// 创建房间
+	GetAgentRoomList(context.Context, *HallReqAgentRoomGamingList) (*HallAckAgentRoomGamingList, error)
+	SendDeskEventMsg(context.Context, *HallRpcDeskEventMsg) (*ProtoHeader, error)
+}
+
+func RegisterHallRpcServer(s *grpc.Server, srv HallRpcServer) {
+	s.RegisterService(&_HallRpc_serviceDesc, srv)
+}
+
+func _HallRpc_GetAgentRoomList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HallReqAgentRoomGamingList)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HallRpcServer).GetAgentRoomList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ddproto.HallRpc/GetAgentRoomList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HallRpcServer).GetAgentRoomList(ctx, req.(*HallReqAgentRoomGamingList))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HallRpc_SendDeskEventMsg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HallRpcDeskEventMsg)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HallRpcServer).SendDeskEventMsg(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ddproto.HallRpc/SendDeskEventMsg",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HallRpcServer).SendDeskEventMsg(ctx, req.(*HallRpcDeskEventMsg))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _HallRpc_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "ddproto.HallRpc",
+	HandlerType: (*HallRpcServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetAgentRoomList",
+			Handler:    _HallRpc_GetAgentRoomList_Handler,
+		},
+		{
+			MethodName: "SendDeskEventMsg",
+			Handler:    _HallRpc_SendDeskEventMsg_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "rpc_hall.proto",
+}
+
+func init() { proto.RegisterFile("rpc_hall.proto", fileDescriptor49) }
+
+var fileDescriptor49 = []byte{
+	// 269 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x8f, 0x5d, 0x4b, 0xc3, 0x30,
+	0x14, 0x86, 0x5b, 0x3f, 0x98, 0x46, 0x90, 0x12, 0x45, 0x47, 0x41, 0x28, 0xbd, 0xea, 0x55, 0xc1,
+	0xe1, 0x1f, 0x10, 0x14, 0x27, 0x4c, 0x28, 0xf5, 0xde, 0x43, 0x4c, 0x8e, 0x59, 0x69, 0x3e, 0x6a,
+	0x13, 0x05, 0x7f, 0x9e, 0xff, 0x4c, 0x9a, 0xce, 0x0a, 0x93, 0xdd, 0x94, 0xb7, 0x27, 0xcf, 0x93,
+	0xbc, 0x87, 0x9c, 0xf6, 0x1d, 0x87, 0x35, 0x53, 0xaa, 0xec, 0x7a, 0xeb, 0x2d, 0x9d, 0x09, 0x11,
+	0x42, 0x4a, 0xfe, 0x86, 0xe9, 0x19, 0xb7, 0x5a, 0x5b, 0x03, 0x5c, 0x35, 0x68, 0xfc, 0x38, 0xcc,
+	0x6f, 0xc8, 0xc5, 0xaf, 0x0b, 0x1f, 0x9d, 0x60, 0x1e, 0x81, 0x5b, 0xf3, 0xd6, 0x48, 0x9a, 0x92,
+	0xa3, 0x31, 0x3d, 0x8a, 0x79, 0x9c, 0xc5, 0xc5, 0x61, 0x3d, 0xfd, 0xe7, 0x2f, 0xe4, 0x32, 0x18,
+	0x83, 0x2a, 0xd0, 0xb5, 0x80, 0x9f, 0x68, 0x3c, 0x68, 0x27, 0x69, 0x42, 0xf6, 0xb5, 0x93, 0xc1,
+	0x38, 0xae, 0x87, 0x48, 0xaf, 0xc9, 0xc1, 0xc0, 0xcc, 0xf7, 0xb2, 0xb8, 0x38, 0x59, 0x5c, 0x95,
+	0x9b, 0x6e, 0xe5, 0xa6, 0x4e, 0xf0, 0x5f, 0xbf, 0x80, 0x49, 0x34, 0xbe, 0x0e, 0xe8, 0xe2, 0x3b,
+	0x26, 0xb3, 0x25, 0x53, 0xaa, 0xee, 0x38, 0x5d, 0x93, 0xe4, 0x01, 0xfd, 0x6d, 0x38, 0xb5, 0x56,
+	0xaf, 0x1a, 0xe7, 0x69, 0x31, 0x5d, 0x32, 0xd6, 0xc0, 0xf7, 0x51, 0x87, 0xde, 0x5a, 0x0d, 0x92,
+	0xe9, 0xc6, 0x48, 0x50, 0x8d, 0xf3, 0xe9, 0x16, 0xc9, 0x78, 0xbb, 0x83, 0xcc, 0x23, 0xba, 0x22,
+	0xc9, 0x33, 0x1a, 0x71, 0x87, 0xae, 0xbd, 0x1f, 0xf6, 0x79, 0x72, 0x92, 0x66, 0x5b, 0x2f, 0xfd,
+	0x5b, 0x38, 0x3d, 0x9f, 0x88, 0x6a, 0xf8, 0x2e, 0x91, 0x09, 0xec, 0xf3, 0xa8, 0x8a, 0xaa, 0xf8,
+	0x27, 0x00, 0x00, 0xff, 0xff, 0x8c, 0x86, 0x9c, 0x29, 0x98, 0x01, 0x00, 0x00,
 }
