@@ -565,6 +565,7 @@ It has these top-level messages:
 	HelloReply
 	RpcHallUpdateConfig
 	HallRpcDeskEventMsg
+	HallRpcGroupRefresh
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
