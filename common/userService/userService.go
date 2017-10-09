@@ -14,22 +14,50 @@ import (
 	"errors"
 )
 
+//获取不重复的玩家id
+func GetNewUserId() (uint32, error) {
+	log.T("开始获取一个未被占用的玩家id")
+	id, err := db.GetNextSeq(tableName.DBT_T_USER)
+	if err != nil {
+		//如果获取失败 返回err
+		log.E("无法从数据库获取玩家自增id err:%v", err)
+		return id, err
+	}
+
+	user := GetUserById(id)
+	if user != nil && user.Id == id {
+		log.T("获取到的玩家id[%v]被占用，重新获取", id)
+		return GetNewUserId()
+	}
+	log.T("获取到一个未被占用的玩家id[%v]并返回", id)
+	return id, nil
+}
+
 /**
 	1,create 一个user
 	2,保存mongo
 	3,缓存到redis
  */
-func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city string, channel string, regIp string) (*ddproto.User, error) {
+func NewUserAndSave(uid uint32, unionId, openId, wxNickName, headUrl string, sex int32, city string, channel string, regIp string) (*ddproto.User, error) {
 	log.T("创建新用户，并且保存到mgo")
 	//1,创建user获得自增主键
-	id, err := db.GetNextSeq(tableName.DBT_T_USER)
-	if err != nil {
-		return nil, err
+	var err error = nil
+
+	//未指定玩家id 获取一个玩家id
+	newUserId := uid
+	if newUserId <= 0 {
+		log.T("创建user时未指定合适的玩家id 开始获取一个玩家id")
+		id, err := GetNewUserId()
+		if err == nil {
+			return nil, err
+		}
+		newUserId = id
 	}
+	log.T("开始创建一个uid为%v的新用户", newUserId)
 
 	//构造user
 	user := new(ddproto.User)
-	user.Id = proto.Uint32(uint32(id))
+	user.Id = proto.Uint32(newUserId)
 	user.Sex = proto.Int32(sex)
 	user.City = proto.String(city)
 	user.Diamond = proto.Int64(0)
@@ -62,15 +90,15 @@ func NewUserAndSave(unionId, openId, wxNickName, headUrl string, sex int32, city
 	switch channel {
 	case "61", "62":
 		//对于白山channelId:61 和 62：新注册用户默认拥有1张房卡
-		INCRUserRoomcard(uint32(id), 1,0,"新用户注册") //新用户注册的时候,默认的房卡数量
+		INCRUserRoomcard(user.GetId(), 1, 0, "新用户注册") //新用户注册的时候,默认的房卡数量
 	case "1", "2":
 		//对于四川的用户，每人给10张房卡
-		INCRUserRoomcard(uint32(id), 20, 0, "新用户注册")
+		INCRUserRoomcard(user.GetId(), 20, 0, "新用户注册")
 	default:
-		INCRUserRoomcard(uint32(id), sys.CONFIG_SYS.GetNewUserRoomcard(),0,"新用户注册") //新用户注册的时候,默认的房卡数量
+		INCRUserRoomcard(user.GetId(), sys.CONFIG_SYS.GetNewUserRoomcard(), 0, "新用户注册") //新用户注册的时候,默认的房卡数量
 	}
 
-	INCRUserCOIN(uint32(id), sys.CONFIG_SYS.GetNewUserCoin())         //新用户注册的时候，默认的金币数量
+	INCRUserCOIN(user.GetId(), sys.CONFIG_SYS.GetNewUserCoin())         //新用户注册的时候，默认的金币数量
 	return user, nil
 }
 
