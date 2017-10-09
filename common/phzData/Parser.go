@@ -721,9 +721,9 @@ func GetHuInfoCase1(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
-			/*for _, yjh := range yijuhua {
+			for _, yjh := range yijuhua {
 				log.T("check胡牌时找到的一句话是：[%v]", Cards2String(yjh.Pais))
-			}*/
+			}
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yijuhua...)
 		}
 		checkPokers = handPokers
@@ -731,9 +731,9 @@ func GetHuInfoCase1(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//4、找一缴牌
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
-			/*for _, yjp := range yijiaopai {
+			for _, yjp := range yijiaopai {
 				log.T("check胡牌时找到的一缴牌是：[%v]", Cards2String(yjp.Pais))
-			}*/
+			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yijiaopai...)
 		}
 		checkPokers = handPokers
@@ -742,7 +742,7 @@ func GetHuInfoCase1(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
-				//log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
+				log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
 				if checkPai != nil {
 					if kan.Pais[0].GetValue() == checkPai.GetValue() && isOut {
 						if kan.Pais[0].GetValue() <= 10 {
@@ -760,14 +760,14 @@ func GetHuInfoCase1(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//5、找对子将牌
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
-			/*for _, duizi := range duiZiData {
+			for _, duizi := range duiZiData {
 				log.T("check胡牌时找到的对子是：[%v]", Cards2String(duizi.Pais))
-			}*/
+			}
 			huInfo.DuiZis = append(huInfo.DuiZis, duiZiData...)
 		}
 		checkPokers = handPokers
 		log.T("checkHu 后剩余牌是：[%v]   [%v]", Cards2String(checkPokers), checkPokers)
-		//log.T("len(checkPokers)= [%v]", len(checkPokers))
+		log.T("len(checkPokers)= [%v]", len(checkPokers))
 		if checkPokers == nil || len(checkPokers) == 0 {
 			if duiZiData == nil || len(duiZiData) == 0 {
 				return huInfo
@@ -791,9 +791,9 @@ func GetHuInfoCase2(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
-			/*for _, yjh := range yijuhua {
+			for _, yjh := range yijuhua {
 				log.T("check胡牌时找到的一句话是：[%v]", Cards2String(yjh.Pais))
-			}*/
+			}
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yijuhua...)
 		}
 		checkPokers = handPokers
@@ -802,7 +802,7 @@ func GetHuInfoCase2(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
-				//log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
+				log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
 				if checkPai != nil {
 					if kan.Pais[0].GetValue() == checkPai.GetValue() && isOut {
 						if kan.Pais[0].GetValue() <= 10 {
@@ -820,9 +820,9 @@ func GetHuInfoCase2(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//4、找一缴牌
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
-			/*for _, yjp := range yijiaopai {
+			for _, yjp := range yijiaopai {
 				log.T("check胡牌时找到的一缴牌是：[%v]", Cards2String(yjp.Pais))
-			}*/
+			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yijiaopai...)
 		}
 		checkPokers = handPokers
@@ -830,9 +830,9 @@ func GetHuInfoCase2(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//5、找对子将牌
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
-			/*for _, duizi := range duiZiData {
+			for _, duizi := range duiZiData {
 				log.T("check胡牌时找到的对子是：[%v]", Cards2String(duizi.Pais))
-			}*/
+			}
 			huInfo.DuiZis = append(huInfo.DuiZis, duiZiData...)
 		}
 		checkPokers = handPokers
@@ -860,18 +860,18 @@ func GetHuInfoCase3(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//4、找一缴牌
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
-			/*for _, yjp := range yijiaopai {
+			for _, yjp := range yijiaopai {
 				log.T("check胡牌时找到的一缴牌是：[%v]", Cards2String(yjp.Pais))
-			}*/
+			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yijiaopai...)
 		}
 		checkPokers = handPokers
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
-			/*for _, yjh := range yijuhua {
+			for _, yjh := range yijuhua {
 				log.T("check胡牌时找到的一句话是：[%v]", Cards2String(yjh.Pais))
-			}*/
+			}
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yijuhua...)
 		}
 		checkPokers = handPokers
@@ -879,7 +879,7 @@ func GetHuInfoCase3(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
-				//log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
+				log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
 				if checkPai != nil {
 					if kan.Pais[0].GetValue() == checkPai.GetValue() && isOut {
 						if kan.Pais[0].GetValue() <= 10 {
@@ -897,13 +897,13 @@ func GetHuInfoCase3(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//5、找对子将牌
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
-			/*for _, duizi := range duiZiData {
+			for _, duizi := range duiZiData {
 				log.T("check胡牌时找到的对子是：[%v]", Cards2String(duizi.Pais))
-			}*/
+			}
 			huInfo.DuiZis = append(huInfo.DuiZis, duiZiData...)
 		}
 		checkPokers = handPokers
-		log.T("checkHu 后剩余牌是：[%v]   [%v]", Cards2String(checkPokers), checkPokers)
+		log.T("checkHu 后剩余牌是：[%v]", Cards2String(checkPokers))
 		if checkPokers == nil || len(checkPokers) == 0 {
 			if duiZiData == nil || len(duiZiData) == 0 {
 				return huInfo
@@ -927,9 +927,9 @@ func GetHuInfoCase4(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//4、找一缴牌
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
-			/*for _, yjp := range yijiaopai {
+			for _, yjp := range yijiaopai {
 				log.T("check胡牌时找到的一缴牌是：[%v]", Cards2String(yjp.Pais))
-			}*/
+			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yijiaopai...)
 		}
 		checkPokers = handPokers
@@ -938,7 +938,7 @@ func GetHuInfoCase4(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
-				//log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
+				log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
 				if checkPai != nil {
 					if kan.Pais[0].GetValue() == checkPai.GetValue() && isOut {
 						if kan.Pais[0].GetValue() <= 10 {
@@ -956,9 +956,9 @@ func GetHuInfoCase4(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
-			/*for _, yjh := range yijuhua {
+			for _, yjh := range yijuhua {
 				log.T("check胡牌时找到的一句话是：[%v]", Cards2String(yjh.Pais))
-			}*/
+			}
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yijuhua...)
 		}
 		checkPokers = handPokers
@@ -966,9 +966,9 @@ func GetHuInfoCase4(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//5、找对子将牌
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
-			/*for _, duizi := range duiZiData {
+			for _, duizi := range duiZiData {
 				log.T("check胡牌时找到的对子是：[%v]", Cards2String(duizi.Pais))
-			}*/
+			}
 			huInfo.DuiZis = append(huInfo.DuiZis, duiZiData...)
 		}
 		checkPokers = handPokers
@@ -997,7 +997,7 @@ func GetHuInfoCase5(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
-				//log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
+				log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
 				if checkPai != nil {
 					if kan.Pais[0].GetValue() == checkPai.GetValue() && isOut {
 						if kan.Pais[0].GetValue() <= 10 {
@@ -1015,9 +1015,9 @@ func GetHuInfoCase5(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//4、找一缴牌
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
-			/*for _, yjp := range yijiaopai {
+			for _, yjp := range yijiaopai {
 				log.T("check胡牌时找到的一缴牌是：[%v]", Cards2String(yjp.Pais))
-			}*/
+			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yijiaopai...)
 		}
 		checkPokers = handPokers
@@ -1025,9 +1025,9 @@ func GetHuInfoCase5(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
-			/*for _, yjh := range yijuhua {
+			for _, yjh := range yijuhua {
 				log.T("check胡牌时找到的一句话是：[%v]", Cards2String(yjh.Pais))
-			}*/
+			}
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yijuhua...)
 		}
 		checkPokers = handPokers
@@ -1035,9 +1035,9 @@ func GetHuInfoCase5(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//5、找对子将牌
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
-			/*for _, duizi := range duiZiData {
+			for _, duizi := range duiZiData {
 				log.T("check胡牌时找到的对子是：[%v]", Cards2String(duizi.Pais))
-			}*/
+			}
 			huInfo.DuiZis = append(huInfo.DuiZis, duiZiData...)
 		}
 		checkPokers = handPokers
@@ -1066,7 +1066,7 @@ func GetHuInfoCase6(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		kanData, handPokers := GetKanPaisForHu(checkPokers)
 		if kanData != nil && len(kanData) > 0 {
 			for _, kan := range kanData {
-				//log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
+				log.T("check胡牌时找到的坎牌是：[%v]", Cards2String(kan.Pais))
 				if checkPai != nil {
 					if kan.Pais[0].GetValue() == checkPai.GetValue() && isOut {
 						if kan.Pais[0].GetValue() <= 10 {
@@ -1084,9 +1084,9 @@ func GetHuInfoCase6(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//3、找一句话， 一句话函数内部已经按照胡息优先级找牌
 		yijuhua, handPokers := GetYiJuHuaForHu(checkPokers)
 		if yijuhua != nil && len(yijuhua) > 0 {
-			/*for _, yjh := range yijuhua {
+			for _, yjh := range yijuhua {
 				log.T("check胡牌时找到的一句话是：[%v]", Cards2String(yjh.Pais))
-			}*/
+			}
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yijuhua...)
 		}
 		checkPokers = handPokers
@@ -1094,9 +1094,9 @@ func GetHuInfoCase6(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//4、找一缴牌
 		yijiaopai, handPokers := GetYiJiaoPaiForHu(checkPokers)
 		if yijiaopai != nil && len(yijiaopai) > 0 {
-			/*for _, yjp := range yijiaopai {
+			for _, yjp := range yijiaopai {
 				log.T("check胡牌时找到的一缴牌是：[%v]", Cards2String(yjp.Pais))
-			}*/
+			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yijiaopai...)
 		}
 		checkPokers = handPokers
@@ -1104,9 +1104,9 @@ func GetHuInfoCase6(pais []*PHZPoker, checkPai *PHZPoker, isOut bool) *HuInfo {
 		//5、找对子将牌
 		duiZiData, handPokers := GetDuiZiForHu(checkPokers)
 		if duiZiData != nil && len(duiZiData) > 0 {
-			/*for _, duizi := range duiZiData {
+			for _, duizi := range duiZiData {
 				log.T("check胡牌时找到的对子是：[%v]", Cards2String(duizi.Pais))
-			}*/
+			}
 			huInfo.DuiZis = append(huInfo.DuiZis, duiZiData...)
 		}
 		checkPokers = handPokers
