@@ -15,7 +15,7 @@ type Desk struct {
 	Cfg        *DeskCfg         //配置器
 	GameData   *DeskGameData    //数据
 	GameStatus *DeskGameStatus  //状态
-	HuUser     uint32           //纪录每局胡牌的玩家
+	HuUser     uint32           //纪录每局可以胡牌的玩家
 	sync.Mutex
 }
 

@@ -87,7 +87,6 @@ type UserGameStatus struct {
 	IsReady        bool
 	IsBanker       bool
 	IsOwner        bool
-	IsPaoPai       bool  //用于纪录玩家是否跑过牌的信号量
 	IsTiPai        bool  //用于纪录玩家是否已经提过牌
 	IsReconnect    bool  //是否是断线重连
 	IsShouldChuPai bool  //过胡后是否需要继续出牌
