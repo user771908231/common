@@ -10,12 +10,13 @@ import (
 
 //desk
 type Desk struct {
-	S          *module.Skeleton //leaf骨架
-	DeskId     int32            //唯一ID
-	Cfg        *DeskCfg         //配置器
-	GameData   *DeskGameData    //数据
-	GameStatus *DeskGameStatus  //状态
-	HuUser     uint32           //纪录每局可以胡牌的玩家
+	S            *module.Skeleton //leaf骨架
+	DeskId       int32            //唯一ID
+	Cfg          *DeskCfg         //配置器
+	GameData     *DeskGameData    //数据
+	GameStatus   *DeskGameStatus  //状态
+	HuUser       uint32           //纪录每局可以胡牌的玩家
+	NeedCheckPao bool             //是否需要checkpao， 用于过胡后
 	sync.Mutex
 }
 
