@@ -282,6 +282,8 @@ It has these top-level messages:
 	HallCheckGroupUpdateAck
 	HallGroupSendMsgReq
 	HallGroupSendMsgBc
+	HallGroupDeskListReq
+	HallGroupDeskListAck
 	HallReqEvent
 	HallAckEvent
 	HallLotteryItem
@@ -514,6 +516,7 @@ It has these top-level messages:
 	Pez_AckBet
 	Pez_BCOpenPai
 	Pez_SendGameInfo
+	PhzPlayPaiIds
 	PhzBaseCreateOption
 	PhzBaseRoomInfo
 	PhzBaseDeskInfo
@@ -555,11 +558,13 @@ It has these top-level messages:
 	PhzPlayHandPokers
 	PhzPlayRoundBillBean
 	PhzPlayCurrentResult
-	PhzPlayEndResult
+	PhzPlayUserLotteryInfo
+	PhzPlayUserEndResult
 	PhzPlayEndLottery
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig
+	HallRpcDeskEventMsg
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
