@@ -12,25 +12,52 @@ import (
 	"github.com/golang/protobuf/proto"
 	"time"
 	"errors"
+	"casino_common/utils/rand"
 )
 
-//获取不重复的玩家id
+//查询一个id是否被占用
+func IsExistUserId(id uint32) bool {
+	user := GetUserById(uint32(id))
+	return user != nil && user.GetId() == uint32(id)
+}
+
+
+//获取顺序增长且不重复的玩家id
 func GetNewUserId() (uint32, error) {
-	log.T("开始获取一个未被占用的玩家id")
+	log.T("开始获取一个顺序增长且未被占用的玩家id")
 	id, err := db.GetNextSeq(tableName.DBT_T_USER)
 	if err != nil {
 		//如果获取失败 返回err
 		log.E("无法从数据库获取玩家自增id err:%v", err)
-		return id, err
+		return uint32(id), err
 	}
 
-	user := GetUserById(id)
-	if user != nil && user.Id == id {
-		log.T("获取到的玩家id[%v]被占用，重新获取", id)
+	if IsExistUserId(uint32(id)) {
+		log.W("获取到的玩家id[%v]被占用，重新获取", id)
 		return GetNewUserId()
 	}
-	log.T("获取到一个未被占用的玩家id[%v]并返回", id)
-	return id, nil
+	log.T("获取到一个顺序增长且未被占用的玩家id[%v]并返回", id)
+	return uint32(id), nil
+}
+
+//获取离散且不重复的玩家id
+func GetNewUserIdByIndex(index int32) (uint32, error) {
+	log.T("开始根据序号%v获取一个离散且未被占用的玩家id", index)
+	id, err := db.GetNextSeq(tableName.DBT_T_USER)
+	if err != nil {
+		//如果获取失败 返回err
+		log.E("无法从数据库获取自增id err:%v", err)
+		return 0, err
+	}
+
+	uid := int32(id) + index * int32(100) + rand.Rand(0, 100)
+
+	if IsExistUserId(uint32(uid)) {
+		log.W("获取到的玩家id[%v]被占用，重新获取", uid)
+		return GetNewUserIdByIndex(index)
+	}
+	log.T("根据序号%v获取到一个离散且未被占用的玩家id[%v]并返回", index, uid)
+	return uint32(uid), nil
 }
 
 /**
@@ -48,7 +75,7 @@ func NewUserAndSave(uid uint32, unionId, openId, wxNickName, headUrl string, sex
 	if newUserId <= 0 {
 		log.T("创建user时未指定合适的玩家id 开始获取一个玩家id")
 		id, err := GetNewUserId()
-		if err == nil {
+		if err != nil {
 			return nil, err
 		}
 		newUserId = id

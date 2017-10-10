@@ -62,15 +62,14 @@ func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 }
 
 //创建一组机器人的方法
-func (rm *RobotsManager) NewRobotsAndSave(newRobotCount int32) {
-	for i := 1; newRobotCount > 0; newRobotCount-- {
-		id, err := userService.GetNewUserId()
+func (rm *RobotsManager) NewRobotsAndSave(num int32) {
+	for i := 0; num > 0; num-- {
+		uid, err := userService.GetNewUserIdByIndex(int32(i))
 		if err != nil {
 			log.E("创建第%v个机器人时获取一个新的玩家id失败 已终止创建，err:%v", i, err)
 			break
 		}
-		//让一组机器人的id离散 随机间隔
-		uid := id + i * rand.Rand(0, 100)
+
 		log.T("开始创建一个uid为%v的机器人", uid)
 		rm.NewRobotAndSave(uid)
 		i++
