@@ -77,9 +77,9 @@ func TouristReg(channel string, regIp string) *ddproto.CommonAckReg {
 	nickName := strings.Join([]string{"游客", nick}, "")
 
 	//游戏需要创建一个nickName    "游客+[5位随机数]"
-	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "", channel, regIp)
+	user, err := userService.NewUserAndSave(0, "", "", nickName, "", 1, "", channel, regIp)
 	if err != nil || user == nil {
-		log.E("注册用户的时候失败...")
+		log.E("注册游客用户的时候失败...")
 		return nil
 	}
 
@@ -108,7 +108,7 @@ func WxReg(weixin *ddproto.WeixinInfo, channelId string, regIp string) *ddproto.
 	//微信注册的时候需要先判断是否已经注册过了，如果注册过了直接返回userId ,否则注册
 	user := userService.GetUserByUnionId(weixin.GetUnionId())
 	if user == nil {
-		user, _ = userService.NewUserAndSave(weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), channelId, regIp)
+		user, _ = userService.NewUserAndSave(0, weixin.GetUnionId(), weixin.GetOpenId(), weixin.GetNickName(), weixin.GetHeadUrl(), weixin.GetSex(), weixin.GetCity(), channelId, regIp)
 	} else {
 		log.W("玩家[%v],unionId[%v]已经注册成功了，不需要重复注册", user.GetId(), user.GetUnionId())
 		//更新微信信息到mongo和redis
@@ -198,7 +198,7 @@ func InputsReg(channel, regIp, userName, pwd string) *ddproto.CommonAckReg {
 	nickName := strings.Join([]string{"游客", nick}, "")
 
 	//游戏需要创建一个nickName    "游客+[5位随机数]"
-	user, err := userService.NewUserAndSave("", "", nickName, "", 1, "", channel, regIp)
+	user, err := userService.NewUserAndSave(0, "", "", nickName, "", 1, "", channel, regIp)
 	if err != nil || user == nil {
 		log.E("注册用户的时候失败...")
 		return nil
