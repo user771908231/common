@@ -35,7 +35,7 @@ type HuInfo struct {
 	Fan         int32       //胡牌时的番数
 	WinScore    int64       //得分
 	HuPai       *PHZPoker   //胡的哪张牌
-	HuType      int32       //胡牌类型
+	HuType      []int32     //胡牌类型
 }
 
 //一句话或者一缴牌

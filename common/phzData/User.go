@@ -95,15 +95,20 @@ type UserGameStatus struct {
 }
 
 type BillBean struct {
-	Round         int32   //第几局
-	UserId        uint32  //谁的账单
-	Banker        uint32  //庄家
-	IsHuangZhuang bool    //是否是荒庄
-	Winner        uint32  //赢家
-	Score         int64   //输赢分数
-	PaoScore      int64   //放炮罚的分数，根据这个分数判断是否牌局结束
-	HuXi          int32   //单局的胡息数
-	HuInfo        *HuInfo //胡牌信息
+	Round         int32      //第几局
+	UserId        uint32     //谁的账单
+	Banker        uint32     //庄家
+	IsHuangZhuang bool       //是否是荒庄
+	Winner        uint32     //赢家
+	Score         int64      //输赢分数
+	PaoScore      int64      //放炮罚的分数，根据这个分数判断是否牌局结束
+	HuXi          int32      //单局的胡息数
+	HuInfo        *HuInfo    //胡牌信息
+	ChiPais       []*ChiPai  //吃了的牌
+	PengPais      []*PengPai //碰了的牌
+	WeiPais       []*WeiPai  //偎了的牌
+	PaoPais       []*PaoPai  //跑了的牌
+	TiPais        []*TiPai   //提了的牌
 }
 
 type Bill struct {
