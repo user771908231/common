@@ -943,12 +943,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	checkPokers := util.DeepClone(pais).([]*PHZPoker)
 
 	zimoPaiValue := int32(-1)
-	v := reflect.ValueOf(checkPai)
-	if !v.IsNil() && v.IsValid() {
-		checkPokers = append(util.DeepClone(pais).([]*PHZPoker), checkPai.(*PHZPoker))
-		if !isDianPao {
-			//自摸的牌值
-			zimoPaiValue = checkPai.(*PHZPoker).GetValue()
+
+	if checkPai != nil {
+		v := reflect.ValueOf(checkPai)
+		if !v.IsNil() && v.IsValid() {
+			checkPokers = append(util.DeepClone(pais).([]*PHZPoker), checkPai.(*PHZPoker))
+			if !isDianPao {
+				//自摸的牌值
+				zimoPaiValue = checkPai.(*PHZPoker).GetValue()
+			}
 		}
 	}
 
