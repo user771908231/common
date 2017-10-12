@@ -971,9 +971,117 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	log.T("CanHu的CheckPokers结果是:[%+v]", canHuInfo)
 	fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
 	huInfo.CanHu = canHuInfo.canHu
-	huInfo.IsZimo = !isDianPao
 	huInfo.HuXi = canHuInfo.totalHuXi
-	huInfo.IsDianPao = isDianPao
+
+	//能胡的话需要将结构转化
+	if huInfo.CanHu {
+		//将牌
+		if canHuInfo.jiang > -1 {
+			jiangPais := GetPaisByValue2(checkPokers, canHuInfo.jiang)
+			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais,})
+
+			for _, delPai := range jiangPais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
+		}
+
+		//一坎牌
+		for _, kan := range canHuInfo.kans {
+			kanPais := GetPaisByValue2(checkPokers, int32(kan))
+			huInfo.KanPais = append(huInfo.KanPais, &YiKanPai{Pais: kanPais,})
+			for _, delPai := range kanPais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+		}
+
+		//一绞牌
+		for _, jiao := range canHuInfo.jiaos {
+			yjh := &YJH{}
+			for _, jiaoPaiValue := range jiao {
+				yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(jiaoPaiValue)))
+			}
+			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yjh)
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的一绞牌:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+		}
+
+		//一句话
+		for _, yijuhua := range canHuInfo.yijuhuas {
+			yjh := &YJH{}
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua+1)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua+2)))
+
+			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的一句话:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+		}
+		//大字一二三
+		for i := canHuInfo.countBigYiErSan; i > 0; i-- {
+			yjh := &YJH{}
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(11)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(12)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(13)))
+
+			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的大字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+		}
+
+		//大字二七十
+		for i := canHuInfo.countBigErQiShi; i > 0; i-- {
+			yjh := &YJH{}
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(12)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(17)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(20)))
+
+			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的大字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+		}
+
+		//小字一二三
+		for i := canHuInfo.countSmallYiErSan; i > 0; i-- {
+			yjh := &YJH{}
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(1)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(2)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(3)))
+
+			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的小字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+		}
+
+		//小字二七十
+		for i := canHuInfo.countSmallErQiShi; i > 0; i-- {
+			yjh := &YJH{}
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(2)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(7)))
+			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(10)))
+
+			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的小字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+		}
+
+	}
+
+	log.T("TryHu2的huInfo结果是:[%+v]", huInfo)
+	fmt.Println(fmt.Sprintf("TryHu2的huInfo结果是:[%+v]", huInfo))
 	return huInfo, nil
 }
 
