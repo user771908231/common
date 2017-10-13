@@ -216,6 +216,8 @@ var _ = math.Inf
 
 // Ignoring public import of phz_enum_huType from phz_play.proto
 
+// Ignoring public import of phz_enum_passType from phz_play.proto
+
 // 创建房间
 type PhzReqCreateDesk struct {
 	Header           *ProtoHeader         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
