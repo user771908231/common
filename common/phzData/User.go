@@ -50,23 +50,23 @@ func (u *User) SetGameStatus(s int32) {
 }
 
 type UserGameData struct {
-	HandPokers   []*PHZPoker    //手牌
-	OutCards     []*PHZPoker    //玩家打出去的牌
-	PengPai      []*PengPai     //碰的牌
-	ChiPai       []*ChiPai      //吃的牌
-	TiPai        []*TiPai       //提的牌
-	HuInfo       *HuInfo        //胡牌信息
-	PengChouPais []*PHZPoker    //忍碰、忍吃后的牌为臭牌
-	ChiChouPais  []*PHZPoker    //吃的臭牌
-	CheckCase    *UserCheckCase //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
-	PaoPais      []*PaoPai      //跑牌
-	WeiPais      []*WeiPai      //偎的牌
-	Score        int64          //总的得分
-	PaoScore     int64          //放炮分,根据这个分数判断是否可以结算
-	RoundHuXi    int32          //单局胡息数，用于计算是否能胡牌
-	GameHuXi     int32          //总的胡息，够200或者400时结束游戏
-	Bill         *Bill          //账单
-	Statistic    *UserStatistic //统计信息
+	HandPokers   []*PHZPoker      //手牌
+	OutCards     []*PHZPoker      //玩家打出去的牌
+	PengPai      []*PengPai       //碰的牌
+	ChiPai       []*ChiPai        //吃的牌
+	TiPai        []*TiPai         //提的牌
+	HuInfo       *HuInfo          //胡牌信息
+	PengChouPais []*PHZPoker      //忍碰、忍吃后的牌为臭牌
+	ChiChouPais  []*PHZPoker      //吃的臭牌
+	CheckCase    []*UserCheckCase //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
+	PaoPais      []*PaoPai        //跑牌
+	WeiPais      []*WeiPai        //偎的牌
+	Score        int64            //总的得分
+	PaoScore     int64            //放炮分,根据这个分数判断是否可以结算
+	RoundHuXi    int32            //单局胡息数，用于计算是否能胡牌
+	GameHuXi     int32            //总的胡息，够200或者400时结束游戏
+	Bill         *Bill            //账单
+	Statistic    *UserStatistic   //统计信息
 }
 
 func (d *UserGameData) GetPengPai() []*PengPai {
@@ -137,8 +137,6 @@ type UserCheckCase struct {
 	ChiPais     []*ChiPai   //可以吃的牌
 	CanHu       bool        //是否可以胡牌
 	PengHuXi    int32       //胡息数
-	ChiHuXi     int32       //吃牌的胡息
-	HuHuXi      int32       //胡的胡息
 }
 
 func NewCheckCase() *UserCheckCase {
