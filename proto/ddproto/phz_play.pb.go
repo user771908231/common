@@ -1340,11 +1340,11 @@ func (m *PhzPlayCurrentResult) GetDeskRemainPokers() []int32 {
 	return nil
 }
 
-func (m *PhzPlayCurrentResult) GetHuType() []int32 {
-	if m != nil {
-		return m.HuType
+func (m *PhzPlayCurrentResult) GetHuType() int32 {
+	if m != nil && m.HuType != nil {
+		return *m.HuType
 	}
-	return nil
+	return 0
 }
 
 func (m *PhzPlayCurrentResult) GetHuTypeList() []int32 {
