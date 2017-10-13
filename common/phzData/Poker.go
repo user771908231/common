@@ -274,7 +274,10 @@ func (p *PHZPoker) GetLogDes() string {
 	} else {
 		valueString, _ = numUtils.Int2String(p.GetValue())
 	}
+	idStr, _ := numUtils.Int2String(p.GetId())
+	idString := "(" + idStr + ")"
 	suit += valueString
+	suit += idString
 	return suit
 }
 func Cards2String(cs []*PHZPoker) string {
