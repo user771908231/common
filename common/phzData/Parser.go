@@ -4,9 +4,9 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
+	"fmt"
 	"github.com/name5566/leaf/util"
 	"reflect"
-	"fmt"
 )
 
 const (
@@ -812,7 +812,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 		//是否是一句话（顺），这里应该分开判断
 		//小字 一句话
-		for i := 1; i < PAIVALUE_SMALL+1; i++ {
+		for i := 1; i < PAIVALUE_SMALL-1; i++ {
 			if count[i] > 0 && count[i+1] > 0 && count[i+2] > 0 {
 				count[i] -= 1
 				count[i+1] -= 1
@@ -982,7 +982,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//将牌
 		if canHuInfo.jiang > -1 {
 			jiangPais := GetPaisByValue2(checkPokers, canHuInfo.jiang)
-			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais,})
+			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais})
 
 			for _, delPai := range jiangPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
@@ -993,7 +993,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//一坎牌
 		for _, kan := range canHuInfo.kans {
 			kanPais := GetPaisByValue2(checkPokers, int32(kan))
-			huInfo.KanPais = append(huInfo.KanPais, &YiKanPai{Pais: kanPais,})
+			huInfo.KanPais = append(huInfo.KanPais, &YiKanPai{Pais: kanPais})
 			for _, delPai := range kanPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
