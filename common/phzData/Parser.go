@@ -318,6 +318,10 @@ func GetBiPais(chi *ChiPai, Pokers []*PHZPoker, checkPai *PHZPoker) ([]*ChiPai, 
 }
 
 func DelPaiFromPokers(handPokers []*PHZPoker, poker *PHZPoker) []*PHZPoker {
+	if poker == nil {
+		log.W("DelPaiFromPokers 时poker==nil")
+		return handPokers
+	}
 	for i, p := range handPokers {
 		if p == nil {
 			continue
