@@ -674,7 +674,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 	//递归完所有的牌
 	if len == 0 {
-		if huxi >= CANHU_LIMIT_HUXI {
+		if info.totalHuXi >= CANHU_LIMIT_HUXI {
 			//胡息满足条件表示胡了
 			info.canHu = true
 			fmt.Println(fmt.Sprintf("len == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
@@ -715,9 +715,10 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 					}
 				}
 
-				info = CanHu(huxi+kanPengHuxi, count, len-3, zimoPaiValue)
+				info.totalHuXi += kanPengHuxi
+
+				info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
 				if info.canHu {
-					info.totalHuXi += kanPengHuxi
 					if int(zimoPaiValue) == i {
 						//自摸为坎
 						info.kans = append(info.kans, i)
@@ -728,6 +729,8 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 					fmt.Println(fmt.Sprintf("找到三个一样的 return info:[%+v]", info))
 					return info
 				}
+				info.totalHuXi -= kanPengHuxi
+
 				count[i] += 3
 			}
 		}
@@ -738,14 +741,17 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			count[17] -= 1
 			count[20] -= 1
 
-			info = CanHu(huxi+6, count, len-3, zimoPaiValue)
+			info.totalHuXi += 6 //大字2 7 10
+
+			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countBigErQiShi++
-				info.totalHuXi += 6 //大字2 7 10
 				fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
 				return info
 			}
+
+			info.totalHuXi -= 6 //大字2 7 10
 
 			count[12] += 1
 			count[17] += 1
@@ -757,14 +763,17 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			count[12] -= 1
 			count[13] -= 1
 
-			info = CanHu(huxi+6, count, len-3, zimoPaiValue)
+			info.totalHuXi += 6 //大字1 2 3
+
+			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countBigYiErSan++
-				info.totalHuXi += 6 //大字1 2 3
 				fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
 				return info
 			}
+
+			info.totalHuXi -= 6 //大字1 2 3
 
 			count[11] += 1
 			count[12] += 1
@@ -777,14 +786,17 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			count[7] -= 1
 			count[10] -= 1
 
-			info = CanHu(huxi+3, count, len-3, zimoPaiValue)
+			info.totalHuXi += 3 //小字2 7 10
+
+			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countSmallErQiShi++
-				info.totalHuXi += 3 //小字2 7 10
 				fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
 				return info
 			}
+
+			info.totalHuXi -= 3 //小字2 7 10
 
 			count[2] += 1
 			count[7] += 1
@@ -796,14 +808,17 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			count[2] -= 1
 			count[3] -= 1
 
-			info = CanHu(huxi+3, count, len-3, zimoPaiValue)
+			info.totalHuXi += 3 //小字1 2 3
+
+			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countSmallErQiShi++
-				info.totalHuXi += 3 //小字1 2 3
 				fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
 				return info
 			}
+
+			info.totalHuXi -= 3 //小字1 2 3
 
 			count[1] += 1
 			count[2] += 1
