@@ -381,6 +381,7 @@ It has these top-level messages:
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption
+	NiuniuSrvRoom
 	NiuniuClientDesk
 	NiuniuClientUser
 	NiuCreateDeskReq
@@ -411,10 +412,11 @@ It has these top-level messages:
 	NiuOwnerDissolveReq
 	NiuOwnerDissolveAck
 	NiuOfflineBc
+	NiuCoinRoomListReq
+	NiuCoinRoomListAck
 	NiuniuSrvPoker
 	NiuniuSrvDesk
 	NiuniuSrvUser
-	NiuniuSrvRoom
 	NiuniuSrvDeskSnapshotIdIndex
 	NiuniuSrvDeskSnapshot
 	PdkBasePlayerInfo
@@ -565,6 +567,7 @@ It has these top-level messages:
 	HelloReply
 	RpcHallUpdateConfig
 	HallRpcDeskEventMsg
+	HallRpcGroupRefresh
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
