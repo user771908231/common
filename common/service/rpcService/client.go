@@ -28,3 +28,9 @@ var HallPool Pool
 func GetHall() ddproto.HallRpcClient {
 	return ddproto.NewHallRpcClient(HallPool.Get())
 }
+
+//松江河麻将
+var SjhMjPool Pool
+func GetSjhMj() mjproto.SjhMjRpcClient {
+	return mjproto.NewSjhMjRpcClient(SjhMjPool.Get())
+}
