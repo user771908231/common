@@ -39,7 +39,7 @@ func DoSjhKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 	var opt_circle_num int32 = 2
 	var opt_cap_max int64 = 16
 	var opt_payment int32 = 1
-
+	var opt_is_dianpaobaofen bool = false
 	//解析关键词
 	sjh_keywords := SjhConf.GetKeywords("", option_str)
 	for _, v := range sjh_keywords {
@@ -51,8 +51,10 @@ func DoSjhKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 		case "8圈":
 			opt_circle_num = 8
 		case "点炮包三家":  //1
+			opt_is_dianpaobaofen = true
 			opt_payment = 1
 		case "坐车也输分":  //2
+			opt_is_dianpaobaofen = false
 			opt_payment = 2
 		case "点炮自己拿":  //3
 			opt_payment = 3
@@ -76,6 +78,7 @@ func DoSjhKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 			MjRoomType: opt_room_type.Enum(),
 			BoardsCout: proto.Int32(opt_circle_num),
 			BaiShanPlayOptions: &mjproto.BaiShanPlayOptions{
+				DianPaoBaoFen: proto.Bool(opt_is_dianpaobaofen),
 				PaymentOption: proto.Int32(opt_payment),
 			},
 			CapMax: proto.Int64(opt_cap_max),
