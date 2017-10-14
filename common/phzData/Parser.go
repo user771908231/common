@@ -229,27 +229,39 @@ func (p *ParserCore) CanChi(userGameData interface{}, chiData interface{}) (inte
 				//找到每一种吃牌组合的比牌结果
 				log.T("找[%v]的比牌结果...", Cards2String(tempChi.Pais))
 				biResult, err := GetBiPais(tempChi, tempPokers, chiPoker)
+				if err != nil {
+					log.T("找[%v]的比牌结果时，需要比牌，但没有找到比牌结果...不能吃", Cards2String(tempChi.Pais))
+				}
 				if biResult != nil && len(biResult) > 0 {
+					log.T("[%v]的比牌结果有：", Cards2String(tempChi.Pais))
+					for _, bb := range biResult {
+						log.T("[%v]", Cards2String(bb.Pais))
+					}
 					chiResult = append(chiResult, tempChi)
 				}
-				if biResult == nil && err == nil {
+				/*if biResult == nil && err == nil {
+					log.T("[%v]不用比牌，可以吃", Cards2String(tempChi.Pais))
 					chiResult = append(chiResult, tempChi)
-				}
+				}*/
 			}
 		}
 		if chiResult != nil && len(chiResult) > 0 {
+			for _, cc := range chiResult {
+				log.T("[%v]的吃牌结果有：[%v]", Card2String(chiPoker), Cards2String(cc.Pais))
+			}
 			return chiResult, nil
 		}
 	}
+	log.T("不能吃牌[%v]", Card2String(chiPoker))
 	return nil, nil
 }
 
 //校验每一组吃牌是否可以吃:从手牌里删除被吃的亮张牌，从剩余牌里找是否能够成一句话、一缴牌
-func GetBiPais(chi *ChiPai, Pokers []*PHZPoker, checkPai *PHZPoker) ([]*ChiPai, error) {
+func GetBiPais(chi *ChiPai, Pokers []*PHZPoker, checkPai *PHZPoker) (result []*ChiPai, err error) {
 	//删除手牌里的坎牌
 	handPokers := util.DeepClone(Pokers).([]*PHZPoker)
 	paiCounts := CountHandPais(handPokers)
-	log.T("找[%v]的比牌时，删除原始坎牌前的牌是：[%v]", Cards2String(chi.Pais), Cards2String(handPokers))
+	//log.T("找[%v]的比牌时，删除原始坎牌前的牌是：[%v]", Cards2String(chi.Pais), Cards2String(handPokers))
 	for paiValue, paiCount := range paiCounts {
 		if paiCount == 3 {
 			tempPokers := util.DeepClone(handPokers).([]*PHZPoker)
@@ -260,8 +272,8 @@ func GetBiPais(chi *ChiPai, Pokers []*PHZPoker, checkPai *PHZPoker) ([]*ChiPai, 
 			}
 		}
 	}
-	log.T("找[%v]的比牌时，删除原始坎牌前的牌是：[%v]", Cards2String(chi.Pais), Cards2String(handPokers))
-	var result []*ChiPai
+	//log.T("找[%v]的比牌时，删除原始坎牌后的牌是：[%v]", Cards2String(chi.Pais), Cards2String(handPokers))
+	//var result []*ChiPai
 	//删除被吃的牌
 	handPokers = DelPaiFromPokersByID(handPokers, chi.Pais[1])
 	handPokers = DelPaiFromPokersByID(handPokers, chi.Pais[2])
@@ -269,79 +281,34 @@ func GetBiPais(chi *ChiPai, Pokers []*PHZPoker, checkPai *PHZPoker) ([]*ChiPai, 
 	//如果没有了牌值相同的牌，则不用比牌，返回比牌数据为空
 	if pais := GetPaisByValue2(handPokers, checkPai.GetValue()); len(pais) == 0 {
 		log.T("获取[%v]的比牌时，手上没有牌值相同的牌，不用比牌", Cards2String(chi.Pais))
-		return nil, nil
-	}
-	//如果还有1张, 将这张牌删除然后从删除后的牌里找checkPai的吃牌，如果有则比牌成功，否则比牌失败
-	if pais := GetPaisByValue2(handPokers, checkPai.GetValue()); len(pais) == 1 {
-		log.T("获取比牌时，手上有1张牌值相同的牌，需要比牌")
+		result = append(result, chi)
+		return result, nil
+	} else {
+		log.T("找[%v]的比牌结果时，手上还有[%v]张牌值相同的牌", Cards2String(chi.Pais), len(pais))
 		handPokers = DelPaiFromPokersByID(handPokers, pais[0])
 		tempResult := GetYiJuHua1(handPokers, pais[0])
-		//比牌是一句话
 		if tempResult != nil && len(tempResult) > 0 {
-			for _, t := range tempResult {
-				log.T("删除吃牌后，从手牌找到的[%v]的比牌结果有：[%v]", Cards2String(chi.Pais), Cards2String(t.Pais))
-			}
-			result = append(result, tempResult...)
-		}
-		log.T("result=[%+v]", result)
-		if result != nil && len(result) > 0 {
-			return result, nil
-		} else {
-			return nil, Error.NewError(-1, "需要比牌，没有找到比牌结果")
-		}
-	}
-	//如果删除后还有2张
-	if pais := GetPaisByValue2(handPokers, checkPai.GetValue()); len(pais) == 2 {
-		log.T("获取[%v]的比牌时，手上有2张牌值相同的牌，需要比牌", Cards2String(chi.Pais))
-		handPokers = DelPaiFromPokersByID(handPokers, pais[0]) //删除第一张牌值相同的牌，并在剩下的牌中找该牌的一句话
-		tempPokers := util.DeepClone(handPokers).([]*PHZPoker)
-		tempResult := GetYiJuHua1(handPokers, pais[0])
-		if tempResult != nil && len(tempResult) > 0 {
-			for _, c := range tempResult {
-				secondBiResult, err := GetBiPais(c, tempPokers, pais[0])
+			for _, chiData := range tempResult {
+				tempBiResult, err := GetBiPais(chiData, handPokers, pais[0])
 				if err != nil {
-					log.T("手上有2张牌值相同的牌时，获取[%v]的比牌，没有比牌，不能吃", Cards2String(c.Pais))
-					return nil, err
+					log.T("找[%v]的比牌时err! = nil", Cards2String(chiData.Pais))
+					continue
 				}
-				if secondBiResult == nil && err == nil {
-					log.T("手上有2张牌值相同的牌时，获取[%v]的比牌，有比牌结果，可以吃", Cards2String(c.Pais))
-					return result, nil
+				if tempBiResult != nil && len(tempBiResult) > 0 {
+					for _, bb := range tempBiResult {
+						log.T("找[%v]的比牌时，比牌结果是：[%v]", Cards2String(chiData.Pais), Cards2String(bb.Pais))
+					}
+					result = append(result, tempBiResult...)
 				}
-				if secondBiResult != nil && len(secondBiResult) > 0 && err == nil {
-					log.T("手上有2张牌值相同的牌时，获取[%v]的比牌，有比牌结果，可以吃", Cards2String(c.Pais))
-					result = append(result, secondBiResult...)
-					return result, nil
-				}
-			}
-		}
-
-		/*//比牌是一缴牌
-		tempResult := GetYiJuHua1(handPokers, pais[0])
-		if tempResult != nil && len(tempResult) > 0 {
-			for _, c := range tempResult {
-				if len(GetPaisByValue2(c.Pais, pais[0].GetValue())) == 2 {
-					log.T("删除手牌后，从手牌里找到的一缴牌比牌结果有：[%v]", Cards2String(c.Pais))
-					result = append(result, c)
+				if tempBiResult != nil && len(tempBiResult) == 0 {
+					log.T("找[%v]的比牌时，不用比牌")
+					result = append(result, chiData)
 				}
 			}
-		}
-		//比牌是一句话
-		handPokers = DelPaiFromPokersByID(handPokers, pais[1])
-		tempResult = GetYiJuHua1(handPokers, pais[1])
-		if tempResult != nil && len(tempResult) > 1 {
-			for _, c := range tempResult {
-				log.T("删除手牌后，从手牌里找到的一句话比牌结果有：[%v]", Cards2String(c.Pais))
-			}
-			result = append(result, tempResult...)
-		}
-		if result != nil && len(result) > 0 {
-			log.T("result=[%+v]", result)
 			return result, nil
-		} else {
-			return nil, Error.NewError(-1, "需要比牌，没有找到比牌结果")
-		}*/
+		}
+		return nil, Error.NewError(-1, "没有比牌结果")
 	}
-	return nil, Error.NewError(-1, "没有比牌结果")
 }
 
 func DelPaiFromPokers(handPokers []*PHZPoker, poker *PHZPoker) []*PHZPoker {
@@ -510,7 +477,6 @@ func GetYiJuHua1(handPokers []*PHZPoker, checkPai *PHZPoker) []*ChiPai {
 	//找一缴牌
 	//小 小 大
 	if big := GetPaisByValue2(handPokers, checkPai.GetValue()-10); len(big) == 2 {
-		log.T("len(pais)=[%v]", len(big))
 		pai1 = GetPaisByValue2(handPokers, checkPai.GetValue()-10)[0]
 		pai2 = GetPaisByValue2(handPokers, checkPai.GetValue()-10)[1]
 		if pai2 != nil && pai1 != nil {
@@ -525,7 +491,6 @@ func GetYiJuHua1(handPokers []*PHZPoker, checkPai *PHZPoker) []*ChiPai {
 
 	//大 大 小
 	if big := GetPaisByValue2(handPokers, checkPai.GetValue()+10); len(big) == 2 {
-		log.T("len(pais)= [%v]", len(big))
 		pai1 = GetPaisByValue2(handPokers, checkPai.GetValue()+10)[0]
 		pai2 = GetPaisByValue2(handPokers, checkPai.GetValue()+10)[1]
 		if pai1 != nil && pai2 != nil {
@@ -540,7 +505,6 @@ func GetYiJuHua1(handPokers []*PHZPoker, checkPai *PHZPoker) []*ChiPai {
 
 	//手里有1张牌值一样的牌
 	if pai := GetPaisByValue2(handPokers, checkPai.GetValue()); len(pai) == 1 {
-		log.T("len(pai)=[%v]", len(pai))
 		pai1 = GetPaiByValue(handPokers, checkPai.GetValue())
 		pai2 = GetPaiByValue(handPokers, checkPai.GetValue()+10)
 		if pai1 != nil && pai2 != nil {
@@ -565,7 +529,6 @@ func GetYiJuHua1(handPokers []*PHZPoker, checkPai *PHZPoker) []*ChiPai {
 	}
 	//手里有2张牌值一样的牌
 	if pai := GetPaisByValue2(handPokers, checkPai.GetValue()); len(pai) == 2 {
-		log.T("len(pai)=[%v]", len(pai))
 		pai1 = GetPaisByValue2(handPokers, checkPai.GetValue())[0]
 		pai2 = GetPaiByValue(handPokers, checkPai.GetValue()+10)
 		if pai1 != nil && pai2 != nil {
@@ -696,8 +659,8 @@ func (info CanHuInfo) OnInit() {
 }
 
 func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo) {
-	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue)
-	fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue))
+	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue)
+	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue))
 
 	//初始化默认值
 	info.OnInit()
@@ -713,7 +676,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 		}
 		//已经递归完所有牌 胡息不满足
 		info.canHu = false
-		fmt.Println(fmt.Sprintf("len == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+		//fmt.Println(fmt.Sprintf("len == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
 		return info
 	}
 
@@ -757,7 +720,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 						//其他为碰
 						info.pengs = append(info.pengs, i)
 					}
-					fmt.Println(fmt.Sprintf("找到三个一样的 return info:[%+v]", info))
+					//fmt.Println(fmt.Sprintf("找到三个一样的 return info:[%+v]", info))
 					return info
 				}
 				info.totalHuXi -= kanPengHuxi
@@ -778,7 +741,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countBigErQiShi++
-				fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
 				return info
 			}
 
@@ -800,7 +763,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countBigYiErSan++
-				fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
 				return info
 			}
 
@@ -823,7 +786,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countSmallErQiShi++
-				fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
 				return info
 			}
 
@@ -845,7 +808,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.countSmallErQiShi++
-				fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
 				return info
 			}
 
@@ -867,7 +830,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 				if info.canHu {
 					//log.T("i: %v, value: %v", i, count[i])
 					info.yijuhuas = append(info.yijuhuas, i)
-					fmt.Println(fmt.Sprintf("找到小字一句话 return info:[%+v]", info))
+					//fmt.Println(fmt.Sprintf("找到小字一句话 return info:[%+v]", info))
 					return info
 				}
 				count[i] += 1
@@ -885,7 +848,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 				if info.canHu {
 					//log.T("i: %v, value: %v", i, count[i])
 					info.yijuhuas = append(info.yijuhuas, i)
-					fmt.Println(fmt.Sprintf("找到大字一句话 return info:[%+v]", info))
+					//fmt.Println(fmt.Sprintf("找到大字一句话 return info:[%+v]", info))
 					return info
 				}
 				count[i] += 1
@@ -906,7 +869,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 					//log.T("i: %v, value: %v", i, count[i])
 					jiao := jiao{i, PAIVALUE_SMALL + i, PAIVALUE_SMALL + i}
 					info.jiaos = append(info.jiaos, jiao)
-					fmt.Println(fmt.Sprintf("找到一绞牌 case1 return info:[%+v]", info))
+					//fmt.Println(fmt.Sprintf("找到一绞牌 case1 return info:[%+v]", info))
 					return info
 				}
 				count[i] += 1
@@ -921,7 +884,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 					//log.T("i: %v, value: %v", i, count[i])
 					jiao := jiao{i, i, PAIVALUE_SMALL + i}
 					info.jiaos = append(info.jiaos, jiao)
-					fmt.Println(fmt.Sprintf("找到一绞牌 case2 return info:[%+v]", info))
+					//fmt.Println(fmt.Sprintf("找到一绞牌 case2 return info:[%+v]", info))
 					return info
 				}
 				count[i] += 2
@@ -938,7 +901,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 				if info.canHu {
 					//log.T("i: %v, value: %v", i, count[i])
 					info.jiang = int32(i)
-					fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
+					//fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
 					return info
 				}
 				count[i] += 2
@@ -946,7 +909,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 		}
 	}
 	info.canHu = false
-	fmt.Println(fmt.Sprintf("长度不匹配 return info:[%+v]", info))
+	//fmt.Println(fmt.Sprintf("长度不匹配 return info:[%+v]", info))
 	return info
 }
 
@@ -956,7 +919,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	pais := userGameData.HandPokers
 
 	log.T("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao)
-	fmt.Println(fmt.Sprintf("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao))
+	//fmt.Println(fmt.Sprintf("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao))
 
 	//找出牌组里原始坎牌
 	var srcKan []*YiKanPai
@@ -980,7 +943,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 					pais = DelPaiFromPokersByID(pais, p)
 				}
 				log.T("check胡牌时玩家手牌原始的坎牌是：[%v]", Cards2String(kan.Pais))
-				fmt.Println(fmt.Sprintf("check胡牌时玩家手牌原始的坎牌是：[%v]", Cards2String(kan.Pais)))
+				//fmt.Println(fmt.Sprintf("check胡牌时玩家手牌原始的坎牌是：[%v]", Cards2String(kan.Pais)))
 				srcKan = append(srcKan, kan)
 			}
 		}
@@ -1010,16 +973,16 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	if (checkPokers == nil || len(checkPokers) == 0) && totalHuXi >= CANHU_LIMIT_HUXI {
 		huInfo.CanHu = true
 		log.T("check玩家是否可以胡时，玩家手里只有坎牌，可以胡牌...")
-		fmt.Println(fmt.Sprintf("check玩家是否可以胡时，玩家手里只有坎牌，可以胡牌..."))
+		//fmt.Println(fmt.Sprintf("check玩家是否可以胡时，玩家手里只有坎牌，可以胡牌..."))
 		return huInfo, nil
 	}
 
 	log.T("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers))
-	fmt.Println(fmt.Sprintf("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers)))
+	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers)))
 	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue)
 
 	log.T("CanHu的CheckPokers结果是:[%+v]", canHuInfo)
-	fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
+	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
 	huInfo.CanHu = canHuInfo.canHu
 	huInfo.HuXi = canHuInfo.totalHuXi
 
@@ -1033,7 +996,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range jiangPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
 		}
 
 		//一坎牌
@@ -1043,7 +1006,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range kanPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
 		}
 
 		//一绞牌
@@ -1056,7 +1019,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一绞牌:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一绞牌:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//一句话
@@ -1070,7 +1033,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一句话:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一句话:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 		//大字一二三
 		for i := canHuInfo.countBigYiErSan; i > 0; i-- {
@@ -1083,7 +1046,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的大字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的大字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//大字二七十
@@ -1097,7 +1060,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的大字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的大字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//小字一二三
@@ -1111,7 +1074,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的小字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//小字二七十
@@ -1125,13 +1088,13 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的小字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 	}
 
 	log.T("TryHu2的huInfo结果是:[%+v]", huInfo)
-	fmt.Println(fmt.Sprintf("TryHu2的huInfo结果是:[%+v]", huInfo))
+	//fmt.Println(fmt.Sprintf("TryHu2的huInfo结果是:[%+v]", huInfo))
 	return huInfo, nil
 }
 
@@ -1389,29 +1352,6 @@ func GetYiJiaoPaiForHu(pais []*PHZPoker) (result []*YJH, remainPokers []*PHZPoke
 				handPokers = DelPaiFromPokers(handPokers, pai3)
 				result = append(result, yijiaopai)
 			}
-		}
-	}
-	return result, handPokers
-}
-
-//从手牌里找对子
-func GetDuiZiForHu(pais []*PHZPoker) (result []*DuiZi, remainPokers []*PHZPoker) {
-	handPokers := util.DeepClone(pais).([]*PHZPoker)
-	counts := CountHandPais(handPokers)
-	if counts == nil {
-		return nil, nil
-	}
-	for paiValue, paiCount := range counts {
-		if paiCount == 2 {
-			duizi := &DuiZi{}
-			pokers := GetPaisByValue2(handPokers, int32(paiValue))
-			if pokers == nil || len(pokers) < 2 {
-				continue
-			}
-			duizi.Pais = pokers
-			handPokers = DelPaiFromPokers(handPokers, pokers[0])
-			handPokers = DelPaiFromPokers(handPokers, pokers[1])
-			result = append(result, duizi)
 		}
 	}
 	return result, handPokers
