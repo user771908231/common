@@ -279,21 +279,40 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 
 	//更新状态
 	ex_desk.Status = proto.Int32(3);
-	insertToMongo(ex_desk)
-
-	//更新redis
-	saveToRedisByCreator(ex_desk.GetCreator())
-	if ex_desk.GetGroupId() > 0 {
-		saveToRedisByGroupid(ex_desk.GetGroupId())
+	err = insertToMongo(ex_desk)
+	if err != nil {
+		return err
 	}
 
-	//推送解散消息
-	_,err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
-		Msg: proto.String("房间已解散"),
-		Desk: ex_desk,
-	})
+	//更新redis
+	err = saveToRedisByCreator(ex_desk.GetCreator())
+	if err != nil {
+		return err
+	}
+	if ex_desk.GetGroupId() > 0 {
+		saveToRedisByGroupid(ex_desk.GetGroupId())
 
-	return err
+		//推送解散消息
+		res,err := rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+			Msg: proto.String("房间已解散"),
+			Desk: ex_desk,
+		})
+
+		if res == nil {
+			if err != nil {
+				return errors.New("rpc networkerr:"+err.Error())
+			}else {
+				return errors.New("未知错误")
+			}
+		}else {
+			if res.GetCode() < 0 {
+				return errors.New(res.GetError())
+			}else {
+				return nil
+			}
+		}
+	}
+	return nil
 }
 
 //添加用户
