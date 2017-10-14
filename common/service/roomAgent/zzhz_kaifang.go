@@ -38,6 +38,25 @@ var ZzhzConf = CreateConfig{
 		[]string{"抓4鸟", "抓四鸟", "4鸟", "四鸟"},
 		[]string{"抓6鸟", "抓六鸟", "6鸟", "六鸟"},
 	},
+	[][]string{
+		[]string{"金鸟"},
+		[]string{""},
+	},
+	[][]string{
+		[]string{"可接炮"},
+		[]string{""},
+	},
+	[][]string{
+		[]string{"飘分"},
+		[]string{""},
+	},[][]string{
+		[]string{"自由飘分"},
+		[]string{""},
+	},
+	[][]string{
+		[]string{"八红中"},
+		[]string{""},
+	},
 }
 
 //红中开房
@@ -47,6 +66,11 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 	var opt_circle_num int = 8
 	var opt_zhama_jiabei bool = false
 	var opt_bird_num int = 1
+	var opt_is_gold_bird = false
+	var opt_is_piao = false
+	var opt_is_piao_free = false
+	var opt_can_jiepao = false
+	var opt_is_bahongzhong = false
 
 	//解析关键词
 	zzhz_keywords := ZzhzConf.GetKeywords("", option_str)
@@ -76,6 +100,16 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 			opt_bird_num = 4
 		case "抓6鸟":
 			opt_bird_num = 6
+		case "金鸟":
+			opt_is_gold_bird = true
+		case "飘分":
+			opt_is_piao = true
+		case "自由飘分":
+			opt_is_piao_free = true
+		case "可接炮":
+			opt_can_jiepao = true
+		case "八红中":
+			opt_is_bahongzhong = true
 		}
 	}
 	//检查是否有空闲房间
@@ -98,7 +132,12 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 			ZhuanzhuanPlayOptions: &mjproto.ZhuanZhuanPlayOptions{
 				ZhaMa:proto.Int32(int32(opt_bird_num)),
 				IsZhaMaJiaBei: proto.Bool(opt_zhama_jiabei),
+				IsGoldBird: proto.Bool(opt_is_gold_bird),
+				CanJiePaoHu:proto.Bool(opt_can_jiepao),
+				IsBaHongZhong:proto.Bool(opt_is_bahongzhong),
 			},
+			IsPiaoFen: proto.Bool(opt_is_piao),
+			IsPiaoFenFree:proto.Bool(opt_is_piao_free),
 		},
 		IsDaiKai: proto.Bool(true),
 	}
