@@ -21,6 +21,14 @@ func GetAgent(userId uint32) (gate.Agent, error) {
 }
 
 func SetAgent(userId uint32, a gate.Agent) {
+	ex_a,ok := AgentMap[userId]
+	if ok {
+		if ex_a == a {
+			return
+		}else {
+			log.T("Bind Agent %d <-> %p  old_agent:%p", userId, a, ex_a)
+		}
+	}
 	AgentMap[userId] = a
 	log.T("Bind Agent %d <-> %p", userId, a)
 }
