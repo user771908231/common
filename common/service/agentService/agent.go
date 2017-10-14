@@ -28,9 +28,10 @@ func SetAgent(userId uint32, a gate.Agent) {
 		}else {
 			log.T("Bind Agent %d <-> %p  old_agent:%p", userId, a, ex_a)
 		}
+	}else {
+		log.T("Bind Agent %d <-> %p  old_agent:nil", userId, a)
 	}
 	AgentMap[userId] = a
-	log.T("Bind Agent %d <-> %p", userId, a)
 }
 
 func DelAgent(userId uint32) {
