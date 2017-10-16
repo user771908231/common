@@ -1009,11 +1009,23 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			//fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
 		}
 
+		//一碰牌
+		for _, kan := range canHuInfo.pengs {
+			kanPais := GetPaisByValue2(checkPokers, int32(kan))
+			huInfo.KanPais = append(huInfo.KanPais, &YiKanPai{Pais: kanPais})
+			for _, delPai := range kanPais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			fmt.Println(fmt.Sprintf("TryHu2找到的一碰牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+		}
+
 		//一绞牌
 		for _, jiao := range canHuInfo.jiaos {
 			yjh := &YJH{}
 			for _, jiaoPaiValue := range jiao {
-				yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(jiaoPaiValue)))
+				if pai := GetPaiByValue(checkPokers, int32(jiaoPaiValue)); pai != nil {
+					yjh.Pais = append(yjh.Pais, pai)
+				}
 			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1025,9 +1037,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//一句话
 		for _, yijuhua := range canHuInfo.yijuhuas {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua+1)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua+2)))
+			if pai := GetPaiByValue(checkPokers, int32(yijuhua)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(yijuhua+1)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(yijuhua+2)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1038,9 +1056,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//大字一二三
 		for i := canHuInfo.countBigYiErSan; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(11)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(12)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(13)))
+			if pai := GetPaiByValue(checkPokers, int32(11)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(12)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(13)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1052,9 +1076,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//大字二七十
 		for i := canHuInfo.countBigErQiShi; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(12)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(17)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(20)))
+			if pai := GetPaiByValue(checkPokers, int32(12)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(17)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(20)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1066,9 +1096,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//小字一二三
 		for i := canHuInfo.countSmallYiErSan; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(1)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(2)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(3)))
+			if pai := GetPaiByValue(checkPokers, int32(1)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(2)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(3)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1080,9 +1116,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//小字二七十
 		for i := canHuInfo.countSmallErQiShi; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(2)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(7)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(10)))
+			if pai := GetPaiByValue(checkPokers, int32(2)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(7)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(10)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
