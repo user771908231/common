@@ -90,6 +90,7 @@ type UserGameStatus struct {
 	IsTiPai        bool  //用于纪录玩家是否已经提过牌
 	IsReconnect    bool  //是否是断线重连
 	IsShouldChuPai bool  //过胡后是否需要继续出牌
+	IsFrozen       bool  //是否冻章，打了别人偎的牌后为冻章
 	S              int32 //玩家的状态
 	ApplyDissolve  int32
 }
