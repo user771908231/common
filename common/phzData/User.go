@@ -51,7 +51,7 @@ func (u *User) SetGameStatus(s int32) {
 
 type UserGameData struct {
 	HandPokers   []*PHZPoker      //手牌
-	OutCards     []*PHZPoker      //玩家打出去的牌
+	OutCards     []*PHZPoker      //玩家摸起来且没有被操作的牌
 	PengPai      []*PengPai       //碰的牌
 	ChiPai       []*ChiPai        //吃的牌
 	TiPai        []*TiPai         //提的牌
