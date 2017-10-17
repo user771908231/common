@@ -844,7 +844,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
-				info.countSmallErQiShi++
+				info.countSmallYiErSan++
 				fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
 				return info
 			}
@@ -1136,12 +1136,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			if pai := GetPaiByValue(checkPokers, int32(1)); pai != nil {
 				yjh.Pais = append(yjh.Pais, pai)
 			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字一:[%v]", Cards2String(yjh.Pais)))
 			if pai := GetPaiByValue(checkPokers, int32(2)); pai != nil {
 				yjh.Pais = append(yjh.Pais, pai)
 			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字二:[%v]", Cards2String(yjh.Pais)))
 			if pai := GetPaiByValue(checkPokers, int32(3)); pai != nil {
 				yjh.Pais = append(yjh.Pais, pai)
 			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字三:[%v]", Cards2String(yjh.Pais)))
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
