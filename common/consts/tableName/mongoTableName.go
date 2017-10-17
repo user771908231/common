@@ -36,18 +36,18 @@ const (
 	DBT_T_FUDAI_LIST_USER           string = "t_fudai_list_user"            //福袋user
 	DBT_T_FUDAI_XIANGXI_LIST        string = "t_fudai_xiangxi_list"         //福袋详细信息
 
-	DBT_GROUP_INFO string = "t_group_info"     //群组信息及成员列表
+	DBT_GROUP_INFO string = "t_group_info" //群组信息及成员列表
 
 	DBT_STATISTIC_BTN_CLICK   string = "T_statistic_btn_click"   //统计相关的数据库表名字
 	DBT_ADMIN_EXCHANGE_RECORD string = "t_admin_exchange_record" //红包、实物兑换记录表
 	DBT_IP_ADDRESS            string = "dbt_ip_address"          //存储Ip对应的地址
 
-	DBT_ROBOT_WECHAT_GROUP_INFO  string = "t_robot_wechat_group_info"    //机器人微信群表
+	DBT_ROBOT_WECHAT_GROUP_INFO string = "t_robot_wechat_group_info" //机器人微信群表
 
-	DBT_APPLY_AGENTPRO_RECORD string = "t_apply_agentpro_record"  //代理申请记录
+	DBT_APPLY_AGENTPRO_RECORD string = "t_apply_agentpro_record" //代理申请记录
 
 	DBT_GAME_SERVER_INFO = "t_game_server_info"
-	DBT_GAME_ROOM_INFO = "t_game_room_info"
+	DBT_GAME_ROOM_INFO   = "t_game_room_info"
 
 	//游戏session表
 	DBT_GAME_SESSION string = "t_game_session"
@@ -126,5 +126,7 @@ const (
 	DBT_BAINIU_AREA_BILL_COUNT = "t_bainiu_area_bill_count" //百人牛牛区域胜负统计
 
 	DBT_USER_GAME_BILL = "t_user_game_bill" //玩家游戏账单记录
+
+	DBT_T_ROBOT_INFO string = "t_robot_info" //机器人信息表
 
 )
