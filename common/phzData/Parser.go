@@ -4,7 +4,6 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
-	"fmt"
 	"github.com/name5566/leaf/util"
 	"reflect"
 )
@@ -661,7 +660,7 @@ func (info CanHuInfo) OnInit() {
 
 func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int) (info CanHuInfo) {
 	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue)
-	fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v], len(jiangs):[%v])", huxi, count, length, zimoPaiValue, len(jiangs)))
+	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue))
 
 	//初始化默认值
 	info.OnInit()
@@ -673,12 +672,12 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {
 			//胡息满足条件表示胡了
 			info.canHu = true
-			fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+			//fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
 			return info
 		}
 		//已经递归完所有牌 胡息不满足 或者将牌大于1对
 		info.canHu = false
-		fmt.Println(fmt.Sprintf("length == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+		//fmt.Println(fmt.Sprintf("length == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
 		return info
 	}
 
@@ -722,7 +721,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 					//其他为碰
 					info.pengs = append(info.pengs, i)
 				}
-				fmt.Println(fmt.Sprintf("找到三个一样的 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到三个一样的 return info:[%+v]", info))
 				return info
 			}
 			info.totalHuXi -= kanPengHuxi
@@ -743,7 +742,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countBigErQiShi++
-			fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
+			//fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
 			return info
 		}
 
@@ -765,7 +764,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countBigYiErSan++
-			fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
+			//fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
 			return info
 		}
 
@@ -788,7 +787,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countSmallErQiShi++
-			fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
+			//fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
 			return info
 		}
 
@@ -810,7 +809,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countSmallYiErSan++
-			fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
+			//fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
 			return info
 		}
 
@@ -832,7 +831,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.yijuhuas = append(info.yijuhuas, i)
-				fmt.Println(fmt.Sprintf("找到小字一句话 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到小字一句话 return info:[%+v]", info))
 				return info
 			}
 			count[i] += 1
@@ -850,7 +849,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.yijuhuas = append(info.yijuhuas, i)
-				fmt.Println(fmt.Sprintf("找到大字一句话 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到大字一句话 return info:[%+v]", info))
 				return info
 			}
 			count[i] += 1
@@ -871,7 +870,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 				//log.T("i: %v, value: %v", i, count[i])
 				jiao := jiao{i, PAIVALUE_SMALL + i, PAIVALUE_SMALL + i}
 				info.jiaos = append(info.jiaos, jiao)
-				fmt.Println(fmt.Sprintf("找到一绞牌 case1 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到一绞牌 case1 return info:[%+v]", info))
 				return info
 			}
 			count[i] += 1
@@ -886,7 +885,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 				//log.T("i: %v, value: %v", i, count[i])
 				jiao := jiao{i, i, PAIVALUE_SMALL + i}
 				info.jiaos = append(info.jiaos, jiao)
-				fmt.Println(fmt.Sprintf("找到一绞牌 case2 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到一绞牌 case2 return info:[%+v]", info))
 				return info
 			}
 			count[i] += 2
@@ -898,24 +897,13 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
 		if count[i] >= 2 {
 			count[i] -= 2
-			//增加到对子数组里去
 			info.jiangs = append(info.jiangs, i)
-
 			info = CanHu(huxi, count, length-2, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
-				fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
+				//fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
 				return info
 			}
-
-			//不能胡 移除该对子
-			newJiangs := []int{}
-			for _, delI := range info.jiangs {
-				if delI != i {
-					newJiangs = append(newJiangs, i)
-				}
-			}
-			info.jiangs = newJiangs
 			count[i] += 2
 		}
 	}
@@ -930,7 +918,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	pais := userGameData.HandPokers
 
 	log.T("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao)
-	fmt.Println(fmt.Sprintf("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao))
+	//fmt.Println(fmt.Sprintf("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao))
 
 	//找出牌组里原始坎牌
 	var srcKan []*YiKanPai
@@ -993,7 +981,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue, nil)
 
 	log.T("CanHu的CheckPokers结果是:[%+v]", canHuInfo)
-	fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
+	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
 	huInfo.CanHu = canHuInfo.canHu
 	huInfo.HuXi = canHuInfo.totalHuXi
 
@@ -1013,7 +1001,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 
 			jiangPais := []*PHZPoker{jiangPai1, jiangPai2}
 			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais})
-			fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
 		}
 
 		//一坎牌
@@ -1023,7 +1011,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range kanPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
 		}
 
 		//一碰牌
@@ -1033,7 +1021,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range kanPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一碰牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一碰牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
 		}
 
 		//一绞牌
@@ -1042,11 +1030,13 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, jiaoPaiValue := range jiao {
 				if pai := GetPaiByValue(checkPokers, int32(jiaoPaiValue)); pai != nil {
 					yjh.Pais = append(yjh.Pais, pai)
-					checkPokers = DelPaiFromPokers(checkPokers, pai)
 				}
 			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yjh)
-			fmt.Println(fmt.Sprintf("TryHu2找到的一绞牌:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			for _, delPai := range yjh.Pais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一绞牌:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//一句话
@@ -1066,7 +1056,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一句话:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一句话:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 		//大字一二三
 		for i := canHuInfo.countBigYiErSan; i > 0; i-- {
@@ -1085,7 +1075,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的大字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的大字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//大字二七十
@@ -1105,7 +1095,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的大字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的大字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//小字一二三
@@ -1128,7 +1118,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的小字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字一二三:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 		//小字二七十
@@ -1148,13 +1138,13 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range yjh.Pais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的小字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字二七十:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
 	}
 
 	log.T("TryHu2的huInfo结果是:[%+v]", huInfo)
-	fmt.Println(fmt.Sprintf("TryHu2的huInfo结果是:[%+v]", huInfo))
+	//fmt.Println(fmt.Sprintf("TryHu2的huInfo结果是:[%+v]", huInfo))
 	return huInfo, nil
 }
 
