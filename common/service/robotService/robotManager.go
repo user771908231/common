@@ -11,12 +11,27 @@ import (
 	"sync/atomic"
 	"casino_common/utils/rand"
 	"casino_common/common/consts"
+	"casino_common/common/consts/tableName"
+	"gopkg.in/mgo.v2/bson"
+	"casino_common/utils/db"
+	"time"
 )
 
 type RobotsMgrApi interface {
 	ExpropriationRobotByCoin(coin int64) *Robot
 	ReleaseRobots(id uint32)
 	ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot
+}
+
+//数据库
+type RobotInfo struct {
+	UserId    float64
+	HeaderUrl string
+	NickName  string
+	Sex       float64
+	City      string
+	Available bool
+	RegTime   time.Time
 }
 
 //机器人管理器
@@ -78,17 +93,55 @@ func (rm *RobotsManager) NewRobotsAndSave(num int32) {
 
 //新创建一个机器人，并保存到数据库
 func (rm *RobotsManager) NewRobotAndSave(uid uint32) *Robot {
-	//1,注册普通用户
+
+	//从数据库中获取一个可用的玩家信息
+	var user *ddproto.User = nil
+	var err error = nil
+	var robotInfo *RobotInfo = &RobotInfo{}
+
+	ids, _ := numUtils.Uint2String(uid)
+	nickName := "游客" + ids
+	headUrl := ""
+	sex := rand.Rand(0, 1)
+	city := ""
+
+	//查询数据库 获取机器人信息
+	err = db.C(tableName.DBT_T_ROBOT_INFO).Find(bson.M{"available": true}, robotInfo)
+	if robotInfo != nil {
+		if nickName != "" {
+			nickName = robotInfo.NickName
+		}
+
+		if robotInfo.HeaderUrl != "" {
+			headUrl = "http://dev.tondeen.com/head_imgs/" + robotInfo.HeaderUrl
+		}
+		sex = int32(robotInfo.Sex)
+		city = robotInfo.City
+
+		//这里已经用了
+	}
+
+	if err != nil {
+		log.E("新建一个机器人的时候 查询机器人库信息错误 err: %v", err)
+	}
+	log.T("开始创建一个机器人uid:%v nickName:%v headUrl:%v sex:%v city:%v", uid, nickName, headUrl, sex, city)
 	//channel : "robot"
-	user, err := userService.NewUserAndSave(uid, "", "", "", "", 1, "", "robot", "localhost")
+	user, err = userService.NewUserAndSave(uid, "", "", nickName, headUrl, sex, city, "robot", "localhost")
 	if err != nil || user == nil {
 		return nil
 	}
 
+	//更新状态
+	if robotInfo != nil {
+		err = db.C(tableName.DBT_T_ROBOT_INFO).Update(bson.M{"available": true, "nickname": robotInfo.NickName, "headerurl": robotInfo.HeaderUrl,}, bson.M{"$set": bson.M{"available": false, "userid": uid, "regtime": time.Now(),}})
+		if err != nil {
+			log.E("更新机器人[%v]数据库信息的时候失败err: %v", err)
+		}
+	}
+
+
 	//2,注册机器人
 	user.RobotType = proto.Int32(int32(rm.gameId))
-	ids, _ := numUtils.Uint2String(user.GetId())
-	user.NickName = proto.String("游客" + ids)
 	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
 	user.Coin = proto.Int64(c)
 	//userService.SaveUser2Redis(user) //保存到redis
@@ -141,7 +194,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot {
 		return nil
 	}
 	userService.SetUserMoney(robot.GetId(), consts.RKEY_USER_COIN, rand) //设置机器人玩家的金币
-	robot.Coin = proto.Int64(rand)                                    //设置机器人的金额
+	robot.Coin = proto.Int64(rand)                                       //设置机器人的金额
 	return robot
 }
 
