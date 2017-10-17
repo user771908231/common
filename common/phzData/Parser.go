@@ -33,6 +33,7 @@ type HuInfo struct {
 	DuiZis      []*DuiZi    //胡牌时手里的对子
 	KanPais     []*YiKanPai //胡牌时手里的坎牌
 	TiPais      []*YiTi     //胡牌时手里的提牌
+	Pengs       []*YiKanPai //胡牌时胡出来的碰牌
 	HuXi        int32       //胡息数
 	WinUser     uint32      //赢家
 	LoseUser    []uint32    //输家
@@ -1018,7 +1019,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//一碰牌
 		for _, kan := range canHuInfo.pengs {
 			kanPais := GetPaisByValue2(checkPokers, int32(kan))
-			huInfo.KanPais = append(huInfo.KanPais, &YiKanPai{Pais: kanPais})
+			huInfo.Pengs = append(huInfo.Pengs, &YiKanPai{Pais: kanPais})
 			for _, delPai := range kanPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}

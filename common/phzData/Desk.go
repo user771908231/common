@@ -50,6 +50,7 @@ type DeskGameData struct {
 	LiangZhang     *OutCard    //每轮的亮张:摸的牌
 	FirstTimeMoPai bool        //是否是每局的第一次摸牌
 	NoWinnerTimes  int32       //荒庄次数
+	FirstOutCard   *PHZPoker   //庄家打出的第一张牌
 }
 
 type OutCard struct {
