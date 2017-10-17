@@ -660,7 +660,7 @@ func (info CanHuInfo) OnInit() {
 
 func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo) {
 	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue)
-	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue))
+	fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue))
 
 	//初始化默认值
 	info.OnInit()
@@ -859,7 +859,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 		//是否是一绞牌 根据小字去组合大字
 		for i := 1; i < PAIVALUE_SMALL+1; i++ {
-			//fmt.Println(fmt.Sprintf("是否是一绞牌[%v] 小字count[%v]:%v 大字count[%v]:%v", i, i, count[i], PAIVALUE_SMALL+i, count[PAIVALUE_SMALL+i]))
+			fmt.Println(fmt.Sprintf("是否是一绞牌[%v] 小字count[%v]:%v 大字count[%v]:%v", i, i, count[i], PAIVALUE_SMALL+i, count[PAIVALUE_SMALL+i]))
 			if count[i] > 0 && count[PAIVALUE_SMALL+i] >= 2 {
 				//fmt.Println("case 1")
 				count[i] -= 1
@@ -990,12 +990,18 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	if huInfo.CanHu {
 		//将牌
 		if canHuInfo.jiang > -1 {
-			jiangPais := GetPaisByValue2(checkPokers, canHuInfo.jiang)
-			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais})
-
-			for _, delPai := range jiangPais {
-				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			jiangPai1 := GetPaiByValue(checkPokers, canHuInfo.jiang)
+			if jiangPai1 != nil {
+				checkPokers = DelPaiFromPokers(checkPokers, jiangPai1)
 			}
+
+			jiangPai2 := GetPaiByValue(checkPokers, canHuInfo.jiang)
+			if jiangPai2 != nil {
+				checkPokers = DelPaiFromPokers(checkPokers, jiangPai2)
+			}
+
+			jiangPais := []*PHZPoker{jiangPai1, jiangPai2}
+			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais})
 			//fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
 		}
 
@@ -1016,7 +1022,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, delPai := range kanPais {
 				checkPokers = DelPaiFromPokers(checkPokers, delPai)
 			}
-			fmt.Println(fmt.Sprintf("TryHu2找到的一碰牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一碰牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
 		}
 
 		//一绞牌
