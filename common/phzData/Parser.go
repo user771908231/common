@@ -4,7 +4,6 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
-	"fmt"
 	"github.com/name5566/leaf/util"
 	"reflect"
 )
@@ -661,7 +660,7 @@ func (info CanHuInfo) OnInit() {
 
 func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int) (info CanHuInfo) {
 	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue)
-	fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue))
+	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue))
 
 	//初始化默认值
 	info.OnInit()
@@ -673,7 +672,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {
 			//胡息满足条件表示胡了
 			info.canHu = true
-			fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+			//fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
 			return info
 		}
 		//已经递归完所有牌 胡息不满足 或者将牌大于1对
@@ -861,7 +860,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 
 	//是否是一绞牌 根据小字去组合大字
 	for i := 1; i < PAIVALUE_SMALL+1; i++ {
-		fmt.Println(fmt.Sprintf("是否是一绞牌[%v] 小字count[%v]:%v 大字count[%v]:%v", i, i, count[i], PAIVALUE_SMALL+i, count[PAIVALUE_SMALL+i]))
+		//fmt.Println(fmt.Sprintf("是否是一绞牌[%v] 小字count[%v]:%v 大字count[%v]:%v", i, i, count[i], PAIVALUE_SMALL+i, count[PAIVALUE_SMALL+i]))
 		if count[i] > 0 && count[PAIVALUE_SMALL+i] >= 2 {
 			//fmt.Println("case 1")
 			count[i] -= 1
