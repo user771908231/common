@@ -1042,12 +1042,10 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			for _, jiaoPaiValue := range jiao {
 				if pai := GetPaiByValue(checkPokers, int32(jiaoPaiValue)); pai != nil {
 					yjh.Pais = append(yjh.Pais, pai)
+					checkPokers = DelPaiFromPokers(checkPokers, pai)
 				}
 			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yjh)
-			for _, delPai := range yjh.Pais {
-				checkPokers = DelPaiFromPokers(checkPokers, delPai)
-			}
 			fmt.Println(fmt.Sprintf("TryHu2找到的一绞牌:[%v] 删除后的checkPokers:[%v]", Cards2String(yjh.Pais), Cards2String(checkPokers)))
 		}
 
