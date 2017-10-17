@@ -634,11 +634,11 @@ type jiao []int
 //坎的胡息在之前计算出来 传入
 type CanHuInfo struct {
 	canHu             bool
-	jiang             int32  //将牌 如果有
 	countBigErQiShi   int    //大字二七十的数量
 	countSmallErQiShi int    //小字二七十的数量
 	countBigYiErSan   int    //大字一二三的数量
 	countSmallYiErSan int    //小字一二三的数量
+	jiangs            []int  //将牌 如果有
 	jiaos             []jiao //绞牌
 	yijuhuas          []int  //一句话
 	kans              []int  //一坎牌
@@ -648,40 +648,41 @@ type CanHuInfo struct {
 
 func (info CanHuInfo) OnInit() {
 	info.canHu = false
-	info.jiang = -1
 	info.countBigErQiShi = 0
 	info.countSmallErQiShi = 0
 	info.countBigYiErSan = 0
 	info.countSmallYiErSan = 0
+	info.jiangs = nil
 	info.jiaos = nil
 	info.yijuhuas = nil
 	info.kans = nil
 	info.totalHuXi = 0
 }
 
-func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo) {
-	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue)
-	fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue))
+func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int) (info CanHuInfo) {
+	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue)
+	fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue))
 
 	//初始化默认值
 	info.OnInit()
 	info.totalHuXi = huxi
+	info.jiangs = jiangs
 
 	//递归完所有的牌
-	if len == 0 {
-		if info.totalHuXi >= CANHU_LIMIT_HUXI {
+	if length == 0 {
+		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {
 			//胡息满足条件表示胡了
 			info.canHu = true
-			fmt.Println(fmt.Sprintf("len == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+			fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
 			return info
 		}
-		//已经递归完所有牌 胡息不满足
+		//已经递归完所有牌 胡息不满足 或者将牌大于1对
 		info.canHu = false
-		//fmt.Println(fmt.Sprintf("len == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+		//fmt.Println(fmt.Sprintf("length == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
 		return info
 	}
 
-	//if len%3 != 2 {
+	//if length%3 != 2 {
 	/*这里注意胡息的优先级*/
 
 	// 三个一样的 坎或碰
@@ -712,7 +713,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 			info.totalHuXi += kanPengHuxi
 
-			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+			info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				if int(zimoPaiValue) == i {
 					//自摸为坎
@@ -738,7 +739,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 		info.totalHuXi += 6 //大字2 7 10
 
-		info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countBigErQiShi++
@@ -760,7 +761,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 		info.totalHuXi += 6 //大字1 2 3
 
-		info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countBigYiErSan++
@@ -783,7 +784,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 		info.totalHuXi += 3 //小字2 7 10
 
-		info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countSmallErQiShi++
@@ -805,7 +806,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 
 		info.totalHuXi += 3 //小字1 2 3
 
-		info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 		if info.canHu {
 			//log.T("i: %v, value: %v", i, count[i])
 			info.countSmallYiErSan++
@@ -827,7 +828,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			count[i] -= 1
 			count[i+1] -= 1
 			count[i+2] -= 1
-			info = CanHu(huxi, count, len-3, zimoPaiValue)
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.yijuhuas = append(info.yijuhuas, i)
@@ -845,7 +846,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			count[i] -= 1
 			count[i+1] -= 1
 			count[i+2] -= 1
-			info = CanHu(huxi, count, len-3, zimoPaiValue)
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				info.yijuhuas = append(info.yijuhuas, i)
@@ -865,7 +866,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			//fmt.Println("case 1")
 			count[i] -= 1
 			count[PAIVALUE_SMALL+i] -= 2
-			info = CanHu(huxi, count, len-3, zimoPaiValue)
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				jiao := jiao{i, PAIVALUE_SMALL + i, PAIVALUE_SMALL + i}
@@ -880,7 +881,7 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 			//fmt.Println("case 2")
 			count[i] -= 2
 			count[PAIVALUE_SMALL+i] -= 1
-			info = CanHu(huxi, count, len-3, zimoPaiValue)
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
 				jiao := jiao{i, i, PAIVALUE_SMALL + i}
@@ -897,10 +898,10 @@ func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo
 	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
 		if count[i] >= 2 {
 			count[i] -= 2
-			info = CanHu(huxi, count, len-2, zimoPaiValue)
+			info.jiangs = append(info.jiangs, i)
+			info = CanHu(huxi, count, length-2, zimoPaiValue, info.jiangs)
 			if info.canHu {
 				//log.T("i: %v, value: %v", i, count[i])
-				info.jiang = int32(i)
 				//fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
 				return info
 			}
@@ -978,7 +979,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 
 	log.T("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers))
 	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers)))
-	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue)
+	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue, nil)
 
 	log.T("CanHu的CheckPokers结果是:[%+v]", canHuInfo)
 	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
@@ -988,13 +989,13 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	//能胡的话需要将结构转化
 	if huInfo.CanHu {
 		//将牌
-		if canHuInfo.jiang > -1 {
-			jiangPai1 := GetPaiByValue(checkPokers, canHuInfo.jiang)
+		if len(canHuInfo.jiangs) > 0 {
+			jiangPai1 := GetPaiByValue(checkPokers, int32(canHuInfo.jiangs[0]))
 			if jiangPai1 != nil {
 				checkPokers = DelPaiFromPokers(checkPokers, jiangPai1)
 			}
 
-			jiangPai2 := GetPaiByValue(checkPokers, canHuInfo.jiang)
+			jiangPai2 := GetPaiByValue(checkPokers, int32(canHuInfo.jiangs[0]))
 			if jiangPai2 != nil {
 				checkPokers = DelPaiFromPokers(checkPokers, jiangPai2)
 			}
