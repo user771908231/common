@@ -943,7 +943,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 			}
 
 			//不能胡 移除该对子
-			fmt.Println(fmt.Sprintf("before remove jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
+			//fmt.Println(fmt.Sprintf("before remove jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
 			newJiangs := []int{}
 			continues := 0
 			for _, j := range info.jiangs {
@@ -955,7 +955,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 				newJiangs = append(newJiangs, j)
 			}
 			info.jiangs = newJiangs
-			fmt.Println(fmt.Sprintf("after remove jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
+			//fmt.Println(fmt.Sprintf("after remove jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
 
 			count[i] += 2
 		}
