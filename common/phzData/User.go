@@ -91,6 +91,7 @@ type UserGameStatus struct {
 	IsReconnect    bool  //是否是断线重连
 	IsShouldChuPai bool  //过胡后是否需要继续出牌
 	IsFrozen       bool  //是否冻章，打了别人偎的牌后为冻章
+	IsPaoHu        bool  //是否是跑胡，如果是，则断线重连时不发送亮张
 	S              int32 //玩家的状态
 	ApplyDissolve  int32
 }
