@@ -686,8 +686,8 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	/*这里注意胡息的优先级*/
 
 	//大字坎 6胡息
-	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
-		if int(zimoPaiValue) == i && i > PAIVALUE_SMALL && count[i] >= 3 {
+	for i := PAIVALUE_SMALL+1; i < TOTALPAIVALUE_COUNT+1; i++ {
+		if int(zimoPaiValue) == i && count[i] >= 3 {
 
 			count[i] -= 3
 			info.totalHuXi += 6
@@ -752,8 +752,8 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	}
 
 	//小字坎 3胡息
-	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
-		if int(zimoPaiValue) == i && i > PAIVALUE_SMALL && count[i] >= 3 {
+	for i := 1; i < PAIVALUE_SMALL+1; i++ {
+		if int(zimoPaiValue) == i && count[i] >= 3 {
 
 			count[i] -= 3
 			info.totalHuXi += 3
@@ -771,8 +771,8 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	}
 
 	//大字碰 3胡息
-	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
-		if int(zimoPaiValue) != i && i > PAIVALUE_SMALL && count[i] >= 3 {
+	for i := PAIVALUE_SMALL+1; i < TOTALPAIVALUE_COUNT+1; i++ {
+		if int(zimoPaiValue) != i && count[i] >= 3 {
 
 			count[i] -= 3
 			info.totalHuXi += 3
@@ -835,8 +835,8 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	}
 
 	//小字碰 1胡息
-	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
-		if int(zimoPaiValue) != i && i > PAIVALUE_SMALL && count[i] >= 3 {
+	for i := 1; i < PAIVALUE_SMALL+1; i++ {
+		if int(zimoPaiValue) != i && count[i] >= 3 {
 
 			count[i] -= 3
 			info.totalHuXi += 1
