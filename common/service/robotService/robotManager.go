@@ -139,7 +139,6 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32) *Robot {
 		}
 	}
 
-
 	//2,注册机器人
 	user.RobotType = proto.Int32(int32(rm.gameId))
 	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
@@ -243,8 +242,23 @@ func (rm *RobotsManager) ReleaseRobots(id uint32) {
 	rm.Lock()
 	defer rm.Unlock()
 	r := rm.getRobotById(id)
-	r.available = true
-	atomic.AddInt32(&rm.robotsAbleCount, 1) //可以使用的机器人数量+1
-	log.T("释放一个机器人之后，可以使用的机器人数量还剩下:%v", rm.robotsAbleCount)
+	if r != nil && !r.available{
+		r.available = true
+		atomic.AddInt32(&rm.robotsAbleCount, 1) //可以使用的机器人数量+1
+		log.T("释放机器人[%v]之后，可以使用的机器人数量还剩下:%v", id, rm.robotsAbleCount)
+		return
+	}
+	log.T("释放机器人[%v]失败，可以使用的机器人数量还剩下:%v", id, rm.robotsAbleCount)
+}
 
+func (rm *RobotsManager) ReleaseAllRobots() (releaseCount int32) {
+	log.T("开始释放所有机器人 共有[%v]个机器人", len(rm.robots))
+	for i, r := range rm.robots {
+		if r != nil {
+			log.T("开始释放第[%v]个机器人", i)
+			rm.ReleaseRobots(r.GetId())
+			releaseCount++
+		}
+	}
+	return
 }
