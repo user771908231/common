@@ -6,7 +6,6 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/name5566/leaf/util"
 	"reflect"
-	"fmt"
 )
 
 const (
@@ -659,6 +658,10 @@ func (info CanHuInfo) OnInit() {
 	info.totalHuXi = 0
 }
 
+func (info *CanHuInfo) GetTotalHuXi() int32 {
+	return info.totalHuXi
+}
+
 func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int) (info CanHuInfo) {
 	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue)
 	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v], jiangs[%v])", huxi, count, length, zimoPaiValue, jiangs))
@@ -671,7 +674,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	//递归完所有的牌
 	if length == 0 {
 		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {
-			//胡息满足条件表示胡了
+			//胡息满足条件，并且将牌数最多为1表示胡了
 			info.canHu = true
 			//fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", CANHU_LIMIT_HUXI, info))
 			return info
@@ -686,7 +689,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	/*这里注意胡息的优先级*/
 
 	//大字坎 6胡息
-	for i := PAIVALUE_SMALL+1; i < TOTALPAIVALUE_COUNT+1; i++ {
+	for i := PAIVALUE_SMALL + 1; i < TOTALPAIVALUE_COUNT+1; i++ {
 		if int(zimoPaiValue) == i && count[i] >= 3 {
 
 			count[i] -= 3
@@ -771,7 +774,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	}
 
 	//大字碰 3胡息
-	for i := PAIVALUE_SMALL+1; i < TOTALPAIVALUE_COUNT+1; i++ {
+	for i := PAIVALUE_SMALL + 1; i < TOTALPAIVALUE_COUNT+1; i++ {
 		if int(zimoPaiValue) != i && count[i] >= 3 {
 
 			count[i] -= 3
@@ -971,7 +974,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	pais := userGameData.HandPokers
 
 	log.T("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao)
-	fmt.Println(fmt.Sprintf("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao))
+	//fmt.Println(fmt.Sprintf("TryHu2(handPokers:[%v] checkPai:[%v] isDianPao:[%v])", Cards2String(pais), checkPai, isDianPao))
 
 	//找出牌组里原始坎牌
 	var srcKan []*YiKanPai
