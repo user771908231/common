@@ -77,7 +77,7 @@ func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 }
 
 //创建一组机器人的方法
-func (rm *RobotsManager) NewRobotsAndSave(num int32) {
+func (rm *RobotsManager) NewRobotsAndSave(num, minCoin, maxCoin int32) {
 	for i := 0; num > 0; num-- {
 		uid, err := userService.GetNewUserIdByIndex(int32(i))
 		if err != nil {
@@ -86,13 +86,13 @@ func (rm *RobotsManager) NewRobotsAndSave(num int32) {
 		}
 
 		log.T("开始创建一个uid为%v的机器人", uid)
-		rm.NewRobotAndSave(uid)
+		rm.NewRobotAndSave(uid, minCoin, maxCoin)
 		i++
 	}
 }
 
-//新创建一个机器人，并保存到数据库
-func (rm *RobotsManager) NewRobotAndSave(uid uint32) *Robot {
+//新创建一个机器人，并保存到数据库 [minCoin, maxCoin)
+func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Robot {
 
 	//从数据库中获取一个可用的玩家信息
 	var user *ddproto.User = nil
@@ -133,7 +133,7 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32) *Robot {
 
 	//更新状态
 	if robotInfo != nil {
-		err = db.C(tableName.DBT_T_ROBOT_INFO).Update(bson.M{"available": true, "nickname": robotInfo.NickName, "headerurl": robotInfo.HeaderUrl,}, bson.M{"$set": bson.M{"available": false, "userid": uid, "regtime": time.Now(),}})
+		err = db.C(tableName.DBT_T_ROBOT_INFO).Update(bson.M{"available": true, "nickname": robotInfo.NickName, "headerurl": robotInfo.HeaderUrl}, bson.M{"$set": bson.M{"available": false, "userid": uid, "regtime": time.Now()}})
 		if err != nil {
 			log.E("更新机器人[%v]数据库信息的时候失败err: %v", err)
 		}
@@ -141,7 +141,17 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32) *Robot {
 
 	//2,注册机器人
 	user.RobotType = proto.Int32(int32(rm.gameId))
-	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
+	randRobotCoin := rand.Rand(minCoin, maxCoin)
+
+	//取随机数的整
+	if randRobotCoin > 100 {
+		randRobotCoin = int32(randRobotCoin/100) * 100
+	} else {
+		//默认值
+		randRobotCoin = 5000
+	}
+
+	c, _ := userService.INCRUserCOIN(user.GetId(), int64(randRobotCoin))
 	user.Coin = proto.Int64(c)
 	//userService.SaveUser2Redis(user) //保存到redis
 	userService.UpdateUser2Mgo(user) //创建机器人保存到mgo
