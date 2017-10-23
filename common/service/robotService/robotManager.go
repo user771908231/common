@@ -1,19 +1,18 @@
 package robotService
 
 import (
-	"casino_common/proto/ddproto"
-	"casino_common/common/model/userDao"
-	"sync"
-	"casino_common/common/userService"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/log"
-	"casino_common/utils/numUtils"
-	"sync/atomic"
-	"casino_common/utils/rand"
-	"casino_common/common/consts"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
+	"casino_common/common/log"
+	"casino_common/common/model/userDao"
+	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/rand"
+	"github.com/golang/protobuf/proto"
+	"gopkg.in/mgo.v2/bson"
+	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -193,19 +192,20 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 	return nil
 }
 
-func (rm *RobotsManager) ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot {
-	robot := rm.ExpropriationRobot()
-	if c2 > 10000000 {
-		c2 = 10000000
-	}
-	rand := rand.RandInt64(c1, c2)
-	if robot == nil {
-		return nil
-	}
-	userService.SetUserMoney(robot.GetId(), consts.RKEY_USER_COIN, rand) //设置机器人玩家的金币
-	robot.Coin = proto.Int64(rand)                                       //设置机器人的金额
-	return robot
-}
+//注意 机器人金币
+//func (rm *RobotsManager) ExpropriationRobotByCoin2(c1 int64, c2 int64) *Robot {
+//	robot := rm.ExpropriationRobot()
+//	if c2 > 10000000 {
+//		c2 = 10000000
+//	}
+//	rand := rand.RandInt64(c1, c2)
+//	if robot == nil {
+//		return nil
+//	}
+//	userService.SetUserMoney(robot.GetId(), consts.RKEY_USER_COIN, rand) //设置机器人玩家的金币
+//	robot.Coin = proto.Int64(rand)                                       //设置机器人的金额
+//	return robot
+//}
 
 //得到一个机器人
 func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
@@ -227,7 +227,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 	return nil
 }
 
-//通过左闭右开的金币区间得到一个机器人
+//通过左闭右开的金币区间得到一个机器人 [min, max)
 func (rm *RobotsManager) ExpropriationRobotByRange(minCoin, maxCoin int64) *Robot {
 	rm.Lock()
 	defer rm.Unlock()
@@ -252,7 +252,7 @@ func (rm *RobotsManager) ReleaseRobots(id uint32) {
 	rm.Lock()
 	defer rm.Unlock()
 	r := rm.getRobotById(id)
-	if r != nil && !r.available{
+	if r != nil && !r.available {
 		r.available = true
 		atomic.AddInt32(&rm.robotsAbleCount, 1) //可以使用的机器人数量+1
 		log.T("释放机器人[%v]之后，可以使用的机器人数量还剩下:%v", id, rm.robotsAbleCount)
