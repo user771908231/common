@@ -3,26 +3,26 @@ package sessionService
 import (
 	"casino_common/common/Error"
 	"casino_common/common/consts"
+	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/common/service/statisticsService"
 	"casino_common/proto/ddproto"
 	"casino_common/proto/funcsInit"
 	"casino_common/utils"
+	"casino_common/utils/db"
 	"casino_common/utils/numUtils"
 	"casino_common/utils/redisUtils"
 	"fmt"
 	"github.com/golang/protobuf/proto"
-	"strings"
-	"casino_common/utils/db"
-	"casino_common/common/consts/tableName"
 	"gopkg.in/mgo.v2/bson"
+	"strings"
 )
 
 // session相关的...
 /**
-	目前的session每个人将会保存两个：朋友桌和金币场
+目前的session每个人将会保存两个：朋友桌和金币场
 
- */
+*/
 
 func getSessionKey(userId uint32, gameId int32) string {
 	idstr, _ := numUtils.Uint2String(userId)
@@ -140,11 +140,11 @@ func delSession(s *ddproto.GameSession) {
 }
 
 //检测是否能够进入游戏房间
-func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (bool, error) {
-	log.T("开始根据session判断玩家[%v]能否进入游戏id为[%v],roomType[%v],roomLevel[%v]", userId, gid, roomType, roomLevel)
+func CanEnter(userId uint32, gid int32, roomType int32) (bool, error) {
+	log.T("开始根据session判断玩家[%v]能否进入游戏id为[%v],roomType[%v]", userId, gid, roomType)
 	var getError = func(gid, roomType int32) error {
-		msg := fmt.Sprintf("已经在游戏%v中了，结束之后再来吧!", utils.GetGameName(gid, roomType))
-		return Error.NewError(consts.ACK_RESULT_ERROR, msg)
+		msg := fmt.Sprintf("【%v】游戏还没有结束，请完成后再来", utils.GetGameAndTypeName(gid, roomType))
+		return Error.NewError(int32(ddproto.COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_ERROR_EC_OTHER_LV_DESK_GAMING), msg)
 	}
 
 	s := GetSession(userId, roomType)
@@ -153,17 +153,19 @@ func CanEnter(userId uint32, gid int32, roomType int32, roomLevel int32) (bool, 
 		log.T("找不到玩家[%v]的session, 可以进入", userId)
 		return true, nil
 	}
-	log.T("判断玩家能否进入游戏时，找到的玩家session[%v]", s)
+	log.T("判断玩家能否进入游戏[%v]时，找到的玩家session[%v]", gid, s)
 	if s.GetGameStatus() != int32(ddproto.COMMON_ENUM_GAMESTATUS_GAMING) {
 		//没在游戏中 可以进
-		log.T("找到的玩家[%v]session没在游戏中, 可以进入", userId)
+		log.T("找到的玩家[%v]session没在游戏状态中, 可以进入", userId)
 		return true, nil
 	}
 
 	if s.GetGameId() != gid {
 		//根据roomType找到的session是在其他游戏中 不能进
+		log.W("判断玩家[%v]不能进入游戏[%v]，gid不匹配", userId, gid)
 		return false, getError(s.GetGameId(), s.GetRoomType())
 	}
+
 	//其他条件可以进入房间
 	log.T("根据session判断玩家[%v]可以进入游戏", userId)
 	return true, nil
