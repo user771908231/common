@@ -1,12 +1,12 @@
-package paodekuai
+package paohuzi
 
 import (
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"gopkg.in/mgo.v2/bson"
 	"sync"
-	"casino_common/common/log"
 )
 
 func init() {
@@ -35,8 +35,10 @@ func GetPdkPlayBack(gamenumber int32) ([]*ddproto.PdkPlaybackSnapshot, error) {
 //==================================回放缓存==================================
 //回放缓存-全局变量
 var PlayBackStack map[int32][]*ddproto.PdkPlaybackSnapshot
+
 //缓存编号列表
 var PlayBackNumbers []int32
+
 //为缓存写上锁-保证线程安全
 var playBackWLock sync.Mutex
 
@@ -44,7 +46,7 @@ var playBackWLock sync.Mutex
 func GetPdkPlayBackFromMemory(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 	log.T("开始从内存中获取跑得快的回放... gamenumber[%v]", gamenumber)
 	//如果缓存中存在则直接从缓存中取数据
-	if data,ok := PlayBackStack[gamenumber]; ok {
+	if data, ok := PlayBackStack[gamenumber]; ok {
 		log.T("从内存读取pdk数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
 		return data
 	}
