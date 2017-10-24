@@ -54,7 +54,7 @@ var ZzhzConf = CreateConfig{
 		[]string{""},
 	},
 	[][]string{
-		[]string{"八红中"},
+		[]string{"8红中","八红中"},
 		[]string{""},
 	},
 }
@@ -108,7 +108,7 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 			opt_is_piao_free = true
 		case "可接炮":
 			opt_can_jiepao = true
-		case "八红中":
+		case "8红中":
 			opt_is_bahongzhong = true
 		}
 	}
