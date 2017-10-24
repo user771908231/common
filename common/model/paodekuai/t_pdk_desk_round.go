@@ -70,6 +70,21 @@ func GetPdkDeskRoundByUserId(userId uint32) []T_pdk_desk_round {
 	}
 }
 
+//查询俱乐部战绩
+func GetPdkDeskRoundByDeskIds(deskIds []int32) []T_pdk_desk_round {
+	var deskRecords []T_pdk_desk_round
+	db.Log(tableName.DBT_PDK_DESK_ROUND_ALL).Page(bson.M{
+		"deskid": bson.M{"$in": deskIds},
+	}, &deskRecords, "-deskid", 1, 100)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到桌子[%v]跑得快相关的战绩...", deskIds)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 //查询牌桌内战绩
 func GetPdkDeskRoundByDeskId(userId uint32, deskId int32) []T_pdk_desk_round {
 	var deskRecords []T_pdk_desk_round

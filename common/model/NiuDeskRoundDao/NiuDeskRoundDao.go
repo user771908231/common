@@ -24,6 +24,20 @@ func GetNiuDeskRoundByUserId(userId uint32) []model.T_niuniu_desk_round {
 	}
 }
 
+//查询俱乐部战绩
+func GetNiuDeskRoundByDeskIds(deskIds []int32) []model.T_niuniu_desk_round {
+	var deskRecords []model.T_niuniu_desk_round
+
+	db.Log(tableName.DBT_NIU_DESK_ROUND_ALL).Page(bson.M{"deskid": bson.M{"$in": deskIds}}, &deskRecords, "-endtime", 1, 100)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到牌桌[%v]牛牛相关的战绩...", deskIds)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 //查询牌桌内战绩
 func GetNiuDeskRoundByDeskId(userId uint32, deskId int32) []model.T_niuniu_desk_round {
 	var deskRecords []model.T_niuniu_desk_round

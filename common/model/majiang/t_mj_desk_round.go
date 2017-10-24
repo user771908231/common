@@ -102,6 +102,43 @@ func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_roun
 	}
 }
 
+//查询俱乐部战绩
+func GetMjDeskRoundByDeskIds(DeskIds []int32, gid, roomType int32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+
+	tbName := tableName.DBT_MJ_DESK_ROUND_ALL
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_ZXZ):
+		tbName = tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
+		tbName = tableName.DBT_MJ_BS_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_MJ_SONGJIANGHE):
+		tbName = tableName.DBT_MJ_SJH_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
+		tbName = tableName.DBT_MJ_ZHZH_DESK_ROUND_ALL
+		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
+			tbName = tableName.DBT_MJ_HZH_DESK_ROUND_ALL
+		}
+	default:
+	}
+
+	log.T("deskids%v gameId%v roomType%v tbName[%v]", DeskIds, gid, roomType, tbName)
+	db.Log(tbName).Page(bson.M{
+		"deskid":    bson.M{"$in": DeskIds},
+		"friendplay": true,
+	}, &deskRecords, "-deskid", 1, 100)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到desk[%v]麻将相关的战绩... gid[%v] roomType[%v]", DeskIds, gid, roomType)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 //根据deskId查询单局战绩
 func GetMjDeskRoundByDeskId(userId uint32, deskId, gid, roomType int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
