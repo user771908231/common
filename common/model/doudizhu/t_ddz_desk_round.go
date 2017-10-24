@@ -68,6 +68,19 @@ func GetDdzDeskRoundByUserId(userId uint32) []T_ddz_desk_round {
 	}
 }
 
+//根据deskid查询战绩
+func GetDdzDeskRoundByDeskIds(deskIds []int32) []T_ddz_desk_round {
+	var deskRecords []T_ddz_desk_round
+	db.Log(tableName.DBT_DDZ_DESK_ROUND_ALL).Page(bson.M{"deskid": bson.M{"$in": deskIds}}, &deskRecords, "-endtime", 1, 100)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]斗地主相关的战绩...", deskIds)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 //查询牌桌内战绩
 func GetDdzDeskRoundByDeskId(userId uint32, deskId int32) []T_ddz_desk_round {
 	var deskRecords []T_ddz_desk_round

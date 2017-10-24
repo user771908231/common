@@ -1,15 +1,15 @@
 package service
 
 import (
-	"casino_common/proto/ddproto"
 	"casino_common/common/log"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/userService"
-	"errors"
-	"fmt"
-	"casino_common/common/model/wxpayDao"
 	"casino_common/common/model"
 	"casino_common/common/model/goodsRowDao"
+	"casino_common/common/model/wxpayDao"
+	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
+	"errors"
+	"fmt"
+	"github.com/golang/protobuf/proto"
 )
 
 //充值套餐
@@ -27,19 +27,19 @@ func GetPayModel(id int32) *ddproto.PayBasePaymodel {
 //返回一个默认的支付方式
 func getDefaultPayModel() *ddproto.PayBasePaymodel {
 	ret := &ddproto.PayBasePaymodel{
-		Id:    proto.Int32(1),
-		AppId: proto.String(WXConfig.AppId),
-		MchId: proto.String(WXConfig.MchId),
-		AppKey:proto.String(WXConfig.ApiKey)}
+		Id:     proto.Int32(1),
+		AppId:  proto.String(WXConfig.AppId),
+		MchId:  proto.String(WXConfig.MchId),
+		AppKey: proto.String(WXConfig.ApiKey)}
 	return ret
 }
 
 func getDDZPayModel() *ddproto.PayBasePaymodel {
 	ret := &ddproto.PayBasePaymodel{
-		Id:    proto.Int32(1),
-		AppId: proto.String(WXConfig.AppId),
-		MchId: proto.String(WXConfig.MchId),
-		AppKey:proto.String(WXConfig.ApiKey)}
+		Id:     proto.Int32(1),
+		AppId:  proto.String(WXConfig.AppId),
+		MchId:  proto.String(WXConfig.MchId),
+		AppKey: proto.String(WXConfig.ApiKey)}
 	return ret
 }
 
@@ -63,10 +63,11 @@ func UpdateUserByMeal(tradeNo string) error {
 	//找到套餐
 	meal := GetMealById(detail.GetProductId())
 	//根据套餐增加用户的余额
-	userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount))
+	userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")
 	//更新订单状态
 	UpdateDetailsStatus(tradeNo, ddproto.PayEnumTradeStatus_PAY_S_SUCC)
 	//保存订单到数据库...
+	log.T("微信支付成功，为用户%d充值%d钻石。", detail.GetUserId(), int64(meal.Amount))
 	go func() {
 		wxpayDao.UpsertDetail(detail) //保存到数据库
 		//DelDetails(tradeNo)           //保存到数据库之后删除//	app收到回复之后再删除

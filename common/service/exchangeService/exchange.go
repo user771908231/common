@@ -1,23 +1,23 @@
 package exchangeService
 
 import (
-	"casino_common/proto/ddproto"
-	"gopkg.in/mgo.v2/bson"
-	"time"
-	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
 	"errors"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 //审核状态
 type ExchangeState int32
 
 const (
-	PROCESS_ING ExchangeState = 1 //"审核中"
-	PROCESS_FALSE ExchangeState = 2 //"申请被拒"
-	PROCESS_TRUE ExchangeState = 3 //"申请通过"
-	PROCESS_SENDED ExchangeState = 4  //"已发放"
+	PROCESS_ING    ExchangeState = 1 //"审核中"
+	PROCESS_FALSE  ExchangeState = 2 //"申请被拒"
+	PROCESS_TRUE   ExchangeState = 3 //"申请通过"
+	PROCESS_SENDED ExchangeState = 4 //"已发放"
 )
 
 func (s ExchangeState) Name() string {
@@ -37,16 +37,16 @@ func (s ExchangeState) Name() string {
 //兑换记录
 type ExchangeRecord struct {
 	Id          bson.ObjectId             `bson:"_id"` //编号
-	UserId      uint32                                 //用户id
-	Type        ddproto.HallEnumTradeType              //兑换商品的类型
-	Money       float64                                //兑换数量
-	Name        string                                 //姓名
-	Phone       string                                 //电话
-	WxNumber    string                                 //微信号码
-	Address     string                                 //收货地址
-	Status      ExchangeState                          //审核状态
-	RequestTime time.Time                              //申请时间
-	ProcessTime time.Time                              //审核时间
+	UserId      uint32                    //用户id
+	Type        ddproto.HallEnumTradeType //兑换商品的类型
+	Money       float64                   //兑换数量
+	Name        string                    //姓名
+	Phone       string                    //电话
+	WxNumber    string                    //微信号码
+	Address     string                    //收货地址
+	Status      ExchangeState             //审核状态
+	RequestTime time.Time                 //申请时间
+	ProcessTime time.Time                 //审核时间
 }
 
 //新兑换记录
@@ -60,27 +60,27 @@ func NewRecord(userId uint32, goods_type ddproto.HallEnumTradeType, amount float
 		if user.GetRealAddress() == "" {
 			return nil, errors.New("请填写收货地址！")
 		}
-		_, err_dec := userService.DECUserTicket(userId, int32(amount))
+		_, err_dec := userService.DECUserTicket(userId, int32(amount), "商城实物兑换扣奖券")
 		if err_dec != nil {
 			return nil, errors.New("您的奖券余额不足，兑换失败！")
 		}
 
-	}else if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS{
+	} else if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS {
 		//扣除红包
-		_, err_dec := userService.DECUserBonus(userId, amount)
+		_, err_dec := userService.DECUserBonus(userId, amount, "商城实物兑换扣红包")
 		if err_dec != nil {
 			return nil, errors.New("您的红包余额不足，兑换失败！")
 		}
 	}
 
 	new_record := &ExchangeRecord{
-		Type: goods_type,
-		Money: amount,
-		UserId: userId,
-		Name: user.GetRealName(),
-		Phone: user.GetPhoneNumber(),
+		Type:     goods_type,
+		Money:    amount,
+		UserId:   userId,
+		Name:     user.GetRealName(),
+		Phone:    user.GetPhoneNumber(),
 		WxNumber: user.GetWxNumber(),
-		Address: user.GetRealAddress(),
+		Address:  user.GetRealAddress(),
 	}
 	return new_record.Insert()
 }

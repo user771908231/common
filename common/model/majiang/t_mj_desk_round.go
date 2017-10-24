@@ -9,8 +9,8 @@ import (
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"gopkg.in/mgo.v2/bson"
-	"time"
 	"sync"
+	"time"
 )
 
 func init() {
@@ -96,6 +96,43 @@ func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_roun
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到玩家[%v]麻将相关的战绩... gid[%v] roomType[%v]", userId, gid, roomType)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+//查询俱乐部战绩
+func GetMjDeskRoundByDeskIds(DeskIds []int32, gid, roomType int32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+
+	tbName := tableName.DBT_MJ_DESK_ROUND_ALL
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_ZXZ):
+		tbName = tableName.DBT_MJ_ZXZ_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_MJBAISHAN):
+		tbName = tableName.DBT_MJ_BS_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_MJ_SONGJIANGHE):
+		tbName = tableName.DBT_MJ_SJH_DESK_ROUND_ALL
+
+	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
+		tbName = tableName.DBT_MJ_ZHZH_DESK_ROUND_ALL
+		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
+			tbName = tableName.DBT_MJ_HZH_DESK_ROUND_ALL
+		}
+	default:
+	}
+
+	log.T("deskids%v gameId%v roomType%v tbName[%v]", DeskIds, gid, roomType, tbName)
+	db.Log(tbName).Page(bson.M{
+		"deskid":     bson.M{"$in": DeskIds},
+		"friendplay": true,
+	}, &deskRecords, "-deskid", 1, 100)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到desk[%v]麻将相关的战绩... gid[%v] roomType[%v]", DeskIds, gid, roomType)
 		return nil
 	} else {
 		return deskRecords
@@ -197,8 +234,10 @@ func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
 //==================================回放缓存==================================
 //回放缓存-全局变量
 var PlayBackStack map[int32][]*ddproto.PlaybackSnapshot
+
 //缓存编号列表
 var PlayBackNumbers []int32
+
 //为缓存写上锁-保证线程安全
 var playBackWLock sync.Mutex
 

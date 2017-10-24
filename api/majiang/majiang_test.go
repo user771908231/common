@@ -1,9 +1,9 @@
 package majiang
 
 import (
-	"testing"
-	"sort"
 	"fmt"
+	"sort"
+	"testing"
 )
 
 var TOTALPAICOUNT int = 136

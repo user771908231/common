@@ -6,13 +6,12 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/common/model"
-	"casino_common/common/model/hall"
+	"casino_common/common/service/tradeLogService"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"casino_common/utils/redisUtils"
 	"errors"
 	"fmt"
-	"github.com/golang/protobuf/proto"
 	"gopkg.in/mgo.v2/bson"
 	"time"
 )
@@ -44,8 +43,8 @@ func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_DIAMOND)
 }
 
-func SetUserDiamond(userId uint32,diamond int64) int64 {
-	SetUserMoney(userId,consts.RKEY_USER_DIAMOND,diamond)
+func SetUserDiamond(userId uint32, diamond int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_DIAMOND, diamond)
 	return diamond
 }
 
@@ -59,8 +58,8 @@ func GetUserRoomCard(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_ROOMCARD)
 }
 
-func SetUserRoomCard(userId uint32,roomcard int64) int64 {
-	SetUserMoney(userId, consts.RKEY_USER_ROOMCARD,roomcard)
+func SetUserRoomCard(userId uint32, roomcard int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_ROOMCARD, roomcard)
 	return roomcard
 }
 
@@ -69,8 +68,8 @@ func GetUserCoin(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_COIN)
 }
 
-func SetUserCoin(userId uint32,coin int64) int64 {
-	SetUserMoney(userId, consts.RKEY_USER_COIN,coin)
+func SetUserCoin(userId uint32, coin int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_COIN, coin)
 	return coin
 }
 
@@ -119,7 +118,7 @@ func CreateDiamonDetail(userId uint32, detailsType int32, diamond int64, remainD
 //---------------------------------------增加用户货币的通用方法-----------------------------------------
 //增加用户的货币
 func incrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]增加[%v][%v]", userid, key, d)
+	log.T("用户账户变动[增加][%v]: user[%v] 值:[%v]", key, userid, d)
 	//1,增加余额
 	remain, err := redisUtils.INCRBY(redisUtils.K(key, userid), d)
 	if err != nil {
@@ -128,78 +127,81 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 	//2,更新redis和数据库中的数据
 	err = UpdateRedisUserMoney(userid) //增加用户货币之后
 	//3,返回值
-	log.T("为用户[%v]增加[%v][%v],增加之后redis的值:%v", userid, key, d, remain)
+	log.T("用户账户变动[增加][%v]: user[%v] 值:[%v] 增加之后redis的值:%v", key, userid, d, remain)
 	return remain, err
 }
 
 //减少用户的货币
 func decrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("为用户[%v]减少[%v][%v]", userid, key, d)
-	remain,err := redisUtils.DECRBY(redisUtils.K(key, userid), d)
+	log.T("用户账户变动[减少][%v]: user[%v] 值:[%v]", key, userid, d)
+	remain, err := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if err != nil {
 		return remain, err
 	}
 	if remain < 0 {
 		old, _ := incrUser(userid, key, d)
-		errMsg := fmt.Sprintf("用户[%v]的key[%v][%v]不足[%v],减少的时候失败", userid, key, old, d)
+		errMsg := fmt.Sprintf("用户[%v]的key[%v]值为[%v]不足[%v],减少的时候失败", userid, key, old, d)
 		log.E(errMsg)
-		log.T("为用户[%v]减少[%v][%v],减少之后redis的值:%v,备注:不够的情况", userid, key, d, remain)
+		log.T("用户账户变动[减少][%v]: user[%v] 值:[%v] 减少之后redis的值:%v,备注:不够的情况", key, userid, d, remain)
 
 		return remain, errors.New(errMsg)
 	} else {
 		//更新redis和mongo中的数据
 		err = UpdateRedisUserMoney(userid)
-		log.T("为用户[%v]减少[%v][%v],减少之后redis的值:%v", userid, key, d, remain)
+		log.T("用户账户变动[减少][%v]: user[%v] 值:[%v] 减少之后redis的值:%v", key, userid, d, remain)
 
 		return remain, err
 	}
 }
 
 //增加用户的钻石
-func INCRUserDiamond(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, consts.RKEY_USER_DIAMOND, d)
+func INCRUserDiamond(userid uint32, d int64, remark string) (int64, error) {
+	new_diamond, err := incrUser(userid, consts.RKEY_USER_DIAMOND, d)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_DIAMOND, float64(d), float64(d), remark)
+	}
+	return new_diamond, err
 }
 
 //减少用户的砖石
-func DECRUserDiamond(userid uint32, d int64) (int64, error) {
+func DECRUserDiamond(userid uint32, d int64, remark string) (int64, error) {
 	count := GetUserDiamond(userid)
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少钻石失败！")
 	}
-	return decrUser(userid, consts.RKEY_USER_DIAMOND, d)
+
+	new_diamond, err := decrUser(userid, consts.RKEY_USER_DIAMOND, d)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_DIAMOND, float64(-d), float64(-d), remark)
+	}
+	return new_diamond, err
 }
 
 //增加用户的房卡 参数:gid:游戏id，memo :说明
-func INCRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
+func INCRUserRoomcard(userId uint32, d int64, gid int32, remark string) (int64, error) {
 	roomCardBefore := GetUserRoomCard(userId)
 
-	log.T("INCRUserRoomcard(userId=%d,d=%d,gid=%d,memo=%s) before:%d", userId, d, gid, memo, GetUserRoomCard(userId))
+	//log.T("INCRUserRoomcard(userId=%d,d=%d,gid=%d,memo=%s) before:%d", userId, d, gid, remark, GetUserRoomCard(userId))
 	roomCard, err := incrUser(userId, consts.RKEY_USER_ROOMCARD, d)
-	log.T("INCRUserRoomcard(userId=%d,d=%d,gid=%d,memo=%s) after:%d", userId, d, gid, memo, GetUserRoomCard(userId))
+	//log.T("INCRUserRoomcard(userId=%d,d=%d,gid=%d,memo=%s) after:%d", userId, d, gid, remark, GetUserRoomCard(userId))
 	if err != nil {
 		return roomCard, err
 	}
 
-	if roomCard != roomCardBefore + d {
+	if roomCard != roomCardBefore+d {
 		err = errors.New("inc roomcard validate fail.")
 		return roomCard, err
 	}
 
 	//增加扣除房卡的记录
-	go db.C(tableName.DBT_ROOMCARD_LOG).Insert(hall.T_statistics_roomcard{
-		Time:          time.Now(),
-		UserId:        userId,
-		Gid:           gid,
-		Memo:          memo,
-		RoomCardCount: d,
-	})
+	tradeLogService.Add(userId, ddproto.HallEnumTradeType_PROPS_FANGKA, float64(d), float64(roomCard), remark)
 
 	return roomCard, err
 }
 
 //减少用户的房卡
-//参数说明:gid:游戏id, memo:说明
-func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, error) {
+//参数说明:gid:游戏id, remark:备注
+func DECRUserRoomcard(userId uint32, d int64, gid int32, remark string) (int64, error) {
 	roomCardBefore := GetUserRoomCard(userId)
 	if roomCardBefore-d < 0 {
 		return roomCardBefore, errors.New("余额不足，减少房卡失败！")
@@ -207,109 +209,75 @@ func DECRUserRoomcard(userId uint32, d int64, gid int32, memo string) (int64, er
 
 	roomCard, err := decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 
-	if roomCard != roomCardBefore - d {
+	if roomCard != roomCardBefore-d {
 		err = errors.New("dec roomcard validate fail.")
 		return roomCard, err
 	}
 
 	//增加扣除房卡的记录
-	go db.C(tableName.DBT_ROOMCARD_LOG).Insert(hall.T_statistics_roomcard{
-		Time:          time.Now(),
-		UserId:        userId,
-		Gid:           gid,
-		Memo:          memo,
-		RoomCardCount: -d,
-	})
+	tradeLogService.Add(userId, ddproto.HallEnumTradeType_PROPS_FANGKA, float64(-d), float64(roomCard), remark)
 
 	return roomCard, err
 }
 
-//增加用户的朋友桌钻石
-func INCRUserDiamond2(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, consts.RKEY_USER_DIAMOND2, d)
-}
-
-//减少用户的朋友桌钻石
-func DECRUserDiamond2(userid uint32, d int64) (int64, error) {
-	count := GetUserDiamond2(userid)
-	if count-d < 0 {
-		return count, errors.New("余额不足，减少朋友桌钻石失败！")
-	}
-	return decrUser(userid, consts.RKEY_USER_DIAMOND2, d)
-}
-
 //增加用户的金币
-func INCRUserCOIN(userid uint32, d int64) (int64, error) {
-	return incrUser(userid, consts.RKEY_USER_COIN, d)
+func INCRUserCOIN(userid uint32, d int64, remark string) (int64, error) {
+	new_coin, err := incrUser(userid, consts.RKEY_USER_COIN, d)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_COIN, float64(d), float64(new_coin), remark)
+	}
+	return new_coin, err
 }
 
 //减少用户的金币
-func DECRUserCOIN(userid uint32, d int64) (int64, error) {
+func DECRUserCOIN(userid uint32, d int64, remark string) (int64, error) {
 	count := GetUserCoin(userid)
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少用户金币失败！")
 	}
-	return decrUser(userid, consts.RKEY_USER_COIN, d)
-}
-
-//减少用户的金币,当玩家金币不足的时候，设置玩家的金币为0
-func DECRUserCOINv2(userId uint32, d int64) (int64, error) {
-	//todo
-	return 0, nil
+	new_coin, err := decrUser(userid, consts.RKEY_USER_COIN, d)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_COIN, float64(-d), float64(new_coin), remark)
+	}
+	return new_coin, err
 }
 
 //增加用户奖券
-func INCRUserTicket(userid uint32, d int32) (int32, error) {
-	ticket := GetUserTicket(userid)
-	ticket_new := ticket + d
-	user := GetUserById(userid)
-	user.Ticket = proto.Int32(ticket_new)
-	UpdateUser2Mgo(user)
-
-	return ticket_new, nil
+func INCRUserTicket(userid uint32, d int32, remark string) (int32, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"ticket": d}})
+	ticket_new := GetUserTicket(userid)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_TICKET, float64(d), float64(ticket_new), remark)
+	}
+	return ticket_new, err
 }
 
 //减少用户奖券
-func DECUserTicket(userid uint32, d int32) (int32, error) {
-	ticket := GetUserTicket(userid)
-	ticket_new := ticket - d
-	if ticket_new < 0 {
-		return ticket, errors.New("奖券余额不足")
+func DECUserTicket(userid uint32, d int32, remark string) (int32, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"ticket": -d}})
+	ticket_new := GetUserTicket(userid)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_TICKET, float64(-d), float64(ticket_new), remark)
 	}
-	user := GetUserById(userid)
-	user.Ticket = proto.Int32(ticket_new)
-	UpdateUser2Mgo(user)
-
-	return ticket_new, nil
+	return ticket_new, err
 }
 
 //增加用户红包
-func INCRUserBonus(userid uint32, d float64) (float64, error) {
-	bonus := GetUserBonus(userid)
-	bonus_new := bonus + d
-	//保留有效小数
-	bonus_new = float64(int64(bonus_new*100)) / 100
-
-	user := GetUserById(userid)
-	user.Bonus = proto.Float64(bonus_new)
-	UpdateUser2Mgo(user)
-
-	return bonus_new, nil
+func INCRUserBonus(userid uint32, d float64, remark string) (float64, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"bonus": d}})
+	bonus_new := GetUserBonus(userid)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_BONUS, d, bonus_new, remark)
+	}
+	return bonus_new, err
 }
 
 //减少用户红包
-func DECUserBonus(userid uint32, d float64) (float64, error) {
-	bonus := GetUserBonus(userid)
-	bonus_new := bonus - d
-	//保留有效小数
-	bonus_new = float64(int64(bonus_new*100)) / 100
-
-	if bonus_new < 0 {
-		return bonus, errors.New("红包余额不足")
+func DECUserBonus(userid uint32, d float64, remark string) (float64, error) {
+	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"bonus": -d}})
+	bonus_new := GetUserBonus(userid)
+	if err == nil {
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_BONUS, -d, bonus_new, remark)
 	}
-	user := GetUserById(userid)
-	user.Bonus = proto.Float64(bonus_new)
-	UpdateUser2Mgo(user)
-
-	return bonus_new, nil
+	return bonus_new, err
 }

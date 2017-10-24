@@ -1,19 +1,15 @@
 package tradeLogService
 
 import (
-	"testing"
 	"casino_common/proto/ddproto"
+	"casino_common/test"
 	"sync"
+	"testing"
 	"time"
-	db_init "casino_common/common/db"
-	"casino_common/utils/db"
-	"casino_common/common/consts/tableName"
-	"casino_common/common/sys"
 )
 
 func init() {
-	db_init.InitMongoDb("192.168.199.200", 27017, "test", "id",[]string{})
-	sys.InitRedis("192.168.199.200:6379","test")
+	test.TestInit()
 }
 
 //测试：插入记录
@@ -23,16 +19,18 @@ func TestAdd(t *testing.T) {
 	time.AfterFunc(10*time.Minute, func() {
 		wg.Done()
 	})
-	Add(10058, ddproto.HallEnumTradeType_TRADE_COIN, 10, "测试-插入10金币")
+	Add(10955, ddproto.HallEnumTradeType_TRADE_COIN, 10, 100, "测试-插入10金币 1")
+	Add(10955, ddproto.HallEnumTradeType_TRADE_COIN, 10, 110, "测试-插入10金币 2")
+
 	wg.Wait()
 }
 
 func TestInsert(t *testing.T) {
-	Add(10058, ddproto.HallEnumTradeType_TRADE_COIN, 10, "测试-插入10金币")
-	Add(10058, ddproto.HallEnumTradeType_TRADE_COIN, 11, "测试-插入11金币")
-
-	err,num := db.C(tableName.DBT_T_TRADE_LOG).InsertAll(LogList)
-	t.Log(err, num)
+	//Add(10058, ddproto.HallEnumTradeType_TRADE_COIN, 10, "测试-插入10金币")
+	//Add(10058, ddproto.HallEnumTradeType_TRADE_COIN, 11, "测试-插入11金币")
+	//
+	//err,num := db.C(tableName.DBT_T_TRADE_LOG).InsertAll(LogList)
+	//t.Log(err, num)
 }
 
 func TestQueue(t *testing.T) {

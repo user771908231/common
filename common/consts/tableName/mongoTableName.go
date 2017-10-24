@@ -28,7 +28,7 @@ const (
 	DBT_T_GAME_COUNT                string = "t_game_count"                 //游戏记录表
 	DBT_T_GAME_DAY_COUNT            string = "t_game_day_count"             //游戏记录表
 	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config"  //红包任务计算配置表
-	DBT_T_TRADE_LOG                 string = "t_game_trade_log"             //游戏货币流水记录表
+	DBT_T_ACCOUNT_LOG               string = "t_account_log"                //游戏货币流水记录表
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"          //灰度发布的数据库表
 	DBT_T_HALL_SERVER               string = "t_hall_server"                //客服
 	DBT_T_HALL_BAGPWD               string = "t_user_bag_password"          //背包密码
@@ -113,6 +113,11 @@ const (
 	DBT_PDK_DESK_ROUND          = "t_pdk_desk_round"          //一把跑得快结束战绩
 	DBT_PDK_DESK_ROUND_ALL      = "t_pdk_desk_round_all"      //全局跑得快结束战绩
 	DBT_PDK_DESK_ROUND_PLAYBACK = "t_pdk_desk_round_playback" //一把跑得快回放
+
+	//跑胡子
+	DBT_PHZ_DESK_ROUND          = "t_phz_desk_round"          //跑胡子一局游戏战绩
+	DBT_PHZ_DESK_ROUND_ALL      = "t_phz_desk_round_all"      //跑胡子全局游戏结束战绩
+	DBT_PHZ_DESK_ROUND_PLAYBACK = "t_phz_desk_round_playback" //一把跑胡子回放
 
 	//牛牛
 	DBT_NIU_DESK_ROUND_ONE = "t_niuniu_desk_round_one" //牛牛1局结束战绩

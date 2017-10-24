@@ -79,6 +79,21 @@ func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 	}
 }
 
+//查询俱乐部战绩
+func GetPEZDeskRoundByDeskIds(deskIds []int32) []T_pinerzhang_desk_round {
+	var deskRecords []T_pinerzhang_desk_round
+	db.Log(tableName.DBT_PEZ_DESK_ROUND_ALL).Page(bson.M{
+		"deskid": bson.M{"$in": deskIds},
+	}, &deskRecords, "-gamenumber", 1, 100)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到牌桌[%v]拼二张相关的战绩...", deskIds)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 //查询牌桌内战绩
 func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
