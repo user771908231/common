@@ -4,7 +4,6 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
-	"fmt"
 	"github.com/name5566/leaf/util"
 	"reflect"
 )
@@ -33,6 +32,7 @@ type HuInfo struct {
 	DuiZis      []*DuiZi    //胡牌时手里的对子
 	KanPais     []*YiKanPai //胡牌时手里的坎牌
 	TiPais      []*YiTi     //胡牌时手里的提牌
+	Pengs       []*YiKanPai //胡牌时胡出来的碰牌
 	HuXi        int32       //胡息数
 	WinUser     uint32      //赢家
 	LoseUser    []uint32    //输家
@@ -633,11 +633,11 @@ type jiao []int
 //坎的胡息在之前计算出来 传入
 type CanHuInfo struct {
 	canHu             bool
-	jiang             int32  //将牌 如果有
 	countBigErQiShi   int    //大字二七十的数量
 	countSmallErQiShi int    //小字二七十的数量
 	countBigYiErSan   int    //大字一二三的数量
 	countSmallYiErSan int    //小字一二三的数量
+	jiangs            []int  //将牌 如果有
 	jiaos             []jiao //绞牌
 	yijuhuas          []int  //一句话
 	kans              []int  //一坎牌
@@ -647,265 +647,320 @@ type CanHuInfo struct {
 
 func (info CanHuInfo) OnInit() {
 	info.canHu = false
-	info.jiang = -1
 	info.countBigErQiShi = 0
 	info.countSmallErQiShi = 0
 	info.countBigYiErSan = 0
 	info.countSmallYiErSan = 0
+	info.jiangs = nil
 	info.jiaos = nil
 	info.yijuhuas = nil
 	info.kans = nil
 	info.totalHuXi = 0
 }
 
-func CanHu(huxi int32, count []int, len int, zimoPaiValue int32) (info CanHuInfo) {
-	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue)
-	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], len:[%+v], zimoPaiValue:[%+v])", huxi, count, len, zimoPaiValue))
+func (info *CanHuInfo) GetTotalHuXi() int32 {
+	return info.totalHuXi
+}
+
+func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int) (info CanHuInfo) {
+	//	log.T("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v])", huxi, count, length, zimoPaiValue)
+	//fmt.Println(fmt.Sprintf("开始判断CanHu(huxi:[%+v], count:[%+v], length:[%+v], zimoPaiValue:[%+v], jiangs[%v])", huxi, count, length, zimoPaiValue, jiangs))
 
 	//初始化默认值
 	info.OnInit()
 	info.totalHuXi = huxi
+	info.jiangs = jiangs
 
 	//递归完所有的牌
-	if len == 0 {
-		if info.totalHuXi >= CANHU_LIMIT_HUXI {
-			//胡息满足条件表示胡了
+	if length == 0 {
+		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {
+			//胡息满足条件，并且将牌数最多为1表示胡了
 			info.canHu = true
-			fmt.Println(fmt.Sprintf("len == 0 && huxi >= [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+			//fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", CANHU_LIMIT_HUXI, info))
 			return info
 		}
-		//已经递归完所有牌 胡息不满足
+		//已经递归完所有牌 胡息不满足 或者将牌大于1对
 		info.canHu = false
-		//fmt.Println(fmt.Sprintf("len == 0 && huxi < [%v] return info:[%+v]", info, CANHU_LIMIT_HUXI))
+		//fmt.Println(fmt.Sprintf("length == 0 && huxi < [%v] return info:[%+v]", CANHU_LIMIT_HUXI, info))
 		return info
 	}
 
-	if len%3 != 2 {
-		/*这里注意胡息的优先级*/
+	//if length%3 != 2 {
+	/*这里注意胡息的优先级*/
 
-		// 三个一样的 坎或碰
-		for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
-			if count[i] >= 3 {
-				count[i] -= 3
+	//大字坎 6胡息
+	for i := PAIVALUE_SMALL + 1; i < TOTALPAIVALUE_COUNT+1; i++ {
+		if int(zimoPaiValue) == i && count[i] >= 3 {
 
-				kanPengHuxi := int32(0)
-				if int(zimoPaiValue) == i {
-					//自摸为坎
-					if i > PAIVALUE_SMALL {
-						//大字坎
-						kanPengHuxi = 6
-					} else {
-						//小字坎
-						kanPengHuxi = 3
-					}
-				} else {
-					//其他为碰
-					if i > PAIVALUE_SMALL {
-						//大字碰
-						kanPengHuxi = 3
-					} else {
-						//小字碰
-						kanPengHuxi = 1
-					}
-				}
+			count[i] -= 3
+			info.totalHuXi += 6
 
-				info.totalHuXi += kanPengHuxi
-
-				info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
-				if info.canHu {
-					if int(zimoPaiValue) == i {
-						//自摸为坎
-						info.kans = append(info.kans, i)
-					} else {
-						//其他为碰
-						info.pengs = append(info.pengs, i)
-					}
-					//fmt.Println(fmt.Sprintf("找到三个一样的 return info:[%+v]", info))
-					return info
-				}
-				info.totalHuXi -= kanPengHuxi
-
-				count[i] += 3
-			}
-		}
-
-		//大字2 7 10
-		if count[12] > 0 && count[17] > 0 && count[20] > 0 {
-			count[12] -= 1
-			count[17] -= 1
-			count[20] -= 1
-
-			info.totalHuXi += 6 //大字2 7 10
-
-			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+			info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
-				//log.T("i: %v, value: %v", i, count[i])
-				info.countBigErQiShi++
-				//fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
+
+				info.kans = append(info.kans, i)
+
+				//fmt.Println(fmt.Sprintf("找到大字坎 return info:[%+v]", info))
 				return info
 			}
 
-			info.totalHuXi -= 6 //大字2 7 10
-
-			count[12] += 1
-			count[17] += 1
-			count[20] += 1
+			info.totalHuXi -= 6
+			count[i] += 3
 		}
-		//大字1 2 3
-		if count[11] > 0 && count[12] > 0 && count[13] > 0 {
-			count[11] -= 1
-			count[12] -= 1
-			count[13] -= 1
+	}
 
-			info.totalHuXi += 6 //大字1 2 3
+	//大字二七十 6胡息
+	if count[12] > 0 && count[17] > 0 && count[20] > 0 {
+		count[12] -= 1
+		count[17] -= 1
+		count[20] -= 1
 
-			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+		info.totalHuXi += 6 //大字二七十
+
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
+		if info.canHu {
+			//log.T("i: %v, value: %v", i, count[i])
+			info.countBigErQiShi++
+			//fmt.Println(fmt.Sprintf("找到大字二七十 return info:[%+v]", info))
+			return info
+		}
+
+		info.totalHuXi -= 6 //大字二七十
+
+		count[12] += 1
+		count[17] += 1
+		count[20] += 1
+	}
+	//大字一二三 6胡息
+	if count[11] > 0 && count[12] > 0 && count[13] > 0 {
+		count[11] -= 1
+		count[12] -= 1
+		count[13] -= 1
+
+		info.totalHuXi += 6 //大字一二三
+
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
+		if info.canHu {
+			//log.T("i: %v, value: %v", i, count[i])
+			info.countBigYiErSan++
+			//fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
+			return info
+		}
+
+		info.totalHuXi -= 6 //大字一二三
+
+		count[11] += 1
+		count[12] += 1
+		count[13] += 1
+	}
+
+	//小字坎 3胡息
+	for i := 1; i < PAIVALUE_SMALL+1; i++ {
+		if int(zimoPaiValue) == i && count[i] >= 3 {
+
+			count[i] -= 3
+			info.totalHuXi += 3
+
+			info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
-				//log.T("i: %v, value: %v", i, count[i])
-				info.countBigYiErSan++
-				//fmt.Println(fmt.Sprintf("找到大字一二三 return info:[%+v]", info))
+				info.kans = append(info.kans, i)
+				//fmt.Println(fmt.Sprintf("找到小字坎 return info:[%+v]", info))
 				return info
 			}
 
-			info.totalHuXi -= 6 //大字1 2 3
-
-			count[11] += 1
-			count[12] += 1
-			count[13] += 1
+			info.totalHuXi -= 3
+			count[i] += 3
 		}
+	}
 
-		//小字2 7 10
-		if count[2] > 0 && count[7] > 0 && count[10] > 0 {
-			count[2] -= 1
-			count[7] -= 1
-			count[10] -= 1
+	//大字碰 3胡息
+	for i := PAIVALUE_SMALL + 1; i < TOTALPAIVALUE_COUNT+1; i++ {
+		if int(zimoPaiValue) != i && count[i] >= 3 {
 
-			info.totalHuXi += 3 //小字2 7 10
+			count[i] -= 3
+			info.totalHuXi += 3
 
-			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+			info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
-				//log.T("i: %v, value: %v", i, count[i])
-				info.countSmallErQiShi++
-				//fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
+				info.pengs = append(info.pengs, i)
+				//fmt.Println(fmt.Sprintf("找到大字碰 return info:[%+v]", info))
 				return info
 			}
 
-			info.totalHuXi -= 3 //小字2 7 10
-
-			count[2] += 1
-			count[7] += 1
-			count[10] += 1
+			info.totalHuXi -= 3
+			count[i] += 3
 		}
-		//小字1 2 3
-		if count[1] > 0 && count[2] > 0 && count[3] > 0 {
-			count[1] -= 1
-			count[2] -= 1
-			count[3] -= 1
+	}
 
-			info.totalHuXi += 3 //小字1 2 3
+	//小字二七十 3胡息
+	if count[2] > 0 && count[7] > 0 && count[10] > 0 {
+		count[2] -= 1
+		count[7] -= 1
+		count[10] -= 1
 
-			info = CanHu(info.totalHuXi, count, len-3, zimoPaiValue)
+		info.totalHuXi += 3 //小字二七十
+
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
+		if info.canHu {
+			//log.T("i: %v, value: %v", i, count[i])
+			info.countSmallErQiShi++
+			//fmt.Println(fmt.Sprintf("找到小字二七十 return info:[%+v]", info))
+			return info
+		}
+
+		info.totalHuXi -= 3 //小字二七十
+
+		count[2] += 1
+		count[7] += 1
+		count[10] += 1
+	}
+	//小字一二三 3胡息
+	if count[1] > 0 && count[2] > 0 && count[3] > 0 {
+		count[1] -= 1
+		count[2] -= 1
+		count[3] -= 1
+
+		info.totalHuXi += 3 //小字一二三
+
+		info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
+		if info.canHu {
+			//log.T("i: %v, value: %v", i, count[i])
+			info.countSmallYiErSan++
+			//fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
+			return info
+		}
+
+		info.totalHuXi -= 3 //小字一二三
+
+		count[1] += 1
+		count[2] += 1
+		count[3] += 1
+	}
+
+	//小字碰 1胡息
+	for i := 1; i < PAIVALUE_SMALL+1; i++ {
+		if int(zimoPaiValue) != i && count[i] >= 3 {
+
+			count[i] -= 3
+			info.totalHuXi += 1
+
+			info = CanHu(info.totalHuXi, count, length-3, zimoPaiValue, info.jiangs)
 			if info.canHu {
-				//log.T("i: %v, value: %v", i, count[i])
-				info.countSmallErQiShi++
-				//fmt.Println(fmt.Sprintf("找到小字一二三 return info:[%+v]", info))
+				info.pengs = append(info.pengs, i)
+				//fmt.Println(fmt.Sprintf("找到小字碰 return info:[%+v]", info))
 				return info
 			}
 
-			info.totalHuXi -= 3 //小字1 2 3
-
-			count[1] += 1
-			count[2] += 1
-			count[3] += 1
+			info.totalHuXi -= 1
+			count[i] += 3
 		}
+	}
 
-		//是否是一句话（顺），这里应该分开判断
-		//小字 一句话
-		for i := 1; i < PAIVALUE_SMALL-1; i++ {
-			if count[i] > 0 && count[i+1] > 0 && count[i+2] > 0 {
-				count[i] -= 1
-				count[i+1] -= 1
-				count[i+2] -= 1
-				info = CanHu(huxi, count, len-3, zimoPaiValue)
-				if info.canHu {
-					//log.T("i: %v, value: %v", i, count[i])
-					info.yijuhuas = append(info.yijuhuas, i)
-					//fmt.Println(fmt.Sprintf("找到小字一句话 return info:[%+v]", info))
-					return info
-				}
-				count[i] += 1
-				count[i+1] += 1
-				count[i+2] += 1
+	//是否是一句话（顺），这里应该分开判断
+	//小字 一句话
+	for i := 1; i < PAIVALUE_SMALL-1; i++ {
+		if count[i] > 0 && count[i+1] > 0 && count[i+2] > 0 {
+			count[i] -= 1
+			count[i+1] -= 1
+			count[i+2] -= 1
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
+			if info.canHu {
+				//log.T("i: %v, value: %v", i, count[i])
+				info.yijuhuas = append(info.yijuhuas, i)
+				//fmt.Println(fmt.Sprintf("找到小字一句话 return info:[%+v]", info))
+				return info
 			}
+			count[i] += 1
+			count[i+1] += 1
+			count[i+2] += 1
 		}
-		//大字 一句话
-		for i := PAIVALUE_SMALL + 1; i < TOTALPAIVALUE_COUNT-1; i++ {
-			if count[i] > 0 && count[i+1] > 0 && count[i+2] > 0 {
-				count[i] -= 1
-				count[i+1] -= 1
-				count[i+2] -= 1
-				info = CanHu(huxi, count, len-3, zimoPaiValue)
-				if info.canHu {
-					//log.T("i: %v, value: %v", i, count[i])
-					info.yijuhuas = append(info.yijuhuas, i)
-					//fmt.Println(fmt.Sprintf("找到大字一句话 return info:[%+v]", info))
-					return info
-				}
-				count[i] += 1
-				count[i+1] += 1
-				count[i+2] += 1
+	}
+	//大字 一句话
+	for i := PAIVALUE_SMALL + 1; i < TOTALPAIVALUE_COUNT-1; i++ {
+		if count[i] > 0 && count[i+1] > 0 && count[i+2] > 0 {
+			count[i] -= 1
+			count[i+1] -= 1
+			count[i+2] -= 1
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
+			if info.canHu {
+				//log.T("i: %v, value: %v", i, count[i])
+				info.yijuhuas = append(info.yijuhuas, i)
+				//fmt.Println(fmt.Sprintf("找到大字一句话 return info:[%+v]", info))
+				return info
 			}
+			count[i] += 1
+			count[i+1] += 1
+			count[i+2] += 1
 		}
+	}
 
-		//是否是一绞牌 根据小字去组合大字
-		for i := 1; i < PAIVALUE_SMALL+1; i++ {
-			//fmt.Println(fmt.Sprintf("是否是一绞牌[%v] 小字count[%v]:%v 大字count[%v]:%v", i, i, count[i], PAIVALUE_SMALL+i, count[PAIVALUE_SMALL+i]))
-			if count[i] > 0 && count[PAIVALUE_SMALL+i] >= 2 {
-				//fmt.Println("case 1")
-				count[i] -= 1
-				count[PAIVALUE_SMALL+i] -= 2
-				info = CanHu(huxi, count, len-3, zimoPaiValue)
-				if info.canHu {
-					//log.T("i: %v, value: %v", i, count[i])
-					jiao := jiao{i, PAIVALUE_SMALL + i, PAIVALUE_SMALL + i}
-					info.jiaos = append(info.jiaos, jiao)
-					//fmt.Println(fmt.Sprintf("找到一绞牌 case1 return info:[%+v]", info))
-					return info
-				}
-				count[i] += 1
-				count[PAIVALUE_SMALL+i] += 2
-
-			} else if count[i] >= 2 && count[PAIVALUE_SMALL+i] > 0 {
-				//fmt.Println("case 2")
-				count[i] -= 2
-				count[PAIVALUE_SMALL+i] -= 1
-				info = CanHu(huxi, count, len-3, zimoPaiValue)
-				if info.canHu {
-					//log.T("i: %v, value: %v", i, count[i])
-					jiao := jiao{i, i, PAIVALUE_SMALL + i}
-					info.jiaos = append(info.jiaos, jiao)
-					//fmt.Println(fmt.Sprintf("找到一绞牌 case2 return info:[%+v]", info))
-					return info
-				}
-				count[i] += 2
-				count[PAIVALUE_SMALL+i] += 1
-
+	//是否是一绞牌 根据小字去组合大字
+	for i := 1; i < PAIVALUE_SMALL+1; i++ {
+		//fmt.Println(fmt.Sprintf("是否是一绞牌[%v] 小字count[%v]:%v 大字count[%v]:%v", i, i, count[i], PAIVALUE_SMALL+i, count[PAIVALUE_SMALL+i]))
+		if count[i] > 0 && count[PAIVALUE_SMALL+i] >= 2 {
+			//fmt.Println("case 1")
+			count[i] -= 1
+			count[PAIVALUE_SMALL+i] -= 2
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
+			if info.canHu {
+				//log.T("i: %v, value: %v", i, count[i])
+				jiao := jiao{i, PAIVALUE_SMALL + i, PAIVALUE_SMALL + i}
+				info.jiaos = append(info.jiaos, jiao)
+				//fmt.Println(fmt.Sprintf("找到一绞牌 case1 return info:[%+v]", info))
+				return info
 			}
+			count[i] += 1
+			count[PAIVALUE_SMALL+i] += 2
+
+		} else if count[i] >= 2 && count[PAIVALUE_SMALL+i] > 0 {
+			//fmt.Println("case 2")
+			count[i] -= 2
+			count[PAIVALUE_SMALL+i] -= 1
+			info = CanHu(huxi, count, length-3, zimoPaiValue, info.jiangs)
+			if info.canHu {
+				//log.T("i: %v, value: %v", i, count[i])
+				jiao := jiao{i, i, PAIVALUE_SMALL + i}
+				info.jiaos = append(info.jiaos, jiao)
+				//fmt.Println(fmt.Sprintf("找到一绞牌 case2 return info:[%+v]", info))
+				return info
+			}
+			count[i] += 2
+			count[PAIVALUE_SMALL+i] += 1
 		}
-	} else {
-		// 说明对牌出现
-		for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
-			if count[i] >= 2 {
-				count[i] -= 2
-				info = CanHu(huxi, count, len-2, zimoPaiValue)
-				if info.canHu {
-					//log.T("i: %v, value: %v", i, count[i])
-					info.jiang = int32(i)
-					//fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
-					return info
-				}
-				count[i] += 2
+	}
+
+	//找对牌
+	for i := 1; i < TOTALPAIVALUE_COUNT+1; i++ {
+		if count[i] >= 2 {
+			count[i] -= 2
+
+			//fmt.Println(fmt.Sprintf("before append jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
+			info.jiangs = append(info.jiangs, i)
+			//fmt.Println(fmt.Sprintf("after append jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
+
+			info = CanHu(huxi, count, length-2, zimoPaiValue, info.jiangs)
+			if info.canHu {
+				//log.T("i: %v, value: %v", i, count[i])
+				//fmt.Println(fmt.Sprintf("找到对牌 return info:[%+v]", info))
+				return info
 			}
+
+			//不能胡 移除该对子
+			//fmt.Println(fmt.Sprintf("before remove jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
+			newJiangs := []int{}
+			continues := 0
+			for _, j := range info.jiangs {
+				if j == i && continues <= 0 {
+					//只过滤一个对子
+					continues++
+					continue
+				}
+				newJiangs = append(newJiangs, j)
+			}
+			info.jiangs = newJiangs
+			//fmt.Println(fmt.Sprintf("after remove jiang[%v] len(jiangs)[%v] jiangs[%v]", i, len(info.jiangs), info.jiangs))
+
+			count[i] += 2
 		}
 	}
 	info.canHu = false
@@ -979,7 +1034,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 
 	log.T("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers))
 	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers)))
-	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue)
+	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue, nil)
 
 	log.T("CanHu的CheckPokers结果是:[%+v]", canHuInfo)
 	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
@@ -989,13 +1044,19 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	//能胡的话需要将结构转化
 	if huInfo.CanHu {
 		//将牌
-		if canHuInfo.jiang > -1 {
-			jiangPais := GetPaisByValue2(checkPokers, canHuInfo.jiang)
-			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais})
-
-			for _, delPai := range jiangPais {
-				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+		if len(canHuInfo.jiangs) > 0 {
+			jiangPai1 := GetPaiByValue(checkPokers, int32(canHuInfo.jiangs[0]))
+			if jiangPai1 != nil {
+				checkPokers = DelPaiFromPokers(checkPokers, jiangPai1)
 			}
+
+			jiangPai2 := GetPaiByValue(checkPokers, int32(canHuInfo.jiangs[0]))
+			if jiangPai2 != nil {
+				checkPokers = DelPaiFromPokers(checkPokers, jiangPai2)
+			}
+
+			jiangPais := []*PHZPoker{jiangPai1, jiangPai2}
+			huInfo.DuiZis = append(huInfo.DuiZis, &DuiZi{Pais: jiangPais})
 			//fmt.Println(fmt.Sprintf("TryHu2找到的将牌:[%v] 删除后的checkPokers:[%v]", Cards2String(jiangPais), Cards2String(checkPokers)))
 		}
 
@@ -1009,11 +1070,23 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			//fmt.Println(fmt.Sprintf("TryHu2找到的一坎牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
 		}
 
+		//一碰牌
+		for _, kan := range canHuInfo.pengs {
+			kanPais := GetPaisByValue2(checkPokers, int32(kan))
+			huInfo.Pengs = append(huInfo.Pengs, &YiKanPai{Pais: kanPais})
+			for _, delPai := range kanPais {
+				checkPokers = DelPaiFromPokers(checkPokers, delPai)
+			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的一碰牌:[%v] 删除后的checkPokers:[%v]", Cards2String(kanPais), Cards2String(checkPokers)))
+		}
+
 		//一绞牌
 		for _, jiao := range canHuInfo.jiaos {
 			yjh := &YJH{}
 			for _, jiaoPaiValue := range jiao {
-				yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(jiaoPaiValue)))
+				if pai := GetPaiByValue(checkPokers, int32(jiaoPaiValue)); pai != nil {
+					yjh.Pais = append(yjh.Pais, pai)
+				}
 			}
 			huInfo.YiJiaoPai = append(huInfo.YiJiaoPai, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1025,9 +1098,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//一句话
 		for _, yijuhua := range canHuInfo.yijuhuas {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua+1)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(yijuhua+2)))
+			if pai := GetPaiByValue(checkPokers, int32(yijuhua)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(yijuhua+1)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(yijuhua+2)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1038,9 +1117,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//大字一二三
 		for i := canHuInfo.countBigYiErSan; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(11)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(12)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(13)))
+			if pai := GetPaiByValue(checkPokers, int32(11)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(12)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(13)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1052,9 +1137,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//大字二七十
 		for i := canHuInfo.countBigErQiShi; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(12)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(17)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(20)))
+			if pai := GetPaiByValue(checkPokers, int32(12)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(17)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(20)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1066,9 +1157,18 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//小字一二三
 		for i := canHuInfo.countSmallYiErSan; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(1)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(2)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(3)))
+			if pai := GetPaiByValue(checkPokers, int32(1)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字一:[%v]", Cards2String(yjh.Pais)))
+			if pai := GetPaiByValue(checkPokers, int32(2)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字二:[%v]", Cards2String(yjh.Pais)))
+			if pai := GetPaiByValue(checkPokers, int32(3)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			//fmt.Println(fmt.Sprintf("TryHu2找到的小字三:[%v]", Cards2String(yjh.Pais)))
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {
@@ -1080,9 +1180,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 		//小字二七十
 		for i := canHuInfo.countSmallErQiShi; i > 0; i-- {
 			yjh := &YJH{}
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(2)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(7)))
-			yjh.Pais = append(yjh.Pais, GetPaiByValue(checkPokers, int32(10)))
+			if pai := GetPaiByValue(checkPokers, int32(2)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(7)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
+			if pai := GetPaiByValue(checkPokers, int32(10)); pai != nil {
+				yjh.Pais = append(yjh.Pais, pai)
+			}
 
 			huInfo.YiJuHua = append(huInfo.YiJuHua, yjh)
 			for _, delPai := range yjh.Pais {

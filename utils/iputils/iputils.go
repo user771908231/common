@@ -68,11 +68,12 @@ func GetLocationByLatitudeAndLongitude(Latitude float64, Longitude float64) stri
 			Formatted_address string
 		}
 	}
-	//todo 这里是随便找的一个key
-	ak := "IBeISijoITQMKkuK9Dlp56ELYP2a8Nek"
+	//todo 这里是随便找的一个key  //"IBeISijoITQMKkuK9Dlp56ELYP2a8Nek"
+	// TODO 这里ak要改到配置文件conf.json
+	ak := "oxGW8ptXe2nnRzjo0Cl7ijPMpAyIRbB1"
 	p := &Person{}
 	url := "http://api.map.baidu.com/geocoder/v2/?ak=" + ak + "&location=" + fmt.Sprintf("%v", Latitude) + "," + fmt.Sprintf("%v", Longitude) + "&output=json&pois=0"
-	log.T("开始查找玩家的地址%v", url)
+	log.T("开始查找玩家的地址 %v", url)
 	r, err := http.Get(url)
 	if err != nil {
 		return ""
