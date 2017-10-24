@@ -1,10 +1,10 @@
 package api
 
 import (
-	"github.com/name5566/leaf/util"
-	"github.com/name5566/leaf/module"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/chessUtils"
+	"github.com/name5566/leaf/module"
+	"github.com/name5566/leaf/util"
 )
 
 type MJRoom interface {
@@ -49,7 +49,6 @@ func (r *MJRoomCore) GetRoomId() int32 {
 func (r *MJRoomCore) GetRoomType() int32 {
 	return r.RoomType
 }
-
 
 //随机一个房间号码
 func (r *MJRoomCore) RandRoomKey(gid int32) string {
