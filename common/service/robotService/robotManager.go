@@ -150,7 +150,7 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 		randRobotCoin = 5000
 	}
 
-	c, _ := userService.INCRUserCOIN(user.GetId(), int64(randRobotCoin))
+	c, _ := userService.INCRUserCOIN(user.GetId(), int64(randRobotCoin), "创建新机器人初始化")
 	user.Coin = proto.Int64(c)
 	//userService.SaveUser2Redis(user) //保存到redis
 	userService.UpdateUser2Mgo(user) //创建机器人保存到mgo
