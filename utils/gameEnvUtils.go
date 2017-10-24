@@ -3,7 +3,9 @@ package utils
 import (
 	"casino_common/proto/ddproto"
 	//"casino_common/common/log"
+	"casino_common/common/Error"
 	"casino_common/common/log"
+	"fmt"
 )
 
 /*
@@ -89,4 +91,9 @@ func GetGameAndTypeName(gid, roomType int32) string {
 	}
 
 	return gameName + roomTypeName
+}
+
+func GetEnterError(gid, roomType int32) error {
+	msg := fmt.Sprintf("【%v】游戏还没有结束，请完成后再来", GetGameAndTypeName(gid, roomType))
+	return Error.NewError(int32(ddproto.COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_ERROR_EC_OTHER_LV_DESK_GAMING), msg)
 }
