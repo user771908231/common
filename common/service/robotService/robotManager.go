@@ -142,13 +142,7 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32) *Robot {
 
 	//2,注册机器人
 	user.RobotType = proto.Int32(int32(rm.gameId))
-<<<<<<< HEAD
-	ids, _ := numUtils.Uint2String(user.GetId())
-	user.NickName = proto.String("游客" + ids)
 	c, _ := userService.INCRUserCOIN(user.GetId(), 50000, "创建新机器人初始化")
-=======
-	c, _ := userService.INCRUserCOIN(user.GetId(), 50000)
->>>>>>> 3e4a43cd66a0ac658bf9e64645cbc78d20a17f49
 	user.Coin = proto.Int64(c)
 	//userService.SaveUser2Redis(user) //保存到redis
 	userService.UpdateUser2Mgo(user) //创建机器人保存到mgo
