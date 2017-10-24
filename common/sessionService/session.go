@@ -188,7 +188,7 @@ func DelSessionByKey(userId uint32, roomType int32, gid int32, deskId int32) {
 		return
 	}
 
-	if s.GetDeskId() != deskId {
+	if deskId > 0 && s.GetDeskId() != deskId {
 		log.E("删除玩家[%v]roomType[%v],gid[%v],dekid[%v] 的时候出错 session[%v],",
 			userId, roomType, gid, deskId, s)
 		return
