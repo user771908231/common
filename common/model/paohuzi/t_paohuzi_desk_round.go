@@ -1,4 +1,4 @@
-package paodekuai
+package paohuzi
 
 import (
 	"casino_common/common/consts/tableName"
