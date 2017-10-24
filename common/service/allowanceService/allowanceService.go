@@ -38,7 +38,7 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 
 	//领取补助
 	//更新redis和数据库金币
-	userService.INCRUserCOIN(user.GetId(), 1000) //配置？
+	userService.INCRUserCOIN(user.GetId(), 1000, "领取每日补助") //配置？
 
 	//更新内存
 	*user.Coin += 1000

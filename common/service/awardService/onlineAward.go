@@ -89,7 +89,7 @@ func DoAwardOnline(uid uint32, a gate.Agent) error {
 	}
 	//计算应该得到的在线奖励
 	award := d.GetCapital()*d.GetRate()%100 + OnlineConfig.BaseAward
-	balance, _ := userService.INCRUserCOIN(uid, award) //增加用户的金币//是否需要增加金币的订单
+	balance, _ := userService.INCRUserCOIN(uid, award, "领取在线奖励") //增加用户的金币//是否需要增加金币的订单
 
 	//再次初始化，并且放置在数据库中...
 	oninit(d)

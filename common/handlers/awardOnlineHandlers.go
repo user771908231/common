@@ -46,7 +46,7 @@ func HandlerNewUserAward(args []interface{}) {
 	}
 
 	//增加红包信息处理新手奖励
-	_, err := userService.INCRUserBonus(userId, cfg.GetNewUserAward())
+	_, err := userService.INCRUserBonus(userId, cfg.GetNewUserAward(), "领取新手奖励")
 	if err != nil {
 		ack.Header.Code = proto.Int32(consts.ACK_RESULT_ERROR)
 		ack.Header.Error = proto.String("领取分享奖励失败。")

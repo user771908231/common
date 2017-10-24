@@ -125,7 +125,7 @@ func NewUserAndSave(uid uint32, unionId, openId, wxNickName, headUrl string, sex
 		INCRUserRoomcard(user.GetId(), sys.CONFIG_SYS.GetNewUserRoomcard(), 0, "新用户注册") //新用户注册的时候,默认的房卡数量
 	}
 
-	INCRUserCOIN(user.GetId(), sys.CONFIG_SYS.GetNewUserCoin())         //新用户注册的时候，默认的金币数量
+	INCRUserCOIN(user.GetId(), sys.CONFIG_SYS.GetNewUserCoin(), "新用户注册，设置默认金币数")         //新用户注册的时候，默认的金币数量
 	return user, nil
 }
 

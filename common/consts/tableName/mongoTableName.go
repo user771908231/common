@@ -28,7 +28,7 @@ const (
 	DBT_T_GAME_COUNT                string = "t_game_count"                 //游戏记录表
 	DBT_T_GAME_DAY_COUNT            string = "t_game_day_count"             //游戏记录表
 	DBT_T_BONUS_TASK_COMPUTE_CONFIG string = "t_bonus_task_compute_config"  //红包任务计算配置表
-	DBT_T_TRADE_LOG                 string = "t_game_trade_log"             //游戏货币流水记录表
+	DBT_T_ACCOUNT_LOG               string = "t_account_log"                //游戏货币流水记录表
 	DBT_T_GRAY_RELEASE_USER         string = "t_gray_release_user"          //灰度发布的数据库表
 	DBT_T_HALL_SERVER               string = "t_hall_server"                //客服
 	DBT_T_HALL_BAGPWD               string = "t_user_bag_password"          //背包密码

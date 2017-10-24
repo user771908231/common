@@ -180,11 +180,11 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error, name
 		switch reward.GetType() {
 		case ddproto.HallEnumTradeType_TRADE_COIN:
 			//领取金币
-			_, err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()))
+			_, err = userService.INCRUserCOIN(userId, int64(reward.GetAmount()), "领取任务奖励")
 			name += fmt.Sprintf("%.0f金币", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			//领取钻石
-			_, err = userService.INCRUserDiamond(userId, int64(reward.GetAmount()))
+			_, err = userService.INCRUserDiamond(userId, int64(reward.GetAmount()), "领取任务奖励")
 			name += fmt.Sprintf("%.0f钻石", reward.GetAmount())
 		case ddproto.HallEnumTradeType_PROPS_FANGKA:
 			//领取房卡
@@ -192,11 +192,11 @@ func CheckReward(userId uint32, rewards []*ddproto.HallBagItem) (err error, name
 			name += fmt.Sprintf("%.0f房卡", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_BONUS:
 			//领取红包
-			_, err = userService.INCRUserBonus(userId, reward.GetAmount())
+			_, err = userService.INCRUserBonus(userId, reward.GetAmount(), "领取任务奖励")
 			name += fmt.Sprintf("%.2f红包", reward.GetAmount())
 		case ddproto.HallEnumTradeType_TRADE_TICKET:
 			//领取奖券
-			_, err = userService.INCRUserTicket(userId, int32(reward.GetAmount()))
+			_, err = userService.INCRUserTicket(userId, int32(reward.GetAmount()), "领取任务奖励")
 			name += fmt.Sprintf("%.0f奖券", reward.GetAmount())
 		default:
 			switch {

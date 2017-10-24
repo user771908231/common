@@ -63,10 +63,11 @@ func UpdateUserByMeal(tradeNo string) error {
 	//找到套餐
 	meal := GetMealById(detail.GetProductId())
 	//根据套餐增加用户的余额
-	userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount))
+	userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")
 	//更新订单状态
 	UpdateDetailsStatus(tradeNo, ddproto.PayEnumTradeStatus_PAY_S_SUCC)
 	//保存订单到数据库...
+	log.T("微信支付成功，为用户%d充值%d钻石。", detail.GetUserId(), int64(meal.Amount))
 	go func() {
 		wxpayDao.UpsertDetail(detail) //保存到数据库
 		//DelDetails(tradeNo)           //保存到数据库之后删除//	app收到回复之后再删除

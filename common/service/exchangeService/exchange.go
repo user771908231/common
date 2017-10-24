@@ -60,14 +60,14 @@ func NewRecord(userId uint32, goods_type ddproto.HallEnumTradeType, amount float
 		if user.GetRealAddress() == "" {
 			return nil, errors.New("请填写收货地址！")
 		}
-		_, err_dec := userService.DECUserTicket(userId, int32(amount))
+		_, err_dec := userService.DECUserTicket(userId, int32(amount), "商城实物兑换扣奖券")
 		if err_dec != nil {
 			return nil, errors.New("您的奖券余额不足，兑换失败！")
 		}
 
 	}else if goods_type == ddproto.HallEnumTradeType_TRADE_BONUS{
 		//扣除红包
-		_, err_dec := userService.DECUserBonus(userId, amount)
+		_, err_dec := userService.DECUserBonus(userId, amount, "商城实物兑换扣红包")
 		if err_dec != nil {
 			return nil, errors.New("您的红包余额不足，兑换失败！")
 		}
