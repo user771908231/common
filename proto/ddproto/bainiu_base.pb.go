@@ -166,6 +166,7 @@ It has these top-level messages:
 	RedisDeskByAgent
 	RedisUserGameBill
 	UserGameBill
+	HzhRobotGameBill
 	Taward
 	AwardMOnline
 	TConfigSys
