@@ -11,7 +11,7 @@ import (
 
 func init() {
 	//初始化缓存相关
-	PlayBackStack = map[int32][]*ddproto.PdkPlaybackSnapshot{}
+	PlayBackStack = map[int32][]*ddproto.PhzPlaybackSnapshot{}
 	PlayBackNumbers = []int32{}
 }
 
@@ -19,12 +19,12 @@ func init() {
 type T_phz_desk_round_playback struct {
 	DeskId       int32
 	GameNumber   int32
-	PlayBackData []*ddproto.PdkPlaybackSnapshot
+	PlayBackData []*ddproto.PhzPlaybackSnapshot
 }
 
-func GetPdkPlayBack(gamenumber int32) ([]*ddproto.PdkPlaybackSnapshot, error) {
+func GetPhzPlayBack(gamenumber int32) ([]*ddproto.PhzPlaybackSnapshot, error) {
 	ret := &T_phz_desk_round_playback{}
-	err := db.Log(tableName.DBT_PDK_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}, ret)
+	err := db.Log(tableName.DBT_PHZ_DESK_ROUND_PLAYBACK).Find(bson.M{"gamenumber": gamenumber}, ret)
 	if ret.DeskId > 0 {
 		return ret.PlayBackData, err
 	} else {
@@ -34,7 +34,7 @@ func GetPdkPlayBack(gamenumber int32) ([]*ddproto.PdkPlaybackSnapshot, error) {
 
 //==================================回放缓存==================================
 //回放缓存-全局变量
-var PlayBackStack map[int32][]*ddproto.PdkPlaybackSnapshot
+var PlayBackStack map[int32][]*ddproto.PhzPlaybackSnapshot
 
 //缓存编号列表
 var PlayBackNumbers []int32
@@ -43,19 +43,19 @@ var PlayBackNumbers []int32
 var playBackWLock sync.Mutex
 
 //从内存缓存中取出-回放数据
-func GetPdkPlayBackFromMemory(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
-	log.T("开始从内存中获取跑得快的回放... gamenumber[%v]", gamenumber)
+func GetPhzPlayBackFromMemory(gamenumber int32) []*ddproto.PhzPlaybackSnapshot {
+	log.T("开始从内存中获取跑胡子的回放... gamenumber[%v]", gamenumber)
 	//如果缓存中存在则直接从缓存中取数据
 	if data, ok := PlayBackStack[gamenumber]; ok {
-		log.T("从内存读取pdk数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
+		log.T("从内存读取跑胡子数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
 		return data
 	}
 
 	//如果不存在则向缓存中写入一条
-	log.T("内存找不到跑得快的回放数据，开始从数据库中缓存... gamenumber[%v]", gamenumber)
-	data, err := GetPdkPlayBack(gamenumber)
+	log.T("内存找不到跑胡子的回放数据，开始从数据库中缓存... gamenumber[%v]", gamenumber)
+	data, err := GetPhzPlayBack(gamenumber)
 	if data == nil {
-		log.W("数据库中找不到跑得快的回放数据, 错误信息[%v] gamenumber[%v]", err.Error(), gamenumber)
+		log.W("数据库中找不到跑胡子的回放数据, 错误信息[%v] gamenumber[%v]", err.Error(), gamenumber)
 		return nil
 	}
 
@@ -73,9 +73,9 @@ func GetPdkPlayBackFromMemory(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 		old_number := PlayBackNumbers[0]
 		delete(PlayBackStack, old_number)
 		PlayBackNumbers = PlayBackNumbers[1:]
-		log.T("pdk回放缓存队列已满，删除一条最前面的数据gamenumber:%d", old_number)
+		log.T("跑胡子回放缓存队列已满，删除一条最前面的数据gamenumber:%d", old_number)
 	}
 
-	log.T("从数据库读取pdk数据：gamenumber:%d 当前缓存条数：%d", gamenumber, cache_len)
+	log.T("从数据库读取跑胡子数据：gamenumber:%d 当前缓存条数：%d", gamenumber, cache_len)
 	return data
 }

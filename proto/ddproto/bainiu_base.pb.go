@@ -53,6 +53,7 @@ It is generated from these files:
 	phz_base.proto
 	phz_desk.proto
 	phz_play.proto
+	phz_server.proto
 	rpc_greeter.proto
 	rpc_hall.proto
 	rpc_pdk.proto
@@ -564,6 +565,10 @@ It has these top-level messages:
 	PhzPlayUserLotteryInfo
 	PhzPlayUserEndResult
 	PhzPlayEndLottery
+	PlaybackPhzAckPage
+	PhzPlaybackPlayerInfo
+	PhzPlaybackSnapshot
+	PhzPlaybackDeskInfo
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig

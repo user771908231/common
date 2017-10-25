@@ -269,7 +269,7 @@ type RpcHallUpdateConfig struct {
 func (m *RpcHallUpdateConfig) Reset()                    { *m = RpcHallUpdateConfig{} }
 func (m *RpcHallUpdateConfig) String() string            { return proto.CompactTextString(m) }
 func (*RpcHallUpdateConfig) ProtoMessage()               {}
-func (*RpcHallUpdateConfig) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{0} }
+func (*RpcHallUpdateConfig) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{0} }
 
 func (m *RpcHallUpdateConfig) GetConfigId() int32 {
 	if m != nil && m.ConfigId != nil {
@@ -288,7 +288,7 @@ type HallRpcDeskEventMsg struct {
 func (m *HallRpcDeskEventMsg) Reset()                    { *m = HallRpcDeskEventMsg{} }
 func (m *HallRpcDeskEventMsg) String() string            { return proto.CompactTextString(m) }
 func (*HallRpcDeskEventMsg) ProtoMessage()               {}
-func (*HallRpcDeskEventMsg) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{1} }
+func (*HallRpcDeskEventMsg) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{1} }
 
 func (m *HallRpcDeskEventMsg) GetMsg() string {
 	if m != nil && m.Msg != nil {
@@ -313,7 +313,7 @@ type HallRpcGroupRefresh struct {
 func (m *HallRpcGroupRefresh) Reset()                    { *m = HallRpcGroupRefresh{} }
 func (m *HallRpcGroupRefresh) String() string            { return proto.CompactTextString(m) }
 func (*HallRpcGroupRefresh) ProtoMessage()               {}
-func (*HallRpcGroupRefresh) Descriptor() ([]byte, []int) { return fileDescriptor49, []int{2} }
+func (*HallRpcGroupRefresh) Descriptor() ([]byte, []int) { return fileDescriptor50, []int{2} }
 
 func (m *HallRpcGroupRefresh) GetGroupId() int32 {
 	if m != nil && m.GroupId != nil {
@@ -468,9 +468,9 @@ var _HallRpc_serviceDesc = grpc.ServiceDesc{
 	Metadata: "rpc_hall.proto",
 }
 
-func init() { proto.RegisterFile("rpc_hall.proto", fileDescriptor49) }
+func init() { proto.RegisterFile("rpc_hall.proto", fileDescriptor50) }
 
-var fileDescriptor49 = []byte{
+var fileDescriptor50 = []byte{
 	// 311 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x50, 0xdd, 0x4a, 0xc3, 0x30,
 	0x14, 0x5e, 0xa7, 0x32, 0x3d, 0x82, 0x94, 0x28, 0x73, 0x14, 0xc4, 0xd1, 0xab, 0x5d, 0x0d, 0x1c,
