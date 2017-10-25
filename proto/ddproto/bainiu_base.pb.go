@@ -53,6 +53,7 @@ It is generated from these files:
 	phz_base.proto
 	phz_desk.proto
 	phz_play.proto
+	phz_server.proto
 	rpc_greeter.proto
 	rpc_hall.proto
 	rpc_pdk.proto
@@ -166,7 +167,6 @@ It has these top-level messages:
 	RedisDeskByAgent
 	RedisUserGameBill
 	UserGameBill
-	HzhRobotGameBill
 	Taward
 	AwardMOnline
 	TConfigSys
@@ -382,7 +382,6 @@ It has these top-level messages:
 	NiuniuClientPoker
 	NiuniuUserBill
 	NiuniuDeskOption
-	NiuniuSrvRoom
 	NiuniuClientDesk
 	NiuniuClientUser
 	NiuCreateDeskReq
@@ -413,11 +412,10 @@ It has these top-level messages:
 	NiuOwnerDissolveReq
 	NiuOwnerDissolveAck
 	NiuOfflineBc
-	NiuCoinRoomListReq
-	NiuCoinRoomListAck
 	NiuniuSrvPoker
 	NiuniuSrvDesk
 	NiuniuSrvUser
+	NiuniuSrvRoom
 	NiuniuSrvDeskSnapshotIdIndex
 	NiuniuSrvDeskSnapshot
 	PdkBasePlayerInfo
@@ -564,11 +562,14 @@ It has these top-level messages:
 	PhzPlayUserLotteryInfo
 	PhzPlayUserEndResult
 	PhzPlayEndLottery
+	PlaybackPhzAckPage
+	PhzPlaybackPlayerInfo
+	PhzPlaybackSnapshot
+	PhzPlaybackDeskInfo
 	HelloRequest
 	HelloReply
 	RpcHallUpdateConfig
 	HallRpcDeskEventMsg
-	HallRpcGroupRefresh
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
