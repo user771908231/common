@@ -65,6 +65,11 @@ func (rm *RobotsManager) Oninit() {
 	rm.robotsAbleCount = int32(len(rm.robots)) //初始化机器人的数量
 }
 
+//获取所有机器人
+func (rm *RobotsManager) GetRobots() []*Robot {
+	return rm.robots
+}
+
 //通过id得到一个机器人
 func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 	for _, r := range rm.robots {
