@@ -56,8 +56,8 @@ type MJDesk interface {
 	KickOutUser(userId, kickOutUserId uint32) error //踢出玩家
 	EnterAgentMode(userId uint32) error             //请求进入托管模式
 	QuitAgentMode(userId uint32) error              //请求退出托管模式
-	GetNextPai(MJUser) *majiang.MJPAI //获取下一张牌
-	WipeDesk() error //备份桌子信息 数据恢复
+	GetNextPai(MJUser) *majiang.MJPAI               //获取下一张牌
+	WipeDesk() error                                //备份桌子信息 数据恢复
 }
 
 type MJDeskCore struct {
@@ -272,6 +272,15 @@ func (d *MJDeskCore) AddUserBean(user MJUser) error {
 		}
 	}
 	return ERR_ADDUSERBEAN
+}
+
+func (d *MJDeskCore) GetUserIds() (ids []uint32) {
+	for _, u := range d.Users {
+		if u != nil {
+			ids = append(ids, u.GetUserId())
+		}
+	}
+	return
 }
 
 func (d *MJDeskCore) SendMessage(m interface{}) error {

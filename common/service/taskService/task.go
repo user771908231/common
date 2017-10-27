@@ -19,9 +19,9 @@ import (
 var TaskList []*taskType.Task
 
 /**
-	获取展示给用户的任务列表
-	后面两个过滤参数为空则不过滤
- */
+获取展示给用户的任务列表
+后面两个过滤参数为空则不过滤
+*/
 func GetUserTaskShowList(userId uint32, fill_cateid int32, fill_type countType.CountType, fill_game ddproto.CommonEnumGame) []*taskType.UserTask {
 	list := []*taskType.UserTask{}
 	task_map := make(map[countType.CountType][]*taskType.UserTask)
@@ -278,11 +278,11 @@ func CheckTaskReward(userId uint32, taskId int32) (error, string, []*ddproto.Hal
 }
 
 /**
-	获取距离完成条件最近的一个任务状态
-	参数：game : ("ddz"|"zjh"|"mj")
-	返回值：numer: 剩余局数 taskId: 任务id
-	如果任务不存在则返回 （-1，-1）
- */
+获取距离完成条件最近的一个任务状态
+参数：game : ("ddz"|"zjh"|"mj")
+返回值：numer: 剩余局数 taskId: 任务id
+如果任务不存在则返回 （-1，-1）
+*/
 func GetUserNearBonusTask(userId uint32, game ddproto.CommonEnumGame) *taskType.UserTask {
 	taskList := GetUserTaskShowList(userId, 2, "", game)
 	num_map := make(map[*taskType.UserTask]int32)

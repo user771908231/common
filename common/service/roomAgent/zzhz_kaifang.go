@@ -1,17 +1,17 @@
 package roomAgent
 
 import (
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/service/rpcService"
 	"casino_common/common/consts"
-	"casino_common/proto/ddproto/mjproto"
-	"golang.org/x/net/context"
-	"casino_common/common/log"
-	"casino_common/proto/ddproto"
-	"errors"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/service/rpcService"
+	"casino_common/proto/ddproto"
+	"casino_common/proto/ddproto/mjproto"
+	"casino_common/utils/db"
+	"errors"
+	"github.com/golang/protobuf/proto"
+	"golang.org/x/net/context"
+	"gopkg.in/mgo.v2/bson"
 )
 
 //转转红中配置
@@ -49,12 +49,12 @@ var ZzhzConf = CreateConfig{
 	[][]string{
 		[]string{"飘分"},
 		[]string{""},
-	},[][]string{
+	}, [][]string{
 		[]string{"自由飘分"},
 		[]string{""},
 	},
 	[][]string{
-		[]string{"8红中","八红中"},
+		[]string{"8红中", "八红中"},
 		[]string{""},
 	},
 }
@@ -125,24 +125,24 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 		RoomTypeInfo: &mjproto.RoomTypeInfo{
 			MjRoomType: opt_room_type.Enum(),
 			BoardsCout: proto.Int32(int32(opt_circle_num)),
-			BaseValue: proto.Int64(1),
+			BaseValue:  proto.Int64(1),
 			ChangShaPlayOptions: &mjproto.ChangShaPlayOptions{
 				PlayerCount: proto.Int32(int32(opt_gamer_number)),
 			},
 			ZhuanzhuanPlayOptions: &mjproto.ZhuanZhuanPlayOptions{
-				ZhaMa:proto.Int32(int32(opt_bird_num)),
+				ZhaMa:         proto.Int32(int32(opt_bird_num)),
 				IsZhaMaJiaBei: proto.Bool(opt_zhama_jiabei),
-				IsGoldBird: proto.Bool(opt_is_gold_bird),
-				CanJiePaoHu:proto.Bool(opt_can_jiepao),
-				IsBaHongZhong:proto.Bool(opt_is_bahongzhong),
+				IsGoldBird:    proto.Bool(opt_is_gold_bird),
+				CanJiePaoHu:   proto.Bool(opt_can_jiepao),
+				IsBaHongZhong: proto.Bool(opt_is_bahongzhong),
 			},
-			IsPiaoFen: proto.Bool(opt_is_piao),
-			IsPiaoFenFree:proto.Bool(opt_is_piao_free),
+			IsPiaoFen:     proto.Bool(opt_is_piao),
+			IsPiaoFenFree: proto.Bool(opt_is_piao_free),
 		},
 		IsDaiKai: proto.Bool(true),
 	}
 
-	res,err := rpcService.GetZzHz().CreateRoom(context.Background(), rpc_req)
+	res, err := rpcService.GetZzHz().CreateRoom(context.Background(), rpc_req)
 	log.T("rpc req:%v res:%v res-err:%v", rpc_req, res, err)
 
 	if err != nil {
@@ -173,13 +173,12 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 		ex_room := GetAgentFreeRoomByOption(group_id, opt_gamer_number, zzhz_keywords)
 		if ex_room != nil {
 			return nil, ex_room
-		}else {
+		} else {
 			log.E("rpc success, but ex_room is nil.")
 			return errors.New("开房失败，请联系管理员。"), nil
 		}
-	}else {
+	} else {
 		log.E("rpc code err:%v", res)
 		return errors.New(res.Header.GetError()), nil
 	}
 }
-

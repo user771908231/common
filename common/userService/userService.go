@@ -8,11 +8,11 @@ import (
 	"casino_common/common/sys"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"casino_common/utils/rand"
 	"casino_common/utils/redisUtils"
+	"errors"
 	"github.com/golang/protobuf/proto"
 	"time"
-	"errors"
-	"casino_common/utils/rand"
 )
 
 //查询一个id是否被占用
@@ -20,7 +20,6 @@ func IsExistUserId(id uint32) bool {
 	user := GetUserById(uint32(id))
 	return user != nil && user.GetId() == uint32(id)
 }
-
 
 //获取顺序增长且不重复的玩家id
 func GetNewUserId() (uint32, error) {
@@ -50,7 +49,7 @@ func GetNewUserIdByIndex(index int32) (uint32, error) {
 		return 0, err
 	}
 
-	uid := int32(id) + index * int32(100) + rand.Rand(0, 100)
+	uid := int32(id) + index*int32(100) + rand.Rand(0, 100)
 
 	if IsExistUserId(uint32(uid)) {
 		log.W("获取到的玩家id[%v]被占用，重新获取", uid)
@@ -61,10 +60,10 @@ func GetNewUserIdByIndex(index int32) (uint32, error) {
 }
 
 /**
-	1,create 一个user
-	2,保存mongo
-	3,缓存到redis
- */
+1,create 一个user
+2,保存mongo
+3,缓存到redis
+*/
 func NewUserAndSave(uid uint32, unionId, openId, wxNickName, headUrl string, sex int32, city string, channel string, regIp string) (*ddproto.User, error) {
 	log.T("创建新用户，并且保存到mgo")
 	//1,创建user获得自增主键
@@ -125,7 +124,7 @@ func NewUserAndSave(uid uint32, unionId, openId, wxNickName, headUrl string, sex
 		INCRUserRoomcard(user.GetId(), sys.CONFIG_SYS.GetNewUserRoomcard(), 0, "新用户注册") //新用户注册的时候,默认的房卡数量
 	}
 
-	INCRUserCOIN(user.GetId(), sys.CONFIG_SYS.GetNewUserCoin(), "新用户注册，设置默认金币数")         //新用户注册的时候，默认的金币数量
+	INCRUserCOIN(user.GetId(), sys.CONFIG_SYS.GetNewUserCoin(), "新用户注册，设置默认金币数") //新用户注册的时候，默认的金币数量
 	return user, nil
 }
 
@@ -134,12 +133,12 @@ func GetRedisUserKey(id uint32) string {
 }
 
 /**
-	根据用户id得到User的id
-	1,首先从redis中查询user信息
-	2,如果redis中不存在,则从mongo中查询
-	3,如果mongo不存在,返回错误信息,客户端跳转到登陆界面
+根据用户id得到User的id
+1,首先从redis中查询user信息
+2,如果redis中不存在,则从mongo中查询
+3,如果mongo不存在,返回错误信息,客户端跳转到登陆界面
 
- */
+*/
 func GetUserById(id uint32) *ddproto.User {
 
 	//1,首先在 redis中去的数据
@@ -177,11 +176,11 @@ func GetUserById(id uint32) *ddproto.User {
 }
 
 /**
-	根据用户userName即phonenumber得到User
-	1,从mongo中查询
-	3,如果mongo不存在,返回错误信息,客户端跳转到登陆界面
+根据用户userName即phonenumber得到User
+1,从mongo中查询
+3,如果mongo不存在,返回错误信息,客户端跳转到登陆界面
 
- */
+*/
 func GetUserByUserName(userName string) *ddproto.User {
 
 	buser := userDao.FindUserByKV("phonenumber", userName)
@@ -194,8 +193,8 @@ func GetUserByUserName(userName string) *ddproto.User {
 }
 
 /**
-	将用户model保存在redis中
- */
+将用户model保存在redis中
+*/
 func SaveUser2Redis(u *ddproto.User) error {
 	return redisUtils.SetObj(GetRedisUserKey(u.GetId()), u)
 }

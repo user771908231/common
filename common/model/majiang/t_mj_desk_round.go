@@ -9,8 +9,8 @@ import (
 	"casino_common/utils/timeUtils"
 	"github.com/golang/protobuf/proto"
 	"gopkg.in/mgo.v2/bson"
-	"time"
 	"sync"
+	"time"
 )
 
 func init() {
@@ -127,7 +127,7 @@ func GetMjDeskRoundByDeskIds(DeskIds []int32, gid, roomType int32) []T_mj_desk_r
 
 	log.T("deskids%v gameId%v roomType%v tbName[%v]", DeskIds, gid, roomType, tbName)
 	db.Log(tbName).Page(bson.M{
-		"deskid":    bson.M{"$in": DeskIds},
+		"deskid":     bson.M{"$in": DeskIds},
 		"friendplay": true,
 	}, &deskRecords, "-deskid", 1, 100)
 
@@ -234,8 +234,10 @@ func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
 //==================================回放缓存==================================
 //回放缓存-全局变量
 var PlayBackStack map[int32][]*ddproto.PlaybackSnapshot
+
 //缓存编号列表
 var PlayBackNumbers []int32
+
 //为缓存写上锁-保证线程安全
 var playBackWLock sync.Mutex
 

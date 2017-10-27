@@ -1,16 +1,16 @@
 package handlers
 
 import (
-	"casino_common/proto/funcsInit"
-	"casino_common/proto/ddproto"
-	"github.com/name5566/leaf/gate"
-	"casino_common/common/log"
+	"casino_common/common/Error"
 	"casino_common/common/consts"
+	"casino_common/common/log"
 	"casino_common/common/service/loginService"
 	"casino_common/common/sessionService"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/Error"
+	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
 	"casino_common/utils/agentUtils"
+	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/gate"
 )
 
 //注册的接口
@@ -24,7 +24,7 @@ func HandlerReg(args []interface{}) {
 	var ack *ddproto.CommonAckReg
 	if regType == int32(ddproto.CommonEnumReg_RET_TYPE_TOURIST) {
 		//游客注册
-		ack = loginService.TouristReg(channel,regIp)
+		ack = loginService.TouristReg(channel, regIp)
 	} else if regType == int32(ddproto.CommonEnumReg_RET_TYPE_WEIXIN) {
 		//微信注册
 		if userId > 0 {
@@ -45,7 +45,6 @@ func HandlerReg(args []interface{}) {
 	}
 	a.WriteMsg(ack)
 }
-
 
 //注册的接口 通过用户名密码
 func HandlerRegViaInput(args []interface{}) {
@@ -100,7 +99,6 @@ func HandlerGame_Login(args []interface{}) {
 	return
 }
 
-
 //登录的逻辑 通过用户名密码
 func HandlerGame_Login_Via_Input(args []interface{}) {
 	m := args[0].(*ddproto.CommonReqGameLoginViaInput)
@@ -150,12 +148,14 @@ func HandlerCommonReqGameState(args []interface{}) {
 		ack.RoomPassword = proto.String(session.GetRoomPassword())
 		ack.RoomType = proto.Int32(session.GetRoomType())
 		ack.RoomLevel = proto.Int32(session.GetRoomId())
+		ack.DeskId = proto.Int32(session.GetDeskId())
 	} else {
 		ack.GameId = proto.Int32(0)
 		ack.GameStatus = proto.Int32(int32(ddproto.COMMON_ENUM_GAMESTATUS_NOGAME))
 		ack.RoomPassword = proto.String("")
 		ack.RoomType = proto.Int32(0)
 		ack.RoomLevel = proto.Int32(0)
+		ack.DeskId = proto.Int32(0)
 	}
 
 	//返回消息

@@ -1,15 +1,15 @@
 package allowanceService
 
 import (
-	"github.com/name5566/leaf/gate"
-	"casino_common/common/model/userAttachDao"
-	"casino_common/proto/funcsInit"
-	"casino_common/common/userService"
-	"casino_common/proto/ddproto"
-	"casino_common/utils/timeUtils"
 	"casino_common/common/Error"
 	"casino_common/common/log"
+	"casino_common/common/model/userAttachDao"
+	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
+	"casino_common/proto/funcsInit"
+	"casino_common/utils/timeUtils"
 	"errors"
+	"github.com/name5566/leaf/gate"
 	"time"
 )
 
@@ -22,7 +22,6 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 		return errors.New("找不到用户")
 	}
 
-
 	//检查今日领取补助的次数
 	times := GetTimes4UserReceiveAllowanceToday(user)
 	log.T("用户[%v]今日领取补助的次数[%v]", uid, times)
@@ -34,7 +33,6 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 		a.WriteMsg(ack)
 		return Error.NewError(-1, "今日领取限额已满")
 	}
-
 
 	//领取补助
 	//更新redis和数据库金币
@@ -57,7 +55,6 @@ func DoAllowance(uid uint32, a gate.Agent) error {
 	return nil
 }
 
-
 //返回今天领取补助的次数
 func GetTimes4UserReceiveAllowanceToday(user *ddproto.User) int32 {
 	//用户今天没领取补助
@@ -68,7 +65,6 @@ func GetTimes4UserReceiveAllowanceToday(user *ddproto.User) int32 {
 	userAttach := userAttachDao.FindUserAttachByUserId(user.GetId())
 	return userAttach.AllowanceTimes
 }
-
 
 //用户今天是否领取补助
 func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
@@ -82,7 +78,6 @@ func IsUserReceiveAllowanceToday(user *ddproto.User) bool {
 	//log.T("IsUserReceiveAllowanceToday lastAllowanceTime[%v]", userAttach.LastAllowanceTime)
 	return timeUtils.EqualDate(time.Now(), lastAllowanceTime)
 }
-
 
 //更新领取记录 时间和次数
 func UpdateUserAllowanceInfo(user *ddproto.User) {
