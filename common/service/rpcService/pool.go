@@ -4,6 +4,7 @@ import (
 	"google.golang.org/grpc"
 	"sync"
 	"casino_common/common/log"
+	"errors"
 )
 
 type Pool struct {
@@ -16,6 +17,11 @@ type Pool struct {
 
 //初始化连接池
 func (p *Pool) Init(addr string, init_conn int) error {
+	if p.HasInit() {
+		const err_msg = "已经初始化过了！请勿重复初始化。"
+		log.E(err_msg)
+		return errors.New(err_msg)
+	}
 	p.address = addr
 	p.initConn = init_conn
 	for i:=0; i< p.initConn; i++ {
@@ -28,15 +34,26 @@ func (p *Pool) Init(addr string, init_conn int) error {
 	return nil
 }
 
+//是否已经初始化
+func (p *Pool) HasInit() bool {
+	if p==nil || p.address == "" || p.initConn == 0 || len(p.pools) == 0 {
+		return false
+	}
+	return true
+}
+
 //从连接池中取一个出来
 func (p *Pool) Get() *grpc.ClientConn {
-	if len(p.pools) == 0 {
-		log.E("Rpc Pool未初始化！")
+	if !p.HasInit() {
+		log.E("Rpc Pool未初始化！ %v", p)
 		return nil
 	}
 	p.mu.Lock()
 	next_index := p.pool_index%len(p.pools)
 	p.pool_index++
+	if p.pool_index > 10000 {
+		p.pool_index = 0
+	}
 	p.mu.Unlock()
 	conn := p.pools[next_index]
 	conn_state := conn.GetState()

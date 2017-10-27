@@ -158,7 +158,7 @@ func decrUser(userid uint32, key string, d int64) (int64, error) {
 func INCRUserDiamond(userid uint32, d int64, remark string) (int64, error) {
 	new_diamond, err := incrUser(userid, consts.RKEY_USER_DIAMOND, d)
 	if err == nil {
-		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_DIAMOND, float64(d), float64(d), remark)
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_DIAMOND, float64(d), float64(new_diamond), remark)
 	}
 	return new_diamond, err
 }
@@ -172,7 +172,7 @@ func DECRUserDiamond(userid uint32, d int64, remark string) (int64, error) {
 
 	new_diamond, err := decrUser(userid, consts.RKEY_USER_DIAMOND, d)
 	if err == nil {
-		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_DIAMOND, float64(-d), float64(-d), remark)
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_DIAMOND, float64(-d), float64(new_diamond), remark)
 	}
 	return new_diamond, err
 }

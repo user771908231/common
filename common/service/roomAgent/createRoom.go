@@ -32,6 +32,13 @@ func CreateDeskByOption(owner uint32, group_id int32, game_option string) (*ddpr
 		}else {
 			return desk, nil
 		}
+	case strings.Contains(game_option, "经典牛牛"), strings.Contains(game_option, "急速牛牛"):
+		err, desk := DoNiuniuKaifang(owner, group_id, game_option)
+		if desk == nil {
+			return nil, err
+		}else {
+			return desk, nil
+		}
 	}
 
 	return nil, errors.New("开房失败！")

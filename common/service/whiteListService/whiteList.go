@@ -25,7 +25,7 @@ var lastRefreshTime time.Time
 //刷新白名单
 func RefreshWhiteList(gameId int32) {
 	//更新频率30秒
-	if time.Now().Sub(lastRefreshTime) < 30 * time.Second {
+	if time.Now().Sub(lastRefreshTime) < 5 * time.Second {
 		return
 	}
 

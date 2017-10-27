@@ -34,3 +34,9 @@ var SjhMjPool Pool
 func GetSjhMj() mjproto.SjhMjRpcClient {
 	return mjproto.NewSjhMjRpcClient(SjhMjPool.Get())
 }
+
+//牛牛
+var NiuniuPool Pool
+func GetNiuniu() ddproto.NiuniuRpcClient {
+	return ddproto.NewNiuniuRpcClient(NiuniuPool.Get())
+}
