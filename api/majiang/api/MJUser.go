@@ -1,16 +1,16 @@
 package api
 
 import (
+	"casino_common/common/Error"
+	"casino_common/common/log"
 	"casino_common/common/userService"
+	ddMJProto "casino_common/proto/ddproto/mjproto"
 	"casino_common/utils/agentUtils"
+	"fmt"
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/gate"
-	"sync/atomic"
-	"casino_common/common/Error"
-	"fmt"
-	ddMJProto "casino_common/proto/ddproto/mjproto"
-	"casino_common/common/log"
 	"reflect"
+	"sync/atomic"
 )
 
 type MJUser interface {
@@ -31,7 +31,7 @@ type MJUser interface {
 	//基本功能
 	SendOverTurn(p proto.Message) error         //发送overTurn
 	SendJiaoInfos() error                       //发送下叫jiaoInfos的提示
-	SendTingInfos() (interface{}, error)                       //发送下叫tingInfos的提示
+	SendTingInfos() (interface{}, error)        //发送下叫tingInfos的提示
 	WriteMsg2(p proto.Message) error            //发送信息
 	DoReady() error                             //准备
 	DoOut(interface{}) error                    //玩家出牌
@@ -49,12 +49,13 @@ type MJUser interface {
 
 //核心User
 type MJUserCore struct {
-	UserId uint32
-	URedis userService.U_REDIS //这里可以使用redis的方法
-	Desk   MJDesk              //关联的desk
-	Coin   int64               //金币
-	gate.Agent                 //agent
-	GameStatus                 //玩家的状态
+	UserId     uint32
+	URedis     userService.U_REDIS //这里可以使用redis的方法
+	TopUser    MJUser              //
+	Desk       MJDesk              //关联的desk
+	Coin       int64               //金币
+	gate.Agent                     //agent
+	GameStatus                     //玩家的状态
 }
 
 //User的状态信息
@@ -72,17 +73,17 @@ type GameStatus struct {
 }
 
 const (
-	MJUER_APPLYDISSOLVE_S_REFUSE int32 = -1 //拒绝解散
+	MJUER_APPLYDISSOLVE_S_REFUSE  int32 = -1 //拒绝解散
 	MJUER_APPLYDISSOLVE_S_DEFAULT int32 = 0  //没有处理
-	MJUER_APPLYDISSOLVE_S_AGREE int32 = 1  //同意解散
+	MJUER_APPLYDISSOLVE_S_AGREE   int32 = 1  //同意解散
 )
 
 //New一个CoreUser
 func NewMJUserCore(userId uint32, a gate.Agent) *MJUserCore {
 	ret := &MJUserCore{
-		UserId:  userId,
-		URedis:  userService.U_REDIS(userId),
-		Agent:   a,
+		UserId: userId,
+		URedis: userService.U_REDIS(userId),
+		Agent:  a,
 	}
 	ret.IsRobot = a == nil
 	return ret
