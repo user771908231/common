@@ -224,7 +224,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 			r.available = false
 			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
 			//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
-			log.T("释放征用一个之后，可以使用的机器人数量还剩下:%v", rm.robotsAbleCount)
+			log.T("释放征用一个机器人[%v]之后，可以使用的机器人数量还剩下:%v", r.GetId(), rm.robotsAbleCount)
 
 			return r
 		}
