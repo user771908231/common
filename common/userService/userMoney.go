@@ -6,6 +6,7 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/common/model"
+	"casino_common/common/service/tradeLogService"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"casino_common/utils/redisUtils"
@@ -13,7 +14,6 @@ import (
 	"fmt"
 	"gopkg.in/mgo.v2/bson"
 	"time"
-	"casino_common/common/service/tradeLogService"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据
@@ -43,8 +43,8 @@ func GetUserDiamond(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_DIAMOND)
 }
 
-func SetUserDiamond(userId uint32,diamond int64) int64 {
-	SetUserMoney(userId,consts.RKEY_USER_DIAMOND,diamond)
+func SetUserDiamond(userId uint32, diamond int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_DIAMOND, diamond)
 	return diamond
 }
 
@@ -58,8 +58,8 @@ func GetUserRoomCard(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_ROOMCARD)
 }
 
-func SetUserRoomCard(userId uint32,roomcard int64) int64 {
-	SetUserMoney(userId, consts.RKEY_USER_ROOMCARD,roomcard)
+func SetUserRoomCard(userId uint32, roomcard int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_ROOMCARD, roomcard)
 	return roomcard
 }
 
@@ -68,8 +68,8 @@ func GetUserCoin(userId uint32) int64 {
 	return GetUserMoney(userId, consts.RKEY_USER_COIN)
 }
 
-func SetUserCoin(userId uint32,coin int64) int64 {
-	SetUserMoney(userId, consts.RKEY_USER_COIN,coin)
+func SetUserCoin(userId uint32, coin int64) int64 {
+	SetUserMoney(userId, consts.RKEY_USER_COIN, coin)
 	return coin
 }
 
@@ -133,8 +133,8 @@ func incrUser(userid uint32, key string, d int64) (int64, error) {
 
 //减少用户的货币
 func decrUser(userid uint32, key string, d int64) (int64, error) {
-	log.T("用户账户变动[减少][%v]: user[%v] 值:[%v]", key, userid,  d)
-	remain,err := redisUtils.DECRBY(redisUtils.K(key, userid), d)
+	log.T("用户账户变动[减少][%v]: user[%v] 值:[%v]", key, userid, d)
+	remain, err := redisUtils.DECRBY(redisUtils.K(key, userid), d)
 	if err != nil {
 		return remain, err
 	}
@@ -188,7 +188,7 @@ func INCRUserRoomcard(userId uint32, d int64, gid int32, remark string) (int64, 
 		return roomCard, err
 	}
 
-	if roomCard != roomCardBefore + d {
+	if roomCard != roomCardBefore+d {
 		err = errors.New("inc roomcard validate fail.")
 		return roomCard, err
 	}
@@ -209,7 +209,7 @@ func DECRUserRoomcard(userId uint32, d int64, gid int32, remark string) (int64, 
 
 	roomCard, err := decrUser(userId, consts.RKEY_USER_ROOMCARD, d)
 
-	if roomCard != roomCardBefore - d {
+	if roomCard != roomCardBefore-d {
 		err = errors.New("dec roomcard validate fail.")
 		return roomCard, err
 	}
@@ -222,7 +222,7 @@ func DECRUserRoomcard(userId uint32, d int64, gid int32, remark string) (int64, 
 
 //增加用户的金币
 func INCRUserCOIN(userid uint32, d int64, remark string) (int64, error) {
-	new_coin,err := incrUser(userid, consts.RKEY_USER_COIN, d)
+	new_coin, err := incrUser(userid, consts.RKEY_USER_COIN, d)
 	if err == nil {
 		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_COIN, float64(d), float64(new_coin), remark)
 	}
@@ -235,7 +235,7 @@ func DECRUserCOIN(userid uint32, d int64, remark string) (int64, error) {
 	if count-d < 0 {
 		return count, errors.New("余额不足，减少用户金币失败！")
 	}
-	new_coin,err := decrUser(userid, consts.RKEY_USER_COIN, d)
+	new_coin, err := decrUser(userid, consts.RKEY_USER_COIN, d)
 	if err == nil {
 		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_COIN, float64(-d), float64(new_coin), remark)
 	}

@@ -17,9 +17,8 @@ const (
 	RKEY_QR_CODE                string = "redis_qr_code_key"       //二维码登陆成功后存储的key
 	RKEY_SEQ_ID_KEY             string = "redis_seq_id_key"        //自增id key
 
-	RKEY_AGENT_CREATE_DESK_LIST string = "rkey_agent_create_desk_list" //代开房间列表 key
+	RKEY_AGENT_CREATE_DESK_LIST       string = "rkey_agent_create_desk_list"       //代开房间列表 key
 	RKEY_AGENT_GROUP_CREATE_DESK_LIST string = "rkey_agent_group_create_desk_list" //代开房间列表 key
-
 
 	RKEY_USER_GAME_BILL string = "rkey_user_game_bill" //玩家游戏账单数据
 )
@@ -51,8 +50,11 @@ const (
 	RKEY_PDK_DATARECOVER_ID_LIST string = "rkey_pdk_datarecover_id_list" //跑得快数据恢复房间ID列表
 	RKEY_PDK_DATARECOVER_DATA    string = "rkey_pdk_datarecover_data"    //跑得快数据恢复数据
 
-	RKEY_ZZHZ_DATARECOVER_ID_LIST string = "rkey_zzhz_datarecover_id_list" //转转红中麻将数据恢复房间ID列表
-	RKEY_ZZHZ_DATARECOVER_DATA    string = "rkey_zzhz_datarecover_data"    //转转红中麻将数据恢复数据
+	RKEY_ZZHZ_DATARECOVER_ID_LIST string = "rkey_zzhz_datarecover_id_list" //转转红中朋友桌麻将数据恢复房间ID列表
+	RKEY_ZZHZ_DATARECOVER_DATA    string = "rkey_zzhz_datarecover_data"    //转转红中朋友桌麻将数据恢复数据
+
+	RKEY_ZZHZ_DATARECOVER_ID_LIST_COIN string = "rkey_zzhz_datarecover_id_list_coin" //转转红中金币场麻将数据恢复房间ID列表
+	RKEY_ZZHZ_DATARECOVER_DATA_COIN    string = "rkey_zzhz_datarecover_data_coin"    //转转红中金币场麻将数据恢复数据
 
 	RKEY_ZXZ_DATARECOVER_ID_LIST string = "rkey_zxz_datarecover_id_list" //捉瞎子麻将数据恢复房间ID列表
 	RKEY_ZXZ_DATARECOVER_DATA    string = "rkey_zxz_datarecover_data"    //捉瞎子麻将数据恢复数据
@@ -72,4 +74,12 @@ const (
 
 const (
 	RKEY_DESK_PRE_XIPAI_DATA string = "rkey_desk_pre_xipai_data" //牌桌预洗牌
+)
+
+const (
+	RKEY_HZH_ROBOT_GAME_BILL string = "rkey_hzh_robot_game_bill" //红中机器人策略控制用的赢局统计信息
+)
+
+const (
+	RKEY_ROBOT_WIN_RATE_HZH string = "rkey_robot_win_rate_hzh" //红中机器人胜率
 )

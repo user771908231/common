@@ -1,15 +1,15 @@
 package service
 
 import (
-	"casino_common/proto/ddproto"
 	"casino_common/common/log"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/userService"
-	"errors"
-	"fmt"
-	"casino_common/common/model/wxpayDao"
 	"casino_common/common/model"
 	"casino_common/common/model/goodsRowDao"
+	"casino_common/common/model/wxpayDao"
+	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
+	"errors"
+	"fmt"
+	"github.com/golang/protobuf/proto"
 )
 
 //充值套餐
@@ -27,19 +27,19 @@ func GetPayModel(id int32) *ddproto.PayBasePaymodel {
 //返回一个默认的支付方式
 func getDefaultPayModel() *ddproto.PayBasePaymodel {
 	ret := &ddproto.PayBasePaymodel{
-		Id:    proto.Int32(1),
-		AppId: proto.String(WXConfig.AppId),
-		MchId: proto.String(WXConfig.MchId),
-		AppKey:proto.String(WXConfig.ApiKey)}
+		Id:     proto.Int32(1),
+		AppId:  proto.String(WXConfig.AppId),
+		MchId:  proto.String(WXConfig.MchId),
+		AppKey: proto.String(WXConfig.ApiKey)}
 	return ret
 }
 
 func getDDZPayModel() *ddproto.PayBasePaymodel {
 	ret := &ddproto.PayBasePaymodel{
-		Id:    proto.Int32(1),
-		AppId: proto.String(WXConfig.AppId),
-		MchId: proto.String(WXConfig.MchId),
-		AppKey:proto.String(WXConfig.ApiKey)}
+		Id:     proto.Int32(1),
+		AppId:  proto.String(WXConfig.AppId),
+		MchId:  proto.String(WXConfig.MchId),
+		AppKey: proto.String(WXConfig.ApiKey)}
 	return ret
 }
 

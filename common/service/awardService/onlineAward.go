@@ -1,15 +1,15 @@
 package awardService
 
 import (
+	"casino_common/common/log"
+	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/redisUtils"
-	"github.com/golang/protobuf/proto"
 	"casino_common/utils/timeUtils"
-	"time"
-	"casino_common/common/log"
-	"github.com/name5566/leaf/gate"
-	"casino_common/common/userService"
 	"errors"
+	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/gate"
+	"time"
 )
 
 //在线奖励
@@ -23,10 +23,10 @@ func InitOnlineAward(userId uint32) (*ddproto.AwardMOnline, error) {
 
 //登录的时候初始化在线奖励,
 /**
-	1，原来的登录奖励记录是当天，需要重新开始计时，但是时间等级一致
-	2，原来的登录奖励是今天之前，那么全部从头开始计算
-	3，初始化之后保存到redis
- */
+1，原来的登录奖励记录是当天，需要重新开始计时，但是时间等级一致
+2，原来的登录奖励是今天之前，那么全部从头开始计算
+3，初始化之后保存到redis
+*/
 func oninit(d *ddproto.AwardMOnline) {
 	//需要判断是不是同一天
 	tnow := time.Now()
@@ -109,7 +109,7 @@ func GetOnlineInfo(userId uint32, a gate.Agent) error {
 	//获取在线奖励详情
 	d := getOnlineData(userId)
 	//计算时间差
-	dura := timeUtils.DiffSec(time.Now(), timeUtils.String2YYYYMMDDHHMMSS(d.GetBeginTime()).Add(time.Second * time.Duration(d.GetDurationSec())))
+	dura := timeUtils.DiffSec(time.Now(), timeUtils.String2YYYYMMDDHHMMSS(d.GetBeginTime()).Add(time.Second*time.Duration(d.GetDurationSec())))
 
 	//回复消息
 	ack := new(ddproto.AwardAckOnlineInfo)

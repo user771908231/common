@@ -1,11 +1,11 @@
 package tradeLogService
 
 import (
-	"testing"
 	"casino_common/proto/ddproto"
-	"sync"
-	"time"
 	"casino_common/test"
+	"sync"
+	"testing"
+	"time"
 )
 
 func init() {

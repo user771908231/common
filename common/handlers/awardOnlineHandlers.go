@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"casino_common/proto/ddproto"
-	"github.com/name5566/leaf/gate"
+	"casino_common/common/cfg"
+	"casino_common/common/consts"
 	"casino_common/common/service/awardService"
 	"casino_common/common/userService"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/consts"
-	"casino_common/common/cfg"
+	"casino_common/proto/ddproto"
 	"fmt"
+	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/gate"
 )
 
 //在线奖励的处理
@@ -36,7 +36,7 @@ func HandlerNewUserAward(args []interface{}) {
 	ack := &ddproto.AwardAckGetNewUser{
 		Header: &ddproto.ProtoHeader{
 			UserId: proto.Uint32(userId),
-			Error:  proto.String(fmt.Sprintf("恭喜你，成功领取 %.2f红包 分享奖励。",cfg.GetNewUserAward())),
+			Error:  proto.String(fmt.Sprintf("恭喜你，成功领取 %.2f红包 分享奖励。", cfg.GetNewUserAward())),
 			Code:   proto.Int32(consts.ACK_RESULT_SUCC),
 		},
 	}
