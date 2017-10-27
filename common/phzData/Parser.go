@@ -602,27 +602,27 @@ func GetPaisByValue2(handPokers []*PHZPoker, value int32) []*PHZPoker {
 
 //校验玩家是否天胡：砌完牌后，玩家手中有3提或5坎，称为天胡
 func (p *ParserCore) CheckHu(userGameData interface{}) (bool, error) {
-	tiCount := make(map[int]int32)
-	kanCount := make(map[int]int32)
+	var tiCount int32
+	var kanCount int32
 	handPokers := userGameData.([]*PHZPoker)
 	paiCounts := CountHandPais(handPokers)
 	if paiCounts != nil {
-		for paiValue, paiCount := range paiCounts {
+		for _, paiCount := range paiCounts {
 			if paiCount == 4 {
-				tiCount[paiValue]++
+				tiCount++
 			}
 			if paiCount == 3 {
-				kanCount[paiValue]++
+				kanCount++
 			}
 		}
 	}
-	if len(tiCount) >= 3 {
+	if tiCount >= 3 {
 		return true, nil
 	}
-	if len(kanCount) >= 5 {
+	if kanCount >= 5 {
 		return true, nil
 	}
-	if len(tiCount) < 3 && len(kanCount) < 5 && (len(tiCount)+len(kanCount)) >= 5 {
+	if tiCount < 3 && kanCount < 5 && tiCount+kanCount >= 5 {
 		return true, nil
 	}
 	return false, nil
