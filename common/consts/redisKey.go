@@ -83,3 +83,8 @@ const (
 const (
 	RKEY_ROBOT_WIN_RATE_HZH string = "rkey_robot_win_rate_hzh" //红中机器人胜率
 )
+
+//配置信息
+const (
+	RKEY_CONFIG_ROBOT_HEADERURL_PREFIX string = "rkey_config_robot_headerurl_prefix" //机器人头像前缀
+)
