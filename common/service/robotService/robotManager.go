@@ -9,6 +9,7 @@ import (
 	"casino_common/utils/db"
 	"casino_common/utils/numUtils"
 	"casino_common/utils/rand"
+	"fmt"
 	"github.com/golang/protobuf/proto"
 	"gopkg.in/mgo.v2/bson"
 	"sync"
@@ -25,8 +26,8 @@ type RobotsMgrApi interface {
 //数据库
 type RobotInfo struct {
 	UserId    float64
-	HeaderUrl string
 	NickName  string
+	HeaderUrl string
 	Sex       float64
 	City      string
 	Available bool
@@ -110,17 +111,15 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 	city := ""
 
 	//查询数据库 获取机器人信息
-	err = db.C(tableName.DBT_T_ROBOT_INFO).Find(bson.M{"available": true}, robotInfo)
+	err = db.C(tableName.DBT_T_ROBOT_INFO).Find(bson.M{"available": "true"}, robotInfo)
 	if robotInfo != nil {
 		if nickName != "" {
 			nickName = robotInfo.NickName
 		}
 
-		if robotInfo.HeaderUrl != "" {
-			headUrl = "http://dev.tondeen.com/head_imgs/" + robotInfo.HeaderUrl
-		}
 		sex = int32(robotInfo.Sex)
 		city = robotInfo.City
+		headUrl = robotInfo.HeaderUrl
 
 		//这里已经用了
 	}
@@ -130,16 +129,16 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 	}
 	log.T("开始创建一个机器人uid:%v nickName:%v headUrl:%v sex:%v city:%v", uid, nickName, headUrl, sex, city)
 	//channel : "robot"
-	user, err = userService.NewUserAndSave(uid, "", "", nickName, headUrl, sex, city, "robot", "localhost")
+	user, err = userService.NewUserAndSave(uid, "", fmt.Sprintf("%v", uid), nickName, headUrl, sex, city, "robot", "localhost")
 	if err != nil || user == nil {
 		return nil
 	}
 
 	//更新状态
 	if robotInfo != nil {
-		err = db.C(tableName.DBT_T_ROBOT_INFO).Update(bson.M{"available": true, "nickname": robotInfo.NickName, "headerurl": robotInfo.HeaderUrl}, bson.M{"$set": bson.M{"available": false, "userid": uid, "regtime": time.Now()}})
+		err = db.C(tableName.DBT_T_ROBOT_INFO).Update(bson.M{"available": "true", "nickname": robotInfo.NickName, "sex": robotInfo.Sex, "headerurl": robotInfo.HeaderUrl}, bson.M{"$set": bson.M{"available": "false", "userid": uid, "regtime": time.Now()}})
 		if err != nil {
-			log.E("更新机器人[%v]数据库信息的时候失败err: %v", err)
+			log.E("更新机器人[%v]数据库信息的时候失败err: %v", uid, err)
 		}
 	}
 
