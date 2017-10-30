@@ -88,8 +88,8 @@ func ClearRealUserAccount(confirm bool) {
 				continue
 			}
 
-			userService.DECRUserCOIN(user.GetId(), user.GetCoin(), "consoleCommand,账户金币清零")
-			userService.DECRUserDiamond(user.GetId(), user.GetDiamond(), "consoleCommand,账户钻石清零")
+			userService.DECRUserCOIN(user.GetId(), userService.GetUserCoin(user.GetId()), "consoleCommand,账户金币清零")
+			userService.DECRUserDiamond(user.GetId(), userService.GetUserDiamond(user.GetId()), "consoleCommand,账户钻石清零")
 			userService.DECUserBonus(user.GetId(), userService.GetUserBonus(user.GetId()), "consoleCommand,账户红包清零")
 			userService.DECUserTicket(user.GetId(), userService.GetUserTicket(user.GetId()), "consoleCommand,账户奖券清零")
 
