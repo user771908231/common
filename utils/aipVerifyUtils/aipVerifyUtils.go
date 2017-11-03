@@ -32,7 +32,7 @@ func VerifyReceipt(receipt_code string) (receipt *goiap.Receipt, err error) {
 			//验证错误
 			log.E("AppleIAP Verify Fail No.%d. receipt_code:%v receipt:%v err:%v", i+1, receipt_code, receipt, err)
 			//延时再次验证
-			<-time.After(1.5*time.Second)
+			<-time.After(1*time.Second)
 		}else {
 			//验证成功
 			log.E("AppleIAP Verify Success No.%d. receipt_code:%v receipt:%v err:%v", i+1, receipt_code, receipt, err)

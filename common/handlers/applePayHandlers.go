@@ -7,6 +7,7 @@ import (
 	"casino_common/proto/ddproto"
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/gate"
+	"casino_common/utils/aipVerifyUtils"
 )
 
 //处理统一下单
@@ -15,6 +16,16 @@ func HandlerApplePayRechargeCb(args []interface{}) {
 	a := args[1].(gate.Agent)
 	//通过meal知道 充值的数目等
 	userId := m.GetHeader().GetUserId()
+
+	//验证receiptcode
+	_,err := aipVerifyUtils.VerifyReceipt(m.GetReceiptCode())
+	if err != nil {
+		ack := new(ddproto.ApplepayAcksRechargecb)
+		*ack.Header.Code = -2
+		*ack.Header.Error = "订单验证失败，购买失败！"
+		a.WriteMsg(ack)
+		return
+	}
 
 	//得到套餐
 	p := service.GetMealById(m.GetProductId())
