@@ -550,8 +550,6 @@ It has these top-level messages:
 	PhzReqChiPai
 	PhzReqBiPai
 	PhzAckBiPai
-	PhzReqSecondBi
-	PhzAckSecondBi
 	PhzAckChiPai
 	PhzPlayTiPai
 	PhzPlayCanTiPai
@@ -583,6 +581,7 @@ It has these top-level messages:
 	ZjhReqEnterDesk
 	ZjhBaseUserInfo
 	ZjhDeskStateAck
+	ZjhReqCreateDesk
 	ZjhBcGameInfo
 	ZjhBaseDeskInfo
 	ZjhBcNewPlayerEnter
