@@ -550,6 +550,8 @@ It has these top-level messages:
 	PhzReqChiPai
 	PhzReqBiPai
 	PhzAckBiPai
+	PhzReqSecondBi
+	PhzAckSecondBi
 	PhzAckChiPai
 	PhzPlayTiPai
 	PhzPlayCanTiPai

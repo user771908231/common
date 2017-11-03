@@ -180,6 +180,10 @@ var _ = math.Inf
 
 // Ignoring public import of phz_ack_biPai from phz_play.proto
 
+// Ignoring public import of phz_req_secondBi from phz_play.proto
+
+// Ignoring public import of phz_ack_secondBi from phz_play.proto
+
 // Ignoring public import of phz_ack_chiPai from phz_play.proto
 
 // Ignoring public import of phz_play_tiPai from phz_play.proto

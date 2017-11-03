@@ -30,6 +30,9 @@ type TTradeLogRow struct {
   四个参数分别为：用户id、货币类型、货币增减数目、备注（备注必须填写）
 */
 func Add(user_id uint32, trade_type ddproto.HallEnumTradeType, num float64, amount float64, msg string) error {
+	if num == 0 {
+		return nil
+	}
 	chan_list <- TTradeLogRow{
 		Id:     bson.NewObjectId(),
 		Uid:    user_id,
