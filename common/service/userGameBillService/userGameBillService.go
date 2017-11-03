@@ -1,20 +1,17 @@
 package userGameBillService
 
 import (
-	"time"
-	"github.com/name5566/leaf/util"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/common/log"
-	"casino_common/utils/db"
-	"casino_common/common/consts/tableName"
 	"casino_common/common/Error"
-	"casino_common/utils/numUtils"
-	"strings"
-	"casino_common/common/consts"
-	"casino_common/utils/redisUtils"
+	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
 	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/redisUtils"
+	"fmt"
 	"github.com/golang/protobuf/proto"
+	"github.com/name5566/leaf/util"
 	"math"
+	"time"
 )
 
 //玩家游戏账单数据 没玩完一局游戏存储一次数据
@@ -32,8 +29,6 @@ func init() {
 
 func OnInit(gameId int32, watchPoint float64) {
 	Cfg.gameId = gameId
-	//Cfg.limitLength = limitLength
-	Cfg.tbName = tableName.DBT_USER_GAME_BILL
 	Cfg.watchPoint = watchPoint
 }
 
@@ -41,7 +36,6 @@ func OnInit(gameId int32, watchPoint float64) {
 var Cfg struct {
 	gameId      int32   //游戏id
 	limitLength int32   //内存中数据的条数
-	tbName      string  //表名
 	watchPoint  float64 //是否进入退出赢模式的点数
 }
 
@@ -49,11 +43,13 @@ var Cfg struct {
 type T_user_game_bill struct {
 	UserId     uint32
 	GameId     int32     //游戏id
-	RoomType   int32     //游戏类型 gameid的补充
+	RoomType   int32     //金币场还是朋友桌
 	DeskId     int32     //房间Id
 	Password   string    //房间号
 	GameNumber int32     //一局游戏编号
-	WinAmount  int64     //输赢得分
+	WinAmount  int64     //一局输赢得分
+	Balance    int64     //输赢后余额
+	IsRobot    bool      //是否是机器人
 	EndTime    time.Time //结束时间
 }
 
@@ -66,6 +62,8 @@ func (t T_user_game_bill) GetProto() *ddproto.UserGameBill {
 	ret.GameNumber = proto.Int32(t.GameNumber)
 	ret.RoomType = proto.Int32(t.RoomType)
 	ret.DeskId = proto.Int32(t.DeskId)
+	ret.IsRobot = proto.Bool(t.IsRobot)
+	ret.Balance = proto.Int64(t.Balance)
 	ret.EndTime = proto.Int64(t.EndTime.Unix())
 	return ret
 }
@@ -79,6 +77,8 @@ func Transform(bill *ddproto.UserGameBill) T_user_game_bill {
 	ret.WinAmount = bill.GetWinAmount()
 	ret.UserId = bill.GetUserId()
 	ret.GameId = Cfg.gameId
+	ret.Balance = bill.GetBalance()
+	ret.IsRobot = bill.GetIsRobot()
 	ret.RoomType = bill.GetRoomType()
 	return ret
 }
@@ -87,35 +87,31 @@ func Transform(bill *ddproto.UserGameBill) T_user_game_bill {
 var UserBill *util.Map
 
 //根据userId从数据库查询玩家账单数据
-func GetViaDB(userId uint32, roomType int32) []T_user_game_bill {
-	var gameBills []T_user_game_bill
-
-	log.T("GetViaDB userId%v gameId%v roomType%v tbName[%v] limitLength[%v]", userId, Cfg.gameId, roomType, Cfg.tbName, Cfg.limitLength)
-	db.Log(Cfg.tbName).Page(bson.M{
-		"userid":   userId,
-		"gameid":   Cfg.gameId,
-		"roomtype": roomType,
-	}, &gameBills, "-endtime", 1, int(Cfg.limitLength))
-
-	if gameBills == nil || len(gameBills) <= 0 {
-		log.T("没有从数据库中找到玩家[%v]相关的游戏账单数据... gid[%v] roomType[%v]", userId, Cfg.gameId, roomType)
-		return nil
-	}
-	return gameBills
-}
+//func GetViaDB(userId uint32, roomType int32) []T_user_game_bill {
+//	var gameBills []T_user_game_bill
+//
+//	log.T("GetViaDB userId%v gameId%v roomType%v tbName[%v] limitLength[%v]", userId, Cfg.gameId, roomType, Cfg.tbName, Cfg.limitLength)
+//	db.Log(Cfg.tbName).Page(bson.M{
+//		"userid":   userId,
+//		"gameid":   Cfg.gameId,
+//		"roomtype": roomType,
+//	}, &gameBills, "-endtime", 1, int(Cfg.limitLength))
+//
+//	if gameBills == nil || len(gameBills) <= 0 {
+//		log.T("没有从数据库中找到玩家[%v]相关的游戏账单数据... gid[%v] roomType[%v]", userId, Cfg.gameId, roomType)
+//		return nil
+//	}
+//	return gameBills
+//}
 
 //redis key 例如 rkey_user_game_bill_11290_2_0
 func getRedisKey(userId uint32, gameId, roomType int32) string {
-	idstr, _ := numUtils.Uint2String(userId)
-	gameIdSrt, _ := numUtils.Int2String(gameId)
-	roomTypeSrt, _ := numUtils.Int2String(roomType)
-	ret := strings.Join([]string{consts.RKEY_USER_GAME_BILL, idstr, gameIdSrt, roomTypeSrt}, "_")
-	return ret
+	return fmt.Sprintf("%v_%v_%v", userId, gameId, roomType)
 }
 
 //根据userId从redis查询玩家账单数据
 func GetViaRedis(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
-	log.T("GetViaRedis userId%v gameId%v roomType%v tbName[%v] limitLength[%v]", userId, Cfg.gameId, roomType, Cfg.tbName, Cfg.limitLength)
+	log.T("GetViaRedis userId%v gameId%v roomType%v limitLength[%v]", userId, Cfg.gameId, roomType, Cfg.limitLength)
 	gameBills := &ddproto.RedisUserGameBill{}
 
 	redisUtils.GetObj(getRedisKey(userId, Cfg.gameId, roomType), gameBills)
@@ -153,31 +149,39 @@ func GetViaCache(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 	return nil
 }
 
-func Insert(userId uint32, roomType, deskId, gameNumber int32, password string, winAmount int64) {
-	log.T("开始添加玩家[%v]的游戏账单数据...", userId)
-	bill := T_user_game_bill{}
-	bill.RoomType = roomType
-	bill.GameId = Cfg.gameId
-	bill.UserId = userId
-	bill.DeskId = deskId
-	bill.GameNumber = gameNumber
-	bill.Password = password
-	bill.WinAmount = winAmount
-	bill.EndTime = time.Now()
+func Insert(b T_user_game_bill) {
+	log.T("开始添加玩家[%v]的游戏账单数据...", b.UserId)
+
+	if b.UserId <= 0 {
+		log.W("添加玩家[%v]的游戏账单数据失败 玩家id错误", b.UserId)
+		return
+	}
+
+	if b.GameId <= 0 {
+		b.GameId = Cfg.gameId
+	}
+
+	if b.GameId <= 0 {
+		log.W("添加玩家[%v]的游戏账单数据失败 gameid错误", b.UserId)
+		return
+	}
+
+	b.EndTime = time.Now()
 
 	//同步插入到内存
-	insert2Memory(bill.GetProto())
+	insert2Memory(b.GetProto())
 
 	//同步插入到redis
-	insert2Redis(bill.GetProto(), roomType)
+	insert2Redis(b.GetProto())
 
 	//异步插入数据库
 	go func(data interface{}) {
 		defer Error.ErrorRecovery("保存玩家游戏账单到mgo")
-		log.T("开始异步添加玩家[%v]的游戏账单数据到数据库中... bill[%v]", userId, bill)
-		db.Log(Cfg.tbName).Insert(data)
-	}(&bill)
-	log.T("添加玩家[%v]的游戏账单数据完毕", userId)
+		tbName := fmt.Sprintf("%v_%v_%v", tableName.DBT_USER_GAME_BILL, Cfg.gameId, b.RoomType)
+		log.T("开始异步添加玩家[%v]的游戏账单数据到数据库中... tbName[%v] bill[%v]", b.UserId, tbName, b)
+		db.Log(tbName).Insert(data)
+	}(&b)
+	log.T("添加玩家[%v]的游戏账单数据完毕", b.UserId)
 }
 
 //将一条账单插入到内存中
@@ -200,15 +204,15 @@ func insert2Memory(b *ddproto.UserGameBill) {
 	log.T("添加玩家[%v]的游戏账单数据到内存中完毕", b.GetUserId())
 }
 
-func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
+func insert2Redis(b *ddproto.UserGameBill) {
 	log.T("开始添加玩家[%v]的游戏账单数据到redis中... bill[%v]", b.GetUserId(), b)
 	//将内存中的bills取出来 把新的bill追加进去 再将汇总的bills重新set回去
 	redisUserGameBill := &ddproto.RedisUserGameBill{}
-	redisUtils.GetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
+	redisUtils.GetObj(getRedisKey(b.GetUserId(), Cfg.gameId, b.GetRoomType()), redisUserGameBill)
 
 	if redisUserGameBill.GetData() == nil {
 		redisUserGameBill.Data = []*ddproto.UserGameBill{b}
-		redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
+		redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, b.GetRoomType()), redisUserGameBill)
 		log.T("redis中没有数据, 第一次添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
 		return
 	}
@@ -224,7 +228,7 @@ func insert2Redis(b *ddproto.UserGameBill, roomType int32) {
 	//}
 	//redisUserGameBill.Data = newUserBills[:lenth]
 
-	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, roomType), redisUserGameBill)
+	redisUtils.SetObj(getRedisKey(b.GetUserId(), Cfg.gameId, b.GetRoomType()), redisUserGameBill)
 	log.T("添加玩家[%v]的游戏账单数据到redis中完毕", b.GetUserId())
 }
 
