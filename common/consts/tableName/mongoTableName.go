@@ -59,6 +59,7 @@ const (
 	//统计
 	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡游戏内实际消耗
 	DBT_STATISTICS_ROOMCARD_DAY_DETAILS string = "t_statistics_roomcard_day_details" //游戏房卡消耗汇总
+	DBT_ROBOT_DAILY_BILL_AMOUNT         string = "t_robot_daily_bill_amount"         //机器人每日输赢汇总及库存金币统计
 
 	DBT_ROOMCARD_LOG string = "t_roomcard_log" //房卡消耗记录表
 

@@ -3,11 +3,11 @@ package dbUtils
 import (
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
+	"casino_common/common/model/userDao"
 	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"gopkg.in/mgo.v2/bson"
-	"casino_common/common/model/userDao"
 )
 
 //将redis中的用户数据落地到mongo,方便查询和排序
@@ -56,6 +56,7 @@ func SaveAllRedisUserToMongo(confirm bool) {
 	}
 	log.T("执行完毕，将redis中所有的user数据保存到mongo,共同步成功%d个用户的数据，失败%d个。", success_count, fail_count)
 }
+
 //删除所有真实用户的金币、钻石、红包、奖券.
 func ClearRealUserAccount(confirm bool) {
 	if confirm == false {
@@ -95,8 +96,8 @@ func ClearRealUserAccount(confirm bool) {
 
 			err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": user.GetId()}, bson.M{
 				"$set": bson.M{
-					"coin":     0,
-					"diamond":  0,
+					"coin":    0,
+					"diamond": 0,
 				},
 			})
 			if err == nil {
