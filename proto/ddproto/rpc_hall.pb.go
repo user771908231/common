@@ -145,6 +145,10 @@ var _ = math.Inf
 
 // Ignoring public import of hall_ack_agent_room_history_list from hall.proto
 
+// Ignoring public import of hall_req_bind_invcode from hall.proto
+
+// Ignoring public import of hall_ack_bind_invcode from hall.proto
+
 // Ignoring public import of hall_enum_goods_type from hall.proto
 
 // Ignoring public import of hall_strongbox_access_type from hall.proto

@@ -351,6 +351,8 @@ It has these top-level messages:
 	HallAckAgentRoomGamingList
 	HallReqAgentRoomHistoryList
 	HallAckAgentRoomHistoryList
+	HallReqBindInvcode
+	HallAckBindInvcode
 	HallItemEvent
 	HallMailItem
 	HallBagItem
