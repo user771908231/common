@@ -83,6 +83,10 @@ func Transform(bill *ddproto.UserGameBill) T_user_game_bill {
 	return ret
 }
 
+func GetTableName(gid, roomType int32) string {
+	return fmt.Sprintf("%v_%v_%v", tableName.DBT_USER_GAME_BILL, gid, roomType)
+}
+
 //每个游戏只会维护自己游戏的数据
 var UserBill *util.Map
 
@@ -177,7 +181,7 @@ func Insert(b T_user_game_bill) {
 	//异步插入数据库
 	go func(data interface{}) {
 		defer Error.ErrorRecovery("保存玩家游戏账单到mgo")
-		tbName := fmt.Sprintf("%v_%v_%v", tableName.DBT_USER_GAME_BILL, Cfg.gameId, b.RoomType)
+		tbName := GetTableName(Cfg.gameId, b.RoomType)
 		log.T("开始异步添加玩家[%v]的游戏账单数据到数据库中... tbName[%v] bill[%v]", b.UserId, tbName, b)
 		db.Log(tbName).Insert(data)
 	}(&b)
