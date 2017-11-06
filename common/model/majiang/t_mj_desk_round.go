@@ -48,6 +48,13 @@ type T_mj_desk_round struct {
 	RoundStr     string //局数信息
 }
 
+//
+type T_mj_desk_round_playback struct {
+	DeskId       int32
+	GameNumber   int32
+	PlayBackData []*ddproto.PlaybackSnapshot
+}
+
 func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	result := &ddproto.BeanGameRecord{
 		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
@@ -215,9 +222,9 @@ func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 
 func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
-	tbName := tableName.DBT_MJ_ZHZH_DESK_ROUND
+	tbName := tableName.DBT_MJ_ZHZH_DESK_ROUND_PLAYBACK
 	if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
-		tbName = tableName.DBT_MJ_HZH_DESK_ROUND
+		tbName = tableName.DBT_MJ_HZH_DESK_ROUND_PLAYBACK
 	}
 	db.Log(tbName).Find(bson.M{
 		"gamenumber": gamenumber,
