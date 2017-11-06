@@ -16,16 +16,16 @@ func GetConn() data.Data {
 }
 
 /**
-	获取redis中的一个对象,如果redis中没有值,那么返回nil
-	如果有值,那么返回一个proto.message,需要取值的时候,需要强制转换
-	eg.
-		proto := GetObj(key,&bbproto.type{})
-		if proto == nil{
-			//没有找到值
-		}else{
-			result := proto.(*bbproto.type)
-		}
- */
+获取redis中的一个对象,如果redis中没有值,那么返回nil
+如果有值,那么返回一个proto.message,需要取值的时候,需要强制转换
+eg.
+	proto := GetObj(key,&bbproto.type{})
+	if proto == nil{
+		//没有找到值
+	}else{
+		result := proto.(*bbproto.type)
+	}
+*/
 
 func GetObj(key string, p proto.Message) proto.Message {
 	conn := GetConn()
@@ -78,8 +78,8 @@ func SetInt64(key string, value int64) {
 }
 
 /**
-	保存一个对象到redis
- */
+保存一个对象到redis
+*/
 func SetObj(key string, p proto.Message) error {
 	conn := GetConn()
 	defer conn.Close()

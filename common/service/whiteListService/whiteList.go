@@ -1,18 +1,18 @@
 package whiteListService
 
 import (
-	"casino_common/utils/redisUtils"
 	"casino_common/common/consts"
-	"strings"
-	"casino_common/utils/numUtils"
 	"casino_common/common/log"
-	"time"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/redisUtils"
 	"fmt"
+	"strings"
+	"time"
 )
 
 type WhiteUser struct {
-	UserId uint32  //用户id
-	WinRate int32    //胜率
+	UserId  uint32 //用户id
+	WinRate int32  //胜率
 }
 
 //默认胜率
@@ -25,7 +25,7 @@ var lastRefreshTime time.Time
 //刷新白名单
 func RefreshWhiteList(gameId int32) {
 	//更新频率30秒
-	if time.Now().Sub(lastRefreshTime) < 5 * time.Second {
+	if time.Now().Sub(lastRefreshTime) < 5*time.Second {
 		return
 	}
 
@@ -68,10 +68,10 @@ func GetWhiteListByGid(gameId int32) []WhiteUser {
 
 //是否在白名单中
 func GetWhiteUser(gameId int32, userId uint32) *WhiteUser {
-	if _,ok := whiteList[gameId];!ok {
+	if _, ok := whiteList[gameId]; !ok {
 		return nil
 	}
-	for _,u := range whiteList[gameId] {
+	for _, u := range whiteList[gameId] {
 		if u.UserId == userId {
 			return &u
 		}
