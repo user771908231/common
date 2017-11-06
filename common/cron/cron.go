@@ -18,7 +18,8 @@ import (
 
 //加载定时任务
 func OnInit() {
-	//1.清理每日任务记录
+	//凌晨
+	// 1.清理每日任务记录
 	//2.同步玩家数据
 	Cron("0 0 0 * * *", func() {
 		//用户任务状态表
@@ -29,8 +30,8 @@ func OnInit() {
 		dbUtils.SaveAllRedisUserToMongo(true)
 	}, "任务状态清理及玩家数据同步")
 
-	//汇总每日机器人输赢金币及库存金币
-	Cron("0 0 0 * * *", AmountRobotsBillAndBalance, "汇总机器人输赢金币及库存金币")
+	//凌晨1min 汇总每日机器人输赢金币及库存金币
+	Cron("0 1 0 * * *", AmountRobotsBillAndBalance, "汇总机器人输赢金币及库存金币")
 }
 
 //开启一个定时任务 one cron per goroutine
@@ -94,7 +95,7 @@ func AmountRobotsBillAndBalance() {
 
 	//开始时间加一天作为结束时间
 	end := start.AddDate(0, 0, 1)
-	log.T("汇总机器人输赢金币和库存 查询时间 start:%v end:%v", start, end)
+	log.T("获得汇总机器人输赢金币和库存的查询时间 start:%v end:%v", start, end)
 	group := struct {
 		WinAmount int64
 	}{}
@@ -124,20 +125,20 @@ func AmountRobotsBillAndBalance() {
 		tbName := userGameBillService.GetTableName(int32(gid), int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
 		err := db.Log(tbName).Pipe(query_win_amount, &group)
 		if err != nil {
-			//log.E("汇总机器人输赢金币时err game[%v] tbName[%v] err[%v] query:%v", gid.String(), tbName, err, query_win_amount)
+			log.E("汇总机器人输赢金币时err game[%v] tbName[%v] err[%v] query:%v", gid.String(), tbName, err, query_win_amount)
 		}
 
 		//汇总库存金币
 		//1.先从数据库查询到所有机器人
 		//2.从redis里查询金币 累加起来
-		users := userDao.FindUsersByKV("robottype", int32(gid))
 		balanceAmount := int64(0)
+		users := userDao.FindUsersByKV("robottype", int32(gid))
 		for _, u := range users {
 			balanceAmount += userService.GetUserCoin(u.GetId())
 		}
 
 		log.T("汇总机器人输赢金币及库存 game[%v] 机器人数量[%v] 输赢分数[%v] 金币库存[%v]", gid.String(), len(users), group.WinAmount, balanceAmount)
-		if err == nil && len(users) > 0 {
+		if len(users) > 0 {
 			data := T_daily_bill_amount{
 				Gid:                float64(gid),
 				DailyWinAmount:     group.WinAmount,
