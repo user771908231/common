@@ -18,9 +18,8 @@ import (
 
 //加载定时任务
 func OnInit() {
-	//凌晨
-	// 1.清理每日任务记录
-	//2.同步玩家数据
+	//凌晨0点
+	//清理每日任务记录
 	Cron("0 0 0 * * *", func() {
 		//用户任务状态表
 		db.C(tableName.DBT_T_USER_TASK).Drop()
@@ -29,6 +28,12 @@ func OnInit() {
 		//同步用户金币、房卡、钻石数据redis到mongo
 		dbUtils.SaveAllRedisUserToMongo(true)
 	}, "任务状态清理及玩家数据同步")
+
+	//凌晨4点 同步玩家数据
+	Cron("0 0 4 * * *", func() {
+		//同步用户金币、房卡、钻石数据redis到mongo
+		dbUtils.SaveAllRedisUserToMongo(true)
+	}, "同步玩家redis数据到mongo")
 
 	//凌晨1min 汇总每日机器人输赢金币及库存金币
 	Cron("0 1 0 * * *", AmountRobotsBillAndBalance, "汇总机器人输赢金币及库存金币")
