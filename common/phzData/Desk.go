@@ -33,8 +33,10 @@ type DeskCfg struct {
 	UserCountLimit   int32  //玩家的人数
 	CurrRound        int32  //当前的场次数
 	Password         string //房间号
-	BeginTime        string //开始时间
-	EndTime          string //结束时间
+	GameStartTime    int64  //游戏开始时间
+	GameEndTime      int64  //游戏结束时间
+	BeginTime        int64  //单局开始时间
+	EndTime          int64  //单局结束时间
 	RoomType         int32  //房间类型
 	TotalPokerNum    int32  //扑克牌
 	HandPokerInitNum int32  //初始手牌的数量
@@ -44,6 +46,7 @@ type DeskCfg struct {
 	CardsNum         int32  //手牌数量
 	IsDaiKai         bool   //是否代开
 	ApplyDisUser     uint32 //申请解散的玩家
+	DiceValue        int32  //每局随机的概率值
 }
 
 type DeskGameData struct {

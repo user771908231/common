@@ -21,7 +21,7 @@ func (u *User) GetUserId() uint32 {
 	return u.UserId
 }
 
-func (u *User) GetNikcName() string {
+func (u *User) GetNickName() string {
 	return u.URedis.GetNickName()
 }
 
@@ -50,23 +50,24 @@ func (u *User) SetGameStatus(s int32) {
 }
 
 type UserGameData struct {
-	HandPokers   []*PHZPoker      //手牌
-	OutCards     []*PHZPoker      //玩家摸起来且没有被操作的牌
-	PengPai      []*PengPai       //碰的牌
-	ChiPai       []*ChiPai        //吃的牌
-	TiPai        []*TiPai         //提的牌
-	HuInfo       *HuInfo          //胡牌信息
-	PengChouPais []*PHZPoker      //忍碰、忍吃后的牌为臭牌
-	ChiChouPais  []*PHZPoker      //吃的臭牌
-	CheckCase    []*UserCheckCase //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
-	PaoPais      []*PaoPai        //跑牌
-	WeiPais      []*WeiPai        //偎的牌
-	Score        int64            //总的得分
-	PaoScore     int64            //放炮分,根据这个分数判断是否可以结算
-	RoundHuXi    int32            //单局胡息数，用于计算是否能胡牌
-	GameHuXi     int32            //总的胡息，够200或者400时结束游戏
-	Bill         *Bill            //账单
-	Statistic    *UserStatistic   //统计信息
+	HandPokers    []*PHZPoker      //手牌
+	OutCards      []*PHZPoker      //玩家摸起来且没有被操作的牌
+	PengPai       []*PengPai       //碰的牌
+	ChiPai        []*ChiPai        //吃的牌
+	TiPai         []*TiPai         //提的牌
+	HuInfo        *HuInfo          //胡牌信息
+	PengChouPais  []*PHZPoker      //忍碰、忍吃后的牌为臭牌
+	ChiChouPais   []*PHZPoker      //吃的臭牌
+	CheckCase     []*UserCheckCase //玩家的checkcase， 每个玩家同一张牌可以有多个checkcase
+	PaoPais       []*PaoPai        //跑牌
+	WeiPais       []*WeiPai        //偎的牌
+	JiaoPaiValues []int32          //下叫了的牌值数组
+	Score         int64            //总的得分
+	PaoScore      int64            //放炮分,根据这个分数判断是否可以结算
+	RoundHuXi     int32            //单局胡息数，用于计算是否能胡牌
+	GameHuXi      int32            //总的胡息，够200或者400时结束游戏
+	Bill          *Bill            //账单
+	Statistic     *UserStatistic   //统计信息
 }
 
 func (d *UserGameData) GetPengPai() []*PengPai {
@@ -93,6 +94,7 @@ type UserGameStatus struct {
 	IsFrozen       bool  //是否冻章，打了别人偎的牌后为冻章
 	IsPaoHu        bool  //是否是跑胡，如果是，则断线重连时不发送亮张
 	IsPaoHu2       bool  //是否是跑胡，如果是跑胡
+	IsMustWin      bool  //是否必赢
 	S              int32 //玩家的状态
 	ApplyDissolve  int32
 }

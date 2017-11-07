@@ -978,10 +978,12 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 
 	//找出牌组里原始坎牌
 	var srcKan []*YiKanPai
+	var srcTi []*YiTi
 	totalHuXi := int32(userGameData.RoundHuXi)
 	if len(pais) >= 3 {
 		count := CountHandPais(pais)
 		for paiValue, paiCount := range count {
+			//找原始的坎牌
 			if paiCount == 3 {
 				kan := &YiKanPai{}
 				pokers := GetPaisByValue2(pais, int32(paiValue))
@@ -1001,9 +1003,26 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 				//fmt.Println(fmt.Sprintf("check胡牌时玩家手牌原始的坎牌是：[%v]", Cards2String(kan.Pais)))
 				srcKan = append(srcKan, kan)
 			}
+			//找原始的提牌
+			if paiCount == 4 {
+				ti := &YiTi{}
+				pokers := GetPaisByValue2(pais, int32(paiValue))
+				ti.Pais = append(ti.Pais, pokers...)
+				if paiValue <= 10 {
+					ti.HuXi = 9
+				} else {
+					ti.HuXi = 12
+				}
+
+				totalHuXi += ti.HuXi
+				for _, p := range pokers {
+					pais = DelPaiFromPokersByID(pais, p)
+				}
+				log.T("check胡牌时玩家手牌里原始的提牌是：[%v]", Cards2String(ti.Pais))
+				srcTi = append(srcTi, ti)
+			}
 		}
 	}
-
 	//组合checkPai
 	checkPokers := util.DeepClone(pais).([]*PHZPoker)
 
@@ -1023,6 +1042,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	huInfo := &HuInfo{}
 
 	huInfo.KanPais = append(huInfo.KanPais, srcKan...)
+	huInfo.TiPais = append(huInfo.TiPais, srcTi...)
 
 	//如果找完原始的坎牌，手里没有牌了，则牌型上是可以胡了
 	if (checkPokers == nil || len(checkPokers) == 0) && totalHuXi >= CANHU_LIMIT_HUXI {
