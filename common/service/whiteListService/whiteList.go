@@ -58,7 +58,7 @@ func GetWhiteListByGid(gameId int32) []WhiteUser {
 			new_white_user.UserId = numUtils.String2Uint32(white_user_arr[0])
 			new_white_user.WinRate = int32(numUtils.String2Int(white_user_arr[1]))
 		}
-		if new_white_user.UserId > 10000 && new_white_user.WinRate >= 0 && new_white_user.WinRate <= 100 {
+		if new_white_user.UserId > 10000 {
 			new_list = append(new_list, new_white_user)
 		}
 	}
