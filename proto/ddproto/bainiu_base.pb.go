@@ -351,6 +351,8 @@ It has these top-level messages:
 	HallAckAgentRoomGamingList
 	HallReqAgentRoomHistoryList
 	HallAckAgentRoomHistoryList
+	HallReqBindInvcode
+	HallAckBindInvcode
 	HallItemEvent
 	HallMailItem
 	HallBagItem
@@ -550,8 +552,6 @@ It has these top-level messages:
 	PhzReqChiPai
 	PhzReqBiPai
 	PhzAckBiPai
-	PhzReqSecondBi
-	PhzAckSecondBi
 	PhzAckChiPai
 	PhzPlayTiPai
 	PhzPlayCanTiPai
@@ -569,8 +569,8 @@ It has these top-level messages:
 	PhzPlayUserEndResult
 	PhzPlayEndLottery
 	PlaybackPhzAckPage
-	PhzPlaybackPlayerInfo
 	PhzPlaybackSnapshot
+	PhzPlaybackPlayerInfo
 	PhzPlaybackDeskInfo
 	HelloRequest
 	HelloReply
@@ -583,6 +583,7 @@ It has these top-level messages:
 	ZjhReqEnterDesk
 	ZjhBaseUserInfo
 	ZjhDeskStateAck
+	ZjhReqCreateDesk
 	ZjhBcGameInfo
 	ZjhBaseDeskInfo
 	ZjhBcNewPlayerEnter

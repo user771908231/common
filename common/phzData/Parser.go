@@ -275,6 +275,7 @@ func GetBiPais(chi *ChiPai, Pokers []*PHZPoker, checkPai *PHZPoker) (result []*C
 	//log.T("找[%v]的比牌时，删除原始坎牌后的牌是：[%v]", Cards2String(chi.Pais), Cards2String(handPokers))
 	//var result []*ChiPai
 	//删除被吃的牌
+	handPokers = DelPaiFromPokersByID(handPokers, chi.Pais[0])
 	handPokers = DelPaiFromPokersByID(handPokers, chi.Pais[1])
 	handPokers = DelPaiFromPokersByID(handPokers, chi.Pais[2])
 	//从删除后的手牌里找是否还有跟checkPai牌值相同的牌
