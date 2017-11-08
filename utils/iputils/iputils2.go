@@ -81,7 +81,7 @@ func GetIPSite2(ip string) string {
 func GetDistance(ip1, ip2 string) string {
 	if ip1 == ip2 {
 		//如果两个ip相同，则返回一个很小的距离
-		return fmt.Sprintf("%.2f", float64(rand.Rand(0, 20)) / 100)
+		return fmt.Sprintf("%.2f", float64(rand.Rand(0, 20))/100)
 	}
 	ipInfo1 := strings.Split(GetIPSiteRaw(ip1), ",")
 	ipInfo2 := strings.Split(GetIPSiteRaw(ip2), ",")
