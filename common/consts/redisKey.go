@@ -46,6 +46,7 @@ const (
 	RKEY_GAME_WHITE_LIST string = "rkey_game_white_list" //牛牛白名单
 )
 
+//数据恢复
 const (
 	RKEY_PDK_DATARECOVER_ID_LIST string = "rkey_pdk_datarecover_id_list" //跑得快数据恢复房间ID列表
 	RKEY_PDK_DATARECOVER_DATA    string = "rkey_pdk_datarecover_data"    //跑得快数据恢复数据
@@ -88,4 +89,8 @@ const (
 //配置信息
 const (
 	RKEY_CONFIG_ROBOT_HEADERURL_PREFIX string = "rkey_config_robot_headerurl_prefix" //机器人头像前缀
+)
+
+const (
+	RKEY_ROBOT_AVAILABLE string = "rkey_robot_available" //机器人可用情况
 )

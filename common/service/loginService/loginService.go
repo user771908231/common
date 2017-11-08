@@ -3,7 +3,7 @@ package loginService
 import (
 	"casino_common/proto/ddproto"
 	"casino_common/common/userService"
-	"casino_common/common/service/signService"
+	//"casino_common/common/service/signService"
 	"casino_common/common/log"
 	"github.com/golang/protobuf/proto"
 	"casino_common/utils/numUtils"
@@ -62,11 +62,12 @@ func DoLoginViaInput(userName, password string, userId uint32) (*ddproto.User, e
 }
 
 func DoLoginSuccess(userId uint32) error {
-	error := signService.DoSignLottery(userId)
-	if error != nil {
-		log.T("签到失败, 错误信息[%v]", error)
-		return error
-	}
+	//注释 自动登陆奖励
+	//error := signService.DoSignLottery(userId)
+	//if error != nil {
+	//	log.T("签到失败, 错误信息[%v]", error)
+	//	return error
+	//}
 	return nil
 }
 

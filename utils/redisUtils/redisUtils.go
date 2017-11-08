@@ -47,10 +47,10 @@ func GetBytes(key string) ([]byte, error) {
 	return result, err
 }
 
-func Set(key string, value string) {
+func Set(key string, value string) error {
 	conn := GetConn()
 	defer conn.Close()
-	conn.Set(key, []byte(value))
+	return conn.Set(key, []byte(value))
 }
 
 func SetBytes(key string, value []byte) error {

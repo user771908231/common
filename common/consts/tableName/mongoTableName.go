@@ -59,6 +59,7 @@ const (
 	//统计
 	DBT_STATISTICS_ROOMCARD             string = "t_statistics_roomcard"             //个人房卡游戏内实际消耗
 	DBT_STATISTICS_ROOMCARD_DAY_DETAILS string = "t_statistics_roomcard_day_details" //游戏房卡消耗汇总
+	DBT_ROBOT_DAILY_BILL_AMOUNT         string = "t_robot_daily_bill_amount"         //机器人每日输赢汇总及库存金币统计
 
 	DBT_ROOMCARD_LOG string = "t_roomcard_log" //房卡消耗记录表
 
@@ -99,11 +100,13 @@ const (
 	DBT_MJ_ZXZ_DESK_ROUND     = "t_mj_zxz_desk_round"     //一把捉虾子麻将结束
 	DBT_MJ_ZXZ_DESK_ROUND_ALL = "t_mj_zxz_desk_round_all" //全局捉虾子麻将结束
 
-	DBT_MJ_ZHZH_DESK_ROUND     = "t_mj_zhzh_desk_round"     //一把转转麻将结束
-	DBT_MJ_ZHZH_DESK_ROUND_ALL = "t_mj_zhzh_desk_round_all" //全局转转麻将结束
+	DBT_MJ_ZHZH_DESK_ROUND          = "t_mj_zhzh_desk_round"          //一把转转麻将结束
+	DBT_MJ_ZHZH_DESK_ROUND_ALL      = "t_mj_zhzh_desk_round_all"      //全局转转麻将结束
+	DBT_MJ_ZHZH_DESK_ROUND_PLAYBACK = "t_mj_zhzh_desk_round_playback" //一把转转麻将回放数据
 
-	DBT_MJ_HZH_DESK_ROUND     = "t_mj_hzh_desk_round"     //一把红中麻将结束
-	DBT_MJ_HZH_DESK_ROUND_ALL = "t_mj_hzh_desk_round_all" //全局红中麻将结束
+	DBT_MJ_HZH_DESK_ROUND          = "t_mj_hzh_desk_round"          //一把红中麻将结束
+	DBT_MJ_HZH_DESK_ROUND_ALL      = "t_mj_hzh_desk_round_all"      //全局红中麻将结束
+	DBT_MJ_HZH_DESK_ROUND_PLAYBACK = "t_mj_hzh_desk_round_playback" //一把红中麻将回放数据
 
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束

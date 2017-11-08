@@ -29,15 +29,24 @@ func RefreshWhiteList(gameId int32) {
 		return
 	}
 
-	data := redisUtils.Get(fmt.Sprintf("%s_%02d", consts.RKEY_GAME_WHITE_LIST, gameId))
+	new_list := GetWhiteListByGid(gameId)
+	whiteList[gameId] = new_list
 
+	lastRefreshTime = time.Now()
+	log.T("刷新白名单成功！%v", new_list)
+}
+
+//获取白名单列表
+func GetWhiteListByGid(gameId int32) []WhiteUser {
+	data := redisUtils.Get(fmt.Sprintf("%s_%02d", consts.RKEY_GAME_WHITE_LIST, gameId))
 	list_str := strings.Split(data, ",")
+	new_list := []WhiteUser{}
+
 	if len(list_str) == 0 {
 		log.T("刷新白名单失败，err:redis data nil")
-		return
+		return new_list
 	}
 
-	new_list := []WhiteUser{}
 	for _, white_user_str := range list_str {
 		white_user_arr := strings.Split(white_user_str, "=")
 		new_white_user := WhiteUser{}
@@ -54,9 +63,7 @@ func RefreshWhiteList(gameId int32) {
 		}
 	}
 
-	whiteList[gameId] = new_list
-	lastRefreshTime = time.Now()
-	log.T("刷新白名单成功！%v", new_list)
+	return new_list
 }
 
 //是否在白名单中
