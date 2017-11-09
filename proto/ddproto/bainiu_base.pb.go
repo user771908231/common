@@ -569,8 +569,8 @@ It has these top-level messages:
 	PhzPlayUserEndResult
 	PhzPlayEndLottery
 	PlaybackPhzAckPage
-	PhzPlaybackPlayerInfo
 	PhzPlaybackSnapshot
+	PhzPlaybackPlayerInfo
 	PhzPlaybackDeskInfo
 	HelloRequest
 	HelloReply
