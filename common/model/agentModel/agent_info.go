@@ -29,6 +29,8 @@ type AgentInfo struct {
 	Pid      uint32  //所属上级代理id
 	Level    int32  //代理级别：一级 二级 三级
 	Type     AgentType  //代理类型： 总代 普通带理
+
+	CoinFeeRebate float64  //金币房费提成(单位：人民币元)
 }
 
 //插入表
@@ -42,6 +44,13 @@ func (r *AgentInfo) Save() error {
 	return db.C(tableName.DBT_AGENT_INFO).Update(bson.M{
 		"_id": r.Id,
 	}, r)
+}
+
+//自增金币房费
+func (r *AgentInfo) Inc(key string, val float64) error {
+	return db.C(tableName.DBT_AGENT_INFO).Update(bson.M{"_id": r.Id}, bson.M{
+		"$inc": bson.M{key: val},
+	})
 }
 
 //通过Agent_id获取agent_info
