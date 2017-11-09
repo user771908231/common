@@ -130,7 +130,8 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 	//从数据库中获取一个可用的玩家信息
 	var user *ddproto.User = nil
 	var err error = nil
-	var robotInfo *RobotInfo = &RobotInfo{}
+	robotInfos := []*RobotInfo{}
+	var robotInfo *RobotInfo = nil
 
 	ids, _ := numUtils.Uint2String(uid)
 	nickName := "游客" + ids
@@ -139,7 +140,26 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 	city := ""
 
 	//查询数据库 获取机器人信息
-	err = db.C(tableName.DBT_T_ROBOT_INFO).Find(bson.M{"available": "true"}, robotInfo)
+	err = db.C(tableName.DBT_T_ROBOT_INFO).FindAll(bson.M{"available": "true"}, robotInfos)
+	if err != nil {
+		log.E("新建一个机器人的时候 查询机器人库信息错误 err: %v", err)
+	} else {
+		index := int(rand.Rand(0, int32(len(robotInfos))))
+		log.T("随机取机器人库存信息 可用库存[%v] index:[%v]", len(robotInfos), index)
+		for i, info := range robotInfos {
+			if i >= index && info != nil {
+				robotInfo = info
+				break
+			}
+		}
+		if robotInfo == nil {
+			for _, info := range robotInfos {
+				if info != nil {
+					robotInfo = info
+				}
+			}
+		}
+	}
 	if robotInfo != nil {
 		if robotInfo.NickName != "" {
 			nickName = robotInfo.NickName
@@ -155,9 +175,6 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 		//这里已经用了
 	}
 
-	if err != nil {
-		log.E("新建一个机器人的时候 查询机器人库信息错误 err: %v", err)
-	}
 	log.T("开始创建一个机器人uid:%v nickName:%v headUrl:%v sex:%v city:%v", uid, nickName, headUrl, sex, city)
 	//channel : "robot"
 	user, err = userService.NewUserAndSave(uid, "", fmt.Sprintf("%v", uid), nickName, headUrl, sex, city, "robot", "localhost")
