@@ -118,5 +118,5 @@ func GetDistanceByGi(userId1, userId2 uint32) float64 {
 
 	theta := lng2 - lng1
 	dist := math.Acos(math.Sin(lat1)*math.Sin(lat2) + math.Cos(lat1)*math.Cos(lat2)*math.Cos(theta))
-	return radius*dist
+	return radius * dist
 }
