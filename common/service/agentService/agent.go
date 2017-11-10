@@ -4,6 +4,8 @@ import (
 	"github.com/name5566/leaf/gate"
 	"errors"
 	"casino_common/common/log"
+	"casino_common/utils/agentUtils"
+	"casino_common/common/userService"
 )
 
 func init() {
@@ -49,4 +51,13 @@ func WriteMsg(uid uint32, msg interface{}) error {
 	}else {
 		return errors.New("user agent not found.")
 	}
+}
+
+//获取一个玩家的ip
+func GetUserIp(userId uint32) string {
+	if a,err := GetAgent(userId); err == nil && a != nil {
+		return agentUtils.GetIP(a)
+	}
+
+	return userService.GetUserById(userId).GetLastIp()
 }
