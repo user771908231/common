@@ -1,6 +1,7 @@
 package robotService
 
 import (
+	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
@@ -126,7 +127,7 @@ func (rm *RobotsManager) NewRobotsAndSave(num, minCoin, maxCoin int32) {
 
 //新创建一个机器人，并保存到数据库 [minCoin, maxCoin)
 func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Robot {
-
+	defer Error.ErrorRecovery("NewRobotAndSave")
 	//从数据库中获取一个可用的玩家信息
 	var user *ddproto.User = nil
 	var err error = nil
@@ -140,7 +141,7 @@ func (rm *RobotsManager) NewRobotAndSave(uid uint32, minCoin, maxCoin int32) *Ro
 	city := ""
 
 	//查询数据库 获取机器人信息
-	err = db.C(tableName.DBT_T_ROBOT_INFO).FindAll(bson.M{"available": "true"}, robotInfos)
+	err = db.C(tableName.DBT_T_ROBOT_INFO).FindAll(bson.M{"available": "true"}, &robotInfos)
 	if err != nil {
 		log.E("新建一个机器人的时候 查询机器人库信息错误 err: %v", err)
 	} else {
