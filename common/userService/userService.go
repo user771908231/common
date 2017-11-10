@@ -205,9 +205,12 @@ func UpdateUser2MgoById(userId uint32) {
 }
 
 //把用户保存到mgo并且同事更新redis的数据
-func UpdateUser2Mgo(u *ddproto.User) {
-	userDao.UpdateUser2Mgo(u)
-	SaveUser2Redis(u) //保存user到redis
+func UpdateUser2Mgo(u *ddproto.User) error {
+	err := userDao.UpdateUser2Mgo(u)
+	if err != nil {
+		return err
+	}
+	return SaveUser2Redis(u) //保存user到redis
 }
 
 //初始化redis中用户的金额的值
@@ -249,4 +252,22 @@ func SyncMgoUserMoney(userId uint32) error {
 		return err
 	}
 	return userDao.UpdateUser2Mgo(user) //保存用户到mgo
+}
+
+//获取机器人头像
+func GetUserHeadImg(user *ddproto.User) string {
+	if user == nil {
+		return ""
+	}
+	//是否为机器人
+	if user.GetRobotType() <= 0 {
+		return user.GetHeadUrl()
+	}
+	//是否有头像
+	if user.GetHeadUrl() == "" {
+		return ""
+	}
+
+	head_prefix := redisUtils.Get("rkey_config_robot_headerurl_prefix")
+	return head_prefix + user.GetHeadUrl()
 }

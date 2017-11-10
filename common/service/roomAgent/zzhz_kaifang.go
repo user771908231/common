@@ -27,6 +27,7 @@ var ZzhzConf = CreateConfig{
 	[][]string{
 		[]string{"4人", "四人"},
 		[]string{"3人", "三人"},
+		[]string{"2人", "二人", "两人"},
 	},
 	[][]string{
 		[]string{"鸟不翻倍", "不翻倍", "不翻"},
@@ -86,6 +87,8 @@ func DoZzHzKaifang(owner uint32, group_id int32, option_str string) (error, *ddp
 			opt_circle_num = 16
 		case "3人":
 			opt_gamer_number = 3
+		case "2人":
+			opt_gamer_number = 2
 		case "4人":
 			opt_gamer_number = 4
 		case "鸟不翻倍":

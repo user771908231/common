@@ -149,6 +149,12 @@ var _ = math.Inf
 
 // Ignoring public import of hall_ack_bind_invcode from hall.proto
 
+// Ignoring public import of hall_req_users_latitude from hall.proto
+
+// Ignoring public import of user_latitude_item from hall.proto
+
+// Ignoring public import of hall_ack_users_latitude from hall.proto
+
 // Ignoring public import of hall_enum_goods_type from hall.proto
 
 // Ignoring public import of hall_strongbox_access_type from hall.proto

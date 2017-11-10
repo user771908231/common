@@ -12,7 +12,7 @@ import (
 	"casino_common/utils/redisUtils"
 	"errors"
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/golang/protobuf/proto"
 	"time"
 )
 
@@ -75,16 +75,12 @@ func SetUserCoin(userId uint32, coin int64) int64 {
 
 //获取用户奖券
 func GetUserTicket(userId uint32) int32 {
-	user := new(ddproto.User)
-	db.C(tableName.DBT_T_USER).Find(bson.M{"id": userId}, user)
-	return user.GetTicket()
+	return GetUserById(userId).GetTicket()
 }
 
 //获取用户红包
 func GetUserBonus(userId uint32) float64 {
-	user := new(ddproto.User)
-	db.C(tableName.DBT_T_USER).Find(bson.M{"id": userId}, user)
-	return float64(int64(user.GetBonus()*100)) / 100
+	return GetUserById(userId).GetBonus()
 }
 
 //craete钻石交易记录
@@ -244,40 +240,56 @@ func DECRUserCOIN(userid uint32, d int64, remark string) (int64, error) {
 
 //增加用户奖券
 func INCRUserTicket(userid uint32, d int32, remark string) (int32, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"ticket": d}})
-	ticket_new := GetUserTicket(userid)
-	if err == nil {
-		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_TICKET, float64(d), float64(ticket_new), remark)
+	if user := GetUserById(userid); user != nil {
+		user.Ticket = proto.Int32(user.GetTicket() + d)
+		err := UpdateUser2Mgo(user)
+		if err != nil {
+			return user.GetTicket() - d, err
+		}
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_TICKET, float64(d), float64(user.GetTicket()), remark)
+		return user.GetTicket(), nil
 	}
-	return ticket_new, err
+	return 0, errors.New("user not found")
 }
 
 //减少用户奖券
 func DECUserTicket(userid uint32, d int32, remark string) (int32, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"ticket": -d}})
-	ticket_new := GetUserTicket(userid)
-	if err == nil {
-		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_TICKET, float64(-d), float64(ticket_new), remark)
+	if user := GetUserById(userid); user != nil {
+		user.Ticket = proto.Int32(user.GetTicket() - d)
+		err := UpdateUser2Mgo(user)
+		if err != nil {
+			return user.GetTicket() + d, err
+		}
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_TICKET, float64(-d), float64(user.GetTicket()), remark)
+		return user.GetTicket(), nil
 	}
-	return ticket_new, err
+	return 0, errors.New("user not found")
 }
 
 //增加用户红包
 func INCRUserBonus(userid uint32, d float64, remark string) (float64, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"bonus": d}})
-	bonus_new := GetUserBonus(userid)
-	if err == nil {
-		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_BONUS, d, bonus_new, remark)
+	if user := GetUserById(userid); user != nil {
+		user.Bonus = proto.Float64(user.GetBonus() + d)
+		err := UpdateUser2Mgo(user)
+		if err != nil {
+			return user.GetBonus() - d, err
+		}
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_BONUS, float64(d), float64(user.GetBonus()), remark)
+		return user.GetBonus(), nil
 	}
-	return bonus_new, err
+	return 0, errors.New("user not found")
 }
 
 //减少用户红包
 func DECUserBonus(userid uint32, d float64, remark string) (float64, error) {
-	err := db.C(tableName.DBT_T_USER).Update(bson.M{"id": userid}, bson.M{"$inc": bson.M{"bonus": -d}})
-	bonus_new := GetUserBonus(userid)
-	if err == nil {
-		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_BONUS, -d, bonus_new, remark)
+	if user := GetUserById(userid); user != nil {
+		user.Bonus = proto.Float64(user.GetBonus() - d)
+		err := UpdateUser2Mgo(user)
+		if err != nil {
+			return user.GetBonus() + d, err
+		}
+		tradeLogService.Add(userid, ddproto.HallEnumTradeType_TRADE_BONUS, float64(-d), float64(user.GetBonus()), remark)
+		return user.GetBonus(), nil
 	}
-	return bonus_new, err
+	return 0, errors.New("user not found")
 }
