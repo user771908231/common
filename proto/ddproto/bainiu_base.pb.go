@@ -353,6 +353,9 @@ It has these top-level messages:
 	HallAckAgentRoomHistoryList
 	HallReqBindInvcode
 	HallAckBindInvcode
+	HallReqUsersLatitude
+	UserLatitudeItem
+	HallAckUsersLatitude
 	HallItemEvent
 	HallMailItem
 	HallBagItem
