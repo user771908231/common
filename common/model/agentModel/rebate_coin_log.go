@@ -70,3 +70,27 @@ func GetAgentCoinFeeRebateToday(agent_id uint32) float64 {
 
 	return numUtils.Float64Format(today_rebate.Sum)
 }
+
+//获取昨日佣金
+func GetAgentCoinFeeRebateYesterday(agent_id uint32) float64 {
+	var today_rebate struct{
+		Sum float64
+	}
+	//今日佣金
+	today,_ := time.Parse("2006-01-02", time.Now().AddDate(0,0,-1).Format("2006-01-02"))
+	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
+		bson.M{"$match":bson.M{
+			"agentid": bson.M{"$eq": agent_id},
+			"time": bson.M{
+				"$gte": today,
+				"$lt": today.AddDate(0,0,1),
+			},
+		}},
+		bson.M{"$group":bson.M{
+			"_id": nil,
+			"sum": bson.M{"$sum": "$rebate"},
+		}},
+	}, &today_rebate)
+
+	return numUtils.Float64Format(today_rebate.Sum)
+}
