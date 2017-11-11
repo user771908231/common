@@ -71,8 +71,8 @@ const (
 	DBT_AGENT_REBATE_LOG   = "t_agent_rebate_log"   //代理商领取返利记录表
 	DBT_AGENT_INFO         = "t_agent_info"         //代理关系表
 
-	DBT_AGENT_COIN_FEE_REBATE_LOG = "t_agent_coin_fee_rebate_log"   //金币场房费--代理分成记录
-	DBT_AGENT_COIN_FEE_WITHDRAW_LOG = "t_agent_coin_fee_withdraw_log"   //金币场房费--代理分成提现记录
+	DBT_AGENT_COIN_FEE_REBATE_LOG   = "t_agent_coin_fee_rebate_log"   //金币场房费--代理分成记录
+	DBT_AGENT_COIN_FEE_WITHDRAW_LOG = "t_agent_coin_fee_withdraw_log" //金币场房费--代理分成提现记录
 
 	//数据分析
 	ADMIN_USER_ATHOME          = "t_user_athome"

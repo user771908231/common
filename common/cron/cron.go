@@ -35,7 +35,7 @@ func OnInit() {
 		dbUtils.SaveAllRedisUserToMongo(true)
 	}, "同步玩家redis数据到mongo")
 
-	//凌晨1min 汇总每日机器人输赢金币及库存金币
+	//凌晨10min 汇总每日机器人输赢金币及库存金币
 	Cron("0 1 0 * * *", AmountRobotsBillAndBalance, "汇总机器人输赢金币及库存金币")
 }
 
@@ -96,6 +96,7 @@ func AmountRobotsBillAndBalance() {
 	//获取昨天天的0点时间作为开始时间
 	now := time.Now()
 	start := time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.Local)
+	utcStart := time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.UTC)
 	//start := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.Local)
 
 	//开始时间加一天作为结束时间
@@ -104,6 +105,7 @@ func AmountRobotsBillAndBalance() {
 	group := struct {
 		WinAmount int64
 	}{}
+	balanceAmount := int64(0)
 
 	query["$and"] = append(query["$and"].([]bson.M), bson.M{
 		//只限昨天一整天的记录
@@ -136,7 +138,6 @@ func AmountRobotsBillAndBalance() {
 		//汇总库存金币
 		//1.先从数据库查询到所有机器人
 		//2.从redis里查询金币 累加起来
-		balanceAmount := int64(0)
 		users := userDao.FindUsersByKV("robottype", int32(gid))
 		for _, u := range users {
 			balanceAmount += userService.GetUserCoin(u.GetId())
@@ -148,10 +149,12 @@ func AmountRobotsBillAndBalance() {
 				Gid:                float64(gid),
 				DailyWinAmount:     group.WinAmount,
 				DailyBalanceAmount: balanceAmount,
-				Day:                start.Add(time.Second * 1),
+				Day:                utcStart.Add(time.Minute * 1),
 			}
-			log.T("汇总机器人输赢金币及库存 game[%v] 插入数据[%v]", gid.String(), data)
-			db.C(tableName.DBT_ROBOT_DAILY_BILL_AMOUNT).Insert(data)
+			err := db.C(tableName.DBT_ROBOT_DAILY_BILL_AMOUNT).Insert(data)
+			log.T("汇总机器人输赢金币及库存 game[%v] 插入数据[%v] err[%v]", gid.String(), data, err)
 		}
+		group.WinAmount = 0
+		balanceAmount = 0
 	}
 }

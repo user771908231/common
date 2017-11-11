@@ -1,21 +1,21 @@
 package agentModel
 
 import (
-	"time"
-	"casino_common/common/service/exchangeService"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/service/exchangeService"
+	"casino_common/utils/db"
+	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 //代理商申请表
 type ApplyRecord struct {
-	Id bson.ObjectId `bson:"_id"`
-	Name string  //真实姓名
-	UserId uint32  //游戏内id
-	InvitedId uint32  //推荐人id
-	Phone string  //手机号
-	Status exchangeService.ExchangeState  //审核状态
+	Id          bson.ObjectId                 `bson:"_id"`
+	Name        string                        //真实姓名
+	UserId      uint32                        //游戏内id
+	InvitedId   uint32                        //推荐人id
+	Phone       string                        //手机号
+	Status      exchangeService.ExchangeState //审核状态
 	RequestTime time.Time
 	ProcessTime time.Time
 }
@@ -43,4 +43,3 @@ func GetApplyRecordById(id string) *ApplyRecord {
 	}, row)
 	return row
 }
-

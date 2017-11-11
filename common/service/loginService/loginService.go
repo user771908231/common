@@ -1,18 +1,18 @@
 package loginService
 
 import (
-	"casino_common/proto/ddproto"
 	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
 	//"casino_common/common/service/signService"
-	"casino_common/common/log"
-	"github.com/golang/protobuf/proto"
-	"casino_common/utils/numUtils"
-	"casino_common/utils/rand"
-	"strings"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
+	"casino_common/common/log"
 	"casino_common/common/model/userDao"
+	"casino_common/utils/numUtils"
+	"casino_common/utils/rand"
+	"github.com/golang/protobuf/proto"
 	"regexp"
+	"strings"
 )
 
 //做登录的操作...
@@ -34,7 +34,6 @@ func DoLogin(weixin *ddproto.WeixinInfo, userId uint32) (*ddproto.User, error) {
 	//最终表示登录失败...
 	return nil, nil
 }
-
 
 //做登录的操作...
 func DoLoginViaInput(userName, password string, userId uint32) (*ddproto.User, error) {
@@ -174,8 +173,6 @@ func TransWxReg(weixin *ddproto.WeixinInfo, userId uint32) *ddproto.CommonAckReg
 	ack.UserId = proto.Uint32(user.GetId())
 	return ack
 }
-
-
 
 //用户名密码注册
 func InputsReg(channel, regIp, userName, pwd string) *ddproto.CommonAckReg {

@@ -5,9 +5,9 @@ import (
 	"casino_common/common/service/wxservice"
 	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
+	"casino_common/utils/aipVerifyUtils"
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/gate"
-	"casino_common/utils/aipVerifyUtils"
 )
 
 //处理统一下单
@@ -18,7 +18,7 @@ func HandlerApplePayRechargeCb(args []interface{}) {
 	userId := m.GetHeader().GetUserId()
 
 	//验证receiptcode
-	_,err := aipVerifyUtils.VerifyReceipt(m.GetReceiptCode())
+	_, err := aipVerifyUtils.VerifyReceipt(m.GetReceiptCode())
 	if err != nil {
 		ack := new(ddproto.ApplepayAcksRechargecb)
 		*ack.Header.Code = -2

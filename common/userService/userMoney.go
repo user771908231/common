@@ -12,8 +12,8 @@ import (
 	"casino_common/utils/redisUtils"
 	"errors"
 	"fmt"
-	"time"
 	"github.com/golang/protobuf/proto"
+	"time"
 )
 
 //更新用户的钻石之后,在放回用户当前的余额,更新用户钻石需要同事更新redis和mongo的数据

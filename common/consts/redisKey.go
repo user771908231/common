@@ -68,10 +68,14 @@ const (
 )
 
 const (
+	RKEY_ZZHZ_WHITE_USER_WINCOIN_INFO string = "rkey_zzhz_white_user_wincoin_info" //转转红中朋友桌麻将白名单玩家输赢数据
+)
+
+const (
 	RKEY_PDK_REXIPAI_CHANCE_BOOM string = "rkey_pdk_rexipai_boom"
 	RKEY_PDK_REXIPAI_CHANCE_AIR  string = "rkey_pdk_rexipai_air"
 	RKEY_PDK_REXIPAI_CHANCE_SHUN string = "rkey_pdk_rexipai_shun"
-	RKEY_PDK_WHITEUSER_WINCOUNT string = "rkey_pdk_whiteuser_wincount"
+	RKEY_PDK_WHITEUSER_WINCOUNT  string = "rkey_pdk_whiteuser_wincount"
 )
 
 const (

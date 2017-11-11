@@ -1,18 +1,17 @@
 package agentModel
 
 import (
-	"github.com/chanxuehong/wechat.v2/mp/oauth2"
 	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"github.com/chanxuehong/wechat.v2/mp/oauth2"
+	"gopkg.in/mgo.v2/bson"
 	"log"
 )
 
-
 //
 type UserInfo struct {
-	Info oauth2.UserInfo  //微信信息
+	Info oauth2.UserInfo //微信信息
 
 }
 

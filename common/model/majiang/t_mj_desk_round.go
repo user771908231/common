@@ -52,7 +52,8 @@ type T_mj_desk_round struct {
 type T_mj_desk_round_playback struct {
 	DeskId       int32
 	GameNumber   int32
-	PlayBackData []*ddproto.PlaybackSnapshot
+	PlayBackData []byte
+	EndTime      time.Time
 }
 
 func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
@@ -221,7 +222,7 @@ func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 }
 
 func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
-	ret := &T_mj_desk_round{}
+	ret := &T_mj_desk_round_playback{}
 	tbName := tableName.DBT_MJ_ZHZH_DESK_ROUND_PLAYBACK
 	if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
 		tbName = tableName.DBT_MJ_HZH_DESK_ROUND_PLAYBACK
@@ -230,7 +231,13 @@ func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
 		"gamenumber": gamenumber,
 	}, &ret)
 	if ret.DeskId > 0 {
-		return ret.PlayBackData
+		log.T("查询到转转/红中麻将回放 回访数据大小[%v]byte", len(ret.PlayBackData))
+		playBackData := &ddproto.PlaybackData{}
+		err := proto.Unmarshal(ret.PlayBackData, playBackData)
+		if err != nil {
+			log.E("查询转转/红中麻将回放 反序列化回放数据出错 err:%v", err)
+		}
+		return playBackData.PlaybackSnapshots
 	} else {
 		return nil
 	}

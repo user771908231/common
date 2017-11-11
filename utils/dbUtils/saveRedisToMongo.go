@@ -112,8 +112,6 @@ func ClearRealUserAccount(confirm bool) {
 	log.T("执行完毕，清理真人玩家账户金币、钻石、红包、奖券,共成功清理%d个用户的数据，失败%d个。", success_count, fail_count)
 }
 
-
-
 //删除所有真实用户的 红包、奖券.
 func ClearRealUserBonusAndTicket(confirm bool) {
 	if confirm == false {
@@ -146,7 +144,7 @@ func ClearRealUserBonusAndTicket(confirm bool) {
 				continue
 			}
 
-			_,err := userService.DECUserBonus(user.GetId(), userService.GetUserBonus(user.GetId()), "consoleCommand,账户红包清零")
+			_, err := userService.DECUserBonus(user.GetId(), userService.GetUserBonus(user.GetId()), "consoleCommand,账户红包清零")
 			if err == nil {
 				log.T("Save User Success:%v", user)
 				success_count++
@@ -154,7 +152,7 @@ func ClearRealUserBonusAndTicket(confirm bool) {
 				log.E("Save User Fail:%v Error:%v", user, err)
 				fail_count++
 			}
-			_,err = userService.DECUserTicket(user.GetId(), userService.GetUserTicket(user.GetId()), "consoleCommand,账户奖券清零")
+			_, err = userService.DECUserTicket(user.GetId(), userService.GetUserTicket(user.GetId()), "consoleCommand,账户奖券清零")
 			if err == nil {
 				log.T("Save User Success:%v", user)
 				success_count++

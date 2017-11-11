@@ -14,7 +14,6 @@ import (
 var RebateMan int64
 var RebateSong int64
 
-
 func init() {
 	//返利配置初始化
 	RebateConfig = []RebateConfigItem{
@@ -57,7 +56,7 @@ func (r *RebateRecord) Insert() error {
 }
 
 //编辑一张表
-func (r *RebateRecord)Save() error {
+func (r *RebateRecord) Save() error {
 	return db.C(tableName.DBT_AGENT_REBATE_LOG).Update(bson.M{
 		"_id": r.Id,
 	}, r)
@@ -81,10 +80,10 @@ func GetAgentAllRebateRoomCardNum(agent_id uint32) int64 {
 		Sum int64
 	}{}
 	query := []bson.M{
-		bson.M{"$match":bson.M{
+		bson.M{"$match": bson.M{
 			"agentid": agent_id,
 		}},
-		bson.M{"$group":bson.M{
+		bson.M{"$group": bson.M{
 			"_id": nil,
 			"sum": bson.M{"$sum": "$givenum"},
 		}},
