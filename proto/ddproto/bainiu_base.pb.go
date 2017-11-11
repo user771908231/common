@@ -373,6 +373,7 @@ It has these top-level messages:
 	HallNewRoom_List
 	PlaybackReqPage
 	PlaybackAckPage
+	PlaybackData
 	PlayerInfo
 	PlaybackSnapshot
 	PlaybackDeskInfo
