@@ -98,6 +98,29 @@ func (rm *RobotsManager) GetRobots() []*Robot {
 	return rm.robots
 }
 
+//获取可用机器人长度
+func (rm *RobotsManager) GetAbleCount() int32 {
+	return rm.robotsAbleCount
+}
+
+func (rm *RobotsManager) GetMinCoinRobot() (coin int64, robotUserId uint32) {
+	if len(rm.robots) <= 0 {
+		return 0, 0
+	}
+	minRobot := rm.robots[0]
+	minCoin := userService.GetUserCoin(rm.robots[0].GetId())
+	for _, r := range rm.robots {
+		if r == nil {
+			continue
+		}
+		if rCoin := userService.GetUserCoin(r.GetId()); r.GetId() != minRobot.GetId() && rCoin < minCoin {
+			minRobot = r
+			minCoin = rCoin
+		}
+	}
+	return minCoin, minRobot.GetId()
+}
+
 //通过id得到一个机器人
 func (rm *RobotsManager) getRobotById(id uint32) *Robot {
 	for _, r := range rm.robots {
