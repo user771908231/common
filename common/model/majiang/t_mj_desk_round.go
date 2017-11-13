@@ -231,7 +231,7 @@ func GetMjZHZHPlayBack(gamenumber, roomType int32) []*ddproto.PlaybackSnapshot {
 		"gamenumber": gamenumber,
 	}, &ret)
 	if ret.DeskId > 0 {
-		log.T("查询到转转/红中麻将回放 回访数据大小[%v]byte", len(ret.PlayBackData))
+		log.T("查询到转转/红中麻将回放 回放数据大小[%v]byte", len(ret.PlayBackData))
 		playBackData := &ddproto.PlaybackData{}
 		err := proto.Unmarshal(ret.PlayBackData, playBackData)
 		if err != nil {
