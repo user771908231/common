@@ -7,6 +7,7 @@ import (
 	"casino_common/utils/db"
 	"gopkg.in/mgo.v2/bson"
 	"sync"
+	"time"
 )
 
 func init() {
@@ -19,6 +20,7 @@ func init() {
 type T_phz_desk_round_playback struct {
 	DeskId       int32
 	GameNumber   int32
+	EndTime      time.Time //结束时间
 	PlayBackData []*ddproto.PhzPlaybackSnapshot
 }
 

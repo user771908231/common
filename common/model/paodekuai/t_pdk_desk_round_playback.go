@@ -2,11 +2,12 @@ package paodekuai
 
 import (
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
 	"gopkg.in/mgo.v2/bson"
 	"sync"
-	"casino_common/common/log"
+	"time"
 )
 
 func init() {
@@ -19,6 +20,7 @@ func init() {
 type T_pdk_desk_round_playback struct {
 	DeskId       int32
 	GameNumber   int32
+	EndTime      time.Time //结束时间
 	PlayBackData []*ddproto.PdkPlaybackSnapshot
 }
 
@@ -44,7 +46,7 @@ var playBackWLock sync.Mutex
 func GetPdkPlayBackFromMemory(gamenumber int32) []*ddproto.PdkPlaybackSnapshot {
 	log.T("开始从内存中获取跑得快的回放... gamenumber[%v]", gamenumber)
 	//如果缓存中存在则直接从缓存中取数据
-	if data,ok := PlayBackStack[gamenumber]; ok {
+	if data, ok := PlayBackStack[gamenumber]; ok {
 		log.T("从内存读取pdk数据：gamenumber:%d 当前缓存条数：%d", gamenumber, len(PlayBackNumbers))
 		return data
 	}
