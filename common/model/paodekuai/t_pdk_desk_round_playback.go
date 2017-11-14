@@ -37,8 +37,10 @@ func GetPdkPlayBack(gamenumber int32) ([]*ddproto.PdkPlaybackSnapshot, error) {
 //==================================回放缓存==================================
 //回放缓存-全局变量
 var PlayBackStack map[int32][]*ddproto.PdkPlaybackSnapshot
+
 //缓存编号列表
 var PlayBackNumbers []int32
+
 //为缓存写上锁-保证线程安全
 var playBackWLock sync.Mutex
 
