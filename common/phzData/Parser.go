@@ -672,6 +672,11 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	info.totalHuXi = huxi
 	info.jiangs = jiangs
 
+	if len(jiangs) > 1 {
+		info.canHu = false
+		return info
+	}
+
 	//递归完所有的牌
 	if length == 0 {
 		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {

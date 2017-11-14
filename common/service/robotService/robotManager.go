@@ -70,6 +70,7 @@ func (rm *RobotsManager) Oninit() {
 	var users []*ddproto.User
 	users = userDao.FindUsersByKV("robottype", int32(rm.gameId))
 	//转换
+	log.T("从数据库载入机器人... 数量%v", len(users))
 	for _, u := range users {
 		r := NewRobots(u)
 		if rm.gameId == ddproto.CommonEnumGame_GID_DDZ {
@@ -81,6 +82,7 @@ func (rm *RobotsManager) Oninit() {
 
 		//同步redis的征用状态
 		available := redisUtils.Get(rm.GetRobotAvailableRedisKey(u.GetId()))
+		//log.T("开始从redis同步到内存机器人[%v]的征用状态... redis available[%v]", u.GetId(), available)
 		switch available {
 		case "", ROBOT_AVAILABLE_TRUE:
 			r.available = true
@@ -90,6 +92,7 @@ func (rm *RobotsManager) Oninit() {
 		}
 		rm.robots = append(rm.robots, r)
 	}
+	log.T("加载所有机器人完成 机器人总数量[%v] 可用机器人数量[%v]", len(rm.robots), rm.robotsAbleCount)
 	//rm.robotsAbleCount = int32(len(rm.robots)) //初始化机器人的数量
 }
 
@@ -119,6 +122,24 @@ func (rm *RobotsManager) GetMinCoinRobot() (coin int64, robotUserId uint32) {
 		}
 	}
 	return minCoin, minRobot.GetId()
+}
+
+//获取超过金币的机器人ids
+func (rm *RobotsManager) GetRobotIdsByCoinLimit(coinLimit int64) (ids, availableIds, unavailableIds []uint32) {
+	for _, r := range rm.robots {
+		if r == nil {
+			continue
+		}
+		if rCoin := userService.GetUserCoin(r.GetId()); rCoin >= coinLimit {
+			ids = append(ids, r.GetId())
+			if r.IsAvailable() {
+				availableIds = append(availableIds, r.GetId())
+			} else {
+				unavailableIds = append(unavailableIds, r.GetId())
+			}
+		}
+	}
+	return
 }
 
 //通过id得到一个机器人
@@ -248,7 +269,10 @@ func (rm *RobotsManager) addRobot(r *Robot) error {
 	rm.Lock()
 	rm.Unlock()
 
-	redisUtils.Set(rm.GetRobotAvailableRedisKey(r.GetId()), ROBOT_AVAILABLE_TRUE)
+	err := redisUtils.Set(rm.GetRobotAvailableRedisKey(r.GetId()), ROBOT_AVAILABLE_TRUE)
+	if err != nil {
+		log.E("增加机器人%v时 更新可用情况到redis出错 err:%v", r.GetId(), err)
+	}
 	rm.robots = append(rm.robots, r)
 	atomic.AddInt32(&rm.robotsAbleCount, 1) //可以使用的机器人数量+1
 	return nil
@@ -310,7 +334,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
 			redisUtils.Set(rm.GetRobotAvailableRedisKey(r.GetId()), ROBOT_AVAILABLE_FALSE)
 			//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
-			log.T("释放征用一个机器人[%v]之后，可以使用的机器人数量还剩下:%v", r.GetId(), rm.robotsAbleCount)
+			log.T("征用一个机器人[%v]之后，可以使用的机器人数量还剩下:%v", r.GetId(), rm.robotsAbleCount)
 			return r
 		}
 	}
