@@ -113,6 +113,13 @@ func (rs *MJRoomCore) GetDeskByPass(key string) MJDesk {
 
 //删除一个desk
 func (rs *MJRoomCore) RmDesk(deskId int32) error {
+	desk := rs.desks.Get(deskId)
+	if desk == nil {
+		return nil
+	}
+
+	//需要置空desk指针
+	desk = nil
 	rs.desks.Del(deskId)
 	return nil
 }
