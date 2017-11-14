@@ -77,10 +77,11 @@ func GetIPSite2(ip string) string {
 	return strings.Join(strings.Split(ret, ","), "")
 }
 
+//单位：米
 func GetDistance(ip1, ip2 string) float64 {
 	if ip1 == ip2 {
 		//如果两个ip相同，则返回一个很小的距离
-		return float64(rand.Rand(0, 20)) / 100
+		return float64(rand.Rand(0, 20))
 	}
 	ipInfo1 := strings.Split(GetIPSiteRaw(ip1), ",")
 	ipInfo2 := strings.Split(GetIPSiteRaw(ip2), ",")
@@ -92,15 +93,15 @@ func GetDistance(ip1, ip2 string) float64 {
 		//相同省份
 		if ipInfo1[1] == ipInfo2[1] {
 			//相同城市
-			return float64(rand.Rand(5, 30))
+			return float64(rand.Rand(2e3, 30e3))
 		}
 		//不同城市
-		return float64(rand.Rand(50, 400))
+		return float64(rand.Rand(50e3, 400e3))
 	}
 	//不同省份
-	return float64(rand.Rand(500, 1000))
+	return float64(rand.Rand(400e3, 1000e3))
 }
-
+//单位：千米
 func GetDistanceByGi(userId1, userId2 uint32) float64 {
 	user1 := userService.GetUserById(userId1)
 	user2 := userService.GetUserById(userId2)
