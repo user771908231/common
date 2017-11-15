@@ -4,6 +4,7 @@ import (
 	"casino_common/common/Error"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
+	"fmt"
 	"github.com/name5566/leaf/util"
 	"reflect"
 )
@@ -132,10 +133,8 @@ func (p *ParserCore) CanTi(data interface{}, tiData interface{}) (interface{}, e
 			//log.T("测试用...paiValue=[%v]		paiCount=[%v]   checkPaiValue=[%v]", paiValue, paiCount, tiPai.GetValue())
 			if paiCount == 3 && paiValue == int(tiPai.GetValue()) {
 				if paiValue <= 10 {
-					log.T("跑小字，胡息数9")
 					ti.HuXi = 9 //提小字9胡息
 				} else {
-					log.T("跑大字，胡息数12")
 					ti.HuXi = 12 //提小字12胡息
 				}
 				for _, pai := range handPokers {
@@ -974,8 +973,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	return info
 }
 
-func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interface{}, error) {
-
+func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool, isPaoHu bool) (interface{}, error) {
 	userGameData := util.DeepClone(gameData.(*UserGameData)).(*UserGameData)
 	pais := userGameData.HandPokers
 
@@ -984,8 +982,8 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 
 	//找出牌组里原始坎牌
 	var srcKan []*YiKanPai
-	var srcTi []*YiTi
 	totalHuXi := int32(userGameData.RoundHuXi)
+	log.W("TryHu2时玩家桌面上的胡息数是：[%v]", totalHuXi)
 	if len(pais) >= 3 {
 		count := CountHandPais(pais)
 		for paiValue, paiCount := range count {
@@ -994,10 +992,15 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 				kan := &YiKanPai{}
 				pokers := GetPaisByValue2(pais, int32(paiValue))
 				kan.Pais = append(kan.Pais, pokers...)
-				if paiValue <= 10 {
-					kan.HuXi = 3
+				if isPaoHu && checkPai != nil && !reflect.ValueOf(checkPai).IsNil() &&
+					reflect.ValueOf(checkPai).IsValid() && int32(paiValue) == checkPai.(*PHZPoker).GetValue() {
+					//如果是跑胡，且checkPai和坎牌一样，则不能加胡息
 				} else {
-					kan.HuXi = 6
+					if paiValue <= 10 {
+						kan.HuXi = 3
+					} else {
+						kan.HuXi = 6
+					}
 				}
 
 				//累加总胡息
@@ -1008,24 +1011,6 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 				log.T("check胡牌时玩家手牌原始的坎牌是：[%v]", Cards2String(kan.Pais))
 				//fmt.Println(fmt.Sprintf("check胡牌时玩家手牌原始的坎牌是：[%v]", Cards2String(kan.Pais)))
 				srcKan = append(srcKan, kan)
-			}
-			//找原始的提牌
-			if paiCount == 4 {
-				ti := &YiTi{}
-				pokers := GetPaisByValue2(pais, int32(paiValue))
-				ti.Pais = append(ti.Pais, pokers...)
-				if paiValue <= 10 {
-					ti.HuXi = 9
-				} else {
-					ti.HuXi = 12
-				}
-
-				totalHuXi += ti.HuXi
-				for _, p := range pokers {
-					pais = DelPaiFromPokersByID(pais, p)
-				}
-				log.T("check胡牌时玩家手牌里原始的提牌是：[%v]", Cards2String(ti.Pais))
-				srcTi = append(srcTi, ti)
 			}
 		}
 	}
@@ -1044,12 +1029,21 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 			}
 		}
 	}
+	counts := CountHandPais(checkPokers)
+	for paiValue, paiCount := range counts {
+		//找原始的提牌
+		if paiCount == 4 {
+			pokers := GetPaisByValue2(pais, int32(paiValue))
+			for _, p := range pokers {
+				pais = DelPaiFromPokersByID(pais, p)
+			}
+			log.T("check胡牌时玩家跑胡时的提牌是：[%v]", Cards2String(pokers))
+		}
+	}
 
 	huInfo := &HuInfo{}
 
 	huInfo.KanPais = append(huInfo.KanPais, srcKan...)
-	huInfo.TiPais = append(huInfo.TiPais, srcTi...)
-
 	//如果找完原始的坎牌，手里没有牌了，则牌型上是可以胡了
 	if (checkPokers == nil || len(checkPokers) == 0) && totalHuXi >= CANHU_LIMIT_HUXI {
 		huInfo.CanHu = true
@@ -1059,11 +1053,11 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 	}
 
 	log.T("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers))
-	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers)))
+	fmt.Println(fmt.Sprintf("CanHu的CheckPokers是:[%v]", Cards2String(checkPokers)))
 	canHuInfo := CanHu(totalHuXi, CountHandPais(checkPokers), len(checkPokers), zimoPaiValue, nil)
 
 	log.T("CanHu的CheckPokers结果是:[%+v]", canHuInfo)
-	//fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
+	fmt.Println(fmt.Sprintf("CanHu的CheckPokers结果是:[%+v]", canHuInfo))
 	huInfo.CanHu = canHuInfo.canHu
 	huInfo.HuXi = canHuInfo.totalHuXi
 

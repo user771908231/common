@@ -162,6 +162,8 @@ var _ = math.Inf
 
 // Ignoring public import of common_srv_game_desk from common_server.proto
 
+// Ignoring public import of common_srv_game_user_status from common_server.proto
+
 // Ignoring public import of redis_desk_by_agent from common_server.proto
 
 // Ignoring public import of redis_user_game_bill from common_server.proto
