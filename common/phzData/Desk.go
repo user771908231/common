@@ -65,7 +65,7 @@ type OutCard struct {
 }
 
 type DeskGameStatus struct {
-	status int32 //Desk状态
+	Status int32 //Desk状态
 }
 
 func NewDesk(cfg *DeskCfg, s *module.Skeleton) *Desk {
@@ -80,9 +80,9 @@ func NewDesk(cfg *DeskCfg, s *module.Skeleton) *Desk {
 }
 
 func (d *Desk) GetStatus() int32 {
-	return d.GameStatus.status
+	return d.GameStatus.Status
 }
 
 func (d *Desk) SetStatus(s int32) {
-	d.GameStatus.status = s
+	d.GameStatus.Status = s
 }

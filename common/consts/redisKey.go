@@ -65,6 +65,9 @@ const (
 
 	RKEY_SJH_DATARECOVER_ID_LIST string = "rkey_sjh_datarecover_id_list" //松江河麻将数据恢复房间ID列表
 	RKEY_SJH_DATARECOVER_DATA    string = "rkey_sjh_datarecover_data"    //松江河麻将数据恢复数据
+
+	RKEY_PHZ_DATARECOVER_ID_LIST string = "rkey_phz_datarecover_id_list" //跑胡子数据恢复_房间ID列表
+	RKEY_PHZ_DATARECOVER_DATA    string = "rkey_phz_datarecover_data"    //跑胡子数据恢复_数据
 )
 
 const (
