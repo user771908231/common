@@ -55,6 +55,6 @@ func String2Float64(s string) float64 {
 float64,防止丢精度.
 */
 func Float64Format(num float64) float64 {
-	res, _ := strconv.ParseFloat(fmt.Sprintf("%f", num), 64)
+	res, _ := strconv.ParseFloat(fmt.Sprintf("%.3f", num), 64)
 	return res
 }
