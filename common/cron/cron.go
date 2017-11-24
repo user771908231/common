@@ -12,6 +12,7 @@ import (
 	"casino_common/utils/dbUtils"
 	"fmt"
 	"github.com/name5566/leaf/timer"
+	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"
 )
@@ -39,7 +40,7 @@ func OnInit() {
 	Cron("0 1 0 * * *", AmountRobotsBillAndBalance, "汇总机器人输赢金币及库存金币")
 
 	//凌晨10min 汇总每日真实玩家输赢金币及库存金币
-	Cron("0 1 * * * *", AmountRealPlayersBillAndBalance, "汇总真实玩家输赢金币及库存金币")
+	Cron("0 1 0 * * *", AmountRealPlayersBillAndBalance, "汇总真实玩家输赢金币及库存金币")
 }
 
 //开启一个定时任务 one cron per goroutine
@@ -216,7 +217,15 @@ func AmountRealPlayersBillAndBalance() {
 	//汇总库存金币
 	//1.先从数据库查询到所有真实玩家
 	//2.从redis里查询金币 累加起来
-	users := userDao.FindUsersByKV("robottype", bson.M{"$lt": int32(1)})
+	var users []*ddproto.User
+	db.Query(func(d *mgo.Database) {
+		d.C(tableName.DBT_T_USER).Find(bson.M{
+			"$or": []bson.M{
+				bson.M{"robottype": nil},
+				bson.M{"robottype": 0},
+			},
+		}).All(&users)
+	})
 	for _, u := range users {
 		balanceAmount += userService.GetUserCoin(u.GetId())
 	}
