@@ -37,6 +37,9 @@ func OnInit() {
 
 	//凌晨10min 汇总每日机器人输赢金币及库存金币
 	Cron("0 1 0 * * *", AmountRobotsBillAndBalance, "汇总机器人输赢金币及库存金币")
+
+	//凌晨10min 汇总每日真实玩家输赢金币及库存金币
+	Cron("0 1 * * * *", AmountRealPlayersBillAndBalance, "汇总真实玩家输赢金币及库存金币")
 }
 
 //开启一个定时任务 one cron per goroutine
@@ -156,5 +159,89 @@ func AmountRobotsBillAndBalance() {
 		}
 		group.WinAmount = 0
 		balanceAmount = 0
+	}
+}
+
+//汇总真实玩家输赢金币及库存金币
+func AmountRealPlayersBillAndBalance() {
+	//需要统计的游戏
+	gids := []ddproto.CommonEnumGame{
+		ddproto.CommonEnumGame_GID_MAHJONG,        //四川麻将
+		ddproto.CommonEnumGame_GID_DDZ,            //斗地主
+		ddproto.CommonEnumGame_GID_ZHUANZHUAN,     //红中转转
+		ddproto.CommonEnumGame_GID_ZJH,            //扎金花
+		ddproto.CommonEnumGame_GID_NIUNIUJINGDIAN, //经典牛牛
+		ddproto.CommonEnumGame_GID_BAIRENNIUNIU,   //百人牛牛
+		ddproto.CommonEnumGame_GID_PDK,            //跑得快
+		ddproto.CommonEnumGame_GID_MJ_HAINAN,      //海南
+	}
+
+	//输赢金币从数据库的gameBill中查询
+	query := bson.M{
+		"$and": []bson.M{},
+	}
+
+	//获取昨天天的0点时间作为开始时间
+	now := time.Now()
+	start := time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.Local)
+	utcStart := time.Date(now.Year(), now.Month(), now.Day()-1, 0, 0, 0, 0, time.UTC)
+	//start := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.Local)
+
+	//开始时间加一天作为结束时间
+	end := start.AddDate(0, 0, 1)
+	log.T("获得汇总真实玩家输赢金币和库存的查询时间 start:%v end:%v", start, end)
+	group := struct {
+		WinAmount int64
+	}{}
+	balanceAmount := int64(0)
+
+	query["$and"] = append(query["$and"].([]bson.M), bson.M{
+		//只限昨天一整天的记录
+		"endtime": bson.M{
+			"$gte": start,
+			"$lt":  end,
+		},
+		//不找机器人
+		"isrobot": false,
+	})
+	//求和每一条输赢金币
+	query_win_amount := []bson.M{
+		bson.M{"$match": query},
+		bson.M{"$group": bson.M{
+			"_id":       nil,
+			"winamount": bson.M{"$sum": "$winamount"},
+		}},
+	}
+
+	//汇总库存金币
+	//1.先从数据库查询到所有真实玩家
+	//2.从redis里查询金币 累加起来
+	users := userDao.FindUsersByKV("robottype", bson.M{"$lt": int32(1)})
+	for _, u := range users {
+		balanceAmount += userService.GetUserCoin(u.GetId())
+	}
+
+	for _, gid := range gids {
+		//汇总输赢金币
+		log.T("开始尝试汇总真实玩家输赢金币及库存 game[%v]", gid.String())
+		//查出金币场的机器人账单记录 根据记录统计出输赢金币数量
+		tbName := userGameBillService.GetTableName(int32(gid), int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
+		err := db.Log(tbName).Pipe(query_win_amount, &group)
+		if err != nil {
+			log.E("汇总真实玩家输赢金币时err game[%v] tbName[%v] err[%v] query:%v", gid.String(), tbName, err, query_win_amount)
+		}
+
+		log.T("汇总真实玩家输赢金币及库存 game[%v] 真实玩家数量[%v] 输赢分数[%v] 金币库存[%v]", gid.String(), len(users), group.WinAmount, balanceAmount)
+		if len(users) > 0 {
+			data := T_daily_bill_amount{
+				Gid:                float64(gid),
+				DailyWinAmount:     group.WinAmount,
+				DailyBalanceAmount: balanceAmount,
+				Day:                utcStart.Add(time.Minute * 1),
+			}
+			err := db.C(tableName.DBT_DAILY_BILL_AMOUNT).Insert(data)
+			log.T("汇总真实玩家输赢金币及库存 game[%v] 插入数据[%v] err[%v]", gid.String(), data, err)
+		}
+		group.WinAmount = 0
 	}
 }
