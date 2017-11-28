@@ -316,7 +316,7 @@ func (rm *RobotsManager) ExpropriationRobot() *Robot {
 func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 	rm.Lock()
 	defer rm.Unlock()
-
+	log.T("请求征用一个金币大于[%v]的机器人", coin)
 	canExpRobots := []*Robot{}
 	for _, r := range rm.robots {
 		//log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
@@ -326,9 +326,32 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 		}
 	}
 
-	index := int(rand.Rand(0, int32(len(canExpRobots))))
-	log.T("请求获取金币大于[%v]的机器人 找到可用的机器人数量[%v] 随机取index[%v]的机器人", coin, len(canExpRobots), index)
-	for i, r := range canExpRobots {
+	return rm.randExpropriationRobotFrom(canExpRobots)
+}
+
+//通过左闭右开的金币区间得到一个机器人 [min, max)
+func (rm *RobotsManager) ExpropriationRobotByRange(minCoin, maxCoin int64) *Robot {
+	rm.Lock()
+	defer rm.Unlock()
+
+	log.T("请求征用一个金币区间为[%v,%v)的机器人", minCoin, maxCoin)
+	canExpRobots := []*Robot{}
+	for _, r := range rm.robots {
+		//log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
+		robotCoin := userService.GetUserCoin(r.GetId())
+		if r.IsAvailable() && robotCoin >= minCoin && robotCoin < maxCoin {
+			canExpRobots = append(canExpRobots, r)
+		}
+	}
+
+	return rm.randExpropriationRobotFrom(canExpRobots)
+}
+
+//从一组机器人中随机取一个征用
+func (rm *RobotsManager) randExpropriationRobotFrom(robots []*Robot) *Robot {
+	index := int(rand.Rand(0, int32(len(robots))))
+	log.T("请求征用机器人 找到可用的机器人数量[%v] 随机取index[%v]的机器人", len(robots), index)
+	for i, r := range robots {
 		if i >= index {
 			r.available = false
 			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
@@ -339,39 +362,7 @@ func (rm *RobotsManager) ExpropriationRobotByCoin(coin int64) *Robot {
 		}
 	}
 
-	//for _, r := range rm.robots {
-	//	//log.T("机器人[%v]的coin %v,limit %v", r.GetId(), r.GetCoin(), coin)
-	//	robotCoin := userService.GetUserCoin(r.GetId())
-	//	if r.IsAvailable() && robotCoin >= coin {
-	//		r.available = false
-	//		atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
-	//		redisUtils.Set(rm.GetRobotAvailableRedisKey(r.GetId()), ROBOT_AVAILABLE_FALSE)
-	//		//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
-	//		log.T("释放征用一个机器人[%v]之后，可以使用的机器人数量还剩下:%v", r.GetId(), rm.robotsAbleCount)
-	//		return r
-	//	}
-	//}
-	return nil
-}
-
-//通过左闭右开的金币区间得到一个机器人 [min, max)
-func (rm *RobotsManager) ExpropriationRobotByRange(minCoin, maxCoin int64) *Robot {
-	rm.Lock()
-	defer rm.Unlock()
-
-	for _, r := range rm.robots {
-		robotCoin := userService.GetUserCoin(r.GetId())
-		//log.T("机器人[%v]的coin %v,min[%v]~max[%v]", r.GetId(), robotCoin, minCoin, maxCoin)
-		if r.IsAvailable() && robotCoin >= minCoin && robotCoin < maxCoin {
-			r.available = false
-			atomic.AddInt32(&rm.robotsAbleCount, -1) //可以使用的机器人数量-1
-			redisUtils.Set(rm.GetRobotAvailableRedisKey(r.GetId()), ROBOT_AVAILABLE_FALSE)
-			//打印当前可以使用的机器人，注意，这里的可以使用只表示available == true 的情况，并不是coin足够的情况
-			log.T("释放征用一个之后，可以使用的机器人数量还剩下:%v", rm.robotsAbleCount)
-
-			return r
-		}
-	}
+	//这里是否需要返回一个robot
 	return nil
 }
 
