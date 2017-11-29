@@ -238,6 +238,71 @@ func DECRUserCOIN(userid uint32, d int64, remark string) (int64, error) {
 	return new_coin, err
 }
 
+//玩家对应游戏扣门票的记录表
+type TUserGameRoundFeeRow struct {
+	UserId uint32 //玩家id
+	Gid    int32  //游戏
+	Coin   int64  //金币
+	Time   time.Time
+}
+
+//扣除用户的房费
+func DECRUserRoundFee(userid uint32, d int64, gid int32, remark string) (int64, error) {
+	remainder, err := DECRUserCOIN(userid, d, remark)
+	if err != nil {
+		return remainder, err
+	}
+	//减少玩家金币没有错误 存记录到数据库
+	go func() {
+		//插入记录
+		defer Error.ErrorRecovery(fmt.Sprintf("保存扣除用户[%v]房费记录数据出错", userid))
+
+		timeNow := time.Now()
+		tUserGameRoundFeeRow := TUserGameRoundFeeRow{
+			UserId: userid,
+			Coin:   d,
+			Gid:    gid,
+			Time:   timeNow,
+		}
+
+		////只查当前时间这一天的数据
+		//query := bson.M{
+		//	"$and": []bson.M{
+		//		bson.M{
+		//			"time": bson.M{
+		//				"$gte": timeNow,
+		//				"$lt":  timeNow.AddDate(0, 0, 1),
+		//			},
+		//		},
+		//		bson.M{
+		//			"gid": gid,
+		//		},
+		//	},
+		//}
+		//err := db.Log(tableName.DBT_T_GAME_ROUND_FEE).Find(query, &tUserGameRoundFeeRow)
+		//
+		////先查数据库 尝试更新
+		//if err == nil && tUserGameRoundFeeRow != nil {
+		//	log.T("扣除用户[%v]房费 查到数据库中有数据 开始update data:%v", userid, *tUserGameRoundFeeRow)
+		//	tUserGameRoundFeeRow.Coin += d
+		//	err = db.Log(tableName.DBT_T_GAME_ROUND_FEE).Update(query, &tUserGameRoundFeeRow)
+		//	if err != nil {
+		//		log.E("扣除用户[%v]房费 汇总更新记录到数据库时出错 err:%v", userid, err)
+		//	}
+		//	return
+		//}
+		//
+		////数据库中没有旧记录 插入一条
+		//log.T("扣除用户[%v]房费 数据库中没有旧记录 开始insert", userid)
+		err = db.Log(tableName.DBT_T_USER_ROUND_FEE).Insert(&tUserGameRoundFeeRow)
+		if err != nil {
+			log.E("扣除用户[%v]房费 汇总保存记录到数据库时出错 err:%v", userid, err)
+		}
+		return
+	}()
+	return remainder, err
+}
+
 //增加用户奖券
 func INCRUserTicket(userid uint32, d int32, remark string) (int32, error) {
 	if user := GetUserById(userid); user != nil {
