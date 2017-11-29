@@ -41,6 +41,9 @@ It is generated from these files:
 	niuniu_base.proto
 	niuniu_play.proto
 	niuniu_server.proto
+	paoyao_base.proto
+	paoyao_play.proto
+	paoyao_server.proto
 	pdk_base.proto
 	pdk_desk.proto
 	pdk_hall.proto
@@ -58,10 +61,6 @@ It is generated from these files:
 	rpc_hall.proto
 	rpc_niuniu.proto
 	rpc_pdk.proto
-	sdy_base.proto
-	sdy_desk.proto
-	sdy_hall.proto
-	sdy_play.proto
 	zjh_base.proto
 	zjh_desk.proto
 	zjh_hall.proto
@@ -169,7 +168,6 @@ It has these top-level messages:
 	GameSession
 	CommonSrvGameUser
 	CommonSrvGameDesk
-	CommonSrvGameUserStatus
 	RedisDeskByAgent
 	RedisUserGameBill
 	UserGameBill
@@ -433,6 +431,38 @@ It has these top-level messages:
 	NiuniuSrvUser
 	NiuniuSrvDeskSnapshotIdIndex
 	NiuniuSrvDeskSnapshot
+	PaoyaoClientPoker
+	PaoyaoUserBill
+	PaoyaoDeskOption
+	PaoyaoSrvRoom
+	PaoyaoClientDesk
+	PaoyaoClientUser
+	PaoyaoCreateDeskReq
+	PaoyaoEnterDeskReq
+	PaoyaoEnterDeskAck
+	PaoyaoEnterDeskBc
+	PaoyaoSwitchReadyReq
+	PaoyaoSwitchReadyBc
+	PaoyaoJiabeiReq
+	PaoyaoJiabeiBc
+	PaoyaoFapaiOt
+	PaoyaoChupaiOt
+	PaoyaoChupaiReq
+	PaoyaoChupaiBc
+	PaoyaoGuopaiReq
+	PaoyaoGuopaiBc
+	PaoyaoGameEndOneItem
+	PaoyaoGameEndOneBc
+	PaoyaoGameEndAllItem
+	PaoyaoGameEndAllBc
+	PaoyaoOfflineBc
+	PaoyaoCoinRoomListReq
+	PaoyaoCoinRoomListAck
+	PaoyaoSrvPoker
+	PaoyaoSrvDesk
+	PaoyaoSrvUser
+	PaoyaoSrvDeskSnapshotIdIndex
+	PaoyaoSrvDeskSnapshot
 	PdkBasePlayerInfo
 	PdkBasePlayerRateInfo
 	PdkBaseCommonRateInfo
@@ -586,63 +616,6 @@ It has these top-level messages:
 	RpcHallUpdateConfig
 	HallRpcDeskEventMsg
 	HallRpcGroupRefresh
-	SdyBaseTimerInfo
-	SdyBaseUserPaiIds
-	SdyBaseRoomTypeInfo
-	SdyBaseToken
-	SdyBasePlayerInfo
-	SdyBaseCommonRateInfo
-	SdyBaseDeskInfo
-	SdyReqReady
-	SdyAckReady
-	SdyBaseWinCoinInfo
-	SdyBcCurrentResult
-	SdyBaseBill
-	SdyBcEndLotteryInfo
-	SdyReUserOutPai
-	SdyReReady
-	SdyReHuanDi
-	SdyRePlay
-	SdyReJiaoFen
-	SdyReLenHandPokers
-	SdyBcReconnectInfo
-	SdyBcIsOnLine
-	SdyReqCreateDesk
-	SdyAckCreateDesk
-	SdyReqEnterDesk
-	SdyAckEnterDesk
-	SdyReqDissolveDeskOwner
-	SdyBcDissolveDeskOwner
-	SdyReqApplyDissolveDeskApllyer
-	SdyBcApplyDissolveDeskApplyer
-	SdyReqApplyDissolveDeskUser
-	SdyDisPlayerList
-	SdyAckApplyDissolveDeskUser
-	SdyReqLeaveDesk
-	SdyAckLeaveDesk
-	SdyBcOpening
-	SdyDealCards
-	SdyBcPlayerPokers
-	SdyBcJiaoFen
-	SdyReqJiaoFen
-	SdyAckJiaoFen
-	SdyBcJiaoFenResult
-	SdyBcStartPlay
-	SdyReqOutCards
-	SdyAckOutCards
-	SdyBcOverTurn
-	SdyBcWhatPai
-	SdyBcScorePai
-	SdyBcGameInfo
-	SdyBcDingZhu
-	SdyReqDingZhu
-	SdyBcDingZhuResult
-	SdyAckDingZhu
-	SdyBcHuanDi
-	SdyReqHuanDi
-	SdyAckHuanDi
-	SdyReqChangeDesk
-	SdyAckChangeDesk
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
