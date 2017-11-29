@@ -40,10 +40,7 @@ const (
 )
 
 const (
-	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list" //牛牛数据恢复id列表
-	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"    //牛牛数据恢复数据
-
-	RKEY_GAME_WHITE_LIST string = "rkey_game_white_list" //牛牛白名单
+	RKEY_GAME_WHITE_LIST string = "rkey_game_white_list" //白名单
 )
 
 //数据恢复
@@ -65,6 +62,15 @@ const (
 
 	RKEY_SJH_DATARECOVER_ID_LIST string = "rkey_sjh_datarecover_id_list" //松江河麻将数据恢复房间ID列表
 	RKEY_SJH_DATARECOVER_DATA    string = "rkey_sjh_datarecover_data"    //松江河麻将数据恢复数据
+
+	RKEY_PHZ_DATARECOVER_ID_LIST string = "rkey_phz_datarecover_id_list" //跑胡子数据恢复_房间ID列表
+	RKEY_PHZ_DATARECOVER_DATA    string = "rkey_phz_datarecover_data"    //跑胡子数据恢复_数据
+
+	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list" //牛牛数据恢复id列表
+	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"    //牛牛数据恢复数据
+
+	RKEY_PAOYAO_SNAPSHOT_ID_LIST string = "rkey_paoyao_snapshot_id_list" //牛牛数据恢复id列表
+	RKEY_PAOYAO_SNAPSHOT_DATA    string = "rkey_paoyao_snapshot_data"    //牛牛数据恢复数据
 )
 
 const (

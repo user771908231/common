@@ -199,7 +199,7 @@ func (x *PlaybackPhzActType) UnmarshalJSON(data []byte) error {
 	*x = PlaybackPhzActType(value)
 	return nil
 }
-func (PlaybackPhzActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{0} }
+func (PlaybackPhzActType) EnumDescriptor() ([]byte, []int) { return fileDescriptor51, []int{0} }
 
 type PlaybackPhzAckPage struct {
 	Header *ProtoHeader `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -215,7 +215,7 @@ type PlaybackPhzAckPage struct {
 func (m *PlaybackPhzAckPage) Reset()                    { *m = PlaybackPhzAckPage{} }
 func (m *PlaybackPhzAckPage) String() string            { return proto.CompactTextString(m) }
 func (*PlaybackPhzAckPage) ProtoMessage()               {}
-func (*PlaybackPhzAckPage) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{0} }
+func (*PlaybackPhzAckPage) Descriptor() ([]byte, []int) { return fileDescriptor51, []int{0} }
 
 func (m *PlaybackPhzAckPage) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -267,7 +267,7 @@ type PhzPlaybackSnapshot struct {
 func (m *PhzPlaybackSnapshot) Reset()                    { *m = PhzPlaybackSnapshot{} }
 func (m *PhzPlaybackSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlaybackSnapshot) ProtoMessage()               {}
-func (*PhzPlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{1} }
+func (*PhzPlaybackSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor51, []int{1} }
 
 func (m *PhzPlaybackSnapshot) GetPlayerInfos() []*PhzPlaybackPlayerInfo {
 	if m != nil {
@@ -336,7 +336,7 @@ type PhzPlaybackPlayerInfo struct {
 func (m *PhzPlaybackPlayerInfo) Reset()                    { *m = PhzPlaybackPlayerInfo{} }
 func (m *PhzPlaybackPlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlaybackPlayerInfo) ProtoMessage()               {}
-func (*PhzPlaybackPlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{2} }
+func (*PhzPlaybackPlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor51, []int{2} }
 
 func (m *PhzPlaybackPlayerInfo) GetCoin() int64 {
 	if m != nil && m.Coin != nil {
@@ -405,7 +405,7 @@ type PhzPlaybackDeskInfo struct {
 func (m *PhzPlaybackDeskInfo) Reset()                    { *m = PhzPlaybackDeskInfo{} }
 func (m *PhzPlaybackDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlaybackDeskInfo) ProtoMessage()               {}
-func (*PhzPlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{3} }
+func (*PhzPlaybackDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor51, []int{3} }
 
 func (m *PhzPlaybackDeskInfo) GetCurrentRound() int32 {
 	if m != nil && m.CurrentRound != nil {
@@ -436,9 +436,9 @@ func init() {
 	proto.RegisterEnum("ddproto.PlaybackPhzActType", PlaybackPhzActType_name, PlaybackPhzActType_value)
 }
 
-func init() { proto.RegisterFile("phz_server.proto", fileDescriptor48) }
+func init() { proto.RegisterFile("phz_server.proto", fileDescriptor51) }
 
-var fileDescriptor48 = []byte{
+var fileDescriptor51 = []byte{
 	// 629 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x53, 0x4d, 0x4f, 0xdb, 0x40,
 	0x10, 0xad, 0x13, 0x9c, 0xc0, 0x42, 0x91, 0xbb, 0x40, 0xbb, 0x4d, 0x29, 0x8a, 0x72, 0x8a, 0x68,

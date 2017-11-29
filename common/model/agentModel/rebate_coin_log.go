@@ -94,3 +94,75 @@ func GetAgentCoinFeeRebateYesterday(agent_id uint32) float64 {
 
 	return numUtils.Float64Format(today_rebate.Sum)
 }
+
+//获取某个用户为代理贡献的提成总和
+func GetAgentCustomCoinFeeRebateAllSum(agent_id,user_id uint32) float64 {
+	var today_rebate struct {
+		Sum float64
+	}
+	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
+		bson.M{"$match": bson.M{
+			"agentid": bson.M{"$eq": agent_id},
+			"userid": bson.M{"$eq": user_id},
+		}},
+		bson.M{"$group": bson.M{
+			"_id": nil,
+			"sum": bson.M{"$sum": "$rebate"},
+		}},
+	}, &today_rebate)
+
+	return numUtils.Float64Format(today_rebate.Sum)
+}
+
+
+//获取某个用户为代理贡献的提成总和
+func GetAgentCustomCoinFeeRebateTodaySum(agent_id,user_id uint32) float64 {
+	var today_rebate struct {
+		Sum float64
+	}
+	//今日佣金
+	today, _ := time.Parse("2006-01-02", time.Now().AddDate(0, 0, -1).Format("2006-01-02"))
+	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
+		bson.M{"$match": bson.M{
+			"agentid": bson.M{"$eq": agent_id},
+			"userid": bson.M{"$eq": user_id},
+			"time": bson.M{
+				"$gte": today,
+				"$lt":  today.AddDate(0, 0, 1),
+			},
+		}},
+		bson.M{"$group": bson.M{
+			"_id": nil,
+			"sum": bson.M{"$sum": "$rebate"},
+		}},
+	}, &today_rebate)
+
+	return numUtils.Float64Format(today_rebate.Sum)
+}
+
+
+//获取某个用户为代理贡献的本周提成总和
+func GetAgentCustomCoinFeeRebateWeekSum(agent_id,user_id uint32) float64 {
+	var today_rebate struct {
+		Sum float64
+	}
+	now := time.Now()
+	y, m, d := now.Date()
+	week_one := time.Date(y, m, d-int(now.Weekday())+1, 0, 0, 0, 0, time.Local)
+	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
+		bson.M{"$match": bson.M{
+			"agentid": bson.M{"$eq": agent_id},
+			"userid": bson.M{"$eq": user_id},
+			"time": bson.M{
+				"$gte": week_one,
+				"$lt":  now,
+			},
+		}},
+		bson.M{"$group": bson.M{
+			"_id": nil,
+			"sum": bson.M{"$sum": "$rebate"},
+		}},
+	}, &today_rebate)
+
+	return numUtils.Float64Format(today_rebate.Sum)
+}

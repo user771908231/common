@@ -41,6 +41,9 @@ It is generated from these files:
 	niuniu_base.proto
 	niuniu_play.proto
 	niuniu_server.proto
+	paoyao_base.proto
+	paoyao_play.proto
+	paoyao_server.proto
 	pdk_base.proto
 	pdk_desk.proto
 	pdk_hall.proto
@@ -428,6 +431,38 @@ It has these top-level messages:
 	NiuniuSrvUser
 	NiuniuSrvDeskSnapshotIdIndex
 	NiuniuSrvDeskSnapshot
+	PaoyaoClientPoker
+	PaoyaoUserBill
+	PaoyaoDeskOption
+	PaoyaoSrvRoom
+	PaoyaoClientDesk
+	PaoyaoClientUser
+	PaoyaoCreateDeskReq
+	PaoyaoEnterDeskReq
+	PaoyaoEnterDeskAck
+	PaoyaoEnterDeskBc
+	PaoyaoSwitchReadyReq
+	PaoyaoSwitchReadyBc
+	PaoyaoJiabeiReq
+	PaoyaoJiabeiBc
+	PaoyaoFapaiOt
+	PaoyaoChupaiOt
+	PaoyaoChupaiReq
+	PaoyaoChupaiBc
+	PaoyaoGuopaiReq
+	PaoyaoGuopaiBc
+	PaoyaoGameEndOneItem
+	PaoyaoGameEndOneBc
+	PaoyaoGameEndAllItem
+	PaoyaoGameEndAllBc
+	PaoyaoOfflineBc
+	PaoyaoCoinRoomListReq
+	PaoyaoCoinRoomListAck
+	PaoyaoSrvPoker
+	PaoyaoSrvDesk
+	PaoyaoSrvUser
+	PaoyaoSrvDeskSnapshotIdIndex
+	PaoyaoSrvDeskSnapshot
 	PdkBasePlayerInfo
 	PdkBasePlayerRateInfo
 	PdkBaseCommonRateInfo

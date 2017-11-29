@@ -286,7 +286,7 @@ func (x *PhzEnumProtoId) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumProtoId(value)
 	return nil
 }
-func (PhzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{0} }
+func (PhzEnumProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{0} }
 
 type PhzEnumRoomType int32
 
@@ -317,7 +317,7 @@ func (x *PhzEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumRoomType(value)
 	return nil
 }
-func (PhzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{1} }
+func (PhzEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{1} }
 
 type PhzEnumTiType int32
 
@@ -354,7 +354,7 @@ func (x *PhzEnumTiType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumTiType(value)
 	return nil
 }
-func (PhzEnumTiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{2} }
+func (PhzEnumTiType) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{2} }
 
 type PhzEnumPengType int32
 
@@ -391,7 +391,7 @@ func (x *PhzEnumPengType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumPengType(value)
 	return nil
 }
-func (PhzEnumPengType) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{3} }
+func (PhzEnumPengType) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{3} }
 
 type PhzEnumPaoType int32
 
@@ -428,7 +428,7 @@ func (x *PhzEnumPaoType) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumPaoType(value)
 	return nil
 }
-func (PhzEnumPaoType) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{4} }
+func (PhzEnumPaoType) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{4} }
 
 // Desk的游戏状态
 type PhzEnumDeskStatus int32
@@ -475,7 +475,7 @@ func (x *PhzEnumDeskStatus) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumDeskStatus(value)
 	return nil
 }
-func (PhzEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{5} }
+func (PhzEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{5} }
 
 type PhzEnumUserStatus int32
 
@@ -537,7 +537,7 @@ func (x *PhzEnumUserStatus) UnmarshalJSON(data []byte) error {
 	*x = PhzEnumUserStatus(value)
 	return nil
 }
-func (PhzEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor45, []int{6} }
+func (PhzEnumUserStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor48, []int{6} }
 
 type PhzPlayPaiIds struct {
 	PokerId          []int32 `protobuf:"varint,1,rep,name=pokerId" json:"pokerId,omitempty"`
@@ -547,7 +547,7 @@ type PhzPlayPaiIds struct {
 func (m *PhzPlayPaiIds) Reset()                    { *m = PhzPlayPaiIds{} }
 func (m *PhzPlayPaiIds) String() string            { return proto.CompactTextString(m) }
 func (*PhzPlayPaiIds) ProtoMessage()               {}
-func (*PhzPlayPaiIds) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{0} }
+func (*PhzPlayPaiIds) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{0} }
 
 func (m *PhzPlayPaiIds) GetPokerId() []int32 {
 	if m != nil {
@@ -568,7 +568,7 @@ type PhzBaseCreateOption struct {
 func (m *PhzBaseCreateOption) Reset()                    { *m = PhzBaseCreateOption{} }
 func (m *PhzBaseCreateOption) String() string            { return proto.CompactTextString(m) }
 func (*PhzBaseCreateOption) ProtoMessage()               {}
-func (*PhzBaseCreateOption) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{1} }
+func (*PhzBaseCreateOption) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{1} }
 
 func (m *PhzBaseCreateOption) GetUserCount() int32 {
 	if m != nil && m.UserCount != nil {
@@ -619,7 +619,7 @@ type PhzBaseRoomInfo struct {
 func (m *PhzBaseRoomInfo) Reset()                    { *m = PhzBaseRoomInfo{} }
 func (m *PhzBaseRoomInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzBaseRoomInfo) ProtoMessage()               {}
-func (*PhzBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{2} }
+func (*PhzBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{2} }
 
 func (m *PhzBaseRoomInfo) GetOwnerId() uint32 {
 	if m != nil && m.OwnerId != nil {
@@ -683,7 +683,7 @@ type PhzBaseDeskInfo struct {
 func (m *PhzBaseDeskInfo) Reset()                    { *m = PhzBaseDeskInfo{} }
 func (m *PhzBaseDeskInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzBaseDeskInfo) ProtoMessage()               {}
-func (*PhzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{3} }
+func (*PhzBaseDeskInfo) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{3} }
 
 func (m *PhzBaseDeskInfo) GetRoomInfo() *PhzBaseRoomInfo {
 	if m != nil {
@@ -750,7 +750,7 @@ type PhzBasePlayerInfo struct {
 func (m *PhzBasePlayerInfo) Reset()                    { *m = PhzBasePlayerInfo{} }
 func (m *PhzBasePlayerInfo) String() string            { return proto.CompactTextString(m) }
 func (*PhzBasePlayerInfo) ProtoMessage()               {}
-func (*PhzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor45, []int{4} }
+func (*PhzBasePlayerInfo) Descriptor() ([]byte, []int) { return fileDescriptor48, []int{4} }
 
 func (m *PhzBasePlayerInfo) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -879,9 +879,9 @@ func init() {
 	proto.RegisterEnum("ddproto.PhzEnumUserStatus", PhzEnumUserStatus_name, PhzEnumUserStatus_value)
 }
 
-func init() { proto.RegisterFile("phz_base.proto", fileDescriptor45) }
+func init() { proto.RegisterFile("phz_base.proto", fileDescriptor48) }
 
-var fileDescriptor45 = []byte{
+var fileDescriptor48 = []byte{
 	// 1335 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x56, 0xdb, 0x72, 0xdb, 0x44,
 	0x18, 0xae, 0x8f, 0x71, 0x36, 0xa7, 0xcd, 0xe6, 0x50, 0x35, 0x4d, 0x4b, 0x6a, 0xa0, 0x18, 0xb7,
