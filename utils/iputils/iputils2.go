@@ -101,6 +101,7 @@ func GetDistance(ip1, ip2 string) float64 {
 	//不同省份
 	return float64(rand.Rand(400e3, 1000e3))
 }
+
 //单位：千米
 func GetDistanceByGi(userId1, userId2 uint32) float64 {
 	user1 := userService.GetUserById(userId1)

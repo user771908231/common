@@ -1,14 +1,14 @@
 package roomAgent
 
 import (
-	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/service/rpcService"
-	"casino_common/common/log"
-	"golang.org/x/net/context"
-	"errors"
-	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/service/rpcService"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"errors"
+	"github.com/golang/protobuf/proto"
+	"golang.org/x/net/context"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -31,7 +31,7 @@ var NiuniuConf = CreateConfig{
 	},
 	[][]string{
 		[]string{"看牌抢庄", "抢庄"},
-		[]string{"牛牛换庄","换庄"},
+		[]string{"牛牛换庄", "换庄"},
 		[]string{"随机坐庄", "随机"},
 		[]string{"房主定庄", "定庄"},
 	},
@@ -115,24 +115,24 @@ func DoNiuniuKaifang(owner uint32, group_id int32, option_str string) (error, *d
 			UserId: proto.Uint32(owner),
 		},
 		Option: &ddproto.NiuniuDeskOption{
-			MinUser:proto.Int32(2),
-			MaxUser:proto.Int32(int32(opt_gamer_number)),
-			MaxCircle:proto.Int32(int32(opt_circle_num)),
-			HasFlower:proto.Bool(opt_has_flower),
-			BankRule: opt_bank_rule.Enum(),
-			IsFlowerPlay:proto.Bool(opt_flower_play),
-			IsJiaoFenJiaBei:proto.Bool(false),
-			HasAnimation:proto.Bool(opt_has_animation),
-			IsCoinRoom:proto.Bool(false),
-			BaseScore:proto.Int64(0),
-			NeedPwd:proto.Bool(false),
-			MinEnterScore:proto.Int64(0),
-			MaxQzScore:proto.Int64(4),
-			DenyHalfJoin:proto.Bool(opt_deny_half_join),
+			MinUser:         proto.Int32(2),
+			MaxUser:         proto.Int32(int32(opt_gamer_number)),
+			MaxCircle:       proto.Int32(int32(opt_circle_num)),
+			HasFlower:       proto.Bool(opt_has_flower),
+			BankRule:        opt_bank_rule.Enum(),
+			IsFlowerPlay:    proto.Bool(opt_flower_play),
+			IsJiaoFenJiaBei: proto.Bool(false),
+			HasAnimation:    proto.Bool(opt_has_animation),
+			IsCoinRoom:      proto.Bool(false),
+			BaseScore:       proto.Int64(0),
+			NeedPwd:         proto.Bool(false),
+			MinEnterScore:   proto.Int64(0),
+			MaxQzScore:      proto.Int64(4),
+			DenyHalfJoin:    proto.Bool(opt_deny_half_join),
 		},
 		IsDaikai: proto.Bool(true),
 	}
-	res,err := rpcService.GetNiuniu().CreateRoom(context.Background(), rpc_req)
+	res, err := rpcService.GetNiuniu().CreateRoom(context.Background(), rpc_req)
 	log.T("rpc req:%v res:%v res-err:%v", rpc_req, res, err)
 
 	if err != nil {
@@ -163,13 +163,12 @@ func DoNiuniuKaifang(owner uint32, group_id int32, option_str string) (error, *d
 		ex_room := GetAgentFreeRoomByOption(group_id, opt_gamer_number, niuniu_keywords)
 		if ex_room != nil {
 			return nil, ex_room
-		}else {
+		} else {
 			log.E("rpc success, but ex_room is nil.")
 			return errors.New("开房失败，请联系管理员。"), nil
 		}
-	}else {
+	} else {
 		log.E("rpc code err:%v", res)
 		return errors.New(res.Header.GetError()), nil
 	}
 }
-
