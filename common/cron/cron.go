@@ -115,6 +115,10 @@ func AmountRobotsBillAndBalance() {
 	}{}
 	balanceAmount := int64(0)
 
+	//汇总全部游戏的金币和库存
+	totalWinAmount := int64(0)
+	totalBalanceAmount := int64(0)
+
 	query["$and"] = append(query["$and"].([]bson.M), bson.M{
 		//只限昨天一整天的记录
 		"endtime": bson.M{
@@ -151,6 +155,8 @@ func AmountRobotsBillAndBalance() {
 			balanceAmount += userService.GetUserCoin(u.GetId())
 		}
 
+		totalBalanceAmount += balanceAmount
+
 		log.T("汇总机器人输赢金币及库存 game[%v] 机器人数量[%v] 输赢分数[%v] 金币库存[%v]", gid.String(), len(users), group.WinAmount, balanceAmount)
 		if len(users) > 0 {
 			data := T_daily_bill_amount{
@@ -159,12 +165,25 @@ func AmountRobotsBillAndBalance() {
 				DailyBalanceAmount: balanceAmount,
 				Day:                utcStart.Add(time.Minute * 1),
 			}
+
+			totalWinAmount += group.WinAmount
+
 			err := db.C(tableName.DBT_ROBOT_DAILY_BILL_AMOUNT).Insert(data)
 			log.T("汇总机器人输赢金币及库存 game[%v] 插入数据[%v] err[%v]", gid.String(), data, err)
 		}
 		group.WinAmount = 0
 		balanceAmount = 0
 	}
+
+	data := T_daily_bill_amount{
+		Gid:                float64(0),
+		DailyWinAmount:     totalWinAmount,
+		DailyBalanceAmount: totalBalanceAmount,
+		Day:                utcStart.Add(time.Minute * 1),
+	}
+
+	err := db.C(tableName.DBT_DAILY_BILL_AMOUNT).Insert(data)
+	log.T("汇总机器人输赢金币及库存 全部游戏汇总 插入数据[%v] err[%v]", data, err)
 }
 
 //汇总前一日真实玩家输赢金币及库存金币
@@ -223,6 +242,7 @@ func AmountRealPlayersBillAndBalance() {
 		balanceAmount += userService.GetUserCoin(u.GetId())
 	}
 
+	totalWinAmount := int64(0)
 	for _, gid := range coinGids {
 		//汇总输赢金币
 		log.T("开始尝试汇总真实玩家输赢金币及库存 game[%v]", gid.String())
@@ -241,18 +261,31 @@ func AmountRealPlayersBillAndBalance() {
 				DailyBalanceAmount: balanceAmount,
 				Day:                utcStart.Add(time.Minute * 1),
 			}
+
+			totalWinAmount += group.WinAmount
+
 			err := db.C(tableName.DBT_DAILY_BILL_AMOUNT).Insert(data)
 			log.T("汇总真实玩家输赢金币及库存 game[%v] 插入数据[%v] err[%v]", gid.String(), data, err)
 		}
 		group.WinAmount = 0
 	}
+
+	data := T_daily_bill_amount{
+		Gid:                float64(0),
+		DailyWinAmount:     totalWinAmount,
+		DailyBalanceAmount: balanceAmount,
+		Day:                utcStart.Add(time.Minute * 1),
+	}
+
+	err := db.C(tableName.DBT_DAILY_BILL_AMOUNT).Insert(data)
+	log.T("汇总真实玩家输赢金币及库存 全部游戏汇总 插入数据[%v] err[%v]", data, err)
 }
 
 //玩家对应游戏扣门票的记录表
 type TGameRoundFeeRow struct {
-	Gid  int32 //游戏
-	Coin int64 //金币
-	Time time.Time
+	Gid  int32     `bson:"gid"`  //游戏
+	Coin int64     `bson:"coin"` //金币
+	Time time.Time `bson:"time"`
 }
 
 //汇总前一日各游戏门票收入
@@ -271,6 +304,8 @@ func AmountGameRoundFee() {
 	group := struct {
 		Coin int64
 	}{}
+
+	totalAmount := int64(0)
 
 	for _, gid := range coinGids {
 		//求和每一条输赢金币
@@ -305,7 +340,19 @@ func AmountGameRoundFee() {
 			Coin: group.Coin,
 			Time: utcStart.Add(time.Minute * 1),
 		}
+
+		totalAmount += group.Coin
+
 		err = db.C(tableName.DBT_T_ROUND_FEE_GAME_DAILY).Insert(data)
 		log.T("汇总各游戏门票收入 game[%v] 插入数据[%v] err[%v]", gid.String(), data, err)
 	}
+
+	//汇总所有游戏
+	data := TGameRoundFeeRow{
+		Gid:  int32(0), //这里gid 0 表示全部游戏汇总
+		Coin: totalAmount,
+		Time: utcStart.Add(time.Minute * 1),
+	}
+	err := db.C(tableName.DBT_T_ROUND_FEE_GAME_DAILY).Insert(data)
+	log.T("汇总各游戏门票收入 全部游戏汇总 插入数据[%v] err[%v]", data, err)
 }
