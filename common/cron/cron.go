@@ -294,7 +294,7 @@ func AmountGameRoundFee() {
 				"coin": bson.M{"$sum": "$coin"},
 			}},
 		}
-		err := db.Log(tableName.DBT_T_USER_ROUND_FEE).Pipe(query_amount_coin, &group)
+		err := db.Log(tableName.DBT_T_ROUND_FEE_USER).Pipe(query_amount_coin, &group)
 		if err != nil {
 			log.E("汇总各游戏门票收入时err game[%v] err[%v] query:%v", gid.String(), err, query_amount_coin)
 			continue
@@ -305,7 +305,7 @@ func AmountGameRoundFee() {
 			Coin: group.Coin,
 			Time: utcStart.Add(time.Minute * 1),
 		}
-		err = db.C(tableName.DBT_T_GAME_ROUND_FEE).Insert(data)
+		err = db.C(tableName.DBT_T_ROUND_FEE_GAME_DAILY).Insert(data)
 		log.T("汇总各游戏门票收入 game[%v] 插入数据[%v] err[%v]", gid.String(), data, err)
 	}
 }

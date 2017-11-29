@@ -279,13 +279,13 @@ func DECRUserRoundFee(userid uint32, d int64, gid int32, remark string) (int64, 
 		//		},
 		//	},
 		//}
-		//err := db.Log(tableName.DBT_T_GAME_ROUND_FEE).Find(query, &tUserGameRoundFeeRow)
+		//err := db.Log(tableName.DBT_T_ROUND_FEE_GAME_DAILY).Find(query, &tUserGameRoundFeeRow)
 		//
 		////先查数据库 尝试更新
 		//if err == nil && tUserGameRoundFeeRow != nil {
 		//	log.T("扣除用户[%v]房费 查到数据库中有数据 开始update data:%v", userid, *tUserGameRoundFeeRow)
 		//	tUserGameRoundFeeRow.Coin += d
-		//	err = db.Log(tableName.DBT_T_GAME_ROUND_FEE).Update(query, &tUserGameRoundFeeRow)
+		//	err = db.Log(tableName.DBT_T_ROUND_FEE_GAME_DAILY).Update(query, &tUserGameRoundFeeRow)
 		//	if err != nil {
 		//		log.E("扣除用户[%v]房费 汇总更新记录到数据库时出错 err:%v", userid, err)
 		//	}
@@ -294,7 +294,7 @@ func DECRUserRoundFee(userid uint32, d int64, gid int32, remark string) (int64, 
 		//
 		////数据库中没有旧记录 插入一条
 		//log.T("扣除用户[%v]房费 数据库中没有旧记录 开始insert", userid)
-		err = db.Log(tableName.DBT_T_USER_ROUND_FEE).Insert(&tUserGameRoundFeeRow)
+		err = db.Log(tableName.DBT_T_ROUND_FEE_USER).Insert(&tUserGameRoundFeeRow)
 		if err != nil {
 			log.E("扣除用户[%v]房费 汇总保存记录到数据库时出错 err:%v", userid, err)
 		}
