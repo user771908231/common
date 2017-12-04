@@ -55,6 +55,10 @@ var _ = math.Inf
 
 // Ignoring public import of hall_ack_userData from hall.proto
 
+// Ignoring public import of hall_req_update_userData from hall.proto
+
+// Ignoring public import of hall_ack_update_userData from hall.proto
+
 // Ignoring public import of hall_req_updateRealData from hall.proto
 
 // Ignoring public import of hall_ack_updateRealData from hall.proto

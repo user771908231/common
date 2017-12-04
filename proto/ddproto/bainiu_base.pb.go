@@ -309,6 +309,8 @@ It has these top-level messages:
 	HallAckBagItems
 	HallReqUserData
 	HallAckUserData
+	HallReqUpdateUserData
+	HallAckUpdateUserData
 	HallReqUpdateRealData
 	HallAckUpdateRealData
 	HallReqGoodsList
@@ -445,6 +447,7 @@ It has these top-level messages:
 	PaoyaoSwitchReadyBc
 	PaoyaoJiabeiReq
 	PaoyaoJiabeiBc
+	PaoyaoFapaiUserYaoTypeItem
 	PaoyaoFapaiOt
 	PaoyaoChupaiOt
 	PaoyaoChupaiReq
