@@ -247,9 +247,14 @@ type TUserGameRoundFeeRow struct {
 }
 
 //扣除用户的房费
-func DECRUserRoundFee(userid uint32, d int64, gid int32, remark string) (int64, error) {
+func DECRUserRoundFee(userid uint32, d int64, gid int32, remark string, isRobot bool) (int64, error) {
 	remainder, err := DECRUserCOIN(userid, d, remark)
 	if err != nil {
+		return remainder, err
+	}
+
+	if isRobot {
+		//机器人不保存桌费流水
 		return remainder, err
 	}
 	//减少玩家金币没有错误 存记录到数据库
