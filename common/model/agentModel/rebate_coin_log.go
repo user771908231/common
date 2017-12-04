@@ -96,14 +96,14 @@ func GetAgentCoinFeeRebateYesterday(agent_id uint32) float64 {
 }
 
 //获取某个用户为代理贡献的提成总和
-func GetAgentCustomCoinFeeRebateAllSum(agent_id,user_id uint32) float64 {
+func GetAgentCustomCoinFeeRebateAllSum(agent_id, user_id uint32) float64 {
 	var today_rebate struct {
 		Sum float64
 	}
 	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
 		bson.M{"$match": bson.M{
 			"agentid": bson.M{"$eq": agent_id},
-			"userid": bson.M{"$eq": user_id},
+			"userid":  bson.M{"$eq": user_id},
 		}},
 		bson.M{"$group": bson.M{
 			"_id": nil,
@@ -114,9 +114,8 @@ func GetAgentCustomCoinFeeRebateAllSum(agent_id,user_id uint32) float64 {
 	return numUtils.Float64Format(today_rebate.Sum)
 }
 
-
 //获取某个用户为代理贡献的提成总和
-func GetAgentCustomCoinFeeRebateTodaySum(agent_id,user_id uint32) float64 {
+func GetAgentCustomCoinFeeRebateTodaySum(agent_id, user_id uint32) float64 {
 	var today_rebate struct {
 		Sum float64
 	}
@@ -125,7 +124,7 @@ func GetAgentCustomCoinFeeRebateTodaySum(agent_id,user_id uint32) float64 {
 	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
 		bson.M{"$match": bson.M{
 			"agentid": bson.M{"$eq": agent_id},
-			"userid": bson.M{"$eq": user_id},
+			"userid":  bson.M{"$eq": user_id},
 			"time": bson.M{
 				"$gte": today,
 				"$lt":  today.AddDate(0, 0, 1),
@@ -140,9 +139,8 @@ func GetAgentCustomCoinFeeRebateTodaySum(agent_id,user_id uint32) float64 {
 	return numUtils.Float64Format(today_rebate.Sum)
 }
 
-
 //获取某个用户为代理贡献的本周提成总和
-func GetAgentCustomCoinFeeRebateWeekSum(agent_id,user_id uint32) float64 {
+func GetAgentCustomCoinFeeRebateWeekSum(agent_id, user_id uint32) float64 {
 	var today_rebate struct {
 		Sum float64
 	}
@@ -152,7 +150,7 @@ func GetAgentCustomCoinFeeRebateWeekSum(agent_id,user_id uint32) float64 {
 	db.Log(tableName.DBT_AGENT_COIN_FEE_REBATE_LOG).Pipe([]bson.M{
 		bson.M{"$match": bson.M{
 			"agentid": bson.M{"$eq": agent_id},
-			"userid": bson.M{"$eq": user_id},
+			"userid":  bson.M{"$eq": user_id},
 			"time": bson.M{
 				"$gte": week_one,
 				"$lt":  now,
