@@ -30,6 +30,8 @@ var _ = math.Inf
 
 // Ignoring public import of HaiNanPlayOptions from base.proto
 
+// Ignoring public import of ChangBaiPlayOptions from base.proto
+
 // Ignoring public import of RoomTypeInfo from base.proto
 
 // Ignoring public import of ComposeCard from base.proto

@@ -443,10 +443,13 @@ It has these top-level messages:
 	PaoyaoEnterDeskReq
 	PaoyaoEnterDeskAck
 	PaoyaoEnterDeskBc
+	PaoyaoSiteDownReq
+	PaoyaoSiteUpReq
 	PaoyaoSwitchReadyReq
 	PaoyaoSwitchReadyBc
 	PaoyaoJiabeiReq
 	PaoyaoJiabeiBc
+	PaoyaoFapaiUserYaoTypeItem
 	PaoyaoFapaiOt
 	PaoyaoChupaiOt
 	PaoyaoChupaiReq
@@ -460,6 +463,11 @@ It has these top-level messages:
 	PaoyaoOfflineBc
 	PaoyaoCoinRoomListReq
 	PaoyaoCoinRoomListAck
+	PaoyaoOwnerDissolveReq
+	PaoyaoOwnerDissolveAck
+	PaoyaoPreEndOt
+	PaoyaoPreEndReq
+	PaoyaoPreEndAck
 	PaoyaoSrvPoker
 	PaoyaoSrvDesk
 	PaoyaoSrvUser
