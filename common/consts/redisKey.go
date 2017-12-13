@@ -75,6 +75,7 @@ const (
 
 const (
 	RKEY_ZZHZ_WHITE_USER_WINCOIN_INFO string = "rkey_zzhz_white_user_wincoin_info" //转转红中朋友桌麻将白名单玩家输赢数据
+	RKEY_SJH_WHITE_USER_WINCOIN_INFO  string = "rkey_sjh_white_user_wincoin_info"  //松江河朋友桌麻将白名单玩家输赢数据
 )
 
 const (
