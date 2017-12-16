@@ -1,9 +1,9 @@
 package majiangMsgRegister
 
 import (
-	"github.com/name5566/leaf/network/protobuf"
-	"casino_common/proto/ddproto/mjproto"
 	"casino_common/proto/ddproto"
+	"casino_common/proto/ddproto/mjproto"
+	"github.com/name5566/leaf/network/protobuf"
 )
 
 func OnInit(mjProcessor *protobuf.Processor) {
@@ -117,10 +117,15 @@ func OnInit(mjProcessor *protobuf.Processor) {
 
 	mjProcessor.Register(&mjproto.GameAckBuhua{}) //99 补花的推送
 
-	mjProcessor.Register(&mjproto.GameBcShangga{}) //100 上嘎 给每个玩家单独推送 让其上嘎
+	mjProcessor.Register(&mjproto.GameBcShangga{})  //100 上嘎 给每个玩家单独推送 让其上嘎
 	mjProcessor.Register(&mjproto.GameReqShangga{}) //101 上嘎请求
 	mjProcessor.Register(&mjproto.GameAckShangga{}) //102 上嘎ack
 
 	mjProcessor.Register(&ddproto.CommonReqListCoinDesk{}) //103 请求金币场桌子列表
 	mjProcessor.Register(&ddproto.CommonAckListCoinDesk{}) //104 回复金币场桌子列表
+
+	//长白麻将
+	mjProcessor.Register(&mjproto.GameBcChangbaiPreopeningPlayoptions{})  //105 长白开局前可选玩法列表的推送 让每个玩家选择
+	mjProcessor.Register(&mjproto.GameReqChangbaiPreopeningPlayoptions{}) //106 长白开局前请求选择玩法
+	mjProcessor.Register(&mjproto.GameAckChangbaiPreopeningPlayoptions{}) //107 长白开局前请求选择玩法的回复 推送给所有玩家
 }
