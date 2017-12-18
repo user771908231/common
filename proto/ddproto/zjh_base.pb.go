@@ -147,7 +147,7 @@ func (x *EProtoId) UnmarshalJSON(data []byte) error {
 	*x = EProtoId(value)
 	return nil
 }
-func (EProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{0} }
+func (EProtoId) EnumDescriptor() ([]byte, []int) { return fileDescriptor59, []int{0} }
 
 // 玩家当前状态
 type ZjhEnumPlayerGameStatus int32
@@ -191,7 +191,7 @@ func (x *ZjhEnumPlayerGameStatus) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumPlayerGameStatus(value)
 	return nil
 }
-func (ZjhEnumPlayerGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{1} }
+func (ZjhEnumPlayerGameStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor59, []int{1} }
 
 // 桌面状态
 type ZjhEnumDeskState int32
@@ -226,7 +226,7 @@ func (x *ZjhEnumDeskState) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumDeskState(value)
 	return nil
 }
-func (ZjhEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{2} }
+func (ZjhEnumDeskState) EnumDescriptor() ([]byte, []int) { return fileDescriptor59, []int{2} }
 
 // 房间玩家状态
 type ZjhEnumUserState int32
@@ -264,7 +264,7 @@ func (x *ZjhEnumUserState) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumUserState(value)
 	return nil
 }
-func (ZjhEnumUserState) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{3} }
+func (ZjhEnumUserState) EnumDescriptor() ([]byte, []int) { return fileDescriptor59, []int{3} }
 
 // 房间类型
 type ZjhEnumRoomType int32
@@ -302,7 +302,7 @@ func (x *ZjhEnumRoomType) UnmarshalJSON(data []byte) error {
 	*x = ZjhEnumRoomType(value)
 	return nil
 }
-func (ZjhEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{4} }
+func (ZjhEnumRoomType) EnumDescriptor() ([]byte, []int) { return fileDescriptor59, []int{4} }
 
 func init() {
 	proto.RegisterEnum("ddproto.EProtoId", EProtoId_name, EProtoId_value)
@@ -312,9 +312,9 @@ func init() {
 	proto.RegisterEnum("ddproto.ZjhEnumRoomType", ZjhEnumRoomType_name, ZjhEnumRoomType_value)
 }
 
-func init() { proto.RegisterFile("zjh_base.proto", fileDescriptor56) }
+func init() { proto.RegisterFile("zjh_base.proto", fileDescriptor59) }
 
-var fileDescriptor56 = []byte{
+var fileDescriptor59 = []byte{
 	// 586 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x94, 0xc9, 0x72, 0x13, 0x31,
 	0x10, 0x86, 0x89, 0x93, 0x90, 0x20, 0xb2, 0xb4, 0x95, 0x7d, 0x81, 0xb0, 0xdc, 0x7c, 0xe0, 0x01,

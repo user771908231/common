@@ -28,6 +28,8 @@ var _ = math.Inf
 
 // Ignoring public import of COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM from common_enum.proto
 
+// Ignoring public import of COMMON_ENUM_ROOMCARD_BILL_TYPE from common_enum.proto
+
 // 游戏结束后的统计数据消息
 type CommonSrvMsgGameCount struct {
 	UserId           *uint32               `protobuf:"varint,1,opt,name=user_id,json=userId" json:"user_id,omitempty"`

@@ -182,6 +182,8 @@ var _ = math.Inf
 
 // Ignoring public import of COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM from common_enum.proto
 
+// Ignoring public import of COMMON_ENUM_ROOMCARD_BILL_TYPE from common_enum.proto
+
 // Ignoring public import of pez_DissolveDesk from pez_desk.proto
 
 // Ignoring public import of pez_AckDissolveDesk from pez_desk.proto
