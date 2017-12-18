@@ -3,15 +3,15 @@
 package db
 
 import (
-	"github.com/name5566/leaf/db/mongodb"
-	"gopkg.in/mgo.v2/bson"
-	"gopkg.in/mgo.v2"
-	"casino_common/common/log"
-	"reflect"
-	"errors"
-	"casino_common/utils/redisUtils"
-	"sync"
 	"casino_common/common/consts"
+	"casino_common/common/log"
+	"casino_common/utils/redisUtils"
+	"errors"
+	"github.com/name5566/leaf/db/mongodb"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"reflect"
+	"sync"
 	"time"
 )
 
@@ -47,6 +47,10 @@ func Oninit(ip string, logIp string, dbname string, key string) {
 	mongoConfig.SessionNum = 100
 	dial_context, _ := mongodb.Dial(mongoConfig.ip, mongoConfig.SessionNum)
 	mongoConfig.dialc[mongoConfig.ip] = dial_context
+}
+
+func GetDBName() string {
+	return mongoConfig.dbname
 }
 
 //活的链接
@@ -149,6 +153,7 @@ func UpdateMgoDataU32(dbt string, data BaseModeu32) error {
 }
 
 var next_redis_seq_lock sync.Mutex
+
 //得到序列号（新版从redis中取）
 func GetNextSeq(dbt string) (int32, error) {
 	//加锁防止id重复及其他异常
@@ -275,7 +280,7 @@ func C(tableName string) *Collection {
 func Log(tableName string) *Collection {
 	return &Collection{
 		TableName: tableName,
-		DialAddr: mongoConfig.logIp,
+		DialAddr:  mongoConfig.logIp,
 	}
 }
 
@@ -454,7 +459,7 @@ func (c *Collection) Pipe(query interface{}, result interface{}) (err error) {
 
 //时间区间统计器
 type DateRangeCounter []struct {
-	Sum float64
+	Sum  float64
 	Time time.Time
 }
 
@@ -465,7 +470,7 @@ func (data *DateRangeCounter) GetTimeJsonArr() string {
 /**
 每日数据统计
 list, err := db.C("t_test_group").RangeDayCount(bson.M{}, "$time", "$sum", "$score")
- */
+*/
 func (c *Collection) RangeDayCount(query interface{}, time_field string, count_type string, count_field string) (result DateRangeCounter, err error) {
 	err = c.PipeAll([]bson.M{
 		bson.M{
@@ -474,11 +479,11 @@ func (c *Collection) RangeDayCount(query interface{}, time_field string, count_t
 		bson.M{
 			"$group": bson.M{
 				"_id": bson.M{
-					"year": bson.M{"$year": time_field},
+					"year":  bson.M{"$year": time_field},
 					"month": bson.M{"$month": time_field},
-					"day": bson.M{"$dayOfMonth": time_field},
+					"day":   bson.M{"$dayOfMonth": time_field},
 				},
-				"sum": bson.M{count_type: count_field},
+				"sum":  bson.M{count_type: count_field},
 				"time": bson.M{"$first": time_field},
 			},
 		},
@@ -490,7 +495,6 @@ func (c *Collection) RangeDayCount(query interface{}, time_field string, count_t
 	}, &result)
 	return result, err
 }
-
 
 //删除表
 func (c *Collection) Drop() (err error) {
@@ -521,7 +525,7 @@ func (c *Collection) FindAllId(query interface{}) (list []bson.ObjectId, err err
 	if err != nil {
 		return list, err
 	}
-	for _,id := range res {
+	for _, id := range res {
 		list = append(list, id.Id)
 	}
 	return list, nil

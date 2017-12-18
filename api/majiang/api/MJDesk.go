@@ -1,19 +1,19 @@
 package api
 
 import (
+	"casino_common/api/majiang"
 	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/sessionService"
 	"casino_common/proto/ddproto"
 	"casino_common/proto/funcsInit"
 	"casino_common/utils/db"
+	"fmt"
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/module"
 	"sync"
-	"casino_common/api/majiang"
-	"fmt"
-	"casino_common/common/log"
-	"casino_common/common/sessionService"
 )
 
 //麻将桌子的定义
@@ -32,6 +32,7 @@ type MJDesk interface {
 	ActShangGa(...interface{}) error                //上嘎
 	ActFly(...interface{}) error                    //飞
 	ActTi(...interface{}) error                     //提
+	ActPreOpeningPlayOption(...interface{}) error   //开局前的玩法选择
 	ActLeave(...interface{}) error                  //离开房间
 	ActReady(userId uint32) error                   //准备
 	Lottery() error                                 //一局结束
@@ -67,8 +68,8 @@ type MJDeskCore struct {
 	Password string //房间号
 	Parser   MJParser
 	*MJDeskCfg
-	Users    []MJUser
-	TopDesk  MJDesk //上层desk
+	Users   []MJUser
+	TopDesk MJDesk //上层desk
 	sync.Mutex
 }
 
@@ -165,6 +166,11 @@ func (d *MJDeskCore) ActFly(...interface{}) error {
 
 func (d *MJDeskCore) ActTi(...interface{}) error {
 	log.W("MJDeskCore ActTi Nothing to Do")
+	return nil
+}
+
+func (d *MJDeskCore) ActPreOpeningPlayOption(...interface{}) error {
+	log.W("MJDeskCore ActPreOpeningPlayOption Nothing to Do")
 	return nil
 }
 

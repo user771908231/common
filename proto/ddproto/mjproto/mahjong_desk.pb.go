@@ -30,6 +30,8 @@ var _ = math.Inf
 
 // Ignoring public import of HaiNanPlayOptions from base.proto
 
+// Ignoring public import of ChangBaiPlayOptions from base.proto
+
 // Ignoring public import of RoomTypeInfo from base.proto
 
 // Ignoring public import of ComposeCard from base.proto
@@ -63,6 +65,8 @@ var _ = math.Inf
 // Ignoring public import of MJUserGameStatus from base.proto
 
 // Ignoring public import of DeskGameStatus from base.proto
+
+// Ignoring public import of CHANGBAI_PREOPENING_PLAYOPTIONS from base.proto
 
 // 房主解散房间(未开局)
 type Game_DissolveDesk struct {

@@ -973,7 +973,7 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 	return info
 }
 
-func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool, isPaoHu bool) (interface{}, error) {
+func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interface{}, error) {
 	userGameData := util.DeepClone(gameData.(*UserGameData)).(*UserGameData)
 	pais := userGameData.HandPokers
 
@@ -992,15 +992,10 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool, isPaoHu 
 				kan := &YiKanPai{}
 				pokers := GetPaisByValue2(pais, int32(paiValue))
 				kan.Pais = append(kan.Pais, pokers...)
-				if isPaoHu && checkPai != nil && !reflect.ValueOf(checkPai).IsNil() &&
-					reflect.ValueOf(checkPai).IsValid() && int32(paiValue) == checkPai.(*PHZPoker).GetValue() {
-					//如果是跑胡，且checkPai和坎牌一样，则不能加胡息
+				if paiValue <= 10 {
+					kan.HuXi = 3
 				} else {
-					if paiValue <= 10 {
-						kan.HuXi = 3
-					} else {
-						kan.HuXi = 6
-					}
+					kan.HuXi = 6
 				}
 
 				//累加总胡息

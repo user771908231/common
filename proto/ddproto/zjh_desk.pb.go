@@ -142,7 +142,7 @@ type ZjhReqGetRoomList struct {
 func (m *ZjhReqGetRoomList) Reset()                    { *m = ZjhReqGetRoomList{} }
 func (m *ZjhReqGetRoomList) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqGetRoomList) ProtoMessage()               {}
-func (*ZjhReqGetRoomList) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{0} }
+func (*ZjhReqGetRoomList) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{0} }
 
 func (m *ZjhReqGetRoomList) GetUserId() int32 {
 	if m != nil && m.UserId != nil {
@@ -173,7 +173,7 @@ type ZjhBaseRoomInfo struct {
 func (m *ZjhBaseRoomInfo) Reset()                    { *m = ZjhBaseRoomInfo{} }
 func (m *ZjhBaseRoomInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseRoomInfo) ProtoMessage()               {}
-func (*ZjhBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{1} }
+func (*ZjhBaseRoomInfo) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{1} }
 
 func (m *ZjhBaseRoomInfo) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -234,7 +234,7 @@ type ZjhAckRoomList struct {
 func (m *ZjhAckRoomList) Reset()                    { *m = ZjhAckRoomList{} }
 func (m *ZjhAckRoomList) String() string            { return proto.CompactTextString(m) }
 func (*ZjhAckRoomList) ProtoMessage()               {}
-func (*ZjhAckRoomList) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{2} }
+func (*ZjhAckRoomList) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{2} }
 
 func (m *ZjhAckRoomList) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -263,7 +263,7 @@ type ZjhReqEnterDesk struct {
 func (m *ZjhReqEnterDesk) Reset()                    { *m = ZjhReqEnterDesk{} }
 func (m *ZjhReqEnterDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqEnterDesk) ProtoMessage()               {}
-func (*ZjhReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{3} }
+func (*ZjhReqEnterDesk) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{3} }
 
 func (m *ZjhReqEnterDesk) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -306,7 +306,7 @@ type ZjhBaseUserInfo struct {
 func (m *ZjhBaseUserInfo) Reset()                    { *m = ZjhBaseUserInfo{} }
 func (m *ZjhBaseUserInfo) String() string            { return proto.CompactTextString(m) }
 func (*ZjhBaseUserInfo) ProtoMessage()               {}
-func (*ZjhBaseUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{4} }
+func (*ZjhBaseUserInfo) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{4} }
 
 func (m *ZjhBaseUserInfo) GetUid() int32 {
 	if m != nil && m.Uid != nil {
@@ -355,7 +355,7 @@ type ZjhDeskStateAck struct {
 func (m *ZjhDeskStateAck) Reset()                    { *m = ZjhDeskStateAck{} }
 func (m *ZjhDeskStateAck) String() string            { return proto.CompactTextString(m) }
 func (*ZjhDeskStateAck) ProtoMessage()               {}
-func (*ZjhDeskStateAck) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{5} }
+func (*ZjhDeskStateAck) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{5} }
 
 func (m *ZjhDeskStateAck) GetState() ZjhEnumDeskState {
 	if m != nil && m.State != nil {
@@ -395,7 +395,7 @@ type ZjhReqCreateDesk struct {
 func (m *ZjhReqCreateDesk) Reset()                    { *m = ZjhReqCreateDesk{} }
 func (m *ZjhReqCreateDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZjhReqCreateDesk) ProtoMessage()               {}
-func (*ZjhReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{6} }
+func (*ZjhReqCreateDesk) Descriptor() ([]byte, []int) { return fileDescriptor60, []int{6} }
 
 func (m *ZjhReqCreateDesk) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -421,9 +421,9 @@ func init() {
 	proto.RegisterType((*ZjhReqCreateDesk)(nil), "ddproto.zjh_req_createDesk")
 }
 
-func init() { proto.RegisterFile("zjh_desk.proto", fileDescriptor57) }
+func init() { proto.RegisterFile("zjh_desk.proto", fileDescriptor60) }
 
-var fileDescriptor57 = []byte{
+var fileDescriptor60 = []byte{
 	// 494 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xac, 0x53, 0xcd, 0x8e, 0xd3, 0x30,
 	0x10, 0xc6, 0xcd, 0xa6, 0xdb, 0x7a, 0x45, 0x59, 0xbc, 0x08, 0x45, 0x81, 0x43, 0x94, 0x53, 0x0e,

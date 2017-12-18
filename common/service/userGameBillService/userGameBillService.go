@@ -6,6 +6,7 @@ import (
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"casino_common/utils/rand"
 	"casino_common/utils/redisUtils"
 	"fmt"
 	"github.com/golang/protobuf/proto"
@@ -119,11 +120,10 @@ func GetViaRedis(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 	gameBills := &ddproto.RedisUserGameBill{}
 
 	redisUtils.GetObj(getRedisKey(userId, Cfg.gameId, roomType), gameBills)
-	if gameBills == nil || gameBills.GetData() == nil || len(gameBills.GetData()) <= 0 {
+	if gameBills == nil {
 		log.T("没有从redis里找到玩家[%v]相关的游戏账单数据... gid[%v] roomType[%v]", userId, Cfg.gameId, roomType)
 		return nil
 	}
-
 	return gameBills
 }
 
@@ -143,14 +143,10 @@ func GetViaCache(userId uint32, roomType int32) *ddproto.RedisUserGameBill {
 
 	//从redis中查询
 	gameBill = GetViaRedis(userId, roomType)
-	if gameBill.GetData() != nil && len(gameBill.GetData()) > 0 {
-		//查询到了 缓存到内存里
-		UserBill.Set(userId, gameBill)
-		log.T("从redis中查询玩家[%v]的游戏账单数据, 缓存到内存并返回", userId)
-		return gameBill
-	}
-	log.W("没有找到玩家[%v]的游戏账单数据", userId)
-	return nil
+	//查询到了 缓存到内存里
+	UserBill.Set(userId, gameBill)
+	log.T("从redis中查询玩家[%v]的游戏账单数据, 缓存到内存并返回", userId)
+	return gameBill
 }
 
 func Insert(b T_user_game_bill) {
@@ -258,24 +254,29 @@ func GetWinUser(roomType int32, userIds []uint32) (winUserId uint32, winRandomRa
 	//赢的概率默认70
 	winRandomRate = 70
 
-	//todo 暂时注释连输的控制
-	//continueLoseUsers := getContinueLoseUsers(userIds, roomType, rand.Rand(CONTIUNELOSECOUNT_MIN, CONTIUNELOSECOUNT_MAX))
-	//if len(continueLoseUsers) == 1 {
-	//	//只有一个玩家连输的时候直接返回
-	//	winUserId = continueLoseUsers[0]
-	//	winRandomRate = 100 //必赢
-	//	log.T("GetWinUser 找到单个连输的玩家[%v] 让他必赢", winUserId)
-	//	return
-	//}
-	//
-	//if len(continueLoseUsers) <= 0 {
-	//	//没有连输的玩家 设置为所有玩家
-	//	continueLoseUsers = userIds
-	//}
+	winModeUsers := []uint32{}
+	//转转红中不需要连输控制逻辑
+	if Cfg.gameId == int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN) ||
+		Cfg.gameId == int32(ddproto.CommonEnumGame_GID_MJ_SONGJIANGHE) {
+		winModeUsers = getWinModeUsers(userIds, roomType)
+	} else {
+		continueLoseUsers := getContinueLoseUsers(userIds, roomType, rand.Rand(CONTIUNELOSECOUNT_MIN, CONTIUNELOSECOUNT_MAX))
+		if len(continueLoseUsers) == 1 {
+			//只有一个玩家连输的时候直接返回
+			winUserId = continueLoseUsers[0]
+			winRandomRate = 100 //必赢
+			log.T("GetWinUser 找到单个连输的玩家[%v] 让他必赢", winUserId)
+			return
+		}
 
-	//获取位于赢模式的玩家
-	//winModeUsers := getWinModeUsers(continueLoseUsers, roomType)
-	winModeUsers := getWinModeUsers(userIds, roomType)
+		if len(continueLoseUsers) <= 0 {
+			//没有连输的玩家 设置为所有玩家
+			continueLoseUsers = userIds
+		}
+
+		//获取位于赢模式的玩家
+		winModeUsers = getWinModeUsers(continueLoseUsers, roomType)
+	}
 	if len(winModeUsers) == 1 {
 		//只有一个玩家处于赢模式的时候直接返回
 		winUserId = winModeUsers[0]
@@ -408,7 +409,7 @@ func getUserDefeatedPoint(bills []*ddproto.UserGameBill) (defeatedPoint, loseCou
 		}
 	}
 
-	if totalLoseAmount > 0 {
+	if totalLoseAmount >= 0 {
 		totalLoseAmount = 0
 	} else {
 		totalLoseAmount = -totalLoseAmount
