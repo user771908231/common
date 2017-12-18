@@ -2,10 +2,10 @@ package utils
 
 import (
 	"casino_common/api/majiang"
-	"github.com/golang/protobuf/proto"
-	"fmt"
 	"casino_common/api/majiang/api"
 	"casino_common/proto/ddproto/mjproto"
+	"fmt"
+	"github.com/golang/protobuf/proto"
 )
 
 func Mjpai2Card(p *majiang.MJPAI) *mjproto.CardInfo {
@@ -42,7 +42,6 @@ func ListMjapi2Card(ps []*majiang.MJPAI) []*mjproto.CardInfo {
 	return ret
 }
 
-
 func IsXia(p *majiang.MJPAI) bool {
 	if p == nil {
 		return false
@@ -78,12 +77,12 @@ func ListGameData2Str(g api.MJUserGameData) string {
 		u.GameData.ChiPais,
 		u.GameData.HuInfo,
 		u.GameData.MoPai,
-	 */
+	*/
 	return fmt.Sprintf("手牌:%v ,杠牌:%v ,碰牌:%v,吃牌:%v,胡牌:%v摸牌:%v",
 		List2Str(g.GetHandPais()),
 		ListGang2Str(g.GetGangPais()),
 		List2Str(ListPeng2Str(g.GetPengPais())),
-		"--",
+		List2Str(ListChi2Str(g.GetChiPais())),
 		"--",
 		g.GetMoPai().LogDes())
 }
@@ -104,5 +103,9 @@ func ListGang2Str(pps []*majiang.GangPai) []*majiang.MJPAI {
 }
 
 func ListChi2Str(pps []*majiang.ChiPai) []*majiang.MJPAI {
-	return nil
+	var ps []*majiang.MJPAI
+	for _, p := range pps {
+		ps = append(ps, p.Pais...)
+	}
+	return ps
 }
