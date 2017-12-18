@@ -66,6 +66,8 @@ var _ = math.Inf
 
 // Ignoring public import of DeskGameStatus from base.proto
 
+// Ignoring public import of CHANGBAI_PREOPENING_PLAYOPTIONS from base.proto
+
 // 服务器信息
 type ServerInfo struct {
 	Ip               *string `protobuf:"bytes,1,opt,name=ip" json:"ip,omitempty"`

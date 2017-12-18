@@ -61,6 +61,9 @@ It is generated from these files:
 	rpc_hall.proto
 	rpc_niuniu.proto
 	rpc_pdk.proto
+	zhadan_base.proto
+	zhadan_play.proto
+	zhadan_server.proto
 	zjh_base.proto
 	zjh_desk.proto
 	zjh_hall.proto
@@ -626,6 +629,43 @@ It has these top-level messages:
 	RpcHallUpdateConfig
 	HallRpcDeskEventMsg
 	HallRpcGroupRefresh
+	ZhadanClientPoker
+	ZhadanUserBill
+	ZhadanDeskOption
+	ZhadanSrvRoom
+	ZhadanClientDesk
+	ZhadanClientUser
+	ZhadanCreateDeskReq
+	ZhadanEnterDeskReq
+	ZhadanEnterDeskAck
+	ZhadanEnterDeskBc
+	ZhadanSwitchReadyReq
+	ZhadanSwitchReadyBc
+	ZhadanFapaiOt
+	ZhadanBaozhuangOt
+	ZhadanBaozhuangReq
+	ZhadanBaozhuangAck
+	ZhadanBaozhuangResItem
+	ZhadanBaozhuangRes
+	ZhadanChupaiOt
+	ZhadanChupaiReq
+	ZhadanChupaiBc
+	ZhadanGuopaiReq
+	ZhadanGuopaiBc
+	ZhadanGameEndOneItem
+	ZhadanGameEndOneBc
+	ZhadanGameEndAllItem
+	ZhadanGameEndAllBc
+	ZhadanOfflineBc
+	ZhadanCoinRoomListReq
+	ZhadanCoinRoomListAck
+	ZhadanOwnerDissolveReq
+	ZhadanOwnerDissolveAck
+	ZhadanSrvPoker
+	ZhadanSrvDesk
+	ZhadanSrvUser
+	ZhadanSrvDeskSnapshotIdIndex
+	ZhadanSrvDeskSnapshot
 	ZjhReqGetRoomList
 	ZjhBaseRoomInfo
 	ZjhAckRoomList
