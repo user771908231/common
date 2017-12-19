@@ -30,14 +30,14 @@ var SiChuanConf = CreateConfig{
 		[]string{"血流成河", "血流"},
 	},
 	[][]string{
+		[]string{"底分10", "底分十"},
 		[]string{"底分1", "底分一"},
 		[]string{"底分2", "底分二"},
 		[]string{"底分5", "底分五"},
-		[]string{"底分10", "底分十"},
 	},
 	[][]string{
-		[]string{"区分庄闲", "庄闲"},
 		[]string{"不区分庄闲"},
+		[]string{"区分庄闲", "庄闲"},
 		[]string{""},
 	},
 	[][]string{
@@ -206,13 +206,13 @@ func DoSiChuanKaifang(owner uint32, group_id int32, option_str string) (error, *
 		case "4番封顶":
 			opt_cap_max = 4
 		case "自摸加底":
-			opt_hu_radio = int32(mjproto.HuType_H_ZiMoJiaDi)
+			opt_zimo_radio = int32(mjproto.MJOption_ZIMO_JIA_DI)
 		case "自摸加番":
-			opt_hu_radio = int32(mjproto.HuType_H_ZiMoJiaFan)
+			opt_hu_radio = int32(mjproto.MJOption_ZIMO_JIA_FAN)
 		case "点杠炮":
-			opt_diangang_hu_radio = 5
-		case "点杠花":
 			opt_diangang_hu_radio = 4
+		case "点杠花":
+			opt_diangang_hu_radio = 5
 		case "幺九将对":
 			opt_others_check_box = append(opt_others_check_box, int32(mjproto.MJOption_YAOJIU_JIANGDUI))
 		case "天地胡":
@@ -296,6 +296,7 @@ func DoSiChuanKaifang(owner uint32, group_id int32, option_str string) (error, *
 			//更新redis
 			saveToRedisByGroupid(group_id)
 		}
+		log.T("开始匹配 开房选项 %v", sichuan_keywords)
 		ex_room := GetAgentFreeRoomByOption(group_id, int(opt_player_count), sichuan_keywords)
 		if ex_room != nil {
 			return nil, ex_room
