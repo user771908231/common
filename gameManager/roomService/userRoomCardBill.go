@@ -67,7 +67,7 @@ func (opt *RoomcardBillOpt) DecrUserRoomCard() error {
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_BIG_WINER_PAY:
 		//大赢家付
 		one_user_need_roomcard := needRoomCard / int64(len(opt.BigWiner))
-		for _,u := range opt.Users {
+		for _,u := range opt.BigWiner {
 			userService.DECRUserRoomcard(u, one_user_need_roomcard, int32(opt.GameId), "大赢家扣房卡")
 		}
 	}
