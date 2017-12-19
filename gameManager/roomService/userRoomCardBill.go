@@ -13,8 +13,9 @@ type RoomcardBillOpt struct {
 	BillType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE  //结算类型
 	GameId ddproto.CommonEnumGame  //游戏id
 	ChanelId int32  //渠道id
-	GamerNum int32
+	GamerNum int32  //游戏人数
 	BoardsCout int32  //房间局数
+	IsPreEnd bool  //是否为提前结束（解散为True不扣房卡）
 	Owner uint32  //房主
 	Users []uint32  //当前房间需要扣费的人
 	BigWiner []uint32
@@ -50,6 +51,10 @@ func (opt *RoomcardBillOpt) DecrUserRoomCard() error {
 	if opt.ChanelId != 73 && opt.ChanelId != 74 {
 		log.T("仅支持黄圣棋牌， %v", opt)
 		return errors.New("仅支持皇圣")
+	}
+	//提前结束不扣除房卡
+	if opt.IsPreEnd == true {
+		return nil
 	}
 	needRoomCard := getHuangshengRoomcardConfig(opt.GameId, opt.BoardsCout)
 	switch opt.BillType {
