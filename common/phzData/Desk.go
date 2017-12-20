@@ -47,6 +47,8 @@ type DeskCfg struct {
 	IsDaiKai         bool   //是否代开
 	ApplyDisUser     uint32 //申请解散的玩家
 	DiceValue        int32  //每局随机的概率值
+	RoomCardBillType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE  //扣房卡模式：房主扣卡AA扣卡大赢家扣卡等
+	ChanelId         int32  //建房的渠道
 }
 
 type DeskGameData struct {
