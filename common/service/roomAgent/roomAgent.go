@@ -1,19 +1,19 @@
 package roomAgent
 
 import (
-	"casino_common/proto/ddproto"
-	"errors"
-	"github.com/golang/protobuf/proto"
-	"casino_common/utils/db"
+	"casino_common/common/consts"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/service/rpcService"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/redisUtils"
+	"errors"
+	"fmt"
+	"github.com/golang/protobuf/proto"
+	"golang.org/x/net/context"
 	"gopkg.in/mgo.v2/bson"
 	"strings"
-	"fmt"
-	"casino_common/common/consts"
-	"casino_common/utils/redisUtils"
-	"casino_common/common/service/rpcService"
-	"golang.org/x/net/context"
-	"casino_common/common/log"
 )
 
 //从数据库获取当前未开局的房间表
@@ -38,24 +38,29 @@ func GetAgentRoomsByGroup(group_id int32) []*ddproto.CommonDeskByAgent {
 	return redis_obj.Data
 }
 
-
 //查询空闲房间
 func GetAgentFreeRoomByOption(group_id int32, gamer_num int, keywords []string) *ddproto.CommonDeskByAgent {
 	rooms := GetAgentRoomsByGroup(group_id)
 	for _, room := range rooms {
+		log.T("room status[%v] room len(users)[%v] gamer_num[%v]", room.GetStatus(), len(room.GetUsers()), gamer_num)
 		if room.GetStatus() != 0 || len(room.GetUsers()) >= gamer_num {
+			log.W("匹配失败 room[%v]", room.GetTips())
 			continue
 		}
 
 		has_all_keywords := true
+		log.T("开始匹配 roomTips[%v], keywords[%v]", room.GetTips(), keywords)
 		for _, keyword := range keywords {
+			log.T("开始匹配 roomTips[%v], keyword[%v]", room.GetTips(), keyword)
 			if !strings.Contains(room.GetTips(), keyword) {
+				log.W("匹配失败 roomTips[%v], keyword[%v]", room.GetTips(), keyword)
 				has_all_keywords = false
 				break
 			}
 		}
 
-		if  has_all_keywords {
+		if has_all_keywords {
+			log.T("匹配成功 return room[%v]", room.GetTips())
 			return room
 		}
 	}
@@ -69,20 +74,20 @@ func saveToRedis(creator uint32, gameId int32, deskId int32, groupId int32) erro
 	saveToRedisByCreator(creator)
 	if groupId > 0 {
 		saveToRedisByGroupid(groupId)
-	}else if groupId == 0 {
+	} else if groupId == 0 {
 		desk := new(ddproto.CommonDeskByAgent)
 
 		err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(bson.M{
 			"creator": creator,
-			"gameid": gameId,
-			"deskid": deskId,
-		},desk)
+			"gameid":  gameId,
+			"deskid":  deskId,
+		}, desk)
 
 		if err != nil {
 			log.E("saveToRedis(creator:%d,gameId:%d,deskId:%d) err:%v", creator, gameId, deskId, err)
 			return err
 		}
-		if desk.GetGroupId() > 0{
+		if desk.GetGroupId() > 0 {
 			saveToRedisByGroupid(desk.GetGroupId())
 		}
 	}
@@ -99,7 +104,7 @@ func saveToRedisByCreator(creator uint32) error {
 	}, &list)
 
 	if err != nil {
-		log.E("saveToRedisByCreator(%d) err:%v",creator,err)
+		log.E("saveToRedisByCreator(%d) err:%v", creator, err)
 		return err
 	}
 
@@ -109,7 +114,7 @@ func saveToRedisByCreator(creator uint32) error {
 
 	err = redisUtils.SetObj(fmt.Sprintf("%s_%d", consts.RKEY_AGENT_CREATE_DESK_LIST, creator), redis_obj)
 	if err != nil {
-		log.E("saveToRedisByCreator(%d) err:%v",creator,err)
+		log.E("saveToRedisByCreator(%d) err:%v", creator, err)
 		return err
 	}
 
@@ -125,7 +130,7 @@ func saveToRedisByGroupid(group_id int32) error {
 	}, &list)
 
 	if err != nil {
-		log.E("saveToRedisByGroupid(%d) err:%v",group_id,err)
+		log.E("saveToRedisByGroupid(%d) err:%v", group_id, err)
 		return err
 	}
 
@@ -135,19 +140,17 @@ func saveToRedisByGroupid(group_id int32) error {
 
 	err = redisUtils.SetObj(fmt.Sprintf("%s_%d", consts.RKEY_AGENT_GROUP_CREATE_DESK_LIST, group_id), redis_obj)
 	if err != nil {
-		log.E("saveToRedisByGroupid(%d) err:%v",group_id,err)
+		log.E("saveToRedisByGroupid(%d) err:%v", group_id, err)
 		return err
 	}
 
 	return nil
 }
 
-
-
 //插入mongo
 func insertToMongo(item *ddproto.CommonDeskByAgent) error {
 
- 	return db.C(tableName.DBT_AGENT_CREATE_ROOM_RECORD).Upsert(bson.M{"creator": item.GetCreator(), "gameid": item.GetGameId(), "deskid": item.GetDeskId()}, item)
+	return db.C(tableName.DBT_AGENT_CREATE_ROOM_RECORD).Upsert(bson.M{"creator": item.GetCreator(), "gameid": item.GetGameId(), "deskid": item.GetDeskId()}, item)
 }
 
 //检查合法性
@@ -162,7 +165,7 @@ func checkItem(item *ddproto.CommonDeskByAgent) error {
 
 //创建房间--from-mongo
 func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tips string, createTime int64, maxCircle int32, maxGammer int32, groupId int32) error {
-	count,err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Count(bson.M{"creator": creator})
+	count, err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Count(bson.M{"creator": creator})
 	if err != nil {
 		return nil
 	}
@@ -171,31 +174,30 @@ func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tip
 	}
 
 	new_item := &ddproto.CommonDeskByAgent{
-		Password: &password,
-		GameId: &gameId,
-		DeskId: &deskId,
-		Creator: &creator,
-		Tips: &tips,
+		Password:   &password,
+		GameId:     &gameId,
+		DeskId:     &deskId,
+		Creator:    &creator,
+		Tips:       &tips,
 		CreateTime: &createTime,
-		Status: proto.Int32(0),
-		Users: []string{},
-		MaxCircle:proto.Int32(maxCircle),
-		MaxGammer: proto.Int32(maxGammer),
-		GroupId: proto.Int32(groupId),
+		Status:     proto.Int32(0),
+		Users:      []string{},
+		MaxCircle:  proto.Int32(maxCircle),
+		MaxGammer:  proto.Int32(maxGammer),
+		GroupId:    proto.Int32(groupId),
 	}
-
 
 	if err := checkItem(new_item); err != nil {
 		return err
 	}
 
 	switch {
-		case db.C(tableName.DBT_AGENT_CREATED_ROOM).Insert(new_item) != nil:
-			return errors.New("insert err.")
-		case saveToRedisByCreator(creator) != nil:
-			return errors.New("save redis creator err.")
-		case groupId > 0 && saveToRedisByGroupid(groupId) != nil:
-			return errors.New("save redis group err.")
+	case db.C(tableName.DBT_AGENT_CREATED_ROOM).Insert(new_item) != nil:
+		return errors.New("insert err.")
+	case saveToRedisByCreator(creator) != nil:
+		return errors.New("save redis creator err.")
+	case groupId > 0 && saveToRedisByGroupid(groupId) != nil:
+		return errors.New("save redis group err.")
 	}
 
 	return nil
@@ -205,9 +207,9 @@ func CreateDesk(gameId int32, password string, deskId int32, creator uint32, tip
 func DoStart(creator uint32, gameId int32, deskId int32) error {
 	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Update(bson.M{
 		"creator": creator,
-		"gameid": gameId,
-		"deskid": deskId,
-	},bson.M{
+		"gameid":  gameId,
+		"deskid":  deskId,
+	}, bson.M{
 		"$set": bson.M{"status": 1},
 	})
 
@@ -223,8 +225,8 @@ func DoEnd(creator uint32, gameId int32, deskId int32) error {
 	ex_desk := new(ddproto.CommonDeskByAgent)
 	query := bson.M{
 		"creator": creator,
-		"gameid": gameId,
-		"deskid": deskId,
+		"gameid":  gameId,
+		"deskid":  deskId,
 	}
 	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(query, ex_desk)
 
@@ -249,8 +251,8 @@ func DoEnd(creator uint32, gameId int32, deskId int32) error {
 	insertToMongo(ex_desk)
 
 	//推送解散消息
-	_,err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
-		Msg: proto.String("房间已结束游戏"),
+	_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+		Msg:  proto.String("房间已结束游戏"),
 		Desk: ex_desk,
 	})
 
@@ -262,8 +264,8 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 	ex_desk := new(ddproto.CommonDeskByAgent)
 	query := bson.M{
 		"creator": creator,
-		"gameid": gameId,
-		"deskid": deskId,
+		"gameid":  gameId,
+		"deskid":  deskId,
 	}
 	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(query, ex_desk)
 
@@ -278,7 +280,7 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 	}
 
 	//更新状态
-	ex_desk.Status = proto.Int32(3);
+	ex_desk.Status = proto.Int32(3)
 	err = insertToMongo(ex_desk)
 	if err != nil {
 		return err
@@ -293,21 +295,21 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 		saveToRedisByGroupid(ex_desk.GetGroupId())
 
 		//推送解散消息
-		res,err := rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
-			Msg: proto.String("房间已解散"),
+		res, err := rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+			Msg:  proto.String("房间已解散"),
 			Desk: ex_desk,
 		})
 
 		if res == nil {
 			if err != nil {
-				return errors.New("rpc networkerr:"+err.Error())
-			}else {
+				return errors.New("rpc networkerr:" + err.Error())
+			} else {
 				return errors.New("未知错误")
 			}
-		}else {
+		} else {
 			if res.GetCode() < 0 {
 				return errors.New(res.GetError())
-			}else {
+			} else {
 				return nil
 			}
 		}
@@ -319,8 +321,8 @@ func DoDissolve(creator uint32, gameId int32, deskId int32) error {
 func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) error {
 	query := bson.M{
 		"creator": creator,
-		"gameid": gameId,
-		"deskid": deskId,
+		"gameid":  gameId,
+		"deskid":  deskId,
 	}
 
 	//更新redis
@@ -330,7 +332,7 @@ func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) erro
 		return err
 	}
 
-	for _,u := range desk.Users{
+	for _, u := range desk.Users {
 		if u == new_user {
 			return errors.New("用户已在房间里，重复请求进房。")
 		}
@@ -355,8 +357,62 @@ func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) erro
 		return err
 	}
 
-	_,err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
-		Msg: proto.String("新用户进房"),
+	_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+		Msg:  proto.String("新用户进房"),
+		Desk: desk,
+	})
+
+	//更新Redis
+	return err
+}
+
+//删除用户
+func DoRmUser(creator uint32, gameId int32, deskId int32, rm_user string) error {
+	query := bson.M{
+		"creator": creator,
+		"gameid":  gameId,
+		"deskid":  deskId,
+	}
+
+	//更新redis
+	desk := new(ddproto.CommonDeskByAgent)
+	err := db.C(tableName.DBT_AGENT_CREATED_ROOM).Find(query, desk)
+	if err != nil {
+		return err
+	}
+
+	rmIndex := int(-1)
+	for i, u := range desk.Users {
+		if u == rm_user {
+			rmIndex = i
+		}
+	}
+	if rmIndex < 0 {
+		return errors.New("用户不在房间里，删除失败。")
+	}
+
+	desk.Users = append(desk.Users[:rmIndex], desk.Users[rmIndex+1:]...)
+
+	//更新用户列表
+	err = db.C(tableName.DBT_AGENT_CREATED_ROOM).Update(query, bson.M{
+		"$pull": bson.M{"users": rm_user},
+	})
+	if err != nil {
+		return err
+	}
+
+	//保存到redis
+	group_id := desk.GetGroupId()
+	if group_id <= 0 {
+		group_id = -1
+	}
+	err = saveToRedis(creator, gameId, deskId, group_id)
+	if err != nil {
+		return err
+	}
+
+	_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+		Msg:  proto.String("用户离开房间"),
 		Desk: desk,
 	})
 
