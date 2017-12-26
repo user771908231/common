@@ -1,23 +1,23 @@
 package roomService
 
 import (
+	"casino_common/common/log"
+	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
 	"errors"
-	"casino_common/common/userService"
 	"fmt"
-	"casino_common/common/log"
 )
 
 //房费扣除配置，用于支持AA扣房卡和大赢家扣房卡
 type RoomcardBillOpt struct {
-	BillType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE  //结算类型
-	GameId ddproto.CommonEnumGame  //游戏id
-	ChanelId int32  //渠道id
-	GamerNum int32
-	BoardsCout int32  //房间局数
-	Owner uint32  //房主
-	Users []uint32  //当前房间需要扣费的人
-	BigWiner []uint32
+	BillType   ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE //结算类型
+	GameId     ddproto.CommonEnumGame                 //游戏id
+	ChanelId   int32                                  //渠道id
+	GamerNum   int32
+	BoardsCout int32    //房间局数
+	Owner      uint32   //房主
+	Users      []uint32 //当前房间需要扣费的人
+	BigWiner   []uint32
 }
 
 //是否能够进房
@@ -56,19 +56,18 @@ func (opt *RoomcardBillOpt) DecrUserRoomCard() error {
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_AA_PAY:
 		//AA付
 		one_user_need_roomcard := needRoomCard / int64(len(opt.Users))
-		for _,u := range opt.Users {
+		for _, u := range opt.Users {
 			userService.DECRUserRoomcard(u, one_user_need_roomcard, int32(opt.GameId), "AA扣房卡")
 		}
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_BIG_WINER_PAY:
 		//大赢家付
 		one_user_need_roomcard := needRoomCard / int64(len(opt.BigWiner))
-		for _,u := range opt.Users {
+		for _, u := range opt.Users {
 			userService.DECRUserRoomcard(u, one_user_need_roomcard, int32(opt.GameId), "大赢家扣房卡")
 		}
 	}
 	return nil
 }
-
 
 //黄圣 房卡配置
 func getHuangshengRoomcardConfig(gameId ddproto.CommonEnumGame, boardCout int32) (needRoomCard int64) {
