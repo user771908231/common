@@ -54,6 +54,12 @@ const (
 	RKEY_ZZHZ_DATARECOVER_ID_LIST_COIN string = "rkey_zzhz_datarecover_id_list_coin" //转转红中金币场麻将数据恢复房间ID列表
 	RKEY_ZZHZ_DATARECOVER_DATA_COIN    string = "rkey_zzhz_datarecover_data_coin"    //转转红中金币场麻将数据恢复数据
 
+	RKEY_SHENQI_DATARECOVER_ID_LIST string = "rkey_shenqi_datarecover_id_list" //神奇朋友桌麻将数据恢复房间ID列表
+	RKEY_SHENQI_DATARECOVER_DATA    string = "rkey_shenqi_datarecover_data"    //神奇朋友桌麻将数据恢复数据
+
+	RKEY_SHENQI_DATARECOVER_ID_LIST_COIN string = "rkey_shenqi_datarecover_id_list_coin" //神奇金币场麻将数据恢复房间ID列表
+	RKEY_SHENQI_DATARECOVER_DATA_COIN    string = "rkey_shenqi_datarecover_data_coin"    //神奇金币场麻将数据恢复数据
+
 	RKEY_ZXZ_DATARECOVER_ID_LIST string = "rkey_zxz_datarecover_id_list" //捉瞎子麻将数据恢复房间ID列表
 	RKEY_ZXZ_DATARECOVER_DATA    string = "rkey_zxz_datarecover_data"    //捉瞎子麻将数据恢复数据
 
@@ -74,8 +80,9 @@ const (
 )
 
 const (
-	RKEY_ZZHZ_WHITE_USER_WINCOIN_INFO string = "rkey_zzhz_white_user_wincoin_info" //转转红中朋友桌麻将白名单玩家输赢数据
-	RKEY_SJH_WHITE_USER_WINCOIN_INFO  string = "rkey_sjh_white_user_wincoin_info"  //松江河朋友桌麻将白名单玩家输赢数据
+	RKEY_SHENQI_WHITE_USER_WINCOIN_INFO string = "rkey_shenqi_white_user_wincoin_info" //神奇朋友桌麻将白名单玩家输赢数据
+	RKEY_ZZHZ_WHITE_USER_WINCOIN_INFO   string = "rkey_zzhz_white_user_wincoin_info"   //转转红中朋友桌麻将白名单玩家输赢数据
+	RKEY_SJH_WHITE_USER_WINCOIN_INFO    string = "rkey_sjh_white_user_wincoin_info"    //松江河朋友桌麻将白名单玩家输赢数据
 )
 
 const (
@@ -90,11 +97,13 @@ const (
 )
 
 const (
-	RKEY_HZH_ROBOT_GAME_BILL string = "rkey_hzh_robot_game_bill" //红中机器人策略控制用的赢局统计信息
+	RKEY_HZH_ROBOT_GAME_BILL    string = "rkey_hzh_robot_game_bill"    //红中机器人策略控制用的赢局统计信息
+	RKEY_SHENQI_ROBOT_GAME_BILL string = "rkey_shenqi_robot_game_bill" //神奇机器人策略控制用的赢局统计信息
 )
 
 const (
-	RKEY_ROBOT_WIN_RATE_HZH string = "rkey_robot_win_rate_hzh" //红中机器人胜率
+	RKEY_ROBOT_WIN_RATE_HZH    string = "rkey_robot_win_rate_hzh"    //红中机器人胜率
+	RKEY_ROBOT_WIN_RATE_SHENQI string = "rkey_robot_win_rate_shenqi" //神奇机器人胜率
 )
 
 //配置信息

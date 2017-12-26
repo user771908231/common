@@ -114,6 +114,10 @@ const (
 	DBT_MJ_HZH_DESK_ROUND_ALL      = "t_mj_hzh_desk_round_all"      //全局红中麻将结束
 	DBT_MJ_HZH_DESK_ROUND_PLAYBACK = "t_mj_hzh_desk_round_playback" //一把红中麻将回放数据
 
+	DBT_MJ_SHENQI_DESK_ROUND          = "t_mj_shenqi_desk_round"          //一把神奇麻将结束
+	DBT_MJ_SHENQI_DESK_ROUND_ALL      = "t_mj_shenqi_desk_round_all"      //全局神奇麻将结束
+	DBT_MJ_SHENQI_DESK_ROUND_PLAYBACK = "t_mj_shenqi_desk_round_playback" //一把神奇麻将回放数据
+
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
 	DBT_DDZ_DESK_ROUND_ALL = "t_ddz_desk_round_all" //全局斗地主结束
