@@ -233,3 +233,32 @@ db.t_game_config_login_list.insert({
     "DownloadUrl" : "http://d.tondeen.com/sjtexas.html",
     "LatestClientVersion" : 1, "IP" : "182.92.179.230", "PORT" : 3813, "STATUS" : 1 });
 db.t_game_config_login_list_shenzhen.insert({ "GameId" : 17, "name" : "百人牛牛", "CurVersion" : 1, "IsUpdate" : 0, "IsMaintain" : 0, "MaintainMsg" : "百人牛牛", "ReleaseTag" : 1, "DownloadUrl" : "http://d.tondeen.com/sjtexas.html", "LatestClientVersion" : 1, "IP" : "182.92.179.230", "PORT" : 3813, "STATUS" : 1 });
+
+db.getCollection("t_game_config_login_list_shenzhen").insert({
+    "GameId": 28,
+    "name": "神奇麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "神奇麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3824,
+    "STATUS": 1.0
+});
+db.getCollection("t_game_config_login_list").insert({
+    "GameId": 28,
+    "name": "神奇麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "神奇麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3824,
+    "STATUS": 1.0
+});
