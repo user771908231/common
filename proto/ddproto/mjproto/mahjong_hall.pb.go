@@ -62,6 +62,8 @@ var _ = math.Inf
 
 // Ignoring public import of PaiType from base.proto
 
+// Ignoring public import of COMMON_ENUM_ROOMCARD_BILL_TYPE from base.proto
+
 // Ignoring public import of MJUserGameStatus from base.proto
 
 // Ignoring public import of DeskGameStatus from base.proto
