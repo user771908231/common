@@ -1,11 +1,11 @@
 package roomService
 
 import (
+	"casino_common/common/log"
+	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
 	"errors"
-	"casino_common/common/userService"
 	"fmt"
-	"casino_common/common/log"
 )
 
 //获取建房房费
@@ -73,7 +73,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 			return nil
 		}
 		needRoomcard := getDeskEnterAAFee(gameId, boardsCout, gamerNum, chanelId)
-		for _,u := range allUsers {
+		for _, u := range allUsers {
 			userService.DECRUserRoomcard(u, needRoomcard, int32(gameId), "AA扣卡")
 		}
 
@@ -82,7 +82,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 			return nil
 		}
 		needRoomcard := getDeskBigwinerOneBillFee(gameId, boardsCout, gamerNum, chanelId, allUsers, winUsers)
-		for _,u := range winUsers {
+		for _, u := range winUsers {
 			userService.DECRUserRoomcard(u, needRoomcard, int32(gameId), "大赢家扣卡")
 		}
 	}
@@ -202,4 +202,3 @@ func getDeskBigwinerOneBillFee(gameId ddproto.CommonEnumGame, boardCout int32, g
 
 	return
 }
-
