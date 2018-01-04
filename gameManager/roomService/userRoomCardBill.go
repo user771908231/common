@@ -72,7 +72,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 		}
 		return nil
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_AA_PAY:
-		if currRound == 1 {
+		if currRound <= 1 {
 			return nil
 		}
 		needRoomcard := getDeskEnterAAFee(gameId, boardsCout, gamerNum, chanelId)
@@ -83,7 +83,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 		}
 
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_BIG_WINER_PAY:
-		if currRound == 1 {
+		if currRound <= 1 {
 			return nil
 		}
 		needRoomcard := getDeskBigwinerOneBillFee(gameId, boardsCout, gamerNum, chanelId, allUsers, winUsers)
