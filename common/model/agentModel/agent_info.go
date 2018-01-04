@@ -30,6 +30,10 @@ type AgentInfo struct {
 	Level    int32     //代理级别：一级 二级 三级
 	Type     AgentType //代理类型： 总代 普通带理
 
+	Attr     struct{
+		Level int32  //1：高级代理 2：中级代理 3：低级代理  (黄圣特有)
+	}
+
 	CoinFeeRebate float64 //金币房费提成(单位：人民币元)
 }
 

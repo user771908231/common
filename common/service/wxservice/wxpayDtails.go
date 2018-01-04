@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"casino_common/common/log"
 	"strings"
+	"time"
 )
 
 var LOCK int64 = 1;
@@ -48,7 +49,9 @@ func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo
 		PayModelId:   proto.Int32(payModelId),
 		TradeNo:      proto.String(tradeNo),
 		Diamond:      proto.Int64(diamond),
-		Status:       ddproto.PayEnumTradeStatus_PAY_S_UNIFIEDORDER.Enum()}
+		Status:       ddproto.PayEnumTradeStatus_PAY_S_UNIFIEDORDER.Enum(),
+		Time:         proto.Int64(time.Now().Unix()),
+		}
 	//保存明细
 	SaveDetails(ret)
 	//设置一个订单准备，用于同步，避免重复微信回调时候的重复回调
