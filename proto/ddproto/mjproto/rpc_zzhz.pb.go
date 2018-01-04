@@ -45,6 +45,8 @@ var _ = math.Inf
 
 // Ignoring public import of game_AckCreateRoom from mahjong_hall.proto
 
+// Ignoring public import of game_CreateRoom_v2 from mahjong_hall.proto
+
 // Ignoring public import of game_EnterRoom from mahjong_hall.proto
 
 // Ignoring public import of game_AckEnterRoom from mahjong_hall.proto

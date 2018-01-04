@@ -42,6 +42,10 @@ var _ = math.Inf
 
 // Ignoring public import of hall_new_room_List from hall_data.proto
 
+// Ignoring public import of hall_req_gid_by_roompwd from hall_data.proto
+
+// Ignoring public import of hall_ack_gid_by_roompwd from hall_data.proto
+
 // Ignoring public import of hall_enum_protoId from hall_data.proto
 
 // Ignoring public import of hall_enum_trade_type from hall_data.proto

@@ -1,10 +1,10 @@
 package chessUtils
 
 import (
-	"testing"
 	"fmt"
-	"time"
 	"sync"
+	"testing"
+	"time"
 )
 
 func TestGetRoomPass(t *testing.T) {
@@ -38,7 +38,7 @@ func TestShuffle(t *testing.T) {
 	var wg sync.WaitGroup
 	for i := 0; i < 100; i++ {
 		wg.Add(1)
-		time.AfterFunc(time.Second / 100, func() {
+		time.AfterFunc(time.Second/100, func() {
 			defer wg.Done()
 			arr := Xipai(0, 51)
 			fmt.Println(arr)
@@ -55,16 +55,16 @@ func TestXipai(t *testing.T) {
 	list = list[:len(list)-1]
 	t.Log(list)
 	return
-	for i:=0;i<10000000;i++ {
-		list := Xipai(0,51)
+	for i := 0; i < 10000000; i++ {
+		list := Xipai(0, 51)
 		m := map[int32]int{}
 
-		for _,v := range list{
-			if _,ok := m[v];ok {
+		for _, v := range list {
+			if _, ok := m[v]; ok {
 				m[v]++
 				t.Log(list, m)
 				return
-			}else {
+			} else {
 				m[v] = 1
 			}
 		}

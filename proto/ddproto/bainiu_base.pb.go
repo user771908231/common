@@ -379,6 +379,8 @@ It has these top-level messages:
 	HallReqNewRoomList
 	HallAckNewRoomList
 	HallNewRoom_List
+	HallReqGidByRoompwd
+	HallAckGidByRoompwd
 	PlaybackReqPage
 	PlaybackAckPage
 	PlaybackData
