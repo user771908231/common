@@ -27,6 +27,7 @@ const (
 	//大厅相关
 	RKEY_CONF_HALL_GRAY_RELEASE_SWITH string = "rkey_conf_hall_gray_release_swith" //大厅的灰度测试开关
 	RKEY_PRE_IP_ADDR                  string = "rkey_pre_ip_addr"                  //ip对应的实际地址
+	RKEY_ROOMPWD_GAMEID               string = "rkey_roompwd_gameid"               //房间号对应gameid
 )
 
 const (
