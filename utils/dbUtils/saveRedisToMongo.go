@@ -26,7 +26,7 @@ func SaveAllRedisUserToMongo(confirm bool) {
 		return
 	}
 
-	const min_id uint32 = 10164
+	const min_id uint32 = 10000
 	if err != nil || max_user.GetId() <= min_id {
 		log.E("读取最大userid出错:err:v max_id:%v", err, max_user.GetId())
 		return
@@ -73,7 +73,7 @@ func ClearRealUserAccount(confirm bool) {
 		return
 	}
 
-	const min_id uint32 = 10164
+	const min_id uint32 = 10000
 	if err != nil || max_user.GetId() <= min_id {
 		log.E("读取最大userid出错:err:v max_id:%v", err, max_user.GetId())
 		return
@@ -112,6 +112,46 @@ func ClearRealUserAccount(confirm bool) {
 	log.T("执行完毕，清理真人玩家账户金币、钻石、红包、奖券,共成功清理%d个用户的数据，失败%d个。", success_count, fail_count)
 }
 
+//删除所有用户的房卡
+func ClearAllUsersRoomcard(confirm bool) {
+	if confirm == false {
+		return
+	}
+	log.T("开始执行，将删除所有用户的房卡.")
+	users := []*ddproto.User{}
+	err, _ := db.C(tableName.DBT_T_USER).Page(bson.M{}, &users, "-id", 1, 1)
+
+	max_user := new(ddproto.User)
+	if len(users) > 0 {
+		max_user = users[0]
+	} else {
+		return
+	}
+
+	const min_id uint32 = 10000
+	if err != nil || max_user.GetId() <= min_id {
+		log.E("读取最大userid出错:err:v max_id:%v", err, max_user.GetId())
+		return
+	}
+
+	//开始批量更新
+	success_count, fail_count := 0, 0
+	for i := min_id; i <= max_user.GetId(); i++ {
+		user := userDao.FindUserById(i)
+		if user != nil {
+			_, err := userService.DECRUserRoomcard(user.GetId(), userService.GetUserRoomCard(user.GetId()), int32(ddproto.CommonEnumGame_GID_HALL), "consoleCommand,账户房卡清零")
+			if err == nil {
+				log.T("Save User Success:%v", user)
+				success_count++
+			} else {
+				log.E("Save User Fail:%v Error:%v", user, err)
+				fail_count++
+			}
+		}
+	}
+	log.T("执行完毕，清理玩家账户 房卡,共成功清理%d个用户的数据，失败%d个。", success_count, fail_count)
+}
+
 //删除所有真实用户的 红包、奖券.
 func ClearRealUserBonusAndTicket(confirm bool) {
 	if confirm == false {
@@ -128,7 +168,7 @@ func ClearRealUserBonusAndTicket(confirm bool) {
 		return
 	}
 
-	const min_id uint32 = 10164
+	const min_id uint32 = 10000
 	if err != nil || max_user.GetId() <= min_id {
 		log.E("读取最大userid出错:err:v max_id:%v", err, max_user.GetId())
 		return
