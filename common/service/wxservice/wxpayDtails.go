@@ -1,19 +1,19 @@
 package service
 
 import (
+	"casino_common/common/log"
 	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
 	"casino_common/utils/redisUtils"
 	"errors"
 	"fmt"
-	"casino_common/common/log"
+	"github.com/golang/protobuf/proto"
 	"strings"
 	"time"
 )
 
-var LOCK int64 = 1;
+var LOCK int64 = 1
 
-var UNLOCK int64 = 0;
+var UNLOCK int64 = 0
 
 //得到同步机制的key
 func GetTradeSyncKey(tradeNo string) string {
@@ -44,14 +44,14 @@ func UnLockPay(tradeNo string) {
 //得到一个支付明细
 func NewAndSavePayDetails(userId uint32, mealId int32, payModelId int32, tradeNo string, diamond int64) (*ddproto.PayBaseDetails, error) {
 	ret := &ddproto.PayBaseDetails{
-		UserId:       proto.Uint32(userId),
-		ProductId:    proto.Int32(mealId),
-		PayModelId:   proto.Int32(payModelId),
-		TradeNo:      proto.String(tradeNo),
-		Diamond:      proto.Int64(diamond),
-		Status:       ddproto.PayEnumTradeStatus_PAY_S_UNIFIEDORDER.Enum(),
-		Time:         proto.Int64(time.Now().Unix()),
-		}
+		UserId:     proto.Uint32(userId),
+		ProductId:  proto.Int32(mealId),
+		PayModelId: proto.Int32(payModelId),
+		TradeNo:    proto.String(tradeNo),
+		Diamond:    proto.Int64(diamond),
+		Status:     ddproto.PayEnumTradeStatus_PAY_S_UNIFIEDORDER.Enum(),
+		Time:       proto.Int64(time.Now().Unix()),
+	}
 	//保存明细
 	SaveDetails(ret)
 	//设置一个订单准备，用于同步，避免重复微信回调时候的重复回调
