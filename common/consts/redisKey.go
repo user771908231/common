@@ -70,8 +70,11 @@ const (
 	RKEY_SJH_DATARECOVER_ID_LIST string = "rkey_sjh_datarecover_id_list" //松江河麻将数据恢复房间ID列表
 	RKEY_SJH_DATARECOVER_DATA    string = "rkey_sjh_datarecover_data"    //松江河麻将数据恢复数据
 
-	RKEY_PHZ_DATARECOVER_ID_LIST string = "rkey_phz_datarecover_id_list" //跑胡子数据恢复_房间ID列表
-	RKEY_PHZ_DATARECOVER_DATA    string = "rkey_phz_datarecover_data"    //跑胡子数据恢复_数据
+	RKEY_PHZ_DATARECOVER_ID_LIST string = "rkey_phz_datarecover_id_list" //跑胡子娄底放炮罚数据恢复_房间ID列表
+	RKEY_PHZ_DATARECOVER_DATA    string = "rkey_phz_datarecover_data"    //跑胡子娄底放炮罚数据恢复_数据
+
+	RKEY_PHZ_SHAOYANGZIPAI_DATARECOVER_ID_LIST string = "rkey_phz_shaoyangzipai_datarecover_id_list" //跑胡子邵阳字牌数据恢复_房间ID列表
+	RKEY_PHZ_SHAOYANGZIPAI_DATARECOVER_DATA    string = "rkey_phz_shaoyangzipai_datarecover_data"    //跑胡子邵阳字牌数据恢复_数据
 
 	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list" //牛牛数据恢复id列表
 	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"    //牛牛数据恢复数据
