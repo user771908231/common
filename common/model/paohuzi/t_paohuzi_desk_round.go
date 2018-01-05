@@ -55,10 +55,14 @@ func (b PhzRecordBean) TransBeanUserRecord() *ddproto.BeanUserRecord {
 }
 
 //DAO
-func GetPhzDeskRoundByUserId(userId uint32) []T_phz_desk_round {
+func GetPhzDeskRoundByUserId(userId uint32, gid int32) []T_phz_desk_round {
 	var deskRecords []T_phz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_PHZ_DESK_ROUND_ALL).Page(bson.M{
+	tbName := tableName.DBT_PHZ_DESK_ROUND_ALL
+	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI) {
+		tbName = tableName.DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_ALL
+	}
+	db.Log(tbName).Page(bson.M{
 		"userids": bson.RegEx{querKey, "."},
 	}, &deskRecords, "-deskid", 1, 20)
 
@@ -71,10 +75,14 @@ func GetPhzDeskRoundByUserId(userId uint32) []T_phz_desk_round {
 }
 
 //查询牌桌内战绩
-func GetPhzDeskRoundByDeskId(userId uint32, deskId int32) []T_phz_desk_round {
+func GetPhzDeskRoundByDeskId(userId uint32, deskId int32, gid int32) []T_phz_desk_round {
 	var deskRecords []T_phz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_PHZ_DESK_ROUND).Page(bson.M{
+	tbName := tableName.DBT_PHZ_DESK_ROUND
+	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI) {
+		tbName = tableName.DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND
+	}
+	db.Log(tbName).Page(bson.M{
 		"userids": bson.RegEx{querKey, "."},
 		"deskid":  deskId,
 	}, &deskRecords, "-gamenumber", 1, 20)
@@ -88,9 +96,13 @@ func GetPhzDeskRoundByDeskId(userId uint32, deskId int32) []T_phz_desk_round {
 }
 
 //查询俱乐部战绩
-func GetPhzDeskRoundByDeskIds(deskIds []int32) []T_phz_desk_round {
+func GetPhzDeskRoundByDeskIds(deskIds []int32, gid int32) []T_phz_desk_round {
 	var deskRecords []T_phz_desk_round
-	db.Log(tableName.DBT_PHZ_DESK_ROUND_ALL).Page(bson.M{
+	tbName := tableName.DBT_PHZ_DESK_ROUND_ALL
+	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI) {
+		tbName = tableName.DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_ALL
+	}
+	db.Log(tbName).Page(bson.M{
 		"deskid": bson.M{"$in": deskIds},
 	}, &deskRecords, "-deskid", 1, 100)
 
