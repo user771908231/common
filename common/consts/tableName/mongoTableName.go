@@ -114,6 +114,14 @@ const (
 	DBT_MJ_HZH_DESK_ROUND_ALL      = "t_mj_hzh_desk_round_all"      //全局红中麻将结束
 	DBT_MJ_HZH_DESK_ROUND_PLAYBACK = "t_mj_hzh_desk_round_playback" //一把红中麻将回放数据
 
+	DBT_MJ_SHENQI_DESK_ROUND          = "t_mj_shenqi_desk_round"          //一把神奇麻将结束
+	DBT_MJ_SHENQI_DESK_ROUND_ALL      = "t_mj_shenqi_desk_round_all"      //全局神奇麻将结束
+	DBT_MJ_SHENQI_DESK_ROUND_PLAYBACK = "t_mj_shenqi_desk_round_playback" //一把神奇麻将回放数据
+
+	DBT_MJ_CHANGBAI_DESK_ROUND          = "t_mj_changbai_desk_round"          //一把长白麻将结束
+	DBT_MJ_CHANGBAI_DESK_ROUND_ALL      = "t_mj_changbai_desk_round_all"      //全局长白麻将结束
+	DBT_MJ_CHANGBAI_DESK_ROUND_PLAYBACK = "t_mj_changbai_desk_round_playback" //一把长白麻将回放数据
+
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
 	DBT_DDZ_DESK_ROUND_ALL = "t_ddz_desk_round_all" //全局斗地主结束
@@ -123,10 +131,15 @@ const (
 	DBT_PDK_DESK_ROUND_ALL      = "t_pdk_desk_round_all"      //全局跑得快结束战绩
 	DBT_PDK_DESK_ROUND_PLAYBACK = "t_pdk_desk_round_playback" //一把跑得快回放
 
-	//跑胡子
+	//跑胡子 娄底放炮罚
 	DBT_PHZ_DESK_ROUND          = "t_phz_desk_round"          //跑胡子一局游戏战绩
 	DBT_PHZ_DESK_ROUND_ALL      = "t_phz_desk_round_all"      //跑胡子全局游戏结束战绩
 	DBT_PHZ_DESK_ROUND_PLAYBACK = "t_phz_desk_round_playback" //一把跑胡子回放
+
+	//跑胡子 邵阳字牌
+	DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND          = "t_phz_shaoyangzipai_desk_round"          //跑胡子一局游戏战绩
+	DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_ALL      = "t_phz_shaoyangzipai_desk_round_all"      //跑胡子全局游戏结束战绩
+	DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_PLAYBACK = "t_phz_shaoyangzipai_desk_round_playback" //一把跑胡子回放
 
 	//牛牛
 	DBT_NIU_DESK_ROUND_ONE = "t_niuniu_desk_round_one" //牛牛1局结束战绩

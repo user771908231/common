@@ -128,4 +128,6 @@ func OnInit(mjProcessor *protobuf.Processor) {
 	mjProcessor.Register(&mjproto.GameBcChangbaiPreopeningPlayoptions{})  //105 长白开局前可选玩法列表的推送 让每个玩家选择
 	mjProcessor.Register(&mjproto.GameReqChangbaiPreopeningPlayoptions{}) //106 长白开局前请求选择玩法
 	mjProcessor.Register(&mjproto.GameAckChangbaiPreopeningPlayoptions{}) //107 长白开局前请求选择玩法的回复 推送给所有玩家
+
+	mjProcessor.Register(&mjproto.Game_CreateRoomV2{}) //108 创建房间v2 用作版本迭代 update for 6位随机房间号
 }

@@ -43,12 +43,15 @@ type DeskCfg struct {
 	ApplyDis         bool   //申请解散状态
 	HuXi             int32  //胡息数
 	PaiCursor        int32
-	CardsNum         int32  //手牌数量
-	IsDaiKai         bool   //是否代开
-	ApplyDisUser     uint32 //申请解散的玩家
-	DiceValue        int32  //每局随机的概率值
-	RoomCardBillType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE  //扣房卡模式：房主扣卡AA扣卡大赢家扣卡等
-	ChanelId         int32  //建房的渠道
+	CardsNum         int32                                  //手牌数量
+	IsDaiKai         bool                                   //是否代开
+	ApplyDisUser     uint32                                 //申请解散的玩家
+	DiceValue        int32                                  //每局随机的概率值
+	RoomCardBillType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE //扣房卡模式：房主扣卡AA扣卡大赢家扣卡等
+	ChanelId         int32                                  //建房的渠道
+
+	IsNeedTianDiHu  bool //是否需要天地胡
+	IsNeedHongHeiHu bool //是否需要红黑胡
 }
 
 type DeskGameData struct {

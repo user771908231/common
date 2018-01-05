@@ -1,15 +1,15 @@
 package agentModel
+
 import (
+	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
-	"casino_common/common/consts/tableName"
 	"gopkg.in/mgo.v2/bson"
 )
 
 /**
 用户充值统计
- */
-
+*/
 
 //获取单个人的充值钻石总和
 func GetInvUserPayRoomcardCount(userId uint32) int64 {

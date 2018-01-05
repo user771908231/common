@@ -74,6 +74,21 @@ func GetRoomPassV2(gameId int32) string {
 	return retSrt
 }
 
+//生成6位纯随机的房间号
+func GetRoomPassV3(gameId int32) string {
+	pre1 := rand.Rand(1, 10)
+	pre2 := rand.Rand(1, 10)
+	pre3 := rand.Rand(1, 10)
+	pre4 := rand.Rand(1, 10)
+	pre5 := rand.Rand(1, 10)
+	pre6 := rand.Rand(1, 10)
+
+	ret := pre1*100000 + pre2*10000 + pre3*1000 + pre4*100 + pre5*10 + pre6
+	retSrt, _ := numUtils.Int2String(ret)
+	//log.T("ret[%v] retSrt[%v]", ret, retSrt)
+	return retSrt
+}
+
 func GetRoomPass(gameId int32) string {
 	r := rand.Rand(1000, 10000)
 	rs, _ := numUtils.Int2String(r)

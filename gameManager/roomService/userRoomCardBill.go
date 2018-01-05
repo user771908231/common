@@ -1,12 +1,12 @@
 package roomService
 
 import (
-	"casino_common/proto/ddproto"
-	"errors"
-	"casino_common/common/userService"
-	"fmt"
 	"casino_common/common/log"
 	"casino_common/common/service/countService"
+	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
+	"errors"
+	"fmt"
 )
 
 //获取建房房费
@@ -66,7 +66,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 		if currRound <= 1 {
 			//提前结束则返还房主房卡
 			userService.INCRUserRoomcard(owner, needRoomcard, int32(gameId), "提前结束，返还房主房卡。")
-		}else {
+		} else {
 			//扣卡成功，新增真实房卡消耗统计
 			countService.AddFriendRoomCardTrueConsume(owner, needRoomcard, int32(gameId))
 		}
@@ -76,7 +76,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 			return nil
 		}
 		needRoomcard := getDeskEnterAAFee(gameId, boardsCout, gamerNum, chanelId)
-		for _,u := range allUsers {
+		for _, u := range allUsers {
 			userService.DECRUserRoomcard(u, needRoomcard, int32(gameId), "AA扣卡")
 			//扣卡成功，新增真实房卡消耗统计
 			countService.AddFriendRoomCardTrueConsume(u, needRoomcard, int32(gameId))
@@ -87,7 +87,7 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 			return nil
 		}
 		needRoomcard := getDeskBigwinerOneBillFee(gameId, boardsCout, gamerNum, chanelId, allUsers, winUsers)
-		for _,u := range winUsers {
+		for _, u := range winUsers {
 			userService.DECRUserRoomcard(u, needRoomcard, int32(gameId), "大赢家扣卡")
 			//扣卡成功，新增真实房卡消耗统计
 			countService.AddFriendRoomCardTrueConsume(u, needRoomcard, int32(gameId))
@@ -193,7 +193,6 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 		}
 	}
 
-
 	return
 }
 
@@ -264,4 +263,3 @@ func getDeskBigwinerOneBillFee(gameId ddproto.CommonEnumGame, boardCout int32, g
 
 	return
 }
-

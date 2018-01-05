@@ -4,10 +4,10 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
+	"fmt"
 	"github.com/chanxuehong/wechat.v2/mp/oauth2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
-	"fmt"
 )
 
 //
