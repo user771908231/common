@@ -291,3 +291,32 @@ db.getCollection("t_game_config_login_list").insert({
     "PORT": 3822,
     "STATUS": 1.0
 });
+
+db.getCollection("t_game_config_login_list_shenzhen").insert({
+    "GameId": 29,
+    "name": "邵阳字牌",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "邵阳字牌",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3825,
+    "STATUS": 1.0
+});
+db.getCollection("t_game_config_login_list").insert({
+    "GameId": 29,
+    "name": "邵阳字牌",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "邵阳字牌",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3825,
+    "STATUS": 1.0
+});
