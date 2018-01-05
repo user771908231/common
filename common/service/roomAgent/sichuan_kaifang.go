@@ -55,9 +55,9 @@ var SiChuanConf = CreateConfig{
 		[]string{""},
 	},
 	[][]string{
-		[]string{"2人", "两人", "二人"},
-		[]string{"3人", "三人"},
-		[]string{"4人", "四人"},
+		[]string{"2人"},
+		[]string{"3人"},
+		[]string{"4人"},
 		[]string{""},
 	},
 	[][]string{
