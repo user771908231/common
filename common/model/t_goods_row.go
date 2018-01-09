@@ -15,7 +15,7 @@ const (
 	CATE_DIAMOND_ZONE  CateEnum = 2 //钻石购买
 	CATE_EXCHANGE_ZONE CateEnum = 3 //兑换专区
 	CATE_PROPS_ZONE    CateEnum = 4 //道具专区
-	CATE_VIP_ZONE      CateEnum = 5 //会员购买
+	CATE_DIRECT_BUY_ZONE      CateEnum = 5 //直接购买-用于兼容黄圣
 )
 
 //商品表结构

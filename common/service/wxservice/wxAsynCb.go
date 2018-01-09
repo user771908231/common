@@ -7,7 +7,7 @@ import (
 //处理回信异步回调
 
 //只需要订单号就可以了？
-func DoAsynCb(tradeNo string) error {
+func DoAsynCb(tradeNo string, total_fee float64) error {
 	//微信返回的需要对比
 	err := LockPay(tradeNo)
 	if err != nil {
@@ -17,7 +17,7 @@ func DoAsynCb(tradeNo string) error {
 	defer UnLockPay(tradeNo)
 
 	//更新余额
-	errUpdate := UpdateUserByMeal(tradeNo)
+	errUpdate := UpdateUserByMeal(tradeNo, total_fee)
 	if errUpdate != nil {
 		log.E(errUpdate.Error())
 		return errUpdate

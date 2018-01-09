@@ -100,6 +100,15 @@ func GetAgentChildrens(agent_id uint32) []*AgentInfo {
 	return childs
 }
 
+//获取子代理的所有多级子代理列表
+func GetAgentChildsTree(agent_id uint32) []*AgentInfo {
+	list := GetAgentChildrens(agent_id)
+	for _, agent := range list{
+		list = append(list, GetAgentChildsTree(agent.UserId)...)
+	}
+	return list
+}
+
 //=======设置代理的上级========
 func SetAgentParent(agent_id uint32, new_pid uint32) error {
 	agent_info := GetAgentInfoById(agent_id)
