@@ -12,8 +12,9 @@ import (
 const (
 	TOTALPAIVALUE_COUNT = 20 //牌张
 	PAIVALUE_SMALL      = 10 //小字
-	CANHU_LIMIT_HUXI    = 15 //满足胡牌条件的胡息数
 )
+
+var CanHuLimitHuxi = 15 //满足胡牌条件的胡息数
 
 type PHZParser interface {
 	CanTi(...interface{}) (interface{}, error)   //根据桌面的牌判断手牌里三张的牌是否可以跑
@@ -678,15 +679,15 @@ func CanHu(huxi int32, count []int, length int, zimoPaiValue int32, jiangs []int
 
 	//递归完所有的牌
 	if length == 0 {
-		if info.totalHuXi >= CANHU_LIMIT_HUXI && len(jiangs) <= 1 {
+		if info.totalHuXi >= CanHuLimitHuxi && len(jiangs) <= 1 {
 			//胡息满足条件，并且将牌数最多为1表示胡了
 			info.canHu = true
-			//fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", CANHU_LIMIT_HUXI, info))
+			//fmt.Println(fmt.Sprintf("length == 0 && huxi >= [%v] return info:[%+v]", CanHuLimitHuxi, info))
 			return info
 		}
 		//已经递归完所有牌 胡息不满足 或者将牌大于1对
 		info.canHu = false
-		//fmt.Println(fmt.Sprintf("length == 0 && huxi < [%v] return info:[%+v]", CANHU_LIMIT_HUXI, info))
+		//fmt.Println(fmt.Sprintf("length == 0 && huxi < [%v] return info:[%+v]", CanHuLimitHuxi, info))
 		return info
 	}
 
@@ -1040,7 +1041,7 @@ func TryHu2(gameData interface{}, checkPai interface{}, isDianPao bool) (interfa
 
 	huInfo.KanPais = append(huInfo.KanPais, srcKan...)
 	//如果找完原始的坎牌，手里没有牌了，则牌型上是可以胡了
-	if (checkPokers == nil || len(checkPokers) == 0) && totalHuXi >= CANHU_LIMIT_HUXI {
+	if (checkPokers == nil || len(checkPokers) == 0) && totalHuXi >= CanHuLimitHuxi {
 		huInfo.CanHu = true
 		log.T("check玩家是否可以胡时，玩家手里只有坎牌，可以胡牌...")
 		//fmt.Println(fmt.Sprintf("check玩家是否可以胡时，玩家手里只有坎牌，可以胡牌..."))
