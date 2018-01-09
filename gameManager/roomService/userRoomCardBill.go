@@ -117,7 +117,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 				needRoomCard = 8
 			case boardCout == 16 && gamerNum == 3:
 				needRoomCard = 6
-			case boardCout == 16 && gamerNum == 4:
+			case boardCout == 16 && gamerNum == 2:
 				needRoomCard = 4
 			}
 			//牛牛
