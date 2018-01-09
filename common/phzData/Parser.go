@@ -14,7 +14,7 @@ const (
 	PAIVALUE_SMALL      = 10 //小字
 )
 
-var CanHuLimitHuxi = 15 //满足胡牌条件的胡息数
+var CanHuLimitHuxi int32 = 15 //满足胡牌条件的胡息数
 
 type PHZParser interface {
 	CanTi(...interface{}) (interface{}, error)   //根据桌面的牌判断手牌里三张的牌是否可以跑
