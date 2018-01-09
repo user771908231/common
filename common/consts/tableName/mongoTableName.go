@@ -93,9 +93,13 @@ const (
 
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
-	DBT_MJ_DESK_ROUND       = "t_mj_desk_round"     //一把麻将结束
-	DBT_MJ_DESK_ROUND_ALL   = "t_mj_desk_round_all" //全局麻将结束
 	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
+
+	DBT_MJ_DESK_ROUND     = "t_mj_desk_round"     //一把麻将结束
+	DBT_MJ_DESK_ROUND_ALL = "t_mj_desk_round_all" //全局麻将结束
+
+	DBT_MJ_CHANGSHA_DESK_ROUND     = "t_mj_changsha_desk_round"     //一把长沙麻将结束
+	DBT_MJ_CHANGSHA_DESK_ROUND_ALL = "t_mj_changsha_desk_round_all" //全局长沙麻将结束
 
 	DBT_MJ_BS_DESK_ROUND     = "t_mj_bs_desk_round"     //一把白山麻将结束
 	DBT_MJ_BS_DESK_ROUND_ALL = "t_mj_bs_desk_round_all" //全局白山麻将结束
