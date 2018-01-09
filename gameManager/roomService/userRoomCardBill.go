@@ -105,7 +105,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 		//支持AA扣卡
 		switch gameId {
 		//红中转转  长沙麻将
-		case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MAHJONG:
+		case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MJ_CHANGSHA:
 			switch {
 			case boardCout == 8 && gamerNum == 4:
 				needRoomCard = 4
@@ -120,7 +120,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			case boardCout == 16 && gamerNum == 4:
 				needRoomCard = 4
 			}
-			//牛牛 跑得快
+			//牛牛
 		case ddproto.CommonEnumGame_GID_NIUNIUJINGDIAN:
 			switch boardCout {
 			case 10:
@@ -128,6 +128,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			case 20:
 				needRoomCard = 8
 			}
+			//跑得快
 		case ddproto.CommonEnumGame_GID_PDK:
 			switch {
 			case boardCout == 10 && gamerNum == 3:
@@ -139,7 +140,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			case boardCout == 20 && gamerNum == 2:
 				needRoomCard = 4
 			}
-			//跑胡子
+			//跑胡子 娄底放炮罚
 		case ddproto.CommonEnumGame_GID_PAOHUZI:
 			switch boardCout {
 			case 200:
@@ -147,17 +148,32 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			case 400:
 				needRoomCard = 6
 			}
+			//跑胡子 邵阳字牌
+		case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI:
+			needRoomCard = 6
 		}
 	default:
 		//不支持AA扣卡
 		switch gameId {
 		//红中转转  长沙麻将
-		case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MAHJONG:
+		case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MJ_CHANGSHA:
 			switch boardCout {
 			case 8:
 				needRoomCard = 1
 			case 16:
 				needRoomCard = 2
+			default:
+				needRoomCard = 1
+			}
+			//四川麻将
+		case ddproto.CommonEnumGame_GID_MAHJONG:
+			switch boardCout {
+			case 4:
+				needRoomCard = 2
+			case 8:
+				needRoomCard = 3
+			case 12:
+				needRoomCard = 5
 			default:
 				needRoomCard = 1
 			}
@@ -180,7 +196,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			default:
 				needRoomCard = 1
 			}
-			//跑胡子
+			//跑胡子 娄底放炮罚
 		case ddproto.CommonEnumGame_GID_PAOHUZI:
 			switch boardCout {
 			case 200:
@@ -190,16 +206,18 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			default:
 				needRoomCard = 1
 			}
+			//跑胡子 邵阳字牌
+		case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI:
+			needRoomCard = 2
 		}
 	}
-
 	return
 }
 
 //房卡AA进房配置
 func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum int32, chanelId int32) (needRoomCard int64) {
 	switch gameId {
-	case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MAHJONG:
+	case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MJ_CHANGSHA:
 		//红中转转  长沙麻将
 		switch boardCout {
 		case 8:
@@ -223,7 +241,7 @@ func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum 
 		case 20:
 			needRoomCard = 2
 		}
-		//跑胡子
+		//跑胡子 娄底放炮罚
 	case ddproto.CommonEnumGame_GID_PAOHUZI:
 		switch boardCout {
 		case 200:
@@ -231,6 +249,9 @@ func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum 
 		case 400:
 			needRoomCard = 2
 		}
+		//跑胡子 邵阳字牌
+	case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI:
+		needRoomCard = 2
 	}
 
 	return
