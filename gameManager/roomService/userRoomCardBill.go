@@ -98,10 +98,22 @@ func DoDecUsersRoomcard(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE, gameId 
 
 //===============================================房卡配置=================================================
 
+//判定一个渠道号是否支持AA扣卡
+func IsSupportAA(channleId int32) bool {
+	return channleId == 73 || channleId == 74 || channleId == 77 || channleId == 78
+}
+
 //房卡建房配置
-func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum int32, chanelId int32) (needRoomCard int64) {
-	switch chanelId {
-	case 73, 74, 77, 78:
+func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum int32, channelId int32) (needRoomCard int64) {
+	//todo 临时处理 使用渠道号和gameId来区分四川麻将和长沙麻将 等前端支持四川长沙分开部署之后即可删除此段代码
+	//todo 默认为支持AA扣卡的都是长沙麻将
+	if gameId == ddproto.CommonEnumGame_GID_MAHJONG {
+		if IsSupportAA(channelId) {
+			gameId = ddproto.CommonEnumGame_GID_MJ_CHANGSHA
+		}
+	}
+
+	if IsSupportAA(channelId) {
 		//支持AA扣卡
 		switch gameId {
 		//红中转转  长沙麻将
@@ -149,7 +161,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 				needRoomCard = 6
 			}
 			//跑胡子 邵阳字牌
-		case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI:
+		case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI:
 			needRoomCard = 6
 		case ddproto.CommonEnumGame_GID_ZHADAN:
 			//炸弹
@@ -162,7 +174,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 				needRoomCard = 1
 			}
 		}
-	default:
+	} else {
 		//不支持AA扣卡
 		switch gameId {
 		//红中转转  长沙麻将
@@ -217,7 +229,7 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 				needRoomCard = 1
 			}
 			//跑胡子 邵阳字牌
-		case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI:
+		case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI:
 			needRoomCard = 2
 		case ddproto.CommonEnumGame_GID_ZHADAN:
 			//炸弹
@@ -235,7 +247,14 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 }
 
 //房卡AA进房配置
-func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum int32, chanelId int32) (needRoomCard int64) {
+func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum int32, channelId int32) (needRoomCard int64) {
+	//todo 临时处理 使用渠道号和gameId来区分四川麻将和长沙麻将 等前端支持四川长沙分开部署之后即可删除此段代码
+	//todo 默认为支持AA扣卡的都是长沙麻将
+	if gameId == ddproto.CommonEnumGame_GID_MAHJONG {
+		if IsSupportAA(channelId) {
+			gameId = ddproto.CommonEnumGame_GID_MJ_CHANGSHA
+		}
+	}
 	switch gameId {
 	case ddproto.CommonEnumGame_GID_ZHUANZHUAN, ddproto.CommonEnumGame_GID_MJ_CHANGSHA:
 		//红中转转  长沙麻将
@@ -270,7 +289,7 @@ func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum 
 			needRoomCard = 2
 		}
 		//跑胡子 邵阳字牌
-	case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI:
+	case ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI:
 		needRoomCard = 2
 	case ddproto.CommonEnumGame_GID_ZHADAN:
 		//炸弹
