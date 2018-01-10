@@ -44,7 +44,7 @@ func getDDZPayModel() *ddproto.PayBasePaymodel {
 }
 
 //通过meal的信息更细user的信息
-func UpdateUserByMeal(tradeNo string) error {
+func UpdateUserByMeal(tradeNo string, total_fee float64) error {
 	//不是重复回调，开始做余额更新的处理
 	detail := GetDetailsByTradeNo(tradeNo)
 	if detail == nil {
@@ -62,8 +62,20 @@ func UpdateUserByMeal(tradeNo string) error {
 	log.T("更新订单[%v]的回调信息，detail[%v]", tradeNo, detail)
 	//找到套餐
 	meal := GetMealById(detail.GetProductId())
-	//根据套餐增加用户的余额
-	userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")
+	if meal.PriceType == ddproto.HallEnumTradeType_TRADE_RMB {
+		//如果pricetype为RMB，则为新版
+		switch meal.GoodsType {
+		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
+			userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")
+		case ddproto.HallEnumTradeType_PROPS_FANGKA:
+			userService.INCRUserRoomcard(detail.GetUserId(), int64(meal.Amount), int32(ddproto.CommonEnumGame_GID_HALL), "商城微信支付充房卡")
+		}
+	} else {
+		//旧版，直接增加钻石
+		//根据套餐增加用户的余额
+		userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")
+	}
+
 	//更新订单状态
 	UpdateDetailsStatus(tradeNo, ddproto.PayEnumTradeStatus_PAY_S_SUCC)
 	//保存订单到数据库...
@@ -71,6 +83,7 @@ func UpdateUserByMeal(tradeNo string) error {
 
 	go func() {
 		detail.Status = ddproto.PayEnumTradeStatus_PAY_S_SUCC.Enum()
+		detail.Money = proto.Float64(total_fee)
 		wxpayDao.UpsertDetail(detail) //保存到数据库
 		//DelDetails(tradeNo)           //保存到数据库之后删除//	app收到回复之后再删除
 	}()
