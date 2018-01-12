@@ -29,6 +29,10 @@ var _ = math.Inf
 
 // Ignoring public import of niu_enter_desk_bc from niuniu_play.proto
 
+// Ignoring public import of niu_site_down_req from niuniu_play.proto
+
+// Ignoring public import of niu_site_up_req from niuniu_play.proto
+
 // Ignoring public import of niu_switch_ready_req from niuniu_play.proto
 
 // Ignoring public import of niu_switch_ready_ack from niuniu_play.proto
