@@ -88,8 +88,12 @@ const (
 
 	//接入服务器
 	DBT_GAME_CONFIG_LOGIN               = "t_game_config_login"               //登陆服配置	//游戏配置表
-	DBT_GAME_CONFIG_LOGIN_LIST          = "t_game_config_login_list"          //登陆服配置	//登陆服游戏列表（阿里云北京）
+	DBT_GAME_CONFIG_LOGIN_LIST          = "t_game_config_login_list"          //登陆服配置	//登陆服游戏列表（默认：阿里云北京）
 	DBT_GAME_CONFIG_LOGIN_LIST_SHENZHEN = "t_game_config_login_list_shenzhen" //登录服配置（阿里云深圳）
+	DBT_GAME_CONFIG_LOGIN_LIST_LYQSC = "t_game_config_login_list_lyqsc" //登录服配置（来一圈四川）
+	DBT_GAME_CONFIG_LOGIN_LIST_HUANGSHENG = "t_game_config_login_list_huangsheng" //登录服配置（黄圣）
+	DBT_GAME_CONFIG_LOGIN_LIST_LILAI = "t_game_config_login_list_lilai" //登录服配置（里来）
+
 
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息

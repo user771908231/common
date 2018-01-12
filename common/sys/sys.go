@@ -37,6 +37,10 @@ func SysInit(releaseTag int32,
 	mongoName string,
 	mongoSeqTables []string) error {
 
+	if mongoName == "" {
+		mongoName = "test"
+	}
+
 	var e error
 	InitRedis(redisAddr, redisName, redisPwd)                                                    //初始化redis
 	initRandSeed()                                                                     //初始化随机数种子
