@@ -40,7 +40,7 @@ db.t_config_task_info.insert(
         }
     ]
 }
-)
+);
 db.t_config_task_info.insert(
 {
     "taskid" : 3,
