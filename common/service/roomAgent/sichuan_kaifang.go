@@ -134,7 +134,7 @@ func DoSiChuanKaifang(owner uint32, group_id int32, option_str string) (error, *
 	var opt_base_value int64 = 1
 	var opt_zimo_radio int32 = 0
 	var opt_others_check_box []int32 = []int32{}
-	var opt_hu_radio int32 = int32(mjproto.MJOption_ZIMO_JIA_DI)
+	//var opt_hu_radio int32 = int32(mjproto.MJOption_ZIMO_JIA_DI)
 	var opt_diangang_hu_radio int32 = 4
 	var opt_player_count int32 = 4
 	var opt_ignore_bank bool = false
@@ -208,7 +208,7 @@ func DoSiChuanKaifang(owner uint32, group_id int32, option_str string) (error, *
 		case "自摸加底":
 			opt_zimo_radio = int32(mjproto.MJOption_ZIMO_JIA_DI)
 		case "自摸加番":
-			opt_hu_radio = int32(mjproto.MJOption_ZIMO_JIA_FAN)
+			opt_zimo_radio = int32(mjproto.MJOption_ZIMO_JIA_FAN)
 		case "点杠炮":
 			opt_diangang_hu_radio = 4
 		case "点杠花":
@@ -252,9 +252,9 @@ func DoSiChuanKaifang(owner uint32, group_id int32, option_str string) (error, *
 			BaseValue:  proto.Int64(opt_base_value),
 
 			PlayOptions: &mjproto.PlayOptions{
-				ZiMoRadio:        proto.Int32(opt_zimo_radio),
-				OthersCheckBox:   opt_others_check_box,
-				HuRadio:          proto.Int32(opt_hu_radio),
+				ZiMoRadio:      proto.Int32(opt_zimo_radio),
+				OthersCheckBox: opt_others_check_box,
+				//HuRadio:          proto.Int32(opt_hu_radio),
 				DianGangHuaRadio: proto.Int32(opt_diangang_hu_radio),
 			},
 

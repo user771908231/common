@@ -59,8 +59,8 @@ func GetPhzDeskRoundByUserId(userId uint32, gid int32) []T_phz_desk_round {
 	var deskRecords []T_phz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	tbName := tableName.DBT_PHZ_DESK_ROUND_ALL
-	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI) {
-		tbName = tableName.DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_ALL
+	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI) {
+		tbName = tableName.DBT_PHZ_SHAOYANGBOPI_DESK_ROUND_ALL
 	}
 	db.Log(tbName).Page(bson.M{
 		"userids": bson.RegEx{querKey, "."},
@@ -79,8 +79,8 @@ func GetPhzDeskRoundByDeskId(userId uint32, deskId int32, gid int32) []T_phz_des
 	var deskRecords []T_phz_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 	tbName := tableName.DBT_PHZ_DESK_ROUND
-	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI) {
-		tbName = tableName.DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND
+	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI) {
+		tbName = tableName.DBT_PHZ_SHAOYANGBOPI_DESK_ROUND
 	}
 	db.Log(tbName).Page(bson.M{
 		"userids": bson.RegEx{querKey, "."},
@@ -99,8 +99,8 @@ func GetPhzDeskRoundByDeskId(userId uint32, deskId int32, gid int32) []T_phz_des
 func GetPhzDeskRoundByDeskIds(deskIds []int32, gid int32) []T_phz_desk_round {
 	var deskRecords []T_phz_desk_round
 	tbName := tableName.DBT_PHZ_DESK_ROUND_ALL
-	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGZIPAI) {
-		tbName = tableName.DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_ALL
+	if gid == int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI) {
+		tbName = tableName.DBT_PHZ_SHAOYANGBOPI_DESK_ROUND_ALL
 	}
 	db.Log(tbName).Page(bson.M{
 		"deskid": bson.M{"$in": deskIds},

@@ -64,8 +64,11 @@ const (
 	RKEY_ZXZ_DATARECOVER_ID_LIST string = "rkey_zxz_datarecover_id_list" //捉瞎子麻将数据恢复房间ID列表
 	RKEY_ZXZ_DATARECOVER_DATA    string = "rkey_zxz_datarecover_data"    //捉瞎子麻将数据恢复数据
 
-	RKEY_MJ_DATARECOVER_ID_LIST string = "rkey_mj_datarecover_id_list" //四川、长沙麻将数据恢复房间ID列表
-	RKEY_MJ_DATARECOVER_DATA    string = "rkey_mj_datarecover_data"    //四川、长沙麻将数据恢复数据
+	RKEY_MJ_DATARECOVER_ID_LIST string = "rkey_mj_datarecover_id_list" //四川麻将数据恢复房间ID列表
+	RKEY_MJ_DATARECOVER_DATA    string = "rkey_mj_datarecover_data"    //四川麻将数据恢复数据
+
+	RKEY_MJ_CHANGSHA_DATARECOVER_ID_LIST string = "rkey_mj_changsha_datarecover_id_list" //长沙麻将数据恢复房间ID列表
+	RKEY_MJ_CHANGSHA_DATARECOVER_DATA    string = "rkey_mj_changsha_datarecover_data"    //长沙麻将数据恢复数据
 
 	RKEY_SJH_DATARECOVER_ID_LIST string = "rkey_sjh_datarecover_id_list" //松江河麻将数据恢复房间ID列表
 	RKEY_SJH_DATARECOVER_DATA    string = "rkey_sjh_datarecover_data"    //松江河麻将数据恢复数据
@@ -73,8 +76,8 @@ const (
 	RKEY_PHZ_DATARECOVER_ID_LIST string = "rkey_phz_datarecover_id_list" //跑胡子娄底放炮罚数据恢复_房间ID列表
 	RKEY_PHZ_DATARECOVER_DATA    string = "rkey_phz_datarecover_data"    //跑胡子娄底放炮罚数据恢复_数据
 
-	RKEY_PHZ_SHAOYANGZIPAI_DATARECOVER_ID_LIST string = "rkey_phz_shaoyangzipai_datarecover_id_list" //跑胡子邵阳字牌数据恢复_房间ID列表
-	RKEY_PHZ_SHAOYANGZIPAI_DATARECOVER_DATA    string = "rkey_phz_shaoyangzipai_datarecover_data"    //跑胡子邵阳字牌数据恢复_数据
+	RKEY_PHZ_SHAOYANGBOPI_DATARECOVER_ID_LIST string = "rkey_phz_shaoyangbopi_datarecover_id_list" //跑胡子邵阳剥皮数据恢复_房间ID列表
+	RKEY_PHZ_SHAOYANGBOPI_DATARECOVER_DATA    string = "rkey_phz_shaoyangbopi_datarecover_data"    //跑胡子邵阳剥皮数据恢复_数据
 
 	RKEY_NIUNIU_SNAPSHOT_ID_LIST string = "rkey_niuniu_snapshot_id_list" //牛牛数据恢复id列表
 	RKEY_NIUNIU_SNAPSHOT_DATA    string = "rkey_niuniu_snapshot_data"    //牛牛数据恢复数据

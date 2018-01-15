@@ -87,19 +87,22 @@ const (
 	DBT_USER_GIVE_RECORD string = "t_user_give_record" //用户赠送记录表
 
 	//接入服务器
-	DBT_GAME_CONFIG_LOGIN               = "t_game_config_login"               //登陆服配置	//游戏配置表
-	DBT_GAME_CONFIG_LOGIN_LIST          = "t_game_config_login_list"          //登陆服配置	//登陆服游戏列表（默认：阿里云北京）
-	DBT_GAME_CONFIG_LOGIN_LIST_SHENZHEN = "t_game_config_login_list_shenzhen" //登录服配置（阿里云深圳）
-	DBT_GAME_CONFIG_LOGIN_LIST_LYQSC = "t_game_config_login_list_lyqsc" //登录服配置（来一圈四川）
+	DBT_GAME_CONFIG_LOGIN                 = "t_game_config_login"                 //登陆服配置	//游戏配置表
+	DBT_GAME_CONFIG_LOGIN_LIST            = "t_game_config_login_list"            //登陆服配置	//登陆服游戏列表（默认：阿里云北京）
+	DBT_GAME_CONFIG_LOGIN_LIST_SHENZHEN   = "t_game_config_login_list_shenzhen"   //登录服配置（阿里云深圳）
+	DBT_GAME_CONFIG_LOGIN_LIST_LYQSC      = "t_game_config_login_list_lyqsc"      //登录服配置（来一圈四川）
 	DBT_GAME_CONFIG_LOGIN_LIST_HUANGSHENG = "t_game_config_login_list_huangsheng" //登录服配置（黄圣）
-	DBT_GAME_CONFIG_LOGIN_LIST_LILAI = "t_game_config_login_list_lilai" //登录服配置（里来）
-
+	DBT_GAME_CONFIG_LOGIN_LIST_LILAI      = "t_game_config_login_list_lilai"      //登录服配置（里来）
 
 	//麻将
 	DBT_MJ_DESK             = "t_mj_desk"           //桌子的信息
-	DBT_MJ_DESK_ROUND       = "t_mj_desk_round"     //一把麻将结束
-	DBT_MJ_DESK_ROUND_ALL   = "t_mj_desk_round_all" //全局麻将结束
 	DBT_T_TH_GAMENUMBER_SEQ = "t_th_gamenumber_seq" //麻将 编号
+
+	DBT_MJ_DESK_ROUND     = "t_mj_desk_round"     //一把麻将结束
+	DBT_MJ_DESK_ROUND_ALL = "t_mj_desk_round_all" //全局麻将结束
+
+	DBT_MJ_CHANGSHA_DESK_ROUND     = "t_mj_changsha_desk_round"     //一把长沙麻将结束
+	DBT_MJ_CHANGSHA_DESK_ROUND_ALL = "t_mj_changsha_desk_round_all" //全局长沙麻将结束
 
 	DBT_MJ_BS_DESK_ROUND     = "t_mj_bs_desk_round"     //一把白山麻将结束
 	DBT_MJ_BS_DESK_ROUND_ALL = "t_mj_bs_desk_round_all" //全局白山麻将结束
@@ -140,10 +143,10 @@ const (
 	DBT_PHZ_DESK_ROUND_ALL      = "t_phz_desk_round_all"      //跑胡子全局游戏结束战绩
 	DBT_PHZ_DESK_ROUND_PLAYBACK = "t_phz_desk_round_playback" //一把跑胡子回放
 
-	//跑胡子 邵阳字牌
-	DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND          = "t_phz_shaoyangzipai_desk_round"          //跑胡子一局游戏战绩
-	DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_ALL      = "t_phz_shaoyangzipai_desk_round_all"      //跑胡子全局游戏结束战绩
-	DBT_PHZ_SHAOYANGZIPAI_DESK_ROUND_PLAYBACK = "t_phz_shaoyangzipai_desk_round_playback" //一把跑胡子回放
+	//跑胡子 邵阳剥皮
+	DBT_PHZ_SHAOYANGBOPI_DESK_ROUND          = "t_phz_shaoyangbopi_desk_round"          //跑胡子一局游戏战绩
+	DBT_PHZ_SHAOYANGBOPI_DESK_ROUND_ALL      = "t_phz_shaoyangbopi_desk_round_all"      //跑胡子全局游戏结束战绩
+	DBT_PHZ_SHAOYANGBOPI_DESK_ROUND_PLAYBACK = "t_phz_shaoyangbopi_desk_round_playback" //一把跑胡子回放
 
 	//牛牛
 	DBT_NIU_DESK_ROUND_ONE = "t_niuniu_desk_round_one" //牛牛1局结束战绩

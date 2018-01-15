@@ -70,7 +70,7 @@ func UpdateUserByMeal(tradeNo string, total_fee float64) error {
 		case ddproto.HallEnumTradeType_PROPS_FANGKA:
 			userService.INCRUserRoomcard(detail.GetUserId(), int64(meal.Amount), int32(ddproto.CommonEnumGame_GID_HALL), "商城微信支付充房卡")
 		}
-	}else {
+	} else {
 		//旧版，直接增加钻石
 		//根据套餐增加用户的余额
 		userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")

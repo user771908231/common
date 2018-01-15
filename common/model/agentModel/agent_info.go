@@ -103,7 +103,7 @@ func GetAgentChildrens(agent_id uint32) []*AgentInfo {
 //获取子代理的所有多级子代理列表
 func GetAgentChildsTree(agent_id uint32) []*AgentInfo {
 	list := GetAgentChildrens(agent_id)
-	for _, agent := range list{
+	for _, agent := range list {
 		list = append(list, GetAgentChildsTree(agent.UserId)...)
 	}
 	return list

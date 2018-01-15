@@ -6,14 +6,13 @@ import (
 	"casino_common/common/log"
 	"casino_common/utils/redis"
 	"fmt"
+	"gopkg.in/mgo.v2"
 	"math/rand"
 	"runtime"
 	"time"
-	"gopkg.in/mgo.v2"
 )
 
 type MgoLoger struct {
-
 }
 
 func (mlog MgoLoger) Output(calldepth int, s string) error {
@@ -42,12 +41,12 @@ func SysInit(releaseTag int32,
 	}
 
 	var e error
-	InitRedis(redisAddr, redisName, redisPwd)                                                    //初始化redis
-	initRandSeed()                                                                     //初始化随机数种子
-	runtime.GOMAXPROCS(runtime.NumCPU())                                               //初始化cpu数量
-	log.InitLogger(logPath, logName, logFileSize, logFileCount)                                                   //初始化日志
+	InitRedis(redisAddr, redisName, redisPwd)                                                      //初始化redis
+	initRandSeed()                                                                                 //初始化随机数种子
+	runtime.GOMAXPROCS(runtime.NumCPU())                                                           //初始化cpu数量
+	log.InitLogger(logPath, logName, logFileSize, logFileCount)                                    //初始化日志
 	db.InitMongoDb(mongoIp, mongoLogIp, mongoName, tableName.DB_ENSURECOUNTER_KEY, mongoSeqTables) //初始化mongo 的地址
-	e = initSysConfig()                                                                //初始化系统配置
+	e = initSysConfig()                                                                            //初始化系统配置
 	if e != nil {
 		fmt.Printf("加载sys_ocnfig 的时候错误: %v", e)
 		return e

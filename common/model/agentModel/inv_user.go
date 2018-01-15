@@ -4,8 +4,8 @@ import (
 	"casino_common/common/consts/tableName"
 	"casino_common/proto/ddproto"
 	"casino_common/utils/db"
-	"gopkg.in/mgo.v2/bson"
 	"casino_common/utils/numUtils"
+	"gopkg.in/mgo.v2/bson"
 )
 
 /**
@@ -21,7 +21,7 @@ func GetInvUserPayDiamondCount(userId uint32) float64 {
 		bson.M{"$match": bson.M{
 			"userid": userId,
 			"status": ddproto.PayEnumTradeStatus_PAY_S_SUCC,
-			"time": bson.M{"$gt": 0},
+			"time":   bson.M{"$gt": 0},
 		}},
 		bson.M{"$group": bson.M{
 			"_id": nil,
@@ -70,7 +70,7 @@ func GetAgentChildAgentGamerPayDiamondCount(agent_id uint32, minTime int64, maxT
 	//代理的用户
 	invUsers := []uint32{}
 
-	for _,agent := range GetAgentChildrens(agent_id) {
+	for _, agent := range GetAgentChildrens(agent_id) {
 		invUsers = append(invUsers, GetAgentInvUsersId(agent.UserId)...)
 	}
 
@@ -82,10 +82,9 @@ func GetAgentChildAgentTreeGamerPayDiamondCount(agent_id uint32, minTime int64, 
 	//代理的用户
 	invUsers := []uint32{}
 
-	for _,agent := range GetAgentChildsTree(agent_id) {
+	for _, agent := range GetAgentChildsTree(agent_id) {
 		invUsers = append(invUsers, GetAgentInvUsersId(agent.UserId)...)
 	}
 
 	return GetInvUserListPayDiamondCount(invUsers, minTime, maxTime)
 }
-
