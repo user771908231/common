@@ -40,7 +40,7 @@ type AgentInfo struct {
 //插入表
 func (r *AgentInfo) Insert() error {
 	r.Id = bson.NewObjectId()
-	return db.C(tableName.DBT_AGENT_INFO).Insert(r)
+	return db.C(tableName.DBT_AGENT_INFO).Upsert(bson.M{"userid": r.UserId}, r)
 }
 
 //保存

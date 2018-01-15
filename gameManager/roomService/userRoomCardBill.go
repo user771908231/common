@@ -21,11 +21,17 @@ func DecUserRoomcardToCreateDesk(billType ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE
 		userService.DECRUserRoomcard(createUser, createFee, int32(gameId), "建房-房主扣卡")
 		return nil
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_AA_PAY:
-		//不扣房卡
+		//不扣房卡,但是验证AA房卡
+		if userService.GetUserRoomCard(createUser) < getDeskEnterAAFee(gameId, boardsCout, gamerNum, chanelId) {
+			return errors.New("房卡不足！")
+		}
 		return nil
 
 	case ddproto.COMMON_ENUM_ROOMCARD_BILL_TYPE_BIG_WINER_PAY:
 		//不扣房卡
+		if userService.GetUserRoomCard(createUser) < createFee {
+			return errors.New("房卡不足！")
+		}
 		return nil
 	}
 

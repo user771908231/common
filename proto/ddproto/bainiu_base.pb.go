@@ -407,6 +407,8 @@ It has these top-level messages:
 	NiuEnterDeskReq
 	NiuEnterDeskAck
 	NiuEnterDeskBc
+	NiuSiteDownReq
+	NiuSiteUpReq
 	NiuSwitchReadyReq
 	NiuSwitchReadyAck
 	NiuSwitchReadyBc
