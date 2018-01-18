@@ -173,11 +173,11 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			//炸弹
 			switch boardCout {
 			case 8:
-				needRoomCard = 4
-			case 12:
 				needRoomCard = 8
+			case 12:
+				needRoomCard = 16
 			default:
-				needRoomCard = 1
+				needRoomCard = 8
 			}
 		}
 	} else {
@@ -241,11 +241,11 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 			//炸弹
 			switch boardCout {
 			case 8:
-				needRoomCard = 1
-			case 12:
 				needRoomCard = 2
+			case 12:
+				needRoomCard = 4
 			default:
-				needRoomCard = 1
+				needRoomCard = 2
 			}
 		}
 	}
@@ -301,11 +301,11 @@ func getDeskEnterAAFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum 
 		//炸弹
 		switch boardCout {
 		case 8:
-			needRoomCard = 1
-		case 12:
 			needRoomCard = 2
+		case 12:
+			needRoomCard = 4
 		default:
-			needRoomCard = 1
+			needRoomCard = 2
 		}
 	}
 
