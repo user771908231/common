@@ -59,6 +59,8 @@ func (p *Pool) Get() *grpc.ClientConn {
 	conn_state := conn.GetState()
 	//断线重连
 	if conn==nil || ( conn_state != grpc.Connecting && conn_state != grpc.Ready ) {
+		log.T("rpc conn:[%v]-[%v] need reconnect.", p.address, conn.GetState())
+		conn.Close()
 		conn, _ = grpc.Dial(p.address, grpc.WithInsecure())
 		p.pools[next_index] = conn
 	}
