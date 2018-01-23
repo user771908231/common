@@ -38,5 +38,5 @@ func TestTryHu2(t *testing.T) {
 	}
 	//checkPai := InitPaiByIndex(int32(28))
 	gameData.HandPokers = pais
-	TryHu2(gameData, nil, true, false)
+	//TryHu2(gameData, nil, true, false)
 }
