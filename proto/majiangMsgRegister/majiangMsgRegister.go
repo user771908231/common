@@ -130,4 +130,12 @@ func OnInit(mjProcessor *protobuf.Processor) {
 	mjProcessor.Register(&mjproto.GameAckChangbaiPreopeningPlayoptions{}) //107 长白开局前请求选择玩法的回复 推送给所有玩家
 
 	mjProcessor.Register(&mjproto.Game_CreateRoomV2{}) //108 创建房间v2 用作版本迭代 update for 6位随机房间号
+
+	mjProcessor.Register(&mjproto.GameBcIscontinueAfterhu{})  //109 胡牌后是否继续游戏
+	mjProcessor.Register(&mjproto.GameReqIscontinueAfterhu{}) //110 胡牌后选择是否继续游戏的请求
+	mjProcessor.Register(&mjproto.GameAckIscontinueAfterhu{}) //111 胡牌后选择是否继续游戏的回复
+
+	mjProcessor.Register(&mjproto.GameBcBaojiao{})  //112 广播某玩家报叫了
+	mjProcessor.Register(&mjproto.GameReqBaojiao{}) //113 请求 报叫
+	mjProcessor.Register(&mjproto.GameAckBaojiao{}) //114 回复 报叫
 }
