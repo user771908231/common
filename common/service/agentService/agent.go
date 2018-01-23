@@ -6,24 +6,21 @@ import (
 	"casino_common/utils/agentUtils"
 	"errors"
 	"github.com/name5566/leaf/gate"
+	"sync"
 )
 
-func init() {
-	AgentMap = map[uint32]gate.Agent{}
-}
-
-var AgentMap map[uint32]gate.Agent
+var AgentMap sync.Map
 
 func GetAgent(userId uint32) (gate.Agent, error) {
-	a, ok := AgentMap[userId]
+	a, ok := AgentMap.Load(userId)
 	if ok {
-		return a, nil
+		return a.(gate.Agent), nil
 	}
 	return nil, errors.New("not found agent.")
 }
 
 func SetAgent(userId uint32, a gate.Agent) {
-	ex_a, ok := AgentMap[userId]
+	ex_a, ok := AgentMap.Load(userId)
 	if ok {
 		if ex_a == a {
 			return
@@ -33,20 +30,13 @@ func SetAgent(userId uint32, a gate.Agent) {
 	} else {
 		log.T("Bind Agent %d <-> %p  old_agent:nil", userId, a)
 	}
-	AgentMap[userId] = a
-}
-
-func DelAgent(userId uint32) {
-	_, ok := AgentMap[userId]
-	if ok {
-		delete(AgentMap, userId)
-	}
+	AgentMap.Store(userId, a)
 }
 
 //发消息
 func WriteMsg(uid uint32, msg interface{}) error {
-	if agent, ok := AgentMap[uid]; ok {
-		agent.WriteMsg(msg)
+	if agent, ok := AgentMap.Load(uid); ok {
+		agent.(gate.Agent).WriteMsg(msg)
 		return nil
 	} else {
 		return errors.New("user agent not found.")
