@@ -1,18 +1,22 @@
 package majiang
 
 import (
-	"casino_common/utils/numUtils"
-	"strings"
+	"casino_common/common/log"
 	"casino_common/proto/ddproto/mjproto"
 	"casino_common/proto/funcsInit"
+	"casino_common/utils/chessUtils"
+	"casino_common/utils/numUtils"
+	"strings"
 )
 
-var TOTALPAICOUNT int = 148 //4:万条筒 东南西北 中发白 1:春夏秋冬 梅兰菊竹 4:中
+var TOTALPAICOUNT int = 220 //4:筒条万 东南西北 中发白 1:春夏秋冬 梅兰菊竹 4:中 4:筒条
 var MjpaiMap map[int]string
 var clienMap map[int]int32
 
 func init() {
 	MjpaiMap = make(map[int]string, TOTALPAICOUNT)
+
+	//筒
 	MjpaiMap[0] = "T_1"
 	MjpaiMap[1] = "T_1"
 	MjpaiMap[2] = "T_1"
@@ -49,6 +53,8 @@ func init() {
 	MjpaiMap[33] = "T_9"
 	MjpaiMap[34] = "T_9"
 	MjpaiMap[35] = "T_9"
+
+	//条
 	MjpaiMap[36] = "S_1"
 	MjpaiMap[37] = "S_1"
 	MjpaiMap[38] = "S_1"
@@ -85,6 +91,8 @@ func init() {
 	MjpaiMap[69] = "S_9"
 	MjpaiMap[70] = "S_9"
 	MjpaiMap[71] = "S_9"
+
+	//万
 	MjpaiMap[72] = "W_1"
 	MjpaiMap[73] = "W_1"
 	MjpaiMap[74] = "W_1"
@@ -164,23 +172,102 @@ func init() {
 	MjpaiMap[134] = "FENG_7_F"
 	MjpaiMap[135] = "FENG_7_F"
 
+	//春夏秋冬
 	MjpaiMap[136] = "HUA_1_CHUN" //春夏秋冬
 	MjpaiMap[137] = "HUA_2_XIA"
 	MjpaiMap[138] = "HUA_3_QIU"
 	MjpaiMap[139] = "HUA_4_DONG"
 
+	//梅兰菊竹
 	MjpaiMap[140] = "HUA_5_MEI" //梅兰菊竹
 	MjpaiMap[141] = "HUA_6_LAN"
 	MjpaiMap[142] = "HUA_7_JU"
 	MjpaiMap[143] = "HUA_8_ZHU"
 
-	//中
+	//中2
 	MjpaiMap[144] = "FENG_5_Z"
 	MjpaiMap[145] = "FENG_5_Z"
 	MjpaiMap[146] = "FENG_5_Z"
 	MjpaiMap[147] = "FENG_5_Z"
 
+	//筒2
+	MjpaiMap[148] = "T_1"
+	MjpaiMap[149] = "T_1"
+	MjpaiMap[150] = "T_1"
+	MjpaiMap[151] = "T_1"
+	MjpaiMap[152] = "T_2"
+	MjpaiMap[153] = "T_2"
+	MjpaiMap[154] = "T_2"
+	MjpaiMap[155] = "T_2"
+	MjpaiMap[156] = "T_3"
+	MjpaiMap[157] = "T_3"
+	MjpaiMap[158] = "T_3"
+	MjpaiMap[159] = "T_3"
+	MjpaiMap[160] = "T_4"
+	MjpaiMap[161] = "T_4"
+	MjpaiMap[162] = "T_4"
+	MjpaiMap[163] = "T_4"
+	MjpaiMap[164] = "T_5"
+	MjpaiMap[165] = "T_5"
+	MjpaiMap[166] = "T_5"
+	MjpaiMap[167] = "T_5"
+	MjpaiMap[168] = "T_6"
+	MjpaiMap[169] = "T_6"
+	MjpaiMap[170] = "T_6"
+	MjpaiMap[171] = "T_6"
+	MjpaiMap[172] = "T_7"
+	MjpaiMap[173] = "T_7"
+	MjpaiMap[174] = "T_7"
+	MjpaiMap[175] = "T_7"
+	MjpaiMap[176] = "T_8"
+	MjpaiMap[177] = "T_8"
+	MjpaiMap[178] = "T_8"
+	MjpaiMap[179] = "T_8"
+	MjpaiMap[180] = "T_9"
+	MjpaiMap[181] = "T_9"
+	MjpaiMap[182] = "T_9"
+	MjpaiMap[183] = "T_9"
+
+	//条2
+	MjpaiMap[184] = "S_1"
+	MjpaiMap[185] = "S_1"
+	MjpaiMap[186] = "S_1"
+	MjpaiMap[187] = "S_1"
+	MjpaiMap[188] = "S_2"
+	MjpaiMap[189] = "S_2"
+	MjpaiMap[190] = "S_2"
+	MjpaiMap[191] = "S_2"
+	MjpaiMap[192] = "S_3"
+	MjpaiMap[193] = "S_3"
+	MjpaiMap[194] = "S_3"
+	MjpaiMap[195] = "S_3"
+	MjpaiMap[196] = "S_4"
+	MjpaiMap[197] = "S_4"
+	MjpaiMap[198] = "S_4"
+	MjpaiMap[199] = "S_4"
+	MjpaiMap[200] = "S_5"
+	MjpaiMap[201] = "S_5"
+	MjpaiMap[202] = "S_5"
+	MjpaiMap[203] = "S_5"
+	MjpaiMap[204] = "S_6"
+	MjpaiMap[205] = "S_6"
+	MjpaiMap[206] = "S_6"
+	MjpaiMap[207] = "S_6"
+	MjpaiMap[208] = "S_7"
+	MjpaiMap[209] = "S_7"
+	MjpaiMap[210] = "S_7"
+	MjpaiMap[211] = "S_7"
+	MjpaiMap[212] = "S_8"
+	MjpaiMap[213] = "S_8"
+	MjpaiMap[214] = "S_8"
+	MjpaiMap[215] = "S_8"
+	MjpaiMap[216] = "S_9"
+	MjpaiMap[217] = "S_9"
+	MjpaiMap[218] = "S_9"
+	MjpaiMap[219] = "S_9"
+
 	clienMap = make(map[int]int32, TOTALPAICOUNT)
+	//筒
 	clienMap[0] = 19
 	clienMap[1] = 19
 	clienMap[2] = 19
@@ -226,6 +313,7 @@ func init() {
 	clienMap[34] = 27
 	clienMap[35] = 27
 
+	//条
 	clienMap[36] = 10
 	clienMap[37] = 10
 	clienMap[38] = 10
@@ -271,6 +359,7 @@ func init() {
 	clienMap[70] = 18
 	clienMap[71] = 18
 
+	//万
 	clienMap[72] = 1
 	clienMap[73] = 1
 	clienMap[74] = 1
@@ -368,14 +457,104 @@ func init() {
 	clienMap[142] = 41 //菊
 	clienMap[143] = 42 //竹
 
-	//中
+	//中2
 	clienMap[144] = 32
 	clienMap[145] = 32
 	clienMap[146] = 32
 	clienMap[147] = 32
-}
 
-//番数 顶番5
+	//筒2
+	clienMap[148] = 19
+	clienMap[149] = 19
+	clienMap[150] = 19
+	clienMap[151] = 19
+
+	clienMap[152] = 20
+	clienMap[153] = 20
+	clienMap[154] = 20
+	clienMap[155] = 20
+
+	clienMap[156] = 21
+	clienMap[157] = 21
+	clienMap[158] = 21
+	clienMap[159] = 21
+
+	clienMap[160] = 22
+	clienMap[161] = 22
+	clienMap[162] = 22
+	clienMap[163] = 22
+
+	clienMap[164] = 23
+	clienMap[165] = 23
+	clienMap[166] = 23
+	clienMap[167] = 23
+
+	clienMap[168] = 24
+	clienMap[169] = 24
+	clienMap[170] = 24
+	clienMap[171] = 24
+
+	clienMap[172] = 25
+	clienMap[173] = 25
+	clienMap[174] = 25
+	clienMap[175] = 25
+
+	clienMap[176] = 26
+	clienMap[177] = 26
+	clienMap[178] = 26
+	clienMap[179] = 26
+
+	clienMap[180] = 27
+	clienMap[181] = 27
+	clienMap[182] = 27
+	clienMap[183] = 27
+
+	//条2
+	clienMap[184] = 10
+	clienMap[185] = 10
+	clienMap[186] = 10
+	clienMap[187] = 10
+
+	clienMap[188] = 11
+	clienMap[189] = 11
+	clienMap[190] = 11
+	clienMap[191] = 11
+
+	clienMap[192] = 12
+	clienMap[193] = 12
+	clienMap[194] = 12
+	clienMap[195] = 12
+
+	clienMap[196] = 13
+	clienMap[197] = 13
+	clienMap[198] = 13
+	clienMap[199] = 13
+
+	clienMap[200] = 14
+	clienMap[201] = 14
+	clienMap[202] = 14
+	clienMap[203] = 14
+
+	clienMap[204] = 15
+	clienMap[205] = 15
+	clienMap[206] = 15
+	clienMap[207] = 15
+
+	clienMap[208] = 16
+	clienMap[209] = 16
+	clienMap[210] = 16
+	clienMap[211] = 16
+
+	clienMap[212] = 17
+	clienMap[213] = 17
+	clienMap[214] = 17
+	clienMap[215] = 17
+
+	clienMap[216] = 18
+	clienMap[217] = 18
+	clienMap[218] = 18
+	clienMap[219] = 18
+}
 
 type PengPai struct {
 	OutUserId uint32
@@ -467,7 +646,7 @@ func (p *MJPAI) InitByDes() error {
 
 //这里得到牌的计数index
 func (p *MJPAI) GetCountIndex() int32 {
-	return p.Value - 1 + (int32(p.Flower - 1))*9 //todo 此方法是否合适...
+	return p.Value - 1 + (int32(p.Flower-1))*9 //todo 此方法是否合适...
 }
 
 //todo
@@ -508,7 +687,6 @@ func (p *MJPAI) LogDes() string {
 		des = valueStr + GetFlow(int32(p.Flower))
 	}
 
-
 	return idStr + "-" + des
 }
 
@@ -519,19 +697,19 @@ func (p *MJPAI) DesFeng() string {
 	}
 	des := ""
 	switch {
-	case p.Value == 1 :
+	case p.Value == 1:
 		des = "东"
-	case p.Value == 2 :
+	case p.Value == 2:
 		des = "南"
-	case p.Value == 3 :
+	case p.Value == 3:
 		des = "西"
-	case p.Value == 4 :
+	case p.Value == 4:
 		des = "北"
-	case p.Value == 5 :
+	case p.Value == 5:
 		des = "中"
-	case p.Value == 6 :
+	case p.Value == 6:
 		des = "白"
-	case p.Value == 7 :
+	case p.Value == 7:
 		des = "发"
 	default:
 		des = "默认风"
@@ -546,21 +724,21 @@ func (p *MJPAI) DesHua() string {
 	}
 	des := ""
 	switch {
-	case p.Value == 1 :
+	case p.Value == 1:
 		des = "春"
-	case p.Value == 2 :
+	case p.Value == 2:
 		des = "夏"
-	case p.Value == 3 :
+	case p.Value == 3:
 		des = "秋"
-	case p.Value == 4 :
+	case p.Value == 4:
 		des = "东"
-	case p.Value == 5 :
+	case p.Value == 5:
 		des = "梅"
-	case p.Value == 6 :
+	case p.Value == 6:
 		des = "兰"
-	case p.Value == 7 :
+	case p.Value == 7:
 		des = "菊"
-	case p.Value == 8 :
+	case p.Value == 8:
 		des = "竹"
 	default:
 		des = "默认花"
@@ -583,6 +761,93 @@ func GetFlow(f int32) string {
 	default:
 		return "白"
 	}
+}
+
+//初始化牌
+func InitMjPaiByIndex(index int32) *MJPAI {
+	des, ok := MjpaiMap[int(index)]
+	if !ok {
+		return nil
+	}
+	result := &MJPAI{
+		Index: index,
+		Des:   des,
+	}
+	result.InitByDes()
+	//返回结果
+	return result
+}
+
+//初始化一组麻将牌
+func InitMjPaisByIds(paiIds []int32) []*MJPAI {
+	pais := []*MJPAI{}
+	for _, paiId := range paiIds {
+		pai := InitMjPaiByIndex(paiId)
+		if pai != nil {
+			pais = append(pais, pai)
+		}
+	}
+	return pais
+}
+
+//将一组麻将牌洗乱
+func XiPai(pais []*MJPAI) []*MJPAI {
+	paiIds := []int32{}
+	for _, pai := range pais {
+		if pai != nil {
+			paiIds = append(paiIds, pai.GetIndex())
+		}
+	}
+	shuffledPaiIds := chessUtils.Shuffle(paiIds)
+	log.T("洗牌之后,得到的随机的index数组[%v] 长度[%v]", shuffledPaiIds, len(shuffledPaiIds))
+	//开始得到牌的信息
+	var shuffledPais []*MJPAI
+	for _, paiId := range shuffledPaiIds {
+		shuffledPais = append(shuffledPais, InitMjPaiByIndex(paiId))
+	}
+	return shuffledPais
+}
+
+//获取转转麻将用到的牌 顺序
+func GetMJPaisZhuanZhuan() []*MJPAI {
+	paiIds := []int32{}
+	for i := 0; i < 108; i++ {
+		paiIds = append(paiIds, int32(i))
+	}
+	return InitMjPaisByIds(paiIds)
+}
+
+//获取红中麻将用到的牌 顺序
+func GetMJPaisHongZhong() []*MJPAI {
+	pais := GetMJPaisZhuanZhuan()
+	pais = append(pais, InitMjPaiByIndex(int32(124)))
+	pais = append(pais, InitMjPaiByIndex(int32(125)))
+	pais = append(pais, InitMjPaiByIndex(int32(126)))
+	pais = append(pais, InitMjPaiByIndex(int32(127)))
+	return pais
+}
+
+//获取8红中麻将用到的牌 顺序
+func GetMJPaisHongZhong8Hong() []*MJPAI {
+	pais := GetMJPaisHongZhong()
+	pais = append(pais, InitMjPaiByIndex(int32(144)))
+	pais = append(pais, InitMjPaiByIndex(int32(145)))
+	pais = append(pais, InitMjPaiByIndex(int32(146)))
+	pais = append(pais, InitMjPaiByIndex(int32(147)))
+	return pais
+}
+
+//获取自贡麻将用到的牌 两副两房牌 两副筒条 顺序
+func GetMJPaisZiGong() []*MJPAI {
+	paiIds := []int32{}
+	for i := 0; i < 71; i++ {
+		paiIds = append(paiIds, int32(i))
+	}
+
+	for i := 148; i < 219; i++ {
+		paiIds = append(paiIds, int32(i))
+	}
+	return InitMjPaisByIds(paiIds)
 }
 
 //-----------------------------------------------------------------排序--------------------------------------
