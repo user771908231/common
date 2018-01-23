@@ -26,16 +26,22 @@ func Xipai(indexStart int, paiCount int) []int32 {
 	return Shuffle2(Shuffle2(pmap))
 }
 
-//将一个slice数值打乱
-func Shuffle(vals []int32) []int32 {
-	r := mrand.New(mrand.NewSource(time.Now().UnixNano()))
-	ret := make([]int32, len(vals))
-	perm := r.Perm(len(vals))
-	for i, randIndex := range perm {
-		ret[i] = vals[randIndex]
-	}
-	return ret
+//新版 根据一组牌id洗出乱序的牌id
+//
+func Shuffle(indexs []int32) []int32 {
+	return Shuffle2(Shuffle2(indexs))
 }
+
+//将一个slice数值打乱
+//func Shuffle(vals []int32) []int32 {
+//	r := mrand.New(mrand.NewSource(time.Now().UnixNano()))
+//	ret := make([]int32, len(vals))
+//	perm := r.Perm(len(vals))
+//	for i, randIndex := range perm {
+//		ret[i] = vals[randIndex]
+//	}
+//	return ret
+//}
 
 //新版洗牌算法
 func Shuffle2(vals []int32) []int32 {
