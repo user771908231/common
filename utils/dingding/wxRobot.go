@@ -2,10 +2,10 @@ package utils
 
 import (
 	"bytes"
-	"io/ioutil"
-	"net/http"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 )
 
 //微信机器人
@@ -17,7 +17,7 @@ type SingleRobot struct {
 	AccessToken string
 }
 
-func (r *SingleRobot)SendTxt(msg string) *SendRet {
+func (r *SingleRobot) SendTxt(msg string) *SendRet {
 	var url string = r.AccessToken
 	req := bytes.NewBuffer([]byte(fmt.Sprintf(`{"msgtype": "text","text": {"content": "%s"}}`, msg)))
 	resp, _ := http.Post(url, body_type, req)

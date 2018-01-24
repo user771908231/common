@@ -2,13 +2,13 @@ package data
 
 import (
 	"casino_common/common/cfg"
+	"casino_common/common/consts"
 	"casino_common/common/log"
 	"github.com/garyburd/redigo/redis"
 	"github.com/golang/protobuf/proto"
-	"time"
-	"strings"
-	"casino_common/common/consts"
 	"runtime/debug"
+	"strings"
+	"time"
 )
 
 var (
@@ -21,10 +21,10 @@ var (
 func initPool() {
 	RedisClient = &redis.Pool{
 		// 从配置文件获取maxidle以及maxactive，取不到则用后面的默认值
-		MaxIdle:     10,  //为最大空闲连接数
-		MaxActive:   0,  //为0则连接池连接数自动增长，大于0则为最大活跃连接数
-		IdleTimeout: 180 * time.Second,  //空闲超时时间
-		Wait: true,  //是否等待空闲连接
+		MaxIdle:     10,                //为最大空闲连接数
+		MaxActive:   0,                 //为0则连接池连接数自动增长，大于0则为最大活跃连接数
+		IdleTimeout: 180 * time.Second, //空闲超时时间
+		Wait:        true,              //是否等待空闲连接
 		Dial: func() (redis.Conn, error) {
 			c, err := redis.Dial("tcp", Redis_svr, redis.DialPassword(Redis_pwd))
 			if err != nil {
@@ -108,7 +108,7 @@ func (t *Data) GetKeys(keyword string) (keys []string, err error) {
 		if err != nil {
 			if err == redis.ErrNil {
 				err = nil
-			}else {
+			} else {
 				log.E("[Redis] GetKeys fail %s err:%v", keyword, err)
 			}
 		}
@@ -127,11 +127,10 @@ func (t *Data) Get(key string) (value string, err error) {
 		if err != nil {
 			if err == redis.ErrNil {
 				err = nil
-			}else {
+			} else {
 				log.E("[Redis] Get fail %s err:%v", key, err)
 			}
 		}
-
 
 		return value, err
 	} else {
@@ -148,7 +147,7 @@ func (t *Data) MGet(args []interface{}) (values []interface{}, err error) {
 		if err != nil {
 			if err == redis.ErrNil {
 				err = nil
-			}else {
+			} else {
 				log.E("[Redis] MGet fail %v err:%v", args, err)
 			}
 		}
@@ -169,7 +168,7 @@ func (t *Data) Gets(key string) (value []byte, err error) {
 		if err != nil {
 			if err == redis.ErrNil {
 				err = nil
-			}else {
+			} else {
 				log.E("[Redis] Gets fail %s err:%v", key, err)
 			}
 		}
@@ -188,7 +187,7 @@ func (t *Data) GetInt64(key string) (value int64, err error) {
 		if err != nil {
 			if err == redis.ErrNil {
 				err = nil
-			}else {
+			} else {
 				log.E("[Redis] GetInt64 fail %s err:%v", key, err)
 			}
 		}
@@ -299,11 +298,10 @@ func (t *Data) ListGetAll(key string) (values []interface{}, err error) {
 	if err != nil {
 		if err == redis.ErrNil {
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] ListGetAll fail %s err:%v", key, err)
 		}
 	}
-
 
 	return values, err
 }
@@ -314,7 +312,7 @@ func (t *Data) LIndex(key string, index int) (value []byte, err error) {
 	if err != nil {
 		if err == redis.ErrNil {
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] LIndex fail %s err:%v", key, err)
 		}
 	}
@@ -328,7 +326,7 @@ func (t *Data) LRange(key string, start int, stop int) (values []interface{}, er
 	if err != nil {
 		if err == redis.ErrNil {
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] LRange fail %s err:%v", key, err)
 		}
 	}
@@ -343,7 +341,7 @@ func (t *Data) LLen(key string) (count int, err error) {
 		if err == redis.ErrNil {
 			count = 0
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] LLen fail %s err:%v", key, err)
 		}
 	}
@@ -397,7 +395,7 @@ func (t *Data) HGetAll(key string) (values []interface{}, err error) {
 	if err != nil {
 		if err == redis.ErrNil {
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] HGetAll fail %s err:%v", key, err)
 		}
 	}
@@ -410,7 +408,7 @@ func (t *Data) HGet(key string, field string) (value []byte, err error) {
 	if err != nil {
 		if err == redis.ErrNil {
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] HGet fail %s err:%v", key, err)
 		}
 	}
@@ -422,7 +420,7 @@ func (t *Data) HLen(key string) (len int, err error) {
 	if err != nil {
 		if err == redis.ErrNil {
 			err = nil
-		}else {
+		} else {
 			log.E("[Redis] HLen fail %s err:%v", key, err)
 		}
 	}

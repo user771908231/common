@@ -1,27 +1,28 @@
 package groupService
 
 import (
-	"casino_common/proto/ddproto"
+	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
 	"casino_common/common/service/agentService"
+	"casino_common/common/service/roomAgent"
+	"casino_common/common/userService"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"casino_common/utils/numUtils"
 	"errors"
 	"github.com/golang/protobuf/proto"
-	"casino_common/common/userService"
-	"casino_common/common/log"
-	"time"
-	"sync"
-	"casino_common/utils/db"
-	"casino_common/common/consts/tableName"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/common/service/roomAgent"
 	"github.com/name5566/leaf/gate"
-	"casino_common/utils/numUtils"
+	"gopkg.in/mgo.v2/bson"
 	"strings"
+	"sync"
+	"time"
 )
 
 //所有群的集合
 var Groups = map[int32]*GroupInfo{}
 
 var UserGroupIds = map[uint32][]int32{}
+
 //群结构
 type GroupInfo struct {
 	ddproto.GroupInfo //群结构
@@ -30,8 +31,8 @@ type GroupInfo struct {
 
 //查询群列表
 func GetUserGroups(uid uint32) (list []*GroupInfo, err error) {
-	if groupids, ok := UserGroupIds[uid];ok {
-		for _,gid := range groupids {
+	if groupids, ok := UserGroupIds[uid]; ok {
+		for _, gid := range groupids {
 			ginfo := GetGroupInfoById(gid)
 			if ginfo != nil {
 				list = append(list, ginfo)
@@ -40,7 +41,7 @@ func GetUserGroups(uid uint32) (list []*GroupInfo, err error) {
 		return
 	}
 
-	var ids = struct{
+	var ids = struct {
 		Ids []int32
 	}{}
 
@@ -56,7 +57,7 @@ func GetUserGroups(uid uint32) (list []*GroupInfo, err error) {
 	//更新缓存
 	UserGroupIds[uid] = ids.Ids
 
-	for _,gid := range ids.Ids {
+	for _, gid := range ids.Ids {
 		ginfo := GetGroupInfoById(gid)
 		if ginfo != nil {
 			list = append(list, ginfo)
@@ -100,7 +101,7 @@ func (g *GroupInfo) SaveToMongo() error {
 
 //群内广播
 func (g *GroupInfo) BroadCast(msg interface{}) {
-	for _,u := range g.GetMembers() {
+	for _, u := range g.GetMembers() {
 		if u != nil {
 			agentService.WriteMsg(u.GetUid(), msg)
 		}
@@ -109,7 +110,7 @@ func (g *GroupInfo) BroadCast(msg interface{}) {
 
 //查询群成员
 func (g *GroupInfo) GetMemberById(uid uint32) *ddproto.GroupMemberInfo {
-	for _,u := range g.Members {
+	for _, u := range g.Members {
 		if u.GetUid() == uid {
 			return u
 		}
@@ -135,16 +136,16 @@ func (g *GroupInfo) AddMember(addUid uint32) error {
 	}
 
 	new_member := &ddproto.GroupMemberInfo{
-		Uid: proto.Uint32(addUid),
+		Uid:      proto.Uint32(addUid),
 		NickName: proto.String(user_info.GetNickName()),
-		Remark: proto.String(""),
-		HeadImg: proto.String(user_info.GetHeadUrl()),
-		OpenId: proto.String(user_info.GetOpenId()),
+		Remark:   proto.String(""),
+		HeadImg:  proto.String(user_info.GetHeadUrl()),
+		OpenId:   proto.String(user_info.GetOpenId()),
 	}
 	//加入成员
 	g.Members = append(g.Members, new_member)
 	//更新sync_id
-	g.SyncId = proto.Int32(g.GetSyncId()+1)
+	g.SyncId = proto.Int32(g.GetSyncId() + 1)
 	//更新新成员的群列表
 	if ugids, ok := UserGroupIds[addUid]; ok {
 		ugids = append(ugids, g.GetId())
@@ -154,11 +155,11 @@ func (g *GroupInfo) AddMember(addUid uint32) error {
 	//发送入群广播
 	bc_msg := &ddproto.HallGroupSendMsgBc{
 		ResItem: &ddproto.GroupMsgItem{
-			FromUid: proto.Uint32(0),
-			ToGroup: proto.Int32(g.GetId()),
-			SendTime: proto.Int64(time.Now().Unix()),
-			MsgType: ddproto.GroupMsgType_group_msg_type_MemberIn.Enum(),
-			TxtContent: proto.String("欢迎 "+user_info.GetNickName()+" 进群！"),
+			FromUid:     proto.Uint32(0),
+			ToGroup:     proto.Int32(g.GetId()),
+			SendTime:    proto.Int64(time.Now().Unix()),
+			MsgType:     ddproto.GroupMsgType_group_msg_type_MemberIn.Enum(),
+			TxtContent:  proto.String("欢迎 " + user_info.GetNickName() + " 进群！"),
 			DeskContent: nil,
 		},
 	}
@@ -188,28 +189,28 @@ func (g *GroupInfo) DelMember(delUid uint32) error {
 	//发送出群广播
 	bc_msg := &ddproto.HallGroupSendMsgBc{
 		ResItem: &ddproto.GroupMsgItem{
-			FromUid: proto.Uint32(0),
-			ToGroup: proto.Int32(g.GetId()),
-			SendTime: proto.Int64(time.Now().Unix()),
-			MsgType: ddproto.GroupMsgType_group_msg_type_MemberOut.Enum(),
-			TxtContent: proto.String(user_info.GetNickName()+" 退出了群聊。"),
+			FromUid:     proto.Uint32(0),
+			ToGroup:     proto.Int32(g.GetId()),
+			SendTime:    proto.Int64(time.Now().Unix()),
+			MsgType:     ddproto.GroupMsgType_group_msg_type_MemberOut.Enum(),
+			TxtContent:  proto.String(user_info.GetNickName() + " 退出了群聊。"),
 			DeskContent: nil,
 		},
 	}
 	g.BroadCast(bc_msg)
 
 	//删除成员
-	for i,u := range g.Members {
+	for i, u := range g.Members {
 		if u.GetUid() == delUid {
 			g.Members = append(g.Members[:i], g.Members[i+1:]...)
 			break
 		}
 	}
 	//更新sync_id
-	g.SyncId = proto.Int32(g.GetSyncId()+1)
+	g.SyncId = proto.Int32(g.GetSyncId() + 1)
 	//更新新成员的群列表
 	if ugids, ok := UserGroupIds[delUid]; ok {
-		for i,id := range ugids {
+		for i, id := range ugids {
 			if id == g.GetId() {
 				ugids = append(ugids[:i], ugids[i+1:]...)
 			}
@@ -224,12 +225,12 @@ func (g *GroupInfo) DelMember(delUid uint32) error {
 
 //是否在群中
 func (g *GroupInfo) IsMember(uid uint32) bool {
-	for _,u := range g.GetMembers() {
+	for _, u := range g.GetMembers() {
 		if u.GetUid() == uid {
 			return true
 		}
 	}
-	return  false
+	return false
 }
 
 //接收消息
@@ -256,16 +257,16 @@ func (g *GroupInfo) OnReceiveMsg(msg *ddproto.GroupMsgItem, agent gate.Agent) {
 		if len(g.GetGameOpts()) == 1 {
 			game_option = g.GetGameOpts()[0].GetOption()
 		}
-		new_desk,err := roomAgent.CreateDeskByOption(g.GetOwner(), msg.GetToGroup(), game_option)
+		new_desk, err := roomAgent.CreateDeskByOption(g.GetOwner(), msg.GetToGroup(), game_option)
 		//开房失败
 		if err != nil {
 			res := &ddproto.HallGroupSendMsgBc{
 				ResItem: &ddproto.GroupMsgItem{
-					FromUid: proto.Uint32(msg.GetFromUid()),
-					ToGroup: proto.Int32(msg.GetToGroup()),
-					SendTime:proto.Int64(time.Now().Unix()),
-					MsgType: ddproto.GroupMsgType_group_msg_type_SysFail.Enum(),
-					TxtContent: proto.String("创建房间失败！错误:"+err.Error()),
+					FromUid:     proto.Uint32(msg.GetFromUid()),
+					ToGroup:     proto.Int32(msg.GetToGroup()),
+					SendTime:    proto.Int64(time.Now().Unix()),
+					MsgType:     ddproto.GroupMsgType_group_msg_type_SysFail.Enum(),
+					TxtContent:  proto.String("创建房间失败！错误:" + err.Error()),
 					DeskContent: nil,
 				},
 			}
@@ -275,11 +276,11 @@ func (g *GroupInfo) OnReceiveMsg(msg *ddproto.GroupMsgItem, agent gate.Agent) {
 		//开房成功
 		res := &ddproto.HallGroupSendMsgBc{
 			ResItem: &ddproto.GroupMsgItem{
-				FromUid: proto.Uint32(msg.GetFromUid()),
-				ToGroup: proto.Int32(msg.GetToGroup()),
-				SendTime:proto.Int64(time.Now().Unix()),
-				MsgType: ddproto.GroupMsgType_group_msg_type_CreateDesk.Enum(),
-				TxtContent: proto.String("创建房间成功"),
+				FromUid:     proto.Uint32(msg.GetFromUid()),
+				ToGroup:     proto.Int32(msg.GetToGroup()),
+				SendTime:    proto.Int64(time.Now().Unix()),
+				MsgType:     ddproto.GroupMsgType_group_msg_type_CreateDesk.Enum(),
+				TxtContent:  proto.String("创建房间成功"),
 				DeskContent: new_desk,
 			},
 		}
@@ -295,7 +296,7 @@ func (g *GroupInfo) OnReceiveMsg(msg *ddproto.GroupMsgItem, agent gate.Agent) {
 				//群主解散群
 				log.T("群主%d解散群成功！", g.GetOwner())
 			}
-		}else {
+		} else {
 			//成员自己退出
 			g.DelMember(msg.GetFromUid())
 		}
