@@ -76,6 +76,43 @@ func GetGameAndTypeName(gid, roomType int32) string {
 		gameName = "松江河"
 	case int32(ddproto.CommonEnumGame_GID_PAOHUZI):
 		gameName = "跑胡子"
+	case int32(ddproto.CommonEnumGame_GID_PAOYAO):
+		gameName = "刨幺"
+	case int32(ddproto.CommonEnumGame_GID_CHANGBAI):
+		gameName = "长白麻将"
+	case int32(ddproto.CommonEnumGame_GID_ZHADAN):
+		gameName = "炸弹"
+	case int32(ddproto.CommonEnumGame_GID_MJ_SHENQI):
+		gameName = "神奇麻将"
+	case int32(ddproto.CommonEnumGame_GID_PHZ_SHAOYANGBOPI):
+		gameName = "邵阳剥皮"
+	case int32(ddproto.CommonEnumGame_GID_MJ_CHANGSHA):
+		gameName = "长沙麻将"
+	case int32(ddproto.CommonEnumGame_GID_MJ_ZIGONG):
+		gameName = "自贡麻将"
+
+		//未用到的gameId
+	case int32(ddproto.CommonEnumGame_GID_MJCHANGCHUN):
+		gameName = "长春麻将"
+	case int32(ddproto.CommonEnumGame_GID_NIUNIUJINGDIAN):
+		gameName = "经典牛牛"
+	case int32(ddproto.CommonEnumGame_GID_BANTUOZI):
+		gameName = "搬坨子"
+	case int32(ddproto.CommonEnumGame_GID_DOUDIZHUERREN):
+		gameName = "二人斗地主"
+	case int32(ddproto.CommonEnumGame_GIDDOUDIZHUJINGDIANDONGBEI):
+		gameName = "东北经典斗地主"
+	case int32(ddproto.CommonEnumGame_GID_TIANDAKENG):
+		gameName = "填大坑"
+	case int32(ddproto.CommonEnumGame_GID_ZHIZUNWUZHANG):
+		gameName = "自助五张"
+	case int32(ddproto.CommonEnumGame_GID_MJ_YIBIN):
+		gameName = "宜宾麻将"
+	case int32(ddproto.CommonEnumGame_GID_MJ_PENGZHOU):
+		gameName = "彭州麻将"
+	case int32(ddproto.CommonEnumGame_GID_SANDAYI):
+		gameName = "三打一"
+
 	default:
 		gameName = "其他"
 	}
@@ -93,7 +130,12 @@ func GetGameAndTypeName(gid, roomType int32) string {
 	return gameName + roomTypeName
 }
 
-func GetEnterError(gid, roomType int32) error {
+func GetEnterError(gid, roomType int32, password string) error {
 	msg := fmt.Sprintf("【%v】游戏还没有结束，请完成后再来", GetGameAndTypeName(gid, roomType))
-	return Error.NewError(int32(ddproto.COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_ERROR_EC_OTHER_LV_DESK_GAMING), msg)
+	retErr := Error.NewError(int32(ddproto.COMMON_ENUM_ERROR_TYPE_ENTERCOINROOM_ERROR_EC_OTHER_LV_DESK_GAMING), msg)
+	if roomType == int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND) {
+		//朋友桌 需要返回桌号
+		retErr = Error.NewError(Error.GetErrorCode(retErr), fmt.Sprintf("%s 桌号【%s】", Error.GetErrorMsg(retErr), password))
+	}
+	return retErr
 }

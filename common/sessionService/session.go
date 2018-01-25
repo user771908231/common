@@ -147,7 +147,7 @@ func CanEnter(userId uint32, gid, roomType int32) (bool, error) {
 		s := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_COIN))
 		if s != nil && s.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_GAMING) {
 			log.W("玩家[%v]请求进朋友桌 但当前还有进行中的金币场session 不能进入", userId)
-			return false, utils.GetEnterError(s.GetGameId(), s.GetRoomType())
+			return false, utils.GetEnterError(s.GetGameId(), s.GetRoomType(), s.GetRoomPassword())
 		}
 	}
 
@@ -156,7 +156,7 @@ func CanEnter(userId uint32, gid, roomType int32) (bool, error) {
 		s := GetSession(userId, int32(ddproto.COMMON_ENUM_ROOMTYPE_DESK_FRIEND))
 		if s != nil && s.GetGameStatus() == int32(ddproto.COMMON_ENUM_GAMESTATUS_GAMING) {
 			log.W("玩家[%v]请求进金币场 但当前还有进行中的朋友桌session 不能进入", userId)
-			return false, utils.GetEnterError(s.GetGameId(), s.GetRoomType())
+			return false, utils.GetEnterError(s.GetGameId(), s.GetRoomType(), s.GetRoomPassword())
 		}
 	}
 
@@ -172,7 +172,7 @@ func CanEnter(userId uint32, gid, roomType int32) (bool, error) {
 	if s.GetGameId() != gid {
 		//根据roomType找到的session是在其他游戏中 不能进
 		log.W("判断玩家[%v]不能进入游戏[%v]，gid不匹配", userId, gid)
-		return false, utils.GetEnterError(s.GetGameId(), s.GetRoomType())
+		return false, utils.GetEnterError(s.GetGameId(), s.GetRoomType(), s.GetRoomPassword())
 	}
 
 	//其他条件可以进入房间
