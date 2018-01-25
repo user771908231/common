@@ -1,15 +1,15 @@
 package roomAgent
 
 import (
-	"casino_common/proto/ddproto"
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/service/rpcService"
 	"casino_common/common/consts"
-	"casino_common/common/log"
-	"golang.org/x/net/context"
-	"errors"
-	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/service/rpcService"
+	"casino_common/proto/ddproto"
+	"casino_common/utils/db"
+	"errors"
+	"github.com/golang/protobuf/proto"
+	"golang.org/x/net/context"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -28,7 +28,7 @@ var PdkConf = CreateConfig{
 		[]string{"3人", "三人"},
 	},
 	[][]string{
-		[]string{"首出黑桃3","首出黑桃三"},
+		[]string{"首出黑桃3", "首出黑桃三"},
 		[]string{"不出黑桃3"},
 	},
 	[][]string{
@@ -86,16 +86,16 @@ func DoPdkKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 			UserId: proto.Uint32(owner),
 		},
 		RoomTypeInfo: &ddproto.PdkBaseRoomTypeInfo{
-			RoomType: opt_room_type.Enum(),
-			BoardsCount: proto.Int32(int32(opt_circle_num)),
-			UserCountLimit:proto.Int32(int32(opt_gamer_number)),
-			IsDaikai: proto.Bool(true),
-			IsShowCardsNum:proto.Bool(opt_show_yupai),
-			IsZhuaNiao:proto.Bool(opt_ht10_zhuaniao),
-			IsSpadeThree: proto.Bool(opt_ht3_shouchu),
+			RoomType:       opt_room_type.Enum(),
+			BoardsCount:    proto.Int32(int32(opt_circle_num)),
+			UserCountLimit: proto.Int32(int32(opt_gamer_number)),
+			IsDaikai:       proto.Bool(true),
+			IsShowCardsNum: proto.Bool(opt_show_yupai),
+			IsZhuaNiao:     proto.Bool(opt_ht10_zhuaniao),
+			IsSpadeThree:   proto.Bool(opt_ht3_shouchu),
 		},
 	}
-	res,err := rpcService.GetPdk().CreateRoom(context.Background(), rpc_req)
+	res, err := rpcService.GetPdk().CreateRoom(context.Background(), rpc_req)
 	log.T("rpc req:%v res:%v res-err:%v", rpc_req, res, err)
 
 	if err != nil {
@@ -126,13 +126,12 @@ func DoPdkKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 		ex_room := GetAgentFreeRoomByOption(group_id, opt_gamer_number, pdk_keywords)
 		if ex_room != nil {
 			return nil, ex_room
-		}else {
+		} else {
 			log.E("rpc success, but ex_room is nil.")
 			return errors.New("开房失败，请联系管理员。"), nil
 		}
-	}else {
+	} else {
 		log.E("rpc code err:%v", res)
 		return errors.New(res.Header.GetError()), nil
 	}
 }
-

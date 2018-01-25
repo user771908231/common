@@ -1,17 +1,17 @@
 package roomAgent
 
 import (
-	"github.com/golang/protobuf/proto"
-	"casino_common/common/service/rpcService"
 	"casino_common/common/consts"
-	"casino_common/proto/ddproto/mjproto"
-	"golang.org/x/net/context"
-	"casino_common/common/log"
-	"casino_common/proto/ddproto"
-	"errors"
-	"gopkg.in/mgo.v2/bson"
-	"casino_common/utils/db"
 	"casino_common/common/consts/tableName"
+	"casino_common/common/log"
+	"casino_common/common/service/rpcService"
+	"casino_common/proto/ddproto"
+	"casino_common/proto/ddproto/mjproto"
+	"casino_common/utils/db"
+	"errors"
+	"github.com/golang/protobuf/proto"
+	"golang.org/x/net/context"
+	"gopkg.in/mgo.v2/bson"
 )
 
 //转转红中配置
@@ -50,13 +50,13 @@ func DoSjhKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 			opt_circle_num = 4
 		case "8圈":
 			opt_circle_num = 8
-		case "点炮包三家":  //1
+		case "点炮包三家": //1
 			opt_is_dianpaobaofen = true
 			opt_payment = 1
-		case "坐车也输分":  //2
+		case "坐车也输分": //2
 			opt_is_dianpaobaofen = false
 			opt_payment = 2
-		case "点炮自己拿":  //3
+		case "点炮自己拿": //3
 			opt_payment = 3
 		case "16封顶":
 			opt_cap_max = 16
@@ -86,7 +86,7 @@ func DoSjhKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 		IsDaiKai: proto.Bool(true),
 	}
 
-	res,err := rpcService.GetSjhMj().CreateRoom(context.Background(), rpc_req)
+	res, err := rpcService.GetSjhMj().CreateRoom(context.Background(), rpc_req)
 	log.T("rpc req:%v res:%v res-err:%v", rpc_req, res, err)
 
 	if err != nil {
@@ -117,13 +117,12 @@ func DoSjhKaifang(owner uint32, group_id int32, option_str string) (error, *ddpr
 		ex_room := GetAgentFreeRoomByOption(group_id, opt_gamer_number, sjh_keywords)
 		if ex_room != nil {
 			return nil, ex_room
-		}else {
+		} else {
 			log.E("rpc success, but ex_room is nil.")
 			return errors.New("开房失败，请联系管理员。"), nil
 		}
-	}else {
+	} else {
 		log.E("rpc code err:%v", res)
 		return errors.New(res.Header.GetError()), nil
 	}
 }
-

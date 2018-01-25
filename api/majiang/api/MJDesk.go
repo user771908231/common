@@ -33,6 +33,7 @@ type MJDesk interface {
 	ActFly(...interface{}) error                    //飞
 	ActTi(...interface{}) error                     //提
 	ActPreOpeningPlayOption(...interface{}) error   //开局前的玩法选择
+	ActContinueOn(...interface{}) error             //胡牌后选择是否继续游戏
 	ActLeave(...interface{}) error                  //离开房间
 	ActReady(userId uint32) error                   //准备
 	Lottery() error                                 //一局结束
@@ -171,6 +172,11 @@ func (d *MJDeskCore) ActTi(...interface{}) error {
 
 func (d *MJDeskCore) ActPreOpeningPlayOption(...interface{}) error {
 	log.W("MJDeskCore ActPreOpeningPlayOption Nothing to Do")
+	return nil
+}
+
+func (d *MJDeskCore) ActContinueOn(...interface{}) error {
+	log.W("MJDeskCore ActContinueOn Nothing to Do")
 	return nil
 }
 
