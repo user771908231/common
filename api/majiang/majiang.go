@@ -808,6 +808,19 @@ func XiPai(pais []*MJPAI) []*MJPAI {
 	return shuffledPais
 }
 
+//获取神奇麻将用到的牌 顺序
+func GetMJPaisShenQi() []*MJPAI {
+	paiIds := []int32{}
+	for i := 0; i < 108; i++ {
+		paiIds = append(paiIds, int32(i))
+	}
+
+	for i := 124; i < 136; i++ {
+		paiIds = append(paiIds, int32(i))
+	}
+	return InitMjPaisByIds(paiIds)
+}
+
 //获取东北地方麻将用到的牌 松江河、白山、长白 顺序
 func GetMJPaisDongBei() []*MJPAI {
 	paiIds := []int32{}
