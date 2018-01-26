@@ -93,6 +93,8 @@ func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_roun
 		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
 			tbName = tableName.DBT_MJ_HZH_DESK_ROUND_ALL
 		}
+	case int32(ddproto.CommonEnumGame_GID_MJ_SHENQI):
+		tbName = tableName.DBT_MJ_SHENQI_DESK_ROUND_ALL
 	default:
 	}
 
@@ -130,6 +132,8 @@ func GetMjDeskRoundByDeskIds(DeskIds []int32, gid, roomType int32) []T_mj_desk_r
 		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
 			tbName = tableName.DBT_MJ_HZH_DESK_ROUND_ALL
 		}
+	case int32(ddproto.CommonEnumGame_GID_MJ_SHENQI):
+		tbName = tableName.DBT_MJ_SHENQI_DESK_ROUND_ALL
 	default:
 	}
 
@@ -168,6 +172,8 @@ func GetMjDeskRoundByDeskId(userId uint32, deskId, gid, roomType int32) []T_mj_d
 		if roomType == int32(ddproto.MJRoomType_roomType_mj_hongzhong) {
 			tbName = tableName.DBT_MJ_HZH_DESK_ROUND
 		}
+	case int32(ddproto.CommonEnumGame_GID_MJ_SHENQI):
+		tbName = tableName.DBT_MJ_SHENQI_DESK_ROUND
 	default:
 	}
 
@@ -212,6 +218,18 @@ func GetMjZXZPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 func GetMjBSPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
 	ret := &T_mj_desk_round{}
 	db.Log(tableName.DBT_MJ_BS_DESK_ROUND).Find(bson.M{
+		"gamenumber": gamenumber,
+	}, &ret)
+	if ret.DeskId > 0 {
+		return ret.PlayBackData
+	} else {
+		return nil
+	}
+}
+
+func GetMjShenQiPlayBack(gamenumber int32) []*ddproto.PlaybackSnapshot {
+	ret := &T_mj_desk_round{}
+	db.Log(tableName.DBT_MJ_SHENQI_DESK_ROUND).Find(bson.M{
 		"gamenumber": gamenumber,
 	}, &ret)
 	if ret.DeskId > 0 {
@@ -272,6 +290,8 @@ func GetMjPlayBackFromMemory(gamenumber, gid, roomType int32) []*ddproto.Playbac
 		data = GetMjBSPlayBack(gamenumber)
 	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
 		data = GetMjZHZHPlayBack(gamenumber, roomType)
+	case int32(ddproto.CommonEnumGame_GID_MJ_SHENQI):
+		data = GetMjShenQiPlayBack(gamenumber, roomType)
 	default:
 		data = GetMjPlayBack(gamenumber)
 	}

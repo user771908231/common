@@ -1,6 +1,7 @@
 package roomAgent
 
 import (
+	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
@@ -14,7 +15,6 @@ import (
 	"golang.org/x/net/context"
 	"gopkg.in/mgo.v2/bson"
 	"strings"
-	"casino_common/common/Error"
 )
 
 //从数据库获取当前未开局的房间表
