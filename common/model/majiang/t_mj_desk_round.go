@@ -291,7 +291,7 @@ func GetMjPlayBackFromMemory(gamenumber, gid, roomType int32) []*ddproto.Playbac
 	case int32(ddproto.CommonEnumGame_GID_ZHUANZHUAN):
 		data = GetMjZHZHPlayBack(gamenumber, roomType)
 	case int32(ddproto.CommonEnumGame_GID_MJ_SHENQI):
-		data = GetMjShenQiPlayBack(gamenumber, roomType)
+		data = GetMjShenQiPlayBack(gamenumber)
 	default:
 		data = GetMjPlayBack(gamenumber)
 	}
