@@ -42,7 +42,7 @@ type ZhadanSrvPoker struct {
 func (m *ZhadanSrvPoker) Reset()                    { *m = ZhadanSrvPoker{} }
 func (m *ZhadanSrvPoker) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSrvPoker) ProtoMessage()               {}
-func (*ZhadanSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{0} }
+func (*ZhadanSrvPoker) Descriptor() ([]byte, []int) { return fileDescriptor59, []int{0} }
 
 func (m *ZhadanSrvPoker) GetPais() []*CommonSrvPokerPai {
 	if m != nil {
@@ -109,7 +109,7 @@ type ZhadanSrvDesk struct {
 func (m *ZhadanSrvDesk) Reset()                    { *m = ZhadanSrvDesk{} }
 func (m *ZhadanSrvDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSrvDesk) ProtoMessage()               {}
-func (*ZhadanSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{1} }
+func (*ZhadanSrvDesk) Descriptor() ([]byte, []int) { return fileDescriptor59, []int{1} }
 
 func (m *ZhadanSrvDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -339,7 +339,7 @@ type ZhadanSrvUser struct {
 func (m *ZhadanSrvUser) Reset()                    { *m = ZhadanSrvUser{} }
 func (m *ZhadanSrvUser) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSrvUser) ProtoMessage()               {}
-func (*ZhadanSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{2} }
+func (*ZhadanSrvUser) Descriptor() ([]byte, []int) { return fileDescriptor59, []int{2} }
 
 func (m *ZhadanSrvUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -518,7 +518,7 @@ type ZhadanSrvDeskSnapshotIdIndex struct {
 func (m *ZhadanSrvDeskSnapshotIdIndex) Reset()                    { *m = ZhadanSrvDeskSnapshotIdIndex{} }
 func (m *ZhadanSrvDeskSnapshotIdIndex) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSrvDeskSnapshotIdIndex) ProtoMessage()               {}
-func (*ZhadanSrvDeskSnapshotIdIndex) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{3} }
+func (*ZhadanSrvDeskSnapshotIdIndex) Descriptor() ([]byte, []int) { return fileDescriptor59, []int{3} }
 
 func (m *ZhadanSrvDeskSnapshotIdIndex) GetDeskId() []int32 {
 	if m != nil {
@@ -537,7 +537,7 @@ type ZhadanSrvDeskSnapshot struct {
 func (m *ZhadanSrvDeskSnapshot) Reset()                    { *m = ZhadanSrvDeskSnapshot{} }
 func (m *ZhadanSrvDeskSnapshot) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSrvDeskSnapshot) ProtoMessage()               {}
-func (*ZhadanSrvDeskSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{4} }
+func (*ZhadanSrvDeskSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor59, []int{4} }
 
 func (m *ZhadanSrvDeskSnapshot) GetDeskState() *ZhadanSrvDesk {
 	if m != nil {
@@ -561,11 +561,11 @@ func init() {
 	proto.RegisterType((*ZhadanSrvDeskSnapshot)(nil), "ddproto.zhadan_srv_desk_snapshot")
 }
 
-func init() { proto.RegisterFile("zhadan_server.proto", fileDescriptor58) }
+func init() { proto.RegisterFile("zhadan_server.proto", fileDescriptor59) }
 
-var fileDescriptor58 = []byte{
+var fileDescriptor59 = []byte{
 	// 999 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x84, 0x55, 0x51, 0x6f, 0xdb, 0x36,
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x55, 0x51, 0x6f, 0xdb, 0x36,
 	0x10, 0x9e, 0x9a, 0xd8, 0x71, 0x98, 0x3a, 0x69, 0x99, 0x2e, 0x65, 0x9c, 0x2c, 0xd3, 0x8c, 0x61,
 	0x30, 0x30, 0x2c, 0xd8, 0xfc, 0x30, 0x14, 0xe8, 0xc3, 0xd0, 0x35, 0x40, 0x11, 0x2c, 0x48, 0x0c,
 	0xa6, 0x5b, 0x80, 0xbd, 0x08, 0xb4, 0xc5, 0xd9, 0x84, 0x65, 0x52, 0x13, 0xa5, 0xd8, 0xe9, 0xe3,

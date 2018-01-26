@@ -169,7 +169,7 @@ type ZhadanClientDesk struct {
 func (m *ZhadanClientDesk) Reset()                    { *m = ZhadanClientDesk{} }
 func (m *ZhadanClientDesk) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanClientDesk) ProtoMessage()               {}
-func (*ZhadanClientDesk) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{0} }
+func (*ZhadanClientDesk) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{0} }
 
 func (m *ZhadanClientDesk) GetDeskId() int32 {
 	if m != nil && m.DeskId != nil {
@@ -349,7 +349,7 @@ type ZhadanClientUser struct {
 func (m *ZhadanClientUser) Reset()                    { *m = ZhadanClientUser{} }
 func (m *ZhadanClientUser) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanClientUser) ProtoMessage()               {}
-func (*ZhadanClientUser) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{1} }
+func (*ZhadanClientUser) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{1} }
 
 func (m *ZhadanClientUser) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -474,7 +474,7 @@ type ZhadanCreateDeskReq struct {
 func (m *ZhadanCreateDeskReq) Reset()                    { *m = ZhadanCreateDeskReq{} }
 func (m *ZhadanCreateDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanCreateDeskReq) ProtoMessage()               {}
-func (*ZhadanCreateDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{2} }
+func (*ZhadanCreateDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{2} }
 
 func (m *ZhadanCreateDeskReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -509,7 +509,7 @@ type ZhadanEnterDeskReq struct {
 func (m *ZhadanEnterDeskReq) Reset()                    { *m = ZhadanEnterDeskReq{} }
 func (m *ZhadanEnterDeskReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanEnterDeskReq) ProtoMessage()               {}
-func (*ZhadanEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{3} }
+func (*ZhadanEnterDeskReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{3} }
 
 func (m *ZhadanEnterDeskReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -542,7 +542,7 @@ type ZhadanEnterDeskAck struct {
 func (m *ZhadanEnterDeskAck) Reset()                    { *m = ZhadanEnterDeskAck{} }
 func (m *ZhadanEnterDeskAck) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanEnterDeskAck) ProtoMessage()               {}
-func (*ZhadanEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{4} }
+func (*ZhadanEnterDeskAck) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{4} }
 
 func (m *ZhadanEnterDeskAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -574,7 +574,7 @@ type ZhadanEnterDeskBc struct {
 func (m *ZhadanEnterDeskBc) Reset()                    { *m = ZhadanEnterDeskBc{} }
 func (m *ZhadanEnterDeskBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanEnterDeskBc) ProtoMessage()               {}
-func (*ZhadanEnterDeskBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{5} }
+func (*ZhadanEnterDeskBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{5} }
 
 func (m *ZhadanEnterDeskBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -600,7 +600,7 @@ type ZhadanSwitchReadyReq struct {
 func (m *ZhadanSwitchReadyReq) Reset()                    { *m = ZhadanSwitchReadyReq{} }
 func (m *ZhadanSwitchReadyReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSwitchReadyReq) ProtoMessage()               {}
-func (*ZhadanSwitchReadyReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{6} }
+func (*ZhadanSwitchReadyReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{6} }
 
 func (m *ZhadanSwitchReadyReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -626,7 +626,7 @@ type ZhadanSwitchReadyBc struct {
 func (m *ZhadanSwitchReadyBc) Reset()                    { *m = ZhadanSwitchReadyBc{} }
 func (m *ZhadanSwitchReadyBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSwitchReadyBc) ProtoMessage()               {}
-func (*ZhadanSwitchReadyBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{7} }
+func (*ZhadanSwitchReadyBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{7} }
 
 func (m *ZhadanSwitchReadyBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -662,7 +662,7 @@ type ZhadanFapaiOt struct {
 func (m *ZhadanFapaiOt) Reset()                    { *m = ZhadanFapaiOt{} }
 func (m *ZhadanFapaiOt) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanFapaiOt) ProtoMessage()               {}
-func (*ZhadanFapaiOt) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{8} }
+func (*ZhadanFapaiOt) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{8} }
 
 func (m *ZhadanFapaiOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -709,7 +709,7 @@ type ZhadanBaozhuangOt struct {
 func (m *ZhadanBaozhuangOt) Reset()                    { *m = ZhadanBaozhuangOt{} }
 func (m *ZhadanBaozhuangOt) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanBaozhuangOt) ProtoMessage()               {}
-func (*ZhadanBaozhuangOt) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{9} }
+func (*ZhadanBaozhuangOt) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{9} }
 
 func (m *ZhadanBaozhuangOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -734,7 +734,7 @@ type ZhadanBaozhuangReq struct {
 func (m *ZhadanBaozhuangReq) Reset()                    { *m = ZhadanBaozhuangReq{} }
 func (m *ZhadanBaozhuangReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanBaozhuangReq) ProtoMessage()               {}
-func (*ZhadanBaozhuangReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{10} }
+func (*ZhadanBaozhuangReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{10} }
 
 func (m *ZhadanBaozhuangReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -760,7 +760,7 @@ type ZhadanBaozhuangAck struct {
 func (m *ZhadanBaozhuangAck) Reset()                    { *m = ZhadanBaozhuangAck{} }
 func (m *ZhadanBaozhuangAck) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanBaozhuangAck) ProtoMessage()               {}
-func (*ZhadanBaozhuangAck) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{11} }
+func (*ZhadanBaozhuangAck) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{11} }
 
 func (m *ZhadanBaozhuangAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -793,7 +793,7 @@ type ZhadanBaozhuangResItem struct {
 func (m *ZhadanBaozhuangResItem) Reset()                    { *m = ZhadanBaozhuangResItem{} }
 func (m *ZhadanBaozhuangResItem) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanBaozhuangResItem) ProtoMessage()               {}
-func (*ZhadanBaozhuangResItem) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{12} }
+func (*ZhadanBaozhuangResItem) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{12} }
 
 func (m *ZhadanBaozhuangResItem) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -819,7 +819,7 @@ type ZhadanBaozhuangRes struct {
 func (m *ZhadanBaozhuangRes) Reset()                    { *m = ZhadanBaozhuangRes{} }
 func (m *ZhadanBaozhuangRes) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanBaozhuangRes) ProtoMessage()               {}
-func (*ZhadanBaozhuangRes) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{13} }
+func (*ZhadanBaozhuangRes) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{13} }
 
 func (m *ZhadanBaozhuangRes) GetBaoZhuangUser() uint32 {
 	if m != nil && m.BaoZhuangUser != nil {
@@ -854,7 +854,7 @@ type ZhadanChupaiOt struct {
 func (m *ZhadanChupaiOt) Reset()                    { *m = ZhadanChupaiOt{} }
 func (m *ZhadanChupaiOt) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanChupaiOt) ProtoMessage()               {}
-func (*ZhadanChupaiOt) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{14} }
+func (*ZhadanChupaiOt) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{14} }
 
 func (m *ZhadanChupaiOt) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -893,7 +893,7 @@ type ZhadanChupaiReq struct {
 func (m *ZhadanChupaiReq) Reset()                    { *m = ZhadanChupaiReq{} }
 func (m *ZhadanChupaiReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanChupaiReq) ProtoMessage()               {}
-func (*ZhadanChupaiReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{15} }
+func (*ZhadanChupaiReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{15} }
 
 func (m *ZhadanChupaiReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -921,7 +921,7 @@ type ZhadanChupaiBc struct {
 func (m *ZhadanChupaiBc) Reset()                    { *m = ZhadanChupaiBc{} }
 func (m *ZhadanChupaiBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanChupaiBc) ProtoMessage()               {}
-func (*ZhadanChupaiBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{16} }
+func (*ZhadanChupaiBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{16} }
 
 func (m *ZhadanChupaiBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -967,7 +967,7 @@ type ZhadanGuopaiReq struct {
 func (m *ZhadanGuopaiReq) Reset()                    { *m = ZhadanGuopaiReq{} }
 func (m *ZhadanGuopaiReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanGuopaiReq) ProtoMessage()               {}
-func (*ZhadanGuopaiReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{17} }
+func (*ZhadanGuopaiReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{17} }
 
 func (m *ZhadanGuopaiReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -989,7 +989,7 @@ type ZhadanGuopaiBc struct {
 func (m *ZhadanGuopaiBc) Reset()                    { *m = ZhadanGuopaiBc{} }
 func (m *ZhadanGuopaiBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanGuopaiBc) ProtoMessage()               {}
-func (*ZhadanGuopaiBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{18} }
+func (*ZhadanGuopaiBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{18} }
 
 func (m *ZhadanGuopaiBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1052,7 +1052,7 @@ type ZhadanGameEndOneItem struct {
 func (m *ZhadanGameEndOneItem) Reset()                    { *m = ZhadanGameEndOneItem{} }
 func (m *ZhadanGameEndOneItem) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanGameEndOneItem) ProtoMessage()               {}
-func (*ZhadanGameEndOneItem) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{19} }
+func (*ZhadanGameEndOneItem) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{19} }
 
 func (m *ZhadanGameEndOneItem) GetUser() uint32 {
 	if m != nil && m.User != nil {
@@ -1142,7 +1142,7 @@ type ZhadanGameEndOneBc struct {
 func (m *ZhadanGameEndOneBc) Reset()                    { *m = ZhadanGameEndOneBc{} }
 func (m *ZhadanGameEndOneBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanGameEndOneBc) ProtoMessage()               {}
-func (*ZhadanGameEndOneBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{20} }
+func (*ZhadanGameEndOneBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{20} }
 
 func (m *ZhadanGameEndOneBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1179,7 +1179,7 @@ type ZhadanGameEndAllItem struct {
 func (m *ZhadanGameEndAllItem) Reset()                    { *m = ZhadanGameEndAllItem{} }
 func (m *ZhadanGameEndAllItem) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanGameEndAllItem) ProtoMessage()               {}
-func (*ZhadanGameEndAllItem) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{21} }
+func (*ZhadanGameEndAllItem) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{21} }
 
 func (m *ZhadanGameEndAllItem) GetUser() uint32 {
 	if m != nil && m.User != nil {
@@ -1233,7 +1233,7 @@ type ZhadanGameEndAllBc struct {
 func (m *ZhadanGameEndAllBc) Reset()                    { *m = ZhadanGameEndAllBc{} }
 func (m *ZhadanGameEndAllBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanGameEndAllBc) ProtoMessage()               {}
-func (*ZhadanGameEndAllBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{22} }
+func (*ZhadanGameEndAllBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{22} }
 
 func (m *ZhadanGameEndAllBc) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1259,7 +1259,7 @@ type ZhadanOfflineBc struct {
 func (m *ZhadanOfflineBc) Reset()                    { *m = ZhadanOfflineBc{} }
 func (m *ZhadanOfflineBc) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanOfflineBc) ProtoMessage()               {}
-func (*ZhadanOfflineBc) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{23} }
+func (*ZhadanOfflineBc) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{23} }
 
 func (m *ZhadanOfflineBc) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -1284,7 +1284,7 @@ type ZhadanCoinRoomListReq struct {
 func (m *ZhadanCoinRoomListReq) Reset()                    { *m = ZhadanCoinRoomListReq{} }
 func (m *ZhadanCoinRoomListReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanCoinRoomListReq) ProtoMessage()               {}
-func (*ZhadanCoinRoomListReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{24} }
+func (*ZhadanCoinRoomListReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{24} }
 
 func (m *ZhadanCoinRoomListReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1302,7 +1302,7 @@ type ZhadanCoinRoomListAck struct {
 func (m *ZhadanCoinRoomListAck) Reset()                    { *m = ZhadanCoinRoomListAck{} }
 func (m *ZhadanCoinRoomListAck) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanCoinRoomListAck) ProtoMessage()               {}
-func (*ZhadanCoinRoomListAck) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{25} }
+func (*ZhadanCoinRoomListAck) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{25} }
 
 func (m *ZhadanCoinRoomListAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1329,7 +1329,7 @@ type ZhadanOwnerDissolveReq struct {
 func (m *ZhadanOwnerDissolveReq) Reset()                    { *m = ZhadanOwnerDissolveReq{} }
 func (m *ZhadanOwnerDissolveReq) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanOwnerDissolveReq) ProtoMessage()               {}
-func (*ZhadanOwnerDissolveReq) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{26} }
+func (*ZhadanOwnerDissolveReq) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{26} }
 
 func (m *ZhadanOwnerDissolveReq) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1354,7 +1354,7 @@ type ZhadanOwnerDissolveAck struct {
 func (m *ZhadanOwnerDissolveAck) Reset()                    { *m = ZhadanOwnerDissolveAck{} }
 func (m *ZhadanOwnerDissolveAck) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanOwnerDissolveAck) ProtoMessage()               {}
-func (*ZhadanOwnerDissolveAck) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{27} }
+func (*ZhadanOwnerDissolveAck) Descriptor() ([]byte, []int) { return fileDescriptor58, []int{27} }
 
 func (m *ZhadanOwnerDissolveAck) GetHeader() *ProtoHeader {
 	if m != nil {
@@ -1394,11 +1394,11 @@ func init() {
 	proto.RegisterType((*ZhadanOwnerDissolveAck)(nil), "ddproto.zhadan_owner_dissolve_ack")
 }
 
-func init() { proto.RegisterFile("zhadan_play.proto", fileDescriptor57) }
+func init() { proto.RegisterFile("zhadan_play.proto", fileDescriptor58) }
 
-var fileDescriptor57 = []byte{
+var fileDescriptor58 = []byte{
 	// 1499 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xb4, 0x58, 0xcf, 0x6e, 0x1c, 0x45,
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x58, 0xcf, 0x6e, 0x1c, 0x45,
 	0x13, 0xff, 0x66, 0xc7, 0xb3, 0xeb, 0x6d, 0xdb, 0x71, 0xd2, 0x76, 0x9c, 0x8e, 0x3f, 0x2b, 0x5a,
 	0x46, 0x08, 0xad, 0x04, 0xf2, 0x21, 0x04, 0x89, 0xc0, 0x29, 0x8e, 0x11, 0xf8, 0x62, 0xaf, 0x26,
 	0xa0, 0x48, 0x48, 0x68, 0xd4, 0x9e, 0x69, 0xdb, 0x2d, 0xcf, 0x4e, 0x2f, 0xd3, 0x33, 0x59, 0x27,

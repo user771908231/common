@@ -14,6 +14,7 @@ import (
 	"golang.org/x/net/context"
 	"gopkg.in/mgo.v2/bson"
 	"strings"
+	"casino_common/common/Error"
 )
 
 //从数据库获取当前未开局的房间表
@@ -357,17 +358,19 @@ func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) erro
 		return err
 	}
 
-	_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
-		Msg:  proto.String("新用户进房"),
-		Desk: desk,
-	})
+	go func() {
+		_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+			Msg:  proto.String("新用户进房"),
+			Desk: desk,
+		})
+	}()
 
 	//更新Redis
-	return err
+	return nil
 }
 
 //删除用户
-func DoRmUser(creator uint32, gameId int32, deskId int32, rm_user string) error {
+func DoRmUser(creator uint32, gameId int32, deskId int32, del_user string) error {
 	query := bson.M{
 		"creator": creator,
 		"gameid":  gameId,
@@ -381,21 +384,16 @@ func DoRmUser(creator uint32, gameId int32, deskId int32, rm_user string) error 
 		return err
 	}
 
-	rmIndex := int(-1)
 	for i, u := range desk.Users {
-		if u == rm_user {
-			rmIndex = i
+		if u == del_user {
+			desk.Users = append(desk.Users[:i], desk.Users[i+1:]...)
+			break
 		}
 	}
-	if rmIndex < 0 {
-		return errors.New("用户不在房间里，删除失败。")
-	}
-
-	desk.Users = append(desk.Users[:rmIndex], desk.Users[rmIndex+1:]...)
 
 	//更新用户列表
 	err = db.C(tableName.DBT_AGENT_CREATED_ROOM).Update(query, bson.M{
-		"$pull": bson.M{"users": rm_user},
+		"$pull": bson.M{"users": del_user},
 	})
 	if err != nil {
 		return err
@@ -411,11 +409,14 @@ func DoRmUser(creator uint32, gameId int32, deskId int32, rm_user string) error 
 		return err
 	}
 
-	_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
-		Msg:  proto.String("用户离开房间"),
-		Desk: desk,
-	})
+	go func() {
+		defer Error.ErrorRecovery("rpcService.GetHall().SendDeskEventMsg()")
+		_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
+			Msg:  proto.String("新用户进房"),
+			Desk: desk,
+		})
+	}()
 
 	//更新Redis
-	return err
+	return nil
 }

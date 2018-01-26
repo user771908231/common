@@ -245,7 +245,7 @@ func (x *ZhadanEnumProtoid) UnmarshalJSON(data []byte) error {
 	*x = ZhadanEnumProtoid(value)
 	return nil
 }
-func (ZhadanEnumProtoid) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{0} }
+func (ZhadanEnumProtoid) EnumDescriptor() ([]byte, []int) { return fileDescriptor57, []int{0} }
 
 // =================================公共================================
 // 牌型
@@ -299,7 +299,7 @@ func (x *ZhadanEnumPokerType) UnmarshalJSON(data []byte) error {
 	*x = ZhadanEnumPokerType(value)
 	return nil
 }
-func (ZhadanEnumPokerType) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{1} }
+func (ZhadanEnumPokerType) EnumDescriptor() ([]byte, []int) { return fileDescriptor57, []int{1} }
 
 // 房间状态
 type ZhadanEnumDeskStatus int32
@@ -337,7 +337,7 @@ func (x *ZhadanEnumDeskStatus) UnmarshalJSON(data []byte) error {
 	*x = ZhadanEnumDeskStatus(value)
 	return nil
 }
-func (ZhadanEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{2} }
+func (ZhadanEnumDeskStatus) EnumDescriptor() ([]byte, []int) { return fileDescriptor57, []int{2} }
 
 type ZhadanGanOpt int32
 
@@ -371,7 +371,7 @@ func (x *ZhadanGanOpt) UnmarshalJSON(data []byte) error {
 	*x = ZhadanGanOpt(value)
 	return nil
 }
-func (ZhadanGanOpt) EnumDescriptor() ([]byte, []int) { return fileDescriptor56, []int{3} }
+func (ZhadanGanOpt) EnumDescriptor() ([]byte, []int) { return fileDescriptor57, []int{3} }
 
 // 打出去的牌
 type ZhadanClientPoker struct {
@@ -383,7 +383,7 @@ type ZhadanClientPoker struct {
 func (m *ZhadanClientPoker) Reset()                    { *m = ZhadanClientPoker{} }
 func (m *ZhadanClientPoker) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanClientPoker) ProtoMessage()               {}
-func (*ZhadanClientPoker) Descriptor() ([]byte, []int) { return fileDescriptor56, []int{0} }
+func (*ZhadanClientPoker) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{0} }
 
 func (m *ZhadanClientPoker) GetPais() []int32 {
 	if m != nil {
@@ -411,7 +411,7 @@ type ZhadanUserBill struct {
 func (m *ZhadanUserBill) Reset()                    { *m = ZhadanUserBill{} }
 func (m *ZhadanUserBill) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanUserBill) ProtoMessage()               {}
-func (*ZhadanUserBill) Descriptor() ([]byte, []int) { return fileDescriptor56, []int{1} }
+func (*ZhadanUserBill) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{1} }
 
 func (m *ZhadanUserBill) GetUserId() uint32 {
 	if m != nil && m.UserId != nil {
@@ -459,7 +459,7 @@ type ZhadanDeskOption struct {
 func (m *ZhadanDeskOption) Reset()                    { *m = ZhadanDeskOption{} }
 func (m *ZhadanDeskOption) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanDeskOption) ProtoMessage()               {}
-func (*ZhadanDeskOption) Descriptor() ([]byte, []int) { return fileDescriptor56, []int{2} }
+func (*ZhadanDeskOption) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{2} }
 
 func (m *ZhadanDeskOption) GetGammerNum() int32 {
 	if m != nil && m.GammerNum != nil {
@@ -538,7 +538,7 @@ type ZhadanSrvRoom struct {
 func (m *ZhadanSrvRoom) Reset()                    { *m = ZhadanSrvRoom{} }
 func (m *ZhadanSrvRoom) String() string            { return proto.CompactTextString(m) }
 func (*ZhadanSrvRoom) ProtoMessage()               {}
-func (*ZhadanSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor56, []int{3} }
+func (*ZhadanSrvRoom) Descriptor() ([]byte, []int) { return fileDescriptor57, []int{3} }
 
 func (m *ZhadanSrvRoom) GetRoomId() int32 {
 	if m != nil && m.RoomId != nil {
@@ -593,11 +593,11 @@ func init() {
 	proto.RegisterEnum("ddproto.ZhadanGanOpt", ZhadanGanOpt_name, ZhadanGanOpt_value)
 }
 
-func init() { proto.RegisterFile("zhadan_base.proto", fileDescriptor56) }
+func init() { proto.RegisterFile("zhadan_base.proto", fileDescriptor57) }
 
-var fileDescriptor56 = []byte{
+var fileDescriptor57 = []byte{
 	// 966 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x7c, 0x95, 0xdd, 0x72, 0xe2, 0x36,
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x95, 0xdd, 0x72, 0xe2, 0x36,
 	0x14, 0x80, 0x63, 0x12, 0x92, 0xa0, 0x64, 0xb3, 0x5a, 0xe5, 0x07, 0x87, 0xfc, 0x2c, 0xcb, 0x4c,
 	0xa7, 0x99, 0x5c, 0xa4, 0x33, 0xbd, 0xee, 0x8d, 0x6c, 0x14, 0x70, 0x63, 0x6c, 0xd6, 0x36, 0xbb,
 	0x93, 0xdc, 0x68, 0x94, 0xe0, 0x01, 0xcf, 0x1a, 0x9b, 0xb1, 0xcd, 0x4e, 0xdb, 0x07, 0xd8, 0x8b,
