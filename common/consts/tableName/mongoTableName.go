@@ -152,6 +152,10 @@ const (
 	DBT_NIU_DESK_ROUND_ONE = "t_niuniu_desk_round_one" //牛牛1局结束战绩
 	DBT_NIU_DESK_ROUND_ALL = "t_niuniu_desk_round_all" //牛牛10局结束战绩
 
+	//刨幺
+	DBT_PAOYAO_DESK_ROUND_ONE = "t_paoyao_desk_round_one" //牛牛1局结束战绩
+	DBT_PAOYAO_DESK_ROUND_ALL = "t_paoyao_desk_round_all" //牛牛10局结束战绩
+
 	//炸弹
 	DBT_ZHADAN_DESK_ROUND_ONE = "t_zhadan_desk_round_one" //牛牛1局结束战绩
 	DBT_ZHADAN_DESK_ROUND_ALL = "t_zhadan_desk_round_all" //牛牛10局结束战绩
