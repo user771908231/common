@@ -814,10 +814,6 @@ func GetMJPaisShenQi() []*MJPAI {
 	for i := 0; i < 108; i++ {
 		paiIds = append(paiIds, int32(i))
 	}
-
-	for i := 124; i < 136; i++ {
-		paiIds = append(paiIds, int32(i))
-	}
 	return InitMjPaisByIds(paiIds)
 }
 
