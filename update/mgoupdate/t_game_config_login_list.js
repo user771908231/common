@@ -349,3 +349,32 @@ db.getCollection("t_game_config_login_list").insert({
     "PORT": 3826,
     "STATUS": 1.0
 });
+
+db.getCollection("t_game_config_login_list_shenzhen").insert({
+    "GameId": 31,
+    "name": "自贡麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "自贡麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3827,
+    "STATUS": 1.0
+});
+db.getCollection("t_game_config_login_list").insert({
+    "GameId": 31,
+    "name": "自贡麻将",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "自贡麻将",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3827,
+    "STATUS": 1.0
+});
