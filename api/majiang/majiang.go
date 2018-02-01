@@ -575,6 +575,7 @@ type GangPai struct {
 	Pai        *MJPAI
 	GetUserId  uint32
 	SendUserId uint32
+	PengPai    *PengPai //巴杠的碰牌信息 巴杠必填 for柳州麻将
 }
 
 type ChiPai struct {
