@@ -9,9 +9,9 @@ import (
 )
 
 import (
-	Error2 "casino_common/common/Error"
 	"casino_common/common/cfg"
 	"misc/timer"
+	"runtime/debug"
 )
 
 const (
@@ -114,7 +114,12 @@ func InitLoggers(fileDir, fileName string) {
 }
 
 func (f *FileLogger) logWriter(logStrChan chan string) {
-	defer Error2.ErrorRecovery("logWriter panic")
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Printf("地址[logWriter panic]开始打印日志err[%v] \n", err) // 这里的err其实就是panic传入的内容，55
+			debug.PrintStack()
+		}
+	}()
 	//timer
 	config := cfg.Get()
 	printInterval := PRINT_INTERVAL

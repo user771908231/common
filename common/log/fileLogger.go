@@ -6,10 +6,11 @@
 package log
 
 import (
-	Error2 "casino_common/common/Error"
 	"casino_common/common/cfg"
+	"fmt"
 	"log"
 	"os"
+	"runtime/debug"
 	"strconv"
 	"sync"
 	"time"
@@ -160,7 +161,12 @@ func isExist(path string) bool {
 }
 
 func (f *FileLogger) fileMonitor() {
-	defer Error2.ErrorRecovery("fileMonitor panic")
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Printf("地址[fileMonitor panic]开始打印日志err[%v] \n", err) // 这里的err其实就是panic传入的内容，55
+			debug.PrintStack()
+		}
+	}()
 	config := cfg.Get()
 	logScan := 10
 	if len(config["log_scan_interval"]) != 0 {
