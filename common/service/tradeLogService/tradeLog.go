@@ -1,6 +1,7 @@
 package tradeLogService
 
 import (
+	"casino_common/common/Error"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
 	"casino_common/proto/ddproto"
@@ -56,9 +57,11 @@ var chan_list = make(chan TTradeLogRow, 1024)
 
 //批量插入日志
 func insertTaskStart() {
+	defer Error.ErrorRecovery("insertTaskStart")
 	for new_item := range chan_list {
 		time_out := make(chan bool)
 		go func(ch chan bool) {
+			defer Error.ErrorRecovery("insertTaskStart db.Log.Insert")
 			//插入记录
 			db.Log(GetTableName(time.Now())).Insert(new_item)
 			ch <- true

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"casino_common/common/Error"
 	"casino_common/common/log"
 	"casino_common/common/model"
 	"casino_common/common/model/goodsRowDao"
@@ -82,6 +83,7 @@ func UpdateUserByMeal(tradeNo string, total_fee float64) error {
 	log.T("微信支付成功，为用户%d充值%d钻石。", detail.GetUserId(), int64(meal.Amount))
 
 	go func() {
+		defer Error.ErrorRecovery("UpdateUserByMeal wxpayDao.UpsertDetail")
 		detail.Status = ddproto.PayEnumTradeStatus_PAY_S_SUCC.Enum()
 		detail.Money = proto.Float64(total_fee)
 		wxpayDao.UpsertDetail(detail) //保存到数据库

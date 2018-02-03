@@ -9,8 +9,9 @@ import (
 )
 
 import (
-	"misc/timer"
 	"casino_common/common/cfg"
+	"misc/timer"
+	"runtime/debug"
 )
 
 const (
@@ -95,25 +96,30 @@ func InitLoggers(fileDir, fileName string) {
 	fmt.Println("日志的目录:", fileDir)
 	fmt.Println("日志的名字:", fileName)
 	TraceLoger = new(FileLogger)
-	TraceLoger.SetRollingFile(fileDir, fileName + ".log")
+	TraceLoger.SetRollingFile(fileDir, fileName+".log")
 	traceLogStrChan = make(chan string, maxLogSeq)
 	go TraceLoger.logWriter(traceLogStrChan)
 
 	//错误日志
 	ErrorLogger = new(FileLogger)
-	ErrorLogger.SetRollingFile(fileDir, fileName + ".err")
+	ErrorLogger.SetRollingFile(fileDir, fileName+".err")
 	errorLogStrChan = make(chan string, maxLogSeq)
 	go ErrorLogger.logWriter(errorLogStrChan)
 
 	//网关日志
 	GateLogger = new(FileLogger)
-	GateLogger.SetRollingFile(fileDir, fileName + "_gate.log")
+	GateLogger.SetRollingFile(fileDir, fileName+"_gate.log")
 	gateLogStrChan = make(chan string, maxLogSeq)
 	go GateLogger.logWriter(gateLogStrChan)
 }
 
 func (f *FileLogger) logWriter(logStrChan chan string) {
-
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Printf("地址[logWriter panic]开始打印日志err[%v] \n", err) // 这里的err其实就是panic传入的内容，55
+			debug.PrintStack()
+		}
+	}()
 	//timer
 	config := cfg.Get()
 	printInterval := PRINT_INTERVAL
@@ -121,7 +127,7 @@ func (f *FileLogger) logWriter(logStrChan chan string) {
 		printInterval, _ = strconv.Atoi(config["log_seq_interval"])
 	}
 	seqTimer := make(chan int32, 1)
-	timer.Add(0, time.Now().Unix() + int64(printInterval), seqTimer)
+	timer.Add(0, time.Now().Unix()+int64(printInterval), seqTimer)
 
 	for {
 		select {
@@ -129,8 +135,8 @@ func (f *FileLogger) logWriter(logStrChan chan string) {
 
 			P(logStr, f)
 		case <-seqTimer:
-		//			log.Println("================ LOG SEQ SIZE:", len(logStrChan), "==================")
-			timer.Add(0, time.Now().Unix() + int64(printInterval), seqTimer)
+			//			log.Println("================ LOG SEQ SIZE:", len(logStrChan), "==================")
+			timer.Add(0, time.Now().Unix()+int64(printInterval), seqTimer)
 		}
 	}
 }
@@ -154,7 +160,7 @@ func shortFileName(file string) string {
 	short := file
 	for i := len(file) - 1; i > 0; i-- {
 		if file[i] == '/' {
-			short = file[i + 1:]
+			short = file[i+1:]
 			break
 		}
 	}
@@ -164,7 +170,7 @@ func shortFileName(file string) string {
 func Trace(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(2) //calldepth=3
 	if logLevel <= ALL {
-		traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[TRACE] " + format + " \033[0m ", v...)
+		traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[TRACE] "+format+" \033[0m ", v...)
 	}
 }
 
@@ -173,10 +179,10 @@ func T(format string, v ...interface{}) {
 }
 
 //网关日志
-func Gate(format string, v ...interface{})  {
+func Gate(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(2) //calldepth=3
 	if logLevel <= ALL {
-		gateLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[TRACE] " + format + " \033[0m ", v...)
+		gateLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[TRACE] "+format+" \033[0m ", v...)
 	}
 }
 
@@ -188,7 +194,7 @@ func Debug(format string, v ...interface{}) {
 	if debugAppender {
 		_, file, line, _ := runtime.Caller(1) //calldepth=3
 		if logLevel <= DEBUG {
-			traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[DEBUG] " + format + " \033[0m ", v...)
+			traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[DEBUG] "+format+" \033[0m ", v...)
 		}
 	}
 }
@@ -197,7 +203,7 @@ func D(format string, v ...interface{}) {
 	if debugAppender {
 		_, file, line, _ := runtime.Caller(1) //calldepth=3
 		if logLevel <= DEBUG {
-			traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[DEBUG] " + format + " \033[0m ", v...)
+			traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;35m[DEBUG] "+format+" \033[0m ", v...)
 		}
 	}
 
@@ -206,7 +212,7 @@ func D(format string, v ...interface{}) {
 func Normal(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(1) //calldepth=3
 	if logLevel <= INFO {
-		traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("[NORMAL] " + format, v...)
+		traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("[NORMAL] "+format, v...)
 	}
 }
 
@@ -225,7 +231,7 @@ func I(format string, v ...interface{}) {
 func Warn(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(1) //calldepth=3
 	if logLevel <= WARN {
-		traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;33m[WARN] " + format + " \033[0m ", v...)
+		traceLogStrChan <- fmt.Sprintf("[%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;33m[WARN] "+format+" \033[0m ", v...)
 	}
 }
 
@@ -236,32 +242,32 @@ func W(format string, v ...interface{}) {
 func Error(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(1) //calldepth=3
 	if logLevel <= ERROR {
-		errorLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] " + format + " \033[0m ", v...)
-		traceLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] " + format + " \033[0m ", v...)
+		errorLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] "+format+" \033[0m ", v...)
+		traceLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] "+format+" \033[0m ", v...)
 	}
 }
 
 func E(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(1) //calldepth=3
 	if logLevel <= ERROR {
-		errorLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] " + format + " \033[0m ", v...)
-		traceLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] " + format + " \033[0m ", v...)
+		errorLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] "+format+" \033[0m ", v...)
+		traceLogStrChan <- fmt.Sprintf("%v:%v]", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[ERROR] "+format+" \033[0m ", v...)
 	}
 }
 
 func Fatal(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(1) //calldepth=2
 	if logLevel <= FATAL {
-		errorLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]" + format + " \033[0m ", v...)
-		traceLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]" + format + " \033[0m ", v...)
+		errorLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]"+format+" \033[0m ", v...)
+		traceLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]"+format+" \033[0m ", v...)
 	}
 }
 
 func F(format string, v ...interface{}) {
 	_, file, line, _ := runtime.Caller(1) //calldepth=2
 	if logLevel <= FATAL {
-		errorLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]" + format + " \033[0m ", v...)
-		traceLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]" + format + " \033[0m ", v...)
+		errorLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]"+format+" \033[0m ", v...)
+		traceLogStrChan <- fmt.Sprintf("%v:%v", shortFileName(file), line) + fmt.Sprintf("\033[1;4;31m[FATAL]"+format+" \033[0m ", v...)
 	}
 }
 

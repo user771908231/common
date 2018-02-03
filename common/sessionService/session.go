@@ -1,6 +1,7 @@
 package sessionService
 
 import (
+	"casino_common/common/Error"
 	"casino_common/common/consts"
 	"casino_common/common/consts/tableName"
 	"casino_common/common/log"
@@ -120,7 +121,10 @@ func UpdateSession(userId uint32, gameStatus int32, gameId int32, gameNumber int
 	//这里需要在redis-set中保存在线用户的数据
 	statisticsService.IncrOnline(userId, gameId)
 	//异步更新session表
-	go db.C(tableName.DBT_GAME_SESSION).Upsert(bson.M{"userid": session.GetUserId(), "gameid": session.GetGameId()}, session)
+	go func() {
+		defer Error.ErrorRecovery("sessionService UpdateSession")
+		db.C(tableName.DBT_GAME_SESSION).Upsert(bson.M{"userid": session.GetUserId(), "gameid": session.GetGameId()}, session)
+	}()
 	return session, nil
 }
 
@@ -133,7 +137,10 @@ func delSession(s *ddproto.GameSession) {
 		redisUtils.Del(getSessionKey(s.GetUserId(), s.GetRoomType()))
 		statisticsService.DecrOnline(s.GetUserId(), s.GetGameId())
 		//异步删除玩家session表
-		go db.C(tableName.DBT_GAME_SESSION).Remove(bson.M{"userid": s.GetUserId(), "gameid": s.GetGameId()})
+		go func() {
+			defer Error.ErrorRecovery("sessionService delSession")
+			db.C(tableName.DBT_GAME_SESSION).Remove(bson.M{"userid": s.GetUserId(), "gameid": s.GetGameId()})
+		}()
 	}
 }
 

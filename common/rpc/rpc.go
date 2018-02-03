@@ -8,8 +8,8 @@ import (
 
 //"127.0.0.1:1234"
 func Dial(address string, call string, args interface{}, reply interface{}) {
-	go func() {
-		Error.ErrorRecovery("调用rpc")
+	go func() { //rpc Dial
+		defer Error.ErrorRecovery("调用rpc")
 		dail(address, call, args, reply)
 	}()
 }

@@ -58,7 +58,7 @@ func (t T_pinerzhang_desk_round) TransRecord() *ddproto.BeanGameRecord {
 func (t T_pinerzhang_desk_round) Insert() {
 	//插入到数据库
 	go func(d *T_pinerzhang_desk_round) {
-		Error.ErrorRecovery("插入拼二张的战绩")
+		defer Error.ErrorRecovery("插入拼二张的战绩")
 		db.InsertMgoData(tableName.DBT_PEZ_DESK_ROUND, d)
 	}(&t)
 }
