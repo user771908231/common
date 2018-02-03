@@ -1,21 +1,21 @@
 // Package: log
-// File: 
+// File:
 // Created by mint
-// Useage: 
+// Useage:
 // DATE: 14-7-25 15:26
 package log
 
 import (
+	Error2 "casino_common/common/Error"
+	"casino_common/common/cfg"
 	"log"
 	"os"
+	"strconv"
 	"sync"
 	"time"
-	"strconv"
-	"casino_common/common/cfg"
 )
 
 const DATEFORMAT = "2006-01-02"
-
 
 var dailyRolling bool = true
 
@@ -66,7 +66,7 @@ func (f *FileLogger) SetRollingFile(fileDir, fileName string) {
 			os.Mkdir(fileDir, 0755)
 		}
 		f.logfile, _ = os.OpenFile(fileDir+"/"+fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0666)
-		f.lg = log.New(f.logfile, "", log.LstdFlags | log.Lmicroseconds)
+		f.lg = log.New(f.logfile, "", log.LstdFlags|log.Lmicroseconds)
 	} else {
 		f.rename()
 	}
@@ -94,7 +94,7 @@ func (f *FileLogger) SetRollingDaily(fileDir, fileName string) {
 			os.Mkdir(fileDir, 0755)
 		}
 		f.logfile, _ = os.OpenFile(fileDir+"/"+fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0666)
-		f.lg = log.New(f.logfile, "", log.LstdFlags | log.Lmicroseconds)
+		f.lg = log.New(f.logfile, "", log.LstdFlags|log.Lmicroseconds)
 	} else {
 		f.rename()
 	}
@@ -130,7 +130,7 @@ func (f *FileLogger) rename() {
 			t, _ := time.Parse(DATEFORMAT, time.Now().Format(DATEFORMAT))
 			f._date = &t
 			f.logfile, _ = os.Create(f.dir + "/" + f.filename)
-			f.lg = log.New(f.logfile, "", log.LstdFlags | log.Lmicroseconds)
+			f.lg = log.New(f.logfile, "", log.LstdFlags|log.Lmicroseconds)
 		}
 	} else {
 		f.coverNextOne()
@@ -151,7 +151,7 @@ func (f *FileLogger) coverNextOne() {
 	}
 	os.Rename(f.dir+"/"+f.filename, f.dir+"/"+f.filename+"."+strconv.Itoa(int(f._suffix)))
 	f.logfile, _ = os.Create(f.dir + "/" + f.filename)
-	f.lg = log.New(f.logfile, "", log.LstdFlags | log.Lmicroseconds)
+	f.lg = log.New(f.logfile, "", log.LstdFlags|log.Lmicroseconds)
 }
 
 func isExist(path string) bool {
@@ -160,6 +160,7 @@ func isExist(path string) bool {
 }
 
 func (f *FileLogger) fileMonitor() {
+	defer Error2.ErrorRecovery("fileMonitor panic")
 	config := cfg.Get()
 	logScan := 10
 	if len(config["log_scan_interval"]) != 0 {
@@ -197,11 +198,9 @@ func catchError() {
 func fileSize(file string) int64 {
 	f, e := os.Stat(file)
 	if e != nil {
-//		fmt.Println(e.Error())
+		//		fmt.Println(e.Error())
 		return 0
 	}
-//	log.Printf("Log[%v]:%.3fM\n", file, float32(f.Size())/1024/1024)
+	//	log.Printf("Log[%v]:%.3fM\n", file, float32(f.Size())/1024/1024)
 	return f.Size()
 }
-
-

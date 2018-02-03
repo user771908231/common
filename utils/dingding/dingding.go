@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bytes"
+	"casino_common/common/Error"
 	"casino_common/common/log"
 	"encoding/json"
 	"fmt"
@@ -33,7 +34,10 @@ func init() {
 		msgbody: make(chan *sendBody, 100),
 	}
 	DingMsger.refrehToken() //刷新tocker
-	go DingMsger.start()    //开始等待消息
+	go func() {             //DingMsger.start()
+		defer Error.ErrorRecovery("DingMsger.start() panic")
+		DingMsger.start() //开始等待消息
+	}()
 }
 
 type dingRet struct {

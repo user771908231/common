@@ -359,6 +359,7 @@ func DoAddUser(creator uint32, gameId int32, deskId int32, new_user string) erro
 	}
 
 	go func() {
+		defer Error.ErrorRecovery("DoAddUser rpcService.GetHall().SendDeskEventMsg()")
 		_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
 			Msg:  proto.String("新用户进房"),
 			Desk: desk,
@@ -410,7 +411,7 @@ func DoRmUser(creator uint32, gameId int32, deskId int32, del_user string) error
 	}
 
 	go func() {
-		defer Error.ErrorRecovery("rpcService.GetHall().SendDeskEventMsg()")
+		defer Error.ErrorRecovery("DoRmUser rpcService.GetHall().SendDeskEventMsg()")
 		_, err = rpcService.GetHall().SendDeskEventMsg(context.Background(), &ddproto.HallRpcDeskEventMsg{
 			Msg:  proto.String("新用户进房"),
 			Desk: desk,
