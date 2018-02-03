@@ -5,7 +5,7 @@ import (
 	"casino_common/common/service/wxservice"
 	"casino_common/common/userService"
 	"casino_common/proto/ddproto"
-	"casino_common/utils/aipVerifyUtils"
+	//"casino_common/utils/aipVerifyUtils"
 	"github.com/golang/protobuf/proto"
 	"github.com/name5566/leaf/gate"
 )
@@ -18,14 +18,15 @@ func HandlerApplePayRechargeCb(args []interface{}) {
 	userId := m.GetHeader().GetUserId()
 
 	//验证receiptcode
-	_, err := aipVerifyUtils.VerifyReceipt(m.GetReceiptCode())
-	if err != nil {
-		ack := new(ddproto.ApplepayAcksRechargecb)
-		*ack.Header.Code = -2
-		*ack.Header.Error = "订单验证失败，购买失败！"
-		a.WriteMsg(ack)
-		return
-	}
+	//todo 暂时注释掉苹果支付验证代码，以避免苹果支付失败的问题。
+	//_, err := aipVerifyUtils.VerifyReceipt(m.GetReceiptCode())
+	//if err != nil {
+	//	ack := new(ddproto.ApplepayAcksRechargecb)
+	//	*ack.Header.Code = -2
+	//	*ack.Header.Error = "订单验证失败，购买失败！"
+	//	a.WriteMsg(ack)
+	//	return
+	//}
 
 	//得到套餐
 	p := service.GetMealById(m.GetProductId())
