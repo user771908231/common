@@ -575,6 +575,7 @@ type GangPai struct {
 	Pai        *MJPAI
 	GetUserId  uint32
 	SendUserId uint32
+	PengPai    *PengPai //巴杠的碰牌信息 巴杠必填 for柳州麻将
 }
 
 type ChiPai struct {
@@ -808,7 +809,7 @@ func XiPai(pais []*MJPAI) []*MJPAI {
 	return shuffledPais
 }
 
-//获取神奇麻将用到的牌 顺序
+//获取神奇麻将用到的牌 顺序（万条筒 108张）
 func GetMJPaisShenQi() []*MJPAI {
 	paiIds := []int32{}
 	for i := 0; i < 108; i++ {
@@ -817,7 +818,7 @@ func GetMJPaisShenQi() []*MJPAI {
 	return InitMjPaisByIds(paiIds)
 }
 
-//获取东北地方麻将用到的牌 松江河、白山、长白 顺序
+//获取东北地方麻将用到的牌 松江河、白山、长白 顺序（万条筒 东南西北中白发 136张）
 func GetMJPaisDongBei() []*MJPAI {
 	paiIds := []int32{}
 	for i := 0; i < 136; i++ {
@@ -826,7 +827,7 @@ func GetMJPaisDongBei() []*MJPAI {
 	return InitMjPaisByIds(paiIds)
 }
 
-//获取海南麻将用到的牌 顺序
+//获取海南麻将用到的牌 顺序（万条筒 东南西北中白发 春夏秋冬梅兰菊竹 144张）
 func GetMJPaisHaiNan() []*MJPAI {
 	paiIds := []int32{}
 	for i := 0; i < 144; i++ {
@@ -835,7 +836,7 @@ func GetMJPaisHaiNan() []*MJPAI {
 	return InitMjPaisByIds(paiIds)
 }
 
-//获取转转麻将用到的牌 顺序
+//获取转转麻将用到的牌 顺序（万条筒 108张）
 func GetMJPaisZhuanZhuan() []*MJPAI {
 	paiIds := []int32{}
 	for i := 0; i < 108; i++ {
@@ -844,7 +845,7 @@ func GetMJPaisZhuanZhuan() []*MJPAI {
 	return InitMjPaisByIds(paiIds)
 }
 
-//获取红中麻将用到的牌 顺序
+//获取红中麻将用到的牌 顺序（万条筒 4红中 113张）
 func GetMJPaisHongZhong() []*MJPAI {
 	pais := GetMJPaisZhuanZhuan()
 	pais = append(pais, InitMjPaiByIndex(int32(124)))
@@ -854,7 +855,7 @@ func GetMJPaisHongZhong() []*MJPAI {
 	return pais
 }
 
-//获取8红中麻将用到的牌 顺序
+//获取8红中麻将用到的牌 顺序（万条筒 8红中 117张）
 func GetMJPaisHongZhong8Hong() []*MJPAI {
 	pais := GetMJPaisHongZhong()
 	pais = append(pais, InitMjPaiByIndex(int32(144)))
@@ -864,7 +865,7 @@ func GetMJPaisHongZhong8Hong() []*MJPAI {
 	return pais
 }
 
-//获取自贡麻将用到的牌 两副两房牌 两副筒条 顺序
+//获取自贡麻将用到的牌 两副两房牌 两副筒条 顺序（条筒*2 144张）
 func GetMJPaisZiGong() []*MJPAI {
 	paiIds := []int32{}
 	for i := 0; i < 71; i++ {
