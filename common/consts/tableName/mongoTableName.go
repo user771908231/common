@@ -133,6 +133,10 @@ const (
 	DBT_MJ_ZIGONG_DESK_ROUND_ALL      = "t_mj_zigong_desk_round_all"      //全局自贡麻将结束
 	DBT_MJ_ZIGONG_DESK_ROUND_PLAYBACK = "t_mj_zigong_desk_round_playback" //一把自贡麻将回放数据
 
+	DBT_MJ_LIUZHOU_DESK_ROUND          = "t_mj_liuzhou_desk_round"          //一把柳州麻将结束
+	DBT_MJ_LIUZHOU_DESK_ROUND_ALL      = "t_mj_liuzhou_desk_round_all"      //全局柳州麻将结束
+	DBT_MJ_LIUZHOU_DESK_ROUND_PLAYBACK = "t_mj_liuzhou_desk_round_playback" //一把柳州麻将回放数据
+
 	//斗地主
 	DBT_DDZ_DESK_ROUND     = "t_ddz_desk_round"     //一把斗地主结束
 	DBT_DDZ_DESK_ROUND_ALL = "t_ddz_desk_round_all" //全局斗地主结束
