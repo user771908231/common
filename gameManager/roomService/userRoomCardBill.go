@@ -142,9 +142,9 @@ func getDeskCreateFee(gameId ddproto.CommonEnumGame, boardCout int32, gamerNum i
 		case ddproto.CommonEnumGame_GID_NIUNIUJINGDIAN:
 			switch boardCout {
 			case 10:
-				needRoomCard = 4
+				needRoomCard = 6
 			case 20:
-				needRoomCard = 8
+				needRoomCard = 12
 			}
 			//跑得快
 		case ddproto.CommonEnumGame_GID_PDK:
