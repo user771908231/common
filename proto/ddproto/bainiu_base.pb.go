@@ -368,6 +368,9 @@ It has these top-level messages:
 	HallReqUsersLatitude
 	UserLatitudeItem
 	HallAckUsersLatitude
+	HallReqGameRecordCoin
+	HallAckGameRecordCoin
+	BeanGameRecordCoin
 	HallItemEvent
 	HallMailItem
 	HallBagItem

@@ -28,6 +28,8 @@ var _ = math.Inf
 
 // Ignoring public import of ZhuanZhuanPlayOptions from base.proto
 
+// Ignoring public import of LiuZhouPlayOptions from base.proto
+
 // Ignoring public import of HaiNanPlayOptions from base.proto
 
 // Ignoring public import of ChangBaiPlayOptions from base.proto
