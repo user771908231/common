@@ -868,14 +868,38 @@ func GetMJPaisHongZhong8Hong() []*MJPAI {
 //获取自贡麻将用到的牌 两副两房牌 两副筒条 顺序（条筒*2 144张）
 func GetMJPaisZiGong() []*MJPAI {
 	paiIds := []int32{}
-	for i := 0; i < 71; i++ {
+	for i := 0; i < 72; i++ {
 		paiIds = append(paiIds, int32(i))
 	}
 
-	for i := 148; i < 219; i++ {
+	for i := 148; i < 220; i++ {
 		paiIds = append(paiIds, int32(i))
 	}
 	return InitMjPaisByIds(paiIds)
+}
+
+//根据clientId去重一组牌
+func Distinct(pais []*MJPAI) (distinctedPais []*MJPAI) {
+	isExist := func(targetPai *MJPAI, pais []*MJPAI) bool {
+		for _, pai := range pais {
+			if pai == nil {
+				continue
+			}
+			if pai.GetClientId() == targetPai.GetClientId() {
+				return true
+			}
+		}
+		return false
+	}
+	for _, pai := range pais {
+		if pai == nil {
+			continue
+		}
+		if !isExist(pai, distinctedPais) {
+			distinctedPais = append(distinctedPais, pai)
+		}
+	}
+	return
 }
 
 //-----------------------------------------------------------------排序--------------------------------------

@@ -93,7 +93,7 @@ func (r *MJRoomCore) RandRoomKeyV2(gid int32) string {
 //判断roomkey是否已经存在了
 func (r *MJRoomCore) IsRoomKeyExist(roomkey string) bool {
 	ret := false
-	r.ListDesk().UnsafeRange(func(k interface{}, v interface{}) {
+	r.ListDesk().RLockRange(func(k interface{}, v interface{}) {
 		if v != nil {
 			d := v.(MJDesk)
 			if d.GetPassword() == roomkey {
@@ -108,7 +108,7 @@ func (r *MJRoomCore) IsRoomKeyExist(roomkey string) bool {
 func (r *MJRoomCore) IsRoomKeyExistV2(roomkey string) bool {
 	//先从内存找
 	memIsExist := false
-	r.ListDesk().UnsafeRange(func(k interface{}, v interface{}) {
+	r.ListDesk().RLockRange(func(k interface{}, v interface{}) {
 		if v != nil {
 			d := v.(MJDesk)
 			if d.GetPassword() == roomkey {
@@ -152,7 +152,7 @@ func (rs *MJRoomCore) ListDesk() *util.Map {
 //通过key得到desk
 func (rs *MJRoomCore) GetDeskByPass(key string) MJDesk {
 	var ret MJDesk
-	rs.desks.UnsafeRange(func(k interface{}, v interface{}) {
+	rs.desks.RLockRange(func(k interface{}, v interface{}) {
 		if v != nil {
 			d := v.(MJDesk)
 			if d.GetPassword() == key {

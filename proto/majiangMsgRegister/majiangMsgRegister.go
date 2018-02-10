@@ -138,4 +138,7 @@ func OnInit(mjProcessor *protobuf.Processor) {
 	mjProcessor.Register(&mjproto.GameBcBaojiao{})  //112 广播某玩家报叫了
 	mjProcessor.Register(&mjproto.GameReqBaojiao{}) //113 请求 报叫
 	mjProcessor.Register(&mjproto.GameAckBaojiao{}) //114 回复 报叫
+
+	mjProcessor.Register(&ddproto.CommonReqListCoinInfo{}) //115 请求金币场场次信息
+	mjProcessor.Register(&ddproto.CommonAckListCoinInfo{}) //116 回复金币场场次信息
 }

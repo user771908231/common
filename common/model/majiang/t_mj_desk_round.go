@@ -72,6 +72,21 @@ func (t T_mj_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	return result
 }
 
+func (t T_mj_desk_round) TransRecordCoin() *ddproto.BeanGameRecordCoin {
+	result := &ddproto.BeanGameRecordCoin{
+		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
+		DeskId:    proto.Int32(t.DeskId),
+		Password:  proto.String(t.PassWord),
+		Id:        proto.Int32(t.GameNumber), //战绩id就是 游戏编号
+	}
+
+	for _, bean := range t.Records {
+		b := bean.TransBeanUserRecord()
+		result.Users = append(result.Users, b)
+	}
+	return result
+}
+
 //根据userId查询全局战绩
 func GetMjDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_round {
 	var deskRecords []T_mj_desk_round
@@ -145,6 +160,30 @@ func GetMjDeskRoundByDeskIds(DeskIds []int32, gid, roomType int32) []T_mj_desk_r
 
 	if deskRecords == nil || len(deskRecords) <= 0 {
 		log.T("没有找到desk[%v]麻将相关的战绩... gid[%v] roomType[%v]", DeskIds, gid, roomType)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
+//根据userId查询金币场每局的战绩
+func GetMjCoinDeskRoundByUserId(userId uint32, gid, roomType int32) []T_mj_desk_round {
+	var deskRecords []T_mj_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+
+	tbName := ""
+	switch gid {
+	case int32(ddproto.CommonEnumGame_GID_MJ_ZIGONG):
+		tbName = tableName.DBT_MJ_ZIGONG_DESK_ROUND_COIN
+	default:
+	}
+
+	db.Log(tbName).Page(bson.M{
+		"userids":    bson.RegEx{querKey, "."},
+		"friendplay": false,
+	}, &deskRecords, "-gamenumber", 1, 20)
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v]麻将相关的牌桌内战绩... gid[%v] roomType[%v]", userId, gid, roomType)
 		return nil
 	} else {
 		return deskRecords
