@@ -116,6 +116,12 @@ var _ = math.Inf
 
 // Ignoring public import of CommonCoinDeskInfo from common_client.proto
 
+// Ignoring public import of common_req_list_coin_info from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_info from common_client.proto
+
+// Ignoring public import of CommonCoinLevelInfo from common_client.proto
+
 // Ignoring public import of common_enum_reg from common_client.proto
 
 // Ignoring public import of common_enum_os_type from common_client.proto

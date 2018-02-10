@@ -159,6 +159,12 @@ var _ = math.Inf
 
 // Ignoring public import of hall_ack_users_latitude from hall.proto
 
+// Ignoring public import of hall_req_game_record_coin from hall.proto
+
+// Ignoring public import of hall_ack_game_record_coin from hall.proto
+
+// Ignoring public import of BeanGameRecordCoin from hall.proto
+
 // Ignoring public import of hall_enum_goods_type from hall.proto
 
 // Ignoring public import of hall_strongbox_access_type from hall.proto
@@ -266,6 +272,12 @@ var _ = math.Inf
 // Ignoring public import of common_ack_list_coin_desk from common_client.proto
 
 // Ignoring public import of CommonCoinDeskInfo from common_client.proto
+
+// Ignoring public import of common_req_list_coin_info from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_info from common_client.proto
+
+// Ignoring public import of CommonCoinLevelInfo from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 

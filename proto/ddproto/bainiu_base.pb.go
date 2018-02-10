@@ -142,6 +142,9 @@ It has these top-level messages:
 	CommonReqListCoinDesk
 	CommonAckListCoinDesk
 	CommonCoinDeskInfo
+	CommonReqListCoinInfo
+	CommonAckListCoinInfo
+	CommonCoinLevelInfo
 	AwardReqOnline
 	WardAckOnline
 	AwardReqOnlineInfo
@@ -365,6 +368,9 @@ It has these top-level messages:
 	HallReqUsersLatitude
 	UserLatitudeItem
 	HallAckUsersLatitude
+	HallReqGameRecordCoin
+	HallAckGameRecordCoin
+	BeanGameRecordCoin
 	HallItemEvent
 	HallMailItem
 	HallBagItem
@@ -832,6 +838,12 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 // Ignoring public import of common_ack_list_coin_desk from common_client.proto
 
 // Ignoring public import of CommonCoinDeskInfo from common_client.proto
+
+// Ignoring public import of common_req_list_coin_info from common_client.proto
+
+// Ignoring public import of common_ack_list_coin_info from common_client.proto
+
+// Ignoring public import of CommonCoinLevelInfo from common_client.proto
 
 // Ignoring public import of common_enum_reg from common_client.proto
 
