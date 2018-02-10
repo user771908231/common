@@ -71,10 +71,10 @@ func GetInt64(key string) int64 {
 	}
 }
 
-func SetInt64(key string, value int64) {
+func SetInt64(key string, value int64) error {
 	conn := GetConn()
 	defer conn.Close()
-	conn.SetInt(key, value)
+	return conn.SetInt(key, value)
 }
 
 /**

@@ -125,7 +125,7 @@ func DoNiuniuKaifang(owner uint32, group_id int32, option_str string) (error, *d
 			HasAnimation:    proto.Bool(opt_has_animation),
 			IsCoinRoom:      proto.Bool(false),
 			BaseScore:       proto.Int64(0),
-			NeedPwd:         proto.Bool(false),
+			IsPrivate:       proto.Bool(true),
 			MinEnterScore:   proto.Int64(0),
 			MaxQzScore:      proto.Int64(4),
 			DenyHalfJoin:    proto.Bool(opt_deny_half_join),
