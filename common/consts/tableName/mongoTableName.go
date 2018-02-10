@@ -129,6 +129,7 @@ const (
 	DBT_MJ_CHANGBAI_DESK_ROUND_ALL      = "t_mj_changbai_desk_round_all"      //全局长白麻将结束
 	DBT_MJ_CHANGBAI_DESK_ROUND_PLAYBACK = "t_mj_changbai_desk_round_playback" //一把长白麻将回放数据
 
+	DBT_MJ_ZIGONG_DESK_ROUND_COIN     = "t_mj_zigong_desk_round_coin"     //一把金币自贡麻将结束
 	DBT_MJ_ZIGONG_DESK_ROUND          = "t_mj_zigong_desk_round"          //一把自贡麻将结束
 	DBT_MJ_ZIGONG_DESK_ROUND_ALL      = "t_mj_zigong_desk_round_all"      //全局自贡麻将结束
 	DBT_MJ_ZIGONG_DESK_ROUND_PLAYBACK = "t_mj_zigong_desk_round_playback" //一把自贡麻将回放数据
