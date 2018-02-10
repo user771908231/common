@@ -78,7 +78,6 @@ func (t T_mj_desk_round) TransRecordCoin() *ddproto.BeanGameRecordCoin {
 		DeskId:    proto.Int32(t.DeskId),
 		Password:  proto.String(t.PassWord),
 		Id:        proto.Int32(t.GameNumber), //战绩id就是 游戏编号
-		RoundStr:  proto.String(t.RoundStr),  //局数信息
 	}
 
 	for _, bean := range t.Records {
