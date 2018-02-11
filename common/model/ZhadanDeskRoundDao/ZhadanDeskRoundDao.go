@@ -23,6 +23,24 @@ func GetZhadanDeskRoundByUserId(table_name string, userId uint32) []model.T_zhad
 	}
 }
 
+//查询金币场战绩
+func GetZhadanCoinDeskRoundByUserId(table_name string, userId uint32, bankRule int32) []model.T_zhadan_desk_round {
+	var deskRecords []model.T_zhadan_desk_round
+	querKey, _ := numUtils.Uint2String(userId)
+
+	db.Log(table_name).Page(bson.M{
+		"userids": bson.RegEx{querKey, "."},
+		"bankrule":  bankRule,
+	}, &deskRecords, "-gamenumber", 1, 20)
+
+	if deskRecords == nil || len(deskRecords) <= 0 {
+		log.T("没有找到玩家[%v][%s]的金币场牌桌内战绩...", userId, table_name)
+		return nil
+	} else {
+		return deskRecords
+	}
+}
+
 //查询俱乐部战绩
 func GetZhadanDeskRoundByDeskIds(table_name string, deskIds []int32) []model.T_zhadan_desk_round {
 	var deskRecords []model.T_zhadan_desk_round

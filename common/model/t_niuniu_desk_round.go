@@ -17,6 +17,8 @@ type T_niuniu_desk_round struct {
 	BeginTime  time.Time
 	EndTime    time.Time
 	TotalRound int32
+	BankRule   ddproto.NiuniuEnumBankerRule  //玩法
+	IsCoinRoom  bool  //是否金币场
 	Records    []NiuRecordBean
 }
 
