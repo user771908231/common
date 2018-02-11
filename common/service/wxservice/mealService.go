@@ -66,6 +66,8 @@ func UpdateUserByMeal(tradeNo string, total_fee float64) error {
 	if meal.PriceType == ddproto.HallEnumTradeType_TRADE_RMB {
 		//如果pricetype为RMB，则为新版
 		switch meal.GoodsType {
+		case ddproto.HallEnumTradeType_TRADE_COIN:
+			userService.INCRUserCOIN(detail.GetUserId(), int64(meal.Amount), "商城微信支付充金币")
 		case ddproto.HallEnumTradeType_TRADE_DIAMOND:
 			userService.INCRUserDiamond(detail.GetUserId(), int64(meal.Amount), "商城微信支付充钻石")
 		case ddproto.HallEnumTradeType_PROPS_FANGKA:
