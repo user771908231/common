@@ -38,7 +38,7 @@ func (t T_zhadan_desk_round) TransRecord() *ddproto.BeanGameRecord {
 
 func (t T_zhadan_desk_round) TransRecordCoin() *ddproto.BeanGameRecordCoin {
 	result := &ddproto.BeanGameRecordCoin{
-		BeginTime: proto.String(timeUtils.Format(t.BeginTime)),
+		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
 		DeskId:    proto.Int32(t.DeskId),
 		Password:  proto.String(t.Password),
 		Id:        proto.Int32(t.GameNumber),
