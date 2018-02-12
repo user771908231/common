@@ -99,10 +99,11 @@ const (
 )
 
 const (
-	RKEY_SHENQI_WHITE_USER_WINCOIN_INFO string = "rkey_shenqi_white_user_wincoin_info" //神奇朋友桌麻将白名单玩家输赢数据
-	RKEY_ZZHZ_WHITE_USER_WINCOIN_INFO   string = "rkey_zzhz_white_user_wincoin_info"   //转转红中朋友桌麻将白名单玩家输赢数据
-	RKEY_SJH_WHITE_USER_WINCOIN_INFO    string = "rkey_sjh_white_user_wincoin_info"    //松江河朋友桌麻将白名单玩家输赢数据
-	RKEY_ZIGONG_WHITE_USER_WINCOIN_INFO string = "rkey_zigong_white_user_wincoin_info" //自贡朋友桌麻将白名单玩家输赢数据
+	RKEY_SHENQI_WHITE_USER_WINCOIN_INFO      string = "rkey_shenqi_white_user_wincoin_info"      //神奇朋友桌麻将白名单玩家输赢数据
+	RKEY_ZZHZ_WHITE_USER_WINCOIN_INFO        string = "rkey_zzhz_white_user_wincoin_info"        //转转红中朋友桌麻将白名单玩家输赢数据
+	RKEY_SJH_WHITE_USER_WINCOIN_INFO         string = "rkey_sjh_white_user_wincoin_info"         //松江河朋友桌麻将白名单玩家输赢数据
+	RKEY_ZIGONG_WHITE_USER_WINCOIN_INFO      string = "rkey_zigong_white_user_wincoin_info"      //自贡朋友桌麻将白名单玩家输赢数据
+	RKEY_ZIGONG_WHITE_USER_WINCOIN_INFO_COIN string = "rkey_zigong_white_user_wincoin_info_coin" //自贡金币场麻将白名单玩家输赢数据
 )
 
 const (
