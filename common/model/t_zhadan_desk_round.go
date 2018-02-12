@@ -36,6 +36,22 @@ func (t T_zhadan_desk_round) TransRecord() *ddproto.BeanGameRecord {
 	return result
 }
 
+func (t T_zhadan_desk_round) TransRecordCoin() *ddproto.BeanGameRecordCoin {
+	result := &ddproto.BeanGameRecordCoin{
+		BeginTime: proto.String(timeUtils.Format(t.EndTime)),
+		DeskId:    proto.Int32(t.DeskId),
+		Password:  proto.String(t.Password),
+		Id:        proto.Int32(t.GameNumber),
+		Users: []*ddproto.BeanUserRecord{},
+	}
+
+	for _, bean := range t.Records {
+		b := bean.TransBeanUserRecord()
+		result.Users = append(result.Users, b)
+	}
+	return result
+}
+
 type ZhadanRecordBean struct {
 	UserId    uint32
 	NickName  string
