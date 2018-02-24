@@ -147,6 +147,11 @@ const (
 	DBT_PDK_DESK_ROUND_ALL      = "t_pdk_desk_round_all"      //全局跑得快结束战绩
 	DBT_PDK_DESK_ROUND_PLAYBACK = "t_pdk_desk_round_playback" //一把跑得快回放
 
+	//4人跑得快
+	DBT_PDK_DESK_ROUND_SIREN          = "t_pdk_desk_round_siren"          //一把跑得快结束战绩
+	DBT_PDK_DESK_ROUND_ALL_SIREN      = "t_pdk_desk_round_all_siren"      //全局跑得快结束战绩
+	DBT_PDK_DESK_ROUND_PLAYBACK_SIREN = "t_pdk_desk_round_playback_siren" //一把跑得快回放
+
 	//跑胡子 娄底放炮罚
 	DBT_PHZ_DESK_ROUND          = "t_phz_desk_round"          //跑胡子一局游戏战绩
 	DBT_PHZ_DESK_ROUND_ALL      = "t_phz_desk_round_all"      //跑胡子全局游戏结束战绩

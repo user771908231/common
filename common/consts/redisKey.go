@@ -49,6 +49,9 @@ const (
 	RKEY_PDK_DATARECOVER_ID_LIST string = "rkey_pdk_datarecover_id_list" //跑得快数据恢复房间ID列表
 	RKEY_PDK_DATARECOVER_DATA    string = "rkey_pdk_datarecover_data"    //跑得快数据恢复数据
 
+	RKEY_SIREN_PDK_DATARECOVER_ID_LIST string = "rkey_siren_pdk_datarecover_id_list" //四人跑得快数据恢复房间ID列表
+	RKEY_SIREN_PDK_DATARECOVER_DATA    string = "rkey_siren_pdk_datarecover_data"    //四人跑得快数据恢复数据
+
 	RKEY_ZZHZ_DATARECOVER_ID_LIST string = "rkey_zzhz_datarecover_id_list" //转转红中朋友桌麻将数据恢复房间ID列表
 	RKEY_ZZHZ_DATARECOVER_DATA    string = "rkey_zzhz_datarecover_data"    //转转红中朋友桌麻将数据恢复数据
 
@@ -106,11 +109,20 @@ const (
 	RKEY_ZIGONG_WHITE_USER_WINCOIN_INFO_COIN string = "rkey_zigong_white_user_wincoin_info_coin" //自贡金币场麻将白名单玩家输赢数据
 )
 
+//跑得快
 const (
 	RKEY_PDK_REXIPAI_CHANCE_BOOM string = "rkey_pdk_rexipai_boom"
 	RKEY_PDK_REXIPAI_CHANCE_AIR  string = "rkey_pdk_rexipai_air"
 	RKEY_PDK_REXIPAI_CHANCE_SHUN string = "rkey_pdk_rexipai_shun"
 	RKEY_PDK_WHITEUSER_WINCOUNT  string = "rkey_pdk_whiteuser_wincount"
+)
+
+//4人跑得快
+const (
+	RKEY_SIREN_PDK_REXIPAI_CHANCE_BOOM string = "rkey_siren_pdk_rexipai_boom"
+	RKEY_SIREN_PDK_REXIPAI_CHANCE_AIR  string = "rkey_siren_pdk_rexipai_air"
+	RKEY_SIREN_PDK_REXIPAI_CHANCE_SHUN string = "rkey_siren_pdk_rexipai_shun"
+	RKEY_SIREN_PDK_WHITEUSER_WINCOUNT  string = "rkey_siren_pdk_whiteuser_wincount"
 )
 
 const (
