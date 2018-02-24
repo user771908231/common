@@ -29,8 +29,8 @@ func GetZhadanCoinDeskRoundByUserId(table_name string, userId uint32, bankRule i
 	querKey, _ := numUtils.Uint2String(userId)
 
 	db.Log(table_name).Page(bson.M{
-		"userids": bson.RegEx{querKey, "."},
-		"bankrule":  bankRule,
+		"userids":  bson.RegEx{querKey, "."},
+		"bankrule": bankRule,
 	}, &deskRecords, "-gamenumber", 1, 20)
 
 	if deskRecords == nil || len(deskRecords) <= 0 {

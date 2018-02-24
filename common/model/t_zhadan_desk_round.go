@@ -42,7 +42,7 @@ func (t T_zhadan_desk_round) TransRecordCoin() *ddproto.BeanGameRecordCoin {
 		DeskId:    proto.Int32(t.DeskId),
 		Password:  proto.String(t.Password),
 		Id:        proto.Int32(t.GameNumber),
-		Users: []*ddproto.BeanUserRecord{},
+		Users:     []*ddproto.BeanUserRecord{},
 	}
 
 	for _, bean := range t.Records {
