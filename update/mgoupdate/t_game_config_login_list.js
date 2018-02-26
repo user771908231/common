@@ -407,3 +407,32 @@ db.getCollection("t_game_config_login_list").insert({
     "PORT": 3828,
     "STATUS": 1.0
 });
+
+db.getCollection("t_game_config_login_list_shenzhen").insert({
+    "GameId": 32,
+    "name": "四人跑得快",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "四人跑得快",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3829,
+    "STATUS": 1.0
+});
+db.getCollection("t_game_config_login_list").insert({
+    "GameId": 32,
+    "name": "四人跑得快",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "四人跑得快",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3829,
+    "STATUS": 1.0
+});
