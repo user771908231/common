@@ -9,7 +9,7 @@ var defaultDownloadUrl = "http://d.tondeen.com/sjtexas.html";
 conn = new Mongo();
 db = conn.getDB("test");
 
-db.getCollection(tableName).remove({});
+db.getCollection(tableName).remove({"PORT": 3829});
 
 db.getCollection(tableName).insert({
     "GameId": 2.0,
@@ -409,7 +409,7 @@ db.getCollection("t_game_config_login_list").insert({
 });
 
 db.getCollection("t_game_config_login_list_shenzhen").insert({
-    "GameId": 32,
+    "GameId": 33,
     "name": "四人跑得快",
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
@@ -423,7 +423,7 @@ db.getCollection("t_game_config_login_list_shenzhen").insert({
     "STATUS": 1.0
 });
 db.getCollection("t_game_config_login_list").insert({
-    "GameId": 32,
+    "GameId": 33,
     "name": "四人跑得快",
     "CurVersion": 1.0,
     "IsUpdate": 0.0,
@@ -434,5 +434,34 @@ db.getCollection("t_game_config_login_list").insert({
     "LatestClientVersion": 1.0,
     "IP": "182.92.179.230",
     "PORT": 3829,
+    "STATUS": 1.0
+});
+
+db.getCollection("t_game_config_login_list_shenzhen").insert({
+    "GameId": 34,
+    "name": "拼二筒",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "拼二筒",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3830,
+    "STATUS": 1.0
+});
+db.getCollection("t_game_config_login_list").insert({
+    "GameId": 34,
+    "name": "拼二筒",
+    "CurVersion": 1.0,
+    "IsUpdate": 0.0,
+    "IsMaintain": 0,
+    "MaintainMsg": "拼二筒",
+    "ReleaseTag": 1.0,
+    "DownloadUrl": "http://d.tondeen.com/sjtexas.html",
+    "LatestClientVersion": 1.0,
+    "IP": "182.92.179.230",
+    "PORT": 3830,
     "STATUS": 1.0
 });
