@@ -64,10 +64,14 @@ func (t T_pinerzhang_desk_round) Insert() {
 }
 
 //查询总战绩
-func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
+func GetPEZDeskRoundByUserId(userId uint32, gameId int32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
-	db.Log(tableName.DBT_PEZ_DESK_ROUND_ALL).Page(bson.M{
+	tbName := tableName.DBT_PEZ_DESK_ROUND_ALL
+	if gameId == int32(ddproto.CommonEnumGame_GID_PINERTONG) {
+		tbName = tableName.DBT_PET_DESK_ROUND_ALL
+	}
+	db.Log(tbName).Page(bson.M{
 		"userids": bson.RegEx{querKey, "."},
 	}, &deskRecords, "-gamenumber", 1, 20)
 
@@ -80,9 +84,13 @@ func GetPEZDeskRoundByUserId(userId uint32) []T_pinerzhang_desk_round {
 }
 
 //查询俱乐部战绩
-func GetPEZDeskRoundByDeskIds(deskIds []int32) []T_pinerzhang_desk_round {
+func GetPEZDeskRoundByDeskIds(deskIds []int32, gameId int32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
-	db.Log(tableName.DBT_PEZ_DESK_ROUND_ALL).Page(bson.M{
+	tbName := tableName.DBT_PEZ_DESK_ROUND_ALL
+	if gameId == int32(ddproto.CommonEnumGame_GID_PINERTONG) {
+		tbName = tableName.DBT_PET_DESK_ROUND_ALL
+	}
+	db.Log(tbName).Page(bson.M{
 		"deskid": bson.M{"$in": deskIds},
 	}, &deskRecords, "-gamenumber", 1, 100)
 
@@ -95,11 +103,16 @@ func GetPEZDeskRoundByDeskIds(deskIds []int32) []T_pinerzhang_desk_round {
 }
 
 //查询牌桌内战绩
-func GetPEZDeskRoundByDeskId(userId uint32, deskId int32) []T_pinerzhang_desk_round {
+func GetPEZDeskRoundByDeskId(userId uint32, deskId int32, gameId int32) []T_pinerzhang_desk_round {
 	var deskRecords []T_pinerzhang_desk_round
 	querKey, _ := numUtils.Uint2String(userId)
 
-	db.Log(tableName.DBT_PEZ_DESK_ROUND).Page(bson.M{
+	tbName := tableName.DBT_PEZ_DESK_ROUND
+	if gameId == int32(ddproto.CommonEnumGame_GID_PINERTONG) {
+		tbName = tableName.DBT_PET_DESK_ROUND
+	}
+
+	db.Log(tbName).Page(bson.M{
 		"userids": bson.RegEx{querKey, "."},
 		"deskid":  deskId,
 	}, &deskRecords, "-gamenumber", 1, 20)
