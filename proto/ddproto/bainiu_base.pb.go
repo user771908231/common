@@ -531,6 +531,9 @@ It has these top-level messages:
 	PdkOverturnPlayerInfo
 	PdkBcOverTurn
 	PdkBcGameInfo
+	PdkBcIsclose
+	PdkReqIsclose
+	PdkAckIsclose
 	PdkSrvOutPokerPais
 	PdkSrvDeskTongJi
 	PdkSrvDesk
@@ -586,6 +589,9 @@ It has these top-level messages:
 	Pez_AckBet
 	Pez_BCOpenPai
 	Pez_SendGameInfo
+	PetBcQiangbanker
+	PetReqQiangbanker
+	PetAckQiangbanker
 	PhzPlayPaiIds
 	PhzBaseCreateOption
 	PhzBaseRoomInfo

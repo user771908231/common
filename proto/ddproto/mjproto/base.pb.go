@@ -9,6 +9,7 @@ It is generated from these files:
 	mahjong_desk.proto
 	mahjong_hall.proto
 	mahjong_play.proto
+	rpc_liuzhou.proto
 	rpc_shenqi.proto
 	rpc_sichuan.proto
 	rpc_sjh.proto
