@@ -1,10 +1,10 @@
 package majiang
 
 import (
-	"casino_common/utils/numUtils"
-	"strings"
 	"casino_common/proto/ddproto/mjproto"
 	"casino_common/proto/funcsInit"
+	"casino_common/utils/numUtils"
+	"strings"
 )
 
 var TOTALPAICOUNT int = 148 //4:万条筒 东南西北 中发白 1:春夏秋冬 梅兰菊竹 4:中
@@ -467,7 +467,7 @@ func (p *MJPAI) InitByDes() error {
 
 //这里得到牌的计数index
 func (p *MJPAI) GetCountIndex() int32 {
-	return p.Value - 1 + (int32(p.Flower - 1))*9 //todo 此方法是否合适...
+	return p.Value - 1 + (int32(p.Flower-1))*9 //todo 此方法是否合适...
 }
 
 //todo
@@ -508,7 +508,6 @@ func (p *MJPAI) LogDes() string {
 		des = valueStr + GetFlow(int32(p.Flower))
 	}
 
-
 	return idStr + "-" + des
 }
 
@@ -519,19 +518,19 @@ func (p *MJPAI) DesFeng() string {
 	}
 	des := ""
 	switch {
-	case p.Value == 1 :
+	case p.Value == 1:
 		des = "东"
-	case p.Value == 2 :
+	case p.Value == 2:
 		des = "南"
-	case p.Value == 3 :
+	case p.Value == 3:
 		des = "西"
-	case p.Value == 4 :
+	case p.Value == 4:
 		des = "北"
-	case p.Value == 5 :
+	case p.Value == 5:
 		des = "中"
-	case p.Value == 6 :
+	case p.Value == 6:
 		des = "白"
-	case p.Value == 7 :
+	case p.Value == 7:
 		des = "发"
 	default:
 		des = "默认风"
@@ -546,21 +545,21 @@ func (p *MJPAI) DesHua() string {
 	}
 	des := ""
 	switch {
-	case p.Value == 1 :
+	case p.Value == 1:
 		des = "春"
-	case p.Value == 2 :
+	case p.Value == 2:
 		des = "夏"
-	case p.Value == 3 :
+	case p.Value == 3:
 		des = "秋"
-	case p.Value == 4 :
+	case p.Value == 4:
 		des = "东"
-	case p.Value == 5 :
+	case p.Value == 5:
 		des = "梅"
-	case p.Value == 6 :
+	case p.Value == 6:
 		des = "兰"
-	case p.Value == 7 :
+	case p.Value == 7:
 		des = "菊"
-	case p.Value == 8 :
+	case p.Value == 8:
 		des = "竹"
 	default:
 		des = "默认花"
