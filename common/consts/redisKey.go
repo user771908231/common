@@ -4,6 +4,7 @@ import "casino_common/common/consts/tableName"
 
 //common使用的所有的rediskey都应该放在这里
 const (
+<<<<<<< HEAD
 	RKEY_PRE_ASSETS_ALL               string = "AssetsInfo"                        //热更新文件的redis-key ,这是前缀，后缀需要增加appClientID
 	RKEY_PRE_ASSETS_ALL_WHITE         string = "AssetsInfoWhite"                   //热更新文件的redis-key,这里是白名单的key  ,这是前缀，后缀需要增加appClientID
 	RKEY_CONFIG_SYS                   string = "config_sys"                        //系统配置的redis-key
@@ -17,6 +18,22 @@ const (
 	RKEY_QR_CODE                      string = "redis_qr_code_key"                 //二维码登陆成功后存储的key
 	RKEY_SEQ_ID_KEY                   string = "redis_seq_id_key"                  //自增id key
 	RKEY_ORDER_ID_KEY                 string = "redis_order_id_key"                //订单的 ID KEY
+=======
+	RKEY_PRE_ASSETS_ALL               string = "AssetsInfo"              //热更新文件的redis-key ,这是前缀，后缀需要增加appClientID
+	RKEY_PRE_ASSETS_ALL_WHITE         string = "AssetsInfoWhite"         //热更新文件的redis-key,这里是白名单的key  ,这是前缀，后缀需要增加appClientID
+	RKEY_CONFIG_SYS                   string = "config_sys"              //系统配置的redis-key
+	RKEY_PRE_USER                     string = tableName.DBT_T_USER      //用户的key
+	RKEY_PRE_USER_AGENT_SESSION       string = "agent_session"           //用户session的key
+	RKEY_USER_COIN                    string = "user_coin_redis_key"     //金币
+	RKEY_USER_DIAMOND                 string = "user_diamond_redis_key"  //钻石，金币场
+	RKEY_USER_DIAMOND2                string = "user_diamond2_redis_key" //钻石朋友桌
+	RKEY_USER_ROOMCARD                string = "user_roomcard_redis_key" //钻石朋友桌
+	RKEY_MJSESSION_KEY_PRE            string = "redis_game_session"      //session redis key
+	RKEY_QR_CODE                      string = "redis_qr_code_key"       //二维码登陆成功后存储的key
+	RKEY_SEQ_ID_KEY                   string = "redis_seq_id_key"        //自增id key
+	RKEY_WITHSRAWALS_ID_KEY           string = "redis_seq_withsrawals_id_key"
+	RKEY_ORDER_ID_KEY                 string = "redis_seq_order_id_key"
+>>>>>>> master
 	RKEY_AGENT_CREATE_DESK_LIST       string = "rkey_agent_create_desk_list"       //代开房间列表 key
 	RKEY_AGENT_GROUP_CREATE_DESK_LIST string = "rkey_agent_group_create_desk_list" //代开房间列表 key
 	RKEY_WITHSRAWALS_ID_KEY           string = "redis_Withdrawals_key"             //提现申请记录 ID KEY

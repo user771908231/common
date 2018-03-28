@@ -183,7 +183,10 @@ func GetNextSeq(dbt string) (int32, error) {
 	return int32(new_val), nil
 }
 
+<<<<<<< HEAD
 //获取自增ID
+=======
+>>>>>>> master
 func GetNextIncrementID(dbt string, rdb string) (int32, error) {
 	//加锁防止id重复及其他异常
 	next_redis_seq_lock.Lock()

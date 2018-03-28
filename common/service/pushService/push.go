@@ -1,7 +1,10 @@
 package pushService
 
 import (
+<<<<<<< HEAD
 	"casino_common/common/Error"
+=======
+>>>>>>> master
 	"casino_common/proto/ddproto"
 	"errors"
 	"gopkg.in/fatih/pool.v2"

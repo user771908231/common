@@ -1,10 +1,15 @@
 package majiang
 
 import (
+<<<<<<< HEAD
 	"casino_common/common/log"
 	"casino_common/proto/ddproto/mjproto"
 	"casino_common/proto/funcsInit"
 	"casino_common/utils/chessUtils"
+=======
+	"casino_common/proto/ddproto/mjproto"
+	"casino_common/proto/funcsInit"
+>>>>>>> master
 	"casino_common/utils/numUtils"
 	"strings"
 )

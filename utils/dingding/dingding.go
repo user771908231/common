@@ -2,7 +2,10 @@ package utils
 
 import (
 	"bytes"
+<<<<<<< HEAD
 	"casino_common/common/Error"
+=======
+>>>>>>> master
 	"casino_common/common/log"
 	"encoding/json"
 	"fmt"

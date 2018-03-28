@@ -6,9 +6,6 @@ import (
 	"runtime"
 	"strconv"
 	"time"
-)
-
-import (
 	"casino_common/common/cfg"
 	"misc/timer"
 	"runtime/debug"
