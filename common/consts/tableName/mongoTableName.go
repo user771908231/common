@@ -191,4 +191,12 @@ const (
 
 	DBT_T_ROBOT_INFO string = "t_robot_info" //机器人信息表
 
+	//红包扫雷
+	TABLE_NAME_REDPACK_INFO      = "t_redpack_info"      //红包详情表
+	TABLE_NAME_OPEN_PACKET_LISTS = "t_open_packet_lists" //游戏记录
+
+	//充值订单
+	TABLE_ORDER_LISTS = "t_recharge_order_list"
+	//提现记录
+	TABLE_WITHDRAWALS_LISTS = "t_withdrawals_list"
 )
