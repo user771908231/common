@@ -1,9 +1,9 @@
 package utils
 
 import (
+	"fmt"
 	"testing"
 	"time"
-	"fmt"
 )
 
 func TestDingMessage_Send(t *testing.T) {
@@ -12,7 +12,7 @@ func TestDingMessage_Send(t *testing.T) {
 }
 
 func TestSingleRobot_SendTxt(t *testing.T) {
-	for i:=0;i<10;i++ {
+	for i := 0; i < 10; i++ {
 		res := WxRobot.SendTxt(fmt.Sprintf("%d", i))
 		t.Log(res)
 	}

@@ -22,5 +22,3 @@ type TMjZHZHDeskConfig struct {
 	IsBaHongZhong  bool  //是否是8红中 红中使用
 	GameType       int32 //玩法
 }
-
-

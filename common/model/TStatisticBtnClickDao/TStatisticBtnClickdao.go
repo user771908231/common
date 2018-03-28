@@ -1,10 +1,10 @@
 package TStatisticBtnClickDao
 
 import (
-	"casino_common/common/consts/tableName"
-	"casino_common/utils/db"
-	"casino_common/common/model"
 	"casino_common/common/Error"
+	"casino_common/common/consts/tableName"
+	"casino_common/common/model"
+	"casino_common/utils/db"
 )
 
 //

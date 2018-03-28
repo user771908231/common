@@ -1,15 +1,15 @@
 package service
 
 import (
-	"github.com/chanxuehong/wechat.v2/mch/pay"
-	"github.com/chanxuehong/wechat.v2/mch/core"
-	"time"
 	"casino_common/common/log"
-	"fmt"
 	"casino_common/proto/ddproto"
-	"github.com/chanxuehong/rand"
-	"github.com/golang/protobuf/proto"
 	"errors"
+	"fmt"
+	"github.com/chanxuehong/rand"
+	"github.com/chanxuehong/wechat.v2/mch/core"
+	"github.com/chanxuehong/wechat.v2/mch/pay"
+	"github.com/golang/protobuf/proto"
+	"time"
 )
 
 const (
@@ -21,7 +21,7 @@ func UnifiedOrder(totalFee int64, ip string, tradeNo string, appid, mchid, apike
 	//app支付 需要这么多就行了
 	unifiedOrderRequest := new(pay.UnifiedOrderRequest)
 	unifiedOrderRequest.DeviceInfo = deviceInfo
-	unifiedOrderRequest.Body = "游戏充值"  //微信支付-确认交易页面的标题
+	unifiedOrderRequest.Body = "游戏充值"        //微信支付-确认交易页面的标题
 	unifiedOrderRequest.OutTradeNo = tradeNo //商户内部的订单号 test ：time+userId+type+rand ?
 	unifiedOrderRequest.FeeType = "CNY"
 	unifiedOrderRequest.TotalFee = totalFee

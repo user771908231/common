@@ -183,6 +183,34 @@ func GetNextSeq(dbt string) (int32, error) {
 	return int32(new_val), nil
 }
 
+func GetNextIncrementID(dbt string, rdb string) (int32, error) {
+	//加锁防止id重复及其他异常
+	next_redis_seq_lock.Lock()
+	defer next_redis_seq_lock.Unlock()
+
+	rkey := redisUtils.K_STRING(rdb, dbt)
+
+	rval := redisUtils.GetInt64(rkey)
+
+	//如果不存在该键值，则从数据库中查询
+	if rval == 0 {
+		db_id, err := GetNextSeqByMongo(dbt)
+		//如果数据库中不存在，则直接返回错误
+		if err != nil {
+			return db_id, err
+		}
+		//如果数据库中存在则将数据set进redis中并返回
+		redisUtils.SetInt64(rkey, int64(db_id))
+		return db_id, err
+	}
+
+	//返回redis中存的值
+	new_val := rval + 1
+	redisUtils.SetInt64(rkey, new_val)
+
+	return int32(new_val), nil
+}
+
 //通过数据库-得到自增键（旧版从mmongo中取）
 func GetNextSeqByMongo(dbt string) (int32, error) {
 	//连接数据库

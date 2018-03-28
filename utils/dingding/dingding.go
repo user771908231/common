@@ -1,12 +1,12 @@
 package utils
 
 import (
-	"io/ioutil"
 	"bytes"
-	"net/http"
 	"casino_common/common/log"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
 	"sync"
 )
 
@@ -28,7 +28,7 @@ func init() {
 	fmt.Println("开始初始化ddmsger...")
 	DingMsger = &DingMessage{
 		chatid:  "chat7548ac2ea5f759f5b260a37013263409",
-		token: "",
+		token:   "",
 		msgtype: "text",
 		msgbody: make(chan *sendBody, 100),
 	}
@@ -39,20 +39,20 @@ func init() {
 type dingRet struct {
 	Errmsg       string `json:"errmsg"`
 	Access_token string `json:"access_token"`
-	Errcode      int32 `json:"errcode"`
+	Errcode      int32  `json:"errcode"`
 }
 
 //发送消息时候的回复
 type SendRet struct {
 	Errmsg  string `json:"errmsg"`
-	Errcode int32 `json:"errcode"`
+	Errcode int32  `json:"errcode"`
 }
 
 //发送消息的结构
 type sendBody struct {
 	Chatid  string `json:"chatid"`
 	Msgtype string `json:"msgtype"`
-	Text    c `json:"text"`
+	Text    c      `json:"text"`
 }
 
 type c struct {
@@ -99,7 +99,7 @@ func (m *DingMessage) send(postParams []byte) {
 		//需要重新获取token
 		m.refrehToken()
 		m.send(postParams)
-		m.refreshTokenCount ++
+		m.refreshTokenCount++
 	} else {
 		m.refreshTokenCount = 0
 	}

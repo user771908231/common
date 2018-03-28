@@ -167,4 +167,7 @@ const (
 
 	DBT_T_ROBOT_INFO string = "t_robot_info" //机器人信息表
 
+	TABLE_NAME_REDPACK_INFO      string = "t_redpack_info"
+	TABLE_NAME_OPEN_PACKET_LISTS string = "t_recharge_order_list"
+	TABLE_WITHDRAWALS_LISTS      string = "t_withdrawals_list"
 )

@@ -1,10 +1,10 @@
 package pushService
 
 import (
-	"net"
 	"casino_common/proto/ddproto"
-	"gopkg.in/fatih/pool.v2"
 	"errors"
+	"gopkg.in/fatih/pool.v2"
+	"net"
 )
 
 func init() {
@@ -44,7 +44,7 @@ func Push(data []byte) error {
 		return errors.New("push err: PoolStack nil.")
 	}
 
-	conn,err := PoolStack.Get()
+	conn, err := PoolStack.Get()
 	defer conn.Close()
 
 	if err != nil {
@@ -55,7 +55,7 @@ func Push(data []byte) error {
 		return errors.New("push err: Get err")
 	}
 
-	_,err = conn.Write(data)
+	_, err = conn.Write(data)
 	if err != nil {
 		if PoolInit(HallTcpAddr) == nil {
 			go Push(data)
@@ -70,7 +70,7 @@ func Push(data []byte) error {
 //向大厅服务器推送消息
 func PushUserData(userId uint32) error {
 	data := AssembleData(ddproto.HallEnumProtoId_HALL_PID_PUSH_REQ, &ddproto.Push{
-		Id:&userId,
+		Id: &userId,
 	})
 	return Push(data)
 }
