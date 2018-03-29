@@ -197,7 +197,6 @@ const (
 	//充值订单
 	TABLE_ORDER_LISTS = "t_recharge_order_list"
 	//提现记录
-	TABLE_WITHDRAWALS_LISTS = "t_withdrawals_list"
+	TABLE_WITHDRAWALS_LISTS          = "t_withdrawals_list"
 	TABLE_NAME_RECHARGE_LISTS string = "t_recharge_order_list"
-
 )

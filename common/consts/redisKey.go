@@ -4,7 +4,6 @@ import "casino_common/common/consts/tableName"
 
 //common使用的所有的rediskey都应该放在这里
 const (
-
 	RKEY_PRE_ASSETS_ALL               string = "AssetsInfo"              //热更新文件的redis-key ,这是前缀，后缀需要增加appClientID
 	RKEY_PRE_ASSETS_ALL_WHITE         string = "AssetsInfoWhite"         //热更新文件的redis-key,这里是白名单的key  ,这是前缀，后缀需要增加appClientID
 	RKEY_CONFIG_SYS                   string = "config_sys"              //系统配置的redis-key
