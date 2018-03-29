@@ -46,7 +46,7 @@ func getDDZPayModel() *ddproto.PayBasePaymodel {
 
 //通过meal的信息更细user的信息
 func UpdateUserByMeal(tradeNo string, total_fee float64) error {
-	//不是重复回调，开始做余额更新的处理
+	//不是重复回调，开始做余额更新的处理 使用订单号在数据中查找该订单并返回
 	detail := GetDetailsByTradeNo(tradeNo)
 	if detail == nil {
 		msg := fmt.Sprintf("没有在数据中找到订单号[%v]对应的套餐..", tradeNo)
