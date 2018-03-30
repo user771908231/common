@@ -199,4 +199,6 @@ const (
 	//提现记录
 	TABLE_WITHDRAWALS_LISTS          = "t_withdrawals_list"
 	TABLE_NAME_RECHARGE_LISTS string = "t_recharge_order_list"
+
+	TABLE_GOOGSCOIN_ROW_LISTS string = "t_googscoin_row_list"
 )
