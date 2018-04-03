@@ -201,4 +201,6 @@ const (
 	TABLE_NAME_RECHARGE_LISTS string = "t_recharge_order_list"
 
 	TABLE_GOOGSCOIN_ROW_LISTS string = "t_googscoin_row_list"
+	//用户金币加减记录
+	TABLE_COIN_ADD_SUBTRACT_NOTES string = "t_coin_add_subtract_notes_" // "t_coin_add_subtract_notes_"+用户objid
 )
